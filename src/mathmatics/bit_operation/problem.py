@@ -26,6 +26,7 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
 100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
 100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
+100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
@@ -748,3 +749,25 @@ class Solution:
             else:
                 ac.st(minimum_xor.query())
         return
+
+    @staticmethod
+    def lc_100179(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/
+        tag: bit_operation|greedy|brain_teaser
+        """
+        ans = mask = 0
+        for i in range(max(nums).bit_length(), -1, -1):
+            mask |= 1 << i
+            pre = -1
+            cnt = 0
+            for num in nums:
+                pre &= num & mask
+                if pre == 0:
+                    pre = -1
+                else:
+                    cnt += 1
+            if cnt > k:
+                ans |= 1 << i
+                mask ^= 1 << i
+        return ans

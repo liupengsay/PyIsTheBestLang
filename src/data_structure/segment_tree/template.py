@@ -789,6 +789,112 @@ class RangeChminChmaxPointGet:
         return nums
 
 
+class PointAddRangeSum1Sum2:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover1 = [initial] * 4 * n
+        self.cover2 = [initial] * 4 * n
+        return
+
+    def _push_up(self, i):
+        self.cover1[i] = self.cover1[i << 1] + self.cover1[(i << 1) | 1]
+        self.cover2[i] = self.cover2[i << 1] + self.cover2[(i << 1) | 1]
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover1[i], self.cover2[i] = nums[s][0], nums[s][0] * nums[s][1]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [[0, 0] for _ in range(self.n)]
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = [self.cover1[i], self.cover2[i] // self.cover1[i]]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_add(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self.cover1[i] += val[0]
+                self.cover2[i] += val[1]
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_sum1(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover1[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_sum2(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover2[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_sum2_bisect_left(self, cnt):
+        s, t, i = 0, self.n - 1, 1
+        ans = 0
+        while s < t:
+            m = s + (t - s) // 2
+            if self.cover1[i << 1] >= cnt:
+                s, t, i = s, m, i << 1
+            else:
+                cnt -= self.cover1[i << 1]
+                ans += self.cover2[i << 1]
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans, cnt, t
+
+
 class RangeAddPointGet:
     def __init__(self, n):
         self.n = n

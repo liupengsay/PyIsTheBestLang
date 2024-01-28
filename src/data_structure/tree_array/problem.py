@@ -37,7 +37,7 @@ P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_
 ====================================AtCoder=====================================
 ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
 ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
-
+ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array
@@ -971,4 +971,62 @@ class Solution:
             ans[j] = tree.range_sum(1, i)
             tree.point_add(i, 1)
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_287g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc287/tasks/abc287_g
+        tag: segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        q = ac.read_int()
+        queries = [ac.read_list_ints() for _ in range(q)]
+        nodes = set()
+        for a, _ in nums:
+            nodes.add(a)
+        for lst in queries:
+            if lst[0] == 1:
+                nodes.add(lst[2])
+        nodes = sorted(nodes)
+        ind = {num: i + 1 for i, num in enumerate(nodes)}
+        n = len(nodes)
+        tree1 = PointAddRangeSum(n)
+        tree2 = PointAddRangeSum(n)
+        tot1 = tot2 = 0
+        for a, b in nums:
+            tree1.point_add(ind[a], b)
+            tree2.point_add(ind[a], a * b)
+            tot1 += b
+            tot2 += a * b
+
+        for lst in queries:
+            if lst[0] < 3:
+                x, y = lst[1:]
+                x -= 1
+                a, b = nums[x]
+                tree1.point_add(ind[a], -b)
+                tree2.point_add(ind[a], -a * b)
+                tot1 -= b
+                tot2 -= a * b
+                if lst[0] == 1:
+                    nums[x][0] = y
+                else:
+                    nums[x][1] = y
+                a, b = nums[x]
+                tree1.point_add(ind[a], b)
+                tree2.point_add(ind[a], a * b)
+                tot1 += b
+                tot2 += a * b
+            else:
+                x = lst[1]
+                if tot1 < x:
+                    ac.st(-1)
+                    continue
+                i = tree1.bisect_right(tot1 - x)
+                ans = tree2.range_sum(1, i) if i else 0
+                rest = tot1 - x - tree1.range_sum(1, i) if i else tot1 - x
+                ans += rest * nodes[i]
+                ac.st(tot2 - ans)
         return

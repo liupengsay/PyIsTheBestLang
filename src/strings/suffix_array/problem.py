@@ -69,6 +69,9 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）suffix_array|monotonic_stack|height|counter
 21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
 22（https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A）suffix_array|rk
+23（https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/A）suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
+24（https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B）suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
+25（https://codeforces.com/edu/course/2/lesson/2/4/practice/contest/269119/problem/A）suffix_array|height|lcp
 
 """
 
@@ -520,7 +523,7 @@ class Solution:
         s = ac.read_str()
         sa, rk, height = SuffixArray().build([ord(w) - ord("a") for w in s], 26)
         n = len(s)
-        left = [0] * n
+        left = [1] * n
         right = [n - 1] * n
         stack = []
         for i in range(n):
@@ -1235,7 +1238,7 @@ class Solution:
         s = ac.read_list_ints_minus_one()
         sa, rk, height = SuffixArray().build(s, m)
 
-        left = [0] * n
+        left = [1] * n
         right = [n - 1] * n
         stack = []
         for i in range(n):
@@ -1270,4 +1273,187 @@ class Solution:
         s = [ord(w) - ord("a") for w in ac.read_str()]
         sa, _, _ = SuffixArray().build(s, 26)
         ac.lst([len(sa)] + sa)
+        return
+
+    @staticmethod
+    def library_check_23_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/A
+        tag: suffix_array|height|lcp|monotonic_stack|prefix_sum
+        """
+        t = ac.read_str()
+        words = [ac.read_str() for _ in range(ac.read_int())]
+
+        lst = [ord(w) - ord("a") for w in t] + [26]
+        ind = []
+        m = len(lst)
+        length = dict()
+        k = len(words)
+        for i, s in enumerate(words):
+            ind.append(len(lst))
+            cur = [ord(w) - ord("a") for w in s] + [26 + i + 1]
+            length[len(lst)] = len(cur) - 1
+            lst.extend(cur)
+        sa, rk, height = SuffixArray().build(lst, 26 + k + 1)
+        n = len(sa)
+
+        right = [n - 1] * n
+        stack = []
+        for i in range(n):
+            while stack and height[stack[-1]] > height[i]:
+                right[stack.pop()] = i - 1
+            stack.append(i)
+
+        left = [1] * n
+        stack = []
+        for i in range(n - 1, 0, -1):
+            while stack and height[stack[-1]] > height[i]:
+                left[stack.pop()] = i + 1
+            stack.append(i)
+
+        pre = ac.accumulate([int(i < m - 1) for i in sa])
+        ans = []
+        for i in ind:
+            j = rk[i]
+            if height[j] >= length[i]:
+                ll = left[j]
+                if pre[j + 1] > pre[ll - 1]:
+                    ans.append(True)
+                    continue
+            if j + 1 < n and height[j + 1] >= length[i]:
+                rr = right[j + 1]
+                if pre[rr + 1] > pre[j]:
+                    ans.append(True)
+                    continue
+            ans.append(False)
+        for a in ans:
+            ac.st("Yes" if a else "No")
+        return
+
+    @staticmethod
+    def library_check_23_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/A
+        tag: suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
+        """
+
+        t = ac.read_str()
+        lst = [ord(w) - ord("a") for w in t]
+        sa, _, _ = SuffixArray().build(lst, 26)
+        m = len(t)
+
+        def check(i):
+            j = sa[i]
+            return t[j:j + n] >= s
+
+        bs = BinarySearch()
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            x = bs.find_int_left(0, m - 1, check)
+            if t[sa[x]:sa[x] + n] == s:
+                ac.st("Yes")
+            else:
+                ac.st("No")
+        return
+
+    @staticmethod
+    def library_check_24_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B
+        tag: suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
+        """
+
+        t = ac.read_str()
+        words = [ac.read_str() for _ in range(ac.read_int())]
+
+        lst = [ord(w) - ord("a") for w in t] + [26]
+        ind = []
+        m = len(lst)
+        length = dict()
+        k = len(words)
+        for i, s in enumerate(words):
+            ind.append(len(lst))
+            cur = [ord(w) - ord("a") for w in s] + [26 + i + 1]
+            length[len(lst)] = len(cur) - 1
+            lst.extend(cur)
+        sa, rk, height = SuffixArray().build(lst, 26 + k + 1)
+        n = len(sa)
+
+        right = [n - 1] * n
+        stack = []
+        for i in range(n):
+            while stack and height[stack[-1]] > height[i]:
+                right[stack.pop()] = i - 1
+            stack.append(i)
+
+        left = [1] * n
+        stack = []
+        for i in range(n - 1, 0, -1):
+            while stack and height[stack[-1]] > height[i]:
+                left[stack.pop()] = i + 1
+            stack.append(i)
+
+        pre = ac.accumulate([int(i < m - 1) for i in sa])
+        for i in ind:
+            ans = 0
+            j = rk[i]
+            if height[j] >= length[i]:
+                ll = left[j]
+                ans += pre[j + 1] - pre[ll - 1]
+            if j + 1 < n and height[j + 1] >= length[i]:
+                rr = right[j + 1]
+                ans += pre[rr + 1] - pre[j + 1]
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_24_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B
+        tag: suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
+        """
+
+        t = ac.read_str()
+        lst = [ord(w) - ord("a") for w in t]
+        sa, _, _ = SuffixArray().build(lst, 26)
+        m = len(t)
+
+        def check(i):
+            j = sa[i]
+            return t[j:j + n] >= s
+
+        def check2(i):
+            j = sa[i]
+            return t[j:j + n + 1] <= s
+
+        bs = BinarySearch()
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+
+            x = bs.find_int_left(0, m - 1, check)
+            if t[sa[x]:sa[x] + n] == s:
+                s += chr(1 + ord("z"))
+                y = bs.find_int_right(0, m - 1, check2)
+                ac.st(y - x + 1)
+            else:
+                ac.st(0)
+        return
+
+    @staticmethod
+    def library_check_25(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/4/practice/contest/269119/problem/A
+        tag: suffix_array|height|lcp
+        """
+
+        t = ac.read_str()
+
+        lst = [ord(w) - ord("a") for w in t]
+
+        sa, rk, height = SuffixArray().build(lst, 26)
+        n = len(sa)
+        ac.lst([n] + sa)
+        ac.lst(height)
         return

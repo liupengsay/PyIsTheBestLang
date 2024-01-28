@@ -58,6 +58,7 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
+ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -117,7 +118,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSqrtRangeSum, RangeSetReverseRangeSumLongestConSub, PointSetRangeOr, PointSetRangeSum, PointSetRangeMin, \
     PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
-    RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct
+    RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
+    PointAddRangeSum1Sum2
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1947,4 +1949,54 @@ class Solution:
                 ac.st(ans)
             else:
                 break
+        return
+
+    @staticmethod
+    def abc_287g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc287/tasks/abc287_g
+        tag: segment_tree|range_sum|dynamic|offline
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        q = ac.read_int()
+        queries = [ac.read_list_ints() for _ in range(q)]
+        nodes = set()
+        for a, _ in nums:
+            nodes.add(a)
+        for lst in queries:
+            if lst[0] == 1:
+                nodes.add(lst[2])
+        nodes = sorted(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        n = len(nodes)
+        tree = PointAddRangeSum1Sum2(n)
+        for a, b in nums:
+            tree.point_add(ind[a], (b, a * b))
+        for lst in queries:
+            if lst[0] == 1:
+                x, y = lst[1:]
+                x -= 1
+                a, b = nums[x]
+                tree.point_add(ind[a], (-b, -b * a))
+                nums[x][0] = y
+                a, b = nums[x]
+                tree.point_add(ind[a], (b, b * a))
+            elif lst[0] == 2:
+                x, y = lst[1:]
+                x -= 1
+                a, b = nums[x]
+                tree.point_add(ind[a], (-b, -b * a))
+                nums[x][1] = y
+                a, b = nums[x]
+                tree.point_add(ind[a], (b, b * a))
+            else:
+                x = lst[1]
+                tot = tree.cover1[1]
+                if tot < x:
+                    ac.st(-1)
+                else:
+                    rest, c, i = tree.range_sum2_bisect_left(tot - x)
+                    rest += c * nodes[i]
+                    ac.st(tree.cover2[1] - rest)
         return

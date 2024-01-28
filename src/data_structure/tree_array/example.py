@@ -1,3 +1,4 @@
+import bisect
 import random
 import unittest
 from itertools import accumulate
@@ -27,6 +28,20 @@ class TestGeneral(unittest.TestCase):
                 right = random.randint(left, ceil - 1)
                 assert sum(nums[left: right + 1]) == tree_array.range_sum(left + 1, right + 1)
                 assert nums == tree_array.get()
+
+        nums = [0, 0, 1, 2, 3, 4, 5]
+        pre = list(accumulate(nums))
+        tree_array = PointAddRangeSum(len(nums))
+        tree_array.build(nums)
+        for x in range(sum(nums) + 7):
+            assert tree_array.bisect_right(x) == bisect.bisect_right(pre, x)
+
+        nums = [1, 1, 1, 2, 3, 4, 5]
+        pre = list(accumulate(nums))
+        tree_array = PointAddRangeSum(len(nums))
+        tree_array.build(nums)
+        for x in range(sum(nums) + 7):
+            assert tree_array.bisect_right(x) == bisect.bisect_right(pre, x)
         return
 
     def test_point_change_range_sum(self):

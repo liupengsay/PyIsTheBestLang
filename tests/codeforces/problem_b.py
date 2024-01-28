@@ -1,23 +1,4 @@
-from sys import stdin, stdout
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
+from sys import stdin
 
 inf = 1 << 32
 
@@ -85,15 +66,69 @@ class FastIO:
         return pre
 
 
+
+
+
 class Solution:
     def __init__(self):
         return
 
     @staticmethod
     def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc287/tasks/abc287_g
+        tag: segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        q = ac.read_int()
+        queries = [ac.read_list_ints() for _ in range(q)]
+        nodes = set()
+        for a, _ in nums:
+            nodes.add(a)
+        for lst in queries:
+            if lst[0] == 1:
+                nodes.add(lst[2])
+        nodes = sorted(nodes)
+        ind = {num: i + 1 for i, num in enumerate(nodes)}
+        n = len(nodes)
+        tree1 = PointAddRangeSum(n)
+        tree2 = PointAddRangeSum(n)
+        tot1 = tot2 = 0
+        for a, b in nums:
+            tree1.point_add(ind[a], b)
+            tree2.point_add(ind[a], a * b)
+            tot1 += b
+            tot2 += a * b
 
-        for _ in range(ac.read_int()):
-            pass
+        for lst in queries:
+            if lst[0] < 3:
+                x, y = lst[1:]
+                x -= 1
+                a, b = nums[x]
+                tree1.point_add(ind[a], -b)
+                tree2.point_add(ind[a], -a * b)
+                tot1 -= b
+                tot2 -= a * b
+                if lst[0] == 1:
+                    nums[x][0] = y
+                else:
+                    nums[x][1] = y
+                a, b = nums[x]
+                tree1.point_add(ind[a], b)
+                tree2.point_add(ind[a], a * b)
+                tot1 += b
+                tot2 += a * b
+            else:
+                x = lst[1]
+                if tot1 < x:
+                    ac.st(-1)
+                    continue
+                i = tree1.bisect_right(tot1 - x)
+                ans = tree2.range_sum(1, i) if i else 0
+                rest = tot1 - x - tree1.range_sum(1, i) if i else tot1 - x
+                ans += rest * nodes[i]
+                ac.st(tot2 - ans)
         return
 
 

@@ -14,8 +14,8 @@ class PointAddRangeSum:
 
     def _pre_sum(self, i: int) -> int:
         """index start from 1 and the prefix sum of nums[:i] which is 0-index"""
-        assert 1 <= i <= self.n
-        val = 0
+
+        val = 0  # assert 1 <= i <= self.n
         while i:
             val += self.t[i]
             i -= self._lowest_bit(i)
@@ -23,8 +23,7 @@ class PointAddRangeSum:
 
     def build(self, nums) -> None:
         """initialize the tree array"""
-        assert len(nums) == self.n
-        pre = [0] * (self.n + 1)
+        pre = [0] * (self.n + 1)  # assert len(nums) == self.n
         for i in range(self.n):
             pre[i + 1] = pre[i] + nums[i]
             # meaning of self.t[i+1]
@@ -40,18 +39,27 @@ class PointAddRangeSum:
 
     def point_add(self, i: int, val: int) -> None:
         """index start from 1 and the value val can be any inter including positive and negative number"""
-        assert 1 <= i <= self.n
-        while i < len(self.t):
+        while i < len(self.t):  # assert 1 <= i <= self.n
             self.t[i] += val
             i += self._lowest_bit(i)
         return
 
     def range_sum(self, x: int, y: int) -> int:
         """index start from 1 and the range sum of nums[x-1:y]  which is 0-index"""
-        assert 1 <= x <= y <= self.n
-        res = self._pre_sum(y) - self._pre_sum(x - 1) if x > 1 else self._pre_sum(y)
+        res = self._pre_sum(y) - self._pre_sum(x - 1) if x > 1 else self._pre_sum(y)  # assert 1 <= x <= y <= self.n
         return res
 
+    def bisect_right(self, w):
+        # all value in nums must be non-negative
+        x, k = 0, 1
+        while k * 2 <= self.n:
+            k *= 2
+        while k > 0:
+            if x + k <= self.n and self.t[x + k] <= w:
+                w -= self.t[x + k]
+                x += k
+            k //= 2
+        return x
 
 class PointChangeRangeSum:
     def __init__(self, n: int) -> None:

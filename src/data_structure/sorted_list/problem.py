@@ -46,6 +46,8 @@ P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 1005E2（https://codeforces.com/contest/1005/problem/E2）median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
 1619E（https://codeforces.com/contest/1619/problem/E）mex|greedy
 
+===================================AtCoder===================================
+ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
@@ -427,3 +429,23 @@ class Solution:
                 if cur < ans:
                     ans = cur
         return ans
+
+    @staticmethod
+    def abc_306e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc306/tasks/abc306_e
+        tag: sorted_list|top_k_sum
+        """
+        n, k, q = ac.read_list_ints()
+        nums = [0] * n
+        lst = TopKSum(k)
+        for _ in range(q):
+            x, y = ac.read_list_ints()
+            x -= 1
+            if nums[x]:
+                lst.remove(-nums[x])
+            nums[x] = y
+            if nums[x]:
+                lst.add(-nums[x])
+            ac.st(-lst.top_k_sum)
+        return
