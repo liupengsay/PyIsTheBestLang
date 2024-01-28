@@ -95,6 +95,12 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 30（https://codeforces.com/edu/course/2/lesson/5/3/practice/contest/280799/problem/A）segment_tree|range_set|range_max_non_emp_con_sub_sum
 31（https://codeforces.com/edu/course/2/lesson/5/3/practice/contest/280799/problem/B）segment_tree|range_reverse|range_bit_count_bisect_left
 32（https://codeforces.com/edu/course/2/lesson/5/3/practice/contest/280799/problem/C）segment_tree|range_add|range_max|bisect_left
+33（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/A）segment_tree|range_change_add|range_sum
+34（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/B）segment_tree|diff_array|range_add|point_get|range_sum
+35（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/C）segment_tree|range_set|range_seg_count_length
+36（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/D）segment_tree|range_add|range_weighted_sum
+37（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/E）segment_tree|range_chmin_chmax|point_get
+38（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/F）segment_tree_dynamic|range_set|range_sum_bisect_left
 
 
 """
@@ -1924,26 +1930,6 @@ class Solution:
 
     @staticmethod
     def library_check_38(ac=FastIO()):
-        """
-        url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/E
-        tag: segment_tree|range_chmin_chmax|point_get
-        """
-        n, q = ac.read_list_ints()
-        tree = RangeChminChmaxPointGet(n, 0, 10 ** 5)
-        for _ in range(q):
-            lst = ac.read_list_ints()
-            if lst[0] == 1:
-                ll, rr, hh = lst[1:]
-                tree.range_chmin_chmax(ll, rr, hh, tree.high_initial)
-            else:
-                ll, rr, hh = lst[1:]
-                tree.range_chmin_chmax(ll, rr, tree.low_initial, hh)
-        ans = tree.get()
-        ac.st("\n".join(str(x) for x in ans))
-        return
-
-    @staticmethod
-    def library_check_39(ac=FastIO()):
         """
         url: https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/F
         tag: segment_tree_dynamic|range_set|range_sum_bisect_left
