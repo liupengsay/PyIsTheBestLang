@@ -10,7 +10,8 @@ class SuffixArray:
         # height: lcp of rank i-th suffix and (i-1)-th suffix
         # sum(height): count of same substring of s
         # n*(n+1)//2 - sum(height): count of different substring of s
-        # max(height): can compute the longest duplicate substring, which is s[i: i + height[j]] and j = height.index(max(height)) and i = sa[j]
+        # max(height): can compute the longest duplicate substring,
+        # which is s[i: i + height[j]] and j = height.index(max(height)) and i = sa[j]
         # sig: number of unique rankings which initially is the size of the character set
 
         n = len(s)

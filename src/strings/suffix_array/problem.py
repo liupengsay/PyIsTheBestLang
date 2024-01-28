@@ -68,6 +68,7 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 19（https://poj.org/problem?id=3415）
 20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）suffix_array|monotonic_stack|height|counter
 21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
+22（https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A）suffix_array|rk
 
 """
 
@@ -1258,4 +1259,15 @@ class Solution:
         ac.st(ans)
         ac.st(res[1] - res[0])
         ac.lst([x + 1 for x in s[res[0]:res[1]]])
+        return
+
+    @staticmethod
+    def library_check_22(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A
+        tag: suffix_array|rk
+        """
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        sa, _, _ = SuffixArray().build(s, 26)
+        ac.lst([len(sa)] + sa)
         return
