@@ -6,12 +6,21 @@ Description：sort the query interval into blocks and alternate between moving t
 1157（https://leetcode.cn/problems/online-majority-element-in-subarray/description/）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
 
 =====================================LuoGu======================================
+P3396（https://www.luogu.com.cn/problem/P3396）sqrt_decomposition
 
 ===================================CodeForces===================================
 220B（https://codeforces.com/contest/220/problem/B）block_query|counter
 86D（https://codeforces.com/contest/86/problem/D）block_query|math
 617E（https://codeforces.com/contest/617/problem/E）block_query|xor_pair|counter
 1514D（https://codeforces.com/contest/1514/problem/D）range_super_mode|random_guess|binary_search|bit_operation|segment_tree
+1468M（https://codeforces.com/problemset/problem/1468/M）sqrt_decomposition
+1207F（https://codeforces.com/problemset/problem/1207/F）sqrt_decomposition
+797E（https://codeforces.com/problemset/problem/797/E）sqrt_decomposition
+677D（https://codeforces.com/contest/677/problem/D）sqrt_decomposition
+425D（https://codeforces.com/problemset/problem/425/D）sqrt_decomposition
+1921F（https://codeforces.com/contest/1921/problem/F）sqrt_decomposition
+103D（https://codeforces.com/contest/103/problem/D）sqrt_decomposition
+1806E（https://codeforces.com/problemset/problem/1806/E）sqrt_decomposition
 
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
@@ -24,7 +33,7 @@ from itertools import accumulate
 from operator import xor
 
 from src.data_structure.sqrt_decomposition.template import BlockSize
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -394,7 +403,7 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        size = ac.min(n, 10 ** 7 // (3 * 10 ** 5))
+        size = ac.min(n, 100)
         q = ac.read_int()
         queries = [ac.read_list_ints() for _ in range(q)]
         ind = [[] for _ in range(size + 1)]
@@ -405,15 +414,15 @@ class Solution:
         ans = [-1] * q
         for k in range(1, size + 1):
             if ind[k]:
-                cur = [[0] for _ in range(k)]
+                cur = [0] * (n + 1)
                 for i in range(n):
-                    cur[(i + 1) % k].append(cur[(i + 1) % k][-1] + nums[i])
+                    cur[i + 1] = cur[ac.max(0, i - k + 1)] + nums[i]
                 for x in ind[k]:
                     t, k = queries[x]
-                    t -= 1
-                    j = (t + 1) % k
-                    ans[x] = cur[j][-1] - cur[j][t // k]
-                del cur
+                    xx = (n - t) // k + 1
+                    s = t - 1
+                    end = s + (xx - 1) * k
+                    ans[x] = cur[end + 1] - cur[ac.max(s - k + 1, 0)]
         for i in range(q):
             t, k = queries[i]
             if k > size:
@@ -425,3 +434,277 @@ class Solution:
             else:
                 ac.st(ans[i])
         return
+
+    @staticmethod
+    def cf_1921(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1921/problem/F
+        tag: sqrt_decomposition
+        """
+
+        def ind_to_rk(ii, kk):
+            return ii // kk + 1
+
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            size = ac.min(n, 150)
+            queries = [ac.read_list_ints() for _ in range(q)]
+            ind = [[] for _ in range(size + 1)]
+            for i in range(q):
+                s, k, c = queries[i]
+                if k <= size:
+                    ind[k].append(i)
+            ans = [-1] * q
+            for k in range(1, size + 1):
+                if ind[k]:
+                    cur = [0] * (n + 1)
+                    pre = [0] * (n + 1)
+                    for i in range(n):
+                        r = ind_to_rk(i, k)
+                        cur[i + 1] = cur[ac.max(i - k + 1, 0)] + nums[i] * r
+                        pre[i + 1] = pre[ac.max(i - k + 1, 0)] + nums[i]
+                    for x in ind[k]:
+                        s, k, c = queries[x]
+                        s -= 1
+                        e = s + (c - 1) * k
+                        length = c * k
+                        res = cur[e + 1] - cur[ac.max(e + 1 - length, 0)]
+                        res -= (s // k) * (pre[e + 1] - pre[ac.max(e + 1 - length, 0)])
+                        ans[x] = res
+                    del cur
+
+            for i in range(q):
+                s, k, c = queries[i]
+                if k > size:
+                    s -= 1
+                    res = 0
+                    for x in range(s, s + k * c - 1, k):
+                        res += nums[x] * (((x + 1) - s) // k + 1)
+                    ans[i] = res
+            ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_425d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/425/D
+        tag: sqrt_decomposition
+        """
+        n = ac.read_int()
+        dct = dict()
+        for _ in range(n):
+            a, b = ac.read_list_ints()
+            if a not in dct:
+                dct[a] = set()
+            dct[a].add(b)
+
+        ans = 0
+        size = int(n ** 0.5) + 1
+        res = []
+        for a in sorted(dct):
+            if len(dct[a]) <= size:
+                lst = sorted(list(dct[a]))
+                m = len(lst)
+                for i in range(m):
+                    x = lst[i]
+                    for j in range(i + 1, m):
+                        y = lst[j]
+                        length = y-x
+                        for z in [a - length, a + length]:
+                            if z in dct and len(dct[z]) > size:
+                                if x in dct[z] and y in dct[z]:
+                                    ans += 1
+                        z = a + length
+                        if z in dct and len(dct[z]) <= size and x in dct[z] and y in dct[z]:
+                            ans += 1
+
+            else:
+                res.append(a)
+        m = len(res)
+        for i in range(m):
+            x = res[i]
+            for j in range(i + 1, m):
+                y = res[j]
+                length = y-x
+                for z in sorted(dct[x]):
+                    if z + length in dct[x] and z + length in dct[y] and z in dct[y]:
+                        ans += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_677d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/677/problem/D
+        tag: sqrt_decomposition
+        """
+        m, n, p = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        dct = [[] for _ in range(p + 1)]
+        for i in range(m):
+            for j in range(n):
+                dct[grid[i][j]].append(i * n + j)
+        pre = defaultdict(lambda: inf)
+        for x in dct[1]:
+            i, j = x // n, x % n
+            if i == j == 0:
+                pre[x] = 0
+            else:
+                pre[x] = i + j
+        dis = [m*n+1] * n * m
+        for y in range(2, p + 1):
+            m1 = len(dct[y - 1])
+            m2 = len(dct[y])
+            if m1 * m2 < m * n:
+                cur = defaultdict(lambda: inf)
+                for x in pre:
+                    i1, j1 = x // n, x % n
+                    for yy in dct[y]:
+                        i2, j2 = yy // n, yy % n
+                        cur[yy] = ac.min(cur[yy], pre[x] + abs(i2 - i1) + abs(j2 - j1))
+            else:
+                for i in range(m*n):
+                    dis[i] = m*n+1
+                nodes = [[] for _ in range(m * n + 1)]
+                for x in pre:
+                    nodes[pre[x]].append(x)
+                    dis[x] = pre[x]
+
+                for d in range(m * n + 1):
+                    for x in nodes[d]:
+                        i, j = x // n, x % n
+                        if dis[x] < d:
+                            continue
+                        for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
+                            if 0 <= a < m and 0 <= b < n and dis[a * n + b] > d + 1:
+                                dis[a * n + b] = d + 1
+                                nodes[d + 1].append(a * n + b)
+                cur = defaultdict(lambda: inf)
+                for x in dct[y]:
+                    cur[x] = dis[x]
+            pre = cur
+        ac.st(min(pre.values()))
+        return
+
+    @staticmethod
+    def cf_797e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/797/E
+        tag: sqrt_decomposition
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        q = ac.read_int()
+        queries = [ac.read_list_ints() for _ in range(q)]
+        dct = [[] for _ in range(n + 1)]
+        ans = [0] * q
+        for i in range(q):
+            _, k = queries[i]
+            dct[k].append(i)
+        size = int(n ** 0.5) + 1
+        for k in range(1, n + 1):
+            if k <= size:
+                dp = [0] * (n + 1)
+                for i in range(n - 1, -1, -1):
+                    dp[i] = dp[ac.min(n, i + nums[i] + k)] + 1
+                for i in dct[k]:
+                    ans[i] = dp[queries[i][0] - 1]
+            else:
+                break
+        for i in range(q):
+            if ans[i] == 0:
+                p, k = queries[i]
+                p -= 1
+                res = 0
+                while p < n:
+                    res += 1
+                    p += nums[p] + k
+                ans[i] = res
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_1207f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1207/F
+        tag: sqrt_decomposition
+        """
+        n = 5 * 10 ** 5
+        q = ac.read_int()
+        nums = [0] * n
+        size = 400
+        pre = [0] * (size + 1) * (size + 1)
+        for _ in range(q):
+            op, x, y = ac.read_list_ints()
+            if op == 2:
+                if x <= size:
+                    ac.st(pre[x * (size + 1) + y])
+                else:
+                    w = y if y else x
+                    ans = 0
+                    while w <= n:
+                        ans += nums[w - 1]
+                        w += x
+                    ac.st(ans)
+            else:
+                nums[x - 1] += y
+                for p in range(1, size + 1):
+                    pre[p * (size + 1) + x % p] += y
+        return
+
+    @staticmethod
+    def cf_1468m(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1468/M
+        tag: sqrt_decomposition
+        """
+        for _ in range(ac.read_int()):
+
+            def check():
+                nums = [ac.read_list_ints() for _ in range(ac.read_int())]
+                nodes = []
+                for ls in nums:
+                    nodes.extend(ls[1:])
+                n = sum(ls[0] for ls in nums)
+                size = int(n ** 0.5) + 1
+                nodes = sorted(set(nodes))
+                ind = {num: i for i, num in enumerate(nodes)}
+                nums = [[ind[x] for x in ls[1:]] for ls in nums]
+                length = len(nums)
+                res = []
+                dct = dict()
+                for i in range(length):
+                    if len(nums[i]) > size:
+                        res.append(i)
+                    lst = sorted(nums[i])
+                    m = len(lst)
+                    for j in range(m):
+                        for k in range(j + 1, m):
+                            x, y = lst[j], lst[k]
+                            if x * n + y in dct:
+                                ac.lst([dct[x * n + y] + 1, i + 1])
+                                return
+                            dct[x * n + y] = i
+                m = len(res)
+                for i in range(m):
+                    x = res[i]
+                    pre = set(nums[x])
+                    for j in range(i + 1, m):
+                        y = res[j]
+                        cnt = 0
+                        for num in nums[y]:
+                            if num in pre:
+                                cnt += 1
+                        if cnt >= 2:
+                            ac.lst([x + 1, y + 1])
+                            return
+
+                ac.st(-1)
+                return
+
+            check()
+
+        return
+

@@ -98,6 +98,11 @@ ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|gree
 4866（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole_principle
 5051（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
+=====================================LibraryChecker=====================================
+1（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/B）find_float_right
+2（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/C）find_int_left
+3（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/D）find_int_left
+
 """
 import bisect
 import math
@@ -108,7 +113,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.high_precision.template import FloatToFrac
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -245,6 +250,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3017
         tag: binary_search|sub_matrix_sum|maximum_minimum|classical
         """
+
         def check(x):
 
             def cut():
@@ -436,6 +442,7 @@ class Solution:
         url: https://leetcode.cn/problems/median-of-two-sorted-arrays/
         tag: binary_search|median|two_arrays|same_direction_pointer
         """
+
         def get_kth_num(k):
             ind1 = ind2 = 0
             while k:
@@ -499,6 +506,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1083
         tag: binary_search|diff_array
         """
+
         def check(s):
             diff = [0] * n
             for c, a, b in lst[:s]:
@@ -531,6 +539,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/122/
         tag: binary_search|classical
         """
+
         def solve():
 
             def check(pos):
@@ -716,7 +725,7 @@ class Solution:
         if n == 1:
             ac.st(k)
             return
-        lst = NumberTheory().get_prime_factor(n)
+        lst = NumFactor().get_prime_factor(n)
         prime = [x for x, _ in lst]
         m = len(prime)
 
@@ -740,6 +749,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1419
         tag: binary_search|monotonic_queue|prefix_sum|average|classical
         """
+
         def check(x):
             stack = deque()
             res = []
@@ -1215,6 +1225,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-repair-cars/
         tag: binary_search
         """
+
         def check(x):
             res = 0
             for r in ranks:
@@ -1453,5 +1464,66 @@ class Solution:
         ans = compute(x)
         while len(ans) < 3:
             ans.append(ans[-1] + 1)
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/B
+        tag: find_float_right
+        """
+        n, k = ac.read_list_ints()
+        nums = [ac.read_int() for _ in range(n)]
+
+        def check(x):
+            return sum(num // x for num in nums) >= k
+
+        ans = BinarySearch().find_float_right(0, max(nums), check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/C
+        tag: find_int_left
+        """
+        n, x, y = ac.read_list_ints()
+
+        def check(t):
+            return t // x + t // y >= n - 1
+
+        ans = BinarySearch().find_int_left(0, n * (x + y), check) + min(x, y)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def library_check_3(ac=FastIO()):
+        """
+        url: https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/D
+        tag: find_int_left
+        """
+        m, n = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def compute(tt):
+            lst = []
+            for t, z, y in nums:
+                k1, k2 = divmod(tt, z * t + y)
+                lst.append(k1 * z + ac.min(k2 // t, z))
+            return lst
+
+        def check(tt):
+            return sum(compute(tt)) >= m
+
+        res = BinarySearch().find_int_left(0, m * 200, check)
+        ans = compute(res)
+        more = sum(ans) - m
+        for i in range(n):
+            x = ac.min(ans[i], more)
+            ans[i] -= x
+            more -= x
+        ac.st(res)
         ac.lst(ans)
         return
