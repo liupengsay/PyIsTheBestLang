@@ -55,6 +55,8 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 1665E（https://codeforces.com/contest/1665/problem/E）segment_tree
 1478E（https://codeforces.com/contest/1478/problem/E）RangeSetRangeSumMinMax|backward_thinking|implemention
 1679E（https://codeforces.com/contest/1679/problem/B）RangeSetRangeSumMinMax|range_change|range_sum
+85D（https://codeforces.com/contest/85/problem/D）segment_tree|point_add|range_sum
+
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -119,7 +121,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
-    PointAddRangeSum1Sum2
+    PointAddRangeSum1Sum2, PointAddRangeSumMod5
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1999,4 +2001,32 @@ class Solution:
                     rest, c, i = tree.range_sum2_bisect_left(tot - x)
                     rest += c * nodes[i]
                     ac.st(tree.cover2[1] - rest)
+        return
+
+    @staticmethod
+    def cf_85d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/85/problem/D
+        tag: segment_tree|point_add|range_sum
+        """
+        n = ac.read_int()
+        queries = [ac.read_list_strs() for _ in range(n)]
+        nodes = {0}
+        for lst in queries:
+            if lst[0] != "sum":
+                nodes.add(int(lst[1]))
+        nodes = sorted(nodes)
+        m = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        tree = PointAddRangeSumMod5(m)
+        for lst in queries:
+            if lst[0] == "add":
+                x = int(lst[1])
+                tree.point_add(ind[x], (1, x))
+            elif lst[0] == "del":
+                x = int(lst[1])
+                tree.point_add(ind[x], (-1, -x))
+            else:
+                ans = tree.cover[1][3]
+                ac.st(ans)
         return

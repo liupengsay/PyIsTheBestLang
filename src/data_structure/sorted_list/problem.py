@@ -38,6 +38,8 @@ P5459（https://www.luogu.com.cn/problem/P5459）prefix_sum|sorted_list|binary_s
 P6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greedy
 P7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
 P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
+P3369（https://www.luogu.com.cn/problem/P3369）sorted_list
+P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 
 ===================================CodeForces===================================
 459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
@@ -448,4 +450,67 @@ class Solution:
             if nums[x]:
                 lst.add(-nums[x])
             ac.st(-lst.top_k_sum)
+        return
+
+    @staticmethod
+    def lg_p3369(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3369
+        tag: sorted_list
+        """
+        n = ac.read_int()
+        lst = SortedList()
+        for _ in range(n):
+            op, x = ac.read_list_ints()
+            if op == 1:
+                lst.add(x)
+            elif op == 2:
+                lst.discard(x)
+            elif op == 3:
+                ac.st(lst.bisect_left(x) + 1)
+            elif op == 4:
+                ac.st(lst[x - 1])
+            elif op == 5:
+                i = lst.bisect_left(x)
+                if i == len(lst) or lst[i] >= x:
+                    i -= 1
+                ac.st(lst[i])
+            else:
+                i = lst.bisect_right(x)
+                ac.st(lst[i])
+        return
+
+    @staticmethod
+    def lg_p6136(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6136
+        tag: sorted_list
+        """
+        n, q = ac.read_list_ints()
+        lst = SortedList(ac.read_list_ints())
+        ans = last = 0
+        for _ in range(q):
+            op, x = ac.read_list_ints()
+            x ^= last
+            if op == 1:
+                lst.add(x)
+            elif op == 2:
+                lst.discard(x)
+            elif op == 3:
+                last = lst.bisect_left(x) + 1
+                ans ^= last
+            elif op == 4:
+                last = lst[x - 1]
+                ans ^= last
+            elif op == 5:
+                i = lst.bisect_left(x)
+                if i == len(lst) or lst[i] >= x:
+                    i -= 1
+                last = lst[i]
+                ans ^= last
+            else:
+                i = lst.bisect_right(x)
+                last = lst[i]
+                ans ^= last
+        ac.st(ans)
         return

@@ -11,10 +11,14 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ===================================CodeForces===================================
 
+===================================AtCoder===================================
+ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）sorted_list|offline_query
+
 """
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
+from src.utils.fast_io import FastIO
 from tests.leetcode.template import ac_max
 
 
@@ -58,3 +62,34 @@ class Solution:
             if 0 <= k < len(lst):
                 ans[i] = lst[k]
         return ans
+
+    @staticmethod
+    def abc_245e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc245/tasks/abc245_e
+        tag: sorted_list|offline_query
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        c = ac.read_list_ints()
+        d = ac.read_list_ints()
+        ind1 = list(range(n))
+        ind2 = list(range(m))
+        ind1.sort(key=lambda it: -a[it])
+        ind2.sort(key=lambda it: -c[it])
+        lst = SortedList()
+        j = 0
+        for i in ind1:
+            aa, bb = a[i], b[i]
+            while j < m and c[ind2[j]] >= aa:
+                lst.add(d[ind2[j]])
+                j += 1
+            if not lst or lst[-1] < bb:
+                ac.st("No")
+                break
+            i = lst.bisect_left(bb)
+            lst.pop(i)
+        else:
+            ac.st("Yes")
+        return

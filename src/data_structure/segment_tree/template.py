@@ -895,6 +895,72 @@ class PointAddRangeSum1Sum2:
         return ans, cnt, t
 
 
+class PointAddRangeSumMod5:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover = [(initial,) * 6 for _ in range(4 * n)]
+        return
+
+    @classmethod
+    def _merge(cls, tup1, tup2):
+        res = [tup1[0] + tup2[0]]
+        x = tup1[0]
+        for i in range(5):
+            res.append(tup1[i + 1] + tup2[(i - x) % 5 + 1])
+        return tuple(res)
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = (1, nums[i], 0, 0, 0, 0)
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self.cover[i] = self._merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0 for _ in range(self.n)]
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i][0]
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_add(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                pre = list(self.cover[i])
+                pre[0] += val[0]
+                pre[1] += val[1]
+                self.cover[i] = tuple(pre)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self.cover[i] = self._merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+
 class RangeAddPointGet:
     def __init__(self, n):
         self.n = n

@@ -1,6 +1,6 @@
 import unittest
 
-from src.data_structure.block_size.template import BlockSize
+from src.data_structure.sqrt_decomposition.template import BlockSize
 
 
 class TestGeneral(unittest.TestCase):
