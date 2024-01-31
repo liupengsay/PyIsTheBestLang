@@ -64,7 +64,7 @@ from typing import List
 
 from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch, \
     BinaryTrieXorLimited
-from src.utils.fast_io import FastIO, ac_max
+from src.utils.fast_io import FastIO, max
 from src.utils.fast_io import inf
 
 
@@ -232,7 +232,7 @@ class Solution:
         while stack:
             i, fa = stack.pop()
             if i >= 0:
-                ans = ac_max(ans, trie.get_maximum_xor(values[i]))
+                ans = max(ans, trie.get_maximum_xor(values[i]))
                 stack.append((~i, fa))
                 for j in dct[i]:
                     if j != fa:
@@ -828,7 +828,7 @@ class Solution:
         query = [dict() for _ in range(n)]
         for node, val in queries:
             query[node][val] = 0
-            ceil = ac_max(ceil, val)
+            ceil = max(ceil, val)
         trie = BinaryTrieXor(ceil, n)
         stack = [root]
         while stack:

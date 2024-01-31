@@ -108,7 +108,7 @@ ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range
 
 """
 import bisect
-from collections import defaultdict
+from collections import defaultdict, Counter, deque
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
@@ -122,7 +122,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
-    PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex
+    PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -2155,4 +2155,57 @@ class Solution:
             else:
                 ans = tree.range_sum(ll + 1, rr + 1)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_438d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/438/problem/D
+        tag: segment_tree|point_set|range_mod|range_sum|classical
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeModPointSetRangeSum(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ans = tree.range_sum(lst[1] - 1, lst[2] - 1)
+                ac.st(ans)
+            elif lst[0] == 2:
+                tree.range_mod(lst[1] - 1, lst[2] - 1, lst[3])
+            else:
+                tree.point_set(lst[1] - 1, lst[2])
+        return
+
+    @staticmethod
+    def cf_1187d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1187/D
+        tag: segment_tree|point_set|range_min|classical
+        """
+        for _ in range(ac.read_int()):
+
+            def check():
+                n = ac.read_int()
+                a = ac.read_list_ints()
+                b = ac.read_list_ints()
+                if Counter(a) != Counter(b):
+                    ac.st("NO")
+                    return
+                tree = PointSetRangeMin(n, n + 1)
+                tree.build(a)
+                dct = [deque() for _ in range(n + 1)]
+                for i in range(n):
+                    dct[a[i]].append(i)
+                for i in range(n):
+                    x = b[i]
+                    j = dct[x].popleft()
+                    if tree.range_min(0, j) != x:
+                        ac.st("NO")
+                        return
+                    tree.point_set(j, n + 1)
+                ac.st("YES")
+                return
+
+            check()
         return

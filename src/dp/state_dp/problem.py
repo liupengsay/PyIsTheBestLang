@@ -67,7 +67,7 @@ from itertools import combinations, accumulate
 from operator import or_
 from typing import List
 
-from src.utils.fast_io import FastIO, ac_min, ac_max
+from src.utils.fast_io import FastIO, min, max
 from src.utils.fast_io import inf
 
 
@@ -91,8 +91,8 @@ class Solution:
         m = n // k
         for i in range(1, 1 << n):
             x = nums[ind[i & (-i)]]
-            ceil[i] = ac_max(ceil[i & (i - 1)], x)
-            floor[i] = ac_min(floor[i & (i - 1)], x)
+            ceil[i] = max(ceil[i & (i - 1)], x)
+            floor[i] = min(floor[i & (i - 1)], x)
             if i.bit_count() == m:
                 lst = [nums[j] for j in range(n) if i & (1 << j)]
                 if len(set(lst)) == m:
@@ -108,7 +108,7 @@ class Solution:
             sub = mask
             while sub:
                 if sub in group:
-                    dp[i | sub] = ac_min(dp[i | sub], dp[i] + group[sub])
+                    dp[i | sub] = min(dp[i | sub], dp[i] + group[sub])
                 sub = (sub - 1) & mask
         return dp[-1] if dp[-1] < inf else -1
 
@@ -130,7 +130,7 @@ class Solution:
                 sub = i
                 while sub:
                     if cost[sub] < cur[i] and pre[i ^ sub] < cur[i]:
-                        cur[i] = ac_max(pre[i ^ sub], cost[sub])
+                        cur[i] = max(pre[i ^ sub], cost[sub])
                     sub = (sub - 1) & i
             for i in range(1 << n):
                 pre[i] = cur[i]

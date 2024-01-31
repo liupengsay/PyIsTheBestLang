@@ -19,7 +19,7 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
-from tests.leetcode.template import ac_max
+from tests.leetcode.template import max
 
 
 class Solution:
@@ -35,7 +35,7 @@ class Solution:
         m = len(queries)
         for i in range(m):
             x, y = queries[i]
-            queries[i] = (i, x, y, ac_max(heights[x], heights[y]))
+            queries[i] = (i, x, y, max(heights[x], heights[y]))
         queries.sort(key=lambda it: -it[-1])
         ans = [-1] * m
 
@@ -58,7 +58,7 @@ class Solution:
             while j < n and heights[j][1] > c:
                 lst.add(heights[j][0])
                 j += 1
-            k = lst.bisect_right(ac_max(x, y))
+            k = lst.bisect_right(max(x, y))
             if 0 <= k < len(lst):
                 ans[i] = lst[k]
         return ans

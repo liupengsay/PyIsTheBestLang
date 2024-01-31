@@ -22,7 +22,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 from collections import defaultdict
 from typing import List
 
-from src.utils.fast_io import ac_max
+from src.utils.fast_io import max
 
 
 class Solution:
@@ -42,7 +42,7 @@ class Solution:
             for j in range(n):
                 cur = defaultdict(int)
                 for s, intro, ext in pre:
-                    cur[(s % mask) * 3, intro, ext] = ac_max(cur[(s % mask) * 3, intro, ext], pre[(s, intro, ext)])
+                    cur[(s % mask) * 3, intro, ext] = max(cur[(s % mask) * 3, intro, ext], pre[(s, intro, ext)])
                     left = s % 3
                     up = s // mask
                     if ext:
@@ -51,7 +51,7 @@ class Solution:
                             val += 20 + 50 * left - 80
                         if up and i:
                             val += 20 + 50 * up - 80
-                        cur[((s % mask) * 3 + 2, intro, ext - 1)] = ac_max(cur[((s % mask) * 3 + 2, intro, ext - 1)],
+                        cur[((s % mask) * 3 + 2, intro, ext - 1)] = max(cur[((s % mask) * 3 + 2, intro, ext - 1)],
                                                                            pre[(s, intro, ext)] + val)
                     if intro:
                         val = 120
@@ -59,7 +59,7 @@ class Solution:
                             val += -30 + 50 * left - 80
                         if up and i:
                             val += -30 + 50 * up - 80
-                        cur[((s % mask) * 3 + 1, intro - 1, ext)] = ac_max(cur[((s % mask) * 3 + 1, intro - 1, ext)],
+                        cur[((s % mask) * 3 + 1, intro - 1, ext)] = max(cur[((s % mask) * 3 + 1, intro - 1, ext)],
                                                                            pre[(s, intro, ext)] + val)
                 pre = cur
         return max(pre.values())
@@ -78,7 +78,7 @@ class Solution:
                 cur = defaultdict(int)
                 x = seats[i][j]
                 for p in pre:
-                    cur[(p << 1) & mask] = ac_max(cur[(p << 1) & mask], pre[p])
+                    cur[(p << 1) & mask] = max(cur[(p << 1) & mask], pre[p])
                     if x == ".":
                         if j and p & 1:
                             continue
@@ -86,7 +86,7 @@ class Solution:
                             continue
                         if i and j + 1 < n and p & (1 << (n - 2)):
                             continue
-                        cur[((p << 1) | 1) & mask] = ac_max(cur[((p << 1) | 1) & mask], pre[p] + 1)
+                        cur[((p << 1) | 1) & mask] = max(cur[((p << 1) | 1) & mask], pre[p] + 1)
                 pre = cur
         ans = max(pre.values())
         return ans
@@ -106,11 +106,11 @@ class Solution:
             for j in range(n):
                 cur = defaultdict(int)
                 for p in pre:
-                    cur[(p << 1) & mask] = ac_max(cur[(p << 1) & mask], pre[p])
+                    cur[(p << 1) & mask] = max(cur[(p << 1) & mask], pre[p])
                     if not grid[i][j]:
                         if j and not grid[i][j - 1] and not p & 1:
-                            cur[((p << 1) | 3) & mask] = ac_max(cur[((p << 1) | 3) & mask], pre[p] + 1)
+                            cur[((p << 1) | 3) & mask] = max(cur[((p << 1) | 3) & mask], pre[p] + 1)
                         if i and not grid[i - 1][j] and not p & (1 << (n - 1)):
-                            cur[((p << 1) | 1) & mask] = ac_max(cur[((p << 1) | 1) & mask], pre[p] + 1)
+                            cur[((p << 1) | 1) & mask] = max(cur[((p << 1) | 1) & mask], pre[p] + 1)
                 pre = cur
         return max(pre.values())

@@ -134,7 +134,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.tree_array.template import PointDescendPreMin
 from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO, ac_max
+from src.utils.fast_io import FastIO, max
 from src.utils.fast_io import inf
 
 
@@ -2389,7 +2389,7 @@ class Solution:
         for i in range(n):
             cur = 1-pre
             for j in range(1, i + 2):
-                dp[cur][j] = ac_max(dp[pre][j], dp[pre][j - 1] + nums2[ind[i]] * j + nums1[ind[i]])
+                dp[cur][j] = max(dp[pre][j], dp[pre][j - 1] + nums2[ind[i]] * j + nums1[ind[i]])
             pre = cur
         s1 = sum(nums1)
         s2 = sum(nums2)

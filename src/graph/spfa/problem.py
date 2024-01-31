@@ -33,7 +33,7 @@ from typing import List
 
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.spfa.template import SPFA
-from src.utils.fast_io import FastIO, ac_max
+from src.utils.fast_io import FastIO, max
 from src.utils.fast_io import inf
 
 
@@ -321,7 +321,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/
         tag: differential_constraint|greedy|classical|minimum|longest_path
         """
-        n = max(ac_max(a, b) for a, b, _ in tasks)
+        n = max(max(a, b) for a, b, _ in tasks)
         edge = [[] for _ in range(n + 1)]
         for a, b, c in tasks:
             if a > b:

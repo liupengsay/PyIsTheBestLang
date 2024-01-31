@@ -1,7 +1,7 @@
 from functools import lru_cache
 from itertools import accumulate
 
-from src.utils.fast_io import ac_max
+from src.utils.fast_io import max
 
 
 class DigitalDP:
@@ -96,7 +96,7 @@ class DigitalDP:
             ndp = [0] * (9 * n + 1)
             pre_dp = list(accumulate(dp, initial=0))
             for digit_sum in range(9 * n + 1):
-                ndp[digit_sum] += pre_dp[digit_sum + 1] - pre_dp[ac_max(0, digit_sum - 9)]
+                ndp[digit_sum] += pre_dp[digit_sum + 1] - pre_dp[max(0, digit_sum - 9)]
             for cur_digit in range(lst[i]):
                 ndp[pre_sum + cur_digit] += 1
             pre_sum += lst[i]

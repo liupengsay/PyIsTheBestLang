@@ -23,6 +23,14 @@ from heapq import heappush, heappop, heapify
 inf = 1 << 32
 
 
+def max(a, b):
+    return a if a > b else b
+
+
+def min(a, b):
+    return a if a < b else b
+
+
 class FastIO:
     def __init__(self):
         self.random_seed = 0

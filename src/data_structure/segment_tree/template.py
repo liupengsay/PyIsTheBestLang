@@ -2914,6 +2914,91 @@ class PointSetRangeOr:
         return ans
 
 
+class RangeModPointSetRangeSum:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * self.n)
+        self.ceil = [0] * (4 * self.n)
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s]
+                    self.ceil[i] = nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_mod(self, left, right, mod):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if self.cover[i] < mod:
+                    continue
+                if s == t:
+                    self.cover[i] %= mod
+                    self.ceil[i] = self.cover[i]
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                if left <= m and self.cover[i << 1] >= mod:
+                    stack.append((s, m, i << 1))
+                if right > m and self.cover[(i << 1) | 1] >= mod:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self.cover[i] = val
+                self.ceil[i] = val
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_sum(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+
 class PointSetRangeComposite:
 
     def __init__(self, n, mod, m=32):
@@ -3921,7 +4006,7 @@ class RangeXorUpdateRangeXorQuery:
 
 class PointSetRangeMin:
 
-    def __init__(self, n, initial=0):
+    def __init__(self, n, initial=inf):
         self.n = n
         self.initial = initial
         self.cover = [initial] * (4 * n)

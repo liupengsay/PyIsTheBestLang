@@ -1595,8 +1595,8 @@ class Solution:
         ans = []
         for a, b, c, d in queries:
             c, d = n - 1 - d, n - 1 - c
-            cc = ac_min(a, c)
-            dd = ac_max(b, d)
+            cc = min(a, c)
+            dd = max(b, d)
             if not left[cc] or not right[dd + 1]:
                 ans.append(False)
                 continue
@@ -1731,7 +1731,7 @@ class Solution:
 
             # [y, n-1]
             if y <= n-1:
-                right = ac_min(y-i, i-x+1)
+                right = min(y-i, i-x+1)
                 low = right + y-y
                 high = right+n-1-y
                 update()
