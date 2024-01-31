@@ -19,8 +19,10 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1729E（https://codeforces.com/problemset/problem/1729/E）interactive
 1762D（https://codeforces.com/problemset/problem/1762/D）interactive
 1903E（https://codeforces.com/problemset/problem/1903/E）interactive
+1918E（https://codeforces.com/contest/1918/problem/E）interactive|binary_search|quick_sort
 
 """
+import random
 import sys
 
 from src.utils.fast_io import FastIO
@@ -119,4 +121,48 @@ class Solution:
                 dct[ans[i]] = i
         ac.lst(["!", "".join(ans)])
         sys.stdout.flush()
+        return
+
+    @staticmethod
+    def cf_1918e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1918/problem/E
+        tag: binary_search|interactive|quick_sort
+        """
+
+        def query(x):
+            ac.lst(["?", x + 1], True)
+            cur = ac.read_str()
+            if cur == ">":
+                return 1
+            elif cur == "<":
+                return -1
+            return 0
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = [0] * n
+            stack = [[1, n, list(range(n))]]
+            while stack:
+                left, right, ind = stack.pop()
+                mid = ind[random.randint(0, len(ind) - 1)]
+                while query(mid):
+                    continue
+
+                smaller = []
+                bigger = []
+                for i in ind:
+                    if i == mid:
+                        continue
+                    if query(i) == 1:
+                        bigger.append(i)
+                    else:
+                        smaller.append(i)
+                    query(mid)
+                nums[mid] = left + len(smaller)
+                if left < nums[mid]:
+                    stack.append([left, nums[mid] - 1, smaller])
+                if nums[mid] < right:
+                    stack.append([nums[mid] + 1, right, bigger])
+            ac.lst(["!"] + nums, True)
         return

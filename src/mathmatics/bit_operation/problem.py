@@ -57,6 +57,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1879D（https://codeforces.com/contest/1879/problem/D）bit_operation|bit_contribution_method|prefix_sum|counter|prefix_or
 1368D（https://codeforces.com/problemset/problem/1368/D）implemention|greedy|bit_wise|bit_operation
 1802C（https://codeforces.com/contest/1802/problem/C）construction|xor_property
+1918C（https://codeforces.com/contest/1918/problem/C）greedy|bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -771,3 +772,21 @@ class Solution:
                 ans |= 1 << i
                 mask ^= 1 << i
         return ans
+
+    @staticmethod
+    def cf_1918c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1918/problem/C
+        tag: bit_operation|greedy
+        """
+        for _ in range(ac.read_int()):
+            a, b, r = ac.read_list_ints()
+            for i in range((a ^ b).bit_length() - 2, -1, -1):
+                bit = 1 << i
+                if (a ^ b) & bit and bit <= r and abs((a ^ bit) - (b ^ bit)) < abs(a - b):
+                    a ^= bit
+                    b ^= bit
+                    r -= bit
+            ac.st(abs(a - b))
+        return
+

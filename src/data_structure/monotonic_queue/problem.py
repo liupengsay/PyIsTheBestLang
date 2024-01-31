@@ -8,6 +8,10 @@ Description：sliding_window|monotonic
 862（https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/description/）prefix_sum|monotonic_queue|dp
 1425（https://leetcode.cn/problems/constrained-subsequence-sum/）monotonic_queue|dp
 
+
+====================================LeetCode====================================
+1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
+
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
 P2032（https://www.luogu.com.cn/problem/P2032）sliding_window_maximum
@@ -477,4 +481,34 @@ class Solution:
                 ans = True
         if not ans:
             ac.st("NONE")
+        return
+
+    @staticmethod
+    def cf_1918d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1918/problem/D
+        tag: binary_search|greedy|monotonic_queue
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = ac.accumulate(nums)
+
+            def check(x):
+                dp = [inf] * (n + 1)
+                dp[0] = 0
+                stack = deque([0])
+                for i in range(n):
+                    while stack and pre[i] - pre[stack[0]] > x:
+                        stack.popleft()
+                    dp[i + 1] = dp[stack[0]] + nums[i]
+                    while stack and dp[stack[-1]] > dp[i + 1]:
+                        stack.pop()
+                    stack.append(i + 1)
+                    if dp[i + 1] <= x and pre[-1] - pre[i + 1] <= x:
+                        return True
+                return False
+
+            ans = BinarySearch().find_int_left(0, sum(nums), check)
+            ac.st(ans)
         return
