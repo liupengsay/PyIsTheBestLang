@@ -112,6 +112,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/111/
         tag: greedy|multiplication_method|two_pointer|merge_sort|hard|classical
         """
+
         def range_merge_to_disjoint(lst1, lst2):
             a, b = len(lst1), len(lst2)
             x = y = 0
@@ -178,7 +179,6 @@ class Solution:
         edge = [[] for _ in range(n + 1)]
         for i in range(n):
             edge[post[i]].append(i)
-
         sub = [0] * (n + 1)
         stack = [n]
         while stack:
@@ -186,15 +186,14 @@ class Solution:
             for j in edge[i]:
                 sub[j] = sub[i] + nums[j] * (i - j)
                 stack.append(j)
-
         st = SparseTableIndex(nums, max)
         last_ans = 0
         for _ in range(t):
             u, v = ac.read_list_ints()
-            left = (u ^ last_ans) % n
+            left = 1 + (u ^ last_ans) % n
             q = 1 + (v ^ (last_ans + 1)) % (n - left + 1)
             right = left + q - 1
-            ceil_ind = st.query(left, right)
+            ceil_ind = st.query(left - 1, right - 1)
             last_ans = sub[left - 1] - sub[ceil_ind] + nums[ceil_ind] * (right - ceil_ind)
             ac.st(last_ans)
         return
@@ -435,4 +434,54 @@ class Solution:
                 jj = st_ind.query(j + 1, rr)
                 heappush(stack, (pre[i] - pre[jj], i, jj, j + 1, rr))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1548b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1548/B
+        tag: sparse_table|range_gcd|two_pointer|diff_array|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            diff = [nums[i + 1] - nums[i] for i in range(n - 1)]
+            st = SparseTable(diff, math.gcd)
+            ans = 1
+            j = 0
+            for i in range(n - 1):
+                if abs(diff[i]) == 1:
+                    continue
+                while j < i:
+                    j += 1
+                while j + 1 < n - 1 and st.query(i, j + 1) > 1:
+                    j += 1
+                if j - i + 2 > ans:
+                    ans = j - i + 2
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_689d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1548/B
+        tag: sparse_table|range_gcd|two_pointer|diff_array|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            diff = [nums[i + 1] - nums[i] for i in range(n - 1)]
+            st = SparseTable(diff, math.gcd)
+            ans = 1
+            j = 0
+            for i in range(n - 1):
+                if abs(diff[i]) == 1:
+                    continue
+                while j < i:
+                    j += 1
+                while j + 1 < n - 1 and st.query(i, j + 1) > 1:
+                    j += 1
+                if j - i + 2 > ans:
+                    ans = j - i + 2
+            ac.st(ans)
         return
