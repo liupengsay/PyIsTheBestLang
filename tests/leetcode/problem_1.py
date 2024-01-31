@@ -29,11 +29,11 @@ from src.data_structure.sorted_list.template import SortedList
 # sys.set_int_max_str_digits(0)  # for big number in leet code
 
 
-def ac_max(a, b):
+def max(a, b):
     return a if a > b else b
 
 
-def ac_min(a, b):
+def min(a, b):
     return a if a < b else b
 
 
