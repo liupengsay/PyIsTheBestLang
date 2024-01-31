@@ -75,12 +75,12 @@ class FastIO:
         return dct
 
     @staticmethod
-    def st(x):
-        return print(x)
+    def st(x, flush=False):
+        return print(x, flush=flush)
 
     @staticmethod
-    def lst(x):
-        return print(*x)
+    def lst(x, flush=False):
+        return print(*x, flush=flush)
 
     @staticmethod
     def round_5(f):

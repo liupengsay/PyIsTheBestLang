@@ -47,7 +47,7 @@ class Solution:
         tag: quick_sort
         """
         n = len(nums)
-        stack = [[0, n - 1]]
+        stack = [(0, n - 1)]
         while stack:
             left, right = stack.pop()
             mid = nums[random.randint(left, right)]
@@ -62,9 +62,9 @@ class Solution:
                     i += 1
                     j -= 1
             if left < j:
-                stack.append([left, j])
+                stack.append((left, j))
             if i < right:
-                stack.append([i, right])
+                stack.append((i, right))
         return nums
 
     @staticmethod
@@ -127,7 +127,7 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        stack = [[0, n - 1]]
+        stack = [(0, n - 1)]
         while stack:
             left, right = stack.pop()
             mid = nums[random.randint(left, right)]
@@ -142,9 +142,9 @@ class Solution:
                     i += 1
                     j -= 1
             if left < j:
-                stack.append([left, j])
+                stack.append((left, j))
             if i < right:
-                stack.append([i, right])
+                stack.append((i, right))
         ac.lst(nums)
         return
 

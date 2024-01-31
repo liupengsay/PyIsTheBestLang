@@ -57,12 +57,12 @@ class FastIO:
         return
 
     @staticmethod
-    def st(x):
-        return print(x)
+    def st(x, flush=False):
+        return print(x, flush=flush)
 
     @staticmethod
-    def lst(x):
-        return print(*x)
+    def lst(x, flush=False):
+        return print(*x, flush=flush)
 
     @staticmethod
     def max(a, b):
