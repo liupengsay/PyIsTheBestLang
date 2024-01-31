@@ -1,68 +1,77 @@
-from sys import stdin, stdout
 import bisect
-import decimal
 import heapq
+import sys
 from types import GeneratorType
-import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
 from functools import cmp_to_key
 from collections import defaultdict, Counter, deque
 import math
 from functools import lru_cache
 from heapq import nlargest
 from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
+import random
 from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
-
-inf = 1 << 32
+inf = float("inf")
+PLATFORM = "CF"
+if PLATFORM == "LUOGU":
+    import numpy as np
+    sys.setrecursionlimit(1000000)
 
 
 class FastIO:
     def __init__(self):
-        self.random_seed = 0
         return
 
     @staticmethod
-    def read_int():
-        return int(stdin.readline().rstrip())
+    def _read():
+        return sys.stdin.readline().strip()
+
+    def read_int(self):
+        return int(self._read())
+
+    def read_float(self):
+        return float(self._read())
+
+    def read_ints(self):
+        return map(int, self._read().split())
+
+    def read_floats(self):
+        return map(float, self._read().split())
+
+    def read_ints_minus_one(self):
+        return map(lambda x: int(x) - 1, self._read().split())
+
+    def read_list_ints(self):
+        return list(map(int, self._read().split()))
+
+    def read_list_floats(self):
+        return list(map(float, self._read().split()))
+
+    def read_list_ints_minus_one(self):
+        return list(map(lambda x: int(x) - 1, self._read().split()))
+
+    def read_str(self):
+        return self._read()
+
+    def read_list_strs(self):
+        return self._read().split()
+
+    def read_list_str(self):
+        return list(self._read())
 
     @staticmethod
-    def read_float():
-        return float(stdin.readline().rstrip())
+    def st(x):
+        return sys.stdout.write(str(x) + '\n')
 
     @staticmethod
-    def read_list_ints():
-        return list(map(int, stdin.readline().rstrip().split()))
+    def lst(x):
+        return sys.stdout.write(" ".join(str(w) for w in x) + '\n')
 
     @staticmethod
-    def read_list_ints_minus_one():
-        return list(map(lambda x: int(x) - 1, stdin.readline().rstrip().split()))
-
-    @staticmethod
-    def read_str():
-        return stdin.readline().rstrip()
-
-    @staticmethod
-    def read_list_strs():
-        return stdin.readline().rstrip().split()
-
-    def get_random_seed(self):
-        import random
-        self.random_seed = random.randint(0, 10 ** 9 + 7)
-        return
-
-    @staticmethod
-    def st(x, flush=False):
-        return print(x, flush=flush)
-
-    @staticmethod
-    def lst(x, flush=False):
-        return print(*x, flush=flush)
+    def round_5(f):
+        res = int(f)
+        if f - res >= 0.5:
+            res += 1
+        return res
 
     @staticmethod
     def max(a, b):
@@ -73,28 +82,118 @@ class FastIO:
         return a if a < b else b
 
     @staticmethod
-    def ceil(a, b):
-        return a // b + int(a % b != 0)
-
-    @staticmethod
-    def accumulate(nums):
-        n = len(nums)
-        pre = [0] * (n + 1)
-        for i in range(n):
-            pre[i + 1] = pre[i] + nums[i]
-        return pre
-
-
-class Solution:
-    def __init__(self):
-        return
-
-    @staticmethod
-    def main(ac=FastIO()):
-
-        for _ in range(ac.read_int()):
-            pass
-        return
+    def bootstrap(f, queue=[]):
+        def wrappedfunc(*args, **kwargs):
+            if queue:
+                return f(*args, **kwargs)
+            else:
+                to = f(*args, **kwargs)
+                while True:
+                    if isinstance(to, GeneratorType):
+                        queue.append(to)
+                        to = next(to)
+                    else:
+                        queue.pop()
+                        if not queue:
+                            break
+                        to = queue[-1].send(to)
+                return to
+        return wrappedfunc
 
 
-Solution().main()
+class LazySegmentTree:
+    def __init__(self, array):
+        self.n = len(array)
+        self.size = 1 << (self.n - 1).bit_length()
+        self.func = min
+        self.default = float("inf")
+        self.data = [self.default] * (2 * self.size)
+        self.lazy = [0] * (2 * self.size)
+        self.process(array)
+
+    def process(self, array):
+        self.data[self.size: self.size + self.n] = array
+        for i in range(self.size - 1, -1, -1):
+            self.data[i] = self.func(self.data[2 * i], self.data[2 * i + 1])
+
+    def push(self, index):
+        """Push the information of the root to it's children!"""
+        self.lazy[2 * index] += self.lazy[index]
+        self.lazy[2 * index + 1] += self.lazy[index]
+        self.data[2 * index] += self.lazy[index]
+        self.data[2 * index + 1] += self.lazy[index]
+        self.lazy[index] = 0
+
+    def build(self, index):
+        """Build data with the new changes!"""
+        index >>= 1
+        while index:
+            self.data[index] = self.func(self.data[2 * index], self.data[2 * index + 1]) + self.lazy[index]
+            index >>= 1
+
+    def query(self, alpha, omega):
+        """Returns the result of function over the range (inclusive)!"""
+        res = self.default
+        alpha += self.size
+        omega += self.size + 1
+        for i in reversed(range(1, alpha.bit_length())):
+            self.push(alpha >> i)
+        for i in reversed(range(1, (omega - 1).bit_length())):
+            self.push((omega - 1) >> i)
+        while alpha < omega:
+            if alpha & 1:
+                res = self.func(res, self.data[alpha])
+                alpha += 1
+            if omega & 1:
+                omega -= 1
+                res = self.func(res, self.data[omega])
+            alpha >>= 1
+            omega >>= 1
+        return res
+
+    def update(self, alpha, omega, value):
+        """Increases all elements in the range (inclusive) by given value!"""
+        alpha += self.size
+        omega += self.size + 1
+        l, r = alpha, omega
+        while alpha < omega:
+            if alpha & 1:
+                self.data[alpha] += value
+                self.lazy[alpha] += value
+                alpha += 1
+            if omega & 1:
+                omega -= 1
+                self.data[omega] += value
+                self.lazy[omega] += value
+            alpha >>= 1
+            omega >>= 1
+        self.build(l)
+        self.build(r - 1)
+
+
+def main(ac=FastIO()):
+
+    n = ac.read_int()
+    tree = LazySegmentTree(ac.read_list_ints())
+    tot = 0
+    for _ in range(ac.read_int()):
+        lst = ac.read_list_ints()
+        if len(lst) == 2:
+            a, b = lst
+            cur = [[a, b]] if a <= b else [[0, b], [a, n-1]]
+            res = inf
+            for x, y in cur:
+                res = ac.min(res, tree.query(x, y))
+            ac.st(res + tot)
+        else:
+            x, y, v = lst
+            if x <= y:
+                tree.update(x, y, v)
+            else:
+                tot += v
+                if y + 1 <= x - 1:
+                    tree.update(y + 1, x - 1, -v)
+    return
+
+
+main()

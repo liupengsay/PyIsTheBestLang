@@ -61,6 +61,7 @@ P8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_
 P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
 P2024（https://www.luogu.com.cn/problem/P2024）union_find_type|build_graph
 P3402（https://www.luogu.com.cn/problem/P3402）
+P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinking
 
 ===================================CodeForces===================================
 25D（https://codeforces.com/problemset/problem/25/D）union_find
@@ -127,6 +128,7 @@ from heapq import heappop, heapify, heappush
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
+from src.data_structure.segment_tree.template import RangeDivideRangeSum
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd
@@ -2063,4 +2065,45 @@ class Solution:
             uf.union(x + n, y)
         else:
             ac.st(-1)
+        return
+
+    @staticmethod
+    def lg_p2391(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2391
+        tag: union_find_right|reverse_thinking
+        """
+        n, m, p, q = [ac.read_int() for _ in range(4)]
+        ans = [0] * n
+        uf = UnionFind(n + 1)
+        for i in range(m, 0, -1):
+            x = (i * p + q) % n
+            y = (i * q + p) % n
+            if x > y:
+                x, y = y, x
+            x = uf.find(x)
+            while x <= y:
+                ans[x] = i
+                uf.union_right(x, x + 1)
+                x = uf.find(x + 1)
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_920f_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/920/F
+        tag: segment_tree|range_divide|range_sum|classical
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeDivideRangeSum(n, 10 ** 6)
+        tree.build(ac.read_list_ints())
+        for i in range(m):
+            op, ll, rr = ac.read_list_ints_minus_one()
+            if op == 0:
+                tree.range_divide(ll, rr)
+            else:
+                ans = tree.range_sum(ll, rr)
+                ac.st(ans)
         return

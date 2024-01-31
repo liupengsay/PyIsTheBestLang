@@ -61,6 +61,7 @@ class PointAddRangeSum:
             k //= 2
         return x
 
+
 class PointChangeRangeSum:
     def __init__(self, n: int) -> None:
         # index from 1 to n

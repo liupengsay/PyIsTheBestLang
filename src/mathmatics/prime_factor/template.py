@@ -1,6 +1,20 @@
 from collections import defaultdict
 
 
+class AllFactorCnt:
+    def __init__(self, n):
+        self.n = n
+        self.all_factor_cnt = [0, 1] + [2 for _ in range(2, n + 1)]
+        for i in range(2, self.n + 1):
+            x = i
+            while x * i <= self.n:
+                self.all_factor_cnt[x * i] += 1
+                if i != x:
+                    self.all_factor_cnt[x * i] += 1
+                x += 1
+        return
+
+
 class PrimeFactor:
     def __init__(self, n):
         self.n = n

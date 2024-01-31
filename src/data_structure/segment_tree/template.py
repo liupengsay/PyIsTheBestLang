@@ -3462,6 +3462,94 @@ class PointSetRangeMax:
         return res
 
 
+class PointSetRangeMaxIndex:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover = [initial] * (4 * n)
+        self.index = [initial] * (4 * n)
+        return
+
+    @classmethod
+    def merge(cls, x, y):
+        return x if x > y else y
+
+    def _push_up(self, i):
+        a, b = self.cover[i << 1], self.cover[(i << 1) | 1]
+        if a > b:
+            self.cover[i], self.index[i] = a, self.index[i << 1]
+        else:
+            self.cover[i], self.index[i] = b, self.index[(i << 1) | 1]
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s]
+                    self.index[i] = s
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set_index(self, ind, x, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self.cover[i] = val
+                self.index[i] = x
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_max_index(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        ind = -1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if ans < self.cover[i]:
+                    ans, ind = self.cover[i], self.index[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans, ind
+
+
 class PointSetRangeSum:
 
     def __init__(self, n, initial=0):
@@ -4145,6 +4233,81 @@ class RangeSqrtRangeSum:
             s, t, i = stack.pop()
             if left <= s and t <= right:
                 ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+
+class RangeDivideRangeSum:
+    def __init__(self, n, m):
+        self.n = n
+        self.m = m
+        self.all_factor_cnt = [0, 1] + [2 for _ in range(2, m + 1)]
+        for i in range(2, self.m + 1):
+            x = i
+            while x * i <= self.m:
+                self.all_factor_cnt[x * i] += 1
+                if i != x:
+                    self.all_factor_cnt[x * i] += 1
+                x += 1
+        self.cover = [0] * (4 * self.n)
+        self.sum = [0] * (4 * self.n)
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s] if nums[s] > 2 else 1
+                    self.sum[i] = nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+                self.sum[i] = self.sum[i << 1] + self.sum[(i << 1) | 1]
+        return
+
+    def range_divide(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if self.cover[i] == t - s + 1:
+                    continue
+                if s == t:
+                    nex = self.all_factor_cnt[self.cover[i]]
+                    self.sum[i] = nex
+                    self.cover[i] = nex if nex > 2 else 1
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+                self.sum[i] = self.sum[i << 1] + self.sum[(i << 1) | 1]
+        return
+
+    def range_sum(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.sum[i]
                 continue
             m = s + (t - s) // 2
             if left <= m:
