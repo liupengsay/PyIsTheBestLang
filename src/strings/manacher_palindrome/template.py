@@ -65,21 +65,21 @@ class ManacherPlindrome:
             while left <= right:
                 if t[left] != "#":
                     x, y = left // 2, right // 2
-                    post[x] = self.max(post[x], y - x + 1)
-                    pre[y] = self.max(pre[y], y - x + 1)
+                    post[x] = max(post[x], y - x + 1)
+                    pre[y] = max(pre[y], y - x + 1)
                     break
                 left += 1
                 right -= 1
         for i in range(1, n):
             if i - pre[i - 1] - 1 >= 0 and s[i] == s[i - pre[i - 1] - 1]:
-                pre[i] = self.max(pre[i], pre[i - 1] + 2)
+                pre[i] = max(pre[i], pre[i - 1] + 2)
         for i in range(n - 2, -1, -1):
-            pre[i] = self.max(pre[i], pre[i + 1] - 2)
+            pre[i] = max(pre[i], pre[i + 1] - 2)
         for i in range(n - 2, -1, -1):
             if i + post[i + 1] + 1 < n and s[i] == s[i + post[i + 1] + 1]:
-                post[i] = self.max(post[i], post[i + 1] + 2)
+                post[i] = max(post[i], post[i + 1] + 2)
         for i in range(1, n):
-            post[i] = self.max(post[i], post[i - 1] - 2)
+            post[i] = max(post[i], post[i - 1] - 2)
 
         return post, pre
 

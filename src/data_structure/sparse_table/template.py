@@ -115,13 +115,13 @@ class SparseTable2D:
         a, b = int(math.log2(m)) + 1, int(math.log2(n)) + 1
 
         if method == "max":
-            self.fun = self.max
+            self.fun = max
         elif method == "min":
-            self.fun = self.min
+            self.fun = min
         elif method == "gcd":
             self.fun = self.gcd
         elif method == "lcm":
-            self.fun = self.min
+            self.fun = min
         elif method == "or":
             self.fun = self._or
         else:

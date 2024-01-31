@@ -72,25 +72,21 @@ class RangeAscendRangeMax:
         self.cover = [-inf] * (4 * n)
         self.lazy_tag = [-inf] * (4 * n)
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
     def _make_tag(self, i, val):
-        self.cover[i] = self._max(self.cover[i], val)
-        self.lazy_tag[i] = self._max(self.lazy_tag[i], val)
+        self.cover[i] = max(self.cover[i], val)
+        self.lazy_tag[i] = max(self.lazy_tag[i], val)
         return
 
     def _push_up(self, i):
-        self.cover[i] = self._max(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = max(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
 
     def _push_down(self, i):
         if self.lazy_tag[i] != -inf:
-            self.cover[i << 1] = self._max(self.cover[i << 1], self.lazy_tag[i])
-            self.cover[(i << 1) | 1] = self._max(self.cover[(i << 1) | 1], self.lazy_tag[i])
-            self.lazy_tag[i << 1] = self._max(self.lazy_tag[i << 1], self.lazy_tag[i])
-            self.lazy_tag[(i << 1) | 1] = self._max(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
+            self.cover[i << 1] = max(self.cover[i << 1], self.lazy_tag[i])
+            self.cover[(i << 1) | 1] = max(self.cover[(i << 1) | 1], self.lazy_tag[i])
+            self.lazy_tag[i << 1] = max(self.lazy_tag[i << 1], self.lazy_tag[i])
+            self.lazy_tag[(i << 1) | 1] = max(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i] = -inf
         return
 
@@ -154,7 +150,7 @@ class RangeAscendRangeMax:
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
-                highest = self._max(highest, self.cover[i])
+                highest = max(highest, self.cover[i])
                 continue
             self._push_down(i)
             m = a + (b - a) // 2
@@ -192,14 +188,6 @@ class RangeAddRangeAvgDev:
         self.cover_square = [0] * (4 * self.n)  # x^2 sum of range
         self.lazy_tag = [0] * (4 * self.n)
         return
-
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
@@ -296,25 +284,21 @@ class RangeDescendRangeMin:
         self.cover = [inf] * (4 * n)
         self.lazy_tag = [inf] * (4 * n)
 
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
-
     def _make_tag(self, i, val):
-        self.cover[i] = self._min(self.cover[i], val)
-        self.lazy_tag[i] = self._min(self.lazy_tag[i], val)
+        self.cover[i] = min(self.cover[i], val)
+        self.lazy_tag[i] = min(self.lazy_tag[i], val)
         return
 
     def _push_up(self, i):
-        self.cover[i] = self._min(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = min(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
 
     def _push_down(self, i):
         if self.lazy_tag[i] != inf:
-            self.cover[i << 1] = self._min(self.cover[i << 1], self.lazy_tag[i])
-            self.cover[(i << 1) | 1] = self._min(self.cover[(i << 1) | 1], self.lazy_tag[i])
-            self.lazy_tag[i << 1] = self._min(self.lazy_tag[i << 1], self.lazy_tag[i])
-            self.lazy_tag[(i << 1) | 1] = self._min(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
+            self.cover[i << 1] = min(self.cover[i << 1], self.lazy_tag[i])
+            self.cover[(i << 1) | 1] = min(self.cover[(i << 1) | 1], self.lazy_tag[i])
+            self.lazy_tag[i << 1] = min(self.lazy_tag[i << 1], self.lazy_tag[i])
+            self.lazy_tag[(i << 1) | 1] = min(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i] = inf
         return
 
@@ -380,7 +364,7 @@ class RangeDescendRangeMin:
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
-                lowest = self._min(lowest, self.cover[i])
+                lowest = min(lowest, self.cover[i])
                 continue
             self._push_down(i)
             m = a + (b - a) // 2
@@ -399,14 +383,6 @@ class RangeAddRangeSumMinMax:
         self.floor = [0] * (4 * self.n)  # range min
         self.ceil = [0] * (4 * self.n)  # range max
         return
-
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
 
     def build(self, nums):
 
@@ -444,8 +420,8 @@ class RangeAddRangeSumMinMax:
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        self.ceil[i] = self._max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
-        self.floor[i] = self._min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
         return
 
     def _make_tag(self, i, s, t, val):
@@ -517,7 +493,7 @@ class RangeAddRangeSumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                lowest = self._min(lowest, self.floor[i])
+                lowest = min(lowest, self.floor[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -545,7 +521,7 @@ class RangeAddRangeSumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self._max(highest, self.ceil[i])
+                highest = max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -594,14 +570,6 @@ class RangeAddRangeWeightedSum:
         self.sum = [0] * (4 * self.n)  # range sum
         self.lazy_tag = [0] * (4 * self.n)  # lazy tag
         return
-
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
 
     def build(self, nums):
 
@@ -726,19 +694,11 @@ class RangeChminChmaxPointGet:
             self.low[i] = self.low_initial
         return
 
-    @classmethod
-    def _max(cls, x, y):
-        return x if x > y else y
-
-    @classmethod
-    def _min(cls, x, y):
-        return x if x < y else y
-
     def _merge_tag(self, low1, high1, low2, high2):
-        high2 = self._min(high2, high1)
-        high2 = self._max(high2, low1)
-        low2 = self._max(low2, low1)
-        low2 = self._min(low2, high1)
+        high2 = min(high2, high1)
+        high2 = max(high2, low1)
+        low2 = max(low2, low1)
+        low2 = min(low2, high1)
         return low2, high2
 
     def _make_tag(self, i, low, high):
@@ -1134,12 +1094,12 @@ class RangeAscendPointGet:
 
     def _push_down(self, i):
         if self.lazy_tag[i]:
-            self.lazy_tag[i << 1] = self._max(self.lazy_tag[i << 1], self.lazy_tag[i])
-            self.lazy_tag[(i << 1) | 1] = self._max(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
+            self.lazy_tag[i << 1] = max(self.lazy_tag[i << 1], self.lazy_tag[i])
+            self.lazy_tag[(i << 1) | 1] = max(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i] = 0
 
     def _make_tag(self, i, val):
-        self.lazy_tag[i] = self._max(self.lazy_tag[i], val)
+        self.lazy_tag[i] = max(self.lazy_tag[i], val)
         return
 
     def range_ascend(self, left, right, val):
@@ -1446,14 +1406,6 @@ class RangeSetRangeSumMinMax:
         self.ceil = [-inf] * (4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
-
     def _push_down(self, i, s, m, t):
         if self.lazy_tag[i] != inf:
             self.cover[i << 1] = self.lazy_tag[i] * (m - s + 1)
@@ -1472,8 +1424,8 @@ class RangeSetRangeSumMinMax:
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        self.ceil[i] = self._max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
-        self.floor[i] = self._min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
         return
 
     def _make_tag(self, i, s, t, val):
@@ -1560,7 +1512,7 @@ class RangeSetRangeSumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                lowest = self._min(lowest, self.floor[i])
+                lowest = min(lowest, self.floor[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -1578,7 +1530,7 @@ class RangeSetRangeSumMinMax:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self._max(highest, self.ceil[i])
+                highest = max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -1773,14 +1725,6 @@ class RangeSetRangeSumMinMaxDynamic:
         self.ceil = defaultdict(int)  # range max can be -inf
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
-
     def _push_down(self, i, s, m, t):
         if self.lazy_tag[i] != self.initial:
             self.cover[i << 1] = self.lazy_tag[i] * (m - s + 1)
@@ -1799,8 +1743,8 @@ class RangeSetRangeSumMinMaxDynamic:
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        self.ceil[i] = self._max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
-        self.floor[i] = self._min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
         return
 
     def _make_tag(self, i, s, t, val):
@@ -1854,7 +1798,7 @@ class RangeSetRangeSumMinMaxDynamic:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self._min(highest, self.floor[i])
+                highest = min(highest, self.floor[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -1871,7 +1815,7 @@ class RangeSetRangeSumMinMaxDynamic:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                highest = self._max(highest, self.ceil[i])
+                highest = max(highest, self.ceil[i])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -1909,14 +1853,6 @@ class RangeSetRangeSumMinMaxDynamicDct:
         self.ind = 1
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
-
     def _produce(self, i):
         if i not in self.dct:
             self.dct[i] = self.ind
@@ -1949,8 +1885,8 @@ class RangeSetRangeSumMinMaxDynamicDct:
 
     def _push_up(self, i):
         self.cover[self.dct[i]] = self.cover[self.dct[i << 1]] + self.cover[self.dct[(i << 1) | 1]]
-        self.ceil[self.dct[i]] = self._max(self.ceil[self.dct[i << 1]], self.ceil[self.dct[(i << 1) | 1]])
-        self.floor[self.dct[i]] = self._min(self.floor[self.dct[i << 1]], self.floor[self.dct[(i << 1) | 1]])
+        self.ceil[self.dct[i]] = max(self.ceil[self.dct[i << 1]], self.ceil[self.dct[(i << 1) | 1]])
+        self.floor[self.dct[i]] = min(self.floor[self.dct[i << 1]], self.floor[self.dct[(i << 1) | 1]])
         return
 
     def _make_tag(self, i, s, t, val):
@@ -2006,7 +1942,7 @@ class RangeSetRangeSumMinMaxDynamicDct:
             s, t, i = stack.pop()
             self._produce(i)
             if left <= s and t <= right:
-                highest = self._min(highest, self.floor[self.dct[i]])
+                highest = min(highest, self.floor[self.dct[i]])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -2023,7 +1959,7 @@ class RangeSetRangeSumMinMaxDynamicDct:
             s, t, i = stack.pop()
             self._produce(i)
             if left <= s and t <= right:
-                highest = self._max(highest, self.ceil[self.dct[i]])
+                highest = max(highest, self.ceil[self.dct[i]])
                 continue
             m = s + (t - s) // 2
             self._push_down(i, s, m, t)
@@ -2059,14 +1995,6 @@ class RangeSetPreSumMaxDynamic:
         self.lazy_tag = defaultdict(lambda: self.initial)  # lazy tag must be initial inf
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
-
     def _push_down(self, i, s, m, t):
         if self.lazy_tag[i] != self.initial:
             self._make_tag(i << 1, s, m, self.lazy_tag[i])
@@ -2075,8 +2003,8 @@ class RangeSetPreSumMaxDynamic:
 
     def _push_up(self, i):
         self.sum[i] = self.sum[i << 1] + self.sum[(i << 1) | 1]
-        self.pre_sum_max[i] = self._max(self.pre_sum_max[i << 1],
-                                        self.sum[i << 1] + self._max(0, self.pre_sum_max[(i << 1) | 1]))
+        self.pre_sum_max[i] = max(self.pre_sum_max[i << 1],
+                                  self.sum[i << 1] + max(0, self.pre_sum_max[(i << 1) | 1]))
         return
 
     def _make_tag(self, i, s, t, val):
@@ -2132,7 +2060,7 @@ class RangeSetPreSumMaxDynamic:
         while stack:
             s, t, i = stack.pop()
             if t <= left:
-                ans = self._max(ans, pre_sum + self.pre_sum_max[i])
+                ans = max(ans, pre_sum + self.pre_sum_max[i])
                 pre_sum += self.sum[i]
                 continue
             m = s + (t - s) // 2
@@ -2170,10 +2098,6 @@ class RangeSetPreSumMaxDynamicDct:
         self.ind = 1
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
     def _produce(self, i):
         if i not in self.dct:
             self.dct[i] = self.ind
@@ -2183,10 +2107,6 @@ class RangeSetPreSumMaxDynamicDct:
             self.sum.append(0)
             self.lazy_tag.append(self.initial)
         return
-
-    @staticmethod
-    def _min(a, b):
-        return a if a < b else b
 
     def _push_down(self, i, s, m, t):
         self._produce(i)
@@ -2200,9 +2120,9 @@ class RangeSetPreSumMaxDynamicDct:
         self._produce(i << 1)
         self._produce((i << 1) | 1)
         self.sum[self.dct[i]] = self.sum[self.dct[i << 1]] + self.sum[self.dct[(i << 1) | 1]]
-        self.pre_sum_max[self.dct[i]] = self._max(self.pre_sum_max[self.dct[i << 1]],
-                                                  self.sum[self.dct[i << 1]] + self._max(0, self.pre_sum_max[
-                                                      self.dct[(i << 1) | 1]]))
+        self.pre_sum_max[self.dct[i]] = max(self.pre_sum_max[self.dct[i << 1]],
+                                            self.sum[self.dct[i << 1]] + max(0, self.pre_sum_max[
+                                                self.dct[(i << 1) | 1]]))
         return
 
     def _make_tag(self, i, s, t, val):
@@ -2260,7 +2180,7 @@ class RangeSetPreSumMaxDynamicDct:
             s, t, i = stack.pop()
             self._produce(i)
             if t <= left:
-                ans = self._max(ans, pre_sum + self.pre_sum_max[self.dct[i]])
+                ans = max(ans, pre_sum + self.pre_sum_max[self.dct[i]])
                 pre_sum += self.sum[self.dct[i]]
                 continue
             m = s + (t - s) // 2
@@ -3101,10 +3021,6 @@ class RangeSetRangeMaxNonEmpConSubSum:
         self.sum = [0] * (4 * self.n)
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
     def _make_tag(self, i, s, t, val):
         self.cover[i] = val * (t - s + 1) if val > 0 else val
         self.left[i] = val * (t - s + 1) if val > 0 else val
@@ -3122,10 +3038,10 @@ class RangeSetRangeMaxNonEmpConSubSum:
 
     def _range_merge_to_disjoint(self, res1, res2):
         res = [0] * 4
-        res[0] = self._max(res1[0], res2[0])
-        res[0] = self._max(res[0], res1[2] + res2[1])
-        res[1] = self._max(res1[1], res1[3] + res2[1])
-        res[2] = self._max(res2[2], res2[3] + res1[2])
+        res[0] = max(res1[0], res2[0])
+        res[0] = max(res[0], res1[2] + res2[1])
+        res[1] = max(res1[1], res1[3] + res2[1])
+        res[2] = max(res2[2], res2[3] + res1[2])
         res[3] = res1[3] + res2[3]
         return res
 
@@ -3236,10 +3152,6 @@ class RangeSetRangeSegCountLength:
         self.right = [0] * (4 * self.n)
         self.lazy_tag = [self.initial] * (4 * self.n)
         return
-
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
 
     def _make_tag(self, i, s, t, val):
         self.cover[i] = val
@@ -3378,17 +3290,13 @@ class PointSetRangeLongestAlter:
         return
 
     @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
-    @staticmethod
     def _min(a, b):
         return a if a < b else b
 
     def _push_up(self, i, s, m, t):
-        self.cover[i] = self._max(self.cover[i << 1], self.cover[(i << 1) | 1])
-        self.cover[i] = self._max(self.cover[i], self.right_0[i << 1] + self.left_1[(i << 1) | 1])
-        self.cover[i] = self._max(self.cover[i], self.right_1[i << 1] + self.left_0[(i << 1) | 1])
+        self.cover[i] = max(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = max(self.cover[i], self.right_0[i << 1] + self.left_1[(i << 1) | 1])
+        self.cover[i] = max(self.cover[i], self.right_1[i << 1] + self.left_0[(i << 1) | 1])
 
         self.left_0[i] = self.left_0[i << 1]
         if self.left_0[i << 1] == m - s + 1:
@@ -4016,12 +3924,8 @@ class PointSetRangeMin:
         self.cover[i] = val
         return
 
-    @classmethod
-    def _min(cls, x, y):
-        return x if x < y else y
-
     def _push_up(self, i):
-        self.cover[i] = self._min(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = min(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
 
     def build(self, nums):
@@ -4078,7 +3982,7 @@ class PointSetRangeMin:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                ans = self._min(ans, self.cover[i])
+                ans = min(ans, self.cover[i])
                 continue
             m = s + (t - s) // 2
             if left <= m:
@@ -4430,10 +4334,6 @@ class PointSetRangeMaxSubSum:
                 self._push_up(i)
         return
 
-    @staticmethod
-    def _max(a, b):
-        return a if a > b else b
-
     def _make_tag(self, i, val):
         self.cover[i] = val
         self.left[i] = val
@@ -4443,10 +4343,10 @@ class PointSetRangeMaxSubSum:
 
     def _range_merge_to_disjoint(self, res1, res2):
         res = [0] * 4
-        res[0] = self._max(res1[0], res2[0])
-        res[0] = self._max(res[0], res1[2] + res2[1])
-        res[1] = self._max(res1[1], res1[3] + res2[1])
-        res[2] = self._max(res2[2], res2[3] + res1[2])
+        res[0] = max(res1[0], res2[0])
+        res[0] = max(res[0], res1[2] + res2[1])
+        res[1] = max(res1[1], res1[3] + res2[1])
+        res[2] = max(res2[2], res2[3] + res1[2])
         res[3] = res1[3] + res2[3]
         return res
 

@@ -286,17 +286,13 @@ class PointAscendRangeMax:
     def _lowest_bit(x):
         return x & -x
 
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
     def point_ascend(self, x, k):
         assert 1 <= x <= self.n
         if self.a[x] >= k:
             return
         self.a[x] = k
         while x <= self.n:
-            self.t[x] = self.max(self.t[x], k)
+            self.t[x] = max(self.t[x], k)
             x += self._lowest_bit(x)
         return
 
@@ -305,10 +301,10 @@ class PointAscendRangeMax:
         max_val = self.initial
         while r >= left:
             if r - self._lowest_bit(r) >= left - 1:
-                max_val = self.max(max_val, self.t[r])
+                max_val = max(max_val, self.t[r])
                 r -= self._lowest_bit(r)
             else:
-                max_val = self.max(max_val, self.a[r])
+                max_val = max(max_val, self.a[r])
                 r -= 1
         return max_val
 
@@ -351,17 +347,13 @@ class PointDescendRangeMin:
     def _lowest_bit(x):
         return x & -x
 
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
     def point_descend(self, x, k):
         assert 1 <= x <= self.n
         if self.a[x] <= k:
             return
         self.a[x] = k
         while x <= self.n:
-            self.t[x] = self.min(self.t[x], k)
+            self.t[x] = min(self.t[x], k)
             x += self._lowest_bit(x)
         return
 
@@ -370,10 +362,10 @@ class PointDescendRangeMin:
         min_val = self.initial
         while r >= left:
             if r - self._lowest_bit(r) >= left - 1:
-                min_val = self.min(min_val, self.t[r])
+                min_val = min(min_val, self.t[r])
                 r -= self._lowest_bit(r)
             else:
-                min_val = self.min(min_val, self.a[r])
+                min_val = min(min_val, self.a[r])
                 r -= 1
         return min_val
 
@@ -445,14 +437,6 @@ class PointChangeMaxMin2D:
     def _lowest_bit(x):
         return x & -x
 
-    @staticmethod
-    def max(a, b):
-        return a if a > b else b
-
-    @staticmethod
-    def min(a, b):
-        return a if a < b else b
-
     def add(self, x, y, k):
         # index start from 1
         self.a[x][y] = k
@@ -460,8 +444,8 @@ class PointChangeMaxMin2D:
         while i <= self.m:
             j = y
             while j <= self.n:
-                self.tree_ceil[i][j] = self.max(self.tree_ceil[i][j], k)
-                self.tree_floor[i][j] = self.min(self.tree_floor[i][j], k)
+                self.tree_ceil[i][j] = max(self.tree_ceil[i][j], k)
+                self.tree_floor[i][j] = min(self.tree_floor[i][j], k)
                 j += self._lowest_bit(j)
             i += self._lowest_bit(i)
         return
@@ -477,10 +461,10 @@ class PointChangeMaxMin2D:
                 j1, j2 = y1, y2
                 while j2 >= j1:
                     if j2 - self._lowest_bit(j2) >= j1 - 1:
-                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
+                        max_val = max(max_val, self.tree_ceil[i2][j2])
                         j2 -= self._lowest_bit(j2)
                     else:
-                        max_val = self.max(max_val, self.a[i2][j2])
+                        max_val = max(max_val, self.a[i2][j2])
                         j2 -= 1
                 ##########
 
@@ -491,12 +475,12 @@ class PointChangeMaxMin2D:
                 j1, j2 = y1, y2
                 while j2 >= j1:
                     if j2 - self._lowest_bit(j2) >= j1 - 1:
-                        max_val = self.max(max_val, self.tree_ceil[i2][j2])
+                        max_val = max(max_val, self.tree_ceil[i2][j2])
                         j2 -= self._lowest_bit(j2)
                     else:
-                        max_val = self.max(max_val, self.a[i2][j2])
+                        max_val = max(max_val, self.a[i2][j2])
                         j2 -= 1
                 ##########
-                max_val = self.max(max_val, max(self.a[i2][y1:y2 + 1]))
+                max_val = max(max_val, max(self.a[i2][y1:y2 + 1]))
                 i2 -= 1
         return max_val
