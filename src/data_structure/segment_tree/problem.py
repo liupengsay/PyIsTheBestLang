@@ -56,6 +56,10 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 1478E（https://codeforces.com/contest/1478/problem/E）RangeSetRangeSumMinMax|backward_thinking|implemention
 1679E（https://codeforces.com/contest/1679/problem/B）RangeSetRangeSumMinMax|range_change|range_sum
 85D（https://codeforces.com/contest/85/problem/D）segment_tree|point_add|range_sum
+474E（https://codeforces.com/contest/474/problem/E）segment_tree|point_set|range_max_index|linear_dp|classical
+920F（https://codeforces.com/problemset/problem/920/F）union_find|all_factor_cnt|range_sum|point_add
+438D（https://codeforces.com/contest/438/problem/D）segment_tree|point_set|range_mod|range_sum|classical
+1187D（https://codeforces.com/problemset/problem/1187/D）segment_tree|point_set|range_min|classical
 
 
 ====================================AtCoder=====================================

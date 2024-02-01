@@ -1,29 +1,38 @@
 import heapq
 
+
 class HeapqMedian:
     def __init__(self, mid):
         """median maintenance by heapq with odd length array"""
         self.mid = mid
         self.left = []
         self.right = []
+        self.left_sum = 0
+        self.right_sum = 0
         return
 
     def add(self, num):
 
         if num > self.mid:
             heapq.heappush(self.right, num)
+            self.right_sum += num
         else:
             heapq.heappush(self.left, -num)
+            self.left_sum += num
         n = len(self.left) + len(self.right)
 
         if n % 2 == 0:
             # maintain equal length
             if len(self.left) > len(self.right):
+                self.right_sum += self.mid
                 heapq.heappush(self.right, self.mid)
                 self.mid = -heapq.heappop(self.left)
+                self.left_sum -= self.mid
             elif len(self.right) > len(self.left):
                 heapq.heappush(self.left, -self.mid)
+                self.left_sum += self.mid
                 self.mid = heapq.heappop(self.right)
+                self.right_sum -= self.mid
         return
 
     def query(self):

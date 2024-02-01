@@ -42,8 +42,9 @@ from collections import deque, defaultdict
 from heapq import heappushpop, heappush, heappop, heapify
 from typing import List
 
-from src.data_structure.priority_queue.template import MedianFinder
+from src.data_structure.priority_queue.template import MedianFinder, HeapqMedian
 from src.data_structure.sorted_list.template import SortedList
+from src.data_structure.tree_array.template import PointAddRangeSum
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -480,6 +481,7 @@ class Solution:
         url: https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/
         tag: heapq|greedy
         """
+
         def helper(lst: List[int]) -> int:
             res, pq = 0, []
             for num in lst:
@@ -518,3 +520,50 @@ class Solution:
                 if i:
                     heapq.heappush(stack, (pre + nums[i] - nums[i - 1], i + 1))
         return -stack[0][0]
+
+    @staticmethod
+    def lc_24_1(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/5TxKeK/description/
+        tag: heapq_median|brain_teaser|classical|median_greedy
+        """
+        mod = 1000000007
+        n = len(nums)
+        nums = [nums[i] - i for i in range(n)]
+        median = HeapqMedian(nums[0])
+        ans = [0]
+        lst = [nums[0]]
+        for num in nums[1:]:
+            median.add(num)
+            lst.append(num)
+            cur = (median.mid * len(median.left) - median.left_sum)
+            cur += (median.right_sum - median.mid * len(median.right))
+            ans.append(cur % mod)
+        return ans
+
+    @staticmethod
+    def lc_24_2(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/5TxKeK/description/
+        tag: heapq_median|brain_teaser|classical|median_greedy|tree_array|sorted_list
+        """
+        mod = 1000000007
+        n = len(nums)
+        nums = [nums[i] - i + n for i in range(n)]
+        lst = SortedList()
+        ans = []
+        ceil = max(nums)
+        tree_cnt = PointAddRangeSum(ceil)
+        tree_sum = PointAddRangeSum(ceil)
+        for num in nums:
+            lst.add(num)
+            tree_cnt.point_add(num, 1)
+            tree_sum.point_add(num, num)
+            x = lst[len(lst) // 2]
+            cur = 0
+            if x - 1 >= 1:
+                cur += tree_cnt.range_sum(1, x - 1) * x - tree_sum.range_sum(1, x - 1)
+            if x + 1 <= ceil:
+                cur += tree_sum.range_sum(x + 1, ceil) - tree_cnt.range_sum(x + 1, ceil) * x
+            ans.append(cur % mod)
+        return ans
