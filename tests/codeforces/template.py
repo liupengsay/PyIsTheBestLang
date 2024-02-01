@@ -158,7 +158,10 @@ class Solution:
 
     @staticmethod
     def main(ac=FastIO()):
-
+        """
+        url: https://codeforces.com/problemset/problem/1208/D
+        tag: segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
+        """
         for _ in range(ac.read_int()):
             pass
         return
