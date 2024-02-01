@@ -196,8 +196,9 @@ class RangeAscendRangeMaxIndex:
     def _make_tag(self, i, ind, val):
         if val > self.ceil[i]:
             self.ceil[i] = val
-            self.ceil_tag[i] = val
             self.index[i] = ind
+        if val > self.ceil_tag[i]:
+            self.ceil_tag[i] = val
             self.index_tag[i] = ind
         return
 

@@ -115,7 +115,7 @@ class TestGeneral(unittest.TestCase):
     def test_range_ascend_range_max_index(self):
         random.seed(2024)
         low = 0
-        high = 10
+        high = 10000
         nums = [random.randint(low, high) for _ in range(high)]
         tree = RangeAscendRangeMaxIndex(high)
         tree.build(nums)
@@ -128,7 +128,7 @@ class TestGeneral(unittest.TestCase):
             tree.range_ascend(left, right, 0, num)
             for i in range(left, right + 1):
                 nums[i] = nums[i] if nums[i] > num else num
-            print(nums, tree.get())
+
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             res = tree.range_max_index(left, right)

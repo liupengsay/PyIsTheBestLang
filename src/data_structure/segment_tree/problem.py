@@ -66,7 +66,8 @@ P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|
 522D（https://codeforces.com/problemset/problem/522/D）segment_tree|point_set|range_min|offline_query
 703D（https://codeforces.com/problemset/problem/703/D）segment_tree|point_add|range_xor|offline_query
 1208D（https://codeforces.com/problemset/problem/1208/D）segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
-
+558E（https://codeforces.com/problemset/problem/558/E）segment_tree|range_set|range_sum|alphabet
+1157D（https://codeforces.com/contest/1557/problem/D）segment_tree|range_ascend|range_max_index|dp
 
 
 ====================================AtCoder=====================================
@@ -136,7 +137,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
-    PointSetRangeAscendSubCnt, PointSetRangeNotExistABC
+    PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -2503,4 +2504,44 @@ class Solution:
                 if lst[j]:
                     ans[j] = chr(i + ord("a"))
         ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_1557d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1557/problem/D
+        tag: segment_tree|range_ascend|range_max_index|dp
+        """
+        m, n = ac.read_list_ints()
+        queries = [ac.read_list_ints() for _ in range(n)]
+        nodes = set()
+        row = [[] for _ in range(m + 1)]
+        for i, ll, rr in queries:
+            nodes.add(ll)
+            nodes.add(rr)
+            row[i].append((ll, rr))
+        nodes = sorted(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        k = len(ind)
+        tree = RangeAscendRangeMaxIndex(k, 0)
+        dp = [0] * (m + 1)
+        pre = [0] * (m + 1)
+        for i in range(1, m + 1):
+            cur = 0
+            cur_ind = 0
+            for ll, rr in row[i]:
+                res = tree.range_max_index(ind[ll], ind[rr])
+                if res[0] > cur:
+                    cur, cur_ind = res
+            dp[i] = cur + 1
+            pre[i] = cur_ind
+            for ll, rr in row[i]:
+                tree.range_ascend(ind[ll], ind[rr], i, cur + 1)
+        x = dp.index(max(dp))
+        lst = [x]
+        while pre[lst[-1]]:
+            lst.append(pre[lst[-1]])
+        ac.st(m - len(lst))
+        dct = set(lst)
+        ac.lst([x for x in range(1, m + 1) if x not in dct])
         return
