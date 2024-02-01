@@ -4,7 +4,7 @@ from functools import reduce
 from operator import or_, xor
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
-    RangeDescendRangeMin, \
+    RangeDescendRangeMin, RangeAscendRangeMaxIndex, \
     RangeAddRangeSumMinMax, RangeSetRangeSumMinMax, RangeSetRangeMaxNonEmpConSubSum, \
     RangeOrRangeAnd, \
     RangeSetRangeSumMinMaxDynamic, RangeSetRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
@@ -111,6 +111,46 @@ class TestGeneral(unittest.TestCase):
             assert tree.range_max(left, right) == max(nums[left:right + 1])
         assert tree.get() == nums
         return
+
+    def test_range_ascend_range_max_index(self):
+        random.seed(2024)
+        low = 0
+        high = 10
+        nums = [random.randint(low, high) for _ in range(high)]
+        tree = RangeAscendRangeMaxIndex(high)
+        tree.build(nums)
+        assert tree.get() == nums
+        for _ in range(high):
+            # 区间更新最大值
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            num = random.randint(low, high)
+            tree.range_ascend(left, right, 0, num)
+            for i in range(left, right + 1):
+                nums[i] = nums[i] if nums[i] > num else num
+            print(nums, tree.get())
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            res = tree.range_max_index(left, right)
+            assert res[0] == max(nums[left:right + 1])
+
+            # 单点更新最大值
+            left = random.randint(0, high - 1)
+            right = left
+            num = random.randint(low, high)
+            tree.range_ascend(left, right, 0, num)
+            for i in range(left, right + 1):
+                nums[i] = nums[i] if nums[i] > num else num
+            res = tree.range_max_index(left, right)
+            assert res[0] == max(nums[left:right + 1])
+
+            left = random.randint(0, high - 1)
+            right = random.randint(left, high - 1)
+            res = tree.range_max_index(left, right)
+            assert res[0] == max(nums[left:right + 1])
+        assert tree.get() == nums
+        return
+
 
     def test_range_descend_range_min(self):
         low = 0

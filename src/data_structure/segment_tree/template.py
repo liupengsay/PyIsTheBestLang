@@ -184,6 +184,128 @@ class RangeAscendRangeMax:
         return res
 
 
+class RangeAscendRangeMaxIndex:
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.ceil = [-self.initial] * (4 * n)
+        self.index = [-self.initial] * (4 * n)
+        self.ceil_tag = [-self.initial] * (4 * n)
+        self.index_tag = [-self.initial] * (4 * n)
+
+    def _make_tag(self, i, ind, val):
+        if val > self.ceil[i]:
+            self.ceil[i] = val
+            self.ceil_tag[i] = val
+            self.index[i] = ind
+            self.index_tag[i] = ind
+        return
+
+    def _push_up(self, i):
+        if self.ceil[i << 1] > self.ceil[(i << 1) | 1]:
+            self.ceil[i] = self.ceil[i << 1]
+            self.index[i] = self.index[i << 1]
+        else:
+            self.ceil[i] = self.ceil[(i << 1) | 1]
+            self.index[i] = self.index[(i << 1) | 1]
+        return
+
+    def _push_down(self, i):
+        if self.ceil_tag[i] != -self.initial:
+            if self.ceil[i << 1] < self.ceil_tag[i]:
+                self.ceil[i << 1] = self.ceil_tag[i]
+                self.index[i << 1] = self.index_tag[i]
+
+            if self.ceil_tag[i] > self.ceil_tag[i << 1]:
+                self.ceil_tag[i << 1] = self.ceil_tag[i]
+                self.index_tag[i << 1] = self.index_tag[i]
+
+            if self.ceil[(i << 1) | 1] < self.ceil_tag[i]:
+                self.ceil[(i << 1) | 1] = self.ceil_tag[i]
+                self.index[(i << 1) | 1] = self.index_tag[i]
+
+            if self.ceil_tag[i] > self.ceil_tag[(i << 1) | 1]:
+                self.ceil_tag[(i << 1) | 1] = self.ceil_tag[i]
+                self.index_tag[(i << 1) | 1] = self.index_tag[i]
+
+            self.ceil_tag[i] = -self.initial
+            self.index_tag[i] = -self.initial
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.ceil[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_ascend(self, left, right, ind, val):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            a, b, i = stack.pop()
+            if i >= 0:
+                if left <= a and b <= right:
+                    self._make_tag(i, ind, val)
+                    continue
+                self._push_down(i)
+                stack.append((a, b, ~i))
+                m = a + (b - a) // 2
+                if left <= m:
+                    stack.append((a, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, b, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_max_index(self, left, right):
+
+        stack = [(0, self.n - 1, 1)]
+        highest = -self.initial
+        ind = 0
+        while stack:
+            a, b, i = stack.pop()
+            if left <= a and b <= right:
+                if self.ceil[i] > highest:
+                    highest = self.ceil[i]
+                    ind = self.index[i]
+                continue
+            self._push_down(i)
+            m = a + (b - a) // 2
+            if left <= m:
+                stack.append((a, m, i << 1))
+            if right > m:
+                stack.append((m + 1, b, (i << 1) | 1))
+        return highest, ind
+
+
 class RangeAddRangeAvgDev:
     def __init__(self, n):
         """range_add|range_avg|range_dev"""
