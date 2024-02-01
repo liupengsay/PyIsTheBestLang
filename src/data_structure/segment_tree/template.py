@@ -1,5 +1,9 @@
+import random
 from collections import defaultdict
+from typing import List
 
+from src.data_structure.sorted_list.template import SortedList
+from src.data_structure.tree_array.template import PointAddRangeSum
 from src.utils.fast_io import inf
 
 
@@ -1398,16 +1402,17 @@ class RangeAffineRangeSum:
 
 
 class RangeSetRangeSumMinMax:
-    def __init__(self, n):
+    def __init__(self, n, initial=inf):
         self.n = n
+        self.initial = inf
         self.cover = [0] * (4 * self.n)  # range sum
-        self.lazy_tag = [inf] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
-        self.floor = [inf] * (4 * self.n)  # because range change can to be any integer the floor initial must be inf
-        self.ceil = [-inf] * (4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
+        self.lazy_tag = [self.initial] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
+        self.floor = [self.initial] * (4 * self.n)  # because range change can to be any integer the floor initial must be inf
+        self.ceil = [-self.initial] * (4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
         return
 
     def _push_down(self, i, s, m, t):
-        if self.lazy_tag[i] != inf:
+        if self.lazy_tag[i] != self.initial:
             self.cover[i << 1] = self.lazy_tag[i] * (m - s + 1)
             self.cover[(i << 1) | 1] = self.lazy_tag[i] * (t - m)
 
@@ -1420,7 +1425,7 @@ class RangeSetRangeSumMinMax:
             self.lazy_tag[i << 1] = self.lazy_tag[i]
             self.lazy_tag[(i << 1) | 1] = self.lazy_tag[i]
 
-            self.lazy_tag[i] = inf
+            self.lazy_tag[i] = self.initial
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
@@ -2833,6 +2838,83 @@ class PointSetRangeOr:
                 stack.append((s, m, i << 1))
         return ans
 
+class PointSetRangeXOr:
+
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * n)
+        return
+
+    def _make_tag(self, i, val):
+        self.cover[i] = val
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] ^ self.cover[(i << 1) | 1]
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_xor(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans ^= self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
 
 class RangeModPointSetRangeSum:
     def __init__(self, n):
@@ -3628,6 +3710,17 @@ class PointSetRangeSum:
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
 
+    def range_sum_bisect_right(self, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.cover[i << 1] > val:
+                s, t, i = s, m, i << 1
+            else:
+                val -= self.cover[i << 1]
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
 
 class PointSetRangeInversion:
 
@@ -4172,6 +4265,106 @@ class PointSetRangeLongestSubSame:
         return self.cover[1]
 
 
+class PointSetRangeAscendSubCnt:
+    def __init__(self, lst):
+        self.n = len(lst)
+        self.lst = lst
+        self.pref = [0] * 4 * self.n
+        self.suf = [0] * 4 * self.n
+        self.cover = [0] * 4 * self.n
+        self._build()
+        return
+
+    def _build(self):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i)
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i, s, t)
+        return
+
+    def _make_tag(self, i):
+        self.pref[i] = 1
+        self.suf[i] = 1
+        self.cover[i] = 1
+        return
+
+    def _merge(self, lst1, lst2, m):
+        pref1, suf1, cover1, length1 = lst1
+        pref2, suf2, cover2, length2 = lst2
+        pref = pref1
+        if pref1 == length1 and self.lst[m] <= self.lst[m + 1]:
+            pref += pref2
+
+        suf = suf2
+        if suf2 == length2 and self.lst[m] <= self.lst[m + 1]:
+            suf += suf1
+
+        cover = cover1 + cover2
+        if self.lst[m] <= self.lst[m + 1]:
+            x, y = suf1, pref2
+            cover -= (x + 1) * x // 2 + (y + 1) * y // 2
+            cover += (x + y + 1) * (x + y) // 2
+
+        return pref, suf, cover, length1 + length2, m + length2
+
+    def _push_up(self, i, s, t):
+        m = s + (t - s) // 2
+        lst1 = (self.pref[i << 1], self.suf[i << 1], self.cover[i << 1], m - s + 1)
+        lst2 = (self.pref[(i << 1) | 1], self.suf[(i << 1) | 1], self.cover[(i << 1) | 1], t - m)
+        self.pref[i], self.suf[i], self.cover[i], _, _ = self._merge(lst1, lst2, m)
+        return
+
+    def point_set(self, x, val):
+        self.lst[x] = val
+        stack = []
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            stack.append((s, t, i))
+            if s == t == x:
+                self._make_tag(i)
+                break
+            m = s + (t - s) // 2
+            if x <= m:
+                s, t, i = s, m, i << 1
+            if x > m:
+                s, t, i = m + 1, t, (i << 1) | 1
+        stack.pop()
+        while stack:
+            s, t, i = stack.pop()
+            self._push_up(i, s, t)
+        return
+
+    def range_ascend_sub_cnt(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = (0, 0, 0, 0)
+        mid = -1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if mid == -1:
+                    ans = (self.pref[i], self.suf[i], self.cover[i], t - s + 1)
+                else:
+                    ans = self._merge(ans, [self.pref[i], self.suf[i], self.cover[i], t - s + 1], mid)[:-1]
+                mid = t
+                continue
+            m = s + (t - s) // 2
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return ans[2]
+
+
 class RangeSqrtRangeSum:
     def __init__(self, n):
         self.n = n
@@ -4371,3 +4564,341 @@ class PointSetRangeMaxSubSum:
             i //= 2
             self._push_up(i)
         return self.cover[1]
+
+
+class PointSetRangeNotExistABC:
+    def __init__(self, n):
+        self.n = n
+        self.a = [0] * 4 * self.n
+        self.b = [0] * 4 * self.n
+        self.c = [0] * 4 * self.n
+        self.ab = [0] * 4 * self.n
+        self.bc = [0] * 4 * self.n
+        self.abc = [0] * 4 * self.n
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _make_tag(self, i, val):
+        if val == "a":
+            self.a[i] = 1
+            self.b[i] = 0
+            self.c[i] = 0
+        elif val == "b":
+            self.a[i] = 0
+            self.b[i] = 1
+            self.c[i] = 0
+        else:
+            self.a[i] = 0
+            self.b[i] = 0
+            self.c[i] = 1
+        return
+
+    def _push_up(self, i):
+        i1 = i << 1
+        i2 = (i << 1) | 1
+        a1, b1, c1, ab1, bc1, abc1 = self.a[i1], self.b[i1], self.c[i1], self.ab[i1], self.bc[i1], self.abc[i1]
+        a2, b2, c2, ab2, bc2, abc2 = self.a[i2], self.b[i2], self.c[i2], self.ab[i2], self.bc[i2], self.abc[i2]
+        a = a1 + a2
+        b = b1 + b2
+        c = c1 + c2
+        ab = min(ab1 + b2, a1 + ab2)
+        bc = min(bc1 + c2, b1 + bc2)
+        abc = min(abc1 + c2, ab1 + bc2, a1 + abc2)
+        self.a[i], self.b[i], self.c[i], self.ab[i], self.bc[i], self.abc[i] = a, b, c, ab, bc, abc
+        return
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return self.abc[1]
+
+class PointSetRandomRangeMode:
+
+    def __init__(self, nums: List[int], guess_round=20):
+        self.n = len(nums)
+        self.dct = [SortedList() for _ in range(self.n + 1)]
+        for i, num in enumerate(nums):
+            self.dct[num].add(i)
+        self.nums = nums[:]
+        self.guess_round = guess_round
+
+    def point_set(self, i, val):
+        self.dct[self.nums[i]].discard(i)
+        self.nums[i] = val
+        self.dct[self.nums[i]].add(i)
+        return
+
+    def range_mode(self, left: int, right: int, threshold=-1) -> int:
+        if threshold == -1:
+            threshold = (right - left + 1) / 2
+        for _ in range(self.guess_round):
+            num = self.nums[random.randint(left, right)]
+            cur = self.dct[num].bisect_right(right) - self.dct[num].bisect_left(left)
+            if cur > threshold:
+                return num
+        return -1
+
+
+class PointSetBitRangeMode:
+    def __init__(self, nums: List[int], m=20):
+        self.n = len(nums)
+        self.m = m
+        self.pre = [PointAddRangeSum(self.n) for _ in range(self.m)]
+        self.dct = [SortedList() for _ in range(self.n + 1)]
+        for i, num in enumerate(nums):
+            self.dct[num].add(i)
+        for i in range(self.m):
+            self.pre[i].build([int(num & (1 << i) > 0) for num in nums])
+        self.nums = nums[:]
+        return
+
+    def point_set(self, i, val):
+        num = self.nums[i]
+        self.dct[num].discard(i)
+
+        for j in range(self.m):
+            if num & (1 << j):
+                self.pre[j].point_add(i + 1, -1)
+        self.nums[i] = val
+        self.dct[val].add(i)
+        for j in range(self.m):
+            if val & (1 << j):
+                self.pre[j].point_add(i + 1, 1)
+        return
+
+    def range_mode(self, left: int, right: int, threshold=-1) -> int:
+        if threshold == -1:
+            threshold = (right - left + 1) / 2
+        val = 0
+        for j in range(self.m):
+            if self.pre[j].range_sum(left + 1, right + 1) > threshold:
+                val |= (1 << j)
+        ans = self.dct[val].bisect_right(right) - self.dct[val].bisect_left(left)
+        return val if ans > threshold else -1
+
+
+class PointSetMergeRangeMode:
+
+    def __init__(self, nums):
+        self.n = len(nums)
+        self.dct = [SortedList() for _ in range(self.n + 1)]
+        for i, num in enumerate(nums):
+            self.dct[num].add(i)
+        self.cover = [0] * 4 * self.n
+        self.nums = nums[:]
+        self.build()
+        return
+
+    def _push_up(self, i, s, t):
+        a = self.cover[i << 1]
+        b = self.cover[(i << 1) | 1]
+        cnt_a = self.dct[a].bisect_right(t) - self.dct[a].bisect_left(s)
+        cnt_b = self.dct[b].bisect_right(t) - self.dct[b].bisect_left(s)
+        self.cover[i] = a if cnt_a > cnt_b else b
+        return
+
+    def build(self):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = self.nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i, s, t)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t == ind:
+                    self.dct[self.nums[ind]].discard(ind)
+                    self.nums[ind] = val
+                    self.dct[self.nums[ind]].add(ind)
+                    self.cover[i] = val
+                    continue
+
+                m = s + (t - s) // 2
+                stack.append((s, t, ~i))
+
+                if ind <= m:
+                    stack.append((s, m, i << 1))
+                if ind > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i, s, t)
+
+    def range_mode(self, left, right, threshold=-1):
+        if threshold == -1:
+            threshold = (right - left + 1) / 2
+        stack = [(0, self.n - 1, 1)]
+        ans = -1
+        cnt = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if ans != -1:
+                    ans = self.cover[i]
+                    cnt = self.dct[ans].bisect_right(right) - self.dct[ans].bisect_left(left)
+                else:
+                    num = self.cover[i]
+                    cur_cnt = self.dct[num].bisect_right(right) - self.dct[num].bisect_left(left)
+                    if cur_cnt > cnt:
+                        ans = num
+                        cnt = cur_cnt
+                if cnt > threshold:
+                    return ans
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return -1
+
+
+class PointSetRangeGcd:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover = [initial] * (4 * n)
+        return
+
+    @classmethod
+    def merge(cls, x, y):
+        return math.gcd(x, y)
+
+    def _push_up(self, i):
+        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.cover[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self.cover[i] = val
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def range_gcd(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans = self.merge(ans, self.cover[i])
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_gcd_check(self, left, right, gcd):
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack and ans <= 1:
+            s, t, i = stack.pop()
+            if self.cover[i] % gcd == 0:
+                continue
+            if s == t:
+                if left <= s <= right and self.cover[i] % gcd:
+                    ans += 1
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans <= 1

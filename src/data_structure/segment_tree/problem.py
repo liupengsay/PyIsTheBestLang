@@ -41,6 +41,7 @@ P6627（https://www.luogu.com.cn/problem/P6627）segment_tree|range_xor
 P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeSetRangeOr
 P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
 P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
+P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|offline_query
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -60,11 +61,19 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 920F（https://codeforces.com/problemset/problem/920/F）union_find|all_factor_cnt|range_sum|point_add
 438D（https://codeforces.com/contest/438/problem/D）segment_tree|point_set|range_mod|range_sum|classical
 1187D（https://codeforces.com/problemset/problem/1187/D）segment_tree|point_set|range_min|classical
+914D（https://codeforces.com/contest/914/problem/D）segment_tree|point_set|range_gcd
+1567E（https://codeforces.com/problemset/problem/1567/E）segment_tree|point_set|range_ascend_sub_cnt
+522D（https://codeforces.com/problemset/problem/522/D）segment_tree|point_set|range_min|offline_query
+703D（https://codeforces.com/problemset/problem/703/D）segment_tree|point_add|range_xor|offline_query
+1208D（https://codeforces.com/problemset/problem/1208/D）segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
+
 
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline
+ABC327F（https://atcoder.jp/contests/abc327/tasks/abc327_f）segment_tree|range_add|range_max
+ABC285F（https://atcoder.jp/contests/abc285/tasks/abc285_f）segment_tree|point_add|range_sum|range_ascend_sub_cnt|point_set
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -126,7 +135,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeMinCount, PointSetRangeMaxSubSum, PointSetRangeMax, RangeAddPointGet, MatrixBuildRangeMul, \
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
-    PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum
+    PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
+    PointSetRangeAscendSubCnt, PointSetRangeNotExistABC
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -2212,4 +2222,285 @@ class Solution:
                 return
 
             check()
+        return
+
+    @staticmethod
+    def cf_914d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/914/problem/D
+        tag: segment_tree|point_set|range_gcd
+        """
+        n = ac.read_int()
+        tree = PointSetRangeGcd(n)
+        tree.build(ac.read_list_ints())
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, rr, xx = lst[1:]
+                ans = tree.range_gcd_check(ll - 1, rr - 1, xx)
+                ac.st("YES" if ans else "NO")
+            else:
+                ll, xx = lst[1:]
+                tree.point_set(ll - 1, xx)
+        return
+
+    @staticmethod
+    def cf_1567e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1567/E
+        tag: segment_tree|point_set|range_ascend_sub_cnt
+        """
+        _, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointSetRangeAscendSubCnt(nums)
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                ll, xx = lst[1:]
+                tree.point_set(ll - 1, xx)
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_ascend_sub_cnt(ll - 1, rr - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_522d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/522/D
+        tag: segment_tree|point_set|range_min|offline_query
+        """
+        ac.get_random_seed()
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointSetRangeMin(n, n)
+        queries = [[] for _ in range(n)]
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries[rr].append((i, ll))
+        ans = [-1] * q
+
+        pre = [-1] * n
+        dct = dict()
+        for i in range(n):
+            if nums[i] ^ ac.random_seed in dct:
+                pre[i] = dct[nums[i] ^ ac.random_seed]
+            dct[nums[i] ^ ac.random_seed] = i
+
+        for rr in range(n):
+            if pre[rr] != -1:
+                tree.point_set(pre[rr], rr - pre[rr])
+            for i, ll in queries[rr]:
+                cur = tree.range_min(ll, rr)
+                if cur < n:
+                    ans[i] = cur
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p1972(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1972
+        tag: point_add|range_sum|tree_array|offline_query
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        q = ac.read_int()
+        queries = [[] for _ in range(n)]
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries[rr].append((i, ll))
+
+        ans = [0] * q
+        tree = PointAddRangeSum(n)
+        tree.build([1] * n)
+        pre = dict()
+        for rr in range(n):
+            if nums[rr] in pre:
+                tree.point_add(pre[nums[rr]] + 1, -1)
+            pre[nums[rr]] = rr
+            for i, ll in queries[rr]:
+                ans[i] = tree.range_sum(ll + 1, rr + 1)
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_703d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/703/D
+        tag: segment_tree|point_add|range_xor|offline_query
+        """
+        ac.get_random_seed()
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        q = ac.read_int()
+        queries = [[] for _ in range(n)]
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries[rr].append((i, ll))
+
+        ans = [0] * q
+        tree = PointSetRangeXOr(n)
+        tree.build(nums)
+        pre_xor = [0] * (n + 1)
+
+        pre = dict()
+        for rr in range(n):
+            pre_xor[rr + 1] = pre_xor[rr] ^ nums[rr]
+            if nums[rr] ^ ac.random_seed in pre:
+                tree.point_set(pre[nums[rr] ^ ac.random_seed], 0)
+            pre[nums[rr] ^ ac.random_seed] = rr
+            for i, ll in queries[rr]:
+                ans[i] = tree.range_xor(ll, rr) ^ pre_xor[rr + 1] ^ pre_xor[ll]
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_1609e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1609/E
+        tag: segment_tree|point_set|range_cover
+        """
+        n, q = ac.read_list_ints()
+        s = ac.read_str()
+        tree = PointSetRangeNotExistABC(n)
+        tree.build(s)
+        for _ in range(q):
+            ll, s = ac.read_list_strs()
+            ans = tree.point_set(int(ll) - 1, s)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc285/tasks/abc285_f
+        tag: segment_tree|point_add|range_sum|range_ascend_sub_cnt|point_set
+        """
+        n = ac.read_int()
+        tree = PointSetRangeAscendSubCnt([ord(w) - ord("a") for w in ac.read_str()])
+        tree_cnt = [PointAddRangeSum(n) for _ in range(26)]
+        for x in range(n):
+            tree_cnt[tree.lst[x]].point_add(x + 1, 1)
+
+        for _ in range(ac.read_int()):
+
+            def check():
+                lst = ac.read_list_strs()
+                if lst[0] == '1':
+                    i, w = int(lst[1]) - 1, ord(lst[2]) - ord("a")
+                    tree_cnt[tree.lst[i]].point_add(i + 1, -1)
+                    tree.point_set(i, w)
+                    tree_cnt[tree.lst[i]].point_add(i + 1, 1)
+                else:
+                    ll, rr = [int(w) - 1 for w in lst[1:]]
+                    ans = tree.range_ascend_sub_cnt(ll, rr)
+                    length = rr - ll + 1
+                    if ans == length * (length + 1) // 2:
+                        if all(tree_cnt[i].range_sum(ll + 1, rr + 1) == tree_cnt[i].range_sum(1, n) for i in
+                               range(tree.lst[ll] + 1, tree.lst[rr])):
+                            ac.st("Yes")
+                            return
+                    ac.st("No")
+                return
+
+            check()
+        return
+
+    @staticmethod
+    def cf_1208d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1208/D
+        tag: segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
+        """
+        n = ac.read_int()
+        tree = PointSetRangeSum(n)
+        tree.build(list(range(1, n + 1)))
+        pre = ac.read_list_ints()
+        ans = [0] * n
+        for i in range(n - 1, -1, -1):
+            ind = tree.range_sum_bisect_right(pre[i])
+            ans[i] = ind + 1
+            tree.point_set(ind, 0)
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_327f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc327/tasks/abc327_f
+        tag: segment_tree|range_add|range_max
+        """
+        n, d, w = ac.read_list_ints()
+        d -= 1
+        w -= 1
+        m = 2 * 10 ** 5
+        pos = [[] for _ in range(m + 1)]
+        for _ in range(n):
+            t, x = ac.read_list_ints()
+            pos[x].append(t)
+        tree = RangeAddRangeSumMinMax(m + 1)
+        ans = 0
+        for s in range(w):
+            for t in pos[s]:
+                low = ac.max(t, d)
+                high = ac.min(m, t + d)
+                tree.range_add(low, high, 1)
+        for s in range(m + 1 - w):
+            for t in pos[s + w]:
+                low = ac.max(t, d)
+                high = ac.min(m, t + d)
+                tree.range_add(low, high, 1)
+            ans = ac.max(ans, tree.ceil[1])
+            for t in pos[s]:
+                low = ac.max(t, d)
+                high = ac.min(m, t + d)
+                tree.range_add(low, high, -1)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_558e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/558/E
+        tag: segment_tree|range_set|range_sum|alphabet
+        """
+        n, q = ac.read_list_ints()
+        s = ac.read_str()
+        tree = [RangeSetRangeSumMinMax(n, 0) for _ in range(26)]
+        for i in range(n):
+            x = ord(s[i]) - ord("a")
+            tree[x].range_set(i, i, 1)
+
+        for _ in range(q):
+            ll, rr, k = ac.read_list_ints()
+            ll -= 1
+            rr -= 1
+            cnt = [tree[i].range_sum(ll, rr) for i in range(26)]
+            if k == 0:
+                for i in range(26):
+                    if cnt[i]:
+                        tree[i].range_set(ll, rr, 0)
+                for i in range(25, -1, -1):
+                    if cnt[i]:
+                        tree[i].range_set(ll, ll + cnt[i] - 1, 1)
+                        ll += cnt[i]
+            else:
+                for i in range(26):
+                    if cnt[i]:
+                        tree[i].range_set(ll, rr, 0)
+                for i in range(26):
+                    if cnt[i]:
+                        tree[i].range_set(ll, ll + cnt[i] - 1, 1)
+                        ll += cnt[i]
+        ans = [""] * n
+        for i in range(26):
+            lst = tree[i].get()
+            for j in range(n):
+                if lst[j]:
+                    ans[j] = chr(i + ord("a"))
+        ac.st("".join(ans))
         return

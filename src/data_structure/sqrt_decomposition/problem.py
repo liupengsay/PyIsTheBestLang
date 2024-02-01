@@ -7,6 +7,8 @@ Description：sort the query interval into blocks and alternate between moving t
 
 =====================================LuoGu======================================
 P3396（https://www.luogu.com.cn/problem/P3396）sqrt_decomposition
+P3765（https://www.luogu.com.cn/problem/P3765）range_super_mode
+P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 
 ===================================CodeForces===================================
 220B（https://codeforces.com/contest/220/problem/B）block_query|counter
@@ -31,7 +33,10 @@ import bisect
 from collections import defaultdict, Counter
 from itertools import accumulate
 from operator import xor
+from typing import List
 
+from src.data_structure.segment_tree.template import PointSetMergeRangeMode, PointSetBitRangeMode, \
+    PointSetRandomRangeMode
 from src.data_structure.sqrt_decomposition.template import BlockSize
 from src.utils.fast_io import FastIO, inf
 
@@ -152,6 +157,28 @@ class Solution:
                 ac.st(1)
             else:
                 ac.st(ceil - (length - ceil + 1) + 1)
+        return
+
+    @staticmethod
+    def cf1514_d_3(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1514/problem/D
+        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_seed
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ds = PointSetBitRangeMode(nums, 20)
+        ds = PointSetRandomRangeMode(nums)
+        ds = PointSetMergeRangeMode(nums)
+        for _ in range(m):
+            ll, rr = ac.read_list_ints_minus_one()
+            length = rr - ll + 1
+            ans = ds.range_mode(ll, rr, (length + 1) // 2)
+            if ans == -1:
+                ac.st(1)
+                continue
+            cnt = ds.dct[ans].bisect_right(rr) - ds.dct[ans].bisect_left(ll)
+            ac.st(length - ((length - cnt) * 2 + 1) + 1)
         return
 
     @staticmethod
@@ -510,7 +537,7 @@ class Solution:
                     x = lst[i]
                     for j in range(i + 1, m):
                         y = lst[j]
-                        length = y-x
+                        length = y - x
                         for z in [a - length, a + length]:
                             if z in dct and len(dct[z]) > size:
                                 if x in dct[z] and y in dct[z]:
@@ -526,7 +553,7 @@ class Solution:
             x = res[i]
             for j in range(i + 1, m):
                 y = res[j]
-                length = y-x
+                length = y - x
                 for z in sorted(dct[x]):
                     if z + length in dct[x] and z + length in dct[y] and z in dct[y]:
                         ans += 1
@@ -552,7 +579,7 @@ class Solution:
                 pre[x] = 0
             else:
                 pre[x] = i + j
-        dis = [m*n+1] * n * m
+        dis = [m * n + 1] * n * m
         for y in range(2, p + 1):
             m1 = len(dct[y - 1])
             m2 = len(dct[y])
@@ -564,8 +591,8 @@ class Solution:
                         i2, j2 = yy // n, yy % n
                         cur[yy] = ac.min(cur[yy], pre[x] + abs(i2 - i1) + abs(j2 - j1))
             else:
-                for i in range(m*n):
-                    dis[i] = m*n+1
+                for i in range(m * n):
+                    dis[i] = m * n + 1
                 nodes = [[] for _ in range(m * n + 1)]
                 for x in pre:
                     nodes[pre[x]].append(x)
@@ -708,3 +735,61 @@ class Solution:
 
         return
 
+    @staticmethod
+    def lc_1157():
+        """
+        url: https://leetcode.cn/problems/online-majority-element-in-subarray
+        tag: range_super_mode|point_set
+        """
+
+        class MajorityChecker:
+
+            def __init__(self, arr: List[int]):
+                self.ds = PointSetMergeRangeMode(arr)
+                self.ds = PointSetBitRangeMode(arr, 20)
+                self.ds = PointSetRandomRangeMode(arr)
+
+            def query(self, left: int, right: int, threshold: int) -> int:
+                return self.ds.range_mode(left, right, threshold - 1)
+
+        return MajorityChecker
+
+    @staticmethod
+    def lg_p3567(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3567
+        tag: range_super_mode
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ds = PointSetBitRangeMode(nums, 20)
+        ds = PointSetRandomRangeMode(nums)
+        ds = PointSetMergeRangeMode(nums)
+        for _ in range(m):
+            ll, rr = ac.read_list_ints_minus_one()
+            ans = ds.range_mode(ll, rr)
+            ac.st(ans if ans > -1 else 0)
+        return
+
+    @staticmethod
+    def lg_p3765(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3765
+        tag: range_super_mode
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ds = PointSetBitRangeMode(nums, 20)
+        ds = PointSetRandomRangeMode(nums)
+        ds = PointSetMergeRangeMode(nums)
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            ll, rr = lst[0] - 1, lst[1] - 1
+            winner = ds.range_mode(ll, rr)
+            if winner == -1:
+                winner = lst[2]
+            ac.st(winner)
+            for x in lst[4:]:
+                ds.point_set(x - 1, winner)
+        ac.st(ds.range_mode(0, n - 1))
+        return
