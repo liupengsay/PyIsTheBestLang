@@ -690,6 +690,109 @@ class RangeAddRangeSumMinMax:
         return res
 
 
+class RangeAddRangePalindrome:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * self.n)  # range sum
+        self.lazy_tag = [0] * (4 * self.n)  # lazy tag
+        self.pref = [[] for _ in range(4 * self.n)]  # range sum
+        self.suf = [[] for _ in range(4 * self.n)]  # range sum
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i):
+        if self.lazy_tag[i]:
+            self._make_tag(i << 1, self.lazy_tag[i])
+            self._make_tag((i << 1) | 1, self.lazy_tag[i])
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] | self.cover[(i << 1) | 1]
+        pref = self.pref[i << 1] + self.pref[(i << 1) | 1]
+        self.pref[i] = pref[:2]
+        suf = self.suf[i << 1] + self.suf[(i << 1) | 1]
+        self.suf[i] = suf[-2:]
+        if self.suf[i << 1][-1] == self.pref[(i << 1) | 1][0] or (
+                len(self.pref[(i << 1) | 1]) >= 2 and self.suf[i << 1][-1] == self.pref[(i << 1) | 1][1]) or (
+                len(self.suf[i << 1]) >= 2 and self.suf[i << 1][-2] == self.pref[(i << 1) | 1][0]):
+            self.cover[i] = 1
+        return
+
+    def _make_tag(self, i, val):
+        self.pref[i] = [(x + val) % 26 for x in self.pref[i]] if self.pref[i] else [val]
+        self.suf[i] = [(x + val) % 26 for x in self.suf[i]] if self.suf[i] else [val]
+        self.lazy_tag[i] += val
+        return
+
+    def range_add(self, left, right, val):
+        # update the range add
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_palindrome(self, left, right):
+        # query the range sum
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        cur = []
+        while stack and not ans:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans |= self.cover[i]
+                pref, suf = self.pref[i], self.suf[i]
+                if cur and cur[-1] == pref[0]:
+                    ans = 1
+                elif cur and len(pref) >= 2 and cur[-1] == pref[1]:
+                    ans = 1
+                elif len(cur) >= 2 and cur[-2] == pref[0]:
+                    ans = 1
+                cur = cur + suf
+                cur = cur[-2:]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return ans
+
+
 class RangeAddRangeWeightedSum:
     def __init__(self, n):
         self.n = n
@@ -1530,8 +1633,10 @@ class RangeSetRangeSumMinMax:
         self.initial = inf
         self.cover = [0] * (4 * self.n)  # range sum
         self.lazy_tag = [self.initial] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
-        self.floor = [self.initial] * (4 * self.n)  # because range change can to be any integer the floor initial must be inf
-        self.ceil = [-self.initial] * (4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
+        self.floor = [self.initial] * (
+                    4 * self.n)  # because range change can to be any integer the floor initial must be inf
+        self.ceil = [-self.initial] * (
+                    4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
         return
 
     def _push_down(self, i, s, m, t):
@@ -1680,6 +1785,94 @@ class RangeSetRangeSumMinMax:
                 s, t, i = s, m, i << 1
             else:
                 s, t, i = m + 1, t, (i << 1) | 1
+        return ans
+
+
+class RangeMulRangeMul:
+    def __init__(self, n, mod=10 ** 9 + 7):
+        self.n = n
+        self.cover = [1] * (4 * self.n)  # range sum
+        self.lazy_tag = [1] * (4 * self.n)  # lazy tag
+        self.mod = mod
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy_tag[i] != 1:
+            self.cover[i << 1] = (self.cover[i << 1] * pow(self.lazy_tag[i], m - s + 1, self.mod)) % self.mod
+            self.cover[(i << 1) | 1] = (self.cover[(i << 1) | 1] * pow(self.lazy_tag[i], t - m, self.mod)) % self.mod
+            self.lazy_tag[i << 1] *= self.lazy_tag[i]
+            self.lazy_tag[i << 1] %= self.mod
+            self.lazy_tag[(i << 1) | 1] *= self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] %= self.mod
+            self.lazy_tag[i] = 1
+
+    def _push_up(self, i):
+        self.cover[i] = (self.cover[i << 1] * self.cover[(i << 1) | 1]) % self.mod
+        return
+
+    def _make_tag(self, i, s, t, val):
+        self.cover[i] = (self.cover[i] * pow(val, (t - s + 1), self.mod))
+        self.lazy_tag[i] = (self.lazy_tag[i] * val) % self.mod
+        return
+
+    def range_mul_update(self, left, right, val):
+        # update the range add
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_mul_query(self, left, right):
+        # query the range sum
+        stack = [(0, self.n - 1, 1)]
+        ans = 1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans *= self.cover[i]
+                ans %= self.mod
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
 
@@ -2518,6 +2711,20 @@ class RangeRevereRangeBitCount:
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
         return
 
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
     def _push_down(self, i, s, m, t):
         if self.lazy_tag[i]:
             self.cover[i << 1] = m - s + 1 - self.cover[i << 1]
@@ -2581,7 +2788,6 @@ class RangeRevereRangeBitCount:
                 val -= self.cover[i << 1]
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
-
 
 class RangeSetRangeOr:
     def __init__(self, n):
@@ -2961,6 +3167,7 @@ class PointSetRangeOr:
                 stack.append((s, m, i << 1))
         return ans
 
+
 class PointSetRangeXOr:
 
     def __init__(self, n):
@@ -3038,6 +3245,7 @@ class PointSetRangeXOr:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans
+
 
 class RangeModPointSetRangeSum:
     def __init__(self, n):
@@ -4761,6 +4969,7 @@ class PointSetRangeNotExistABC:
             i //= 2
             self._push_up(i)
         return self.abc[1]
+
 
 class PointSetRandomRangeMode:
 

@@ -16,6 +16,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2940（https://leetcode.cn/problems/find-building-where-alice-and-bob-can-meet/）segment_tree|bisect_left
 2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
 3003（https://leetcode.cn/problems/maximize-the-number-of-partitions-after-operations）segment_tree|bisect_left|range_or|point_set
+1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -42,6 +43,7 @@ P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|
 P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
 P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|offline_query
+P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pre_max_sum|dynamic
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -68,6 +70,11 @@ P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|
 1208D（https://codeforces.com/problemset/problem/1208/D）segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
 558E（https://codeforces.com/problemset/problem/558/E）segment_tree|range_set|range_sum|alphabet
 1157D（https://codeforces.com/contest/1557/problem/D）segment_tree|range_ascend|range_max_index|dp
+1114F（https://codeforces.com/problemset/problem/1114/F）segment_tree|range_set|range_sum|range_mul
+292E（https://codeforces.com/problemset/problem/292/E）segment_tree|range_set|point_get
+1881G（https://codeforces.com/contest/1881/problem/G）segment_tree|range_add|range_palindrome
+915E（https://codeforces.com/problemset/problem/915/E）segment_tree|range_set|range_sum|dynamic
+877E（https://codeforces.com/problemset/problem/877/E）segment_tree|range_reverse|dfs_order|range_bit_count
 
 
 ====================================AtCoder=====================================
@@ -123,6 +130,7 @@ ABC285F（https://atcoder.jp/contests/abc285/tasks/abc285_f）segment_tree|point
 """
 import bisect
 from collections import defaultdict, Counter, deque
+from functools import lru_cache
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
@@ -137,11 +145,14 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeInversion, RangeSetPointGet, RangeAscendPointGet, RangeSetAddRangeSumMinMax, \
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
-    PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex
+    PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
+    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
-from src.mathmatics.prime_factor.template import AllFactorCnt
+from src.mathmatics.number_theory.template import PrimeSieve
+from src.mathmatics.prime_factor.template import AllFactorCnt, PrimeFactor
+from src.search.dfs.template import DFS
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -2544,4 +2555,231 @@ class Solution:
         ac.st(m - len(lst))
         dct = set(lst)
         ac.lst([x for x in range(1, m + 1) if x not in dct])
+        return
+
+    @staticmethod
+    def cf_1114f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1114/F
+        tag: segment_tree|range_set|range_sum|range_mul
+        """
+        primes = PrimeSieve().eratosthenes_sieve(300)
+        mod = 10 ** 9 + 7
+        pf = PrimeFactor(300)
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        uf = dict()
+        for f in primes:
+            uf[f] = RangeSetRangeSumMinMax(n, 0)
+        tree = RangeMulRangeMul(n, mod)
+        tree.build(nums)
+        for i in range(n):
+            for p, _ in pf.prime_factor[nums[i]]:
+                uf[p].range_set(i, i, 1)
+        for _ in range(q):
+            lst = ac.read_list_strs()
+            if lst[0] == "MULTIPLY":
+                ll, rr, x = [int(w) for w in lst[1:]]
+                tree.range_mul_update(ll - 1, rr - 1, x)
+                for p, _ in pf.prime_factor[x]:
+                    uf[p].range_set(ll - 1, rr - 1, 1)
+            else:
+                ll, rr = [int(w) for w in lst[1:]]
+                ans = tree.range_mul_query(ll - 1, rr - 1)
+                for p in uf:
+                    if uf[p].range_sum(ll - 1, rr - 1) > 0:
+                        ans *= (p - 1)
+                        ans *= pow(p, -1, mod)
+                ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cf_292e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/292/E
+        tag: segment_tree|range_set|point_get
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        tree = RangeSetPointGet(n, -n)
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, y, k = lst[1:]
+                x -= 1
+                y -= 1
+                tree.range_set(y, y + k - 1, -y + x)
+            else:
+                x = lst[1] - 1
+                y = tree.point_get(x)
+                if y == -n:
+                    ac.st(b[x])
+                else:
+                    i = x + tree.point_get(x)
+                    ac.st(a[i])
+        return
+
+    @staticmethod
+    def cf_1881g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1881/problem/G
+        tag: segment_tree|range_add|range_palindrome
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            tree = RangeAddRangePalindrome(n)
+            s = [ord(w) - ord("a") for w in ac.read_str()]
+            tree.build(s)
+            for _ in range(m):
+                lst = ac.read_list_ints()
+                if lst[0] == 1:
+                    ll, rr, x = lst[1:]
+                    tree.range_add(ll - 1, rr - 1, x)
+                else:
+                    ll, rr = lst[1:]
+                    ans = tree.range_palindrome(ll - 1, rr - 1)
+                    ac.st("YES" if not ans else "NO")
+        return
+
+    @staticmethod
+    def lc_1622_1():
+        """
+        url: https://leetcode.cn/problems/fancy-sequence/
+        tag: segment_tree|range_affine|range_sum
+        """
+
+        class Fancy:
+
+            def __init__(self):
+                n = 10 ** 5
+                self.ind = 0
+                self.mod = 10 ** 9 + 7
+                self.tree = RangeAffineRangeSum(n, self.mod)
+                return
+
+            def append(self, val: int) -> None:
+                self.ind += 1
+                self.tree.range_affine(self.ind - 1, self.ind - 1, (1 << 32) | val)
+                return
+
+            def addAll(self, inc: int) -> None:
+                if self.ind:
+                    self.tree.range_affine(0, self.ind - 1, (1 << 32) | inc)
+                return
+
+            def multAll(self, m: int) -> None:
+                if self.ind:
+                    self.tree.range_affine(0, self.ind - 1, m << 32)
+                return
+
+            def getIndex(self, idx: int) -> int:
+                if idx >= self.ind:
+                    return -1
+                return self.tree.range_sum(idx, idx) % self.mod
+
+        return Fancy
+
+    @staticmethod
+    def lc_1622_2():
+        """
+        url: https://leetcode.cn/problems/fancy-sequence/
+        tag: segment_tree|range_affine|range_sum
+        """
+
+        class Fancy:
+
+            def __init__(self):
+                self.lst = []
+                self.add = 0
+                self.mul = 1
+                self.mod = 10 ** 9 + 7
+
+            @lru_cache(None)
+            def ppow(self, a):
+                return pow(a, -1, self.mod)
+
+            def append(self, val: int) -> None:
+                self.lst.append((val - self.add) * self.ppow(self.mul))
+
+            def addAll(self, inc: int) -> None:
+                self.add = (self.add + inc) % self.mod
+
+            def multAll(self, m: int) -> None:
+                self.add = (self.add * m) % self.mod
+                self.mul = (self.mul * m) % self.mod
+
+            def getIndex(self, idx: int) -> int:
+                if idx >= len(self.lst):
+                    return -1
+                return (self.lst[idx] * self.mul + self.add) % self.mod
+
+        return Fancy
+
+    @staticmethod
+    def cf_915e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/915/E
+        tag: segment_tree|range_set|range_sum|dynamic
+        """
+        n, q = [ac.read_int() for _ in range(2)]
+        tree = RangeSetRangeSumMinMaxDynamicDct(n + 1, 4 * 10 ** 5, -1)
+        tree.range_set(1, n, 1)
+        for _ in range(q):
+            ll, rr, k = ac.read_list_ints()
+            if k == 1:
+                tree.range_set(ll, rr, 0)
+            else:
+                tree.range_set(ll, rr, 1)
+            ac.st(tree.cover[1])
+        return
+
+    @staticmethod
+    def lg_p5848(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5848
+        tag: segment_tree|range_set|range_pre_max_sum|dynamic
+        """
+        n = ac.read_int()
+        tree = RangeSetPreSumMaxDynamic(n, -inf)
+        while True:
+            lst = ac.read_list_strs()
+            if lst[0] == "I":
+                ll, rr, hh = [int(w) for w in lst[1:]]
+                tree.range_set(ll - 1, rr - 1, hh)
+            elif lst[0] == "Q":
+                hh = int(lst[1])
+                ans = tree.range_pre_sum_max_bisect_left(hh)
+                ac.st(ans)
+            else:
+                break
+        return
+
+    @staticmethod
+    def cf_877e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/877/E
+        tag: segment_tree|range_reverse|dfs_order|range_bit_count
+        """
+        n = ac.read_int()
+        parent = [-1] + ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for i in range(1, n):
+            dct[parent[i]].append(i)
+        start, end = DFS().gen_bfs_order_iteration(dct, 0)
+        tree = RangeRevereRangeBitCount(n)
+        lst = ac.read_list_ints()
+        nums = [0] * n
+        for i in range(n):
+            nums[start[i]] = lst[i]
+        tree.build(nums)
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_strs()
+            if lst[0] == "get":
+                x = int(lst[1]) - 1
+                ans = tree.range_bit_count(start[x], end[x])
+                ac.st(ans)
+            else:
+                x = int(lst[1]) - 1
+                tree.range_reverse(start[x], end[x])
         return

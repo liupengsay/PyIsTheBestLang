@@ -14,6 +14,8 @@ Description：range_add|range_sum
 2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
 2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
+2916（https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/）range_add|range_sum|contribution_method|linear_dp
+
 
 =====================================LuoGu======================================
 P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
@@ -1030,3 +1032,31 @@ class Solution:
                 ans += rest * nodes[i]
                 ac.st(tot2 - ans)
         return
+
+    @staticmethod
+    def lc_2916(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/
+        tag: range_add|range_sum|contribution_method|linear_dp
+
+        """
+        n = len(nums)
+        mod = 10 ** 9 + 7
+        ans = dp = 0
+        dct = dict()
+        tree = RangeAddRangeSum(n)
+        for i in range(n):
+            num = nums[i]
+            if num not in dct:
+                dp += 2 * tree.range_sum(1, i + 1) + i + 1
+                tree.range_add(1, i + 1, 1)
+
+            else:
+                j = dct[num]
+                dp += 2 * tree.range_sum(j + 2, i + 1) + i - j
+                tree.range_add(j + 2, i + 1, 1)
+            ans += dp
+            dct[num] = i
+            ans %= mod
+            dp %= mod
+        return ans

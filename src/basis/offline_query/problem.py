@@ -5,6 +5,7 @@ Description：with the help of pointer and sorting for offline query
 ====================================LeetCode====================================
 100110（https://leetcode.cn/contest/weekly-contest-372/problems/find-building-where-alice-and-bob-can-meet/）offline_query|sorting
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query）
+2736（https://leetcode.cn/problems/maximum-sum-queries/description/）
 
 =====================================LuoGu======================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
