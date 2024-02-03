@@ -7,7 +7,7 @@ Reference：https://judge.yosupo.jp/problem/associative_array
 ===================================CodeForces===================================
 1665B（https://codeforces.com/contest/1665/problem/B）hash|xor_random_seed
 1702C（https://codeforces.com/contest/1702/problem/C）hash|xor_random_seed
-
+1676F（https://codeforces.com/contest/1676/problem/F）hash|dp|sort
 
 ================================Library Checker================================
 1（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed

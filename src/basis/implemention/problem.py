@@ -64,6 +64,11 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix
+1676D（https://codeforces.com/contest/1676/problem/D）skill|diagonal|matrix
+1703E（https://codeforces.com/contest/1703/problem/E）matrix|rotate
+1722F（https://codeforces.com/contest/1722/problem/F）
+1807F（https://codeforces.com/contest/1807/problem/F）implemention|classical
+1850G（https://codeforces.com/contest/1850/problem/G）implemention|classical|matrix_direction
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction

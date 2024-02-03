@@ -148,7 +148,7 @@ class PointAddRangeSum2D:
         return res
 
     def range_sum(self, x1: int, y1: int, x2: int, y2: int) -> int:
-        # index start from 1 and query the sum of matrix sum(s[y1-1:y2] for s in grid[x1-1: x2])  which is 0-index
+        # index start from 1 and query the sum of matrix sum(s[y1:y2+1] for s in grid[x1: x2+1])  which is 1-index
         return self._query(x2, y2) - self._query(x2, y1 - 1) - self._query(x1 - 1, y2) + self._query(x1 - 1, y1 - 1)
 
 

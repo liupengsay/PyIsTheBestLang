@@ -32,7 +32,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1788C（https://codeforces.com/problemset/problem/1788/C）construction
 1367D（https://codeforces.com/problemset/problem/1367/D）reverse_thinking|implemention|construction
 1485D（https://codeforces.com/problemset/problem/1485/D）data_range|construction
-1722G（https://codeforces.com/problemset/problem/1722/G）odd_even|xor|construction
+1722G（https://codeforces.com/problemset/problem/1722/G）odd_even|xor_property|construction
 1822D（https://codeforces.com/contest/1822/problem/D）construction|prefix_sum|mod|permutation
 1509D（https://codeforces.com/contest/1509/problem/D）lcs|shortest_common_hypersequence|construction|data_range|O(n)|pigeonhole_principle
 1473C（https://codeforces.com/contest/1473/problem/C）brain_teaser|s1s2..sn..s2s1
@@ -40,6 +40,8 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_circle
 1823D（https://codeforces.com/contest/1823/problem/D）greedy|construction|palindrome
+1352G（https://codeforces.com/contest/1352/problem/G）construction|odd_even
+1352F（https://codeforces.com/contest/1352/problem/G）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -379,4 +381,34 @@ class Solution:
             else:
                 ac.st("YES")
                 ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_1722g(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1722/G
+        tag: odd_even|xor_property|construction
+        """
+
+        # def sum_xor(n):
+        #     """xor num of range(0, x+1)"""
+        #     if n % 4 == 0:
+        #         return n  # (4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0
+        #     elif n % 4 == 1:
+        #         return 1  # n^(n-1)
+        #     elif n % 4 == 2:
+        #         return n + 1  # n^(n-1)^(n-2)
+        #     return 0  # n^(n-1)^(n-2)^(n-3)
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()  # n >= 3
+            if n % 4 == 0:
+                ans = list(range(n))
+            elif n % 4 == 1:
+                ans = [0] + list(range(2, n + 1))
+            elif n % 4 == 2:
+                ans = list(range(1, n - 1)) + [1 << 20, (1 << 20) | (n - 2)]
+            else:
+                ans = list(range(1, n + 1))
+            ac.lst(ans)
         return

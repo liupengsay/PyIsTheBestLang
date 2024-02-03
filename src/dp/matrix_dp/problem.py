@@ -112,6 +112,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
 1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|matrix_dp
+1829G（https://codeforces.com/contest/1829/problem/G）matrix_dp|classical|inclusion_exclusion
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2427,4 +2428,42 @@ class Solution:
         for i in range(n - 1, -1, -1):
             ans[i] += ans[i + 1]
         ac.lst(ans[1:])
+        return
+
+    @staticmethod
+    def cf_1829g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1829/problem/G
+        tag: matrix_dp|classical|inclusion_exclusion
+        """
+        n = 10 ** 6
+        dp = [0] * (n + 1)
+        pre = [1]
+        dp[1] = 1
+        x = 2
+        father = [[] for _ in range(n + 1)]
+        while x <= n:
+            cur = list(range(x, x + len(pre) + 1))
+            m = len(cur)
+            for i in range(m):
+                if cur[i] > n:
+                    break
+                lst = []
+                if i:
+                    lst.append(pre[i - 1])
+                if i < m - 1:
+                    lst.append(pre[i])
+                father[cur[i]] = lst
+                s = sum(dp[y] for y in lst)
+                if len(lst) == 2:
+                    lst1 = father[lst[0]]
+                    lst2 = father[lst[1]]
+                    for x1 in lst1:
+                        if x1 in lst2:
+                            s -= dp[x1]
+                dp[cur[i]] = s + cur[i] ** 2
+            x += len(pre) + 1
+            pre = cur
+        for _ in range(ac.read_int()):
+            ac.st(dp[ac.read_int()])
         return

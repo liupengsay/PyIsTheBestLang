@@ -42,13 +42,14 @@ ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tre
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
 
 ===================================CodeForces===================================
-1791F（https://codeforces.com/problemset/problem/1791/F）tree_array
+1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
 1676H2（https://codeforces.com/contest/1676/problem/H2）tree_array|pre_sum
 987C（https://codeforces.com/problemset/problem/987/C）brute_force|tree_array|prefix_suffix|pre_min
 1311F（https://codeforces.com/contest/1311/problem/F）discretization|tree_array|counter
 1860C（https://codeforces.com/contest/1860/problem/C）PointDescendRangeMin
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
+1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version|tree_array_2d
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -919,6 +920,7 @@ class Solution:
         url: https://leetcode.com/problems/range-sum-query-mutable
         tag: PointChangeRangeSum
         """
+
         class NumArray:
 
             def __init__(self, nums: List[int]):
@@ -940,6 +942,7 @@ class Solution:
         url: https://leetcode.com/problems/range-sum-query-2d-mutable/
         tag: tree_matrix|RangeAddRangeSum
         """
+
         class NumMatrix:
             def __init__(self, matrix: List[List[int]]):
                 m, n = len(matrix), len(matrix[0])
@@ -1060,3 +1063,25 @@ class Solution:
             ans %= mod
             dp %= mod
         return ans
+
+    @staticmethod
+    def cf_1722e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1722/E
+        tag: data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version|tree_array_2d
+        """
+
+        for _ in range(ac.read_int()):
+            k, q = ac.read_list_ints()
+            rec = [ac.read_list_ints() for _ in range(k)]
+            qur = [ac.read_list_ints() for _ in range(q)]
+            n = max([y for _, y in rec] + [ls[3] for ls in qur])
+            m = max([y for y, _ in rec] + [ls[2] for ls in qur])
+            tree_2d = PointAddRangeSum2D(m, n)
+            for x, y in rec:
+                tree_2d.point_add(x, y, x * y)
+
+            for hs, ws, hb, wb in qur:
+                ans = tree_2d.range_sum(hs + 1, ws + 1, hb - 1, wb - 1)
+                ac.st(ans)
+        return

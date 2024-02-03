@@ -58,6 +58,8 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1368D（https://codeforces.com/problemset/problem/1368/D）implemention|greedy|bit_wise|bit_operation
 1802C（https://codeforces.com/contest/1802/problem/C）construction|xor_property
 1918C（https://codeforces.com/contest/1918/problem/C）greedy|bit_operation
+1669H（https://codeforces.com/contest/1669/problem/H）bit_operation
+1760G（https://codeforces.com/contest/1760/problem/G）bit_operation|dfs|brute_force
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser

@@ -89,7 +89,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1290C（https://codeforces.com/problemset/problem/1290/C）
 1713E（https://codeforces.com/contest/1713/problem/E）
 1788F（https://codeforces.com/problemset/problem/1788/F）
-
+1807C（https://codeforces.com/contest/1807/problem/C）union_find_type
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find

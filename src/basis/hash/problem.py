@@ -16,6 +16,7 @@ Description：prefix_suffix|counter|index|prefix_sum
 2227（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）brain_teaser|reverse_thinking
 
 ===================================CodeForces===================================
+1692H（https://codeforces.com/contest/1692/problem/H）hash|prefix_min
 
 =====================================LuoGu======================================
 P2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum

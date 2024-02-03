@@ -121,6 +121,7 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 382C（https://codeforces.com/problemset/problem/382/C）classification_discussion
 988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greedy|brute_force
 1661B（https://codeforces.com/contest/1661/problem/B）brute_force
+1692F（https://codeforces.com/contest/1692/problem/F）brute_force
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization

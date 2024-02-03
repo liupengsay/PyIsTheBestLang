@@ -21,6 +21,8 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 ===================================CodeForces===================================
 1342C（https://codeforces.com/problemset/problem/1342/C）circular_section|counter
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
+1760F（https://codeforces.com/contest/1760/problem/F）circle_section|brute_force
+
 
 """
 import math

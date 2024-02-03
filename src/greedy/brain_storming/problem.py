@@ -158,7 +158,9 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1914E2（https://codeforces.com/contest/1914/problem/E2）greedy|custom_sort
 1929D（https://codeforces.com/contest/1920/problem/D）data_range|brute_force|reverse_thinking
 724D（https://codeforces.com/contest/724/problem/D）greedy|implemention|brain_teaser
-
+1669D（https://codeforces.com/contest/1669/problem/D）brain_teaser
+1807G2（https://codeforces.com/contest/1807/problem/G2）brain_teaser|classical|sorting|greedy
+1873G（https://codeforces.com/contest/1873/problem/G）brain_teaser
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

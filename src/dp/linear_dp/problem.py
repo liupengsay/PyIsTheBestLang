@@ -105,6 +105,8 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp
 731E（https://codeforces.com/contest/731/problem/E）prefix_sum|reverse_order|liner_dp
 1913D（https://codeforces.com/contest/1913/problem/D）monotonic_stack|linear_dp|prefix_sum
+1703G（https://codeforces.com/contest/1703/problem/G）greedy|linear_dp|data_range|limit_operation
+1829H（https://codeforces.com/contest/1829/problem/H）counter|linear_dp|classical|bit_operation|data_range
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -134,6 +136,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/
         tag: liner_dp
         """
+
         @lru_cache(None)
         def dfs(i, j):
             ind = i + (n - 1 - j)
@@ -684,6 +687,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2476
         tag: counter|linear_dp|memory_search
         """
+
         @lru_cache(None)
         def dfs(a, b, c, d, e, pre):
             if a + b + c + d + e == 0:
@@ -1147,6 +1151,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/
         tag: brain_teaser|greedy|memory_search|liner_dp
         """
+
         @lru_cache(None)
         def dfs(num):
             if num <= 1:
@@ -1156,3 +1161,37 @@ class Solution:
             return a if a < b else b
 
         return dfs(n)
+
+    @staticmethod
+    def cf_1829h(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1829/problem/H
+        tag: counter|linear_dp|classical|bit_operation|data_range
+        """
+        mod = 10 ** 9 + 7
+        ceil = 2 * 10 ** 5
+        power = [1] * (ceil + 1)
+        for i in range(1, ceil + 1):
+            power[i] = (power[i - 1] * 2) % mod
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            cnt = [0] * 64
+            for num in ac.read_list_ints():
+                cnt[num] += 1
+
+            pre = [0] * 64
+            for num in range(64):
+                if cnt[num]:
+                    cur = pre[:]
+                    for p in range(64):
+                        cur[p & num] += pre[p] * (power[cnt[num]] - 1) % mod
+                    cur[num] += (power[cnt[num]] - 1) % mod
+                    pre = [x % mod for x in cur]
+            ans = 0
+            for p in range(64):
+                if bin(p).count("1") == k:
+                    ans += pre[p]
+            ans %= mod
+            ac.st(ans)
+        return
