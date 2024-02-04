@@ -23,6 +23,8 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 
 ===================================CodeForces===================================
 1396A（https://codeforces.com/problemset/problem/1396/A）greedy|construction
+1133F2（https://codeforces.com/contest/1133/problem/F2）mst|construction|union_find
+1118C（https://codeforces.com/contest/1118/problem/C）construction|matrix_rotate|implemention
 1118E（https://codeforces.com/problemset/problem/1118/E）implemention|greedy|construction
 960C（https://codeforces.com/problemset/problem/960/C）greedy|construction
 1793B（https://codeforces.com/contest/1793/problem/B）brain_teaser|greedy|construction

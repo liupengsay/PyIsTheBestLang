@@ -75,7 +75,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 1881G（https://codeforces.com/contest/1881/problem/G）segment_tree|range_add|range_palindrome
 915E（https://codeforces.com/problemset/problem/915/E）segment_tree|range_set|range_sum|dynamic
 877E（https://codeforces.com/problemset/problem/877/E）segment_tree|range_reverse|dfs_order|range_bit_count
-
+1108E2（https://codeforces.com/contest/1108/problem/E2）segment_tree|range_add|range_min|prefix_suffix|bryte_force|brain_teaser
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -2782,4 +2782,52 @@ class Solution:
             else:
                 x = int(lst[1]) - 1
                 tree.range_reverse(start[x], end[x])
+        return
+
+    @staticmethod
+    def cf_1108e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1108/problem/E2
+        tag: segment_tree|range_add|range_min|prefix_suffix|bryte_force|brain_teaser
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        lst = [ac.read_list_ints_minus_one() for _ in range(m)]
+
+        tree = RangeAddRangeSumMinMax(n)
+        tree.build(nums)
+        cur_min = nums[:]
+        tmp = sorted(lst, key=lambda it: it[1])
+        j = 0
+        for i in range(n):
+            while j < m and tmp[j][1] < i:
+                a, b = tmp[j]
+                tree.range_add(a, b, -1)
+                j += 1
+
+            if i:
+                cur = tree.range_min(0, i - 1)
+                if cur < cur_min[i]:
+                    cur_min[i] = cur
+
+        tmp = sorted(lst, key=lambda it: -it[0])
+        tree = RangeAddRangeSumMinMax(n)
+        tree.build(nums)
+        j = 0
+        for i in range(n - 1, -1, -1):
+            while j < m and tmp[j][0] > i:
+                a, b = tmp[j]
+                tree.range_add(a, b, -1)
+                j += 1
+            if i + 1 < n:
+                cur = tree.range_min(i + 1, n - 1)
+                if cur < cur_min[i]:
+                    cur_min[i] = cur
+        cur_min = [nums[i] - cur_min[i] for i in range(n)]
+        ans = max(cur_min)
+        res = cur_min.index(ans)
+        ac.st(ans)
+        tmp = [i + 1 for i in range(m) if not lst[i][0] <= res <= lst[i][1]]
+        ac.st(len(tmp))
+        ac.lst(tmp)
         return

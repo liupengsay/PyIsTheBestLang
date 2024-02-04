@@ -113,6 +113,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 999F（https://codeforces.com/contest/999/problem/F）linear_dp|brute_force
 1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greedy|sorting
 1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointer
+1108D（https://codeforces.com/contest/1108/problem/D）linear_dp|specific_plan
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

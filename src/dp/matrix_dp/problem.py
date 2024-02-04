@@ -114,7 +114,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|matrix_dp
 1829G（https://codeforces.com/contest/1829/problem/G）matrix_dp|classical|inclusion_exclusion
 1077F2（https://codeforces.com/contest/1077/problem/F2）matrix_dp|monotonic_queue|implemention
-
+1133E（https://codeforces.com/contest/1133/problem/E）matrix_dp|preprocess|classical
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
