@@ -30,6 +30,7 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 ===================================CodeForces===================================
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
 429D（https://codeforces.com/contest/429/problem/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
+1133D（https://codeforces.com/contest/1133/problem/D）line_slope
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
