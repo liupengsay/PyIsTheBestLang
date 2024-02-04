@@ -122,6 +122,10 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greedy|brute_force
 1661B（https://codeforces.com/contest/1661/problem/B）brute_force
 1692F（https://codeforces.com/contest/1692/problem/F）brute_force
+978D（https://codeforces.com/contest/978/problem/D）brute_force
+1029D（https://codeforces.com/contest/1029/problem/D）brute_force|hash|math
+1029C（https://codeforces.com/contest/1029/problem/C）classical|prefix_suffix|brute_force
+1077E（https://codeforces.com/contest/1077/problem/E）brute_force|data_range
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization

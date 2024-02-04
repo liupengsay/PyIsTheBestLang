@@ -65,6 +65,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1744E2（https://codeforces.com/contest/1744/problem/E2）brute_force|factorization
 1612D（https://codeforces.com/contest/1612/problem/D）gcd_like
 1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
+1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -92,6 +93,7 @@ from collections import Counter
 from collections import defaultdict
 from functools import reduce
 from operator import mul
+from sys import stdout
 from typing import List
 
 from src.mathmatics.gcd_like.template import GcdLike
@@ -820,4 +822,32 @@ class Solution:
                 ans |= 1 << i
         ac.st(ans if ans else n)
         stdout.flush()
+        return
+
+    @staticmethod
+    def cf_1029f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1029/problem/F
+        tag: num_factor|brute_force|greedy
+        """
+        a, b = ac.read_list_ints()
+        lst_a = NumFactor().get_all_factor(a)
+        lst_b = NumFactor().get_all_factor(b)
+        lst_ab = NumFactor().get_all_factor(a + b)
+        ma = len(lst_a)
+        mb = len(lst_b)
+        ans = 2 * (a + b + 1)
+        i = j = 0
+        pre = a + b + 1
+        for x in lst_ab:
+            y = (a + b) // x
+            while i < ma and lst_a[i] <= x:
+                pre = ac.min(pre, a // lst_a[i])
+                i += 1
+            while j < mb and lst_b[j] <= x:
+                pre = ac.min(pre, b // lst_b[j])
+                j += 1
+            if pre <= y and 2 * (x + y) < ans:
+                ans = 2 * (x + y)
+        ac.st(ans)
         return

@@ -49,7 +49,7 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 182D（https://codeforces.com/problemset/problem/182/D）kmp|circular_section|num_factor
 535D（https://codeforces.com/problemset/problem/535/D）kmp|z-function|union_find
 1051E（https://codeforces.com/contest/1051/problem/E）kmp|z-function|linear_dp
-
+1015F（https://codeforces.com/contest/1015/problem/F）kmp_automaton|matrix_dp
 
 =====================================AcWing=====================================
 143（https://www.acwing.com/problem/content/143/）kmp|circular_section
@@ -1095,3 +1095,31 @@ class Solution:
         ac.st(-1)
         return
 
+    @staticmethod
+    def cf_1015f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1015/problem/F
+        tag: kmp_automaton|matrix_dp
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        lst = [int(w == ")") for w in s]
+        nxt = KMP().kmp_automaton(lst, 2)
+        m = len(s)
+        mod = 10 ** 9 + 7
+
+        dp = [[0] * (m + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+        for _ in range(2 * n):
+            ndp = [[0] * (m + 1) for _ in range(n + 1)]
+            for s in range(n + 1):
+                for p in range(m + 1):
+                    if dp[s][p]:
+                        for x in [0, 1]:
+                            nxt_p = nxt[p * 2 + x] if p != m else m
+                            nxt_s = s + 1 if not x else s - 1
+                            if n >= nxt_s >= 0:
+                                ndp[nxt_s][nxt_p] += dp[s][p]
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ac.st(dp[0][m])
+        return

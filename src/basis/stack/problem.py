@@ -28,7 +28,7 @@ P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 
 ===================================CodeForces===================================
 5C（https://codeforces.com/problemset/problem/5/C）regular_bracket_subsequence|counter|longest
-1095E（https://codeforces.com/problemset/problem/1095/E）regular_bracket|counter
+1095E（https://codeforces.com/problemset/problem/1095/E）regular_bracket|counter|prefix_suffix|brute_force
 
 ====================================AtCoder=====================================
 ARC074B（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix

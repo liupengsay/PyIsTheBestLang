@@ -54,6 +54,8 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
 1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|liner_dp
 1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force
+1092D2（https://codeforces.com/contest/1092/problem/D2）monotonic_stack|implemention
+1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greedy|implemention
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger

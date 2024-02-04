@@ -19,7 +19,7 @@ P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_
 """
 
 import bisect
-from collections import defaultdict
+from collections import defaultdict, deque
 from itertools import combinations
 from typing import List
 
@@ -167,66 +167,38 @@ class Solution:
     def cf_1006f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1006/problem/F
-        tag: prefix_sum|hash|counter|meet_in_middle
+        tag: prefix_sum|hash|counter|meet_in_middle|classical
         """
-        # prefix_sumhashcounter，矩阵meet_in_middle
+        ac.get_random_seed()
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        if m == 1 or n == 1:
-            res = 0
-            for g in grid:
-                for num in g:
-                    res ^= num
-            ac.st(1 if res == k else 0)
-            return
+        pre = [[dict() for _ in range(n)] for _ in range(m)]
+        stack = [(0, 0, grid[0][0])]
+        half = (m + n - 2) // 2
+        while stack:
+            x, y, val = stack.pop()
+            if x + y == half:
+                pre[x][y][val ^ ac.random_seed] = pre[x][y].get(val ^ ac.random_seed, 0) + 1
+                continue
 
-        left = (m + n - 2) // 2
-        right = m + n - 2 - left
-        pre = [[defaultdict(int) for _ in range(n)] for _ in range(m)]
-        for i in range(m):
-            for j in range(n):
-                if i + j > left:
-                    break
-                if i == j == 0:
-                    cur = defaultdict(int)
-                    cur[grid[i][j]] = 1
-                else:
-                    x = grid[i][j]
-                    cur = defaultdict(int)
-                    for a, b in [[i - 1, j], [i, j - 1]]:
-                        if 0 <= a < m and 0 <= b < n:
-                            dct = pre[a][b]
-                            for p in dct:
-                                cur[p ^ x] += dct[p]
-                if i:
-                    pre[i - 1][j] = defaultdict(int)
-                pre[i][j] = cur
+            if x + 1 < m:
+                stack.append((x + 1, y, val ^ grid[x + 1][y]))
+            if y + 1 < n:
+                stack.append((x, y + 1, val ^ grid[x][y + 1]))
 
         ans = 0
-        post = [[defaultdict(int) for _ in range(n)] for _ in range(m)]
-        for i in range(m - 1, -1, -1):
-            for j in range(n - 1, -1, -1):
-                if m - 1 - i + n - 1 - j > right:
-                    break
-                if i == m - 1 and j == n - 1:
-                    cur = defaultdict(int)
-                    cur[grid[i][j]] = 1
-                else:
-                    x = grid[i][j]
-                    cur = defaultdict(int)
-                    for a, b in [[i + 1, j], [i, j + 1]]:
-                        if 0 <= a < m and 0 <= b < n:
-                            dct = post[a][b]
-                            for p in dct:
-                                cur[p ^ x] += dct[p]
-                post[i][j] = cur
+        stack = [(m - 1, n - 1, k ^ grid[m - 1][n - 1])]
+        while stack:
+            x, y, val = stack.pop()
+            if x + y == half:
+                val ^= grid[x][y]
+                ans += pre[x][y].get(val ^ ac.random_seed, 0)
+                continue
 
-                if i + 1 < m:
-                    post[i + 1][j] = defaultdict(int)
-
-                if m - 1 - i + n - 1 - j == right:
-                    for p in cur:
-                        ans += pre[i][j][p ^ k ^ grid[i][j]] * cur[p]
+            if x - 1 >= 0:
+                stack.append((x - 1, y, val ^ grid[x - 1][y]))
+            if y - 1 >= 0:
+                stack.append((x, y - 1, val ^ grid[x][y - 1]))
         ac.st(ans)
         return
 

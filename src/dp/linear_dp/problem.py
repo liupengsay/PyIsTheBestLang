@@ -107,6 +107,12 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1913D（https://codeforces.com/contest/1913/problem/D）monotonic_stack|linear_dp|prefix_sum
 1703G（https://codeforces.com/contest/1703/problem/G）greedy|linear_dp|data_range|limit_operation
 1829H（https://codeforces.com/contest/1829/problem/H）counter|linear_dp|classical|bit_operation|data_range
+977F（https://codeforces.com/contest/977/problem/F）linear_dp|specific_plan
+988F（https://codeforces.com/contest/988/problem/F）linear_dp|brute_force|classical|greedy
+988D（https://codeforces.com/contest/988/problem/D）linear_dp|brute_force
+999F（https://codeforces.com/contest/999/problem/F）linear_dp|brute_force
+1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greedy|sorting
+1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointer
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

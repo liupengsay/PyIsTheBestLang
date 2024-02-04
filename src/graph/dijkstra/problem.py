@@ -103,7 +103,7 @@ ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
 3628（https://www.acwing.com/problem/content/3631/）shortest_path_spanning_tree
-3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_grpah|dijkstra|shortest_path|counter|greedy|implemention
+3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
 3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greedy
 4196（https://www.acwing.com/problem/content/4199/）shortest_path
 

@@ -42,6 +42,9 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1823D（https://codeforces.com/contest/1823/problem/D）greedy|construction|palindrome
 1352G（https://codeforces.com/contest/1352/problem/G）construction|odd_even
 1352F（https://codeforces.com/contest/1352/problem/G）construction
+1003E（https://codeforces.com/contest/1003/problem/E）construction|tree_diameter|classical
+1005F（https://codeforces.com/contest/1005/problem/F）construction|shortest_path_spanning_tree|classical|dfs|specific_plan
+1092E（https://codeforces.com/contest/1092/problem/E）construction|tree_diameter|classical|greedy
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -56,7 +59,7 @@ from collections import deque, Counter, defaultdict
 from typing import List
 
 from src.mathmatics.number_theory.template import NumberTheory
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -411,4 +414,50 @@ class Solution:
             else:
                 ans = list(range(1, n + 1))
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1005f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1005/problem/F
+        tag: construction|shortest_path_spanning_tree|classical|dfs|specific_plan
+        """
+        n, m, k = ac.read_list_ints()
+        edges = [[] for _ in range(n)]
+        for i in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            edges[x].append((y, i))
+            edges[y].append((x, i))
+        stack = deque([0])
+        choose = [0] * m
+        visit = [inf] * n
+        visit[0] = 1
+        while stack:
+            x = stack.popleft()
+            for y, i in edges[x]:
+                if visit[y] == inf:
+                    choose[i] = 1
+                    stack.append(y)
+                    visit[y] = visit[x] + 1
+        edges = [[i for y, i in edges[x] if visit[y] + 1 == visit[x]] for x in range(n)]
+        del visit
+        del choose
+
+        ans = []
+        use = [0] * n
+        for _ in range(k):
+            res = ["0"] * m
+            for i in range(1, n):
+                res[edges[i][use[i]]] = "1"
+            ans.append("".join(res))
+            for i in range(1, n):
+                if use[i] + 1 < len(edges[i]):
+                    use[i] += 1
+                    break
+                else:
+                    use[i] = 0
+            else:
+                break
+        ac.st(len(ans))
+        ac.st("\n".join(ans))
         return

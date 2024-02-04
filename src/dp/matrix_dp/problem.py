@@ -110,9 +110,11 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1381B（https://codeforces.com/problemset/problem/1381/B）matrix_dp|monotonic_stack
 1393D（https://codeforces.com/problemset/problem/1393/D）matrix_dp
 1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
-1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp
+1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp|lcp
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|matrix_dp
 1829G（https://codeforces.com/contest/1829/problem/G）matrix_dp|classical|inclusion_exclusion
+1077F2（https://codeforces.com/contest/1077/problem/F2）matrix_dp|monotonic_queue|implemention
+
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2338,7 +2340,7 @@ class Solution:
     def cf_1003f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1003/problem/F
-        tag: con_lcp|matrix_dp
+        tag: con_lcp|matrix_dp|string_hash|brute_force
         """
         n = ac.read_int()
         words = ac.read_list_strs()

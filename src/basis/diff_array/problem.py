@@ -92,6 +92,7 @@ P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|fl
 1343D（https://codeforces.com/problemset/problem/1343/D）brute_force|diff_array|counter
 1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum
 1772D（https://codeforces.com/contest/1772/problem/D）discretization_diff_array|action_scope|counter
+1015E2（https://codeforces.com/contest/1015/problem/E2）brute_force|dp|diff_array
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter

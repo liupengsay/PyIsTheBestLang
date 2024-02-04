@@ -69,6 +69,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1722F（https://codeforces.com/contest/1722/problem/F）
 1807F（https://codeforces.com/contest/1807/problem/F）implemention|classical
 1850G（https://codeforces.com/contest/1850/problem/G）implemention|classical|matrix_direction
+1006D（https://codeforces.com/contest/1006/problem/D）greedy|implemention|brute_force
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
