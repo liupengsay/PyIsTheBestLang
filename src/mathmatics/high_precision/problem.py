@@ -23,10 +23,15 @@ P2399（https://www.luogu.com.cn/problem/P2399）float_to_frac
 P1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
 
 ===================================CodeForces===================================
-1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide
+1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide|high_precision|classical
+
 
 ====================================AtCoder=====================================
 ABC148E（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
+
+
+====================================AtCoder=====================================
+1（https://judge.yosupo.jp/problem/many_aplusb）big_number|high_precision|plus
 
 """
 

@@ -66,6 +66,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1612D（https://codeforces.com/contest/1612/problem/D）gcd_like
 1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
 1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
+1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -850,4 +851,64 @@ class Solution:
             if pre <= y and 2 * (x + y) < ans:
                 ans = 2 * (x + y)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1154g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1154/problem/G
+        tag: num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        m = 10 ** 7 + 1
+        cnt = [-2] * m
+        ans = []
+        res = 10 ** 14 + 1
+        for num in nums:
+            if cnt[num] == -1:
+                if num < res:
+                    res = num
+                    ans = [num, num]
+            else:
+                cnt[num] = -1
+
+        arr = sorted(set(nums))
+        k = len(arr)
+        for i, num in enumerate(arr):
+            cnt[num] = i
+
+        if k > 1:
+            cur = arr[0] * arr[1] // math.gcd(arr[0], arr[1])
+            if cur < res:
+                ans = [arr[0], arr[1]]
+                res = cur
+
+            for i in range(2, m):
+                lst = []
+                for j in range(i, m, i):
+                    if cnt[j] >= 0:
+                        lst.append(cnt[j])
+                        if len(lst) >= 2:
+                            break
+                if len(lst) == 2:
+                    x, y = lst[0], lst[1]
+                    cur = arr[x] * arr[y] // math.gcd(arr[x], arr[y])
+                    if cur < res:
+                        res = cur
+                        ans = [arr[x], arr[y]]
+                if lst:
+                    if lst[0] == 0:
+                        y = 1
+                    else:
+                        y = 0
+                    x = lst[0]
+                    cur = arr[x] * arr[y] // math.gcd(arr[x], arr[y])
+                    if cur < res:
+                        res = cur
+                        ans = [arr[x], arr[y]]
+        i = nums.index(ans[0])
+        nums[i] = -1
+        j = nums.index(ans[1])
+        ac.lst(sorted([i + 1, j + 1]))
         return

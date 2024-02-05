@@ -85,6 +85,7 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 1272E（https://codeforces.com/problemset/problem/1272/E）reverse_graph|multi_source_bfs
 1572A（https://codeforces.com/problemset/problem/1572/A）brain_teaser|build_graph|bfs|circle_judge|dag_dp|classical
 1037D（https://codeforces.com/problemset/problem/1037/D）01-bfs|implemention|classical
+1176E（https://codeforces.com/contest/1176/problem/E）bds|color_method|classical
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

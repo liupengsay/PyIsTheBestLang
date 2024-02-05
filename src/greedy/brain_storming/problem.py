@@ -165,6 +165,9 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 978G（https://codeforces.com/contest/978/problem/G）brain_teaser|greedy|sorting|implemention|reverse_thinking
 999D（https://codeforces.com/contest/999/problem/D）greedy|brute_force
 1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greedy|classical|construction|brain_teaser
+1157G（https://codeforces.com/contest/1157/problem/G）brain_teaser|brute_force|classical|implemention|greedy
+1157F（https://codeforces.com/contest/1157/problem/F）greedy|brain_teaser|construction|specific_plan
+1157C2（https://codeforces.com/contest/1157/problem/C2）greedy|brain_teaser|implemention
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -191,7 +194,6 @@ ABC137D（https://atcoder.jp/contests/abc137/tasks/abc137_d）reverse_order|brai
 4430（https://www.acwing.com/problem/content/description/4433/）brute_force|prefix_suffix|bracket
 4492（https://www.acwing.com/problem/content/description/4495/）brain_teaser|odd_even
 4623（https://www.acwing.com/problem/content/description/4626/）greedy|implemention
-
 """
 
 import heapq
@@ -1515,4 +1517,139 @@ class Solution:
         else:
             ac.st("YES")
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1157g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1157/problem/G
+        tag: brain_teaser|brute_force|classical|implemention|greedy
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+
+        tmp = [g[:] for g in grid]
+        row = [0] * m
+        col = [0] * n
+        for j in range(n):  # first_row = 0
+            if tmp[0][j]:
+                col[j] = 1
+                for i in range(m):
+                    tmp[i][j] = 1 - tmp[i][j]
+
+        cnt = 0
+        for i in range(1, m):
+            if cnt >= 2:
+                break
+            dct = set(tmp[i])
+            if len(dct) == 1:
+                if cnt:
+                    if dct != {1}:
+                        row[i] = 1
+                else:
+                    if dct != {0}:
+                        row[i] = 1
+                continue
+            pre = tmp[i][0]
+            cur = 1
+            for num in tmp[i][1:]:
+                if num != pre:
+                    cur += 1
+                pre = num
+                if cur > 2:
+                    break
+            if cur > 2:
+                cnt = 2
+            else:
+                if tmp[i][0]:
+                    row[i] = 1
+                cnt += 1
+        if cnt <= 1:
+            ac.st("YES")
+            ac.st("".join(str(x) for x in row))
+            ac.st("".join(str(x) for x in col))
+            return
+
+        tmp = [g[:] for g in grid]   # last_row = 1
+        row = [0] * m
+        col = [0] * n
+        for j in range(n):
+            if tmp[-1][j] == 0:
+                col[j] = 1
+                for i in range(m):
+                    tmp[i][j] = 1 - tmp[i][j]
+
+        cnt = 0
+        for i in range(m - 2, -1, -1):
+            if cnt >= 2:
+                break
+            dct = set(tmp[i])
+            if len(dct) == 1:
+                if cnt:
+                    if dct != {0}:
+                        row[i] = 1
+                else:
+                    if dct != {1}:
+                        row[i] = 1
+                continue
+            pre = tmp[i][0]
+            cur = 1
+            for num in tmp[i][1:]:
+                if num != pre:
+                    cur += 1
+                pre = num
+                if cur > 2:
+                    break
+            if cur > 2:
+                cnt = 2
+            else:
+                if tmp[i][0]:
+                    row[i] = 1
+                cnt += 1
+        if cnt <= 1:
+            ac.st("YES")
+            ac.st("".join(str(x) for x in row))
+            ac.st("".join(str(x) for x in col))
+            return
+        ac.st("NO")
+        return
+
+    @staticmethod
+    def cf_1157f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1157/problem/F
+        tag: greedy|brain_teaser|construction|specific_plan
+        """
+        ac.read_int()
+        a = ac.read_list_ints()
+        m = 2 * 10 ** 5
+        cnt = [0] * (m + 1)
+        for num in a:
+            cnt[num] += 1
+        ans = 0
+        res = [-1, -1]
+        pre = c = 0
+        for num in range(1, m + 1):
+            if cnt[num]:
+                cur = c + cnt[num]
+                if cur > ans:
+                    ans = cur
+                    res = [num - pre, num]
+                if cnt[num] > 1:
+                    pre += 1
+                    c += cnt[num]
+                else:
+                    pre = 1
+                    c = 1
+            else:
+                pre = c = 0
+        ac.st(ans)
+        lst = [res[0]]
+        cnt[res[0]] -= 1
+        for i in range(res[0] + 1, res[1] + 1):
+            lst.append(i)
+            cnt[i] -= 1
+        for i in range(res[1], res[0] - 1, -1):
+            lst.extend([i] * cnt[i])
+        ac.lst(lst)
         return

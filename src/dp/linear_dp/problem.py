@@ -114,6 +114,8 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greedy|sorting
 1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointer
 1108D（https://codeforces.com/contest/1108/problem/D）linear_dp|specific_plan
+1154F（https://codeforces.com/contest/1154/problem/F）linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
+1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greedy|implemention
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1202,3 +1204,33 @@ class Solution:
             ans %= mod
             ac.st(ans)
         return
+
+    @staticmethod
+    def cf_1154f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1154/problem/F
+        tag: linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
+        """
+        n, m, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+        nums = nums[:k]
+        pre = ac.accumulate(nums)
+        cost = [0] * (k + 1)
+        for _ in range(m):
+            x, y = ac.read_list_ints()
+            if x <= k and cost[x] < y:
+                cost[x] = y
+        dp = [inf] * (k + 1)
+        dp[k] = 0
+        for i in range(k - 1, -1, -1):
+            dp[i] = dp[i + 1] + nums[i]
+            for j in range(i, k):
+                x = j - i + 1
+                y = cost[x]
+                cur = dp[j + 1] + pre[j + 1] - pre[i] - (pre[i + y] - pre[i])
+                if cur < dp[i]:
+                    dp[i] = cur
+        ac.st(dp[0])
+        return
+

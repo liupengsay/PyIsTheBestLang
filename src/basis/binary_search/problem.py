@@ -86,6 +86,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1538G（https://codeforces.com/contest/1538/problem/G）binary_search|brute_force|math
 1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointers|check
 1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
+1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greedy|classical|binary_search
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1526,4 +1527,45 @@ class Solution:
             more -= x
         ac.st(res)
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1165f2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1165/problem/F2
+        tag: reverse_order|greedy|classical|binary_search
+        """
+        n, m = ac.read_list_ints()
+        cnt = [0] + ac.read_list_ints()
+        k = 2 * 10 ** 5
+        dct = [set() for _ in range(k + 1)]
+        for _ in range(m):
+            d, t = ac.read_list_ints()
+            dct[d].add(t)
+
+        def check(x):
+
+            tmp = cnt[:]
+            cur = [set() for _ in range(ac.min(k + 1, x + 1))]
+            pre = set()
+            for dd in range(ac.min(k, x), -1, -1):
+                for tt in dct[dd]:
+                    if tt not in pre:
+                        pre.add(tt)
+                        cur[dd].add(tt)
+            pre = 0
+            for dd in range(1, ac.min(k + 1, x + 1)):
+                pre += 1
+                for tt in cur[dd]:
+                    buy = ac.min(pre, tmp[tt])
+                    pre -= buy
+                    tmp[tt] -= buy
+            rest = sum(tmp) * 2
+            day = ac.min(k, x)
+            if pre < rest:
+                day += rest - pre
+            return day <= x
+
+        ans = BinarySearch().find_int_left(sum(cnt), sum(cnt) * 2, check)
+        ac.st(ans)
         return

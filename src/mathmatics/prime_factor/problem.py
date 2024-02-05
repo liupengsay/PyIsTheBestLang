@@ -28,6 +28,7 @@ from functools import reduce
 from itertools import permutations
 from typing import List
 
+from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -326,28 +327,34 @@ class Solution:
         url: https://codeforces.com/contest/1176/problem/D
         tag: construction|greedy|implemention
         """
-        # construction题，greedyimplemention，记录合数最大不等于自身的因子，以及质数列表的顺序
+        primes = PrimeSieve().eratosthenes_sieve(2750131)
+        ind = {num: i + 1 for i, num in enumerate(primes)}
+        m = 2 * 10 ** 5
+        max_factor = [0] * (m + 1)
+        for i in range(2, m + 1):
+            for j in range(2 * i, m + 1, i):
+                max_factor[j] = i
+        cnt = [0] * (m + 1)
         ac.read_int()
-        nt = PrimeFactor(2 * 10 ** 5)
-        prime_numbers = NumberTheory().euler_flag_prime(3 * 10 ** 6)
-        dct = {num: i + 1 for i, num in enumerate(prime_numbers)}
         nums = ac.read_list_ints()
         nums.sort(reverse=True)
-        cnt = Counter(nums)
+        for num in nums:
+            if num <= m:
+                cnt[num] += 1
         ans = []
         for num in nums:
-            if not cnt[num]:
+            if num <= m and not cnt[num]:
                 continue
-            if num in dct:
-                fa = dct[num]
-                cnt[num] -= 1
-                cnt[fa] -= 1
-                ans.append(fa)
+            if num in ind:
+                if num <= m:
+                    cnt[num] -= 1
+                ans.append(ind[num])
+                cnt[ind[num]] -= 1
             else:
-                cnt[num] -= 1
-                x = nt.all_factor[num][-2]
-                cnt[x] -= 1
                 ans.append(num)
+                if num <= m:
+                    cnt[num] -= 1
+                cnt[max_factor[num]] -= 1
         ac.lst(ans)
         return
 

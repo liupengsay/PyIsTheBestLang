@@ -48,6 +48,9 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1005F（https://codeforces.com/contest/1005/problem/F）construction|shortest_path_spanning_tree|classical|dfs|specific_plan
 1092E（https://codeforces.com/contest/1092/problem/E）construction|tree_diameter|classical|greedy
 1141G（https://codeforces.com/problemset/problem/1141/G）construction|dfs|color_method|greedy|classical
+1144F（https://codeforces.com/contest/1144/problem/F）construction|color_method|classical|bipartite
+1157E（https://codeforces.com/contest/1157/problem/E）construction|greedy|sorted_list
+1157D（https://codeforces.com/contest/1157/problem/D）construction|greedy
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
