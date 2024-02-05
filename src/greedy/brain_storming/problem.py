@@ -164,7 +164,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 977D（https://codeforces.com/contest/977/problem/D）brain_teaser|greedy|classical|sorting
 978G（https://codeforces.com/contest/978/problem/G）brain_teaser|greedy|sorting|implemention|reverse_thinking
 999D（https://codeforces.com/contest/999/problem/D）greedy|brute_force
-1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greedy|classical|construction
+1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greedy|classical|construction|brain_teaser
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1490,7 +1490,7 @@ class Solution:
     def cf_1144g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1144/problem/G
-        tag: linear_dp|greedy|classical|construction
+        tag: linear_dp|greedy|classical|construction|brain_teaser
         """
         ascend = -inf
         descend = inf
