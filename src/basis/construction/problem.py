@@ -47,6 +47,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1003E（https://codeforces.com/contest/1003/problem/E）construction|tree_diameter|classical
 1005F（https://codeforces.com/contest/1005/problem/F）construction|shortest_path_spanning_tree|classical|dfs|specific_plan
 1092E（https://codeforces.com/contest/1092/problem/E）construction|tree_diameter|classical|greedy
+1141G（https://codeforces.com/problemset/problem/1141/G）construction|dfs|color_method|greedy|classical
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -462,4 +463,44 @@ class Solution:
                 break
         ac.st(len(ans))
         ac.st("\n".join(ans))
+        return
+
+    @staticmethod
+    def cf_1141g(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1141/G
+        tag: construction|dfs|color_method|greedy|classical
+        """
+        n, k = ac.read_list_ints()
+        edges = [[] for _ in range(n)]
+
+        for i in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            edges[x].append((y, i))
+            edges[y].append((x, i))
+
+        if k == n:
+            ac.st(1)
+            ac.lst([1] * (n - 1))
+            return
+        degree = [len(x) for x in edges]
+        color = sorted(degree, reverse=True)[k]
+        ans = [-1] * (n - 1)
+        stack = [(0, -1, -1)]
+        while stack:
+            x, fa, c = stack.pop()
+            cur = 1
+            for y, i in edges[x]:
+                if y != fa:
+                    if cur == c:
+                        cur += 1
+                    if cur > color:
+                        cur = 1
+                    ans[i] = cur
+                    stack.append((y, x, cur))
+                    cur += 1
+                    if cur > color:
+                        cur = 1
+        ac.st(color)
+        ac.lst(ans)
         return

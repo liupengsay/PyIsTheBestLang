@@ -164,6 +164,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 977D（https://codeforces.com/contest/977/problem/D）brain_teaser|greedy|classical|sorting
 978G（https://codeforces.com/contest/978/problem/G）brain_teaser|greedy|sorting|implemention|reverse_thinking
 999D（https://codeforces.com/contest/999/problem/D）greedy|brute_force
+1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greedy|classical|construction
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -202,7 +203,7 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.number_theory.template import NumberTheory
-from src.utils.fast_io import FastIO
+from src.utils.fast_io import FastIO, inf
 
 
 class Solution:
@@ -1483,5 +1484,35 @@ class Solution:
                 lst.sort()
                 ac.st("".join(lst))
                 return
+        return
 
+    @staticmethod
+    def cf_1144g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1144/problem/G
+        tag: linear_dp|greedy|classical|construction
+        """
+        ascend = -inf
+        descend = inf
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = [0] * n
+        for i in range(n):
+            if ascend < nums[i] and descend <= nums[i]:
+                ascend = nums[i]
+            elif ascend >= nums[i] and descend > nums[i]:
+                descend = nums[i]
+                ans[i] = 1
+            elif ascend < nums[i] < descend:
+                if i + 1 < n and nums[i + 1] < nums[i]:
+                    ans[i] = 1
+                    descend = nums[i]
+                else:
+                    ascend = nums[i]
+            else:
+                ac.st("NO")
+                break
+        else:
+            ac.st("YES")
+            ac.lst(ans)
         return

@@ -82,6 +82,7 @@ ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSu
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline
 ABC327F（https://atcoder.jp/contests/abc327/tasks/abc327_f）segment_tree|range_add|range_max
 ABC285F（https://atcoder.jp/contests/abc285/tasks/abc285_f）segment_tree|point_add|range_sum|range_ascend_sub_cnt|point_set
+ABC339E（https://atcoder.jp/contests/abc339/tasks/abc339_e）segment_tree|linear_dp
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
