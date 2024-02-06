@@ -3,6 +3,7 @@ Algorithm：liner_dp
 Description：prefix_suffix|maximum_sub_consequence_sum
 
 ====================================LeetCode====================================
+940（https://leetcode.cn/problems/distinct-subsequences-ii/）liner_dp|classical|different_subsequence
 87（https://leetcode.cn/problems/scramble-string/）liner_dp|memory_search
 2361（https://leetcode.cn/problems/minimum-costs-using-the-train-line/）linear_dp
 2318（https://leetcode.cn/problems/number-of-distinct-roll-sequences/）linear_dp|brute_force|counter
@@ -123,6 +124,11 @@ ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digit
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
 4414（https://www.acwing.com/problem/content/description/4417/）liner_dp
+
+
+=====================================LibraryChecker=====================================
+1（https://www.51nod.com/Challenge/Problem.html#problemId=1202）liner_dp|classical|different_subsequence
+
 
 """
 import bisect
@@ -1234,3 +1240,22 @@ class Solution:
         ac.st(dp[0])
         return
 
+    @staticmethod
+    def library_check_1(ac=FastIO()):
+        """
+        url: https://www.51nod.com/Challenge/Problem.html#problemId=1202
+        tag: liner_dp|classical|different_subsequence
+        """
+        mod = 10 ** 9 + 7
+        n = ac.read_int()
+        dp = [0] * (n + 1)
+        pre = dict()
+        for i in range(n):
+            num = ac.read_int()
+            if num not in pre:
+                dp[i + 1] = (2 * dp[i] + 1) % mod
+            else:
+                dp[i + 1] = (2 * dp[i] - dp[pre[num]]) % mod
+            pre[num] = i
+        ac.st(dp[-1])
+        return

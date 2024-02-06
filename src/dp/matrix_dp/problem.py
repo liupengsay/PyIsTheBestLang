@@ -115,6 +115,8 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1829G（https://codeforces.com/contest/1829/problem/G）matrix_dp|classical|inclusion_exclusion
 1077F2（https://codeforces.com/contest/1077/problem/F2）matrix_dp|monotonic_queue|implemention
 1133E（https://codeforces.com/contest/1133/problem/E）matrix_dp|preprocess|classical
+1183H（https://codeforces.com/contest/1183/problem/H）matrix_dp|classical|hard|different_sub_sequence
+1183E（https://codeforces.com/contest/1183/problem/E）matrix_dp|classical|hard|different_sub_sequence
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -301,6 +303,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/2/B
         tag: matrix_dp
         """
+
         def f_2(num):
             if not num:
                 return 1
@@ -1916,6 +1919,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8786
         tag: classical|md_matrix_dp| implemention|memory_search
         """
+
         # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)
@@ -1944,6 +1948,7 @@ class Solution:
         url: https://leetcode.cn/problems/count-fertile-pyramids-in-a-land/
         tag: matrix_dp
         """
+
         # 类似求正方形的边长和面积matrix_dp
         def check():
             nonlocal ans
@@ -2256,6 +2261,7 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
         tag: matrix_dp|brute_force|memory_search
         """
+
         # 二维matrix_dpbrute_forcememory_search
 
         def check(st):
@@ -2390,7 +2396,7 @@ class Solution:
         dp = [[0] * (n + 1) for _ in range(2)]
         pre = 0
         for i in range(n):
-            cur = 1-pre
+            cur = 1 - pre
             for j in range(1, i + 2):
                 dp[cur][j] = max(dp[pre][j], dp[pre][j - 1] + nums2[ind[i]] * j + nums1[ind[i]])
             pre = cur
@@ -2468,4 +2474,36 @@ class Solution:
             pre = cur
         for _ in range(ac.read_int()):
             ac.st(dp[ac.read_int()])
+        return
+
+    @staticmethod
+    def cf_1183h(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1183/problem/H
+        tag: matrix_dp|classical|hard|different_sub_sequence
+        """
+        n, k = ac.read_list_ints()
+        s = ac.read_str()
+        pre = [-1] * n
+        last = [-1] * 26
+        for i in range(n):
+            w = s[i]
+            x = ord(w) - ord("a")
+            pre[i] = last[x]
+            last[x] = i
+
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+        dp[0][0] = 1
+        for i in range(n):
+            dp[i + 1][0] = dp[i][0]
+            for j in range(1, i + 2):
+                dp[i + 1][j] = dp[i][j] + dp[i][j - 1]
+                if pre[i] != -1:
+                    dp[i + 1][j] -= dp[pre[i]][j - 1]
+        ans = 0
+        for j in range(n, -1, -1):
+            x = ac.min(k, dp[n][j])
+            ans += x * (n - j)
+            k -= x
+        ac.st(ans if not k else -1)
         return

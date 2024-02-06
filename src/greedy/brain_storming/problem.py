@@ -4,6 +4,7 @@ Algorithm：greedy|reverse_thinking|pigeonhole_principle|inclusion_exclusion|cus
 Description：brain_teaser
 
 ====================================LeetCode====================================
+30（https://leetcode.cn/problems/p0NxJO）greedy|regret_heapq|brain_teaser
 134（https://leetcode.cn/problems/gas-station/）greedy
 330（https://leetcode.cn/problems/patching-array/）greedy
 1199（https://leetcode.cn/problems/minimum-time-to-build-blocks/）huffman_tree|greedy|classical|heapq
@@ -168,6 +169,9 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1157G（https://codeforces.com/contest/1157/problem/G）brain_teaser|brute_force|classical|implemention|greedy
 1157F（https://codeforces.com/contest/1157/problem/F）greedy|brain_teaser|construction|specific_plan
 1157C2（https://codeforces.com/contest/1157/problem/C2）greedy|brain_teaser|implemention
+1183G（https://codeforces.com/contest/1183/problem/G）greedy|brain_teaser|implemention|classical
+1183D（https://codeforces.com/contest/1183/problem/D）greedy|brain_teaser|implemention|classical
+1183F（https://codeforces.com/contest/1183/problem/F）greedy|brain_teaser|classical|brute_force|special_judge
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1652,4 +1656,37 @@ class Solution:
         for i in range(res[1], res[0] - 1, -1):
             lst.extend([i] * cnt[i])
         ac.lst(lst)
+        return
+
+    @staticmethod
+    def cf_1183f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1183/problem/F
+        tag: greedy|brain_teaser|classical|brute_force|special_judge
+        """
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            ceil = max(nums)
+            ans = ceil
+            for num in nums:
+                if ceil % num:
+                    if num + ceil > ans:
+                        ans = num + ceil
+            if ceil % 30 == 0 and ceil // 2 in nums and ceil // 3 in nums and ceil // 5 in nums:
+                x, y, z = ceil // 2, ceil // 3, ceil // 5
+                if x % y and y % z and x % z:
+                    cur = x + y + z
+                    if cur > ans:
+                        ans = cur
+
+            nums = [num for num in nums if ceil % num]
+            if nums:
+                ceil2 = max(nums)
+                for num in nums:
+                    if ceil2 % num:
+                        if num + ceil2 + ceil > ans:
+                            ans = num + ceil2 + ceil
+            ac.st(ans)
+
         return
