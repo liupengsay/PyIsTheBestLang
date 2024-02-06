@@ -73,7 +73,7 @@ from collections import defaultdict, Counter
 from typing import List
 
 from src.data_structure.monotonic_stack.template import Rectangle
-from src.data_structure.sparse_table.template import SparseTable1
+from src.data_structure.sparse_table.template import SparseTable
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -523,7 +523,7 @@ class Solution:
                 post[stack.pop()] = i - 1
             stack.append(i)
             dct[nums[i]].append(i)
-        st = SparseTable1(nums)
+        st = SparseTable(nums)
         ans = 0
         for i in range(n):
             x = st.query(i + 1, post[i] + 1)

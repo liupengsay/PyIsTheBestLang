@@ -62,7 +62,7 @@ from math import gcd, inf
 from operator import add
 from typing import List
 
-from src.basis.two_pointer.template import SlidingWindowAggregation, INF
+from src.basis.two_pointer.template import SlidingWindowAggregation
 from src.utils.fast_io import FastIO
 
 
@@ -175,7 +175,7 @@ class Solution:
         tag: sliding_window
         """
         n = len(nums)
-        swa = SlidingWindowAggregation(-INF, max)
+        swa = SlidingWindowAggregation(-inf, max)
         ans = []
         for i in range(n):
             swa.append(nums[i])
@@ -266,7 +266,7 @@ class Solution:
             return len(nums) - nums.count(1)
 
         swa = SlidingWindowAggregation(0, gcd)
-        res, n = INF, len(nums)
+        res, n = inf, len(nums)
         for i in range(n):
             swa.append(nums[i])
             while swa and swa.query() == 1:

@@ -75,38 +75,38 @@ class SparseTableIndex:
         return b
 
 
-class SparseTableIndex:
-    def __init__(self, lst, fun):
-        # as long as Fun satisfies monotonicity
-        # static interval queries can be performed on the index where the maximum is located
-        self.fun = fun  # min max and_ or_ math.lcm math.gcd
-        self.n = len(lst)
-        self.m = self.n.bit_length() - 1
-        self.f = [0] * ((self.m + 1) * (self.n + 1))
-
-        for i in range(1, self.n + 1):
-            self.f[i * (self.m + 1) + 0] = i - 1
-        for j in range(1, self.m + 1):
-            for i in range(1, self.n - (1 << j) + 2):
-                a = self.f[i * (self.m + 1) + j - 1]
-                b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
-
-                if self.fun(lst[a], lst[b]) == lst[a]:
-                    self.f[i * (self.m + 1) + j] = a
-                else:
-                    self.f[i * (self.m + 1) + j] = b
-        self.lst = lst
-        return
-
-    def query(self, left, right):
-        left += 1  # assert 0 <= left <= right <= self.n - 1
-        right += 1
-        k = (right - left + 1).bit_length() - 1
-        a = self.f[left * (self.m + 1) + k]
-        b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
-        if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:
-            return a
-        return b
+# class SparseTableIndex:
+#     def __init__(self, lst, fun):
+#         # as long as Fun satisfies monotonicity
+#         # static interval queries can be performed on the index where the maximum is located
+#         self.fun = fun  # min max and_ or_ math.lcm math.gcd
+#         self.n = len(lst)
+#         self.m = self.n.bit_length() - 1
+#         self.f = [0] * ((self.m + 1) * (self.n + 1))
+#
+#         for i in range(1, self.n + 1):
+#             self.f[i * (self.m + 1) + 0] = i - 1
+#         for j in range(1, self.m + 1):
+#             for i in range(1, self.n - (1 << j) + 2):
+#                 a = self.f[i * (self.m + 1) + j - 1]
+#                 b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
+#
+#                 if self.fun(lst[a], lst[b]) == lst[a]:
+#                     self.f[i * (self.m + 1) + j] = a
+#                 else:
+#                     self.f[i * (self.m + 1) + j] = b
+#         self.lst = lst
+#         return
+#
+#     def query(self, left, right):
+#         left += 1  # assert 0 <= left <= right <= self.n - 1
+#         right += 1
+#         k = (right - left + 1).bit_length() - 1
+#         a = self.f[left * (self.m + 1) + k]
+#         b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
+#         if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:
+#             return a
+#         return b
 
 
 class SparseTable2D:

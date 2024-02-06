@@ -208,7 +208,7 @@ from functools import reduce
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO, inf
 
 
@@ -1125,7 +1125,7 @@ class Solution:
         if n % 2 == 0:
             ac.st(n // 2)
         else:
-            lst = NumberTheory().get_prime_factor(n)
+            lst = NumFactor().get_prime_factor(n)
             x = lst[0][0]
             ac.st(1 + (n - x) // 2)
         return

@@ -21,7 +21,6 @@ from collections import defaultdict
 from itertools import accumulate
 from typing import List
 
-from src.mathmatics.number_theory.template import NumberTheory
 from src.strings.palindrome_num.template import PalindromeNum
 
 

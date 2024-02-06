@@ -25,7 +25,7 @@ from functools import reduce
 from operator import xor
 
 from src.dp.game_dp.template import DateTime
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
 
 
@@ -136,7 +136,7 @@ class Solution:
         tag: prime|game_dp
         """
         n = ac.read_int()
-        lst = NumberTheory().get_prime_factor(n)
+        lst = NumFactor().get_prime_factor(n)
         nums = []
         for p, c in lst:
             nums.extend([p] * c)

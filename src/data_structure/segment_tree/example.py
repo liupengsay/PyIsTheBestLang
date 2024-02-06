@@ -344,7 +344,7 @@ class TestGeneral(unittest.TestCase):
                 left = random.randint(0, n - 1)
                 right = random.randint(left, n - 1)
                 num = random.randint(low, high)
-                tree.range_set_add(left, right, (-tree.inf, num))
+                tree.range_set_add(left, right, (-tree.initial, num))
                 for i in range(left, right + 1):
                     nums[i] += num
                 left = random.randint(0, n - 1)

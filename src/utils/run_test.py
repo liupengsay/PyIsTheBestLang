@@ -64,7 +64,7 @@ class TestGeneral(unittest.TestCase):
         def run_example(path):
             for root, _, files in os.walk(path):
                 for file in files:
-                    if file == 'example.py':
+                    if file == "example.py":
                         file_path = os.path.join(root, file)
                         print(f"Running: {file_path}")
                         os.system(f"python {file_path}")
@@ -75,6 +75,24 @@ class TestGeneral(unittest.TestCase):
         parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
         grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
         run_example(os.path.join(grandparent_path, "src"))
+        return
+
+    def test_run_template_or_problem(self):
+
+        def run_template_or_problem(path):
+            for root, _, files in os.walk(path):
+                for file in files:
+                    if file in ["template.py", "problem.py"]:
+                        file_path = os.path.join(root, file)
+                        print(f"Running: {file_path}")
+                        os.system(f"python {file_path}")
+            return
+
+        # executing all the example.py
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        run_template_or_problem(os.path.join(grandparent_path, "src"))
         return
 
     @unittest.skip
@@ -103,7 +121,7 @@ class TestGeneral(unittest.TestCase):
         tot = []
         process_directory(os.path.join(grandparent_path, "src"))
         random.shuffle(tot)
-        with open(os.path.join(grandparent_path, "data/Problem.md"), 'w', encoding="utf-8", errors="ignore") as f:
+        with open(os.path.join(grandparent_path, "data/Problem.md"), "w", encoding="utf-8", errors="ignore") as f:
             f.writelines("\n".join(tot))
         return
 
@@ -250,5 +268,5 @@ class TestGeneral(unittest.TestCase):
         return
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

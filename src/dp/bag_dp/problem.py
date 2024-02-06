@@ -115,7 +115,7 @@ from typing import List
 
 from src.dp.bag_dp.template import BagDP
 from src.graph.union_find.template import UnionFind
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -356,7 +356,7 @@ class Solution:
         url: https://leetcode.cn/problems/factor-combinations/
         tag: bag_dp|mul
         """
-        lst = NumberTheory().get_all_factor(n)
+        lst = NumFactor().get_all_factor(n)
         m = len(lst)
         dp = defaultdict(list)
         dp[1] = [[]]

@@ -10,7 +10,7 @@ class CRT:
         mod_list, remainder_list = [p[0] for p in pairs], [p[1] for p in pairs]
         mod_product = reduce(lambda x, y: x * y, mod_list)
         mi_list = [mod_product // x for x in mod_list]
-        mi_inverse = [self.extend_gcd(mi_list[i], mod_list[i])[0] for i in range(len(mi_list))]
+        mi_inverse = [ExtendCRT().exgcd(mi_list[i], mod_list[i])[0] for i in range(len(mi_list))]
         x = 0
         for i in range(len(remainder_list)):
             x += mi_list[i] * mi_inverse[i] * remainder_list[i]

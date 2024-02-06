@@ -33,7 +33,7 @@ from typing import List
 
 from src.graph.dijkstra.template import Dijkstra
 from src.graph.spfa.template import SPFA
-from src.utils.fast_io import FastIO, max
+from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
 

@@ -2,8 +2,9 @@ import math
 import random
 import unittest
 from functools import reduce
+from operator import or_, and_
 
-from src.data_structure.sparse_table.template import SparseTable2D, SparseTable1, SparseTable2
+from src.data_structure.sparse_table.template import SparseTable2D, SparseTable
 
 
 class TestGeneral(unittest.TestCase):
@@ -23,29 +24,25 @@ class TestGeneral(unittest.TestCase):
             return ans
 
         nums = [9, 3, 1, 7, 5, 6, 0, 8]
-        st = SparseTable1(nums)
+        st = SparseTable(nums, max)
         queries = [[1, 6], [1, 5], [2, 7], [2, 6], [1, 8], [4, 8], [3, 7], [1, 8]]
         assert [st.query(left, right) for left, right in queries] == [9, 9, 7, 7, 9, 8, 7, 9]
 
         ceil = 2000
         nums = [random.randint(1, ceil) for _ in range(2000)]
-        st1_max = SparseTable1(nums, "max")
-        st1_min = SparseTable1(nums, "min")
-        st1_gcd = SparseTable1(nums, "gcd")
-        st1_lcm = SparseTable1(nums, "lcm")
-        st1_and = SparseTable1(nums, "and")
-        st1_or = SparseTable1(nums, "or")
+        st1_max = SparseTable(nums, max)
+        st1_min = SparseTable(nums, min)
+        st1_gcd = SparseTable(nums, math.gcd)
+        st1_lcm = SparseTable(nums, math.lcm)
+        st1_and = SparseTable(nums, and_)
+        st1_or = SparseTable(nums, or_)
 
-        st2_max = SparseTable2(nums, "max")
-        st2_min = SparseTable2(nums, "min")
-        st2_gcd = SparseTable2(nums, "gcd")
         for _ in range(ceil):
             left = random.randint(1, ceil - 10)
             right = random.randint(left, ceil)
-            assert st1_max.query(left, right) == st2_max.query(left - 1, right - 1) == max(nums[left - 1:right])
-            assert st1_min.query(left, right) == st2_min.query(left - 1, right - 1) == min(nums[left - 1:right])
-            assert st1_gcd.query(left, right) == st2_gcd.query(left - 1, right - 1) == reduce(math.gcd,
-                                                                                              nums[left - 1:right])
+            assert st1_max.query(left, right) == max(nums[left - 1:right])
+            assert st1_min.query(left, right) == min(nums[left - 1:right])
+            assert st1_gcd.query(left, right) == reduce(math.gcd, nums[left - 1:right])
             assert st1_lcm.query(left, right) == reduce(math.lcm, nums[left - 1:right])
             assert st1_and.query(left, right) == check_and(nums[left - 1:right])
             assert st1_or.query(left, right) == check_or(nums[left - 1:right])

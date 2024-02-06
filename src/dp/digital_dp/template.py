@@ -1,8 +1,6 @@
 from functools import lru_cache
 from itertools import accumulate
 
-from src.utils.fast_io import max
-
 
 class DigitalDP:
     def __init__(self):

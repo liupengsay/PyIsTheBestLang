@@ -76,7 +76,7 @@ from functools import lru_cache
 from typing import List
 
 from src.mathmatics.comb_perm.template import Combinatorics, Lucas
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 
@@ -96,7 +96,7 @@ class Solution:
         mod = 10 ** 9 + 7
         cb = Combinatorics(n + 100, mod)
         ans = 1
-        for _, c in NumberTheory().get_prime_factor(m):
+        for _, c in NumFactor().get_prime_factor(m):
             ans *= cb.comb(c + n - 1, n - 1)  # n non-negative number sum c
             # equal sum(cb.comb(n, k)*cb.comb(c-1, k-1) for k in range(1, c+1))
             ans %= mod

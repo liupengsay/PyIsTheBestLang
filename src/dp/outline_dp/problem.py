@@ -22,8 +22,6 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 from collections import defaultdict
 from typing import List
 
-from src.utils.fast_io import max
-
 
 class Solution:
     def __init__(self):
@@ -52,7 +50,7 @@ class Solution:
                         if up and i:
                             val += 20 + 50 * up - 80
                         cur[((s % mask) * 3 + 2, intro, ext - 1)] = max(cur[((s % mask) * 3 + 2, intro, ext - 1)],
-                                                                           pre[(s, intro, ext)] + val)
+                                                                        pre[(s, intro, ext)] + val)
                     if intro:
                         val = 120
                         if left and j:
@@ -60,7 +58,7 @@ class Solution:
                         if up and i:
                             val += -30 + 50 * up - 80
                         cur[((s % mask) * 3 + 1, intro - 1, ext)] = max(cur[((s % mask) * 3 + 1, intro - 1, ext)],
-                                                                           pre[(s, intro, ext)] + val)
+                                                                        pre[(s, intro, ext)] + val)
                 pre = cur
         return max(pre.values())
 

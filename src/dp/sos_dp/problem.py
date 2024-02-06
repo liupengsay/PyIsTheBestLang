@@ -2,8 +2,14 @@
 Algorithm：sos_dp
 Description：sum_of_subsets_dp|md_prefix_sum
 Reference：https://codeforces.com/blog/entry/45223
+
+
 ====================================LeetCode====================================
 
+
+=====================================AtCoder======================================
+ABC100C（https://atcoder.jp/contests/arc100/tasks/arc100_c）sos_dp|classical|state_dp|bit_operation
+tag:
 
 
 =====================================LuoGu======================================
@@ -12,6 +18,8 @@ Reference：https://codeforces.com/blog/entry/45223
 1234F（https://codeforces.com/contest/1234/problem/F）sos_dp|classical|state_dp|bit_operation
 449D（https://codeforces.com/problemset/problem/449/D）
 1208F（https://codeforces.com/problemset/problem/1208/F）
+383E（https://codeforces.com/contest/383/problem/E）sos_dp|classical|state_dp|bit_operation
+165E（https://codeforces.com/contest/165/problem/E）sos_dp|classical|state_dp|bit_operation
 
 """
 

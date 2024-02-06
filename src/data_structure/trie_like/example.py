@@ -56,7 +56,7 @@ class TestGeneral(unittest.TestCase):
             for i in range(word_cnt):
                 word = "".join(chr(ord("a") + random.randint(0, 25)) for _ in range(random.randint(1, word_length)))
                 words.append(word)
-                trie.add(word)
+                trie.add([ord(w) - ord("a") for w in word])
             for i in range(word_cnt):
                 word = "".join(chr(ord("a") + random.randint(0, 25)) for _ in range(random.randint(1, word_length)))
                 res = 0
@@ -66,7 +66,7 @@ class TestGeneral(unittest.TestCase):
                             res += 1
                         else:
                             break
-                assert res == trie.count(word)
+                assert res == trie.count([ord(w) - ord("a") for w in word])
         return
 
     def test_solution_lc_421_1(self):  # 411 ms

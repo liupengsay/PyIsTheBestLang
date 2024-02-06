@@ -64,7 +64,7 @@ import math
 from collections import deque, Counter, defaultdict
 from typing import List
 
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO, inf
 
 
@@ -229,7 +229,7 @@ class Solution:
         """
         n, k = ac.read_list_ints()
         ans = []
-        for p, c in NumberTheory().get_prime_factor(n):
+        for p, c in NumFactor().get_prime_factor(n):
             ans.extend([p] * c)
         if sum(ans) > k:
             ac.st(-1)

@@ -136,7 +136,7 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from typing import List
 
-from src.mathmatics.number_theory.template import NumberTheory
+from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
