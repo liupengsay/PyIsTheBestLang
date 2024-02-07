@@ -117,6 +117,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1133E（https://codeforces.com/contest/1133/problem/E）matrix_dp|preprocess|classical
 1183H（https://codeforces.com/contest/1183/problem/H）matrix_dp|classical|hard|different_sub_sequence
 1183E（https://codeforces.com/contest/1183/problem/E）matrix_dp|classical|hard|different_sub_sequence
+1353F（https://codeforces.com/contest/1353/problem/F）matrix_dp|greedy|monotonic_stack
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2506,4 +2507,45 @@ class Solution:
             ans += x * (n - j)
             k -= x
         ac.st(ans if not k else -1)
+        return
+
+    @staticmethod
+    def cf_1353f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1353/problem/F
+        tag: matrix_dp|greedy|monotonic_stack
+        """
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [ac.read_list_ints() for _ in range(m)]
+            dp = [[] for _ in range(n)]
+            tot = m + n - 1
+            for i in range(m - 1, -1, -1):
+                ndp = [[] for _ in range(n)]
+                for j in range(n - 1, -1, -1):
+                    if i == m - 1 and j == n - 1:
+                        ndp[j] = [(grid[i][j], grid[i][j])]
+                        continue
+                    lst = []
+                    if i + 1 < m:
+                        for s, p in dp[j]:
+                            cur_s = s + grid[i][j]
+                            cur_p = min(p - 1, grid[i][j])
+                            lst.append((cur_s, cur_p))
+                    if j + 1 < n:
+                        for s, p in ndp[j + 1]:
+                            cur_s = s + grid[i][j]
+                            cur_p = min(p - 1, grid[i][j])
+                            lst.append((cur_s, cur_p))
+                    lst.sort()
+                    cur = []
+                    for s, p in lst:
+                        if not cur or cur[-1][-1] < p:
+                            cur.append((s, p))
+                    ndp[j] = cur
+                dp = ndp
+            ans = 10 ** 18
+            for s, p in dp[0]:
+                ans = min(ans, s - (p + p + tot - 1) * tot // 2)
+            ac.st(ans)
         return
