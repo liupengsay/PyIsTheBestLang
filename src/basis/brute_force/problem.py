@@ -128,6 +128,7 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 1077E（https://codeforces.com/contest/1077/problem/E）brute_force|data_range
 1203D2（https://codeforces.com/contest/1203/problem/D2）brute_force|data_range|prefix_suffix
 1216E2（https://codeforces.com/contest/1216/problem/E2）brute_force|data_range|classical
+1328F（https://codeforces.com/contest/1328/problem/F）brute_force|prefix_sum|binary_search
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
@@ -186,6 +187,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/584/D
         tag: brute_force|prime|decompose_into_sum_of_prime_at_most_3|classical
         """
+
         def is_prime4(x):
             if x == 1:
                 return False
@@ -222,6 +224,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-swap/
         tag: greedy|brute_force
         """
+
         def check():  # greedy
             lst = list(str(num))
             n = len(lst)
@@ -338,6 +341,7 @@ class Solution:
         tag: n-base|classification_discussion|brute_force|factorization|math
 
         """
+
         def check():
             lst = []
             num = n
@@ -645,6 +649,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2994
         tag: brute_force|reverse_thinking
         """
+
         def dis():
             return (x1 - x2) ** 2 + (y1 - y2) ** 2
 
@@ -1184,7 +1189,7 @@ class Solution:
             while sub:  # classical
                 if sub & start:
                     cur += dct[sub]
-                sub = (sub-1) & mask
+                sub = (sub - 1) & mask
             ans.append(cur)
         return ans
 
@@ -1386,6 +1391,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/
         tag: prefix_sum|brute_force
         """
+
         def check(num, f):
             res = 0
             while num % f == 0:
