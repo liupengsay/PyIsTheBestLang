@@ -117,6 +117,8 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1108D（https://codeforces.com/contest/1108/problem/D）linear_dp|specific_plan
 1154F（https://codeforces.com/contest/1154/problem/F）linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
 1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greedy|implemention
+1249E（https://codeforces.com/contest/1249/problem/E）linear_dp|classical|greedy
+1256E（https://codeforces.com/contest/1256/problem/E）linear_dp|greedy|brain_teaser
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

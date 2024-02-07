@@ -135,7 +135,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1025C（https://codeforces.com/problemset/problem/1025/C）brain_teaser
 1042C（https://codeforces.com/problemset/problem/1042/C）greedy|classification_discussion|implemention
 439C（https://codeforces.com/problemset/problem/439/C）greedy|classification_discussion
-1283E（https://codeforces.com/problemset/problem/1283/E）greedy|classification_discussion
+1283E（https://codeforces.com/problemset/problem/1283/E）greedy|classification_discussion|linear_dp
 1092C（https://codeforces.com/contest/1092/problem/C）brain_teaser|classification_discussion
 1280B（https://codeforces.com/problemset/problem/1280/B）brain_teaser|classification_discussion
 723C（https://codeforces.com/problemset/problem/723/C）greedy|implemention|construction
@@ -172,6 +172,12 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1183G（https://codeforces.com/contest/1183/problem/G）greedy|brain_teaser|implemention|classical
 1183D（https://codeforces.com/contest/1183/problem/D）greedy|brain_teaser|implemention|classical
 1183F（https://codeforces.com/contest/1183/problem/F）greedy|brain_teaser|classical|brute_force|special_judge
+1203F1（https://codeforces.com/contest/1203/problem/F1）greedy|brain_teaser|linear_dp|define_sort|classical
+1203F2（https://codeforces.com/contest/1203/problem/F2）greedy|brain_teaser|linear_dp|define_sort|classical
+1249D2（https://codeforces.com/contest/1249/problem/D2）greedy|offline_query|sorted_list
+1256F（https://codeforces.com/contest/1256/problem/F）greedy|brain_teaser|reverse_pair|bubble_sort|classical
+1296E2（https://codeforces.com/contest/1296/problem/E2）greedy|brain_teaser|lis
+1296E1（https://codeforces.com/contest/1296/problem/E1）greedy|brain_teaser|lis
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

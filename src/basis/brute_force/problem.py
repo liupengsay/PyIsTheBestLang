@@ -126,6 +126,8 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 1029D（https://codeforces.com/contest/1029/problem/D）brute_force|hash|math
 1029C（https://codeforces.com/contest/1029/problem/C）classical|prefix_suffix|brute_force
 1077E（https://codeforces.com/contest/1077/problem/E）brute_force|data_range
+1203D2（https://codeforces.com/contest/1203/problem/D2）brute_force|data_range|prefix_suffix
+1216E2（https://codeforces.com/contest/1216/problem/E2）brute_force|data_range|classical
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization

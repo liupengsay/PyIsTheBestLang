@@ -96,6 +96,7 @@ P2176（https://www.luogu.com.cn/problem/P2176）brute_force|shortest_path
 1433G（https://codeforces.com/contest/1433/problem/G）several_source_dijkstra|shortest_path|brute_force
 1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
 1915G（https://codeforces.com/contest/1915/problem/G）shortest_path|limited_shortest_path|dijkstra
+1196F（https://codeforces.com/contest/1196/problem/F）shortest_path|data_range|kth_shortest|brute_force|data_range
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle

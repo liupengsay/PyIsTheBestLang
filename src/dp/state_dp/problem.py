@@ -48,7 +48,6 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 580D（https://codeforces.com/problemset/problem/580/D）state_dp
 165E（https://codeforces.com/problemset/problem/165/E）liner_dp|state_dp|brute_force
 11D（https://codeforces.com/contest/11/problem/D）state_dp|undirected|counter
-1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter
 1102F（https://codeforces.com/contest/1102/problem/F）state_dp|classical|brute_force|fill_table|refresh_table
 
 =====================================AtCoder====================================

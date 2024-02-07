@@ -54,7 +54,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 343D（https://codeforces.com/problemset/problem/343/D）dfs_order|segment_tree
 242E（https://codeforces.com/problemset/problem/242/E）segment_tree|RangeReverseRangeBitCount
 987C（https://codeforces.com/problemset/problem/987/C）brute_force|segment_tree|prefix_suffix
-1216F（https://codeforces.com/contest/1216/problem/F）segment_tree|dp|monotonic_queue
+1216F（https://codeforces.com/contest/1216/problem/F）segment_tree|linear_dp|monotonic_queue
 1665E（https://codeforces.com/contest/1665/problem/E）segment_tree
 1478E（https://codeforces.com/contest/1478/problem/E）RangeSetRangeSumMinMax|backward_thinking|implemention
 1679E（https://codeforces.com/contest/1679/problem/B）RangeSetRangeSumMinMax|range_change|range_sum
@@ -76,6 +76,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 915E（https://codeforces.com/problemset/problem/915/E）segment_tree|range_set|range_sum|dynamic
 877E（https://codeforces.com/problemset/problem/877/E）segment_tree|range_reverse|dfs_order|range_bit_count
 1108E2（https://codeforces.com/contest/1108/problem/E2）segment_tree|range_add|range_min|prefix_suffix|bryte_force|brain_teaser
+1234D（https://codeforces.com/contest/1234/problem/D）segment_tree|point_set|range_or
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -2831,4 +2832,25 @@ class Solution:
         tmp = [i + 1 for i in range(m) if not lst[i][0] <= res <= lst[i][1]]
         ac.st(len(tmp))
         ac.lst(tmp)
+        return
+
+    @staticmethod
+    def cf_1234d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1234/problem/D
+        tag: segment_tree|point_set|range_or
+        """
+        s = [1 << (ord(w) - ord("a")) for w in ac.read_str()]
+        n = len(s)
+        tree = PointSetRangeOr(n)
+        tree.build(s)
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_strs()
+            if lst[0] == "1":
+                pos, w = lst[1:]
+                tree.point_set(int(pos) - 1, 1 << (ord(w) - ord("a")))
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_or(int(ll) - 1, int(rr) - 1)
+                ac.st(bin(ans).count("1"))
         return

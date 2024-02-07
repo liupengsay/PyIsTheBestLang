@@ -51,6 +51,10 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1144F（https://codeforces.com/contest/1144/problem/F）construction|color_method|classical|bipartite
 1157E（https://codeforces.com/contest/1157/problem/E）construction|greedy|sorted_list
 1157D（https://codeforces.com/contest/1157/problem/D）construction|greedy
+1196E（https://codeforces.com/contest/1196/problem/E）construction|greedy
+1213E（https://codeforces.com/contest/1213/problem/E）construction|brute_force
+1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter|construction
+1311E（https://codeforces.com/contest/1311/problem/E）construction|2-tree
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
