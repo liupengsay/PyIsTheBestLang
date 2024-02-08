@@ -119,6 +119,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greedy|implemention
 1249E（https://codeforces.com/contest/1249/problem/E）linear_dp|classical|greedy
 1256E（https://codeforces.com/contest/1256/problem/E）linear_dp|greedy|brain_teaser
+1353E（https://codeforces.com/contest/1353/problem/E）linear_dp|greedy|brute_force
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
