@@ -178,6 +178,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1256F（https://codeforces.com/contest/1256/problem/F）greedy|brain_teaser|reverse_pair|bubble_sort|classical
 1296E2（https://codeforces.com/contest/1296/problem/E2）greedy|brain_teaser|lis
 1296E1（https://codeforces.com/contest/1296/problem/E1）greedy|brain_teaser|lis
+1367F2（https://codeforces.com/contest/1367/problem/F2）greedy|brain_teaser|lis
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

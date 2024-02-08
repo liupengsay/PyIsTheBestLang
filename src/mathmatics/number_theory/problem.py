@@ -67,6 +67,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
 1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
 1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
+1360H（https://codeforces.com/contest/1360/problem/H）n-base
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter

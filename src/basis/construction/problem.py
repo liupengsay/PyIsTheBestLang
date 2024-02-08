@@ -32,7 +32,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1348D（https://codeforces.com/problemset/problem/1348/D）bin|construction
 1554D（https://codeforces.com/problemset/problem/1554/D）construction|floor
 1788C（https://codeforces.com/problemset/problem/1788/C）construction
-1367D（https://codeforces.com/problemset/problem/1367/D）reverse_thinking|implemention|construction
+1367D（https://codeforces.com/problemset/problem/1367/D）reverse_thinking|implemention|construction|classical
 1485D（https://codeforces.com/problemset/problem/1485/D）data_range|construction
 1722G（https://codeforces.com/problemset/problem/1722/G）odd_even|xor_property|construction
 1822D（https://codeforces.com/contest/1822/problem/D）construction|prefix_sum|mod|permutation
@@ -56,6 +56,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter|construction
 1311E（https://codeforces.com/contest/1311/problem/E）construction|2-tree
 1343F（https://codeforces.com/contest/1343/problem/F）construction|data_range|brain_teaser
+1360G（https://codeforces.com/contest/1360/problem/G）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

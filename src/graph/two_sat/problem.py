@@ -33,13 +33,15 @@ class TwoSAT:
         tag: 2-sat|scc|classical
         """
         n, m = ac.read_list_ints()
-        edge = [[] for _ in range(2 * n)]
+        edge = [set() for _ in range(2 * n)]
         for _ in range(m):
             i, a, j, b = ac.read_list_ints()
             i -= 1
             j -= 1
-            edge[i * 2 + 1 - a].append(j * 2 + b)
-            edge[j * 2 + 1 - b].append(i * 2 + a)
+            if i * 2 + 1 - a != j * 2 + b:
+                edge[i * 2 + 1 - a].add(j * 2 + b)
+            if j * 2 + 1 - b != i * 2 + a:
+                edge[j * 2 + 1 - b].add(i * 2 + a)
 
         _, scc_node_id, _ = Tarjan().get_scc(2 * n, [list(s) for s in edge])
         for s in scc_node_id:
