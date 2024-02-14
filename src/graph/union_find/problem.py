@@ -91,6 +91,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1788F（https://codeforces.com/problemset/problem/1788/F）
 1807C（https://codeforces.com/contest/1807/problem/C）union_find_type
 1213G（https://codeforces.com/contest/1213/problem/G）union_find|offline_query|classical
+1619G（https://codeforces.com/contest/1619/problem/G）union_find|implemention
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find

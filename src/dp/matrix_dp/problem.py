@@ -118,6 +118,10 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1183H（https://codeforces.com/contest/1183/problem/H）matrix_dp|classical|hard|different_sub_sequence
 1183E（https://codeforces.com/contest/1183/problem/E）matrix_dp|classical|hard|different_sub_sequence
 1353F（https://codeforces.com/contest/1353/problem/F）matrix_dp|greedy|monotonic_stack
+1409F（https://codeforces.com/contest/1409/problem/F）matrix_dp
+1433F（https://codeforces.com/contest/1433/problem/F）matrix_dp
+1551E（https://codeforces.com/contest/1551/problem/E）matrix_dp
+1593F（https://codeforces.com/contest/1593/problem/F）matrix_dp|specific_plan|md_vector|flatten
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -2548,4 +2552,75 @@ class Solution:
             for s, p in dp[0]:
                 ans = min(ans, s - (p + p + tot - 1) * tot // 2)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1593f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1593/problem/F
+        tag: matrix_dp|specific_plan|md_vector|flatten
+        """
+
+        def get(iii, jjj, ppp, qqq):
+            return iii * a * b * (n + 1) + jjj * a * (n + 1) + ppp * (n + 1) + qqq
+
+        for _ in range(ac.read_int()):
+            n, a, b = ac.read_list_ints()
+            lst = [int(w) for w in ac.read_str()]
+            dp = [0] * (n + 1) * a * b * (n + 1)
+            dp[get(0, 0, 0, 0)] = 1
+            nex_a = [[0] * 10 for _ in range(a)]
+            for i in range(a):
+                for j in range(10):
+                    nex_a[i][j] = (i * 10 + j) % a
+            nex_b = [[0] * 10 for _ in range(b)]
+            for i in range(b):
+                for j in range(10):
+                    nex_b[i][j] = (i * 10 + j) % b
+
+            for i in range(n):
+                x = lst[i]
+                for j in range(b):
+                    for p in range(a):
+                        for q in range(n + 1):
+                            if dp[get(i, j, p, q)]:
+                                dp[get(i + 1, j, nex_a[p][x], q + 1)] = 1
+                                dp[get(i + 1, nex_b[j][x], p, q)] = 1
+            ans = inf
+            qq = -1
+            for i in range(1, n):
+                if dp[get(n, 0, 0, i)]:
+                    if abs(n - 2 * i) < ans:
+                        ans = abs(n - 2 * i)
+                        qq = i
+            if ans == inf:
+                ac.st(-1)
+                continue
+
+            ans = []
+            jj = pp = 0
+            for i in range(n - 1, -1, -1):
+                flag = 0
+                x = lst[i]
+                for j in range(b):
+                    if flag:
+                        break
+                    for p in range(a):
+                        if flag:
+                            break
+                        for q in range(n + 1):
+                            if dp[get(i, j, p, q)]:
+                                if (nex_b[j][x], p, q) == (jj, pp, qq):
+                                    ans.append("B")
+                                    jj, pp, qq = j, p, q
+                                    flag = 1
+                                    break
+                                if (j, nex_a[p][x], q + 1) == (jj, pp, qq):
+                                    ans.append("R")
+                                    jj, pp, qq = j, p, q
+                                    flag = 1
+                                    break
+
+            ans.reverse()
+            ac.st("".join(ans))
         return

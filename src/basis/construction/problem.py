@@ -58,7 +58,8 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1343F（https://codeforces.com/contest/1343/problem/F）construction|data_range|brain_teaser
 1360G（https://codeforces.com/contest/1360/problem/G）construction
 1385E（https://codeforces.com/contest/1385/problem/E）construction|topological_sort|classical|undirected|directed
-
+1475F（https://codeforces.com/contest/1475/problem/F）construction|matrix_reverse
+1551D2（https://codeforces.com/contest/1551/problem/D2）construction|domino
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

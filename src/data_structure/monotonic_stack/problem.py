@@ -56,6 +56,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force
 1092D2（https://codeforces.com/contest/1092/problem/D2）monotonic_stack|implemention
 1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greedy|implemention
+1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greedy|classical
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
@@ -925,4 +926,25 @@ class Solution:
         post = check()
         ans = max(min(pre[i], post[n - 1 - i]) for i in range(n))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1506g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1506/problem/G
+        tag: monotonic_stack|greedy|classical
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            cnt = Counter(s)
+            stack = []
+            in_stack = set()
+            for w in s:
+                while stack and stack[-1] <= w and cnt[stack[-1]] and w not in in_stack:
+                    in_stack.discard(stack.pop())
+                if w not in in_stack:
+                    stack.append(w)
+                    in_stack.add(w)
+                cnt[w] -= 1
+            ac.st("".join(stack))
         return

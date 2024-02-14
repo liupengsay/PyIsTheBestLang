@@ -68,6 +68,9 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
 1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
 1360H（https://codeforces.com/contest/1360/problem/H）n-base
+1475G（https://codeforces.com/contest/1475/problem/G）linear_dp|brute_force|euler_series|reverse_thinking|brute_force
+1512G（https://codeforces.com/contest/1512/problem/G）euler_sieve|number_theory|all_factor_sum|multiplicative_function|classical
+1593D2（https://codeforces.com/contest/1593/problem/D2）brute_force|number_theory|classical
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -912,4 +915,30 @@ class Solution:
         nums[i] = -1
         j = nums.index(ans[1])
         ac.lst(sorted([i + 1, j + 1]))
+        return
+
+    @staticmethod
+    def cf_1512g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1512/problem/G
+        tag: euler_sieve|number_theory|all_factor_sum|multiplicative_function|classical
+        """
+        ceil = 10 ** 7
+        dp = [1] * (ceil + 1)
+        for p in range(2, ceil + 1):
+            if dp[p] == 1:
+                for i in range(p, ceil + 1, p):
+                    z = i // p
+                    if z % p == 0:
+                        dp[i] = dp[z] + (dp[z] - dp[z // p]) * p
+                    else:
+                        dp[i] = dp[z] * (p + 1)
+
+        res = [-1] * (ceil + 1)
+        for i in range(1, ceil + 1):
+            x = dp[i]
+            if x <= ceil and res[x] == -1:
+                res[x] = i
+        for _ in range(ac.read_int()):
+            ac.st(res[ac.read_int()])
         return

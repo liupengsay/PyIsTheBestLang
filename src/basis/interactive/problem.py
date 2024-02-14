@@ -15,17 +15,21 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1624F（https://codeforces.com/contest/1624/problem/F）binary_search|interactive
 1713D（https://codeforces.com/contest/1713/problem/D）binary_search|interactive
 1846F（https://codeforces.com/problemset/problem/1846/F）interactive
-1697D（https://codeforces.com/contest/1697/problem/D）strictly_binary_search|interactive
+1697D（https://codeforces.com/contest/1697/problem/D）strictly_binary_search|interactive|find_int_right_strictly
 1729E（https://codeforces.com/problemset/problem/1729/E）interactive
 1762D（https://codeforces.com/problemset/problem/1762/D）interactive
 1903E（https://codeforces.com/problemset/problem/1903/E）interactive
 1918E（https://codeforces.com/contest/1918/problem/E）interactive|binary_search|quick_sort
 1807E（https://codeforces.com/contest/1807/problem/E）interactive|binary_search
+1520F2（https://codeforces.com/contest/1520/problem/F2）segment_tree|interactive
+1624F（https://codeforces.com/contest/1624/problem/F）interactive|strictly_binary_search
 
 """
 import random
 import sys
 
+from src.basis.binary_search.template import BinarySearch
+from src.data_structure.segment_tree.template import RangeAddPointGet
 from src.utils.fast_io import FastIO
 
 
@@ -166,4 +170,30 @@ class Solution:
                 if nums[mid] < right:
                     stack.append([nums[mid] + 1, right, bigger])
             ac.lst(["!"] + nums, True)
+        return
+
+    @staticmethod
+    def cf_1520f2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1520/problem/F2
+        tag: segment_tree|interactive
+        """
+        n, t = ac.read_list_ints()
+        tree = RangeAddPointGet(n)
+        tree.build([-2 * t - 1] * n)
+        for _ in range(t):
+            k = ac.read_int()
+
+            def check(x):
+                res = tree.point_get(x - 1)
+                if res < 0:
+                    ac.lst(["?", 1, x], flush=True)
+                    cur = ac.read_int()
+                    tree.range_add(x - 1, x - 1, cur - res)
+                    res = cur
+                return x - res >= k
+
+            ans = BinarySearch().find_int_left(1, n, check)
+            tree.range_add(ans - 1, n - 1, 1)
+            ac.lst(["!", ans], flush=True)
         return

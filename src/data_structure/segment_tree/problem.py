@@ -77,6 +77,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 877E（https://codeforces.com/problemset/problem/877/E）segment_tree|range_reverse|dfs_order|range_bit_count
 1108E2（https://codeforces.com/contest/1108/problem/E2）segment_tree|range_add|range_min|prefix_suffix|bryte_force|brain_teaser
 1234D（https://codeforces.com/contest/1234/problem/D）segment_tree|point_set|range_or
+1538E（https://codeforces.com/contest/1538/problem/E）implemention|segment_tree|merge
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum

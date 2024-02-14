@@ -89,6 +89,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 148E（https://codeforces.com/problemset/problem/148/E）bag_dp|finite|brute_force
 1433F（https://codeforces.com/problemset/problem/1433/F）bag_dp|finite|brute_force
 1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
+1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greedy|specific_plan|classical
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite

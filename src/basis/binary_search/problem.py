@@ -83,10 +83,11 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1486D（https://codeforces.com/problemset/problem/1486/D）binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
 1118D2（https://codeforces.com/problemset/problem/1118/D2）greedy|binary_search
 883I（https://codeforces.com/problemset/problem/883/I）binary_search|two_pointers|dp
-1538G（https://codeforces.com/contest/1538/problem/G）binary_search|brute_force|math
 1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointers|check
 1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
 1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greedy|classical|binary_search
+1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
+
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp

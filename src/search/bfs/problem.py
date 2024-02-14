@@ -86,6 +86,10 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 1572A（https://codeforces.com/problemset/problem/1572/A）brain_teaser|build_graph|bfs|circle_judge|dag_dp|classical
 1037D（https://codeforces.com/problemset/problem/1037/D）01-bfs|implemention|classical
 1176E（https://codeforces.com/contest/1176/problem/E）bds|color_method|classical
+1520G（https://codeforces.com/contest/1520/problem/G）brain_teaser|bfs|classical
+1611E2（https://codeforces.com/contest/1611/problem/E2）brain_teaser|bfs|implemention|classical
+1607F（https://codeforces.com/contest/1607/problem/F）classical|topological_sort
+1593E（https://codeforces.com/contest/1593/problem/E）classical|topological_sort|undirected
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -2236,4 +2240,39 @@ class Solution:
             if k in visit2:
                 ans = ac.min(ans, visit1[k] + visit2[k])
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def cf_1593e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1593/problem/E
+        tag: classical|topological_sort|undirected
+        """
+        for _ in range(ac.read_int()):
+            ac.read_str()
+            n, k = ac.read_list_ints()
+            degree = [0] * n
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                u, v = ac.read_list_ints_minus_one()
+                dct[u].append(v)
+                dct[v].append(u)
+                degree[u] += 1
+                degree[v] += 1
+            stack = [i for i in range(n) if degree[i] == 1]
+            for _ in range(k):
+                if not stack:
+                    break
+                nex = []
+                for i in stack:
+                    degree[i] = 0
+                for i in stack:
+                    for j in dct[i]:
+                        if degree[j] > 1:
+                            degree[j] -= 1
+                            if degree[j] == 1:
+                                nex.append(j)
+                stack = nex[:]
+            ans = sum(x >= 1 for x in degree)
+            ac.st(ans)
         return

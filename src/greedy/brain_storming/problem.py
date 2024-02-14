@@ -180,6 +180,13 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1296E1（https://codeforces.com/contest/1296/problem/E1）greedy|brain_teaser|lis
 1367F2（https://codeforces.com/contest/1367/problem/F2）greedy|brain_teaser|lis
 1385F（https://codeforces.com/contest/1385/problem/F）greedy|brain_teaser|topological_sort
+1399E2（https://codeforces.com/contest/1399/problem/E2）greedy|graph|brain_teaser|brute_force
+1538G（https://codeforces.com/contest/1538/problem/G）greedy|brain_teaser
+1512F（https://codeforces.com/contest/1512/problem/F）greedy|brain_teaser
+1593G（https://codeforces.com/contest/1593/problem/G）greedy|brain_teaser|prefix_sum
+1579E2（https://codeforces.com/contest/1579/problem/E2）greedy|brain_teaser
+1560F2（https://codeforces.com/contest/1560/problem/F2）greedy
+1660F2（https://codeforces.com/contest/1660/problem/F2）greedy|brain_teaser|sorted_list
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

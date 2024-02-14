@@ -42,6 +42,7 @@ P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|cla
 609E（https://codeforces.com/problemset/problem/609/E）lca|greedy|mst|strictly_second_mst|necessary_edge
 1108F（https://codeforces.com/contest/1108/problem/F）mst|classical
 1095F（https://codeforces.com/contest/1095/problem/F）mst|brain_teaser|greedy
+1624G（https://codeforces.com/contest/1624/problem/G）or_mst|classical
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
