@@ -92,6 +92,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1807C（https://codeforces.com/contest/1807/problem/C）union_find_type
 1213G（https://codeforces.com/contest/1213/problem/G）union_find|offline_query|classical
 1619G（https://codeforces.com/contest/1619/problem/G）union_find|implemention
+1618G（https://codeforces.com/contest/1618/problem/G）union_find_left|union_find_right|classical|offline_query
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2108,4 +2109,47 @@ class Solution:
             else:
                 ans = tree.range_sum(ll, rr)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1618g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1618/problem/G
+        tag: union_find_left|union_find_right|classical|offline_query
+        """
+        n, m, q = ac.read_list_ints()
+        ans = [-1] * q
+        nums = ac.read_list_ints() + ac.read_list_ints()
+        ind = list(range(n + m))
+        ind.sort(key=lambda it: nums[it])
+        pre = ac.accumulate([nums[i] for i in ind])
+        cnt = ac.accumulate([int(i < n) for i in ind])
+        edges = [(nums[ind[i + 1]] - nums[ind[i]], i) for i in range(n + m - 1)]
+        edges.sort()
+
+        queries = ac.read_list_ints()
+        index = list(range(q))
+        index.sort(key=lambda it: queries[it])
+        uf1 = UnionFind(n + m)
+        uf2 = UnionFind(n + m)
+        tot = sum(nums[:n])
+        j = 0
+        for i in index:
+            k = queries[i]
+            while j < n + m - 1 and edges[j][0] <= k:
+                x = edges[j][1]
+                if not uf1.is_connected(x, x + 1):
+                    l1, r1 = uf1.find(x), uf2.find(x)
+                    l2, r2 = uf1.find(x + 1), uf2.find(x + 1)
+                    pre_c1 = cnt[r1 + 1] - cnt[l1]
+                    pre_c2 = cnt[r2 + 1] - cnt[l2]
+                    tot -= pre[r1 + 1] - pre[r1 + 1 - pre_c1]
+                    tot -= pre[r2 + 1] - pre[r2 + 1 - pre_c2]
+                    tot += pre[r2 + 1] - pre[r2 + 1 - pre_c1 - pre_c2]
+                    uf1.union_left(x, x + 1)
+                    uf2.union_right(x, x + 1)
+
+                j += 1
+            ans[i] = tot
+        ac.st("\n".join(str(x) for x in ans))
         return
