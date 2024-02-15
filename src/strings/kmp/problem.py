@@ -50,6 +50,7 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 535D（https://codeforces.com/problemset/problem/535/D）kmp|z-function|union_find
 1051E（https://codeforces.com/contest/1051/problem/E）kmp|z-function|linear_dp
 1015F（https://codeforces.com/contest/1015/problem/F）kmp_automaton|matrix_dp
+1690F（https://codeforces.com/contest/1690/problem/F）permutation_circle|kmp|circle_section
 
 =====================================AcWing=====================================
 143（https://www.acwing.com/problem/content/143/）kmp|circular_section
@@ -1122,4 +1123,34 @@ class Solution:
                                 ndp[nxt_s][nxt_p] += dp[s][p]
             dp = [[x % mod for x in ls] for ls in ndp]
         ac.st(dp[0][m])
+        return
+
+    @staticmethod
+    def cf_1690f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1690/problem/F
+        tag: permutation_circle|kmp|circle_section
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            ind = ac.read_list_ints_minus_one()
+            dct = {w: i for i, w in enumerate(ind)}
+            ans = 1
+            visit = [0] * n
+            for i in range(n):
+                if not visit[i]:
+                    lst = [i]
+                    visit[i] = 1
+                    while not visit[dct[lst[-1]]]:
+                        lst.append(dct[lst[-1]])
+                        visit[lst[-1]] = 1
+                    tmp = [s[j] for j in lst]
+                    x = KMP().prefix_function(tmp)[-1]
+                    if len(tmp) % (len(tmp) - x) == 0:
+                        x = len(tmp) - x
+                    else:
+                        x = len(tmp)
+                    ans = ans * x // math.gcd(ans, x)
+            ac.st(ans)
         return

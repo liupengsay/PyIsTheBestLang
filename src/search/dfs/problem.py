@@ -50,6 +50,8 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 1006E（https://codeforces.com/contest/1006/problem/E）dfs_order|template
 1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|lca
 1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum
+1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
+1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum

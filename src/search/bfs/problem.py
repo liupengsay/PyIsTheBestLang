@@ -90,6 +90,8 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 1611E2（https://codeforces.com/contest/1611/problem/E2）brain_teaser|bfs|implemention|classical
 1607F（https://codeforces.com/contest/1607/problem/F）classical|topological_sort
 1593E（https://codeforces.com/contest/1593/problem/E）classical|topological_sort|undirected
+1702E（https://codeforces.com/contest/1702/problem/E）color_method|odd_circle_check
+1674G（https://codeforces.com/contest/1674/problem/G）classical|brain_teaser|dag_dp|topologic_sort
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -2275,4 +2277,33 @@ class Solution:
                 stack = nex[:]
             ans = sum(x >= 1 for x in degree)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1674g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1674/problem/G
+        tag: classical|brain_teaser|dag_dp|topologic_sort
+        """
+        n, m = ac.read_list_ints()
+        in_degree = [0] * n
+        out_degree = [0] * n
+        dp = [1] * n
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_list_ints_minus_one()
+            in_degree[v] += 1
+            out_degree[u] += 1
+            dct[u].append(v)
+        stack = deque([x for x in range(n) if in_degree[x] == 0])
+        degree = in_degree[:]
+        while stack:
+            x = stack.popleft()
+            for y in dct[x]:
+                if out_degree[x] > 1 and in_degree[y] > 1:
+                    dp[y] = max(dp[y], dp[x] + 1)
+                degree[y] -= 1
+                if not degree[y]:
+                    stack.append(y)
+        ac.st(max(dp))
         return

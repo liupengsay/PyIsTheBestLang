@@ -78,6 +78,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 1108E2（https://codeforces.com/contest/1108/problem/E2）segment_tree|range_add|range_min|prefix_suffix|bryte_force|brain_teaser
 1234D（https://codeforces.com/contest/1234/problem/D）segment_tree|point_set|range_or
 1538E（https://codeforces.com/contest/1538/problem/E）implemention|segment_tree|merge
+1741F（https://codeforces.com/contest/1741/problem/F）segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -2854,4 +2855,55 @@ class Solution:
                 ll, rr = lst[1:]
                 ans = tree.range_or(int(ll) - 1, int(rr) - 1)
                 ac.st(bin(ans).count("1"))
+        return
+
+    @staticmethod
+    def cf_1741f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1741/problem/F
+        tag: segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            color = [[] for _ in range(n)]
+            nodes = {0, 10 ** 9}
+            for i in range(n):
+                ll, rr, c = ac.read_list_ints()
+                color[c - 1].append((i, ll, rr))
+                nodes.add(ll)
+                nodes.add(rr)
+            nodes = sorted(nodes)
+            ind = {num: i for i, num in enumerate(nodes)}
+            ans = [inf] * n
+            m = len(nodes)
+            diff = [0] * m
+            for i in range(n):
+                for _, ll, rr in color[i]:
+                    diff[ind[ll]] += 1
+                    if ind[rr] + 1 < m:
+                        diff[ind[rr] + 1] -= 1
+            for i in range(1, m):
+                diff[i] += diff[i - 1]
+            tree = RangeAddRangeSumMinMax(m)
+            tree.build(diff)
+
+            for i in range(n):
+                for j, ll, rr in color[i]:
+                    tree.range_add(ind[ll], ind[rr], -1)
+                for j, ll, rr in color[i]:
+                    if tree.range_sum(ind[ll], ind[rr]):
+                        ans[j] = 0
+                    else:
+                        x = tree.range_sum_bisect_right_non_zero(ind[ll])
+
+                        if x < inf:
+                            ans[j] = min(ans[j], ll - nodes[x])
+                        x = tree.range_sum_bisect_left_non_zero(ind[rr])
+                        if x < inf:
+                            ans[j] = min(ans[j], nodes[x] - rr)
+
+                for j, ll, rr in color[i]:
+                    tree.range_add(ind[ll], ind[rr], 1)
+
+            ac.lst(ans)
         return

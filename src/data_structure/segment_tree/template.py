@@ -689,6 +689,46 @@ class RangeAddRangeSumMinMax:
                 stack.append((s, m, i << 1))
         return res
 
+    def range_sum_bisect_right_non_zero(self, left):
+        if not self.range_sum(0, left):
+            return inf
+
+        stack = [(0, self.n - 1, 1)]
+        res = inf
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                if s <= left:
+                    return s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if s < left and self.cover[i << 1]:
+                stack.append((s, m, i << 1))
+            if left > m and self.cover[(i << 1) | 1]:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return res
+
+    def range_sum_bisect_left_non_zero(self, right):
+        if not self.range_sum(right, self.n - 1):
+            return inf
+
+        stack = [(0, self.n - 1, 1)]
+        res = inf
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                if s >= right:
+                    return s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if t >= right and self.cover[(i << 1) | 1]:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if right <= m and self.cover[i << 1]:
+                stack.append((s, m, i << 1))
+        return res
+
 
 class RangeAddRangePalindrome:
     def __init__(self, n):
@@ -1634,9 +1674,9 @@ class RangeSetRangeSumMinMax:
         self.cover = [0] * (4 * self.n)  # range sum
         self.lazy_tag = [self.initial] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
         self.floor = [self.initial] * (
-                    4 * self.n)  # because range change can to be any integer the floor initial must be inf
+                4 * self.n)  # because range change can to be any integer the floor initial must be inf
         self.ceil = [-self.initial] * (
-                    4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
+                4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
         return
 
     def _push_down(self, i, s, m, t):
@@ -2788,6 +2828,7 @@ class RangeRevereRangeBitCount:
                 val -= self.cover[i << 1]
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
+
 
 class RangeSetRangeOr:
     def __init__(self, n):

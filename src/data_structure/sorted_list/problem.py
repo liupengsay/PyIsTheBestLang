@@ -50,6 +50,7 @@ P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 1676H2（https://codeforces.com/contest/1676/problem/H2）sorted_list|inversion_pair
 1915F（https://codeforces.com/contest/1915/problem/F）sorted_list|sorting
 1462F（https://codeforces.com/contest/1462/problem/F）sorted_list|brute_force|prefix_suffix
+1690G（https://codeforces.com/contest/1690/problem/G）sorted_list|implemention
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum

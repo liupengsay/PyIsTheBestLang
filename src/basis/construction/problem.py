@@ -60,6 +60,9 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1385E（https://codeforces.com/contest/1385/problem/E）construction|topological_sort|classical|undirected|directed
 1475F（https://codeforces.com/contest/1475/problem/F）construction|matrix_reverse
 1551D2（https://codeforces.com/contest/1551/problem/D2）construction|domino
+1714F（https://codeforces.com/contest/1714/problem/F）construction|tree
+1702F（https://codeforces.com/contest/1702/problem/F）construction|brain_teaser
+1772F（https://codeforces.com/contest/1772/problem/F）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

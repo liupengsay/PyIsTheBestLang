@@ -23,6 +23,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 321C（https://codeforces.com/problemset/problem/321/C）tree_centroid_recursion|classical
 519E（https://codeforces.com/problemset/problem/519/E）lca|kth_ancestor|counter
 1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
+1702G2（https://codeforces.com/contest/1702/problem/G2）tree_lca
 
 ====================================AtCoder=====================================
 

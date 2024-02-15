@@ -131,6 +131,7 @@ P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 1328F（https://codeforces.com/contest/1328/problem/F）brute_force|prefix_sum|binary_search
 1426F（https://codeforces.com/contest/1426/problem/F）brute_force|implemention
 1618F（https://codeforces.com/contest/1618/problem/F）brute_force|bfs|data_range
+1744F（https://codeforces.com/contest/1744/problem/F）brute_force
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
