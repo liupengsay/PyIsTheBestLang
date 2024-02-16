@@ -71,6 +71,8 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1475G（https://codeforces.com/contest/1475/problem/G）linear_dp|brute_force|euler_series|reverse_thinking|brute_force
 1512G（https://codeforces.com/contest/1512/problem/G）euler_sieve|number_theory|all_factor_sum|multiplicative_function|classical
 1593D2（https://codeforces.com/contest/1593/problem/D2）brute_force|number_theory|classical
+1822G2（https://codeforces.com/contest/1822/problem/G2）eratosthenes_sieve|get_all_factor_square
+1811E（https://codeforces.com/contest/1811/problem/E）n-base
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -941,4 +943,32 @@ class Solution:
                 res[x] = i
         for _ in range(ac.read_int()):
             ac.st(res[ac.read_int()])
+        return
+
+    @staticmethod
+    def cf_1208d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1822/problem/G2
+        tag: eratosthenes_sieve|get_all_factor_square
+        """
+        ps = PrimeSieve()
+        primes = ps.eratosthenes_sieve(1000)
+        nf = NumFactor()
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            nums.sort()
+            cnt = dict()
+            for num in nums:
+                cnt[num] = cnt.get(num, 0) + 1
+            ans = 0
+            for num in sorted(cnt):
+                if cnt[num] > 2:
+                    ans += cnt[num] * (cnt[num] - 1) * (cnt[num] - 2)
+                square = nf.get_all_factor_square(primes, num)
+                for f in square:
+                    if f > 1:
+                        b = int(f ** 0.5)
+                        ans += cnt[num] * cnt.get(num // b, 0) * cnt.get(num // f, 0)
+            ac.st(ans)
         return

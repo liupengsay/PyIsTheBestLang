@@ -122,6 +122,8 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 1433F（https://codeforces.com/contest/1433/problem/F）matrix_dp
 1551E（https://codeforces.com/contest/1551/problem/E）matrix_dp
 1593F（https://codeforces.com/contest/1593/problem/F）matrix_dp|specific_plan|md_vector|flatten
+1729G（https://codeforces.com/contest/1729/problem/G）matrix_dp
+1811G2（https://codeforces.com/contest/1811/problem/G2）matrix_dp|comb
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp

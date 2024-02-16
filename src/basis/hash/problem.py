@@ -17,6 +17,7 @@ Description：prefix_suffix|counter|index|prefix_sum
 
 ===================================CodeForces===================================
 1692H（https://codeforces.com/contest/1692/problem/H）hash|prefix_min
+1800G（https://codeforces.com/contest/1800/problem/G）tree_hash|classical
 
 =====================================LuoGu======================================
 P2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum
@@ -219,4 +220,67 @@ class Solution:
                 return val
 
         FreqStack()
+        return
+
+    @staticmethod
+    def cf_1800g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1800/problem/G
+        tag: tree_hash|classical
+        """
+
+        for _ in range(ac.read_int()):
+
+            def check():
+                n = ac.read_int()
+                edge = [[] for _ in range(n)]
+                for _ in range(n - 1):
+                    u, v = ac.read_list_ints_minus_one()
+                    edge[u].append(v)
+                    edge[v].append(u)
+                dct = dict()
+                hash_id = [-1] * n
+                sub = [0] * n
+                stack = [(0, -1)]
+                while stack:
+                    x, fa = stack.pop()
+                    if x >= 0:
+                        stack.append((~x, fa))
+                        for y in edge[x]:
+                            if y != fa:
+                                stack.append((y, x))
+                    else:
+                        x = ~x
+                        cur = []
+                        cnt = 1
+                        for y in edge[x]:
+                            if y != fa:
+                                cur.append(hash_id[y])
+                                cnt += sub[y]
+                        key = tuple(sorted(cur) + [cnt])
+                        if key not in dct:
+                            dct[key] = len(dct)
+                        hash_id[x] = dct[key]
+                        sub[x] = cnt
+                x, fa = 0, -1
+                while True:
+                    cur = []
+                    for y in edge[x]:
+                        if y != fa:
+                            cur.append(hash_id[y])
+                    cnt = Counter(cur)
+                    cnt_cnt = Counter([va % 2 for va in cnt.values()])
+                    if cnt_cnt[1] > 1:
+                        ac.st("NO")
+                        return
+                    for y in edge[x]:
+                        if y != fa and cnt[hash_id[y]] % 2 == 1:
+                            x, fa = y, x
+                            break
+                    else:
+                        break
+                ac.st("YES")
+                return
+
+            check()
         return

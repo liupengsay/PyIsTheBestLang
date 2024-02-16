@@ -145,6 +145,26 @@ class NumFactor:
         return sorted(list(factor))
 
     @staticmethod
+    def get_all_factor_square(primes, num):  # 1 <= num <= 10**9!
+        """Obtain all square factors of an integer, including 1"""
+        lst = []
+        for p in primes:
+            cnt = 0
+            while num % p == 0:
+                num //= p
+                cnt += 1
+            if cnt > 1:
+                lst.append((p, cnt//2))
+        if int(num**0.5) ** 2 == num:
+            lst.append((int(num**0.5), 1))
+        pre = {1}
+        for p, c in lst:
+            for num in list(pre):
+                for i in range(1, c+1):
+                    pre.add(num*p**i)
+        return sorted([x*x for x in pre])
+
+    @staticmethod
     def get_prime_factor(num):  # faster when 1 <= num <= 10**6!
         """prime factor decomposition supports up to 10**12"""
         assert num >= 1

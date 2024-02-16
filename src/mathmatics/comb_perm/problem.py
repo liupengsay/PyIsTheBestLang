@@ -859,3 +859,72 @@ class Solution:
         ans %= p
         ac.st(ans)
         return
+
+    @staticmethod
+    def cf_1929f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1929/problem/F
+        tag: comb_perm|number_theory|partition_method
+        """
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            n, c = ac.read_list_ints()
+            dct = [[[] for _ in range(2)] for _ in range(n)]
+            low = [1] * n
+            high = [c] * n
+            for i in range(n):
+                ll, rr, val = ac.read_list_ints()
+                if val != -1:
+                    low[i] = high[i] = val
+                if ll != -1:
+                    dct[i][0].append(ll - 1)
+                if rr != -1:
+                    dct[i][1].append(rr - 1)
+
+            order = []
+            stack = [0]
+            while stack:
+                x = stack.pop()
+                if x >= 0:
+                    for y in dct[x][1]:
+                        stack.append(y)
+                    stack.append(~x)
+                    for y in dct[x][0]:
+                        stack.append(y)
+                else:
+                    x = ~x
+                    order.append(x)
+            for i in range(1, n):
+                low[order[i]] = max(low[order[i - 1]], low[order[i]])
+            for i in range(n - 2, -1, -1):
+                high[order[i]] = min(high[order[i + 1]], high[order[i]])
+
+            def comb(a, b):
+                res = 1
+                for aa in range(a, a - b, -1):
+                    res *= aa
+                    res %= mod
+                p = 1
+                for bb in range(1, b + 1):
+                    p *= bb
+                    p %= mod
+                res *= pow(p, -1, mod)
+                return res % mod
+
+            pre_low = low[order[0]]
+            pre_high = high[order[0]]
+            cnt = 1
+            ans = 1
+            for i in order[1:]:
+                if low[i] == pre_low and high[i] == pre_high:
+                    cnt += 1
+                else:
+                    ans *= comb(pre_high - pre_low + 1 + cnt - 1, cnt)
+                    cnt = 1
+                    pre_low = low[i]
+                    pre_high = high[i]
+                    ans %= mod
+            ans *= comb(pre_high - pre_low + 1 + cnt - 1, cnt)
+            ans %= mod
+            ac.st(ans)
+        return

@@ -158,6 +158,27 @@ class TestGeneral(unittest.TestCase):
             assert nt.roman_to_int(nt.int_to_roman(i)) == i
         return
 
+    def test_num_factor_get_square(self):
+        ps = PrimeSieve()
+        primes = ps.eratosthenes_sieve(1000)
+        nf = NumFactor()
+        assert nf.get_all_factor_square(primes, 1) == [1]
+
+        for num in range(1, 10**5+1):
+            lst = nf.get_all_factor(num)
+            lst = [x for x in lst if int(x**0.5)**2 == x]
+            assert lst == nf.get_all_factor_square(primes, num)
+
+        primes_bigger = [x for x in ps.eratosthenes_sieve(10000) if x > 1000][:3]
+        for _ in range(100):
+            num = random.randint(1, 10**3)
+            for _ in range(2):
+                num *= primes_bigger[random.randint(0, 2)]
+            lst = nf.get_all_factor(num)
+            lst = [x for x in lst if int(x**0.5)**2 == x]
+            assert lst == nf.get_all_factor_square(primes, num)
+        return
+
 
 if __name__ == '__main__':
     unittest.main()

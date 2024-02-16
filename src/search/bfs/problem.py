@@ -92,6 +92,8 @@ P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 1593E（https://codeforces.com/contest/1593/problem/E）classical|topological_sort|undirected
 1702E（https://codeforces.com/contest/1702/problem/E）color_method|odd_circle_check
 1674G（https://codeforces.com/contest/1674/problem/G）classical|brain_teaser|dag_dp|topologic_sort
+1790F（https://codeforces.com/contest/1790/problem/F）classical|data_range|limit_operation
+1840F（https://codeforces.com/contest/1840/problem/F）bfs|classical
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

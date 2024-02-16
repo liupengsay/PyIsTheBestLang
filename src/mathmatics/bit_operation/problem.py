@@ -53,7 +53,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1800F（https://codeforces.com/contest/1800/problem/F）bit_operation|brute_force|counter
 276D（https://codeforces.com/contest/276/problem/D）maximum_xor|classical
 1742G（https://codeforces.com/contest/1742/problem/G）prefix_or|lexicographical_order|construction|specific_plan
-1851F（https://codeforces.com/contest/1851/problem/F）minimum_xor_pair|classical|sort|adjacent_pair
+1851F（https://codeforces.com/contest/1851/problem/F）minimum_xor_pair|classical|sort|adjacent_pair|brain_teaser
 1879D（https://codeforces.com/contest/1879/problem/D）bit_operation|bit_contribution_method|prefix_sum|counter|prefix_or
 1368D（https://codeforces.com/problemset/problem/1368/D）implemention|greedy|bit_wise|bit_operation
 1802C（https://codeforces.com/contest/1802/problem/C）construction|xor_property
@@ -61,6 +61,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1669H（https://codeforces.com/contest/1669/problem/H）bit_operation
 1760G（https://codeforces.com/contest/1760/problem/G）bit_operation|dfs|brute_force
 1066E（https://codeforces.com/contest/1066/problem/E）bit_operation|brute_force|implemention|prefix_sum
+1790E（https://codeforces.com/contest/1790/problem/E）bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser

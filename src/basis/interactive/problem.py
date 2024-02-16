@@ -23,6 +23,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1807E（https://codeforces.com/contest/1807/problem/E）interactive|binary_search
 1520F2（https://codeforces.com/contest/1520/problem/F2）segment_tree|interactive
 1624F（https://codeforces.com/contest/1624/problem/F）interactive|strictly_binary_search
+1846F（https://codeforces.com/contest/1846/problem/F）interactive
 
 """
 import random
