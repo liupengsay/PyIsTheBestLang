@@ -95,6 +95,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
 ABC118D（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy|bag_dp|specific_plan
 ABC145E（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|bag_dp|finite|sort|refresh_table
+ABC341F（https://atcoder.jp/contests/abc341/tasks/abc341_f）bag_dp|tree_dp|greedy|classical
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp

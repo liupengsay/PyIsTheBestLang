@@ -10,10 +10,31 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeSetRangeSumMinMaxDynamic, RangeSetRangeOr, RangeAffineRangeSum, RangeAddMulRangeSum, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
-    RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct
+    RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
+    RangeRevereRangeAlter
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_range_reverse_alter_query(self):
+        for _ in range(100):
+            n = 100
+            tree = RangeRevereRangeAlter(n)
+            nums = [random.randint(0, 1) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(10):
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                for i in range(ll, rr + 1):
+                    nums[i] ^= 1
+                tree.range_reverse(ll, rr)
+                assert tree.get() == nums
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                res = tree.range_alter_query(ll, rr)
+                check = all(nums[i + 1] != nums[i] for i in range(ll, rr))
+                assert res == check
+        return
 
     def test_range_add_point_get(self):
         low = 1
@@ -150,7 +171,6 @@ class TestGeneral(unittest.TestCase):
             assert res[0] == max(nums[left:right + 1])
         assert tree.get() == nums
         return
-
 
     def test_range_descend_range_min(self):
         low = 0
@@ -747,7 +767,6 @@ class TestGeneral(unittest.TestCase):
                 assert ans == tree.range_sum_bisect_left(pre)
         return
 
-
     def test_range_set_pre_sum_max_dynamic(self):
         high = n = 1000
         nums = [0] * n
@@ -784,7 +803,7 @@ class TestGeneral(unittest.TestCase):
     def test_range_set_pre_sum_max_dynamic_dct(self):
         high = n = 1000
         nums = [0] * n
-        tree = RangeSetPreSumMaxDynamicDct(n, 3*10, -high - 1)
+        tree = RangeSetPreSumMaxDynamicDct(n, 3 * 10, -high - 1)
 
         for _ in range(high):
             left = random.randint(0, n - 1)

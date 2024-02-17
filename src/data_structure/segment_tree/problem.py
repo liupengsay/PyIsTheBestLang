@@ -86,6 +86,8 @@ ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range
 ABC327F（https://atcoder.jp/contests/abc327/tasks/abc327_f）segment_tree|range_add|range_max
 ABC285F（https://atcoder.jp/contests/abc285/tasks/abc285_f）segment_tree|point_add|range_sum|range_ascend_sub_cnt|point_set
 ABC339E（https://atcoder.jp/contests/abc339/tasks/abc339_e）segment_tree|linear_dp
+ABC341E（https://atcoder.jp/contests/abc341/tasks/abc341_e）segment_tree|range_reverse|range_alter
+ABC322F（https://atcoder.jp/contests/abc322/tasks/abc322_f）segment_tree|range_set_reverse|range_longest_con_sub
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -150,7 +152,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
-    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic
+    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -756,7 +758,7 @@ class Solution:
             if left > right:
                 left, right = right, left
             if lst[0] <= 2:
-                tree.range_change_reverse(left, right, lst[0])
+                tree.range_set_reverse(left, right, lst[0])
             elif lst[0] == 3:
                 ans.append(str(tree.range_sum(left, right)))
             else:
@@ -2906,4 +2908,42 @@ class Solution:
                     tree.range_add(ind[ll], ind[rr], 1)
 
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_341e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc341/tasks/abc341_e
+        tag: segment_tree|range_reverse|range_alter
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeRevereRangeAlter(n)
+        tree.build([int(w) for w in ac.read_str()])
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            ll, rr = lst[1:]
+            if lst[0] == 1:
+                tree.range_reverse(ll - 1, rr - 1)
+            else:
+                ans = tree.range_alter_query(ll - 1, rr - 1)
+                ac.st("Yes" if ans else "No")
+        return
+
+    @staticmethod
+    def abc_322f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc322/tasks/abc322_f
+        tag: segment_tree|range_set_reverse|range_longest_con_sub
+        """
+        n, q = ac.read_list_ints()
+        tree = RangeSetReverseRangeSumLongestConSub(n)
+        tree.build([int(w) for w in ac.read_str()])
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            ll, rr = lst[1:]
+            if lst[0] == 1:
+                tree.range_set_reverse(ll - 1, rr - 1, 2)
+            else:
+                ans = tree.range_longest_con_sub(ll - 1, rr - 1)
+                ac.st(ans)
         return

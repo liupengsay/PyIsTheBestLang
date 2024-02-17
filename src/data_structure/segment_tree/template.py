@@ -2830,6 +2830,113 @@ class RangeRevereRangeBitCount:
         return t
 
 
+class RangeRevereRangeAlter:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * self.n)
+        self.lazy_tag = [0] * (4 * self.n)
+        self.pre = [0] * (4 * self.n)
+        self.suf = [0] * (4 * self.n)
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.cover[i] = 1
+                    self.pre[i] = nums[s]
+                    self.suf[i] = nums[s]
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] & self.cover[(i << 1) | 1] & (self.suf[i << 1] ^ self.pre[(i << 1) | 1])
+        self.pre[i] = self.pre[i << 1]
+        self.suf[i] = self.suf[(i << 1) | 1]
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.suf[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def _push_down(self, i):
+        if self.lazy_tag[i]:
+            self.pre[i << 1] ^= 1
+            self.pre[(i << 1) | 1] ^= 1
+
+            self.suf[i << 1] ^= 1
+            self.suf[(i << 1) | 1] ^= 1
+
+            self.lazy_tag[i << 1] ^= 1
+            self.lazy_tag[(i << 1) | 1] ^= 1
+
+            self.lazy_tag[i] = 0
+        return
+
+    def range_reverse(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self.pre[i] ^= 1
+                    self.suf[i] ^= 1
+                    self.lazy_tag[i] ^= 1
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_alter_query(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = -1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if not self.cover[i]:
+                    return False
+                if ans != -1 and ans == self.pre[i]:
+                    return False
+                ans = self.suf[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return True
+
+
 class RangeSetRangeOr:
     def __init__(self, n):
         self.n = n
