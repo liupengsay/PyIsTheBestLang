@@ -92,6 +92,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
 ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
+ABC341D（https://atcoder.jp/contests/abc341/tasks/abc341_d）binary_search|math|classical
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
