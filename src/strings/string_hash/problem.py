@@ -16,6 +16,7 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 187（https://leetcode-cn.com/problems/repeated-dna-sequences/）
 2851（https://leetcode.cn/problems/string-transformation/）string_hash|kmp|matrix_dp|matrix_fast_power
 2977（https://leetcode.cn/problems/minimum-cost-to-convert-string-ii/）string_hash|dp|dijkstra|trie
+100208（https://leetcode.com/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/）string_hash|brute_force
 
 =====================================LuoGu======================================
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
@@ -65,7 +66,7 @@ from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
-    MatrixHash, MatrixHashReverse
+    MatrixHash, MatrixHashReverse, StringHashSingle
 from src.utils.fast_io import FastIO, inf
 
 
@@ -659,7 +660,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_1923(n: int, paths: List[List[int]]) -> int:
+    def lc_1923_1(n: int, paths: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/longest-common-subpath/
         tag: binary_search|string_hash
@@ -687,6 +688,38 @@ class Solution:
         n += 1
         sh1 = StringHash(lst)
         sh2 = StringHash(lst)
+        ans = BinarySearch().find_int_right(0, min(len(p) for p in paths), check)
+        return ans
+
+    @staticmethod
+    def lc_1923_2(n: int, paths: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/longest-common-subpath/
+        tag: binary_search|string_hash
+        """
+
+        def check(x):
+            pre = set()
+            ind = 0
+            for i in range(k):
+                m = len(paths[i])
+                cur = set()
+                for j in range(ind, ind + m - x + 1):
+                    cur.add(sh1.query(j, j + x - 1))
+                if not i:
+                    pre = cur
+                else:
+                    pre = pre.intersection(cur)
+                if not pre:
+                    return False
+                ind += m
+            return len(pre) > 0
+
+        k = len(paths)
+        lst = []
+        for path in paths:
+            lst.extend(path)
+        sh1 = StringHashSingle(lst)
         ans = BinarySearch().find_int_right(0, min(len(p) for p in paths), check)
         return ans
 
@@ -1353,3 +1386,29 @@ class Solution:
             ans[i] += ans[i + 1]
         ac.lst(ans[1:])
         return
+
+    @staticmethod
+    def lc_100208(words: List[str]) -> int:
+        """
+        url: https://leetcode.com/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/
+        tag: string_hash|brute_force
+        """
+        ans = 0
+        st = "".join(words)
+        sh1 = StringHash([ord(w) - ord("a") for w in st])
+        sh2 = StringHash([ord(w) - ord("a") for w in st])
+        pre = defaultdict(int)
+        length = 0
+        for word in words:
+            m = len(word)
+            for i in range(1, m + 1):
+                prefix = (sh1.query(length, length + i - 1), sh2.query(length, length + i - 1))
+                suffix = (sh1.query(length + m - 1 - i + 1, length + m - 1),
+                          sh2.query(length + m - 1 - i + 1, length + m - 1))
+                if prefix == suffix:
+                    ans += pre[prefix]
+
+            prefix = (sh1.query(length, length + m - 1), sh2.query(length, length + m - 1))
+            pre[prefix] += 1
+            length += m
+        return ans

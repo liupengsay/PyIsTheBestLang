@@ -11,6 +11,7 @@ Description：prefix_sum|interval_dp|preprocess_dp|memory_search
 1278（https://leetcode.cn/problems/palindrome-partitioning-iii/）preprocess_dp|interval_dp
 1690（https://leetcode.cn/problems/stone-game-vii/description/）interval_dp
 1312（https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
+3040（https://leetcode.com/contest/biweekly-contest-124/problems/maximum-number-of-operations-with-the-same-score-ii/）interval_dp|brute_force
 
 =====================================LuoGu======================================
 P1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array

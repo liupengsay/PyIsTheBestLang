@@ -35,6 +35,7 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 2327（https://leetcode.cn/problems/number-of-people-aware-of-a-secret/description/）prefix_sum|diff_array|liner_dp
 2572（https://leetcode.cn/problems/count-the-number-of-square-free-subsets/description/）liner_dp|counter
 2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）liner_dp|counter|monotonic_stack|linked_list|
+3041（https://leetcode.com/contest/biweekly-contest-124/problems/maximize-consecutive-elements-in-an-array-after-modification/）linear_dp
 
 =====================================LuoGu======================================
 P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp

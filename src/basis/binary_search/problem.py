@@ -87,7 +87,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
 1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greedy|classical|binary_search
 1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
-
+1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1570,4 +1570,40 @@ class Solution:
 
         ans = BinarySearch().find_int_left(sum(cnt), sum(cnt) * 2, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1883g2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1883/problem/G2
+        tag: binary_search|greedy|sorted_list
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            a = [1] + ac.read_list_ints()
+            lst = SortedList(a)
+
+            b = ac.read_list_ints()
+            b.sort()
+
+            def compute(x):
+                lst.discard(1)
+                lst.add(x)
+                res = j = 0
+                for num in lst:
+                    while j < n and b[j] <= num:
+                        j += 1
+                    res += j < n
+                    j += 1
+                lst.add(1)
+                lst.discard(x)
+                return n - res
+
+            def check(x):
+                return compute(x) <= pre
+
+            pre = compute(1)
+            ceil = BinarySearch().find_int_right(1, m, check)
+            ans = pre * ceil + (pre + 1) * (m - ceil)
+            ac.st(ans)
         return

@@ -176,6 +176,7 @@ class StringHash:
         self.n = len(lst)
         self.p = random.randint(26, 100)
         self.mod = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
+
         self.pre = [0] * (self.n + 1)
         self.pp = [1] * (self.n + 1)
         for j, w in enumerate(lst):
@@ -190,7 +191,34 @@ class StringHash:
             return 0
         # with length y - x + 1 important!!!
         ans = (self.pre[y + 1] - self.pre[x] * self.pp[y - x + 1]) % self.mod
-        return ans
+        return ans, y - x + 1
+
+
+class StringHashSingle:
+    def __init__(self, lst):
+        """two mod to avoid hash crush"""
+        # use two class to compute is faster!!!
+        self.n = len(lst)
+        base = max(lst) + 1
+        self.p = random.randint(base, base * 2)
+        self.mod = random.getrandbits(64)
+        self.mod = random.getrandbits(64)
+
+        self.pre = [0] * (self.n + 1)
+        self.pp = [1] * (self.n + 1)
+        for j, w in enumerate(lst):
+            self.pre[j + 1] = (self.pre[j] * self.p + w) % self.mod
+            self.pp[j + 1] = (self.pp[j] * self.p) % self.mod
+        return
+
+    def query(self, x, y):
+        """range hash value index start from 0"""
+        # assert 0 <= x <= y <= self.n - 1
+        if y < x:
+            return 0
+        # with length y - x + 1 important!!!
+        ans = (self.pre[y + 1] - self.pre[x] * self.pp[y - x + 1]) % self.mod
+        return ans, y - x + 1
 
 
 class PointSetRangeHashReverse:

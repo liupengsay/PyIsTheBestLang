@@ -190,6 +190,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1674E（https://codeforces.com/contest/1674/problem/E）greedy|brute_force
 1772E（https://codeforces.com/contest/1772/problem/E）greedy|brain_teaser
 1759G（https://codeforces.com/contest/1759/problem/G）greedy|brain_teaser
+1883F（https://codeforces.com/contest/1883/problem/F）brain_teaser|prefix_suffix
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1707,4 +1708,33 @@ class Solution:
                             ans = num + ceil2 + ceil
             ac.st(ans)
 
+        return
+
+    @staticmethod
+    def cf_1883f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1883/problem/F
+        tag: brain_teaser|prefix_suffix
+        """
+        ac.get_random_seed()
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+
+            last = dict()
+            for i in range(n):
+                last[nums[i] ^ ac.random_seed] = i
+
+            first = dict()
+            for i in range(n - 1, -1, -1):
+                first[nums[i] ^ ac.random_seed] = i
+
+            ans = pre = 0
+            for i in range(n):
+                if first[nums[i] ^ ac.random_seed] == i:
+                    pre += 1
+                if last[nums[i] ^ ac.random_seed] == i:
+                    ans += pre
+
+            ac.st(ans)
         return

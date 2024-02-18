@@ -66,6 +66,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 1092F（https://codeforces.com/contest/1092/problem/F）tree_dis|reroot_dp
 1472G（https://codeforces.com/contest/1472/problem/G）shortest_path|dfs|down_to_up|up_to_down|brain_teaser
 1833G（https://codeforces.com/contest/1833/problem/G）tree_dp|construction
+1881F（https://codeforces.com/contest/1881/problem/F）reroot_dp|tree_dp
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
