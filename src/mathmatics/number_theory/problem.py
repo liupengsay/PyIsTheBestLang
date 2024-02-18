@@ -73,6 +73,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1593D2（https://codeforces.com/contest/1593/problem/D2）brute_force|number_theory|classical
 1822G2（https://codeforces.com/contest/1822/problem/G2）eratosthenes_sieve|get_all_factor_square
 1811E（https://codeforces.com/contest/1811/problem/E）n-base
+1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter

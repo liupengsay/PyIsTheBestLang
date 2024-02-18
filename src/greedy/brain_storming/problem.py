@@ -191,6 +191,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1772E（https://codeforces.com/contest/1772/problem/E）greedy|brain_teaser
 1759G（https://codeforces.com/contest/1759/problem/G）greedy|brain_teaser
 1883F（https://codeforces.com/contest/1883/problem/F）brain_teaser|prefix_suffix
+1872G（https://codeforces.com/contest/1872/problem/G）brain_teaser|greedy
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

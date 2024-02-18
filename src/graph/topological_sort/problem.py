@@ -42,6 +42,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 1829F（https://codeforces.com/contest/1829/problem/F）reverse_thinking|degree|undirected_graph
 1873H（https://codeforces.com/contest/1873/problem/H）circle_based_tree|topological_sort
 1029E（https://codeforces.com/contest/1029/problem/E）greedy|implemention|rooted_tree|depth|degree
+1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greedy
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree

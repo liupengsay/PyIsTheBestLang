@@ -202,7 +202,6 @@ class StringHashSingle:
         base = max(lst) + 1
         self.p = random.randint(base, base * 2)
         self.mod = random.getrandbits(64)
-        self.mod = random.getrandbits(64)
 
         self.pre = [0] * (self.n + 1)
         self.pp = [1] * (self.n + 1)
