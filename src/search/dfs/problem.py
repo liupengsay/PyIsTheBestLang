@@ -49,7 +49,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 208E（https://codeforces.com/contest/208/problem/E）dfs_order|lca|binary_search|counter
 1006E（https://codeforces.com/contest/1006/problem/E）dfs_order|template
 1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|lca
-1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum
+1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum|heuristic_merge
 1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
 1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
