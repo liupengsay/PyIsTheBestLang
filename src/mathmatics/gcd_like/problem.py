@@ -13,6 +13,10 @@ P5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
 P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 
+=====================================LuoGu======================================
+ABC340F（https://atcoder.jp/contests/abc340/tasks/abc340_f）ex_gcd|equation|math
+
+
 =====================================AcWing=====================================
 4299（https://www.acwing.com/problem/content/4299/）single_equation|ex_gcd
 
@@ -47,4 +51,32 @@ class Solution:
                 ac.lst([x, (n - a * x) // b])
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def abc_340f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc340/tasks/abc340_f
+        tag: ex_gcd|equation|math
+        """
+        x, y = ac.read_list_ints()
+        if x == 0:
+            if 2 % abs(y) == 0:
+                ac.lst([2 // abs(y), 0])
+            else:
+                ac.st(-1)
+            return
+        if y == 0:
+            if 2 % abs(x) == 0:
+                ac.lst([0, 2 // abs(x)])
+            else:
+                ac.st(-1)
+            return
+
+        lst = GcdLike().solve_equation(y, -x, 2)
+        if not lst:
+            ac.st(-1)
+            return
+        gcd, x0, y0 = lst[:]
+        ac.lst([x0, y0])
         return
