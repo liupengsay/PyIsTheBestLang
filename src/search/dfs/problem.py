@@ -7,7 +7,7 @@ Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 ====================================LeetCode====================================
 473（https://leetcode.cn/problems/matchsticks-to-square/）dfs|back_track
 301（https://leetcode.cn/problems/remove-invalid-parentheses/）back_track|dfs|prune
-2581（https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/）dfs_order|diff_array|counter
+2581（https://leetcode.cn/problems/count-number-of-possible-root-nodes）dfs_order|diff_array|counter|reroot_dp
 1059（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_track
 1718（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
 2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）dfs_order|brute_force
@@ -15,7 +15,8 @@ Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 1239（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_track|2-base|brute_force
 1080（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs|up_to_down|down_to_up
 2056（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）back_track|brute_force
-2458（https://leetcode.cn/height-of-binary-tree-after-subtree-removal-queries/）dfs_order
+2458（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries）dfs_order|classical
+2858（https://leetcode.cn/problems/minimum-edge-reversals-so-every-node-is-reachable/）reroot_dp|dfs|dfs_order|diff_array
 
 =====================================LuoGu======================================
 P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
@@ -43,7 +44,6 @@ P1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
 P8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
 P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 
-
 ===================================CodeForces===================================
 570D（https://codeforces.com/contest/570/problem/D）dfs_order|binary_search|offline_query
 208E（https://codeforces.com/contest/208/problem/E）dfs_order|lca|binary_search|counter
@@ -52,23 +52,22 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum
 1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
 1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
+219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
 ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribution_method|classical|tree_array
 
 =====================================AcWing=====================================
-4310（https://www.acwing.com/problem/content/4313/）dfs_order|template
-23（https://www.acwing.com/problem/content/description/21/）back_track|template
+4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
+21（https://www.acwing.com/problem/content/description/21/）back_track|template
 
 """
 
 import bisect
 from bisect import bisect_right, bisect_left
 from collections import defaultdict
-from functools import reduce
-from itertools import accumulate
-from operator import xor
+from itertools import accumulate, permutations
 from typing import List, Optional
 
 from src.basis.diff_array.template import PreFixSumMatrix
@@ -85,15 +84,11 @@ class Solution:
         return
 
     @staticmethod
-    def lc_473(matchsticks: List[int]) -> bool:
+    def lc_473_1(matchsticks: List[int]) -> bool:
         """
         url: https://leetcode.cn/problems/matchsticks-to-square/
-        tag: dfs|back_track
+        tag: dfs|back_track|state_dp|classical
         """
-        # 模板: dfs||back_track判断能否将数组分成正方形
-        n, s = len(matchsticks), sum(matchsticks)
-        if s % 4 or max(matchsticks) > s // 4:
-            return False
 
         def dfs(i):
             nonlocal ans
@@ -115,7 +110,10 @@ class Solution:
             pre.pop()
             return
 
-        matchsticks.sort(reverse=True)  # 优化点
+        n, s = len(matchsticks), sum(matchsticks)
+        if s % 4 or max(matchsticks) > s // 4:
+            return False
+        matchsticks.sort(reverse=True)  # important!!!
         m = s // 4
         ans = False
         pre = []
@@ -123,20 +121,61 @@ class Solution:
         return ans
 
     @staticmethod
+    def lc_473_2(matchsticks: List[int]) -> bool:
+        """
+        url: https://leetcode.cn/problems/matchsticks-to-square/
+        tag: dfs|back_track|state_dp|classical
+        """
+        n = len(matchsticks)
+        tot = sum(matchsticks)
+        if tot % 4:
+            return False
+        single = tot // 4
+        dp = [-1] * (1 << n)
+        dp[0] = 0
+        for s in range(1, 1 << n):
+            for i, x in enumerate(matchsticks):
+                if not s & (1 << i):
+                    continue
+                pre = s ^ (1 << i)
+                if dp[pre] >= 0 and dp[pre] + x <= single:
+                    dp[s] = (dp[pre] + x) % single
+                    break
+        return dp[-1] == 0
+
+    @staticmethod
     def lg_2383(ac=FastIO()):
-        n = ac.read_int()
-        for _ in range(n):
-            nums = ac.read_list_ints()[1:]
-            ans = Solution().lc_473(nums)
-            if not ans:
+        """
+        url: https://www.luogu.com.cn/problem/P2383
+        tag: dfs|back_track|state_dp|classical
+        """
+        for _ in range(ac.read_int()):
+            matchsticks = ac.read_list_ints()[1:]
+            n = len(matchsticks)
+            tot = sum(matchsticks)
+            if tot % 4:
                 ac.st("no")
-            else:
-                ac.st("yes")
+                continue
+            single = tot // 4
+            dp = [-1] * (1 << n)
+            dp[0] = 0
+            for s in range(1, 1 << n):
+                for i, x in enumerate(matchsticks):
+                    if not s & (1 << i):
+                        continue
+                    pre = s ^ (1 << i)
+                    if dp[pre] >= 0 and dp[pre] + x <= single:
+                        dp[s] = (dp[pre] + x) % single
+                        break
+            ac.st("yes" if dp[-1] == 0 else "no")
         return
 
     @staticmethod
-    def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 迭代法实现树形reroot_dp|dfs|dfs_order|diff_array
+    def lc_2858(n: int, edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/minimum-edge-reversals-so-every-node-is-reachable/）
+        tag：reroot_dp|dfs|dfs_order|diff_array
+        """
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
@@ -165,7 +204,7 @@ class Solution:
         url: https://codeforces.com/contest/1006/problem/E
         tag: dfs_order|template
         """
-        # dfs_order|模板题
+
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         p = ac.read_list_ints_minus_one()
@@ -235,7 +274,6 @@ class Solution:
         url: https://leetcode.cn/problems/remove-invalid-parentheses/
         tag: back_track|dfs|prune
         """
-        # dfs|back_track|删除最少数量的无效括号使得子串合法有效
 
         def dfs(i):
             nonlocal ans, pre, left, right
@@ -272,39 +310,37 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5318
         tag: bfs|topological_sort|dfs_order
         """
-        # dfs|与bfs|序获取
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n + 1)]
-        degree = [0] * (n + 1)
+        dct = [[] for _ in range(n)]
         for _ in range(m):
-            x, y = ac.read_list_ints()
+            x, y = ac.read_list_ints_minus_one()
             dct[x].append(y)
-            degree[y] += 1
-        for i in range(1, n + 1):
+        for i in range(n):
             dct[i].sort()
 
-        # dfs_order值获取
-        @ac.bootstrap
-        def dfs(a):
-            ans.append(a)
-            visit[a] = 1
-            for z in dct[a]:
-                if not visit[z]:
-                    yield dfs(z)
-            yield
-
-        visit = [0] * (n + 1)
-        ans = []
-        dfs(1)
-        ac.lst(ans)
-
-        # topological_sortingbfs|
-        ans = []
-        stack = [1]
-        visit = [0] * (n + 1)
-        visit[1] = 1
+        edge = [ls[::-1] for ls in dct]
+        stack = [0]
+        dfs = []
+        visit = [0] * n
         while stack:
-            ans.extend(stack)
+            x = stack.pop()
+            if not visit[x]:
+                dfs.append(x)
+                visit[x] = 1
+            while edge[x]:
+                y = edge[x].pop()
+                if not visit[y]:
+                    stack.append(x)
+                    stack.append(y)
+                    break
+        ac.lst([x + 1 for x in dfs])
+
+        stack = [0]
+        visit = [0] * n
+        bfs = []
+        visit[0] = 1
+        while stack:
+            bfs.extend(stack)
             nex = []
             for i in stack:
                 for j in dct[i]:
@@ -312,33 +348,8 @@ class Solution:
                         nex.append(j)
                         visit[j] = 1
             stack = nex
-        ac.lst(ans)
+        ac.lst([x + 1 for x in bfs])
         return
-
-    @staticmethod
-    def add_to_n(n):
-
-        # 将 [1, 1] 通过 [a, b] 到 [a, a+b] 或者 [a+b, a] 的方式最少次数变成 a == n or b == n
-        if n == 1:
-            return 0
-
-        def gcd_minus(a, b, c):
-            nonlocal ans
-            if c >= ans or not b:
-                return
-            assert a >= b
-            if b == 1:
-                ans = ans if ans < c + a - 1 else c + a - 1
-                return
-
-            # reverse_thinking保证使 b 减少到 a 以下
-            gcd_minus(b, a % b, c + a // b)
-            return
-
-        ans = n - 1
-        for i in range(1, n):
-            gcd_minus(n, i, 0)
-        return ans
 
     @staticmethod
     def lc_1080(root: Optional[TreeNode], limit: int) -> Optional[TreeNode]:
@@ -346,7 +357,7 @@ class Solution:
         url: https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/
         tag: dfs|up_to_down|down_to_up
         """
-        # dfs自上而下后又自下而上
+
         def dfs(node, lmt):
             if not node:
                 return
@@ -370,7 +381,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
         tag: dfs|back_track|2-base|brute_force
         """
-        # DFSback_track二进制brute_force
+
         ans = 0
         arr = [word for word in arr if len(set(word)) == len(word)]
         n = len(arr)
@@ -398,16 +409,15 @@ class Solution:
         url: https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/
         tag: dfs|back_track|prune
         """
-        # DFSback_track与prune
 
         def dfs():
             nonlocal cnt, ans
-            if cnt >= ans:  # 超过最小值prune
+            if cnt >= ans:  # prune
                 return
 
             pre = PreFixSumMatrix([g[:] for g in grid])
             if pre.query(0, 0, m - 1, n - 1) == m * n:
-                # 全部填满prune
+                # prune
                 ans = ans if ans < cnt else cnt
                 return
 
@@ -417,7 +427,7 @@ class Solution:
                         ceil = m - i
                         if n - j < ceil:
                             ceil = n - j
-                        # brute_force此时左上端点正方形的长度
+                        # brute_force left_up point
                         for x in range(ceil, 0, -1):
                             if pre.query(i, j, i + x - 1, j + x - 1) == 0 and cnt + 1 < ans:
                                 for a in range(i, i + x):
@@ -429,7 +439,7 @@ class Solution:
                                 for a in range(i, i + x):
                                     for b in range(j, j + x):
                                         grid[a][b] = 0
-                        return  # 在第一个左上角端点prune
+                        return
 
             return
 
@@ -445,7 +455,7 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/
         tag: back_track|brute_force
         """
-        # back_trackbrute_force
+
         dct = dict()
         dct["rook"] = [[-1, 0], [1, 0], [0, -1], [0, 1]]
         dct["queen"] = [[-1, 0], [1, 0], [0, -1], [0, 1], [-1, 1], [1, 1], [1, -1], [-1, -1]]
@@ -493,32 +503,42 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/
         tag: dfs_order|brute_force
         """
-        # dfs_orderdfs_order|brute_force
+
         n = len(nums)
         dct = [[] for _ in range(n)]
         for i, j in edges:
             dct[i].append(j)
             dct[j].append(i)
 
+        order = 0
+        start = [-1] * n
+        end = [-1] * n
         parent = [-1] * n
-        start, end = DFS().gen_bfs_order_iteration(dct)
-
-        # preprocess子树分数
-        def dfs(xx, fa):
-            res = nums[xx]
-            for yyy in dct[xx]:
-                if yyy != fa:
-                    dfs(yyy, xx)
-                    parent[yyy] = xx
-                    res ^= sub[yyy]
-            sub[xx] = res
-            return
-
-        total = reduce(xor, nums)
+        stack = [(0, -1)]
         sub = [0] * n
-        dfs(0, -1)
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                start[i] = order
+                end[i] = order
+                order += 1
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        parent[j] = i
+                        stack.append((j, i))
+            else:
+                i = ~i
+                sub[i] = nums[i]
+                for j in dct[i]:
+                    if j != fa:
+                        sub[i] ^= sub[j]
+                if parent[i] != -1:
+                    end[parent[i]] = end[i]
+
+        total = sub[0]
+
         ans = inf
-        # brute_force边对
         for i in range(n - 1):
             x, y = edges[i]
             if parent[x] == y:
@@ -534,9 +554,7 @@ class Solution:
                 if start[b] <= start[y] <= end[b]:
                     bb ^= yy
                 cur = [yy, bb, total ^ yy ^ bb]
-                cur_ = max(cur) - min(cur)
-                if cur_ < ans:
-                    ans = cur_
+                ans = min(ans, max(cur) - min(cur))
         return ans
 
     @staticmethod
@@ -576,10 +594,10 @@ class Solution:
     @staticmethod
     def lc_2581(edges: List[List[int]], guesses: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.cn/contest/biweekly-contest-99/problems/count-number-of-possible-root-nodes/
-        tag: dfs_order|diff_array|counter
+        url: https://leetcode.cn/problems/count-number-of-possible-root-nodes
+        tag: dfs_order|diff_array|counter|reroot_dp
         """
-        # dfs_order确定猜测的查询范围，并diff_array|counter
+
         n = len(edges) + 1
         dct = [[] for _ in range(n)]
         for i, j in edges:
@@ -587,7 +605,6 @@ class Solution:
             dct[j].append(i)
 
         visit, interval = DFS().gen_bfs_order_iteration(dct)
-        # 也可以
         diff = [0] * n
         for u, v in guesses:
             if visit[u] <= visit[v]:
@@ -609,7 +626,11 @@ class Solution:
 
     @staticmethod
     def cf_219d(ac=FastIO()):
-        # 迭代法实现树形reroot_dp|dfs|dfs_order|diff_array
+        """
+        url: https://codeforces.com/contest/219/problem/D
+        tag: reroot_dp|dfs|dfs_order|diff_array
+        """
+
         n = ac.read_int()
         edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
 
@@ -640,68 +661,11 @@ class Solution:
         return
 
     @staticmethod
-    def cf_570d_1(ac=FastIO()):
+    def cf_570d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/570/problem/D
-        tag: dfs_order|binary_search|offline_query
+        tag: dfs_order|binary_search|offline_query|classical
         """
-        # dfs_order|与binary_searchcounter统计（超时）
-        n, m = ac.read_list_ints()
-        parent = ac.read_list_ints()
-        edge = [[] for _ in range(n)]
-        for i in range(n - 1):
-            edge[parent[i] - 1].append(i + 1)
-        del parent
-        s = ac.read_str()
-
-        # 生成dfs_order即 dfs 序以及对应子树编号区间
-        @ac.bootstrap
-        def dfs(x, h):
-            nonlocal order, ceil
-            ceil = ac.max(ceil, h)
-            start = order
-            order += 1
-            while len(dct) < h + 1:
-                dct.append(defaultdict(list))
-            dct[h][s[x]].append(order - 1)
-            for y in edge[x]:
-                yield dfs(y, h + 1)
-            interval[x] = [start, order - 1]
-            yield
-
-        # 高度与dfs|区间
-        order = 0
-        ceil = 0
-        # 存储字符对应的高度以及dfs_order|
-        dct = []
-        interval = [[] for _ in range(n)]
-        dfs(0, 1)
-        del s
-        del edge
-
-        for _ in range(m):
-            v, he = ac.read_list_ints_minus_one()
-            he += 1
-            if he > ceil:
-                ac.st("Yes")
-                continue
-            low, high = interval[v]
-            odd = 0
-            for w in dct[he]:
-                cur = bisect.bisect_right(dct[he][w], high) - bisect.bisect_left(dct[he][w], low)
-                odd += cur % 2
-                if odd >= 2:
-                    break
-            ac.st("Yes" if odd <= 1 else "No")
-        return
-
-    @staticmethod
-    def cf_570d_2(ac=FastIO()):
-        """
-        url: https://codeforces.com/contest/570/problem/D
-        tag: dfs_order|binary_search|offline_query
-        """
-        # 迭代顺序实现dfs_order，利用异或和来判断是否能形成回文
 
         n, m = ac.read_list_ints()
         parent = ac.read_list_ints_minus_one()
@@ -718,17 +682,16 @@ class Solution:
         ans = [0] * m
         depth = [0] * n
 
-        # 迭代方式同时更新深度与状态
-        stack = [[0, 1, 0]]
+        stack = [(0, 1, 0)]
         while stack:
             i, state, height = stack.pop()
             if state:
                 for h, j in queries[i]:
                     ans[j] ^= depth[h]
                 depth[height] ^= 1 << (ord(s[i]) - ord("a"))
-                stack.append([i, 0, height])
+                stack.append((i, 0, height))
                 for j in edge[i]:
-                    stack.append([j, 1, height + 1])
+                    stack.append((j, 1, height + 1))
             else:
                 for h, j in queries[i]:
                     ans[j] ^= depth[h]
@@ -742,7 +705,7 @@ class Solution:
         url: https://codeforces.com/contest/208/problem/E
         tag: dfs_order|lca|binary_search|counter
         """
-        # dfs_order|LCA|binary_searchcounter
+
         n = ac.read_int()
         parent = ac.read_list_ints()
 
@@ -781,51 +744,34 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8838
         tag: dfs|back_track
         """
-        # 深度优先搜索与back_track
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
-
-        def dfs(i):
-            nonlocal ans, pre
-            if ans:
-                return
-            if i == k:
-                ans = pre[:]
-                return
-            for j in range(n):
-                if a[j] >= b[i]:
-                    x = a[j]
-                    a[j] = -1
-                    pre.append(j + 1)
-                    dfs(i + 1)
-                    a[j] = x
-                    pre.pop()
+        if n < k:
+            ac.st(-1)
             return
-
-        pre = []
-        ans = []
-        dfs(0)
-        if not ans:
-            ans = [-1]
-        ac.lst(ans)
+        for item in permutations(list(range(n)), k):
+            if all(a[item[i]] >= b[i] for i in range(k)):
+                ac.lst([x + 1 for x in item])
+                break
+        else:
+            ac.st(-1)
         return
 
     @staticmethod
-    def ac_4310(ac=FastIO()):
+    def ac_4313(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4313/
         tag: dfs_order|template
         """
-        # dfs_order模板题
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         nums = ac.read_list_ints_minus_one()
         for i in range(n - 1):
             dct[nums[i]].append(i + 1)
         for i in range(n):
-            # 注意遍历顺序
             dct[i].sort(reverse=True)
+
         start, end = DFS().gen_bfs_order_iteration(dct)
         ind = {num: i for i, num in enumerate(start)}
         for _ in range(q):
@@ -839,7 +785,11 @@ class Solution:
 
     @staticmethod
     def abc_133f(ac=FastIO()):
-        # 欧拉序在线查找树上距离，结合binary_search与prefix_sum变化情况
+        """
+        url: https://atcoder.jp/contests/abc133/tasks/abc133_f
+        tag: euler_order|online_tree_dis|binary_search|prefix_sum
+        """
+
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         edges = [[] for _ in range(n)]
@@ -851,9 +801,8 @@ class Solution:
             dct[b][a] = [c, d]
             edges[a].append(b)
             edges[b].append(a)
-        # 最近公共祖先
         tree = TreeAncestor(edges)
-        # 初始距离
+
         dis = [0] * n
         stack = [[0, -1]]
         while stack:
@@ -865,13 +814,12 @@ class Solution:
                     dct[y][x] = [-c, d]
                     dis[y] = dis[x] + d
                     stack.append([y, x])
-        # 欧拉序
+
         euler_order = DfsEulerOrder(edges).euler_order[:]
         m = len(euler_order)
         euler_ind = [-1] * n
-        # preprocess欧拉序所经过的路径prefix_sum
-        color_pos_ind = defaultdict(list)  # 从上往下
-        color_neg_ind = defaultdict(list)  # 从下往上
+        color_pos_ind = defaultdict(list)
+        color_neg_ind = defaultdict(list)
         color_pos_pre = defaultdict(lambda: [0])
         color_neg_pre = defaultdict(lambda: [0])
         for i in range(m):
@@ -896,18 +844,15 @@ class Solution:
                 u, v = v, u
             cur_dis = dict()
             for w in [u, v, ancestor]:
-                # 欧拉序维护距离的变化
                 start, end = euler_ind[0] + 1, euler_ind[w]
                 pos_range = [bisect_left(color_pos_ind[x], start), bisect_right(color_pos_ind[x], end)]
                 neg_range = [bisect_left(color_neg_ind[x], start), bisect_right(color_neg_ind[x], end)]
 
-                # 颜色对应的路径和
                 pre_color = color_pos_pre[x][pos_range[1]] - color_pos_pre[x][pos_range[0]]
                 pre_color -= color_neg_pre[x][neg_range[1]] - color_neg_pre[x][neg_range[0]]
-                # 变更代价后的路径和
+
                 post_color_cnt = pos_range[1] - pos_range[0] - (neg_range[1] - neg_range[0])
                 cur_dis[w] = dis[w] - pre_color + post_color_cnt * y
-            # 最近公共祖先距离任意两点之间的距离
             ac.st(cur_dis[u] + cur_dis[v] - 2 * cur_dis[ancestor])
         return
 
@@ -917,7 +862,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/21/
         tag: back_track|template
         """
-        # back_track模板题
         if not matrix:
             return False
 
@@ -986,4 +930,3 @@ class Solution:
             diff[i] += diff[i - 1]
         ac.lst([diff[start[i]] for i in range(n)])
         return
-

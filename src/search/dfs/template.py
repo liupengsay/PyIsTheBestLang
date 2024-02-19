@@ -17,7 +17,7 @@ class DFS:
         end = [-1] * n
         # index is original node and value is its parent
         parent = [-1] * n
-        stack = [[root, -1]]
+        stack = [(root, -1)]
         # depth of every original node
         depth = [0] * n
         # index is dfs order and value is original node
@@ -29,13 +29,13 @@ class DFS:
                 order_to_node[order] = i
                 end[i] = order
                 order += 1
-                stack.append([~i, fa])
+                stack.append((~i, fa))
                 for j in dct[i]:
                     # the order of son nodes can be assigned for lexicographical order
                     if j != fa:
                         parent[j] = i
                         depth[j] = depth[i] + 1
-                        stack.append([j, i])
+                        stack.append((j, i))
             else:
                 i = ~i
                 if parent[i] != -1:

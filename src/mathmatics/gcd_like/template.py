@@ -69,3 +69,26 @@ class GcdLike:
         # xt = x0 + b // gcd * t (t=0,1,2,3,...)
         # yt = y0 - a // gcd * t (t=0,1,2,3,...)
         return [gcd, x0, y0]
+
+    @staticmethod
+    def add_to_n(n):
+
+        # minimum times to make a == n or b == n by change [a, b] to [a + b, b] or [a, a + b] from [1, 1]
+        if n == 1:
+            return 0
+
+        def gcd_minus(a, b, c):
+            nonlocal ans
+            if c >= ans or not b:
+                return
+            if b == 1:
+                ans = ans if ans < c + a - 1 else c + a - 1
+                return
+            # reverse_thinking
+            gcd_minus(b, a % b, c + a // b)
+            return
+
+        ans = n - 1
+        for i in range(1, n):
+            gcd_minus(n, i, 0)
+        return ans
