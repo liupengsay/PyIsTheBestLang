@@ -88,6 +88,7 @@ P8385（https://www.luogu.com.cn/problem/P8385）brain_teaser|build_graph|shorte
 P8724（https://www.luogu.com.cn/problem/P8724）shortest_path|layer_dijkstra
 P8802（https://www.luogu.com.cn/problem/P8802）dijkstra|define_weight
 P2176（https://www.luogu.com.cn/problem/P2176）brute_force|shortest_path
+P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topological_sort
 
 ===================================CodeForces===================================
 20C（https://codeforces.com/problemset/problem/20/C）shortest_path|specific_plan
@@ -499,6 +500,24 @@ class Solution:
 
         dis = Dijkstra().get_second_shortest_path(dct, 0)
         ac.st(dis[n - 1][1])
+        return
+
+
+    @staticmethod
+    def lg_p1807(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1807
+        tag: dag|longest_path|dag_dp|topological_sort
+        """
+        n, m = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            edge[u].append((v, w))
+        dis = Dijkstra().get_longest_path(edge, 0)
+        ac.st(dis[-1] if dis[-1] > -inf else -1)
         return
 
     @staticmethod
