@@ -67,6 +67,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 1472G（https://codeforces.com/contest/1472/problem/G）shortest_path|dfs|down_to_up|up_to_down|brain_teaser
 1833G（https://codeforces.com/contest/1833/problem/G）tree_dp|construction
 1881F（https://codeforces.com/contest/1881/problem/F）reroot_dp|tree_dp
+1926G（https://codeforces.com/contest/1926/problem/G）tree_dp|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -74,7 +75,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 
 """
 import math
-from collections import deque, Counter, defaultdict
+from collections import deque, Counter
 from functools import lru_cache
 from typing import List, Optional
 
@@ -301,7 +302,7 @@ class Solution:
         """
         n, m, d = ac.read_list_ints()
         sub = [-inf] * n
-        evil = [0]*n
+        evil = [0] * n
         for i in ac.read_list_ints_minus_one():
             sub[i] = 0
             evil[i] = 1
@@ -373,6 +374,7 @@ class Solution:
         url: https://leetcode.cn/problems/binary-tree-cameras/
         tag: tree_dp
         """
+
         # tree_dp
         def dfs(node):
             # 不装被监控，装被监控，不装不被监控
@@ -395,6 +397,7 @@ class Solution:
         url: https://leetcode.cn/problems/linked-list-in-binary-tree/description/
         tag: classical|2-tree|linked_list|memory_dp
         """
+
         # classical二叉树与linked_list|比较的memory_searchDP
 
         @lru_cache(None)
@@ -1194,3 +1197,27 @@ class Solution:
                 cost[i - 1] += right
                 ans += right - left
         return ans
+
+    @staticmethod
+    def cf_1926g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1926/problem/G
+        tag: tree_dp|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            p = [0] + ac.read_list_ints_minus_one()
+            s = ac.read_str()
+            dpp = [0] * n
+            dps = [0] * n
+            for i in range(n - 1, -1, -1):
+                if s[i] == "P":
+                    dps[i] = n
+                if s[i] == "S":
+                    dpp[i] = n
+                pp = p[i]
+                if i:
+                    dpp[pp] += min(dpp[i], dps[i] + 1)
+                    dps[pp] += min(dps[i], dpp[i] + 1)
+            ac.st(min(dpp[0], dps[0]))
+        return
