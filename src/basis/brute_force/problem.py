@@ -144,6 +144,7 @@ ARC074A（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force
 ARC083A（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force|math
 ARC091B（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
 ABC085D（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
+ABC338C（https://atcoder.jp/contests/abc338/tasks/abc338_c）brute_force|data_range
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

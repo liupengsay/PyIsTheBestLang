@@ -97,6 +97,7 @@ P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|fl
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
+ABC338D（https://atcoder.jp/contests/abc338/tasks/abc338_d）diff_array|action_scope|contribution_method
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum

@@ -89,7 +89,7 @@ ABC339E（https://atcoder.jp/contests/abc339/tasks/abc339_e）segment_tree|linea
 ABC341E（https://atcoder.jp/contests/abc341/tasks/abc341_e）segment_tree|range_reverse|range_alter
 ABC322F（https://atcoder.jp/contests/abc322/tasks/abc322_f）segment_tree|range_set_reverse|range_longest_con_sub
 ABC340E（https://atcoder.jp/contests/abc340/tasks/abc340_e）segment_tree|range_add|range_sum
-
+ABC338E（https://atcoder.jp/contests/abc338/tasks/abc338_e）segment_tree|brain_teaser|range_descend|range_min|stack
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin

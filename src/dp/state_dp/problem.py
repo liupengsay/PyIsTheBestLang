@@ -52,6 +52,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
+ABC338F（https://atcoder.jp/contests/abc338/tasks/abc338_f）floyd|shortest_path|state_dp|fill_table|refresh_table|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -387,6 +388,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
+
         # state_dpDPmemory_search形式
 
         @lru_cache(None)
@@ -484,7 +486,7 @@ class Solution:
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
-            x, y = [float(w) for w in stdin.readline().rstrip().split() if w]
+            x, y = [float(w) for w in ac.read_list_strs() if w]
             if not x == y == 0:
                 lst.append([x, y])
 
@@ -668,6 +670,7 @@ class Solution:
         url: https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/
         tag: memory_search|counter
         """
+
         # memory_search与组合mathcounter
 
         @lru_cache(None)
@@ -720,6 +723,7 @@ class Solution:
         url: https://leetcode.cn/problems/distribute-repeating-integers/
         tag: state_dp
         """
+
         # 线性索引|brute_force子集state_compress
         @lru_cache(None)
         def dfs(i, state):
@@ -748,6 +752,7 @@ class Solution:
         url: https://leetcode.cn/problems/the-score-of-students-solving-math-expression/
         tag: memory_search|fill_table
         """
+
         # 类似divide_and_conquer的思想memory_search
         @lru_cache(None)
         def dfs(state):
@@ -806,6 +811,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
+
         # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
@@ -904,6 +910,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-and-sum-of-array/
         tag: bit_operation|state_dp|3-base|state_dp
         """
+
         # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）
 
         def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress
@@ -966,4 +973,37 @@ class Solution:
                 if cur > ans:
                     ans = cur
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_338f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc338/tasks/abc338_f
+        tag: floyd|shortest_path|state_dp|fill_table|refresh_table|classical
+        """
+        n, m = ac.read_list_ints()
+        dis = [[inf] * n for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_list_ints()
+            dis[u - 1][v - 1] = w
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    if dis[i][k] < inf and dis[k][j] < inf:
+                        dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
+        m = 1 << n
+        dp = [inf] * m * n
+
+        for i in range(n):
+            dp[i * m + (1 << i)] = 0
+        for s in range(1 << n):
+            for j in range(n):
+                if dp[j * m + s] == inf or not (s >> j) & 1:
+                    continue
+                for k in range(n):
+                    if dis[j][k] == inf or (s >> k) & 1:
+                        continue
+                    dp[k * m + (s | (1 << k))] = min(dp[k * m + (s | (1 << k))], dp[j * m + s] + dis[j][k])
+        ans = min(dp[i * m + m - 1] for i in range(n))
+        ac.st(ans if ans < inf else "No")
         return
