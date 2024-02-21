@@ -73,6 +73,10 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1506F（https://codeforces.com/contest/1506/problem/F）implemention|odd_even
 1560E（https://codeforces.com/contest/1560/problem/E）reverse_thinking|implemention
 
+====================================AtCoder=====================================
+ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
+
+
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
 
@@ -134,6 +138,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1815
         tag: implemention
         """
+
         def check():
             lst = deque([[25, j] for j in range(11, 31)])
             dire = {"E": [0, 1], "S": [1, 0], "W": [0, -1], "N": [-1, 0]}

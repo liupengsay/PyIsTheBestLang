@@ -32,6 +32,11 @@ P3957（https://www.luogu.com.cn/problem/P3957）binary_search|monotonic_queue|d
 P4085（https://www.luogu.com.cn/problem/P4085）two_pointers|monotonic_queue|sliding_window
 P4392（https://www.luogu.com.cn/problem/P4392）sliding_window|monotonic_queue
 
+
+=====================================AtCoder=====================================
+ABC334F（https://atcoder.jp/contests/abc334/tasks/abc334_f）linear_dp|monotonic_queue|classical
+
+
 =====================================AcWing=====================================
 133（https://www.acwing.com/problem/content/135/）monotonic_queue
 135（https://www.acwing.com/problem/content/137/）monotonic_queue
@@ -511,4 +516,37 @@ class Solution:
 
             ans = BinarySearch().find_int_left(0, sum(nums), check)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_334f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc334/tasks/abc334_f
+        tag: linear_dp|monotonic_queue|classical
+        """
+        n, k = ac.read_list_ints()
+        sx, sy = ac.read_list_ints()
+        lst = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
+
+        def dis(x1, y1, x2, y2):
+            return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
+
+        pre = [0] * (n + 1)
+        for i in range(2, n + 1):
+            pre[i] = pre[i - 1] + dis(lst[i - 1][0], lst[i - 1][1], lst[i][0], lst[i][1])
+
+        dis0 = [inf] + [dis(sx, sy, x, y) for x, y in lst[1:]]
+        stack = deque([0])
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        for i in range(1, n + 1):
+            while stack and i - stack[0] > k:
+                stack.popleft()
+            j = stack[0]
+            dp[i] = dp[j] + dis0[j + 1] - pre[j + 1] + dis0[i] + pre[i]
+            while (stack and i < n and dp[i] + dis0[i + 1] - pre[i + 1]
+                   < dp[stack[-1]] + dis0[stack[-1] + 1] - pre[stack[-1] + 1]):
+                stack.pop()
+            stack.append(i)
+        ac.st(dp[-1])
         return

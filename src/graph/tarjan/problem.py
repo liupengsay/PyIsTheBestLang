@@ -39,6 +39,11 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component|pdcc|undirected|odd_circle
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
 
+===================================CodeForces===================================
+ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
+ABC334E（https://atcoder.jp/contests/abc334/tasks/abc334_e）union_find|mod_reverse|expectation|math|classical
+
+
 =====================================AcWing=====================================
 3582（https://www.acwing.com/problem/content/3582/）scc
 3816（https://www.acwing.com/problem/content/description/3816/）scc|topological_sort|dag_dp
@@ -508,6 +513,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2656
         tag: scc|dag|longest_path|longest_path|dijkstra|spfa
         """
+
         def check(cc, dd):
             xx = 0
             while cc:
@@ -849,3 +855,47 @@ class Solution:
         _, scc_node_id, _ = Tarjan().get_scc(n, dct)
         ans = max(len(ls) for ls in scc_node_id)
         return ans if ans > 1 else -1
+
+    @staticmethod
+    def abc_334g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc334/tasks/abc334_g
+        tag: union_find|mod_reverse|tarjan|edcc|expectation|math|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        uf = UnionFind(m * n)
+        mod = 998244353
+        green = 0
+        dct = [[] for _ in range(m * n)]
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "#":
+                    if i + 1 < m and grid[i + 1][j] == "#":
+                        uf.union(i * n + j, i * n + n + j)
+                        dct[i * n + j].append(i * n + n + j)
+                        dct[i * n + n + j].append(i * n + j)
+                    if j + 1 < n and grid[i][j + 1] == "#":
+                        uf.union(i * n + j, i * n + j + 1)
+                        dct[i * n + j].append(i * n + 1 + j)
+                        dct[i * n + 1 + j].append(i * n + j)
+                    green += 1
+        group = uf.get_root_part()
+        ans = 0
+        p = pow(green, -1, mod)
+        roots = [root for root in group if grid[root // n][root % n] == "#"]
+        count = len(roots)
+        _, _, node_group_id = Tarjan().get_pdcc(m * n, dct)
+        for root in roots:
+            lst = group[root]
+            tot = len(lst)
+            if tot == 1:
+                ans += (count - 1)
+            else:
+                for ls in lst:
+                    ans += count + len(node_group_id[ls]) - 1
+                    ans %= mod
+        ans *= p
+        ans %= mod
+        ac.st(ans)
+        return
