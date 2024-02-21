@@ -102,7 +102,7 @@ ABC070D（https://atcoder.jp/contests/abc070/tasks/abc070_d）classical|lca|offl
 ABC336F（https://atcoder.jp/contests/abc336/tasks/abc336_f）bilateral_bfs|classical|matrix_rotate
 ABC339B（https://atcoder.jp/contests/abc339/tasks/abc339_b）bfs|visit
 ABC339D（https://atcoder.jp/contests/abc339/tasks/abc339_d）bfs
-
+ABC335E（https://atcoder.jp/contests/abc335/tasks/abc335_e）bfs|union_find|linear_dp
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

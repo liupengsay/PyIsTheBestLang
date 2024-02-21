@@ -26,7 +26,7 @@ P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
-
+ABC335F（https://atcoder.jp/contests/abc335/tasks/abc335_f）sqrt_decomposition|linear_dp|refresh_table|fill_table|classical
 
 """
 import bisect
@@ -792,4 +792,32 @@ class Solution:
             for x in lst[4:]:
                 ds.point_set(x - 1, winner)
         ac.st(ds.range_mode(0, n - 1))
+        return
+
+    @staticmethod
+    def abc_335f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc335/tasks/abc335_f
+        tag: sqrt_decomposition|linear_dp|refresh_table|fill_table|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        size = int((2 * 10 ** 5) ** 0.5)
+        dp = [0] * n
+        dp[0] = 1
+        mod = 998244353
+        pre = [0] * size * (size + 1)
+        for i in range(n):
+            a = nums[i]
+            for x in range(1, size + 1):
+                dp[i] += pre[x * size + i % x]
+                dp[i] %= mod
+            if a > size:
+                for j in range(i + a, n, a):
+                    dp[j] += dp[i]
+                    dp[j] %= mod
+            else:
+                pre[a * size + i % a] += dp[i]
+                pre[a * size + i % a] %= mod
+        ac.st(sum(dp) % mod)
         return
