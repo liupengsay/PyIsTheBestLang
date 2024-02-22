@@ -10,6 +10,9 @@ P1291（https://www.luogu.com.cn/problem/P1291）liner_dp|expectation
 P4316（https://www.luogu.com.cn/problem/P4316）expectation|reverse_graph|topological_sort
 P6154（https://www.luogu.com.cn/problem/P6154）reverse_graph|expectation|tree_dp|float|mod
 
+=====================================AtCoder======================================
+ABC333F（https://atcoder.jp/contests/abc333/tasks/abc333_f）matrix_dp|equation|prob_dp|math|implemention
+
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
 
@@ -141,4 +144,30 @@ class Solution:
                     p += j / (i + j) * (j - 1) / (i + j - 1) * (j - 2) / (i + j - 2) * dp[i][j - 3]
                 dp[i][j] = p
         ac.st(dp[w][b])
+        return
+
+    @staticmethod
+    def abc_333f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc333/tasks/abc333_f
+        tag: matrix_dp|equation|prob_dp|math|implemention
+        """
+        n = ac.read_int()
+        mod = 998244353
+        pp = [pow(2, i, mod) for i in range(3001)]
+        pv = [0 for _ in range(3001)]
+        x = 1
+        for i in range(1, 3001):
+            pv[i] = pow(x, -1, mod)
+            x = (x * 2 + 1) % mod
+        p1 = pow(2, -1, mod)
+        dp = [0] * n
+        dp[0] = 1
+        for i in range(1, n):
+            ndp = [0] * n
+            ndp[0] = sum(dp[j] * pp[j] for j in range(i)) * pow(2 ** (i + 1) - 1, -1, mod) % mod
+            for j in range(1, i + 1):
+                ndp[j] = (p1 * (dp[j - 1] + ndp[j - 1])) % mod
+            dp = ndp
+        ac.lst([x for x in dp])
         return

@@ -52,7 +52,7 @@ P8744（https://www.luogu.com.cn/problem/P8744）tree_dp
 
 ====================================AtCoder=====================================
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
-161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
+ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -68,6 +68,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 1833G（https://codeforces.com/contest/1833/problem/G）tree_dp|construction
 1881F（https://codeforces.com/contest/1881/problem/F）reroot_dp|tree_dp
 1926G（https://codeforces.com/contest/1926/problem/G）tree_dp|classical
+161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
