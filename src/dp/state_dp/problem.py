@@ -834,7 +834,10 @@ class Solution:
 
     @staticmethod
     def abc_332e(ac=FastIO()):
-
+        """
+        url: https://atcoder.jp/contests/abc332/tasks/abc332_e
+        tag: math|state_dp|classical
+        """
         n, d = ac.read_list_ints()
         nums = ac.read_list_ints()
         cost = [0] * (1 << n)
