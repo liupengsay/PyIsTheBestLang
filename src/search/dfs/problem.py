@@ -53,6 +53,8 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
 1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
+246E（https://codeforces.com/problemset/problem/246/E）
+1076E（https://codeforces.com/problemset/problem/1076/E）
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
