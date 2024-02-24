@@ -53,8 +53,8 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
 1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
-246E（https://codeforces.com/problemset/problem/246/E）
-1076E（https://codeforces.com/problemset/problem/1076/E）
+246E（https://codeforces.com/problemset/problem/246/E）tree_array|offline_query|range_unique|dfs_order
+1076E（https://codeforces.com/problemset/problem/1076/E）tree_diff_array|dfs|classical
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -931,4 +931,131 @@ class Solution:
         for i in range(1, n):
             diff[i] += diff[i - 1]
         ac.lst([diff[start[i]] for i in range(n)])
+        return
+
+    @staticmethod
+    def cf_246e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/246/E
+        tag: tree_array|offline_query|range_unique|dfs_order
+        """
+        n = ac.read_int()
+        n += 1
+        names = [""] * n
+        parent = [-1] * n
+        dct = [[] for _ in range(n)]
+        for i in range(1, n):
+            name, fa = ac.read_list_strs()
+            fa = int(fa)
+            names[i] = name
+            parent[i] = fa
+            dct[fa].append(i)
+        ind = {name: i for i, name in enumerate(list(set(names)))}
+        names = [ind[x] for x in names]
+        del ind
+
+        order = 0
+        start = [-1] * n
+        end = [-1] * n
+        stack = [(0, -1)]
+        depth = [0] * n
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                start[i] = order
+                end[i] = order
+                order += 1
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    depth[j] = depth[i] + 1
+                    stack.append((j, i))
+            else:
+                i = ~i
+                if parent[i] != -1:
+                    end[parent[i]] = end[i]
+
+        m = ac.read_int()
+        queries = [ac.read_list_ints() for _ in range(m)]
+        dct = [[] for _ in range(n)]
+        for i in range(m):
+            v, k = queries[i]
+            if depth[v] + k <= n - 1:
+                dct[depth[v] + k].append((start[v], end[v], i))
+        nodes = [[] for _ in range(n)]
+        for i in range(n):
+            nodes[depth[i]].append(i)
+
+        ans = [0] * m
+        pre = [-1] * n
+        for d in range(n):
+            lst = nodes[d]
+
+            lst.sort(key=lambda it: start[it])
+            dfs_order = [start[x] for x in lst]
+            check = [(bisect.bisect_left(dfs_order, s), bisect.bisect_right(dfs_order, e) - 1, i) for s, e, i in dct[d]]
+            for x in lst:
+                pre[names[x]] = -1
+            k = len(lst)
+            tree = PointAddRangeSum(k)
+            check.sort(key=lambda it: it[1])
+
+            i = 0
+            for ll, rr, ii in check:
+                while i <= rr:
+                    num = names[lst[i]]
+                    if pre[num] != -1:
+                        tree.point_add(pre[num] + 1, -1)
+                    pre[num] = i
+                    tree.point_add(i + 1, 1)
+                    i += 1
+                ans[ii] = tree.range_sum(ll + 1, rr + 1)
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_1076e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1076/E
+        tag: tree_diff_array|dfs|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+        ops = [[] for _ in range(n)]
+        for _ in range(ac.read_int()):
+            v, d, x = ac.read_list_ints()
+            v -= 1
+            ops[v].append((d, x))
+        pre = [0] * (n + 1)
+        ans = [0] * n
+        stack = [(0, -1)]
+        depth = [0] * n
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append((~x, fa))
+                if depth[x]:
+                    pre[depth[x]] += pre[depth[x] - 1]
+                for d, v in ops[x]:
+                    pre[depth[x]] += v
+                    if depth[x] + d + 1 < n:
+                        pre[depth[x] + d + 1] -= v
+                ans[x] = pre[depth[x]]
+                for y in dct[x]:
+                    if y != fa:
+                        stack.append((y, x))
+                        depth[y] = depth[x] + 1
+            else:
+                x = ~x
+                if depth[x]:
+                    pre[depth[x]] -= pre[depth[x] - 1]
+                for d, v in ops[x]:
+                    pre[depth[x]] -= v
+                    if depth[x] + d + 1 < n:
+                        pre[depth[x] + d + 1] += v
+        ac.lst(ans)
         return

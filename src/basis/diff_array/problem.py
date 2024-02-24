@@ -1670,8 +1670,9 @@ class Solution:
         url: https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/
         tag: diff_array|classical
         """
+
         def update():
-            if 0<=low <= high:
+            if 0 <= low <= high:
                 cnt[low] += 1
                 if high + 1 <= n:
                     cnt[high + 1] -= 1
@@ -1695,29 +1696,27 @@ class Solution:
                 cnt[i] += cnt[i - 1]
             return cnt[1:]
 
-
         for i in range(x + 1):
             # 左边
-            if i+1<=x:
+            if i + 1 <= x:
                 low = i + 1 - i
                 high = x - i
                 update()  # [i+1, x]
 
-            if y <= n-1:
+            if y <= n - 1:
                 low = x - i + 1 + y - y  # [y, n-1]
                 high = x - i + 1 + n - 1 - y
                 update()
 
-
             j = (x + y + 1) // 2
             # [x+1, j]
-            if x+1<=j<y:
+            if x + 1 <= j < y:
                 low = x + 1 - i
                 high = j - i
                 update()
 
             # [j+1, y-1]
-            if j+1<=y-1:
+            if j + 1 <= y - 1:
                 low = x - i + 1 + y - (y - 1)
                 high = x - i + 1 + y - (j + 1)
                 update()
@@ -1730,27 +1729,27 @@ class Solution:
             update()
 
         # 中间
-        for i in range(x+1, y):
+        for i in range(x + 1, y):
 
             # [y, n-1]
-            if y <= n-1:
-                right = min(y-i, i-x+1)
-                low = right + y-y
-                high = right+n-1-y
+            if y <= n - 1:
+                right = min(y - i, i - x + 1)
+                low = right + y - y
+                high = right + n - 1 - y
                 update()
 
-            j = min((2 * i + y - x + 1) // 2, y-1)
+            j = min((2 * i + y - x + 1) // 2, y - 1)
             # [i+1, j]
-            if i+1<=j<y:
+            if i + 1 <= j < y:
                 low = 1
-                high = j-i
+                high = j - i
                 update()
             # [j+1, y-1]
-            if j+1<=y-1:
-                low = i-x+1+y-(y-1)
-                high = i-x+1+y-(j+1)
+            if j + 1 <= y - 1:
+                low = i - x + 1 + y - (y - 1)
+                high = i - x + 1 + y - (j + 1)
                 update()
 
-        for i in range(1, n+1):
-            cnt[i] += cnt[i-1]
-        return [x*2 for x in cnt[1:]]
+        for i in range(1, n + 1):
+            cnt[i] += cnt[i - 1]
+        return [x * 2 for x in cnt[1:]]
