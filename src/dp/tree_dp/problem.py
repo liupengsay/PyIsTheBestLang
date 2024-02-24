@@ -49,6 +49,7 @@ P5765（https://www.luogu.com.cn/problem/P5765）tree_dp|P4395
 P8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
 P8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
 P8744（https://www.luogu.com.cn/problem/P8744）tree_dp
+P3047（https://www.luogu.com.cn/problem/P3047）reroot_dp|classical
 
 ====================================AtCoder=====================================
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
@@ -1275,4 +1276,59 @@ class Solution:
                     ind[xx] = cur
                     sub[cur][cc] = 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3047(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3047
+        tag: reroot_dp|classical
+        """
+        n, k = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            dct[u].append(v)
+            dct[v].append(u)
+        c = [ac.read_int() for _ in range(n)]
+        sub = [[0] * k for _ in range(n)]
+        k += 1
+        stack = [(0, -1)]
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append((~x, fa))
+                for y in dct[x]:
+                    if y != fa:
+                        stack.append((y, x))
+            else:
+                x = ~x
+                cur = [0] * k
+                for y in dct[x]:
+                    if y != fa:
+                        for j in range(k - 1):
+                            cur[j + 1] += sub[y][j]
+                cur[0] += c[x]
+                sub[x] = cur[:]
+
+        stack = [[0, -1, [0] * k]]
+        while stack:
+            x, fa, pre = stack.pop()
+            for j in range(k):
+                sub[x][j] += pre[j]
+            for y in dct[x]:
+                if y != fa:
+                    for j in range(k - 1):
+                        pre[j + 1] += sub[y][j]
+
+            for y in dct[x]:
+                if y != fa:
+                    nex = pre[:]
+                    for j in range(k - 1):
+                        nex[j + 1] -= sub[y][j]
+                    nex = [0] + nex[:-1]
+                    nex[1] += c[x]
+                    stack.append([y, x, nex])
+        for ls in sub:
+            ac.st(sum(ls))
         return
