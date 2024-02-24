@@ -69,6 +69,7 @@ ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
 1881F（https://codeforces.com/contest/1881/problem/F）reroot_dp|tree_dp
 1926G（https://codeforces.com/contest/1926/problem/G）tree_dp|classical
 161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
+1923E（https://codeforces.com/contest/1923/problem/E）heuristic_merge|tree_dp|counter|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1221,4 +1222,57 @@ class Solution:
                     dpp[pp] += min(dpp[i], dps[i] + 1)
                     dps[pp] += min(dps[i], dpp[i] + 1)
             ac.st(min(dpp[0], dps[0]))
+        return
+
+    @staticmethod
+    def cf_1923e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1923/problem/E
+        tag: heuristic_merge|tree_dp|counter|classical
+        """
+        ac.get_random_seed()
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            c = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+
+            sub = [dict() for _ in range(n)]
+            ind = list(range(n))
+            stack = [(0, -1)]
+            ans = 0
+            while stack:
+                x, fa = stack.pop()
+                if x >= 0:
+                    stack.append((~x, fa))
+                    for y in dct[x]:
+                        if y != fa:
+                            stack.append((y, x))
+                else:
+                    x = ~x
+                    xx = x
+                    cc = c[x] ^ ac.random_seed
+                    cur = ind[x]
+                    for y in dct[x]:
+                        if y != fa:
+                            ans += sub[ind[y]].get(cc, 0)
+                            if len(sub[ind[y]]) > len(sub[cur]):
+                                for x in sub[cur]:
+                                    if x != cc:
+                                        ans += sub[cur][x] * sub[ind[y]].get(x, 0)
+                                for x in sub[cur]:
+                                    sub[ind[y]][x] = sub[ind[y]].get(x, 0) + sub[cur][x]
+                                cur = ind[y]
+                            else:
+                                for x in sub[ind[y]]:
+                                    if x != cc:
+                                        ans += sub[ind[y]][x] * sub[cur].get(x, 0)
+                                for x in sub[ind[y]]:
+                                    sub[cur][x] = sub[cur].get(x, 0) + sub[ind[y]][x]
+                    ind[xx] = cur
+                    sub[cur][cc] = 1
+            ac.st(ans)
         return
