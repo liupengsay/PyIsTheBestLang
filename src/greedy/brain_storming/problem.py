@@ -46,6 +46,7 @@ Description：brain_teaser
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
 3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|perishu_theorem|hard|greedy
+100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
