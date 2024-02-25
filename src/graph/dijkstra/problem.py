@@ -103,6 +103,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
+ABC342E（https://atcoder.jp/contests/abc342/tasks/abc342_e）classical|dijkstra|longest_path
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -1992,4 +1993,41 @@ class Solution:
                     dj = d + ss * w
                     if ss < vis[j]:
                         heappush(stack, (dj, j, ss))
+        return
+
+    @staticmethod
+    def abc_342e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc342/tasks/abc342_e
+        tag: classical|dijkstra|longest_path
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            ll, dd, k, c, a, b = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            dct[b].append((a, ll, dd, k, c))
+        n = len(dct)
+        ceil = 5 * 10 ** 18
+        dis = [ceil] * n
+        dis[n - 1] = -ceil
+        stack = [(-ceil, n - 1)]
+        while stack:
+            d, i = heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, ll, dd, k, c in dct[i]:
+                ki = (-d - c - ll) // dd
+                if ki >= 0:
+                    ki = min(ki, k - 1)
+                    dj = -(ll + ki * dd)
+                    if dj < dis[j]:
+                        dis[j] = dj
+                        heappush(stack, (dj, j))
+        for d in dis[:-1]:
+            if d == ceil:
+                ac.st("Unreachable")
+            else:
+                ac.st(-d)
         return
