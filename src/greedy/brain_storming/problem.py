@@ -48,6 +48,7 @@ Description：brain_teaser
 3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|perishu_theorem|hard|greedy
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 
+
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
 P1286（https://www.luogu.com.cn/problem/P1286）brain_teaser|sorted_list
@@ -196,6 +197,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1899E（https://codeforces.com/contest/1899/problem/E）brain_teaser|greedy
 1923D（https://codeforces.com/contest/1923/problem/D）brain_teaser|greedy|prefix_sum|binary_search
 1923B（https://codeforces.com/contest/1923/problem/D）brain_teaser|implemention|greedy
+1921E（https://codeforces.com/contest/1921/problem/E）brain_teaser|implemention|greedy|odd_even
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

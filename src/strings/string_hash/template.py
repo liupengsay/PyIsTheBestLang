@@ -223,8 +223,8 @@ class StringHashSingle:
 class PointSetRangeHashReverse:
     def __init__(self, n) -> None:
         self.n = n
-        self.p = random.randint(26, 100)
-        self.mod = random.randint(10 ** 9 + 7, (1 << 31) - 1)
+        self.p = random.randint(26, 100)  # self.p = random.randint(150, 300)
+        self.mod = random.randint(10 ** 9 + 7, (1 << 31) - 1)  # self.mod = random.getrandbits(64)
         self.pp = [1] * (n + 1)
         for j in range(n):
             self.pp[j + 1] = (self.pp[j] * self.p) % self.mod

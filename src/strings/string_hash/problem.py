@@ -42,6 +42,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
+ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome_judge|classical
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/140/）string_hash
@@ -1412,3 +1413,33 @@ class Solution:
             pre[prefix] += 1
             length += m
         return ans
+
+    @staticmethod
+    def abc_331f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc331/tasks/abc331_f
+        tag: point_set|range_hash_reverse|palindrome_judge|classical
+        """
+        n, q = ac.read_list_ints()
+        tree1 = PointSetRangeHashReverse(n)
+        tree2 = PointSetRangeHashReverse(n)
+        s = ac.read_str()
+        tree1.build([ord(w) - ord("a") for w in s])
+        tree2.build([ord(w) - ord("a") for w in s])
+        for _ in range(q):
+            lst = ac.read_list_strs()
+            if lst[0] == "1":
+                x, c = lst[1:]
+                x = int(x)
+                c = ord(c) - ord("a")
+                tree1.point_set(x - 1, x - 1, c)
+                tree2.point_set(x - 1, x - 1, c)
+            else:
+                ll, rr = [int(w) - 1 for w in lst[1:]]
+                cur1 = (tree1.range_hash(ll, rr), tree2.range_hash(ll, rr))
+                cur2 = (tree1.range_hash_reverse(ll, rr), tree2.range_hash_reverse(ll, rr))
+                if cur1 == cur2:
+                    ac.st("Yes")
+                else:
+                    ac.st("No")
+        return

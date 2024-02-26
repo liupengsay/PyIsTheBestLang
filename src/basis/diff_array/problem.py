@@ -98,6 +98,7 @@ P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|fl
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
 ABC338D（https://atcoder.jp/contests/abc338/tasks/abc338_d）diff_array|action_scope|contribution_method
+ABC331D（https://atcoder.jp/contests/abc331/tasks/abc331_d）prefix_sum_matrix|circular_section
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1753,3 +1754,35 @@ class Solution:
         for i in range(1, n + 1):
             cnt[i] += cnt[i - 1]
         return [x * 2 for x in cnt[1:]]
+
+    @staticmethod
+    def abc_331d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc331/tasks/abc331_d
+        tag: prefix_sum_matrix|circular_section
+        """
+        n, q = ac.read_list_ints()
+        grid = []
+        for i in range(n):
+            grid.append([int(w == "B") for w in ac.read_str()])
+        pre = PreFixSumMatrix(grid)
+
+        def check(x, y):
+            aa = x // n
+            bb = y // n
+            res = aa * bb * pre.query(0, 0, n - 1, n - 1)
+            if x % n:
+                block = pre.query(0, 0, (x % n) - 1, n - 1)
+                res += block * bb
+                if y % n:
+                    res += pre.query(0, 0, (x % n) - 1, (y % n) - 1)
+            if y % n:
+                block = pre.query(0, 0, n - 1, (y % n) - 1)
+                res += block * aa
+            return res
+
+        for _ in range(q):
+            a, b, c, d = ac.read_list_ints()
+            ans = check(c + 1, d + 1) - check(c + 1, b) - check(a, d + 1) + check(a, b)
+            ac.st(ans)
+        return
