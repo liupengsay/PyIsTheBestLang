@@ -146,6 +146,8 @@ ARC091B（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
 ABC085D（https://atcoder.jp/contests/abc085/tasks/abc085_d）brute_force
 ABC338C（https://atcoder.jp/contests/abc338/tasks/abc338_c）brute_force|data_range
 ABC334C（https://atcoder.jp/contests/abc334/tasks/abc334_c）brute_force|prefix_suffix
+ABC330D（https://atcoder.jp/contests/abc330/tasks/abc330_d）brute_force|prefix_sum
+ABC330C（https://atcoder.jp/contests/abc330/tasks/abc330_c）brute_force|prefix_sum
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

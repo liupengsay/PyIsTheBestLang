@@ -54,6 +54,7 @@ P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
+ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|sorted_list|hash
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
