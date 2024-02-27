@@ -59,6 +59,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
 ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribution_method|classical|tree_array
+ABC328E（https://atcoder.jp/contests/abc328/tasks/abc328_e）dfs|back_trace|union_find|brute_force
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1058,4 +1059,38 @@ class Solution:
                     if depth[x] + d + 1 < n:
                         pre[depth[x] + d + 1] += v
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_328e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc328/tasks/abc328_e
+        tag: dfs|back_trace|union_find|brute_force
+        """
+        n, m, k = ac.read_list_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+
+        def dfs(i):
+            if uf.part == 1:
+                ans[0] = min(ans[0], pre[0] % k)
+                return
+            if i == m:
+                return
+            dfs(i + 1)
+            u, v, w = edges[i]
+            if not uf.is_connected(u - 1, v - 1):
+                cur = uf.root_or_size[:]
+                uf.union(u - 1, v - 1)
+                pre[0] += w
+                dfs(i + 1)
+                pre[0] -= w
+                uf.root_or_size[:] = cur[:]
+                uf.part += 1
+            return
+
+        ans = [k + 1]
+        pre = [0]
+        uf = UnionFind(n)
+        dfs(0)
+        ac.st(ans[0])
         return

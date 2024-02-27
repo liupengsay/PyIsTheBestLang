@@ -104,6 +104,7 @@ ABC237E（https://atcoder.jp/contests/abc238/tasks/abc238_e）union_find_range|p
 ABC279F（https://atcoder.jp/contests/abc279/tasks/abc279_f）union_find_range|brain_teaser|build_graph|classical
 ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contribution_method|counter
 ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
+ABC328F（https://atcoder.jp/contests/abc328/tasks/abc328_f）union_find_weighted_dis|classical|hard
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -1923,6 +1924,23 @@ class Solution:
                 if ans == "YES" and uf.union(u, v, d):
                     ans = "NO"
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_328f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc328/tasks/abc328_f
+        tag: union_find_weighted_dis|classical|hard
+        """
+        n, q = ac.read_list_ints()
+        uf = UnionFindWeighted(n)
+        ans = []
+        for i in range(q):
+            u, v, d = ac.read_list_ints_minus_one()
+            d += 1
+            if not uf.union(u, v, d):
+                ans.append(i + 1)
+        ac.lst(ans)
         return
 
     @staticmethod
