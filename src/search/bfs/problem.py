@@ -104,6 +104,7 @@ ABC339B（https://atcoder.jp/contests/abc339/tasks/abc339_b）bfs|visit
 ABC339D（https://atcoder.jp/contests/abc339/tasks/abc339_d）bfs
 ABC335E（https://atcoder.jp/contests/abc335/tasks/abc335_e）bfs|union_find|linear_dp
 ABC329E（https://atcoder.jp/contests/abc329/tasks/abc329_e）bfs|matrix_dp|classical
+ABC327D（https://atcoder.jp/contests/abc327/tasks/abc327_d）bfs|color_method|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
