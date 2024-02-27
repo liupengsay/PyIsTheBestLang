@@ -54,6 +54,7 @@ P3047（https://www.luogu.com.cn/problem/P3047）reroot_dp|classical
 ====================================AtCoder=====================================
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
+ABC329F（https://atcoder.jp/contests/abc329/tasks/abc329_f）heuristic_merge|classical|implemention
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
