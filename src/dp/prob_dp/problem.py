@@ -11,7 +11,9 @@ P4316（https://www.luogu.com.cn/problem/P4316）expectation|reverse_graph|topol
 P6154（https://www.luogu.com.cn/problem/P6154）reverse_graph|expectation|tree_dp|float|mod
 
 =====================================AtCoder======================================
+ABC342F（https://atcoder.jp/contests/abc342/tasks/abc342_f）prob_dp
 ABC333F（https://atcoder.jp/contests/abc333/tasks/abc333_f）matrix_dp|equation|prob_dp|math|implemention
+ABC326E（https://atcoder.jp/contests/abc326/tasks/abc326_e）prob_dp|contribution_method
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp

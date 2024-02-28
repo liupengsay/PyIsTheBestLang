@@ -9,11 +9,16 @@ Description：data_range|brute_force
 
 =====================================LuoGu======================================
 P5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
-CF525E（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
+
 P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_pointers|brute_force
 
 =====================================CodeForces=====================================
 1006F（https://codeforces.com/contest/1006/problem/F）prefix_sum|hash|counter|meet_in_middle
+CF525E（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
+
+=====================================AtCoder=====================================
+ABC326F（https://atcoder.jp/contests/abc326/tasks/abc326_f）meet_in_middle|brain_teaser|classical
+
 
 =====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/173/）meet_in_middle
@@ -243,5 +248,71 @@ class Solution:
         pre = check(pos[:n // 2])
         post = check(pos[n // 2:])
         ans = sum(pre[x] * post[-x] for x in pre)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_326f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc326/tasks/abc326_f
+        tag: meet_in_middle|brain_teaser|classical
+        """
+        n, x, y = ac.read_list_ints()
+        a = ac.read_list_ints()
+
+        def check(lst):
+            k = len(lst)
+            res = {0: 0}
+            for j in range(k):
+                cur = dict()
+                cur.update({num + a[lst[j]]: res[num] | (1 << lst[j]) for num in res})
+                cur.update({num - a[lst[j]]: res[num] for num in res})
+                res = cur
+            return res
+
+        axis = list(range(1, n, 2))
+        m = len(axis)
+        pre = axis[:m // 2]
+        post = axis[m // 2:]
+        res1 = check(pre)
+        res2 = check(post)
+        state = 0
+        for xx in res1:
+            if x - xx in res2:
+                state |= res1[xx] | res2[x - xx]
+                break
+        else:
+            ac.st("No")
+            return
+
+        axis = list(range(0, n, 2))
+        m = len(axis)
+        pre = axis[:m // 2]
+        post = axis[m // 2:]
+        res1 = check(pre)
+        res2 = check(post)
+        for yy in res1:
+            if y - yy in res2:
+                state |= res1[yy] | res2[y - yy]
+                break
+        else:
+            ac.st("No")
+            return
+
+        ac.st("Yes")
+        ans = ""
+        pre = 1
+        for i in range(n):
+            if i % 2 == 0:
+                if (state >> i) & 1 == pre:
+                    ans += "L"
+                else:
+                    ans += "R"
+            else:
+                if (state >> i) & 1 == pre:
+                    ans += "R"
+                else:
+                    ans += "L"
+            pre = (state >> i) & 1
         ac.st(ans)
         return

@@ -60,6 +60,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
 ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribution_method|classical|tree_array
 ABC328E（https://atcoder.jp/contests/abc328/tasks/abc328_e）dfs|back_trace|union_find|brute_force
+ABC326D（https://atcoder.jp/contests/abc326/tasks/abc326_d）dfs|back_trace|brute_force
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
