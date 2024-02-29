@@ -127,6 +127,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
+ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_force|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2625,4 +2626,31 @@ class Solution:
 
             ans.reverse()
             ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def abc_325f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc325/tasks/abc325_f
+        tag: matrix_dp|brute_force|classical
+        """
+        n = ac.read_int()
+        dis = ac.read_list_ints()
+        l1, c1, k1 = ac.read_list_ints()
+        l2, c2, k2 = ac.read_list_ints()
+        dp = [0] * (k1 + 1)
+        for i in range(n):
+            d = dis[i]
+            ndp = [math.inf] * (k1 + 1)
+            for j in range(k1 + 1):
+                if dp[j] < math.inf:
+                    for x in range(k1 - j + 1):
+                        need = max(0, math.ceil((d - x * l1) / l2))
+                        ndp[j + x] = min(ndp[j + x], dp[j] + need)
+            dp = ndp
+        ans = math.inf
+        for i in range(k1 + 1):
+            if dp[i] <= k2:
+                ans = min(ans, i * c1 + dp[i] * c2)
+        ac.st(ans if ans < math.inf else -1)
         return

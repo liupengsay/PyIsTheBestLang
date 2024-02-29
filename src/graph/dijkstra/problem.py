@@ -104,6 +104,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
 ABC342E（https://atcoder.jp/contests/abc342/tasks/abc342_e）classical|dijkstra|longest_path
+ABC325E（https://atcoder.jp/contests/abc325/tasks/abc325_e）classical|data_range
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention

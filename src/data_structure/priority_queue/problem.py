@@ -30,6 +30,9 @@ P2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay
 P6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
 P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
+=====================================AtCoder=====================================
+ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greedy|implemention|classical
+
 =====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）heapq
 147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
