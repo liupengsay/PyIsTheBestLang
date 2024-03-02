@@ -43,6 +43,10 @@ class FastIO:
     def lst(self, x):
         return print(*x, flush=self.flush)
 
+    def lst_flatten(self, lst):
+        self.st("\n".join(str(x) for x in lst))
+        return
+
     @staticmethod
     def max(a, b):
         return a if a > b else b
