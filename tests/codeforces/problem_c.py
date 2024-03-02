@@ -19,12 +19,12 @@ from operator import mul
 from typing import List, Callable, Dict, Set, Tuple, DefaultDict
 from heapq import heappush, heappop, heapify
 
-inf = 1 << 32
-
 
 class FastIO:
     def __init__(self):
         self.random_seed = 0
+        self.flush = False
+        self.inf = 1 << 32
         return
 
     @staticmethod
@@ -56,13 +56,11 @@ class FastIO:
         self.random_seed = random.randint(0, 10 ** 9 + 7)
         return
 
-    @staticmethod
-    def st(x, flush=False):
-        return print(x, flush=flush)
+    def st(self, x):
+        return print(x, flush=self.flush)
 
-    @staticmethod
-    def lst(x, flush=False):
-        return print(*x, flush=flush)
+    def lst(self, x):
+        return print(*x, flush=self.flush)
 
     @staticmethod
     def max(a, b):
@@ -92,8 +90,8 @@ class Solution:
     @staticmethod
     def main(ac=FastIO()):
         """
-        url: https://codeforces.com/problemset/problem/1208/D
-        tag: segment_tree|reverse_thinking|construction|point_set|range_sum_bisect_left
+        url: url of the problem
+        tag: algorithm tag
         """
         for _ in range(ac.read_int()):
             pass

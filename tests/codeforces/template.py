@@ -1,30 +1,11 @@
-from sys import stdin, stdout
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-import random
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
-from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
-
-inf = 1 << 32
+from sys import stdin
 
 
 class FastIO:
     def __init__(self):
         self.random_seed = 0
+        self.flush = False
+        self.inf = 1 << 32
         return
 
     @staticmethod
@@ -56,13 +37,11 @@ class FastIO:
         self.random_seed = random.randint(0, 10 ** 9 + 7)
         return
 
-    @staticmethod
-    def st(x, flush=False):
-        return print(x, flush=flush)
+    def st(self, x):
+        return print(x, flush=self.flush)
 
-    @staticmethod
-    def lst(x, flush=False):
-        return print(*x, flush=flush)
+    def lst(self, x):
+        return print(*x, flush=self.flush)
 
     @staticmethod
     def max(a, b):
