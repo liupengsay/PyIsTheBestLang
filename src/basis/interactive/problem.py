@@ -24,6 +24,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1520F2（https://codeforces.com/contest/1520/problem/F2）segment_tree|interactive
 1624F（https://codeforces.com/contest/1624/problem/F）interactive|strictly_binary_search
 1846F（https://codeforces.com/contest/1846/problem/F）interactive
+1934C（https://codeforces.com/contest/1934/problem/C）interactive|brain_teaser
+1937C（https://codeforces.com/contest/1937/problem/C）interactive|brain_teaser
 
 """
 import random
@@ -136,8 +138,10 @@ class Solution:
         tag: binary_search|interactive|quick_sort
         """
 
+        ac.flush = True
+
         def query(x):
-            ac.lst(["?", x + 1], True)
+            ac.lst(["?", x + 1])
             cur = ac.read_str()
             if cur == ">":
                 return 1
@@ -170,7 +174,7 @@ class Solution:
                     stack.append([left, nums[mid] - 1, smaller])
                 if nums[mid] < right:
                     stack.append([nums[mid] + 1, right, bigger])
-            ac.lst(["!"] + nums, True)
+            ac.lst(["!"] + nums)
         return
 
     @staticmethod
@@ -188,7 +192,7 @@ class Solution:
             def check(x):
                 res = tree.point_get(x - 1)
                 if res < 0:
-                    ac.lst(["?", 1, x], flush=True)
+                    ac.lst(["?", 1, x])
                     cur = ac.read_int()
                     tree.range_add(x - 1, x - 1, cur - res)
                     res = cur
@@ -196,5 +200,70 @@ class Solution:
 
             ans = BinarySearch().find_int_left(1, n, check)
             tree.range_add(ans - 1, n - 1, 1)
-            ac.lst(["!", ans], flush=True)
+            ac.lst(["!", ans])
+        return
+
+    @staticmethod
+    def cf_1937c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1937/problem/C
+        tag: interactive|brain_teaser
+        """
+        ac.flush = True
+
+        def ask(tmp):
+            ac.lst(tmp)
+            return ac.read_str()
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            zero = 0
+            for i in range(1, n):
+                x = ask(["?", zero, zero, i, i])
+                if x == "<":
+                    zero = i
+
+            nex = 1 if zero == 0 else 0
+            lst = [nex]
+            for i in range(n):
+                if i == nex or i == zero:
+                    continue
+                x = ask(["?", zero, lst[-1], zero, i])
+                if x == "<":
+                    lst = [i]
+                elif x == "=":
+                    lst.append(i)
+            nex = lst[0]
+            for i in lst[1:]:
+                x = ask(["?", nex, nex, i, i])
+                if x == ">":
+                    nex = i
+            ac.lst(["!", zero, nex])
+        return
+
+    @staticmethod
+    def cf_1934c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1934/problem/C
+        tag: interactive|brain_teaser
+        """
+        ac.flush = True
+
+        def ask(lst):
+            ac.lst(lst)
+            return ac.read_int()
+
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            a = ask(["?", 1, 1])
+            b = ask(["?", m, 1])
+            y = (a + 2 + b + 1 - m) // 2
+            x = a + 2 - y
+            if 1 <= x <= m and 1 <= y <= n and ask(["?", x, y]) == 0:
+                ac.lst(["!", x, y])
+                continue
+            c = ask(["?", m, n])
+            y = (n + b + 1 - c) // 2
+            x = m + n - c - y
+            ac.lst(["!", x, y])
         return

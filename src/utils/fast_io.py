@@ -20,6 +20,8 @@ class Wrapper(int):
 class FastIO:
     def __init__(self):
         self.random_seed = 0
+        self.flush = False
+        self.inf = 1 << 32
         return
 
     def get_random_seed(self):
@@ -68,13 +70,11 @@ class FastIO:
                 dct[j].append(i)
         return dct
 
-    @staticmethod
-    def st(x, flush=False):
-        return print(x, flush=flush)
+    def st(self, x):
+        return print(x, flush=self.flush)
 
-    @staticmethod
-    def lst(x, flush=False):
-        return print(*x, flush=flush)
+    def lst(self, x):
+        return print(*x, flush=self.flush)
 
     @staticmethod
     def round_5(f):

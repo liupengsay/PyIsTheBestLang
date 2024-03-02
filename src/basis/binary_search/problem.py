@@ -93,6 +93,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
 ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
 ABC341D（https://atcoder.jp/contests/abc341/tasks/abc341_d）binary_search|math|classical
+ABC324F（https://atcoder.jp/contests/abc324/tasks/abc324_f）binary_search|dag_dp|find_float_right|classical
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -1606,4 +1607,32 @@ class Solution:
             ceil = BinarySearch().find_int_right(1, m, check)
             ans = pre * ceil + (pre + 1) * (m - ceil)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_324f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc324/tasks/abc324_f
+        tag: binary_search|dag_dp|find_float_right|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(m):
+            u, v, bb, cc = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            dct[u].append((v, bb, cc))
+            degree[v] += 1
+
+        def check(s):
+            dp = [-math.inf] * n
+            dp[0] = 0
+            for i in range(n):
+                for j, b, c in dct[i]:
+                    dp[j] = max(dp[j], dp[i] + b - s * c)
+            return dp[-1] >= 0
+
+        ans = BinarySearch().find_float_right(0, 2 * 10 ** 9, check, 10 ** (-10))
+        ac.st(ans)
         return

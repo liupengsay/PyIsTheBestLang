@@ -14,6 +14,7 @@ P6154（https://www.luogu.com.cn/problem/P6154）reverse_graph|expectation|tree_
 ABC342F（https://atcoder.jp/contests/abc342/tasks/abc342_f）prob_dp
 ABC333F（https://atcoder.jp/contests/abc333/tasks/abc333_f）matrix_dp|equation|prob_dp|math|implemention
 ABC326E（https://atcoder.jp/contests/abc326/tasks/abc326_e）prob_dp|contribution_method
+ABC323E（https://atcoder.jp/contests/abc323/tasks/abc323_e）linear_dp|prob_dp|brute_force|classical
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -172,4 +173,29 @@ class Solution:
                 ndp[j] = (p1 * (dp[j - 1] + ndp[j - 1])) % mod
             dp = ndp
         ac.lst([x for x in dp])
+        return
+
+    @staticmethod
+    def abc_323e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc323/tasks/abc323_e
+        tag: linear_dp|prob_dp|brute_force|classical
+        """
+        n, x = ac.read_list_ints()
+        t = ac.read_list_ints()
+        dp = [0] * (x + 1)
+        dp[0] = 1
+        mod = 998244353
+        pp = pow(n, -1, mod)
+        for i in range(1, x + 1):
+            for j in range(n):
+                if i >= t[j]:
+                    dp[i] += dp[i - t[j]] * pp
+            dp[i] %= mod
+        res = 0
+        for i in range(x + 1):
+            if i + t[0] > x:
+                res += dp[i]
+        res = (res * pp) % mod
+        ac.st(res)
         return
