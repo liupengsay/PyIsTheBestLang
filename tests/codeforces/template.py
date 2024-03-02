@@ -43,7 +43,7 @@ class FastIO:
     def lst(self, x):
         return print(*x, flush=self.flush)
 
-    def lst_flatten(self, lst):
+    def flatten(self, lst):
         self.st("\n".join(str(x) for x in lst))
         return
 
