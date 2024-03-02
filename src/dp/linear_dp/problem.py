@@ -126,6 +126,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
+ABC322E（https://atcoder.jp/contests/abc322/tasks/abc322_e）linear_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower

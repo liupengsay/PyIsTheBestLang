@@ -61,6 +61,7 @@ ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online
 ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribution_method|classical|tree_array
 ABC328E（https://atcoder.jp/contests/abc328/tasks/abc328_e）dfs|back_trace|union_find|brute_force
 ABC326D（https://atcoder.jp/contests/abc326/tasks/abc326_d）dfs|back_trace|brute_force
+ABC322D（https://atcoder.jp/contests/abc322/tasks/abc322_d）dfs|back_trace|brute_force
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
