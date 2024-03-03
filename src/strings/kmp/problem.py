@@ -58,8 +58,8 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 3826（https://www.acwing.com/problem/content/3826/）kmp|z_function
 
 =====================================AtCoder=====================================
-284F（https://atcoder.jp/contests/abc284/tasks/abc284_f）
-
+ABC284F（https://atcoder.jp/contests/abc284/tasks/abc284_f）
+ABC343G（https://atcoder.jp/contests/abc343/tasks/abc343_g）kmp|state_dp|classical
 
 =====================================LibraryChecker=====================================
 1（https://www.luogu.com.cn/training/53971）
