@@ -90,6 +90,7 @@ ABC341E（https://atcoder.jp/contests/abc341/tasks/abc341_e）segment_tree|range
 ABC322F（https://atcoder.jp/contests/abc322/tasks/abc322_f）segment_tree|range_set_reverse|range_longest_con_sub
 ABC340E（https://atcoder.jp/contests/abc340/tasks/abc340_e）segment_tree|range_add|range_sum
 ABC338E（https://atcoder.jp/contests/abc338/tasks/abc338_e）segment_tree|brain_teaser|range_descend|range_min|stack
+ABC343F（https://atcoder.jp/contests/abc343/tasks/abc343_f）segment_tree|point_set|range_max|range_second
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -154,7 +155,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
-    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter
+    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
+    PointSetRangeMaxSecondCnt
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -2947,5 +2949,26 @@ class Solution:
                 tree.range_set_reverse(ll - 1, rr - 1, 2)
             else:
                 ans = tree.range_longest_con_sub(ll - 1, rr - 1)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_343f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc343/tasks/abc343_f
+        tag: segment_tree|point_set|range_max|range_second
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointSetRangeMaxSecondCnt(n)
+        tree.build(nums)
+        for _ in range(q):
+            op, x, y = ac.read_list_ints()
+            if op == 1:
+                x -= 1
+                nums[x] = y
+                tree.point_set(x, y)
+            else:
+                ans = tree.range_max_second_cnt(x - 1, y - 1)[-1]
                 ac.st(ans)
         return

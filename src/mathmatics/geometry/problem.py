@@ -32,6 +32,9 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 429D（https://codeforces.com/contest/429/problem/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 1133D（https://codeforces.com/contest/1133/problem/D）line_slope
 
+===================================AtCoder===================================
+ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
+
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 4309（https://www.acwing.com/problem/content/4312/）line_slope
@@ -234,4 +237,49 @@ class Solution:
                     ans[1] = (yy + y2) / 2
                     break
         ac.lst(["%.6f" % x for x in ans])
+        return
+
+    @staticmethod
+    def abc_343e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc343/tasks/abc343_e
+        tag: brute_force|brain_teaser|inclusion_exclusion|math|classical
+        """
+
+        def three(x, y, z, xx, yy, zz, xxx, yyy, zzz):
+            res = 1
+            res *= max(0, min(x, xx, xxx) + 7 - max(x, xx, xxx))
+            res *= max(0, min(y, yy, yyy) + 7 - max(y, yy, yyy))
+            res *= max(0, min(z, zz, zzz) + 7 - max(z, zz, zzz))
+            return res
+
+        def two(x, y, z, xx, yy, zz):
+            res = 1
+            res *= max(0, min(x, xx) + 7 - max(x, xx))
+            res *= max(0, min(y, yy) + 7 - max(y, yy))
+            res *= max(0, min(z, zz) + 7 - max(z, zz))
+            return res
+
+        a1 = b1 = c1 = 0
+        low = -1
+        high = 7
+        v1, v2, v3 = ac.read_list_ints()
+
+        for a2 in range(low, high + 1):
+            for b2 in range(low, high + 1):
+                for c2 in range(low, high + 1):
+                    for a3 in range(low, high + 1):
+                        for b3 in range(low, high + 1):
+                            for c3 in range(low, high + 1):
+                                inter3 = three(a1, b1, c1, a2, b2, c2, a3, b3, c3)
+                                inter2 = (two(a1, b1, c1, a2, b2, c2)
+                                          + two(a1, b1, c1, a3, b3, c3)
+                                          + two(a2, b2, c2, a3, b3, c3)
+                                          - inter3 * 3)
+                                inter1 = 3 * (7 * 7 * 7) - 2 * inter2 - 3 * inter3
+                                if (v1, v2, v3) == (inter1, inter2, inter3):
+                                    ac.st("Yes")
+                                    ac.lst([a1, b1, c1, a2, b2, c2, a3, b3, c3])
+                                    return
+        ac.st("No")
         return

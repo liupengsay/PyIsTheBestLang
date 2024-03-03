@@ -4016,6 +4016,100 @@ class PointSetRangeMax:
         return res
 
 
+class PointSetRangeMaxSecondCnt:
+
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.first = [(initial, 0)] * (4 * n)
+        self.second = [(initial, 0)] * (4 * n)
+        return
+
+    def merge(self, first1, second1, first2, second2):
+        tmp = [first1, second1, first2, second2]
+        max1 = max2 = self.initial
+        cnt1 = cnt2 = 0
+        for a, b in tmp:
+            if a > max1:
+                max2, cnt2 = max1, cnt1
+                max1, cnt1 = a, b
+            elif a == max1:
+                cnt1 += b
+            elif a > max2:
+                max2, cnt2 = a, b
+            elif a == max2:
+                cnt2 += b
+        return (max1, cnt1), (max2, cnt2)
+
+    def push_up(self, i):
+        self.first[i], self.second[i] = self.merge(self.first[i << 1], self.second[i << 1], self.first[(i << 1) | 1],
+                                                   self.second[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.first[i] = (nums[s], 1)
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self.push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.first[i][0]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self.first[i] = (val, 1)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self.push_up(i)
+        return
+
+    def range_max_second_cnt(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans1 = (self.initial, 0)
+        ans2 = (self.initial, 0)
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans1, ans2 = self.merge(ans1, ans2, self.first[i], self.second[i])
+                continue
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans1 + ans2
+
+
 class PointSetRangeMaxIndex:
 
     def __init__(self, n, initial=0):
