@@ -150,6 +150,7 @@ ABC330D（https://atcoder.jp/contests/abc330/tasks/abc330_d）brute_force|prefix
 ABC330C（https://atcoder.jp/contests/abc330/tasks/abc330_c）brute_force|prefix_sum
 ABC324D（https://atcoder.jp/contests/abc324/tasks/abc324_d）brute_force
 ABC323F（https://atcoder.jp/contests/abc323/tasks/abc323_f）brute_force
+ABC320C（https://atcoder.jp/contests/abc320/tasks/abc320_c）brute_force
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

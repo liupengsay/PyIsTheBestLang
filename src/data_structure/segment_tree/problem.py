@@ -91,6 +91,7 @@ ABC322F（https://atcoder.jp/contests/abc322/tasks/abc322_f）segment_tree|range
 ABC340E（https://atcoder.jp/contests/abc340/tasks/abc340_e）segment_tree|range_add|range_sum
 ABC338E（https://atcoder.jp/contests/abc338/tasks/abc338_e）segment_tree|brain_teaser|range_descend|range_min|stack
 ABC343F（https://atcoder.jp/contests/abc343/tasks/abc343_f）segment_tree|point_set|range_max|range_second
+ABC320E（https://atcoder.jp/contests/abc320/tasks/abc320_e）segment_tree|point_set|range_min|range_min_bisect_left
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -2971,4 +2972,22 @@ class Solution:
             else:
                 ans = tree.range_max_second_cnt(x - 1, y - 1)[-1]
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_320e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc320/tasks/abc320_e
+        tag: segment_tree|point_set|range_min|range_min_bisect_left
+        """
+        n, m = ac.read_list_ints()
+        tree = PointSetRangeMin(n, 0)
+        ans = [0] * n
+        for _ in range(m):
+            t, w, s = ac.read_list_ints()
+            i = tree.range_min_bisect_left(0, n - 1, t)
+            if i != -1:
+                ans[i] += w
+                tree.point_set(i, t + s)
+        ac.flatten(ans)
         return

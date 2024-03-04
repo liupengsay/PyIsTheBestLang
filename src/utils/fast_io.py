@@ -76,6 +76,10 @@ class FastIO:
     def lst(self, x):
         return print(*x, flush=self.flush)
 
+    def flatten(self, lst):
+        self.st("\n".join(str(x) for x in lst))
+        return
+
     @staticmethod
     def round_5(f):
         res = int(f)
