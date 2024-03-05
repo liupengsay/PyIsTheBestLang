@@ -50,6 +50,10 @@ class PointSetRangeSumStack:
         self.n = n
         self.initial = initial
         self.cover = [initial] * (2 * n)
+        self.m = 1
+        while self.m < self.n:
+            self.m *= 2
+
         return
 
     def push_up(self, i):
@@ -94,14 +98,11 @@ class PointSetRangeSumStack:
         return
 
     def range_sum(self, left, right):
-        m = 1
-        while m < self.n:
-            m *= 2
 
         ans = 0
         left += self.n
         right += self.n
-        stack = [(m, m * 2 - 1, 1)]
+        stack = [(self.m, self.m * 2 - 1, 1)]
         while stack:
             s, t, i = stack.pop()
             if i >= self.n * 2:
@@ -114,6 +115,8 @@ class PointSetRangeSumStack:
                 ans += self.cover[i]
             elif s < t:
                 m = s + (t - s) // 2
-                stack.append((s, m, i << 1))
-                stack.append((m + 1, t, (i << 1) | 1))
+                if (i<<1) < self.n*2:
+                    stack.append((s, m, i << 1))
+                if (i << 1)|1 < self.n * 2:
+                    stack.append((m + 1, t, (i << 1) | 1))
         return ans
