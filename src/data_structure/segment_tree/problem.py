@@ -2940,7 +2940,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc322/tasks/abc322_f
         tag: segment_tree|range_set_reverse|range_longest_con_sub
         """
-        n, q = ac.read_list_ints()
+        n, q = ac.read_list_ints()  # TLE
         tree = RangeSetReverseRangeSumLongestConSub(n)
         tree.build([int(w) for w in ac.read_str()])
         for _ in range(q):
