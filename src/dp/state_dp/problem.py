@@ -53,6 +53,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
 ABC338F（https://atcoder.jp/contests/abc338/tasks/abc338_f）floyd|shortest_path|state_dp|fill_table|refresh_table|classical
+ABC318D（https://atcoder.jp/contests/abc318/tasks/abc318_d）state_dp|brute_force
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
