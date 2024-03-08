@@ -22,6 +22,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
 ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
 ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brut_force|digital_dp
+ABC317F（https://atcoder.jp/contests/abc317/tasks/abc317_f）2-base|digital_dp|classical
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -269,5 +270,40 @@ class Solution:
                 x_mod = (x_mod * 10 + lst[k]) % digit_sum
                 pre = cur
             ans += pre[digit_sum * digit_sum + 0]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_317f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc317/tasks/abc317_f
+        tag: 2-base|digital_dp|classical
+        """
+
+        n, a, b, c = ac.read_list_ints()
+        lst = [int(w) for w in bin(n)[2:]]
+        m = len(lst)
+
+        mod = 998244353
+        tmp = [(0, 1, 1), (1, 0, 1), (0, 0, 0), (1, 1, 0)]
+
+        @lru_cache(None)
+        def dfs(i, x, y, z, is_x, is_y, is_z, num_x, num_y, num_z):
+            if i == m:
+                return x == y == z == 0 and num_x == num_y == num_z == 1
+            res = 0
+            for xx, yy, zz in tmp:
+                if (not is_x or xx <= lst[i]) and (not is_y or yy <= lst[i]) and (not is_z or zz <= lst[i]):
+                    nex_x = (x * 2 + xx) % a
+                    nex_y = (y * 2 + yy) % b
+                    nex_z = (z * 2 + zz) % c
+                    nex_is_x = int(is_x and xx == lst[i])
+                    nex_is_y = int(is_y and yy == lst[i])
+                    nex_is_z = int(is_z and zz == lst[i])
+                    res += dfs(i + 1, nex_x, nex_y, nex_z, nex_is_x, nex_is_y, nex_is_z, num_x | xx, num_y | yy,
+                               num_z | zz)
+            return res % mod
+
+        ans = dfs(0, 0, 0, 0, 1, 1, 1, 0, 0, 0)
         ac.st(ans)
         return

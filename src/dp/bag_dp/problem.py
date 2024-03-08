@@ -99,6 +99,7 @@ ABC145E（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|bag_d
 ABC341F（https://atcoder.jp/contests/abc341/tasks/abc341_f）bag_dp|tree_dp|greedy|classical
 ABC327E（https://atcoder.jp/contests/abc327/tasks/abc327_e）bag_dp|brute_force
 ABC321f（https://atcoder.jp/contests/abc321/tasks/abc321_f）bag_dp|classical
+ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force|classical
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
