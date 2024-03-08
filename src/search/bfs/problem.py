@@ -107,6 +107,8 @@ ABC329E（https://atcoder.jp/contests/abc329/tasks/abc329_e）bfs|matrix_dp|clas
 ABC327D（https://atcoder.jp/contests/abc327/tasks/abc327_d）bfs|color_method|classical
 ABC320D（https://atcoder.jp/contests/abc320/tasks/abc320_d）bfs
 ABC317E（https://atcoder.jp/contests/abc317/tasks/abc317_e）bfs
+ABC315E（https://atcoder.jp/contests/abc315/tasks/abc315_e）bfs|dfs|classical
+ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

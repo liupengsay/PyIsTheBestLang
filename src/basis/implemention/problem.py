@@ -76,6 +76,8 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
 ABC321E（https://atcoder.jp/contests/abc321/tasks/abc321_e）implemention|binary_tree|counter
+ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
+
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
