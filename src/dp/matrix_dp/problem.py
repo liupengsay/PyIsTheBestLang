@@ -128,6 +128,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
 ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_force|classical
+ABC344F（https://atcoder.jp/contests/abc344/tasks/abc344_f）matrix_dp|greedy|brain_teaser|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -138,6 +139,7 @@ ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_fo
 """
 
 import heapq
+import math
 from collections import defaultdict, deque
 from functools import lru_cache
 from itertools import permutations, accumulate
@@ -2653,4 +2655,55 @@ class Solution:
             if dp[i] <= k2:
                 ans = min(ans, i * c1 + dp[i] * c2)
         ac.st(ans if ans < math.inf else -1)
+        return
+
+    @staticmethod
+    def abc344f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc344/tasks/abc344_f
+        tag: matrix_dp|greedy|brain_teaser|classical
+        """
+        n = ac.read_int()
+        pp = [ac.read_list_ints() for _ in range(n)]
+        rr = [ac.read_list_ints() for _ in range(n)]
+        dd = [ac.read_list_ints() for _ in range(n - 1)]
+
+        dp = [defaultdict(lambda: (math.inf, math.inf)) for _ in range(n)]
+        for i in range(n):
+            ndp = [defaultdict(lambda: (math.inf, math.inf)) for _ in range(n)]
+            for j in range(n):
+                if i == j == 0:
+                    ndp[0][pp[0][0]] = (0, 0)
+                    dp[0][pp[0][0]] = (0, 0)
+                    continue
+                cur = defaultdict(lambda: (math.inf, math.inf))
+                if i - 1 >= 0:
+                    for ceil in dp[j]:
+                        step, money = dp[j][ceil]
+                        money = -money
+                        need = dd[i - 1][j]
+                        if need > money:
+                            cost = (need - money + ceil - 1) // ceil
+                        else:
+                            cost = 0
+                        cur[max(ceil, pp[i][j])] = min(cur[max(ceil, pp[i][j])],
+                                                       (step + cost + 1, -(money + cost * ceil - need)))
+                if j - 1 >= 0:
+                    for ceil in ndp[j - 1]:
+                        step, money = ndp[j - 1][ceil]
+                        money = -money
+                        need = rr[i][j - 1]
+                        if need > money:
+                            cost = (need - money + ceil - 1) // ceil
+                        else:
+                            cost = 0
+                        cur[max(ceil, pp[i][j])] = min(cur[max(ceil, pp[i][j])],
+                                                       (step + cost + 1, -(money + cost * ceil - need)))
+                ndp[j] = cur
+            dp = ndp
+        ans = math.inf
+        for ceil in dp[-1]:
+            step, money = dp[-1][ceil]
+            ans = min(ans, step)
+        ac.st(ans)
         return
