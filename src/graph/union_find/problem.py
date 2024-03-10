@@ -105,6 +105,7 @@ ABC279F（https://atcoder.jp/contests/abc279/tasks/abc279_f）union_find_range|b
 ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contribution_method|counter
 ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
 ABC328F（https://atcoder.jp/contests/abc328/tasks/abc328_f）union_find_weighted_dis|classical|hard
+ABC314F（https://atcoder.jp/contests/abc314/tasks/abc314_f）union_find|bfs|build_graph|expectation|prob
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -135,7 +136,7 @@ from src.basis.tree_node.template import TreeNode
 from src.data_structure.segment_tree.template import RangeDivideRangeSum
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.dijkstra.template import Dijkstra
-from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd
+from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd, UnionFindGeneral
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
@@ -2170,4 +2171,37 @@ class Solution:
                 j += 1
             ans[i] = tot
         ac.st("\n".join(str(x) for x in ans))
+        return
+
+    @staticmethod
+    def abc_314f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc314/tasks/abc314_f
+        tag: union_find|bfs|build_graph|expectation|prob
+        """
+        n = ac.read_int()
+
+        uf = UnionFindGeneral(2 * n - 1)
+        uf.size = [1] * n + [0] * (n - 1)
+        dct = [[] for _ in range(2 * n - 1)]
+        mod = 998244353
+        node = [0] * (2 * n - 1)
+        for i in range(n - 1):
+            p, q = ac.read_list_ints_minus_one()
+            ll, rr = uf.size[uf.find(p)], uf.size[uf.find(q)]
+            pq = pow(ll + rr, -1, mod)
+            root_p, root_q = uf.find(p), uf.find(q)
+            uf.union_right(root_p, i + n)
+            uf.union_right(root_q, i + n)
+            dct[i + n].extend([root_p, root_q])
+            node[root_p] += ll * pq % mod
+            node[root_q] += rr * pq % mod
+        stack = [2 * n - 2]
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                node[j] += node[i]
+                stack.append(j)
+                node[j] %= mod
+        ac.lst(node[:n])
         return

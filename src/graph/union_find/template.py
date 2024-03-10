@@ -134,6 +134,17 @@ class UnionFindGeneral:
         self.part -= 1
         return True
 
+    def union_right(self, x, y):
+        root_x = self.find(x)
+        root_y = self.find(y)
+        if root_x > root_y:
+            root_x, root_y = root_y, root_x
+        self.root[root_x] = root_y
+        self.size[root_y] += self.size[root_x]
+        self.size[root_x] = 0
+        self.part -= 1
+        return True
+
     def is_connected(self, x, y):
         return self.find(x) == self.find(y)
 
