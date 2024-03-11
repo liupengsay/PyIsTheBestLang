@@ -100,6 +100,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1196F（https://codeforces.com/contest/1196/problem/F）shortest_path|data_range|kth_shortest|brute_force|data_range
 1741G（https://codeforces.com/contest/1741/problem/G）shortest_path|brute_force|state_dp
 1846G（https://codeforces.com/contest/1846/problem/G）shortest_path
+1941G（https://codeforces.com/contest/1941/problem/G）shortest_path|dijkstra|classical
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle

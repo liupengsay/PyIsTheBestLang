@@ -11,6 +11,7 @@ Description：sliding_window|monotonic
 
 ====================================LeetCode====================================
 1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
+1941E（https://codeforces.com/contest/1941/problem/E）monotonic_queue|dp
 
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
