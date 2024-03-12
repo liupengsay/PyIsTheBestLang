@@ -93,6 +93,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1213G（https://codeforces.com/contest/1213/problem/G）union_find|offline_query|classical
 1619G（https://codeforces.com/contest/1619/problem/G）union_find|implemention
 1618G（https://codeforces.com/contest/1618/problem/G）union_find_left|union_find_right|classical|offline_query
+1941G（https://codeforces.com/contest/1941/problem/G）union_find|build_graph|bfs|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2204,4 +2205,57 @@ class Solution:
                 stack.append(j)
                 node[j] %= mod
         ac.lst(node[:n])
+        return
+
+    @staticmethod
+    def cf_1941g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1941/problem/G
+        tag: union_find|build_graph|bfs|brain_teaser|classical
+        """
+        ac.get_random_seed()
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            color = dict()
+
+            for _ in range(m):
+                u, v, c = ac.read_list_ints_minus_one()
+                if c ^ ac.random_seed not in color:
+                    color[c ^ ac.random_seed] = []
+                color[c ^ ac.random_seed].append((u, v))
+            dct = [[] for _ in range(n + m)]
+            uf = UnionFind(n)
+            idx = n
+            group = [set() for _ in range(n)]
+            for c in color:
+                for i, j in color[c]:
+                    uf.union(i, j)
+                roots = set()
+                for i, j in color[c]:
+                    group[uf.find(i)].add(j)
+                    group[uf.find(i)].add(i)
+                    roots.add(uf.find(i))
+                for r in roots:
+                    for i in group[r]:
+                        dct[idx].append(i)
+                        dct[i].append(idx)
+                    idx += 1
+                for i, j in color[c]:
+                    uf.root_or_size[i] = -1
+                    uf.root_or_size[j] = -1
+                for r in roots:
+                    group[r] = set()
+            b, e = ac.read_list_ints_minus_one()
+            dis = [inf] * (n + m)
+            dis[b] = 0
+            stack = [b]
+            while stack:
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        if dis[j] == inf:
+                            nex.append(j)
+                            dis[j] = dis[i] + 1
+                stack = nex[:]
+            ac.st(dis[e] // 2)
         return
