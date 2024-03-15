@@ -4,6 +4,7 @@ import decimal
 import heapq
 from types import GeneratorType
 import random
+from math import inf
 from bisect import bisect_left, bisect_right
 from heapq import heappush, heappop, heappushpop
 from functools import cmp_to_key
