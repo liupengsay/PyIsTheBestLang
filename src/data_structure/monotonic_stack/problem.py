@@ -61,6 +61,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
 ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|linear_dp
+ABC311G（https://atcoder.jp/contests/abc311/tasks/abc311_g）brute_force|prefix_sum|monotonic_stack|classical
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
@@ -73,6 +74,7 @@ import heapq
 from collections import defaultdict, Counter
 from typing import List
 
+from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.monotonic_stack.template import Rectangle
 from src.data_structure.sparse_table.template import SparseTable
 from src.utils.fast_io import FastIO
@@ -904,6 +906,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc336/tasks/abc336_d
         tag: monotonic_stack|linear_dp
         """
+
         def check():
             res = [0] * n
             stack = []
@@ -947,4 +950,40 @@ class Solution:
                     in_stack.add(w)
                 cnt[w] -= 1
             ac.st("".join(stack))
+        return
+
+    @staticmethod
+    def abc_311g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc311/tasks/abc311_g
+        tag: brute_force|prefix_sum|monotonic_stack|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ans = 0
+        lst = []
+        for g in grid:
+            lst.extend(g)
+        pre = PreFixSumMatrix(grid)
+
+        for num in set(lst):
+            cur = [[int(x == num) for x in g] for g in grid]
+            pre2 = PreFixSumMatrix(cur)
+            height = [0] * n
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] >= num:
+                        height[j] += 1
+                    else:
+                        height[j] = 0
+
+                width = Rectangle().compute_width(height)
+                for j in range(n):
+                    if height[j]:
+                        ll, rr = width[j]
+                        xa, ya = i - height[j] + 1, ll
+                        xb, yb = i, rr
+                        if pre2.query(xa, ya, xb, yb):
+                            ans = max(ans, pre.query(xa, ya, xb, yb) * num)
+        ac.st(ans)
         return

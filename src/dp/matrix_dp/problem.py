@@ -129,6 +129,8 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| impleme
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
 ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_force|classical
 ABC344F（https://atcoder.jp/contests/abc344/tasks/abc344_f）matrix_dp|greedy|brain_teaser|classical
+ABC311F（https://atcoder.jp/contests/abc311/tasks/abc311_f）matrix_dp|prefix_sum_opt|classical|brain_teaser
+ABC311E（https://atcoder.jp/contests/abc311/tasks/abc311_e）matrix_dp|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2706,4 +2708,29 @@ class Solution:
             step, money = dp[-1][ceil]
             ans = min(ans, step)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_311f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc311/tasks/abc311_f
+        tag: matrix_dp|prefix_sum_opt|classical|brain_teaser
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        mod = 998244353
+
+        dp = [0] * (m + 1)
+        dp[0] = 1
+        for j in range(n):
+            ndp = [0] * (m + 1)
+            pre = ac.accumulate(dp)
+            for i in range(m):
+                ndp[m - i] = pre[min(m + 1, m - i + 2)]
+                if grid[i][j] == "#":
+                    break
+            else:
+                ndp[0] += pre[2]
+            dp = [x % mod for x in ndp]
+        ac.st(sum(dp) % mod)
         return

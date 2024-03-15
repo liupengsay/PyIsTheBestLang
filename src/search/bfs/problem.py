@@ -109,6 +109,7 @@ ABC320D（https://atcoder.jp/contests/abc320/tasks/abc320_d）bfs
 ABC317E（https://atcoder.jp/contests/abc317/tasks/abc317_e）bfs
 ABC315E（https://atcoder.jp/contests/abc315/tasks/abc315_e）bfs|dfs|classical
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
+ABC311D（https://atcoder.jp/contests/abc311/tasks/abc311_d）bfs
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

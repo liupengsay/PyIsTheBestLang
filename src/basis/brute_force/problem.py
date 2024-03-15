@@ -152,6 +152,7 @@ ABC324D（https://atcoder.jp/contests/abc324/tasks/abc324_d）brute_force
 ABC323F（https://atcoder.jp/contests/abc323/tasks/abc323_f）brute_force
 ABC320C（https://atcoder.jp/contests/abc320/tasks/abc320_c）brute_force
 ABC319C（https://atcoder.jp/contests/abc319/tasks/abc319_c）brute_force
+ABC310D（https://atcoder.jp/contests/abc310/tasks/abc310_d）brute_force|implemention|state_compression
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

@@ -167,6 +167,24 @@ class Rectangle:
         return ans
 
     @staticmethod
+    def compute_width(pre):
+        """Calculate maximum rectangle area based on height using monotonic stack"""
+
+        m = len(pre)
+        left = [0] * m
+        right = [m - 1] * m
+        stack = []
+        for i in range(m):
+            while stack and pre[stack[-1]] > pre[i]:
+                right[stack.pop()] = i - 1
+            if stack:
+                left[i] = stack[-1] + 1
+            stack.append(i)
+
+        ans = [(left[i], right[i]) for i in range(m)]
+        return ans
+
+    @staticmethod
     def compute_number(pre):
         """Use monotonic stack to calculate the number of rectangles based on height"""
         n = len(pre)

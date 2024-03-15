@@ -43,6 +43,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
 ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome_judge|classical
+ABC310C（https://atcoder.jp/contests/abc310/tasks/abc310_c）string_hash|classical
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/140/）string_hash
@@ -1442,4 +1443,25 @@ class Solution:
                     ac.st("Yes")
                 else:
                     ac.st("No")
+        return
+
+    @staticmethod
+    def abc_310c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc310/tasks/abc310_c
+        tag: string_hash|classical
+        """
+        n = ac.read_int()
+        pre = 0
+        sh = StringHashSingle([150])
+        ans = set()
+        for i in range(n):
+            lst = [ord(w) - ord("a") for w in ac.read_str()]
+            cur = len(lst)
+            bb, aa = sh.check(lst)
+            dd, cc = sh.check(lst[::-1])
+            tp = [aa] + sorted([bb, dd])
+            ans.add(tuple(tp))
+            pre += cur
+        ac.st(len(ans))
         return

@@ -210,6 +210,7 @@ ABC333E（https://atcoder.jp/contests/abc333/tasks/abc333_e）reverse_order|gree
 ABC330F（https://atcoder.jp/contests/abc330/tasks/abc330_f）brain_teaser|greedy|brute_force|binary_search|prefix_sum
 ABC314D（https://atcoder.jp/contests/abc314/tasks/abc314_d）reverse_order|brain_teaser
 ABC313C（https://atcoder.jp/contests/abc313/tasks/abc313_c）brain_teaser|median_greedy
+ABC310E（https://atcoder.jp/contests/abc310/tasks/abc310_e）brain_teaser|implemention
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy

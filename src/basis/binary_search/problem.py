@@ -102,6 +102,9 @@ ABC324F（https://atcoder.jp/contests/abc324/tasks/abc324_f）binary_search|dag_
 4866（https://www.acwing.com/problem/content/description/4866/）binary_search|pigeonhole_principle
 5051（https://www.acwing.com/problem/content/description/5051/）high_precision|binary_search|specific_plan
 
+=====================================CodeChef=====================================
+1（https://www.codechef.com/START125D/problems/BILM）binary_search|brute_force|brain_teaser|classical
+
 =====================================LibraryChecker=====================================
 1（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/B）find_float_right
 2（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/C）find_int_left

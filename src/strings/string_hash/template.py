@@ -199,7 +199,7 @@ class StringHashSingle:
         """two mod to avoid hash crush"""
         # use two class to compute is faster!!!
         self.n = len(lst)
-        base = max(lst) + 1
+        base = max(max(lst) + 1, 150)
         self.p = random.randint(base, base * 2)
         self.mod = random.getrandbits(64)
 
@@ -218,6 +218,12 @@ class StringHashSingle:
         # with length y - x + 1 important!!!
         ans = (self.pre[y + 1] - self.pre[x] * self.pp[y - x + 1]) % self.mod
         return ans, y - x + 1
+
+    def check(self, lst):
+        ans = 0
+        for w in lst:
+            ans = (ans * self.p + w) % self.mod
+        return ans, len(lst)
 
 
 class PointSetRangeHashReverse:
