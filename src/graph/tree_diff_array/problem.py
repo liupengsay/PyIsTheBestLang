@@ -14,6 +14,7 @@ P6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edg
 ===================================CodeForces===================================
 
 ====================================AtCoder=====================================
+ABC309E（https://atcoder.jp/contests/abc309/tasks/abc309_e）tree_diff_array|dfs_order
 
 =====================================AcWing=====================================
 
@@ -185,4 +186,45 @@ class Solution:
         diff[nums[-1]] -= 1
         for a in diff:
             ac.st(a)
+        return
+
+    @staticmethod
+    def abc_309e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc309/tasks/abc309_e
+        tag: tree_diff_array|dfs_order
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        p = [0] + ac.read_list_ints_minus_one()
+        for i in range(1, n):
+            dct[p[i]].append(i)
+        buy = [0] * n
+        for _ in range(m):
+            x, y = ac.read_list_ints()
+            x -= 1
+            buy[x] = max(buy[x], y + 1)
+        diff = [0] * (n + 2)
+        pre = [0] * (n + 2)
+        stack = [(0, 1)]
+        cur = [0] * n
+        while stack:
+            x, d = stack.pop()
+            if x >= 0:
+                stack.append((~x, d))
+                diff[d] += 1
+                if d + buy[x] < n + 2:
+                    diff[d + buy[x]] -= 1
+                pre[d] = diff[d] + pre[d - 1]
+                cur[x] = pre[d]
+                for y in dct[x]:
+                    stack.append((y, d + 1))
+            else:
+                x = ~x
+                pre[d] = 0
+                diff[d] -= 1
+                if d + buy[x] < n + 2:
+                    diff[d + buy[x]] += 1
+        ans = sum(x > 0 for x in cur)
+        ac.st(ans)
         return

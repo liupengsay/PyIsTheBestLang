@@ -92,6 +92,7 @@ ABC340E（https://atcoder.jp/contests/abc340/tasks/abc340_e）segment_tree|range
 ABC338E（https://atcoder.jp/contests/abc338/tasks/abc338_e）segment_tree|brain_teaser|range_descend|range_min|stack
 ABC343F（https://atcoder.jp/contests/abc343/tasks/abc343_f）segment_tree|point_set|range_max|range_second
 ABC320E（https://atcoder.jp/contests/abc320/tasks/abc320_e）segment_tree|point_set|range_min|range_min_bisect_left
+ABC309F（https://atcoder.jp/contests/abc309/tasks/abc309_f）partial_order|range_descend|range_min
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -157,7 +158,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
-    PointSetRangeMaxSecondCnt
+    PointSetRangeMaxSecondCnt, PointSetRangeXor
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -2365,7 +2366,7 @@ class Solution:
             queries[rr].append((i, ll))
 
         ans = [0] * q
-        tree = PointSetRangeXOr(n)
+        tree = PointSetRangeXor(n)
         tree.build(nums)
         pre_xor = [0] * (n + 1)
 
@@ -2990,4 +2991,36 @@ class Solution:
                 ans[i] += w
                 tree.point_set(i, t + s)
         ac.flatten(ans)
+        return
+
+    @staticmethod
+    def abc_309f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc309/tasks/abc309_f
+        tag: partial_order|range_descend|range_min
+        """
+        n = ac.read_int()
+        nodes = set()
+        dct = [ac.read_list_ints() for _ in range(n)]
+        for x, y, z in dct:
+            nodes.add(x)
+            nodes.add(y)
+            nodes.add(z)
+        ind = {num: i for i, num in enumerate(sorted(nodes))}
+        m = len(ind)
+        dct = [sorted([ind[w] for w in ls]) for ls in dct]
+        ind = defaultdict(list)
+        for x, y, z in dct:
+            ind[x].append((y, z))
+        tree = RangeDescendRangeMin(m)
+        for x in sorted(ind):
+            for y, z in ind[x]:
+                if y:
+                    pre = tree.range_min(0, y - 1)
+                    if pre < z:
+                        ac.st("Yes")
+                        return
+            for y, z in ind[x]:
+                tree.range_descend(y, y, z)
+        ac.st("No")
         return

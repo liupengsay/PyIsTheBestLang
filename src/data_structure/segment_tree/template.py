@@ -3316,7 +3316,7 @@ class PointSetRangeOr:
         return ans
 
 
-class PointSetRangeXOr:
+class PointSetRangeXor:
 
     def __init__(self, n):
         self.n = n
