@@ -94,6 +94,7 @@ ABC343F（https://atcoder.jp/contests/abc343/tasks/abc343_f）segment_tree|point
 ABC320E（https://atcoder.jp/contests/abc320/tasks/abc320_e）segment_tree|point_set|range_min|range_min_bisect_left
 ABC309F（https://atcoder.jp/contests/abc309/tasks/abc309_f）partial_order|range_descend|range_min
 ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|linear_dp|segment_tree|range_add|range_mul
+ABC307F（https://atcoder.jp/contests/abc307/tasks/abc307_f）segment_tree|range_max_bisect_left|dijkstra
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -143,6 +144,7 @@ ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|lin
 import bisect
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
+from heapq import heappush, heappop
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
@@ -3066,4 +3068,57 @@ class Solution:
                 tot, zero = (m * tot - tot) % mod, (tot - zero) % mod
             ans = (tot - zero) * m % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_307f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc307/tasks/abc307_f
+        tag: segment_tree|range_max_bisect_left|dijkstra
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            dct[u].append((v, w))
+            dct[v].append((u, w))
+        ac.read_int()
+        nums = ac.read_list_ints_minus_one()
+        d = ac.read_int()
+        x = [0] + ac.read_list_ints()
+        tree = RangeAddRangeSumMinMax(d + 1)
+        tree.build(x)
+
+        dis = [(inf, 0) for _ in range(n)]
+        for i in nums:
+            dis[i] = (0, 0)
+        stack = [(0, 0, i) for i in nums]
+        while stack:
+            dd, pre, i = heappop(stack)
+            if dis[i] < (dd, pre):
+                continue
+            if dd >= d + 1:
+                continue
+            for j, w in dct[i]:
+                if pre + w <= x[dd]:
+                    dj = dd
+                    nex_pre = pre + w
+                    if (dj, nex_pre) < dis[j]:
+                        dis[j] = (dj, nex_pre)
+                        heappush(stack, (dj, nex_pre, j))
+                else:
+                    ind = tree.range_max_bisect_left(dd + 1, d, w)
+                    nex_pre = w
+                    if ind != -1:
+                        dj = ind
+                        if (dj, nex_pre) < dis[j]:
+                            dis[j] = (dj, nex_pre)
+                            heappush(stack, (dj, nex_pre, j))
+        for d in dis:
+            if d[0] < inf:
+                ac.st(d[0])
+            else:
+                ac.st(-1)
         return
