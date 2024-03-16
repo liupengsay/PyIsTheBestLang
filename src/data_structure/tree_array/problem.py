@@ -40,6 +40,7 @@ P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_
 ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
 ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
+ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contribution_method|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1084,4 +1085,36 @@ class Solution:
             for hs, ws, hb, wb in qur:
                 ans = tree_2d.range_sum(hs + 1, ws + 1, hb - 1, wb - 1)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_306f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc306/tasks/abc306_f
+        tag: tree_array|contribution_method|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nodes = []
+        for num in nums:
+            nodes.extend(num)
+        nodes.sort()
+        ind = {num: i + 1 for i, num in enumerate(nodes)}
+
+        nums = [[ind[x] for x in ls] for ls in nums]
+        k = len(ind)
+        tree = PointAddRangeSum(k)
+        for x in nums[-1]:
+            tree.point_add(x, 1)
+        ans = 0
+        for i in range(n - 2, -1, -1):
+            for num in nums[i]:
+                if num > 1:
+                    ans += tree.range_sum(1, num - 1) + (n - i - 1)
+                else:
+                    ans += (n - i - 1)
+            ans += (n - 1 - i) * (1 + m - 1) * (m - 1) // 2
+            for x in nums[i]:
+                tree.point_add(x, 1)
+        ac.st(ans)
         return

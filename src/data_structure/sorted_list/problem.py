@@ -56,6 +56,7 @@ P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
 ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|sorted_list|hash
 ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointer
+ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
@@ -518,5 +519,24 @@ class Solution:
                 i = lst.bisect_right(x)
                 last = lst[i]
                 ans ^= last
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_306f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc306/tasks/abc306_f
+        tag: sorted_list|contribution_method
+        """
+        n, m = ac.read_list_ints()
+        nums = [sorted(ac.read_list_ints()) for _ in range(n)]
+        post = SortedList(nums[-1])
+        ans = 0
+        for i in range(n - 2, -1, -1):
+            for num in nums[i]:
+                ans += bisect.bisect_left(post, num) + (n - i - 1)
+            ans += (n - 1 - i) * (1 + m - 1) * (m - 1) // 2
+            for num in nums[i]:
+                post.add(num)
         ac.st(ans)
         return

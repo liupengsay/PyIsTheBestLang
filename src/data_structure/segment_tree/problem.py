@@ -93,6 +93,7 @@ ABC338E（https://atcoder.jp/contests/abc338/tasks/abc338_e）segment_tree|brain
 ABC343F（https://atcoder.jp/contests/abc343/tasks/abc343_f）segment_tree|point_set|range_max|range_second
 ABC320E（https://atcoder.jp/contests/abc320/tasks/abc320_e）segment_tree|point_set|range_min|range_min_bisect_left
 ABC309F（https://atcoder.jp/contests/abc309/tasks/abc309_f）partial_order|range_descend|range_min
+ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|linear_dp|segment_tree|range_add|range_mul
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -158,7 +159,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
-    PointSetRangeMaxSecondCnt, PointSetRangeXor
+    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -3023,4 +3024,46 @@ class Solution:
             for y, z in ind[x]:
                 tree.range_descend(y, y, z)
         ac.st("No")
+        return
+
+    @staticmethod
+    def abc_307e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc307/tasks/abc307_e
+        tag: circular_array|linear_dp|segment_tree|range_add|range_mul
+        """
+        mod = 998244353
+        n, m = ac.read_list_ints()
+        if n == 2:
+            ans = m * (m - 1) % mod
+        else:
+            tree = RangeAddMulRangeSum(m, mod)
+            tree.range_add_mul(0, 0, 1, "add")
+            for _ in range(n - 1):
+                tot = tree.range_sum(0, m - 1)
+                tree.range_add_mul(0, m - 1, -1, "mul")
+                tree.range_add_mul(0, m - 1, tot, "add")
+            tot = tree.range_sum(0, m - 1)
+            tot -= tree.range_sum(0, 0)
+            ans = tot * m % mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_307e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc307/tasks/abc307_e
+        tag: circular_array|linear_dp|segment_tree|range_add|range_mul
+        """
+        mod = 998244353
+        n, m = ac.read_list_ints()
+        if n == 2:
+            ans = m * (m - 1) % mod
+        else:
+            zero = 1
+            tot = 1
+            for _ in range(n - 1):
+                tot, zero = (m * tot - tot) % mod, (tot - zero) % mod
+            ans = (tot - zero) * m % mod
+        ac.st(ans)
         return
