@@ -129,6 +129,7 @@ ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digit
 ABC322E（https://atcoder.jp/contests/abc322/tasks/abc322_e）linear_dp
 ABC318E（https://atcoder.jp/contests/abc318/tasks/abc318_e）linear_dp
 ABC315F（https://atcoder.jp/contests/abc315/tasks/abc315_f）linear_dp|brute_force
+ABC345E（https://atcoder.jp/contests/abc345/tasks/abc345_e）linear_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower

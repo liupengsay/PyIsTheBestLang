@@ -72,6 +72,7 @@ ARC086B（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy|constructio
 ARC093B（https://atcoder.jp/contests/abc092/tasks/arc093_b）brain_teaser|construction
 ABC126F（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|construction|xor_property
 ABC109D（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
+ABC345F（https://atcoder.jp/contests/abc345/tasks/abc345_f）construction|union_find|greedy|implemention
 
 """
 import math
