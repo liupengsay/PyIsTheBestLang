@@ -46,12 +46,16 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
-（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological_lexicographic_order
+ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|topological_sort
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction
 3831（https://www.acwing.com/problem/content/description/3831/）topological_sort|dag_dp|circle_judge
 4629（https://www.acwing.com/problem/content/description/4629/）directed_circle_based_tree|circle_judge
+
+=====================================LibraryChecker=====================================
+1（https://www.hackerrank.com/challenges/favourite-sequence/problem?isFullScreen=true）topological_lexicographic_order
+
 
 """
 

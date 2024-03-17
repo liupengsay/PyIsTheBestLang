@@ -29,10 +29,13 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
+ABC305F（https://atcoder.jp/contests/abc305/tasks/abc305_f）interactive|brain_teaser|spanning_tree|dfs|back_trace
+
 
 """
 import random
 import sys
+from collections import deque
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAddPointGet
@@ -269,4 +272,41 @@ class Solution:
             y = (n + b + 1 - c) // 2
             x = m + n - c - y
             ac.lst(["!", x, y])
+        return
+
+    @staticmethod
+    def abc_305f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc305/tasks/abc305_f
+        tag: interactive|brain_teaser|spanning_tree|dfs|back_trace
+        """
+        ac.flush = True
+        n, m = ac.read_list_ints()
+        parent = [-1] * (n + 1)
+        dct = [deque() for _ in range(n + 1)]
+        lst = ac.read_list_ints()
+        dct[1] = deque(lst[1:])
+        visit = [0] * (n + 1)
+        visit[1] = 1
+        stack = [1]
+        while stack:
+            x = stack[-1]
+            while dct[x] and visit[dct[x][0]]:
+                dct[x].popleft()
+            if dct[x]:
+                y = dct[x].popleft()
+                parent[y] = x
+                stack.append(y)
+                visit[y] = 1
+                ac.st(y)
+                lst = ac.read_list_strs()
+                if lst[0] == "OK":
+                    return
+                dct[y] = deque([int(w) for w in lst[1:]])
+            else:
+                x = stack.pop()
+                y = parent[x]
+                stack.append(y)
+                ac.st(y)
+                ac.read_list_strs()
         return

@@ -79,6 +79,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
 ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
+ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusion_exclusion
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -972,4 +973,34 @@ class Solution:
                         b = int(f ** 0.5)
                         ans += cnt[num] * cnt.get(num // b, 0) * cnt.get(num // f, 0)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_304f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc304/tasks/abc304_f
+        tag: classical|inclusion_exclusion
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        mod = 998244353
+        factor = NumFactor().get_all_factor(n)
+        factor.pop()
+        pre = defaultdict(int)
+        ans = 0
+        for m in factor:
+            cnt = 0
+            for i in range(m):
+                if any(s[j] == "." for j in range(i, n, m)):
+                    continue
+                cnt += 1
+            cur = pow(2, cnt, mod)
+            for num in pre:
+                if m % num == 0:
+                    cur -= pre[num]
+            cur %= mod
+            ans += cur
+            ans %= mod
+            pre[m] = cur
+        ac.st(ans)
         return
