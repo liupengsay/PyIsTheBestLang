@@ -54,6 +54,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
 ABC338F（https://atcoder.jp/contests/abc338/tasks/abc338_f）floyd|shortest_path|state_dp|fill_table|refresh_table|classical
 ABC318D（https://atcoder.jp/contests/abc318/tasks/abc318_d）state_dp|brute_force
+ABC301E（https://atcoder.jp/contests/abc301/tasks/abc301_e）state_dp|build_graph
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1010,4 +1011,62 @@ class Solution:
                     dp[k * m + (s | (1 << k))] = min(dp[k * m + (s | (1 << k))], dp[j * m + s] + dis[j][k])
         ans = min(dp[i * m + m - 1] for i in range(n))
         ac.st(ans if ans < inf else "No")
+        return
+
+    @staticmethod
+    def abc_301e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc301/tasks/abc301_e
+        tag: state_dp|build_graph
+        """
+        m, n, t = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        candy = []
+        start = []
+        end = []
+        for i in range(m):
+            for j in range(n):
+                w = grid[i][j]
+                if w == "S":
+                    start.append((i, j))
+                elif w == "G":
+                    end.append((i, j))
+                elif w == "o":
+                    candy.append((i, j))
+        lst = start + candy + end
+        k = len(lst)
+        dct = [[inf] * k for _ in range(k)]
+        for i in range(k):
+            x, y = lst[i]
+            visit = [[inf] * n for _ in range(m)]
+            visit[x][y] = 0
+            stack = [(x, y)]
+            while stack:
+                nex = []
+                for x, y in stack:
+                    for a, b in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
+                        if 0 <= a < m and 0 <= b < n and grid[a][b] != "#" and visit[a][b] == inf:
+                            visit[a][b] = visit[x][y] + 1
+                            nex.append((a, b))
+                stack = nex[:]
+            for j in range(k):
+                if j != i:
+                    a, b = lst[j]
+                    dct[i][j] = visit[a][b]
+
+        target = (1 << k) - 1
+        dp = [[inf] * (1 << k) for _ in range(k)]
+        dp[0][target ^ (1 << 0)] = 0
+        ans = -1
+        for state in range(target - 1, -1, -1):
+            pre = [j for j in range(k) if not state & (1 << j)]
+            for x in pre:
+                for y in pre:
+                    if x != y:
+                        dp[x][state] = min(dp[x][state], dp[y][state | (1 << x)] + dct[y][x])
+        for state in range(1 << k):
+            if dp[-1][state] <= t:
+                cur = sum(not state & (1 << j) for j in range(k)) - 2
+                ans = max(ans, cur)
+        ac.st(ans)
         return

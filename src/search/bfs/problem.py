@@ -110,6 +110,7 @@ ABC317E（https://atcoder.jp/contests/abc317/tasks/abc317_e）bfs
 ABC315E（https://atcoder.jp/contests/abc315/tasks/abc315_e）bfs|dfs|classical
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
 ABC311D（https://atcoder.jp/contests/abc311/tasks/abc311_d）bfs
+ABC302F（https://atcoder.jp/contests/abc302/tasks/abc302_f）build_graph|bfs|brain_teaser
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2191,4 +2192,35 @@ class Solution:
                 if not degree[y]:
                     stack.append(y)
         ac.st(max(dp))
+        return
+
+    @staticmethod
+    def abc_302f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc302/tasks/abc302_f
+        tag: build_graph|bfs|brain_teaser
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(m + n)]
+        for i in range(n):
+            ac.read_int()
+            lst = ac.read_list_ints_minus_one()
+            for x in lst:
+                dct[x].append(m + i)
+                dct[m + i].append(x)
+        dis = [inf] * (m + n)
+        dis[0] = 0
+        stack = [0]
+        while stack:
+            nex = []
+            for i in stack:
+                if i == m - 1:
+                    ac.st((dis[m - 1] - 2) // 2)
+                    return
+                for j in dct[i]:
+                    if dis[j] == inf:
+                        dis[j] = dis[i] + 1
+                        nex.append(j)
+            stack = nex
+        ac.st(-1)
         return
