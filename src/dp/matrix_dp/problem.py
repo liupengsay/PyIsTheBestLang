@@ -100,7 +100,7 @@ P7995（https://www.luogu.com.cn/problem/P7995）matrix_dp
 P8325（https://www.luogu.com.cn/problem/P8325）brute_force|matrix_dp|maximum_square
 P8614（https://www.luogu.com.cn/problem/P8614）matrix_dp|mod
 P8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_sequence
-P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp| implemention|memory_search
+P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemention|memory_search
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp

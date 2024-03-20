@@ -57,6 +57,7 @@ ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_
 ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|sorted_list|hash
 ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointer
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
+ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
