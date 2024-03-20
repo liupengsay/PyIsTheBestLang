@@ -80,6 +80,7 @@ ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorizatio
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
 ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
 ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusion_exclusion
+ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointer
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization

@@ -62,6 +62,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
 ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|linear_dp
 ABC311G（https://atcoder.jp/contests/abc311/tasks/abc311_g）brute_force|prefix_sum|monotonic_stack|classical
+ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack_greedy|implemention|classical
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
@@ -986,4 +987,25 @@ class Solution:
                         if pre2.query(xa, ya, xb, yb):
                             ans = max(ans, pre.query(xa, ya, xb, yb) * num)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_299g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc299/tasks/abc299_g
+        tag: monotonic_stack_greedy|implemention|classical
+        """
+        ac.read_list_ints()
+        nums = ac.read_list_ints()
+        cnt = Counter(nums)
+        in_stack = defaultdict(int)
+        stack = []
+        for w in nums:
+            if not in_stack[w]:
+                while stack and stack[-1] > w and cnt[stack[-1]]:
+                    in_stack[stack.pop()] = 0
+                stack.append(w)
+                in_stack[w] = 1
+            cnt[w] -= 1
+        ac.lst(stack)
         return

@@ -15,6 +15,7 @@ ABC342F（https://atcoder.jp/contests/abc342/tasks/abc342_f）prob_dp
 ABC333F（https://atcoder.jp/contests/abc333/tasks/abc333_f）matrix_dp|equation|prob_dp|math|implemention
 ABC326E（https://atcoder.jp/contests/abc326/tasks/abc326_e）prob_dp|contribution_method
 ABC323E（https://atcoder.jp/contests/abc323/tasks/abc323_e）linear_dp|prob_dp|brute_force|classical
+ABC300E（https://atcoder.jp/contests/abc300/tasks/abc300_e）prob_dp|math|classical|brain_teaser
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
