@@ -131,6 +131,7 @@ ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_fo
 ABC344F（https://atcoder.jp/contests/abc344/tasks/abc344_f）matrix_dp|greedy|brain_teaser|classical
 ABC311F（https://atcoder.jp/contests/abc311/tasks/abc311_f）matrix_dp|prefix_sum_opt|classical|brain_teaser
 ABC311E（https://atcoder.jp/contests/abc311/tasks/abc311_e）matrix_dp|classical
+ABC298G（https://atcoder.jp/contests/abc298/tasks/abc298_g）matrix_dp|brute_force|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
