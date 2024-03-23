@@ -47,6 +47,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
 ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|topological_sort
+ABC296E（https://atcoder.jp/contests/abc296/tasks/abc296_e）topological_sort|directed_graph
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction

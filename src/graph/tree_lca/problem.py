@@ -26,6 +26,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 1702G2（https://codeforces.com/contest/1702/problem/G2）tree_lca
 
 ====================================AtCoder=====================================
+ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point_set|range_sum|heavy_chain|tree_lca
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
@@ -36,6 +37,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 import math
 from typing import List
 
+from src.data_structure.segment_tree.template import PointSetRangeSum
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_diff_array.template import TreeDiffArray
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
@@ -424,3 +426,67 @@ class Solution:
             tot = sum(cur)
             ans.append(tot - ceil)
         return ans
+
+    @staticmethod
+    def abc_294g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc294/tasks/abc294_g
+        tag: segment_tree|point_set|range_sum|heavy_chain|tree_lca
+        """
+        n = ac.read_int()
+        tree = PointSetRangeSum(n)
+
+        edges = [ac.read_list_ints() for _ in range(n - 1)]
+        dct = [[] for _ in range(n)]
+        for x in range(n - 1):
+            i, j, w = edges[x]
+            i -= 1
+            j -= 1
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct, 0)
+
+        val = [0] * n
+        for i, j, w in edges:
+            i -= 1
+            j -= 1
+            if heavy.dfn[i] < heavy.dfn[j]:
+                val[j] = w
+            else:
+                val[i] = w
+
+        tree.build([val[i] for i in heavy.rev_dfn])
+
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, w = lst[1:]
+                x -= 1
+                i, j, _ = edges[x]
+                i -= 1
+                j -= 1
+                if heavy.dfn[i] < heavy.dfn[j]:
+                    tree.point_set(heavy.dfn[j], w)
+                else:
+                    tree.point_set(heavy.dfn[i], w)
+
+            else:
+                x, y = lst[1:]
+                y -= 1
+                x -= 1
+                if heavy.dfn[y] < heavy.dfn[x]:
+                    x, y = y, x
+                ans = 0
+                lca = heavy.dfn[heavy.query_lca(x, y)]
+                for a, b in heavy.query_chain(x, y):
+                    if a <= lca <= b:
+                        lst = [(a, lca - 1), (lca + 1, b)]
+                    else:
+                        lst = [(a, b)]
+                    for aa, bb in lst:
+                        if 0 <= aa <= bb < n:
+                            cur = tree.range_sum(aa, bb)
+                            ans += cur
+                ac.st(ans)
+
+        return

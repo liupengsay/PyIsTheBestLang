@@ -95,6 +95,7 @@ ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|gree
 ABC341D（https://atcoder.jp/contests/abc341/tasks/abc341_d）binary_search|math|classical
 ABC324F（https://atcoder.jp/contests/abc324/tasks/abc324_f）binary_search|dag_dp|find_float_right|classical
 ABC305D（https://atcoder.jp/contests/abc305/tasks/abc305_d）binary_search|prefix_sum
+ABC294F（https://atcoder.jp/contests/abc294/tasks/abc294_f）binary_search|classical|brain_teaser
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search

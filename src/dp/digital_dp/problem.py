@@ -23,6 +23,7 @@ ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digit
 ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
 ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brut_force|digital_dp
 ABC317F（https://atcoder.jp/contests/abc317/tasks/abc317_f）2-base|digital_dp|classical
+ABC295F（https://atcoder.jp/contests/abc295/tasks/abc295_f）digital_dp|kmp_automaton|classical
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -37,6 +38,7 @@ P1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 from functools import lru_cache
 
 from src.dp.digital_dp.template import DigitalDP
+from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO
 
 
@@ -306,4 +308,47 @@ class Solution:
 
         ans = dfs(0, 0, 0, 0, 1, 1, 1, 0, 0, 0)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_295f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc295/tasks/abc295_f
+        tag: digital_dp|kmp_automaton|classical
+        """
+
+        def check(num):
+
+            @lru_cache(None)
+            def dfs(i, is_limit, is_num, cnt, pre):
+                if i == m:
+
+                    if is_num:
+                        return cnt
+                    return 0
+                res = 0
+                if not is_num:
+                    res += dfs(i + 1, False, False, 0, 0)
+                low = 0 if is_num else 1
+                high = int(st[i]) if is_limit else 9
+                for x in range(low, high + 1):
+                    nex_length = nex[pre * 10 + x]
+                    nex_cnt = cnt + 1 if nex_length == n else cnt
+                    res += dfs(i + 1, is_limit and high == x, True, nex_cnt, nex_length)
+                return res
+
+            st = str(num)
+            m = len(st)
+            ans = dfs(0, True, False, 0, 0)
+            dfs.cache_clear()
+            return ans
+
+        for _ in range(ac.read_int()):
+            s, ll, rr = ac.read_list_strs()
+            lst = [int(w) for w in s]
+            n = len(s)
+            nex = KMP().kmp_automaton(lst, 10)
+            cur = check(int(rr)) - check(int(ll) - 1)
+            ac.st(cur)
+
         return

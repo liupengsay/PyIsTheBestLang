@@ -158,6 +158,7 @@ ABC345D（https://atcoder.jp/contests/abc345/tasks/abc345_d）brute_force|implem
 ABC345C（https://atcoder.jp/contests/abc345/tasks/abc345_c）contribution_method
 ABC302G（https://atcoder.jp/contests/abc302/tasks/abc302_g）brute_force
 ABC300F（https://atcoder.jp/contests/abc300/tasks/abc300_f）brute_force|circular_array|prefix_sum|greedy
+ABC296D（https://atcoder.jp/contests/abc296/tasks/abc296_d）brute_force|math
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1475,3 +1476,20 @@ class Solution:
                     if x > ans:
                         ans = x
         return ans
+
+    @staticmethod
+    def abc_296d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc296/tasks/abc296_d
+        tag: brute_force|math
+        """
+        n, m = ac.read_list_ints()
+        x = m
+        while x <= n * n:
+            for y in range(x // n, int(x ** 0.5) + 1):
+                if 1 <= y <= n and 1 <= x // y <= n and x % y == 0:
+                    ac.st(x)
+                    return
+            x += 1
+        ac.st(-1)
+        return

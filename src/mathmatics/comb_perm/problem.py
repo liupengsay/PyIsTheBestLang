@@ -53,6 +53,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 414B（https://codeforces.com/contest/414/problem/B）min_prime|partition_method|counter|dp
 1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
+ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -927,4 +928,33 @@ class Solution:
             ans *= comb(pre_high - pre_low + 1 + cnt - 1, cnt)
             ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_295e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc295/tasks/abc295_e
+        tag: expectation|brute_force|inclusion_exclusion|brain_teaser|classical
+        """
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        zero = nums.count(0)
+        tot = pow(m, zero, mod)
+        pre = [0] * (m + 2)
+        cb = Combinatorics(n + 100, mod)
+        for num in range(1, m + 1):
+            more = sum(x >= num for x in nums)
+            cur = 0
+            for x in range(zero + 1):
+                y = zero - x
+                if x and num == 1:
+                    continue
+                if more + y >= n - k + 1:
+                    cur += cb.comb(zero, x) * pow(num - 1, x, mod) * pow(m - num + 1, y, mod)
+                    cur %= mod
+            pre[num] = cur
+        ans = sum(x * (pre[x] - pre[x + 1]) for x in range(1, m + 1)) % mod
+        ans = ans * pow(tot, -1, mod) % mod
+        ac.st(ans)
         return

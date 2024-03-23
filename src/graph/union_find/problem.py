@@ -107,6 +107,7 @@ ABC214D（https://atcoder.jp/contests/abc214/tasks/abc214_d）union_find|contrib
 ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
 ABC328F（https://atcoder.jp/contests/abc328/tasks/abc328_f）union_find_weighted_dis|classical|hard
 ABC314F（https://atcoder.jp/contests/abc314/tasks/abc314_f）union_find|bfs|build_graph|expectation|prob
+ABC295G（https://atcoder.jp/contests/abc295/tasks/abc295_g）union_find|implemention|tree|union_min|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2258,4 +2259,30 @@ class Solution:
                             dis[j] = dis[i] + 1
                 stack = nex[:]
             ac.st(dis[e] // 2)
+        return
+
+    @staticmethod
+    def abc_295g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc295/tasks/abc295_g
+        tag: union_find|implemention|tree|union_min|classical
+        """
+        n = ac.read_int()
+        to = [0] + ac.read_list_ints_minus_one()
+        uf = UnionFind(n)
+        parent = [0] * n
+        for i in range(1, n):
+            parent[i] = to[i]
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, y = lst[1:]
+                x -= 1
+                y -= 1
+                while not uf.is_connected(x, y):
+                    uf.union_min(x, parent[x])
+                    x = uf.find(x)
+            else:
+                x = lst[1] - 1
+                ac.st(uf.find(x) + 1)
         return
