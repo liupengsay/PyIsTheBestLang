@@ -95,6 +95,8 @@ ABC320E（https://atcoder.jp/contests/abc320/tasks/abc320_e）segment_tree|point
 ABC309F（https://atcoder.jp/contests/abc309/tasks/abc309_f）partial_order|range_descend|range_min
 ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|linear_dp|segment_tree|range_add|range_mul
 ABC307F（https://atcoder.jp/contests/abc307/tasks/abc307_f）segment_tree|range_max_bisect_left|dijkstra
+ABC346G（https://atcoder.jp/contests/abc346/tasks/abc346_g）contribution_method|segment_tree|range_add|range_sum
+
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -161,7 +163,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
-    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum
+    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -3121,4 +3123,31 @@ class Solution:
                 ac.st(d[0])
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def abc_346g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc346/tasks/abc346_g
+        tag: contribution_method|segment_tree|range_add|range_sum
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = defaultdict(lambda: [-1])
+        ans = 0
+        tree = RangeAddRangeMinCount(n)
+        tree.build([0] * n)
+        for i in range(n):
+            x = nums[i]
+            if len(dct[x]) > 1:
+                ll, rr = dct[x][-2] + 1 if dct[x][-2] != -1 else 0, dct[x][-1]
+                tree.range_add(ll, rr, -1)
+                ll, rr = dct[x][-1] + 1, i
+                tree.range_add(ll, rr, 1)
+            else:
+                tree.range_add(0, i, 1)
+            dct[x].append(i)
+            floor, cnt = tree.range_min_count(0, n - 1)
+            ans += n if floor > 0 else n - cnt
+        ac.st(ans)
         return

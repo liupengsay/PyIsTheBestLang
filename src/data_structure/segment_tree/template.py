@@ -4674,6 +4674,118 @@ class PointSetRangeMin:
         return res
 
 
+class RangeAddRangeMinCount:
+    def __init__(self, n):
+        self.n = n
+        self.lazy_tag = [0] * (4 * self.n)  # lazy tag
+        self.floor = [0] * (4 * self.n)  # range min
+        self.cnt = [0] * (4 * self.n)  # range max
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s])
+                    self.cnt[i] = 1
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy_tag[i]:
+            self.floor[i << 1] += self.lazy_tag[i]
+            self.floor[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i << 1] += self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i):
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        cur = 0
+        if self.floor[i] == self.floor[i << 1]:
+            cur += self.cnt[i << 1]
+        if self.floor[i] == self.floor[(i << 1) | 1]:
+            cur += self.cnt[(i << 1) | 1]
+        self.cnt[i] = cur
+        return
+
+    def _make_tag(self, i, s, t, val):
+        self.floor[i] += val
+        self.lazy_tag[i] += val
+        return
+
+    def range_add(self, left, right, val):
+        # update the range add
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.floor[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_min_count(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        res = inf
+        cnt = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if self.floor[i] < res:
+                    res = self.floor[i]
+                    cnt = self.cnt[i]
+                elif self.floor[i] == res:
+                    cnt += self.cnt[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return res, cnt
+
+
 class PointSetRangeMinCount:
 
     def __init__(self, n, initial=0):

@@ -11,7 +11,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
     RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
-    RangeRevereRangeAlter
+    RangeRevereRangeAlter, RangeAddRangeMinCount
 
 
 class TestGeneral(unittest.TestCase):
@@ -72,6 +72,30 @@ class TestGeneral(unittest.TestCase):
             cnt = nums[ll:rr + 1].count(low)
             res = tree.range_min_count(ll, rr)
             assert res == (low, cnt)
+        assert nums == tree.get()
+        return
+
+    def test_range_add_range_min_count(self):
+        low = 1
+        high = 100
+        n = 1000
+        nums = [random.randint(low, high) for _ in range(n)]
+        tree = RangeAddRangeMinCount(n)
+        tree.build(nums)
+        for _ in range(10000):
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            num = random.randint(-high, high)
+            for i in range(ll, rr+1):
+                nums[i] += num
+            tree.range_add(ll, rr, num)
+
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            floor = min(nums[ll:rr + 1])
+            cnt = nums[ll:rr + 1].count(floor)
+            res = tree.range_min_count(ll, rr)
+            assert res == (floor, cnt)
         assert nums == tree.get()
         return
 
