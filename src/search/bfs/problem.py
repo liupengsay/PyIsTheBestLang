@@ -111,6 +111,7 @@ ABC315E（https://atcoder.jp/contests/abc315/tasks/abc315_e）bfs|dfs|classical
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
 ABC311D（https://atcoder.jp/contests/abc311/tasks/abc311_d）bfs
 ABC302F（https://atcoder.jp/contests/abc302/tasks/abc302_f）build_graph|bfs|brain_teaser
+ABC289E（https://atcoder.jp/contests/abc289/tasks/abc289_e）bfs
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

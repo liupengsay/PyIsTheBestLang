@@ -96,7 +96,7 @@ ABC309F（https://atcoder.jp/contests/abc309/tasks/abc309_f）partial_order|rang
 ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|linear_dp|segment_tree|range_add|range_mul
 ABC307F（https://atcoder.jp/contests/abc307/tasks/abc307_f）segment_tree|range_max_bisect_left|dijkstra
 ABC346G（https://atcoder.jp/contests/abc346/tasks/abc346_g）contribution_method|segment_tree|range_add|range_sum
-
+ABC292H（https://atcoder.jp/contests/abc292/tasks/abc292_h）segment_tree|range_add|range_max_bisect_left
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -3150,4 +3150,28 @@ class Solution:
             floor, cnt = tree.range_min_count(0, n - 1)
             ans += n if floor > 0 else n - cnt
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_292h(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc292/tasks/abc292_h
+        tag: segment_tree|range_add|range_max_bisect_left
+        """
+        n, b, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        pre = ac.accumulate(nums)
+        tree = RangeAddRangeSumMinMax(n)
+        tree.build([pre[i] - i * b for i in range(1, n + 1)])
+        for _ in range(q):
+            c, x = ac.read_list_ints()
+            c -= 1
+            y = nums[c]
+            tree.range_add(c, n - 1, x - y)
+            nums[c] = x
+            res = tree.range_max_bisect_left(0, n - 1, 0)
+            if res == -1:
+                res = n - 1
+            ans = tree.range_sum(res, res) / (res + 1) + b
+            ac.st(ans)
         return

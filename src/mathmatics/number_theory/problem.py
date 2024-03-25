@@ -81,6 +81,7 @@ ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|c
 ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
 ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusion_exclusion
 ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointer
+ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -101,7 +102,7 @@ ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_po
 import math
 from collections import Counter
 from collections import defaultdict
-from functools import reduce
+from functools import reduce, lru_cache
 from operator import mul
 from sys import stdout
 from typing import List
@@ -742,8 +743,8 @@ class Solution:
         # 因数brute_force
         for _ in range(ac.read_int()):
             a, b, c, d = ac.read_list_ints()
-            lst_a = NumberTheory().get_all_factor(a)
-            lst_b = NumberTheory().get_all_factor(b)
+            lst_a = NumFactor().get_all_factor(a)
+            lst_b = NumFactor().get_all_factor(b)
 
             def check():
                 for x in lst_a:
@@ -1003,5 +1004,47 @@ class Solution:
             ans += cur
             ans %= mod
             pre[m] = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_293e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc293/tasks/abc293_e
+        tag: power_reverse|frac_pow|classical|math|recursion|divide_conquer
+        """
+        a, x, m = ac.read_list_ints()
+        if a == 1:
+            ac.st(x % m)
+            return
+
+        def frac_mod(aa, bb, mm):
+            # (aa/bb) % mod and (aa%bb=0)
+            return (aa % (mm * bb)) // bb
+
+        mod = m * (a - 1)
+        ans = frac_mod((pow(a, x, mod) - 1) % mod, a - 1, m)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_293e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc293/tasks/abc293_e
+        tag: power_reverse|frac_pow|classical|math|recursion|divide_conquer
+        """
+        a, x, m = ac.read_list_ints()
+
+        @lru_cache(None)
+        def dfs(k):
+            if k == 0:
+                return 1 % m
+            nex = dfs(k // 2)
+            res = nex * pow(a, k // 2 + 1, m) + nex
+            if k % 2 == 0:
+                res -= pow(a, k + 1, m)
+            return res % m
+
+        ans = dfs(x - 1)
         ac.st(ans)
         return

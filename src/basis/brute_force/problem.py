@@ -160,6 +160,7 @@ ABC302G（https://atcoder.jp/contests/abc302/tasks/abc302_g）brute_force
 ABC300F（https://atcoder.jp/contests/abc300/tasks/abc300_f）brute_force|circular_array|prefix_sum|greedy
 ABC296D（https://atcoder.jp/contests/abc296/tasks/abc296_d）brute_force|math
 ABC346D（https://atcoder.jp/contests/abc346/tasks/abc346_d）brute_force|prefix_suffix
+ABC290E（https://atcoder.jp/contests/abc290/tasks/abc290_e）brute_force|contribution_method
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

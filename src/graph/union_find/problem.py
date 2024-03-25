@@ -108,6 +108,7 @@ ARC107C（https://www.luogu.com.cn/problem/AT_arc107_c）union_find|comb_perm
 ABC328F（https://atcoder.jp/contests/abc328/tasks/abc328_f）union_find_weighted_dis|classical|hard
 ABC314F（https://atcoder.jp/contests/abc314/tasks/abc314_f）union_find|bfs|build_graph|expectation|prob
 ABC295G（https://atcoder.jp/contests/abc295/tasks/abc295_g）union_find|implemention|tree|union_min|classical
+ABC293D（https://atcoder.jp/contests/abc293/tasks/abc293_d）union_find
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range

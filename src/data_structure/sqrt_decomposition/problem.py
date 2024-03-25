@@ -27,6 +27,7 @@ P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
 ABC335F（https://atcoder.jp/contests/abc335/tasks/abc335_f）sqrt_decomposition|linear_dp|refresh_table|fill_table|classical
+ABC293G（https://atcoder.jp/contests/abc293/tasks/abc293_g）sqrt_decomposition|brain_teaser|classical
 
 """
 import bisect
@@ -820,4 +821,110 @@ class Solution:
                 pre[a * size + i % a] += dp[i]
                 pre[a * size + i % a] %= mod
         ac.st(sum(dp) % mod)
+        return
+
+    @staticmethod
+    def abc_293g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc293/tasks/abc293_g
+        tag: sqrt_decomposition|brain_teaser|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        m = 2 * 10 ** 5
+        cnt = [0] * (m + 1)
+        size = int(m ** 0.5) + 1
+        queries = [[] for _ in range(size)]
+        for i in range(q):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append([a, b, i])
+
+        def compute(xx):
+            return xx * (xx - 1) * (xx - 2) // 6
+
+        def add(num, xx):
+            if cnt[num] >= 3:
+                cur[0] -= compute(cnt[num])
+            cnt[num] += xx
+            if cnt[num] >= 3:
+                cur[0] += compute(cnt[num])
+            return
+
+        ans = [0] * q
+        x = y = 0
+        cnt[nums[0]] = 1
+        cur = [0]
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            for a, b, j in queries[i]:
+                while y > b:
+                    add(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    add(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    add(nums[x], 1)
+                while x < a:
+                    add(nums[x], -1)
+                    x += 1
+                ans[j] = cur[0]
+        for a in ans:
+            ac.st(a)
+        return
+
+        """
+        url: https://atcoder.jp/contests/abc293/tasks/abc293_g
+        tag: sqrt_decomposition|brain_teaser|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        m = 2 * 10 ** 5
+        cnt = [0] * (m + 1)
+        size = int(m ** 0.5) + 1
+        queries = [[] for _ in range(size)]
+        for i in range(q):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append([a, b, i])
+
+        def compute(xx):
+            return xx * (xx - 1) * (xx - 2) // 6
+
+        def add(num, xx):
+            cnt[num] += xx
+            cur[0] -= compute(cnt[num] - xx)
+            cur[0] += compute(cnt[num])
+            return
+
+        ans = [0] * q
+        x = y = 0
+        cnt[nums[0]] = 1
+        cur = [0]
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            for a, b, j in queries[i]:
+                while y > b:
+                    add(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    add(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    add(nums[x], 1)
+                while x < a:
+                    add(nums[x], -1)
+                    x += 1
+                ans[j] = cur[0]
+        for a in ans:
+            ac.st(a)
         return

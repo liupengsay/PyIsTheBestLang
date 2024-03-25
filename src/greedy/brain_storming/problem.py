@@ -214,6 +214,8 @@ ABC313C（https://atcoder.jp/contests/abc313/tasks/abc313_c）brain_teaser|media
 ABC310E（https://atcoder.jp/contests/abc310/tasks/abc310_e）brain_teaser|implemention
 ABC308F（https://atcoder.jp/contests/abc308/tasks/abc308_f）brain_teaser|greedy
 ABC296F（https://atcoder.jp/contests/abc296/tasks/abc296_f）brain_teaser|greedy|sorted_list|reverse_pair|property
+ABC293F（https://atcoder.jp/contests/abc293/tasks/abc293_f）binary_search|brute_force|brain_teaser|classical
+ABC290D（https://atcoder.jp/contests/abc290/tasks/abc290_d）brain_teaser|implmention|math
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1754,4 +1756,48 @@ class Solution:
                     ans += pre
 
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_293f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc293/tasks/abc293_f
+        tag: binary_search|brute_force|brain_teaser|classical
+        """
+        assert 1 << 64 > 10 ** 18
+
+        def compute(bb):
+            res = 0
+            for w in cur:
+                res = res * bb + w
+            return res
+
+        def check(bb):
+            return compute(bb) >= n
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = {n, n - 1}
+
+            for num in range(2, 1 << 5):
+                cur = [int(w) for w in bin(num)[2:]]
+                x = BinarySearch().find_int_left(0, n, check)
+                if compute(x) == n:
+                    ans.add(x)
+
+            for x in range(5, 65):
+                if 1 << x > n:
+                    break
+                high = int(n ** (1 / x))
+                low = int(n ** (1 / (x + 1)))
+                for b in range(max(low, 2), min(high + 10, n - 1)):
+                    num = n
+                    while num:
+                        if num % b > 1:
+                            break
+                        num //= b
+                    else:
+                        ans.add(b)
+
+            ac.st(len([x for x in ans if x >= 2]))
         return
