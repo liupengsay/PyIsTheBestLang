@@ -15,6 +15,7 @@ Description：string|bit_operation
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
 1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
 2935（https://leetcode.cn/problems/maximum-strong-pair-xor-ii/description/）binary_trie|hash|bit_operation
+3093（https://leetcode.cn/problems/longest-common-suffix-queries）trie|classical
 
 =====================================LuoGu======================================
 P8306（https://www.luogu.com.cn/problem/P8306）trie_like
@@ -44,6 +45,9 @@ P4735（https://www.luogu.com.cn/problem/P4735）
 1720D2（https://codeforces.com/contest/1720/problem/D2）
 1849F（https://codeforces.com/problemset/problem/1849/F）
 888G（https://codeforces.com/problemset/problem/888/G）
+
+===================================AtCoder===================================
+ABC287E（https://atcoder.jp/contests/abc287/tasks/abc287_e）trie|prefix_suffix|classical
 
 =====================================AcWing=====================================
 144（https://www.acwing.com/problem/content/144/）trie_like|prefix_count
@@ -968,3 +972,126 @@ class Solution:
             else:
                 ac.st(binary_trie.get_cnt_smaller_xor(lst[1], lst[2] - 1))
         return
+
+    @staticmethod
+    def abc_287e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc287/tasks/abc287_e
+        tag: trie|prefix_suffix|classical
+        """
+        n = ac.read_int()
+        words = [ac.read_str() for _ in range(n)]
+
+        def check():
+            ans = []
+            dct = dict()
+            for word in words:
+                cur = dct
+                tot = 0
+                for w in word:
+                    if w in cur:
+                        cur = cur[w]
+                        tot += 1
+                    else:
+                        break
+                ans.append(tot)
+
+                cur = dct
+                for w in word:
+                    if w not in cur:
+                        cur[w] = dict()
+                    cur = cur[w]
+            return ans
+
+        ans1 = check()
+        words.reverse()
+        ans2 = check()
+        for i in range(n):
+            ac.st(max(ans1[i], ans2[n - 1 - i]))
+        return
+
+    @staticmethod
+    def abc_287e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc287/tasks/abc287_e
+        tag: trie|prefix_suffix|classical
+        """
+        n = ac.read_int()
+        words = [[ord(w) - ord("a") for w in ac.read_str()] for _ in range(n)]
+        m = sum(len(w) for w in words)
+
+        def check():
+            ans = []
+            trie = StringTrieSearch(m, 1, 26)
+            for word in words:
+                ans.append(trie.search_length(word))
+                trie.add(word, 1)
+            return ans
+
+        ans1 = check()
+        words.reverse()
+        ans2 = check()
+        for i in range(n):
+            ac.st(max(ans1[i], ans2[n - 1 - i]))
+        return
+
+    @staticmethod
+    def lc_3093_1(words_container: List[str], words_query: List[str]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/longest-common-suffix-queries
+        tag: trie|classical
+        """
+
+        dct = dict()
+        n = len(words_container)
+        ind = list(range(n))
+        ind.sort(key=lambda it: (len(words_container[it]), it))
+        for i in ind:
+            word = words_container[i]
+            cur = dct
+            for w in word[::-1]:
+                if w not in cur:
+                    cur[w] = dict()
+                cur = cur[w]
+                if "ind" not in cur:
+                    cur["ind"] = i
+
+        ans = []
+        for word in words_query:
+            st = word[::-1]
+            cur = dct
+            x = ind[0]
+            for w in st:
+                if w in cur:
+                    cur = cur[w]
+                    x = cur["ind"]
+                else:
+                    break
+            ans.append(x)
+        return ans
+
+    @staticmethod
+    def lc_3093_2(words_container: List[str], words_query: List[str]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/longest-common-suffix-queries
+        tag: trie|classical
+        """
+
+        words_container = [[ord(w) - ord("a") for w in word] for word in words_container]
+        words_query = [[ord(w) - ord("a") for w in word] for word in words_query]
+
+        n = len(words_container)
+        ind = list(range(n))
+        ind.sort(key=lambda it: (len(words_container[it]), it))
+
+        trie = StringTrieSearch(sum(len(s) for s in words_container), n, 26)
+        for i in ind:
+            word = words_container[i]
+            trie.add_ind(word[::-1], i + 1)
+
+        ans = []
+        for word in words_query:
+            x = trie.search_ind(word[::-1])
+            x = x - 1 if x else ind[0]
+            ans.append(x)
+        return ans

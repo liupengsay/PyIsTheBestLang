@@ -221,6 +221,37 @@ class StringTrieSearch:
                 res.append(self.son_and_ind[cur] & self.mask)
         return res
 
+    def add_ind(self, word, ind):
+        # assert 1 <= ind <= word_cnt
+        cur = 0  # word: List[int]
+        for bit in word:
+            if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
+                self.ind += 1
+                self.son_and_ind[bit + cur * self.string_state] |= self.ind << self.cnt_bit
+            cur = self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit
+            if not self.son_and_ind[cur] & self.mask:
+                self.son_and_ind[cur] |= ind
+        return
+
+    def search_ind(self, word):
+        res = cur = 0
+        for bit in word:
+            cur = self.son_and_ind[bit + self.string_state * cur] >> self.cnt_bit
+            if not cur:
+                break
+            if self.son_and_ind[cur] & self.mask:
+                res = self.son_and_ind[cur] & self.mask
+        return res
+
+    def search_length(self, word):
+        cur = res = 0
+        for bit in word:
+            cur = self.son_and_ind[bit + self.string_state * cur] >> self.cnt_bit
+            if not cur:
+                break
+            res += 1
+        return res
+
     def add_cnt(self, word, ind):
         cur = res = 0
         for bit in word:

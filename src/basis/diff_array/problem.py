@@ -100,6 +100,7 @@ ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|coun
 ABC338D（https://atcoder.jp/contests/abc338/tasks/abc338_d）diff_array|action_scope|contribution_method
 ABC331D（https://atcoder.jp/contests/abc331/tasks/abc331_d）prefix_sum_matrix|circular_section
 ABC309C（https://atcoder.jp/contests/abc309/tasks/abc309_c）discretization_diff_array
+ABC288D（https://atcoder.jp/contests/abc288/tasks/abc288_d）diff_array|brain_teaser|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1786,4 +1787,39 @@ class Solution:
             a, b, c, d = ac.read_list_ints()
             ans = check(c + 1, d + 1) - check(c + 1, b) - check(a, d + 1) + check(a, b)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_288d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc288/tasks/abc288_d
+        tag: diff_array|brain_teaser|classical
+        """
+        n, k = ac.read_list_ints()
+        a = [0] + ac.read_list_ints()
+        diff = [0] * (n + 1)
+        for i in range(1, n + 1):
+            diff[i] = a[i] - a[i - 1]
+
+        pre = []
+        for i in range(k):
+            lst = diff[:]
+            for j in range(n + 1):
+                if j % k != i:
+                    lst[j] = 0
+            pre.append(ac.accumulate(lst))
+
+        for _ in range(ac.read_int()):
+            ll, rr = ac.read_list_ints()
+            for j in range(k):
+                v = pre[j][rr + 1] - pre[j][ll]
+                if j == ll % k:
+                    v += a[ll - 1]
+                if j == (rr + 1) % k:
+                    continue
+                if v:
+                    ac.st("No")
+                    break
+            else:
+                ac.st("Yes")
         return
