@@ -5,7 +5,8 @@ class CRT:
     def __init__(self):
         return
 
-    def chinese_remainder(self, pairs):
+    @staticmethod
+    def chinese_remainder(pairs):
         """中国剩余定理"""
         mod_list, remainder_list = [p[0] for p in pairs], [p[1] for p in pairs]
         mod_product = reduce(lambda x, y: x * y, mod_list)
