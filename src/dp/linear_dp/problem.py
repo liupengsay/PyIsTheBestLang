@@ -131,6 +131,7 @@ ABC318E（https://atcoder.jp/contests/abc318/tasks/abc318_e）linear_dp
 ABC315F（https://atcoder.jp/contests/abc315/tasks/abc315_f）linear_dp|brute_force
 ABC345E（https://atcoder.jp/contests/abc345/tasks/abc345_e）linear_dp
 ABC291F（https://atcoder.jp/contests/abc291/tasks/abc291_f）linear_dp|prefix_suffix
+ABC285E（https://atcoder.jp/contests/abc285/tasks/abc285_e）linear_dp|brain_teaser|circular_array|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -1268,5 +1269,26 @@ class Solution:
             else:
                 dp[i + 1] = (2 * dp[i] - dp[pre[num]]) % mod
             pre[num] = i
+        ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def abc_285e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc285/tasks/abc285_e
+        tag: linear_dp|brain_teaser|circular_array|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = ac.accumulate(nums)
+
+        def cost(k):
+            return pre[k // 2] + pre[(k + 1) // 2]
+
+        dp = [-inf] * (n + 1)
+        dp[0] = 0
+        for i in range(1, n + 1):
+            for j in range(i):
+                dp[i] = max(dp[i], dp[j] + cost(i - j - 1))
         ac.st(dp[-1])
         return

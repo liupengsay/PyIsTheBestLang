@@ -31,6 +31,7 @@ P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 ABC051D（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_path|necessary_edge|classical
 ARC083B（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
 ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
+ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
 
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
@@ -581,3 +582,42 @@ class Solution:
                 return ans if ans < inf else -1
 
         return Graph
+
+    @staticmethod
+    def abc_286e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc286/tasks/abc286_e
+        tag: floyd|classical
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        s = [ac.read_str() for _ in range(n)]
+
+        dis = [inf] * n * n
+        gain = [0] * n * n
+        for i in range(n):
+            dis[i * n + i] = 0
+            gain[i * n + i] = a[i]
+
+        for i in range(n):
+            for j in range(n):
+                if s[i][j] == "Y":
+                    dis[i * n + j] = 1
+                    gain[i * n + j] = a[i] + a[j]
+
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    cur = dis[i * n + k] + dis[k * n + j]
+                    g = gain[i * n + k] + gain[k * n + j] - a[k]
+                    if cur < dis[i * n + j] or (cur == dis[i * n + j] and g > gain[i * n + j]):
+                        gain[i * n + j] = g
+                        dis[i * n + j] = cur
+
+        for _ in range(ac.read_int()):
+            u, v = ac.read_list_ints_minus_one()
+            if dis[u * n + v] == inf:
+                ac.st("Impossible")
+            else:
+                ac.lst([dis[u * n + v], gain[u * n + v]])
+        return
