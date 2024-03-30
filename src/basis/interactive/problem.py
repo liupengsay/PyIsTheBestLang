@@ -30,9 +30,10 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
 ABC305F（https://atcoder.jp/contests/abc305/tasks/abc305_f）interactive|brain_teaser|spanning_tree|dfs|back_trace
-
+ABC282F（https://atcoder.jp/contests/abc282/tasks/abc282_f）brain_teaser|tree_array|interactive|classical
 
 """
+import bisect
 import random
 import sys
 from collections import deque
@@ -309,4 +310,39 @@ class Solution:
                 stack.append(y)
                 ac.st(y)
                 ac.read_list_strs()
+        return
+
+    @staticmethod
+    def abc_282f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc282/tasks/abc282_f
+        tag: brain_teaser|tree_array|interactive|classical
+        """
+        ac.flush = True
+        n = ac.read_int()
+        start = [[] for _ in range(n)]
+        end = [[] for _ in range(n)]
+        lst = []
+        for i in range(n):
+            lst.append((i, i))
+            start[i].append(i)
+            end[i].append(i)
+            cnt = 1
+            while i + cnt < n:
+                lst.append((i, i + cnt))
+                start[i].append(i + cnt)
+                end[i + cnt].append(i)
+                cnt *= 2
+        dct = {(ls[0], ls[1]): i for i, ls in enumerate(lst)}
+        ac.st(len(lst))
+        for ls in lst:
+            ac.lst([ls[0] + 1, ls[1] + 1])
+
+        for _ in range(ac.read_int()):
+            ll, rr = ac.read_list_ints_minus_one()
+            mid_ll = start[ll][bisect.bisect_right(start[ll], rr) - 1]
+            mid_rr = end[rr][bisect.bisect_left(end[rr], ll)]
+            a = dct[(ll, mid_ll)]
+            b = dct[(mid_rr, rr)]
+            ac.lst([a + 1, b + 1])
         return

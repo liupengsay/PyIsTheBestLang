@@ -47,6 +47,7 @@ P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|cla
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
+ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|brain_teaser|classical
 
 =====================================AcWing=====================================
 3731（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan
@@ -904,3 +905,25 @@ class Solution:
         ac.lst([x + 1 for x in rest])
         return
 
+    @staticmethod
+    def abc_282e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc282/tasks/abc282_e
+        tag: union_find|mst|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        lst = []
+        for i in range(n):
+            for j in range(i + 1, n):
+                x, y = nums[j], nums[i]
+                score = (pow(x, y, m) + pow(y, x, m)) % m
+                lst.append((score, i, j))
+        lst.sort(reverse=True)
+        ans = 0
+        uf = UnionFind(n)
+        for score, i, j in lst:
+            if uf.union(i, j):
+                ans += score
+        ac.st(ans)
+        return

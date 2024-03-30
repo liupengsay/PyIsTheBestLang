@@ -112,6 +112,7 @@ ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|impl
 ABC311D（https://atcoder.jp/contests/abc311/tasks/abc311_d）bfs
 ABC302F（https://atcoder.jp/contests/abc302/tasks/abc302_f）build_graph|bfs|brain_teaser
 ABC289E（https://atcoder.jp/contests/abc289/tasks/abc289_e）bfs
+ABC282D（https://atcoder.jp/contests/abc282/tasks/abc282_d）color_method|bipartite_graph|bfs|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -125,7 +126,6 @@ ABC289E（https://atcoder.jp/contests/abc289/tasks/abc289_e）bfs
 from collections import deque, defaultdict
 from typing import List
 
-from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -343,7 +343,7 @@ class Solution:
             visit1 = {(x1, y1): 0}
             visit2 = {(1, 1): 0}
             directions = [[1, 2], [1, -2], [-1, 2], [-1, -2],
-                     [2, 1], [2, -1], [-2, 1], [-2, -1]]
+                          [2, 1], [2, -1], [-2, 1], [-2, -1]]
             directions.extend([[2, 2], [2, -2], [-2, 2], [-2, -2]])
             stack1 = [[x1, y1]]
             stack2 = [[1, 1]]
@@ -2224,4 +2224,48 @@ class Solution:
                         nex.append(j)
             stack = nex
         ac.st(-1)
+        return
+
+    @staticmethod
+    def abc_282d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc282/tasks/abc282_d
+        tag: color_method|bipartite_graph|bfs|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        color = [-1] * n
+        ans = pre = 0
+        for x in range(n):
+            if color[x] == -1:
+                stack = [x]
+                color[x] = 0
+                zero = 1
+                tot = 1
+                edge = 0
+                while stack:
+                    nex = []
+                    for i in stack:
+                        c = color[i]
+                        for j in dct[i]:
+                            edge += 1
+                            if color[j] != -1:
+                                if color[j] != 1 - c:
+                                    ac.st(0)
+                                    return
+                            else:
+                                color[j] = 1 - c
+                                nex.append(j)
+                                tot += 1
+                                if c:
+                                    zero += 1
+                    stack = nex[:]
+                ans += zero * (tot - zero) - edge // 2
+                ans += pre * tot
+                pre += tot
+        ac.st(ans)
         return
