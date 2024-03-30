@@ -82,6 +82,7 @@ ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
 ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusion_exclusion
 ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointer
 ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
+ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pollard_rho|num_factor|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -771,8 +772,7 @@ class Solution:
         url: https://leetcode.cn/problems/convert-to-base-2/
         tag: negative_base|classical
         """
-        # 负进制转换模板题
-        lst = NumberTheory().get_k_bin_of_n(n, -2)
+        lst = NumBase().get_k_bin_of_n(n, -2)
         return "".join(str(x) for x in lst)
 
     @staticmethod
@@ -1047,4 +1047,23 @@ class Solution:
 
         ans = dfs(x - 1)
         ac.st(ans)
+        return
+
+class Solution:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def abc_284d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc284/tasks/abc284_d
+        tag: get_prime_with_pollard_rho|num_factor|classical
+        """
+        nf = NumFactor()
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = nf.get_prime_with_pollard_rho(n)
+            p = [x for x in ans if ans[x] == 2][0]
+            q = [x for x in ans if ans[x] == 1][0]
+            ac.lst([p, q])
         return

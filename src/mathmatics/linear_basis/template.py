@@ -1,70 +1,88 @@
+from src.basis.binary_search.template import BinarySearch
+
+
 class LinearBasis:
-    def __init__(self, lst):
-        """线性基类由原数组lst生成"""
-        self.n = 64
-        self.lst = lst
-        self.linear_basis = [0] * self.n
-        self.gen_linear_basis()
+    def __init__(self, m=64):
+        self.m = m
+        self.basis = [0] * self.m
+        self.cnt = self.count_diff_xor()
+        self.tot = 1 << self.cnt
+        self.num = 0
+        self.zero = 0
+        self.length = 0
         return
 
-    def gen_linear_basis(self):
-        for num in self.lst:
-            self.add(num)
-        return
+    def minimize(self, x):
+        for i in range(self.m):
+            if x >> i & 1:
+                x ^= self.basis[i]
+        return x
 
-    def add(self, num):
-        """|入新数字到线性基"""
-        for i in range(self.n - 1, -1, -1):
-            if num & (1 << i):
-                if self.linear_basis[i]:
-                    num ^= self.linear_basis[i]
-                else:
-                    self.linear_basis[i] = num
-                    break
-        return
+    def add(self, x):
+        assert x <= (1 << self.m) - 1
+        x = self.minimize(x)
+        self.num += 1
+        if x:
+            self.length += 1
+        self.zero = int(self.length < self.num)
 
-    def query_xor(self, num):
-        """查询数字是否可以由原数组中数字的子集异或得到"""
-        for i in range(self.n, -1, -1):
-            if num & (1 << i):
-                num ^= self.linear_basis[i]
-        return num == 0
+        for i in range(self.m - 1, -1, -1):
+            if x >> i & 1:
+                for j in range(self.m):
+                    if self.basis[j] >> i & 1:
+                        self.basis[j] ^= x
+                self.basis[i] = x
+                self.cnt = self.count_diff_xor()
+                self.tot = 1 << self.cnt
+                return True
+        return False
+
+    def count_diff_xor(self):
+        num = 0
+        for i in range(self.m):
+            if self.basis[i] > 0:
+                num += 1
+        return num
+
+    def query_kth_xor(self, x):
+        res = 0
+        for i in range(self.m):
+            if self.basis[i]:
+                if x & 1:
+                    res ^= self.basis[i]
+                x >>= 1
+        return res
+
+    def query_xor_kth(self, num):
+        bs = BinarySearch()
+
+        def check(x):
+            return self.query_kth_xor(x) <= num
+
+        return bs.find_int_right(0, self.tot - 1, check)
 
     def query_max(self):
-        """查询原数组的最大子集异或和"""
-        ans = 0
-        for i in range(self.n - 1, -1, -1):
-            if ans ^ self.linear_basis[i] > ans:
-                ans ^= self.linear_basis[i]
-        return ans
+        return self.query_kth_xor(self.tot - 1)
 
     def query_min(self):
-        """查询原数组的最小子集异或和"""
-        if 0 in self.lst or self.query_xor(0):
-            return 0
-        for i in range(0, self.n + 1):
-            if self.linear_basis[i]:
-                return self.linear_basis[i]
-        return 0
+        # include empty subset
+        return self.query_kth_xor(0)
 
-    def query_k_rank(self, k):
-        """查询原数组异或和子集的第K小"""
-        if self.query_xor(0):
-            k -= 1
-        ans = 0
-        for i in range(self.n - 1, -1, -1):
-            if k & (1 << i) and self.linear_basis[i]:
-                ans ^= self.linear_basis[i]
-                k ^= (1 << i)
-        return ans if not k else -1
+class LinearBasisVector:
+    def __init__(self, m):
+        self.basis = [[0] * m for _ in range(m)]
+        self.m = m
+        return
 
-    def query_k_smallest(self, num):
-        """查询数字是原数组中数字异或子集的第K小"""
-        if num == 0:
-            return 1 if self.query_xor(0) else -1
-        ans = 0
-        for i in range(self.n - 1, -1, -1):
-            if num & (self.linear_basis[i]):
-                ans ^= (1 << i)
-                num ^= self.linear_basis[i]
-        return ans + 1 if not num else -1
+    def add(self, lst):
+        for i in range(self.m):
+            if self.basis[i][i] and lst[i]:
+                a, b = self.basis[i][i], lst[i]
+                self.basis[i] = [x * b for x in self.basis[i]]
+                lst = [x * a for x in lst]
+                lst = [lst[j] - self.basis[i][j] for j in range(self.m)]
+        for j in range(self.m):
+            if lst[j]:
+                self.basis[j] = lst[:]
+                return True
+        return False

@@ -1,6 +1,6 @@
 """
 
-Algorithm：dfs|coloring_method|brute_force|back_track|euler_order|dfs_order|prune|itertation
+Algorithm：dfs|coloring_method|brute_force|back_track|euler_order|dfs_order|prune|iteration
 Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
 
 
@@ -62,6 +62,7 @@ ABC337G（https://atcoder.jp/contests/abc337/tasks/abc337_g）dfs_order|contribu
 ABC328E（https://atcoder.jp/contests/abc328/tasks/abc328_e）dfs|back_trace|union_find|brute_force
 ABC326D（https://atcoder.jp/contests/abc326/tasks/abc326_d）dfs|back_trace|brute_force
 ABC322D（https://atcoder.jp/contests/abc322/tasks/abc322_d）dfs|back_trace|brute_force
+ABC284E（https://atcoder.jp/contests/abc284/tasks/abc284_e）dfs|back_trace|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -79,6 +80,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor
+from src.graph.union_find.template import UnionFind
 from src.search.dfs.template import DFS, DfsEulerOrder
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1095,4 +1097,37 @@ class Solution:
         uf = UnionFind(n)
         dfs(0)
         ac.st(ans[0])
+        return
+
+    @staticmethod
+    def abc_284e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc284/tasks/abc284_e
+        tag: dfs|back_trace|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        ans = [0]
+        visit = [0] * n
+        visit[0] = 1
+        ceil = 10 ** 6
+
+        @ac.bootstrap
+        def dfs(x):
+            if ans[0] > ceil:
+                yield
+            ans[0] += 1
+            for y in dct[x]:
+                if not visit[y]:
+                    visit[y] = 1
+                    yield dfs(y)
+                    visit[y] = 0
+            yield
+
+        dfs(0)
+        ac.st(min(ans[0], ceil))
         return

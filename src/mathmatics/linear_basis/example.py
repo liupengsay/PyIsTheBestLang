@@ -1,3 +1,4 @@
+import random
 import unittest
 from functools import reduce
 from operator import xor
@@ -6,31 +7,51 @@ from src.mathmatics.linear_basis.template import LinearBasis
 
 
 class TestGeneral(unittest.TestCase):
-    def test_euler_phi(self):
-        lst = [0, 1, 2, 4, 8, 16]
-        m = len(lst)
 
-        # 所有的异或和
-        nums = []
-        for i in range(1, 1 << m):
-            nums.append(reduce(xor, [lst[j] for j in range(m) if i & (1 << j)]))
-        nums = sorted(set(nums))
+    def test_linear_basis(self):
+        for x in range(1000):
+            m = 10
+            lst = [random.randint(0, 1000000) for _ in range(m)]
+            if x == 0:
+                lst = [0]
+                m = 1
+            nums = [0]
+            zero = 0
+            for i in range(1, 1 << m):
+                nums.append(reduce(xor, [lst[j] for j in range(m) if i & (1 << j)]))
+                if not nums[-1]:
+                    zero = 1
+            nums = sorted(set(nums))
+            lb = LinearBasis(20)
+            for num in lst:
+                lb.add(num)
+            assert len(nums) == lb.tot
+            assert lb.zero == zero
+            n = len(nums)
+            for i in range(n):
+                assert lb.query_kth_xor(i) == nums[i]
+                assert lb.query_xor_kth(nums[i]) == i
 
-        # 查询最大最小以及是否存在对应异或值
-        lb = LinearBasis(lst)
-        assert lb.query_max() == 31
-        assert lb.query_min() == 0
-        assert lb.query_xor(20)
+            x = random.randint(0, 1000)
+            lst.append(x)
+            m += 1
+            zero = 0
+            nums = [0]
 
-        # 查询第 k 小以及异或和是第几小
-        n = len(nums)
-        for i in range(n):
-            assert lb.query_k_rank(i + 1) == nums[i]
-            assert lb.query_k_smallest(nums[i]) == i + 1
-
-        # 超出范围
-        assert lb.query_k_rank(len(nums) + 1) == -1
-        assert lb.query_k_smallest(nums[-1] + 1) == -1
+            for i in range(1, 1 << m):
+                nums.append(reduce(xor, [lst[j] for j in range(m) if i & (1 << j)]))
+                if not nums[-1]:
+                    zero = 1
+            nums = sorted(set(nums))
+            lb.add(x)
+            assert len(nums) == lb.tot
+            assert lb.zero == zero
+            n = len(nums)
+            for i in range(n):
+                assert lb.query_kth_xor(i) == nums[i]
+                assert lb.query_xor_kth(nums[i]) == i
+            assert lb.query_max() == nums[-1]
+            assert lb.query_min() == nums[0]
         return
 
 

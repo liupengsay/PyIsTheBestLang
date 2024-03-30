@@ -41,6 +41,7 @@ ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
 ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contribution_method|classical
+ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_min|tree_array|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1117,4 +1118,42 @@ class Solution:
             for x in nums[i]:
                 tree.point_add(x, 1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_283f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc283/tasks/abc283_f
+        tag: point_descend|pre_min|tree_array|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        ans = [inf] * n
+        tree1 = PointDescendPreMin(n)
+        tree2 = PointDescendPreMin(n)
+        for i in range(n):
+            if nums[i] > 1:
+                pre = tree1.pre_min(nums[i] - 1)
+                ans[i] = min(ans[i], nums[i] + i + pre)
+            if nums[i] < n:
+                pre = tree2.pre_min(n - nums[i])
+                ans[i] = min(ans[i], -nums[i] + i + pre)
+
+            tree1.point_descend(nums[i], -nums[i] - i)
+            tree2.point_descend(n + 1 - nums[i], nums[i] - i)
+
+        tree1 = PointDescendPreMin(n)
+        tree2 = PointDescendPreMin(n)
+        for i in range(n - 1, -1, -1):
+            if nums[i] > 1:
+                pre = tree1.pre_min(nums[i] - 1)
+                ans[i] = min(ans[i], nums[i] - i + pre)
+            if nums[i] < n:
+                pre = tree2.pre_min(n - nums[i])
+                ans[i] = min(ans[i], -nums[i] - i + pre)
+
+            tree1.point_descend(nums[i], -nums[i] + i)
+            tree2.point_descend(n + 1 - nums[i], nums[i] + i)
+        ac.lst(ans)
         return

@@ -32,7 +32,7 @@ P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 
 ====================================AtCoder=====================================
 ARC074B（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix
-
+ABC283B（https://atcoder.jp/contests/abc283/tasks/abc283_d）stack
 
 =====================================AcWing=====================================
 128（https://www.acwing.com/problem/content/130/）heapq|stack|implemention
