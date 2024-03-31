@@ -51,13 +51,15 @@ class ManhattanMST:
         edges.sort()
         select = []
         ans = 0
+        weight = []
         for w, u, v in edges:
             if uf.union(u, v):
                 ans += w
                 select.append((u, v))
+                weight.append(w)
                 if uf.part == 1:
                     break
-        return ans, select
+        return ans, select, weight
 
 
 class KruskalMinimumSpanningTree:

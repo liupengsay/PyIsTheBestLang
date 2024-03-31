@@ -9,6 +9,8 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 1584（https://leetcode.cn/problems/min-cost-to-connect-all-points/）manhattan_distance|dense_graph|prim|mst
 1724（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
 
+
+
 =====================================LuoGu======================================
 P3366（https://www.luogu.com.cn/problem/P3366）mst
 P2820（https://www.luogu.com.cn/problem/P2820）reverse_thinking|mst
@@ -37,6 +39,7 @@ P3535（https://www.luogu.com.cn/problem/P3535）mst|judge_circle_by_union_find|
 P4047（https://www.luogu.com.cn/problem/P4047）mst
 P6171（https://www.luogu.com.cn/problem/P6171）sparse|kruskal|mst
 P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|classical
+P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classical
 
 ===================================CodeForces===================================
 609E（https://codeforces.com/problemset/problem/609/E）lca|greedy|mst|strictly_second_mst|necessary_edge
@@ -57,6 +60,8 @@ ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|bra
 Directed MST（https://judge.yosupo.jp/problem/directedmst）
 3（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/F）mst|brute_force
 4（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H）mst|greedy
+5（https://vjudge.net/problem/BZOJ-2177）manhattan_distance|mst|classical
+6（https://www.51nod.com/Challenge/Problem.html#problemId=1213）manhattan_distance|mst|classical
 
 """
 import math
@@ -947,4 +952,37 @@ class Solution:
         ac.st(ans[0])
         for ls in ans[1]:
             ac.lst(ls)
+        return
+
+    @staticmethod
+    def library_checker_5(ac=FastIO()):
+        """
+        url: https://vjudge.net/problem/BZOJ-2177
+        tag: manhattan_distance|mst|classical
+        """
+        n = ac.read_int()
+        ans = ManhattanMST().build([ac.read_list_ints() for _ in range(n)])
+        ac.st(ans[0])
+        return
+
+    @staticmethod
+    def library_checker_6(ac=FastIO()):
+        """
+        url: https://www.51nod.com/Challenge/Problem.html#problemId=1213
+        tag: manhattan_distance|mst|classical
+        """
+        n = ac.read_int()
+        ans = ManhattanMST().build([ac.read_list_ints() for _ in range(n)])
+        ac.st(ans[0])
+        return
+
+    @staticmethod
+    def lg_p1661(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1661
+        tag: manhattan_distance|mst|classical
+        """
+        n = ac.read_int()
+        ans = ManhattanMST().build([ac.read_list_ints() for _ in range(n)])
+        ac.st((ans[-1][-1] + 1) // 2)
         return
