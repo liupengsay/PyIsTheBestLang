@@ -2,8 +2,62 @@ import math
 from collections import deque
 from heapq import heappop, heappush
 
+from src.data_structure.tree_array.template import PointDescendPreMin
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import inf
+
+
+class ManhattanMST:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def build(points):
+        n = len(points)
+        edges = list()
+
+        def build():
+            pos.sort()
+            tree.initialize()
+            mid = dict()
+            for xx, yy, i in pos:
+                val = tree.pre_min(dct[yy - xx] + 1)
+                if val < inf:
+                    edges.append((val + yy + xx, i, mid[val]))
+                tree.point_descend(dct[yy - xx] + 1, -yy - xx)
+                mid[-yy - xx] = i
+            return
+
+        nodes = set()
+        for x, y in points:
+            nodes.add(y - x)
+            nodes.add(x - y)
+            nodes.add(x + y)
+            nodes.add(-y - x)
+        nodes = sorted(nodes)
+        dct = {num: i for i, num in enumerate(nodes)}
+        m = len(dct)
+        tree = PointDescendPreMin(m)
+        pos = [(x, y, i) for i, (x, y) in enumerate(points)]
+        build()
+        pos = [(y, x, i) for i, (x, y) in enumerate(points)]
+        build()
+        pos = [(-y, x, i) for i, (x, y) in enumerate(points)]
+        build()
+        pos = [(x, -y, i) for i, (x, y) in enumerate(points)]
+        build()
+
+        uf = UnionFind(n)
+        edges.sort()
+        select = []
+        ans = 0
+        for w, u, v in edges:
+            if uf.union(u, v):
+                ans += w
+                select.append((u, v))
+                if uf.part == 1:
+                    break
+        return ans, select
 
 
 class KruskalMinimumSpanningTree:

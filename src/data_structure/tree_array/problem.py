@@ -1124,7 +1124,7 @@ class Solution:
     def abc_283f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc283/tasks/abc283_f
-        tag: point_descend|pre_min|tree_array|classical
+        tag: manhattan_distance|point_descend|pre_min|tree_array|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

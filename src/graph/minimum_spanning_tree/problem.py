@@ -6,7 +6,7 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 
 ====================================LeetCode====================================
 1489（https://leetcode.cn/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/）mst|necessary_edge|fake_necessary_edge
-1584（https://leetcode.cn/problems/min-cost-to-connect-all-points/）dense_graph|prim|mst
+1584（https://leetcode.cn/problems/min-cost-to-connect-all-points/）manhattan_distance|dense_graph|prim|mst
 1724（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
 
 =====================================LuoGu======================================
@@ -53,7 +53,7 @@ ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|bra
 3731（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan
 
 ================================LibraryChecker================================
-Manhattan MST（https://judge.yosupo.jp/problem/manhattanmst）
+1（https://judge.yosupo.jp/problem/manhattanmst）manhattan_distance|mst|classical
 Directed MST（https://judge.yosupo.jp/problem/directedmst）
 3（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/F）mst|brute_force
 4（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H）mst|greedy
@@ -65,7 +65,7 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.minimum_spanning_tree.template import SecondMinimumSpanningTree, KruskalMinimumSpanningTree, \
-    SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree
+    SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree, ManhattanMST
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
 from src.utils.fast_io import FastIO
@@ -701,7 +701,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1584(points: List[List[int]]) -> int:
+    def lc_1584_1(points: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/min-cost-to-connect-all-points/
         tag: dense_graph|prim|mst
@@ -713,6 +713,14 @@ class Solution:
 
         tree = PrimMinimumSpanningTree(dis)
         return tree.build(points)
+
+    @staticmethod
+    def lc_1584_2(points: List[List[int]]) -> int:
+        """
+        url: manhattan_distance|dense_graph|prim|mst
+        tag: dense_graph|prim|mst
+        """
+        return ManhattanMST().build(points)[0]
 
     @staticmethod
     def abc_076b(ac=FastIO()):
@@ -856,7 +864,7 @@ class Solution:
         edges = [tuple(ac.read_list_ints()) for _ in range(m)]
         edges.sort(key=lambda it: it[2])
         uf = UnionFind(n)
-        for x in range(m-1, -1, -1):
+        for x in range(m - 1, -1, -1):
             i, j, w = edges[x]
             uf.union(i - 1, j - 1)
             if uf.part == 1:
@@ -866,7 +874,7 @@ class Solution:
             return
         ans = inf
         uf = UnionFind(n)
-        for i in range(x+1):
+        for i in range(x + 1):
             uf.initialize()
             s = edges[i][2]
             for j in range(i, m):
@@ -926,4 +934,17 @@ class Solution:
             if uf.union(i, j):
                 ans += score
         ac.st(ans)
+        return
+
+    @staticmethod
+    def library_checker_1(ac=FastIO()):
+        """
+        url: https://judge.yosupo.jp/problem/manhattanmst
+        tag: manhattan_distance|mst|classical
+        """
+        n = ac.read_int()  # TLE
+        ans = ManhattanMST().build([ac.read_list_ints() for _ in range(n)])
+        ac.st(ans[0])
+        for ls in ans[1]:
+            ac.lst(ls)
         return

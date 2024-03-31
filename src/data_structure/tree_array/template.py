@@ -315,12 +315,17 @@ class PointDescendPreMin:
         self.initial = initial
         self.t = [self.initial] * (n + 1)
 
+    def initialize(self):
+        for i in range(self.n + 1):
+            self.t[i] = self.initial
+        return
+
     @staticmethod
     def _lowest_bit(i):
         return i & (-i)
 
     def pre_min(self, i):
-        assert 1 <= i <= self.n
+        # assert 1 <= i <= self.n
         val = self.initial
         while i:
             val = val if val < self.t[i] else self.t[i]
@@ -328,7 +333,7 @@ class PointDescendPreMin:
         return val
 
     def point_descend(self, i, val):
-        assert 1 <= i <= self.n
+        # assert 1 <= i <= self.n
         while i < len(self.t):
             self.t[i] = self.t[i] if self.t[i] < val else val
             i += self._lowest_bit(i)

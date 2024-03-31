@@ -42,6 +42,7 @@ Description：brute force according to the data range
 842（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_track
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
+100240（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -161,6 +162,7 @@ ABC300F（https://atcoder.jp/contests/abc300/tasks/abc300_f）brute_force|circul
 ABC296D（https://atcoder.jp/contests/abc296/tasks/abc296_d）brute_force|math
 ABC346D（https://atcoder.jp/contests/abc346/tasks/abc346_d）brute_force|prefix_suffix
 ABC290E（https://atcoder.jp/contests/abc290/tasks/abc290_e）brute_force|contribution_method
+ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）manhattan_distance|prefix_suffix|classical
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1495,3 +1497,70 @@ class Solution:
             x += 1
         ac.st(-1)
         return
+
+    @staticmethod
+    def abc_178e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc178/tasks/abc178_e
+        tag: manhattan_distance|prefix_suffix|classical
+        """
+
+        nums = [ac.read_list_ints() for _ in range(ac.read_int())]
+        nums.sort()
+
+        def check():
+            n = len(nums)
+            pos = [-inf, -1]
+            neg = [-inf, -1]
+            res = [-inf, (-1, -1)]
+            for i in range(n):
+                x, y = nums[i]
+                if pos[0] - y + x > res[0]:
+                    res = [pos[0] - y + x, (pos[1], i)]
+                if neg[0] + y + x > res[0]:
+                    res = [neg[0] + y + x, (neg[1], i)]
+                if y - x > pos[0]:
+                    pos = [y - x, i]
+                if -y - x > neg[0]:
+                    neg = [-y - x, i]
+            return res
+
+        ans = check()[0]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lc_100240(points: List[List[int]]) -> int:
+
+        """
+        url: https://leetcode.cn/problems/minimize-manhattan-distances/
+        tag: manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
+        """
+
+        points.sort()
+
+        def check():
+            n = len(nums)
+            pos = [-inf, -1]
+            neg = [-inf, -1]
+            res = [-inf, (-1, -1)]
+            for i in range(n):
+                x, y = nums[i]
+                if pos[0] - y + x > res[0]:
+                    res = [pos[0] - y + x, (pos[1], i)]
+                if neg[0] + y + x > res[0]:
+                    res = [neg[0] + y + x, (neg[1], i)]
+                if y - x > pos[0]:
+                    pos = [y - x, i]
+                if -y - x > neg[0]:
+                    neg = [-y - x, i]
+            return res
+
+        ans = inf
+        nums = points[:]
+        m = len(points)
+        lst = check()[1][:]
+        for xx in lst:
+            nums = [points[i] for i in range(m) if i != xx]
+            ans = min(ans, check()[0])
+        return ans
