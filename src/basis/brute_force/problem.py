@@ -1530,7 +1530,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100240(points: List[List[int]]) -> int:
+    def lc_100240_1(points: List[List[int]]) -> int:
 
         """
         url: https://leetcode.cn/problems/minimize-manhattan-distances/
@@ -1563,4 +1563,50 @@ class Solution:
         for xx in lst:
             nums = [points[i] for i in range(m) if i != xx]
             ans = min(ans, check()[0])
+        return ans
+
+    @staticmethod
+    def lc_100240_2(points: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimize-manhattan-distances/
+        tag: manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
+        """
+        ceil_x1, ceil_x2 = -inf, -inf
+        floor_x1, floor_x2 = inf, inf
+        ceil_ix, floor_ix = -1, -1
+
+        ceil_y1, ceil_y2 = -inf, -inf
+        floor_y1, floor_y2 = inf, inf
+        ceil_iy, floor_iy = -1, -1
+        for i, (x, y) in enumerate(points):
+            x, y = x + y, x - y
+            if x >= ceil_x1:
+                ceil_x1, ceil_x2 = x, ceil_x1
+                ceil_ix = i
+            elif x > ceil_x2:
+                ceil_x2 = x
+
+            if x <= floor_x2:
+                floor_x1, floor_x2 = floor_x2, x
+                floor_ix = i
+            elif x < floor_x1:
+                floor_x1 = x
+
+            if y >= ceil_y1:
+                ceil_y1, ceil_y2 = y, ceil_y1
+                ceil_iy = i
+            elif y > ceil_y2:
+                ceil_y2 = y
+
+            if y <= floor_y2:
+                floor_y1, floor_y2 = floor_y2, y
+                floor_iy = i
+            elif y < floor_y1:
+                floor_y1 = y
+
+        ans = 0
+        for i in ceil_ix, floor_ix, ceil_iy, floor_iy:
+            dx = max(ceil_x1 if i != ceil_ix else ceil_x2) - min(floor_x2 if i != floor_ix else floor_x1)
+            dy = max(ceil_y1 if i != ceil_iy else ceil_y2) - min(floor_y2 if i != floor_iy else floor_y1)
+            ans = min(ans, max(dx, dy))
         return ans
