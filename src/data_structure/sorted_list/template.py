@@ -253,7 +253,7 @@ class TopKSum:
                 self.top_k_sum -= self.lst[self.k]
         return
 
-    def remove(self, num):
+    def discard(self, num):
         ind = self.lst.bisect_left(num)
         self.lst.discard(num)
         if ind <= self.k - 1:

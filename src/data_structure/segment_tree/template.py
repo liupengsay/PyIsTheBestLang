@@ -4786,6 +4786,62 @@ class RangeAddRangeMinCount:
         return res, cnt
 
 
+class PointSetRangeMaxMinGap:
+
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.ceil = [-initial] * (4 * n)
+        self.floor = [initial] * (4 * n)
+        return
+
+    def push_up(self, i):
+        a, b = self.ceil[i << 1], self.ceil[(i << 1) | 1]
+        self.ceil[i] = a if a > b else b
+        a, b = self.floor[i << 1], self.floor[(i << 1) | 1]
+        self.floor[i] = a if a < b else b
+        return
+
+    def build(self, nums):
+        for i in range(self.n):
+            self.ceil[i + self.n] = nums[i]
+            self.floor[i + self.n] = nums[i]
+        for i in range(self.n - 1, 0, -1):
+            self.push_up(i)
+        return
+
+    def get(self):
+        return self.ceil[self.n:]
+
+    def point_set(self, ind, val):
+        ind += self.n
+        self.ceil[ind] = self.floor[ind] = val
+        while ind > 1:
+            ind //= 2
+            self.push_up(ind)
+        return
+
+    def range_max_min_gap(self, left, right):
+        ceil_left = ceil_right = -self.initial
+        left += self.n
+        right += self.n + 1
+        floor_left = floor_right = self.initial
+        while left < right:
+            if left & 1:
+                ceil_left = ceil_left if ceil_left > self.ceil[left] else self.ceil[left]
+                floor_left = floor_left if floor_left < self.floor[left] else self.floor[left]
+                left += 1
+            if right & 1:
+                right -= 1
+                ceil_right = ceil_right if ceil_right > self.ceil[right] else self.ceil[right]
+                floor_right = floor_right if floor_right < self.floor[right] else self.floor[right]
+            left >>= 1
+            right >>= 1
+        ceil = ceil_right if ceil_right > ceil_left else ceil_left
+        floor = floor_right if floor_right < floor_left else floor_left
+        return ceil - floor
+
+
 class PointSetRangeMinCount:
 
     def __init__(self, n, initial=0):

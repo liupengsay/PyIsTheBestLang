@@ -68,7 +68,7 @@ ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|gree
 ABC147D（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical|xor_sum
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
 ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|dynamic
-
+ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
@@ -794,3 +794,30 @@ class Solution:
             ac.st(abs(a - b))
         return
 
+    @staticmethod
+    def abc_281f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc281/tasks/abc281_f
+        tag: bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        nums.sort()
+        n = len(nums)
+
+        def dfs(i, ll, rr):
+            if i == -1:
+                return 0
+            mid = -1
+            for j in range(ll, rr + 1):
+                if nums[j] & (1 << i):
+                    mid = j
+                    break
+            if mid == -1 or mid == ll:
+                return dfs(i - 1, ll, rr)
+
+            return min(dfs(i - 1, ll, mid - 1), dfs(i - 1, mid, rr)) | (1 << i)
+
+        ans = dfs(29, 0, n - 1)
+        ac.st(ans)
+        return

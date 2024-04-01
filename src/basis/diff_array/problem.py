@@ -101,6 +101,8 @@ ABC338D（https://atcoder.jp/contests/abc338/tasks/abc338_d）diff_array|action_
 ABC331D（https://atcoder.jp/contests/abc331/tasks/abc331_d）prefix_sum_matrix|circular_section
 ABC309C（https://atcoder.jp/contests/abc309/tasks/abc309_c）discretization_diff_array
 ABC288D（https://atcoder.jp/contests/abc288/tasks/abc288_d）diff_array|brain_teaser|classical
+ABC347E（https://atcoder.jp/contests/abc347/tasks/abc347_e）diff_array|implemention|prefix
+ABC347F（https://atcoder.jp/contests/abc347/tasks/abc347_f）diff_array|matrix_prefix_sum|matrix_rotate|brute_force|implemention
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1822,4 +1824,66 @@ class Solution:
                     break
             else:
                 ac.st("Yes")
+        return
+
+    @staticmethod
+    def abc_347f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc347/tasks/abc347_f
+        tag: diff_array|matrix_prefix_sum|matrix_rotate|brute_force|implemention
+        """
+        n, m = ac.read_list_ints()
+        matrix = [ac.read_list_ints() for _ in range(n)]
+        ans = -inf
+        for _ in range(4):
+            n = len(matrix)
+            for i in range(n // 2):
+                for j in range((n + 1) // 2):
+                    a, b, c, d = matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1], matrix[i][j]
+                    matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b, c, d
+
+            pre = PreFixSumMatrix(matrix)
+            left = [-inf] * (n + 1) * (n + 1)
+            for i in range(n):
+                for j in range(n):
+                    if i - m + 1 >= 0 and j - m + 1 >= 0:
+                        left[(i + 1) * (n + 1) + j + 1] = max(left[i * (n + 1) + j + 1], left[(i + 1) * (n + 1) + j],
+                                                              left[i * (n + 1) + j],
+                                                              pre.query(i - m + 1, j - m + 1, i, j))
+                    else:
+                        left[(i + 1) * (n + 1) + j + 1] = max(left[i * (n + 1) + j + 1], left[(i + 1) * (n + 1) + j],
+                                                              left[i * (n + 1) + j])
+
+            right = [-inf] * (n + 1) * (n + 1)
+            for i in range(n):
+                for j in range(n - 1, -1, -1):
+                    if i - m + 1 >= 0 and j + m - 1 < n:
+                        right[(i + 1) * (n + 1) + j] = max(right[(i + 1) * (n + 1) + j + 1], right[i * (n + 1) + j],
+                                                           right[i * (n + 1) + j + 1],
+                                                           pre.query(i - m + 1, j, i, j + m - 1))
+                    else:
+                        right[(i + 1) * (n + 1) + j] = max(right[(i + 1) * (n + 1) + j + 1], right[i * (n + 1) + j],
+                                                           right[i * (n + 1) + j + 1])
+
+            down = [-inf] * (n + 1)
+            for i in range(n - 1, -1, -1):
+                if i + m - 1 < n:
+                    down[i] = max(down[i + 1], max(pre.query(i, j, i + m - 1, j + m - 1) for j in range(n - m + 1)))
+
+            up = [-inf] * (n + 1)
+            for i in range(n):
+                if i - m + 1 >= 0:
+                    up[i + 1] = max(up[i], max(pre.query(i - m + 1, j, i, j + m - 1) for j in range(n - m + 1)))
+
+            for i in range(n):
+                for j in range(n):
+                    cur = down[i + 1] + left[(i + 1) * (n + 1) + j + 1] + right[(i + 1) * (n + 1) + j + 1]
+                    ans = max(ans, cur)
+            for i in range(n):
+                if i - m + 1 >= 0:
+                    cur = max(pre.query(i - m + 1, j, i, j + m - 1) for j in range(n - m + 1)) + up[i - m + 1] + down[
+                        i + 1]
+                    ans = max(ans, cur)
+
+        ac.st(ans)
         return

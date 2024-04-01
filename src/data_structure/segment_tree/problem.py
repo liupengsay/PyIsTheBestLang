@@ -1,6 +1,6 @@
 """
 Algorithm：segment_tree|bisect_left
-Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaultdict
+Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaulteddict
 
 ====================================LeetCode====================================
 218（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）segment_tree|RangeChangeRangeMax
@@ -79,6 +79,7 @@ P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pr
 1234D（https://codeforces.com/contest/1234/problem/D）segment_tree|point_set|range_or
 1538E（https://codeforces.com/contest/1538/problem/E）implemention|segment_tree|merge
 1741F（https://codeforces.com/contest/1741/problem/F）segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
+
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum

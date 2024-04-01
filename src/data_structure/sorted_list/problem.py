@@ -58,6 +58,7 @@ ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|s
 ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointer
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
 ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
+ABC281E（https://atcoder.jp/contests/abc281/tasks/abc281_e）top_k_sum|sorted_list|classical
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
@@ -428,7 +429,7 @@ class Solution:
         j = 2
         for i in range(1, n):
             if i >= 2:
-                lst.remove(nums[i])
+                lst.discard(nums[i])
             if n - i - 1 < k - 2:
                 break
             while j <= i + dist and j < n:
@@ -453,7 +454,7 @@ class Solution:
             x, y = ac.read_list_ints()
             x -= 1
             if nums[x]:
-                lst.remove(-nums[x])
+                lst.discard(-nums[x])
             nums[x] = y
             if nums[x]:
                 lst.add(-nums[x])
@@ -540,4 +541,23 @@ class Solution:
             for num in nums[i]:
                 post.add(num)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_281e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc281/tasks/abc281_e
+        tag: top_k_sum|sorted_list|classical
+        """
+        n, m, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        lst = TopKSum(k)
+        ans = []
+        for i in range(m - 1):
+            lst.add(nums[i])
+        for i in range(n - m + 1):
+            lst.add(nums[i + m - 1])
+            ans.append(lst.top_k_sum)
+            lst.discard(nums[i])
+        ac.lst(ans)
         return

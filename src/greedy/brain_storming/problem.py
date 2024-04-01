@@ -215,7 +215,9 @@ ABC310E（https://atcoder.jp/contests/abc310/tasks/abc310_e）brain_teaser|imple
 ABC308F（https://atcoder.jp/contests/abc308/tasks/abc308_f）brain_teaser|greedy
 ABC296F（https://atcoder.jp/contests/abc296/tasks/abc296_f）brain_teaser|greedy|sorted_list|reverse_pair|property
 ABC293F（https://atcoder.jp/contests/abc293/tasks/abc293_f）binary_search|brute_force|brain_teaser|classical
-ABC290D（https://atcoder.jp/contests/abc290/tasks/abc290_d）brain_teaser|implmention|math
+ABC290D（https://atcoder.jp/contests/abc290/tasks/abc290_d）brain_teaser|implemention|math
+ABC347C（https://atcoder.jp/contests/abc347/tasks/abc347_c）brain_teaser|implemention
+ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greedy
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1612,7 +1614,7 @@ class Solution:
             ac.st("".join(str(x) for x in col))
             return
 
-        tmp = [g[:] for g in grid]   # last_row = 1
+        tmp = [g[:] for g in grid]  # last_row = 1
         row = [0] * m
         col = [0] * n
         for j in range(n):
