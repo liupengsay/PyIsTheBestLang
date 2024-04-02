@@ -113,6 +113,7 @@ ABC311D（https://atcoder.jp/contests/abc311/tasks/abc311_d）bfs
 ABC302F（https://atcoder.jp/contests/abc302/tasks/abc302_f）build_graph|bfs|brain_teaser
 ABC289E（https://atcoder.jp/contests/abc289/tasks/abc289_e）bfs
 ABC282D（https://atcoder.jp/contests/abc282/tasks/abc282_d）color_method|bipartite_graph|bfs|classical
+ABC280F（https://atcoder.jp/contests/abc280/tasks/abc280_f）bfs|negative_circle|positive_circle|brain_teaser|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2268,4 +2269,52 @@ class Solution:
                 ans += pre * tot
                 pre += tot
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_280f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc280/tasks/abc280_f
+        tag: bfs|negative_circle|positive_circle|brain_teaser|classical
+        """
+        n, m, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        dis = [inf] * n
+        for _ in range(m):
+            a, b, c = ac.read_list_ints_minus_one()
+            c += 1
+            dct[a].append((b, c))
+            dct[b].append((a, -c))
+        visit = [0] * n
+        for i in range(n):
+            if not visit[i]:
+                visit[i] = 1
+                dis[i] = 0
+                stack = [i]
+                lst = [i]
+                circle = 0
+                while stack:
+                    x = stack.pop()
+                    for y, w in dct[x]:
+                        if dis[y] != inf and dis[y] != dis[x] + w:
+                            circle = 1
+                        dis[y] = dis[x] + w
+                        if not visit[y]:
+                            visit[y] = 1
+                            lst.append(y)
+                            stack.append(y)
+                            dis[y] = dis[x] + w
+                if circle:
+                    for x in lst:
+                        dis[x] = inf
+                for x in lst:
+                    visit[x] = lst[0] + 1
+        for _ in range(q):
+            x, y = ac.read_list_ints_minus_one()
+            if visit[x] != visit[y]:
+                ac.st("nan")
+            elif dis[x] == inf:
+                ac.st("inf")
+            else:
+                ac.st(dis[y] - dis[x])
         return

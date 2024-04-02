@@ -77,7 +77,8 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
 ABC321E（https://atcoder.jp/contests/abc321/tasks/abc321_e）implemention|binary_tree|counter
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
-
+ABC278D（https://atcoder.jp/contests/abc278/tasks/abc278_d）brain_teaser|classical
+ABC279E（https://atcoder.jp/contests/abc279/tasks/abc279_e）prefix_suffix|implemention|brain_teaser|classical
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
@@ -506,4 +507,34 @@ class Solution:
                     return
             pre.add((x, y))
         ac.st("YES")
+        return
+
+    @staticmethod
+    def abc_279e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc279/tasks/abc279_e
+        tag: prefix_suffix|implemention|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints_minus_one()
+        zero = 0
+        pre = [zero]
+        for i in range(m - 1):
+            aa = a[i]
+            if aa + 1 == zero:
+                zero = aa
+            elif aa == zero:
+                zero = aa + 1
+            pre.append(zero)
+
+        ans = [pre[-1]]
+        b = list(range(n))
+        for i in range(m - 1, -1, -1):
+            if i < m - 1:
+                ans.append(b[pre[i]])
+            aa = a[i]
+            b[aa], b[aa + 1] = b[aa + 1], b[aa]
+
+        for a in ans[::-1]:
+            ac.st(a + 1)
         return

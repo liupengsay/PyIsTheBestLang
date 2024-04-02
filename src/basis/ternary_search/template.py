@@ -65,10 +65,10 @@ class TernarySearch:
         return left
 
     @staticmethod
-    def find_floor_point_int(fun, left, right, error=1):
+    def find_floor_point_int(fun, left, right, error=1, high_precision=False):
         """The int point when solving the convex function to obtain the minimum value"""
         while left < right - error:
-            diff = Decimal(right - left) // 3
+            diff = Decimal(right - left) // 3 if high_precision else (right - left) // 3
             mid1 = left + diff
             mid2 = left + 2 * diff
             dist1 = fun(mid1)

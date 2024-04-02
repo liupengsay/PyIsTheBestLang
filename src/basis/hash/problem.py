@@ -29,6 +29,7 @@ P8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_
 ====================================AtCoder=====================================
 ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
 ABC304D（https://atcoder.jp/contests/abc304/tasks/abc304_d）hash|counter|brain_teaser
+ABC278E（https://atcoder.jp/contests/abc278/tasks/abc278_e）hash|inclusion_exclusion|implemention
 
 =====================================AcWing=====================================
 

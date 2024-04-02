@@ -16,12 +16,14 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
+ABC279D（https://atcoder.jp/contests/abc279/tasks/abc279_d）ternary_search|high_precision|classical
 
 """
 import bisect
 import math
 import random
 from collections import defaultdict
+from decimal import Decimal
 from typing import List
 
 from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
@@ -221,6 +223,7 @@ class Solution:
         url: https://leetcode.cn/problems/best-position-for-a-service-centre/
         tag: tripartite_pack_tripartite|convex_function_minimum|gradient_descent|hill_climbing
         """
+
         def target(x, y):
             return sum([math.sqrt((x - p[0]) ** 2 + (y - p[1]) ** 2) for p in stack])
 
@@ -292,3 +295,22 @@ class Solution:
             else:
                 step *= (1.0 - decay)
         return get_dis(x, y)
+
+    @staticmethod
+    def abc_279d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc279/tasks/abc279_d
+        tag: ternary_search|high_precision|classical
+        """
+        a, b = ac.read_list_ints()
+
+        def check(x):
+            if x < 0:
+                return inf
+            return x * b + a / (1 + x) ** 0.5
+
+        y = TernarySearch().find_floor_point_int(check, 0, a)
+        y = int(y)
+        ans = min(Decimal(check(x)) for x in range(y - 5, y + 6))
+        ac.st(ans)
+        return

@@ -18,6 +18,7 @@ ABC323E（https://atcoder.jp/contests/abc323/tasks/abc323_e）linear_dp|prob_dp|
 ABC300E（https://atcoder.jp/contests/abc300/tasks/abc300_e）prob_dp|math|classical|brain_teaser
 ABC298E（https://atcoder.jp/contests/abc298/tasks/abc298_e）prob_dp
 ABC297F（https://atcoder.jp/contests/abc297/tasks/abc297_f）matrix_dp|inclusion_exclusion|prob_dp
+ABC280E（https://atcoder.jp/contests/abc280/tasks/abc280_e）prob_dp|expectation_dp|classical
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -201,4 +202,21 @@ class Solution:
                 res += dp[i]
         res = (res * pp) % mod
         ac.st(res)
+        return
+
+    @staticmethod
+    def abc_280e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc280/tasks/abc280_e
+        tag: prob_dp|expectation_dp|classical
+        """
+        n, p = ac.read_list_ints()
+        mod = 998244353
+        p2 = p * pow(100, -1, mod) % mod
+        p1 = (100 - p) * pow(100, -1, mod) % mod
+        dp = [0] * (n + 2)
+        dp[1] = 1
+        for i in range(2, n + 1):
+            dp[i] = (dp[i - 1] * p1 + dp[i - 2] * p2 + 1) % mod
+        ac.st(dp[n])
         return

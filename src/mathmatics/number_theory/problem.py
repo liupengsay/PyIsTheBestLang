@@ -83,6 +83,7 @@ ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusio
 ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointer
 ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
 ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pollard_rho|num_factor|classical
+ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greedy|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1049,10 +1050,6 @@ class Solution:
         ac.st(ans)
         return
 
-class Solution:
-    def __init__(self):
-        return
-
     @staticmethod
     def abc_284d(ac=FastIO()):
         """
@@ -1066,4 +1063,27 @@ class Solution:
             p = [x for x in ans if ans[x] == 2][0]
             q = [x for x in ans if ans[x] == 1][0]
             ac.lst([p, q])
+        return
+
+    @staticmethod
+    def abc_280d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc280/tasks/abc280_d
+        tag: prime_factorization|brain_teaser|greedy|classical
+        """
+        k = ac.read_int()
+        lst = NumFactor().get_prime_factor(k)
+        dct = {x: y for x, y in lst}
+        ans = 0
+        for x in dct:
+            c = dct[x]
+            for y in range(x, x * k + x, x):
+                i = y
+                while y % x == 0:
+                    c -= 1
+                    y //= x
+                ans = max(ans, i)
+                if c <= 0:
+                    break
+        ac.st(ans)
         return
