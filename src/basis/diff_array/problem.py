@@ -104,6 +104,8 @@ ABC288D（https://atcoder.jp/contests/abc288/tasks/abc288_d）diff_array|brain_t
 ABC347E（https://atcoder.jp/contests/abc347/tasks/abc347_e）diff_array|implemention|prefix
 ABC347F（https://atcoder.jp/contests/abc347/tasks/abc347_f）diff_array|matrix_prefix_sum|matrix_rotate|brute_force|implemention
 ABC274F（https://atcoder.jp/contests/abc274/tasks/abc274_f）brute_force|brain_teaser|discretization_diff_array|classical
+ABC269F（https://atcoder.jp/contests/abc269/tasks/abc269_f）diff_array|inclusion_exclusion|prefix_sum|math|classical
+
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1929,4 +1931,37 @@ class Solution:
                 dct[j] += dct[j - 1]
             ans = max(ans, cur + max(dct.values()) if dct else cur)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_269f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc269/tasks/abc269_f
+        tag: diff_array|inclusion_exclusion|prefix_sum|math|classical
+        """
+        n, m = ac.read_list_ints()
+        mod = 998244353
+
+        def compute(start, diff, cnt):
+            return (start + start + diff * (cnt - 1)) * cnt // 2
+
+        def check(x, y):
+
+            if not x or not y:
+                return 0
+
+            odd_start = (y + y % 2) * ((y + 1) // 2) // 2
+            odd_diff = ((y + 1) // 2) * 2 * m
+            odd_cnt = (x + 1) // 2
+
+            even_start = m * (y // 2) + y * (y + 1) // 2 - odd_start
+            even_diff = (y // 2) * 2 * m
+            even_cnt = x // 2
+            res = compute(odd_start, odd_diff, odd_cnt) + compute(even_start, even_diff, even_cnt)
+            return res % mod
+
+        for _ in range(ac.read_int()):
+            a, b, c, d = ac.read_list_ints()
+            ans = check(b, d) - check(b, c - 1) - check(a - 1, d) + check(a - 1, c - 1)
+            ac.st(ans % mod)
         return

@@ -83,6 +83,7 @@ ABC274D（https://atcoder.jp/contests/abc274/tasks/abc274_d）brute_force|implem
 ABC273D（https://atcoder.jp/contests/abc273/tasks/abc273_d）binary_search|implemention
 ABC273E（https://atcoder.jp/contests/abc273/tasks/abc273_e）tree|implemention|implemention|classical
 ABC272E（https://atcoder.jp/contests/abc272/tasks/abc272_e）brute_force|implemention|euler_series|classical
+ABC270B（https://atcoder.jp/contests/abc270/tasks/abc270_b）brute_force|implemention
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
@@ -595,4 +596,21 @@ class Solution:
             while x in dct[i]:
                 x += 1
             ac.st(x)
+        return
+
+    @staticmethod
+    def abc_270b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc270/tasks/abc270_b
+        tag: brute_force|implemention
+        """
+        x, y, z = ac.read_list_ints()
+        if x < 0:
+            x, y, z = -x, -y, -z
+        if y < 0 or y > x:
+            ac.st(x)
+        elif z > y:
+            ac.st(-1)
+        else:
+            ac.st(abs(z) + abs(x - z))
         return

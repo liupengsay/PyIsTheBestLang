@@ -31,6 +31,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
 ABC305F（https://atcoder.jp/contests/abc305/tasks/abc305_f）interactive|brain_teaser|spanning_tree|dfs|back_trace
 ABC282F（https://atcoder.jp/contests/abc282/tasks/abc282_f）brain_teaser|tree_array|interactive|classical
+ABC269E（https://atcoder.jp/contests/abc269/tasks/abc269_e）binary_search_strictly|interactive|classical
+
 
 """
 import bisect
@@ -345,4 +347,28 @@ class Solution:
             a = dct[(ll, mid_ll)]
             b = dct[(mid_rr, rr)]
             ac.lst([a + 1, b + 1])
+        return
+
+    @staticmethod
+    def abc_269e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc269/tasks/abc269_e
+        tag: binary_search_strictly|interactive|classical
+        """
+        ac.flush = True
+        n = ac.read_int()
+
+        def check1(x):
+            ac.lst(["?"] + [1, x + 1, 1, n])
+            cnt = ac.read_int()
+            return cnt < x + 1
+
+        def check2(x):
+            ac.lst(["?"] + [1, n, 1, x + 1])
+            cnt = ac.read_int()
+            return cnt < x + 1
+
+        row = BinarySearch().find_int_left_strictly(0, n - 1, check1)
+        col = BinarySearch().find_int_left_strictly(0, n - 1, check2)
+        ac.lst(["!", row + 1, col + 1])
         return

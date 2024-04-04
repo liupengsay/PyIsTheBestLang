@@ -109,6 +109,7 @@ ABC328F（https://atcoder.jp/contests/abc328/tasks/abc328_f）union_find_weighte
 ABC314F（https://atcoder.jp/contests/abc314/tasks/abc314_f）union_find|bfs|build_graph|expectation|prob
 ABC295G（https://atcoder.jp/contests/abc295/tasks/abc295_g）union_find|implemention|tree|union_min|classical
 ABC293D（https://atcoder.jp/contests/abc293/tasks/abc293_d）union_find
+ABC280F（https://atcoder.jp/contests/abc270/tasks/abc270_f）union_find|build_graph|brute_force|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
