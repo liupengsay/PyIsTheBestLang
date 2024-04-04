@@ -35,6 +35,7 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
 ABC292F（https://atcoder.jp/contests/abc292/tasks/abc292_f）brain_teaser|math
+ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geometry|square|angle|classical
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -283,4 +284,42 @@ class Solution:
                                     ac.lst([a1, b1, c1, a2, b2, c2, a3, b3, c3])
                                     return
         ac.st("No")
+        return
+
+    @staticmethod
+    def abc_275c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc275/tasks/abc275_c
+        tag: brute_force|geometry|square|angle|classical
+        """
+        grid = [ac.read_str() for _ in range(9)]
+
+        ind = []
+        for i in range(9):
+            for j in range(9):
+                if grid[i][j] == "#":
+                    ind.append((i, j))
+
+        def dis(p1, p2):
+            return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
+
+        gm = Geometry()
+        points = set(ind)
+        ans = 0
+        k = len(ind)
+        for i in range(k):
+            x0, y0 = ind[i]
+            for j in range(i + 1, k):
+                x2, y2 = ind[j]
+                (x1, y1), (x3, y3) = gm.compute_square_point_non_vertical(x0, y0, x2, y2)
+                x1 = int(x1)
+                y1 = int(y1)
+                x3 = int(x3)
+                y3 = int(y3)
+                if (x1, y1) in points and (x3, y3) in points:
+                    perm = [(x0, y0), (x1, y1), (x2, y2), (x3, y3)]
+                    if len(set(dis(perm[i], perm[i + 1]) for i in range(3))) == 1:
+                        if gm.vertical_angle(perm[0], perm[1], perm[2]):
+                            ans += 1
+        ac.st(ans // 2)
         return

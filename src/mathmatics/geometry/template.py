@@ -31,6 +31,12 @@ class Geometry:
         return (x2 - x1) * (y3 - y2) == (x3 - x2) * (y2 - y1)
 
     @staticmethod
+    def vertical_angle(p1, p2, p3):
+        x1, y1 = p1[0] - p2[0], p1[1] - p2[1]
+        x2, y2 = p3[0] - p2[0], p3[1] - p2[1]
+        return x1 * x2 + y1 * y2 == 0
+
+    @staticmethod
     def compute_slope(x1, y1, x2, y2):
         assert [x1, y1] != [x2, y2]
         # Determine the slope of a straight line based on two different points

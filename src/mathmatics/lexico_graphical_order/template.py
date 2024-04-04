@@ -1,4 +1,5 @@
 import math
+from math import inf
 
 
 class LexicoGraphicalOrder:
@@ -142,3 +143,44 @@ class LexicoGraphicalOrder:
             else:
                 return mid
         return low if self.get_kth_subset_perm(n, low) == lst else high
+
+
+class Permutation:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def next_permutation(nums):
+        n = len(nums)
+        for i in range(n - 2, -1, -1):
+            if nums[i] < nums[i + 1]:
+                ind = i + 1
+                for j in range(i + 2, n):
+                    if nums[i] < nums[j] < nums[ind]:
+                        ind = j
+                nums[i], nums[ind] = nums[ind], nums[i]
+                nums[i + 1:] = sorted(nums[i + 1:])
+                return nums
+        nums.reverse()
+        return nums
+
+    @staticmethod
+    def prev_permutation(nums):
+        n = len(nums)
+        post = inf
+        for i in range(n - 1, -1, -1):
+            if nums[i] > post:
+                ind = -1
+                for j in range(i + 1, n):
+                    if nums[j] < nums[i]:
+                        if ind == -1:
+                            ind = j
+                        elif nums[ind] < nums[j]:
+                            ind = j
+                nums[i], nums[ind] = nums[ind], nums[i]
+                nums[i + 1:] = sorted(nums[i + 1:], reverse=True)
+                return nums
+            else:
+                post = nums[i]
+        nums.reverse()
+        return nums

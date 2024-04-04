@@ -19,6 +19,7 @@ ABC300E（https://atcoder.jp/contests/abc300/tasks/abc300_e）prob_dp|math|class
 ABC298E（https://atcoder.jp/contests/abc298/tasks/abc298_e）prob_dp
 ABC297F（https://atcoder.jp/contests/abc297/tasks/abc297_f）matrix_dp|inclusion_exclusion|prob_dp
 ABC280E（https://atcoder.jp/contests/abc280/tasks/abc280_e）prob_dp|expectation_dp|classical
+ABC275E（https://atcoder.jp/contests/abc275/tasks/abc275_e）prob_dp|linear_dp|classical
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -219,4 +220,30 @@ class Solution:
         for i in range(2, n + 1):
             dp[i] = (dp[i - 1] * p1 + dp[i - 2] * p2 + 1) % mod
         ac.st(dp[n])
+        return
+
+    @staticmethod
+    def abc_275e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc275/tasks/abc275_e
+        tag: prob_dp|linear_dp|classical
+        """
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        ans = 0
+        p = pow(m, -1, mod)
+        for _ in range(k):
+            ndp = [0] * (n + 1)
+            for i in range(n):
+                for j in range(1, m + 1):
+                    x = i + j
+                    if x > n:
+                        x = n - (x - n)
+                    ndp[x] += dp[i] * p % mod
+            dp = [x % mod for x in ndp]
+            ans += dp[-1]
+            ans %= mod
+        ac.st(ans)
         return

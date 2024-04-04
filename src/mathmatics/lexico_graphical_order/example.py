@@ -2,7 +2,7 @@ import random
 import unittest
 from itertools import permutations, combinations
 
-from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder
+from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder, Permutation
 
 
 class TestGeneral(unittest.TestCase):
@@ -49,6 +49,23 @@ class TestGeneral(unittest.TestCase):
             lst = nums[i]
             assert lgo.get_kth_subset_perm(n, i + 1) == lst
             assert lgo.get_subset_perm_kth(n, lst) == i + 1
+        return
+
+    def test_permutation(self):
+        n = 8
+        pm = Permutation()
+        for x in range(100):
+            nums = [random.randint(0, n - 1) for _ in range(n)]
+            if x == 0:
+                nums = list(range(n))
+            tot = set()
+            for item in permutations(nums, n):
+                tot.add(tuple(item))
+            tot = sorted(tot)
+            m = len(tot)
+            for i in range(m):
+                assert pm.next_permutation(list(tot[i])) == list(tot[(i + 1) % m])
+                assert pm.prev_permutation(list(tot[i])) == list(tot[(i - 1) % m])
         return
 
 

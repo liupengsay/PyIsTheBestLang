@@ -133,6 +133,7 @@ ABC345E（https://atcoder.jp/contests/abc345/tasks/abc345_e）linear_dp
 ABC291F（https://atcoder.jp/contests/abc291/tasks/abc291_f）linear_dp|prefix_suffix
 ABC285E（https://atcoder.jp/contests/abc285/tasks/abc285_e）linear_dp|brain_teaser|circular_array|classical
 ABC283E（https://atcoder.jp/contests/abc283/tasks/abc283_e）linear_dp
+ABC275F（https://atcoder.jp/contests/abc275/tasks/abc275_f）matrix_dp|linear_dp|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -149,7 +150,6 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from typing import List
 
-from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1292,4 +1292,34 @@ class Solution:
             for j in range(i):
                 dp[i] = max(dp[i], dp[j] + cost(i - j - 1))
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def abc_275f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc275/tasks/abc275_f
+        tag: matrix_dp|linear_dp|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        dp = [[inf] * (m + 1) for _ in range(2)]
+        dp[0][0] = 0
+        for num in nums:
+            ndp = [[inf] * (m + 1) for _ in range(2)]
+            for pre in range(2):
+                for s in range(m + 1):
+                    if pre:
+                        ndp[pre][s] = min(ndp[pre][s], dp[pre][s])
+                        if num + s <= m:
+                            ndp[0][num + s] = min(ndp[0][num + s], dp[pre][s])
+                    else:
+                        if num + s <= m:
+                            ndp[pre][num + s] = min(ndp[pre][num + s], dp[pre][s])
+
+                        ndp[1][s] = min(ndp[1][s], dp[pre][s] + 1)
+            dp = ndp
+        for x in range(1, m + 1):
+            ans = min(dp[0][x], dp[1][x])
+            ac.st(ans if ans < inf else -1)
         return

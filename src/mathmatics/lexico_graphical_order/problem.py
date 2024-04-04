@@ -3,6 +3,7 @@ Algorithm：lexicographical_order|lexicographical_order_rank|comb|subset|perm
 Description：kth_lexicographical_order|lexicographical_order_rank|subset_lexicographical_order|kth_subset_lexicographical|comb|perm
 
 ====================================LeetCode====================================
+31（https://leetcode.cn/problems/next-permutation/）next_permutation|classical
 60（https://leetcode.cn/problems/permutation-sequence/）kth_perm|lexicographical_order
 440（https://leetcode.cn/problems/k-th-smallest-in-lexicographical-order/）10-tree|kth
 1415（https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）lexicographical_order|construction
@@ -18,13 +19,18 @@ P1338（https://www.luogu.com.cn/problem/P1338）reverse_order_pair|counter|lexi
 P2524（https://www.luogu.com.cn/problem/P2524）lexicographical_order|rank_of_perm
 P2525（https://www.luogu.com.cn/problem/P2525）lexicographical_order|rank_of_perm|pre_lexicographical_order
 
+=====================================AtCoder======================================
+ABC276C（https://atcoder.jp/contests/abc276/tasks/abc276_c）prev_permutation|classical
+
 ===================================CodeForces===================================
 1328B（https://codeforces.com/contest/1328/problem/B）comb|lexicographical_order
 1620C（https://codeforces.com/contest/1620/problem/C）reverse_thinking|lexicographical_order
 1509E（https://codeforces.com/contest/1509/problem/E）lexicographical_order|kth_rank|classical
 
 """
-from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder
+from typing import List
+
+from src.mathmatics.lexico_graphical_order.template import LexicoGraphicalOrder, Permutation
 from src.utils.fast_io import FastIO
 
 
@@ -87,3 +93,36 @@ class Solution:
         """
         ans = LexicoGraphicalOrder().get_kth_subset_perm(n, k)
         return "".join(str(x) for x in ans)
+
+    @staticmethod
+    def abc_276c_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc276/tasks/abc276_c
+        tag: prev_permutation|classical
+        """
+        ac.read_int()
+        lst = ac.read_list_ints()
+        ac.lst(Permutation().prev_permutation(lst))
+        return
+
+    @staticmethod
+    def abc_276c_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc276/tasks/abc276_c
+        tag: prev_permutation|classical
+        """
+        n = ac.read_int()
+        lst = ac.read_list_ints()
+        lgo = LexicoGraphicalOrder()
+        k = lgo.get_subset_perm_kth(n, lst)
+        ac.lst(lgo.get_kth_subset_perm(n, k - 1))
+        return
+
+    @staticmethod
+    def lc_31(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/next-permutation/
+        tag: next_permutation|classical
+        """
+        nums = Permutation().next_permutation(nums)
+        return nums

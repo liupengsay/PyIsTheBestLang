@@ -42,6 +42,7 @@ ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tre
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contribution_method|classical
 ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_min|tree_array|classical
+ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|tree_array|contribution_method|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -68,6 +69,7 @@ from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
     PointDescendRangeMin, PointChangeRangeSum
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1156,4 +1158,28 @@ class Solution:
             tree1.point_descend(nums[i], -nums[i] + i)
             tree2.point_descend(n + 1 - nums[i], nums[i] + i)
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_276f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc276/tasks/abc276_f
+        tag: expectation|comb|tree_array|contribution_method|classical
+        """
+        mod = 998244353
+        ac.read_int()
+        nums = ac.read_list_ints()
+        tot = 0
+        m = 2 * 10 ** 5
+        tree_cnt = PointAddRangeSum(m)
+        tree_sum = PointAddRangeSum(m)
+        cb = Combinatorics(m, mod)
+        for i, num in enumerate(nums):
+            cnt = cb.inv[i + 1]
+            smaller = tree_cnt.range_sum(1, num - 1) if num else 0
+            tot += num + smaller * 2 * num + 2 * tree_sum.range_sum(1, m + 1 - num)
+            tot %= mod
+            tree_sum.point_add(m + 1 - num, num)
+            tree_cnt.point_add(num, 1)
+            ac.st(tot * cnt * cnt % mod)
         return
