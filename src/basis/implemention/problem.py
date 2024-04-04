@@ -80,6 +80,9 @@ ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|impl
 ABC278D（https://atcoder.jp/contests/abc278/tasks/abc278_d）brain_teaser|classical
 ABC279E（https://atcoder.jp/contests/abc279/tasks/abc279_e）prefix_suffix|implemention|brain_teaser|classical
 ABC274D（https://atcoder.jp/contests/abc274/tasks/abc274_d）brute_force|implemention
+ABC273D（https://atcoder.jp/contests/abc273/tasks/abc273_d）binary_search|implemention
+ABC273E（https://atcoder.jp/contests/abc273/tasks/abc273_e）tree|implemention|implemention|classical
+ABC272E（https://atcoder.jp/contests/abc272/tasks/abc272_e）brute_force|implemention|euler_series|classical
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
@@ -538,4 +541,58 @@ class Solution:
 
         for a in ans[::-1]:
             ac.st(a + 1)
+        return
+
+    @staticmethod
+    def abc_273e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc273/tasks/abc273_e
+        tag: tree|implemention|implemention|classical
+        """
+        q = ac.read_int()
+        nums = ["-1"] * (q + 1)
+        father = [-1] * (q + 1)
+        ind = now = 0
+        dct = dict()
+        ans = []
+        for _ in range(q):
+            lst = ac.read_list_strs()
+            if lst[0] == "ADD":
+                ind += 1
+                nums[ind] = lst[1]
+                father[ind] = now
+                now = ind
+            elif lst[0] == "DELETE":
+                if now:
+                    now = father[now]
+            elif lst[0] == "SAVE":
+                dct[lst[1]] = now
+            else:
+                now = dct.get(lst[1], 0)
+            ans.append(nums[now] if now else -1)
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_272e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc272/tasks/abc272_e
+        tag: brute_force|implemention|euler_series|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dct = [set() for _ in range(m + 1)]
+        for i in range(n):
+            num = nums[i]
+            low = max(0, (-num) // (i + 1))
+            num += low * (i + 1)
+            while low <= m and num <= n:
+                dct[low].add(num)
+                low += 1
+                num += (i + 1)
+        for i in range(1, m + 1):
+            x = 0
+            while x in dct[i]:
+                x += 1
+            ac.st(x)
         return

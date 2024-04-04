@@ -18,6 +18,7 @@ CF525E（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
 
 =====================================AtCoder=====================================
 ABC326F（https://atcoder.jp/contests/abc326/tasks/abc326_f）meet_in_middle|brain_teaser|classical
+ABC271F（https://atcoder.jp/contests/abc271/tasks/abc271_f）meet_in_middle|brute_force|classical
 
 
 =====================================AcWing=====================================
@@ -27,7 +28,7 @@ ABC326F（https://atcoder.jp/contests/abc326/tasks/abc326_f）meet_in_middle|bra
 """
 
 import bisect
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import combinations
 from typing import List
 
@@ -314,5 +315,66 @@ class Solution:
                 else:
                     ans += "L"
             pre = (state >> i) & 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_271f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc271/tasks/abc271_f
+        tag: meet_in_middle|brute_force|classical
+        """
+        n = ac.read_int()
+        grid = [ac.read_list_ints() for _ in range(n)]
+        left = [[Counter() for _ in range(n)] for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                if i == j == 0:
+                    left[i][j] = Counter([grid[i][j]])
+                    continue
+                num = grid[i][j]
+                if i + j <= n - 1:
+                    cur = Counter()
+                    if i:
+                        pre = left[i - 1][j]
+                        for p in pre:
+                            cur[p ^ num] += pre[p]
+                        left[i - 1][j] = Counter()
+                    if j:
+                        pre = left[i][j - 1]
+                        for p in pre:
+                            cur[p ^ num] += pre[p]
+                    left[i][j] = cur
+                else:
+                    break
+
+        right = [[Counter() for _ in range(n)] for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                if i == j == n - 1:
+                    right[i][j] = Counter([grid[i][j]])
+                    continue
+                num = grid[i][j]
+                if i + j >= n - 1:
+                    cur = Counter()
+                    if i + 1 < n:
+                        pre = right[i + 1][j]
+                        for p in pre:
+                            cur[p ^ num] += pre[p]
+                        right[i + 1][j] = Counter()
+                    if j + 1 < n:
+                        pre = right[i][j + 1]
+                        for p in pre:
+                            cur[p ^ num] += pre[p]
+                    right[i][j] = cur
+                else:
+                    break
+        ans = 0
+        for i in range(n):
+            pre = left[i][n - 1 - i]
+            x = grid[i][n - 1 - i]
+            nex = right[i][n - 1 - i]
+            for p in pre:
+                ans += nex[p ^ x] * pre[p]
         ac.st(ans)
         return

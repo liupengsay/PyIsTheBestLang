@@ -81,6 +81,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.monotonic_stack.template import Rectangle
+from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.sparse_table.template import SparseTable
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.strings.suffix_array.template import SuffixArray
@@ -715,7 +716,7 @@ class Solution:
         return
 
     @staticmethod
-    def abc_272f(ac=FastIO()):
+    def abc_272f_1(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc272/tasks/abc272_f
         tag: suffix_array|sa|trick
@@ -731,6 +732,31 @@ class Solution:
                 post += 1
             elif sa[i] < n:
                 ans += post
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_272f_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc272/tasks/abc272_f
+        tag: suffix_array|sa|trick
+        """
+        n = ac.read_int()
+        s = [ord(w) - ord("a") for w in ac.read_str()]
+        t = [ord(w) - ord("a") for w in ac.read_str()]
+        lst = s + s + t + t
+        sa, rk, height = SuffixArray().build(lst, 26)
+        ans = 0
+        ind = SortedList(list(range(2 * n, 3 * n)))
+        j = 0
+        for i in range(4 * n):
+            if height[i] < n:
+                while j < i:
+                    if 2 * n <= sa[j] < 3 * n:
+                        ind.discard(sa[j])
+                    j += 1
+            if 0 <= sa[i] < n:
+                ans += len(ind)
         ac.st(ans)
         return
 

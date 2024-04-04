@@ -132,7 +132,7 @@ class Solution:
     def cf1514_d_2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1514/problem/D
-        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_seed
+        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_like
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -164,7 +164,7 @@ class Solution:
     def cf1514_d_3(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1514/problem/D
-        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_seed
+        tag: range_super_mode|random_guess|binary_search|bit_operation|segment_tree|random_like
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
