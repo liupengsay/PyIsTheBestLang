@@ -1,7 +1,7 @@
 """
 
-Algorithm：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost
-Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost
+Algorithm：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
+Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
 
 ====================================LeetCode====================================
 1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress

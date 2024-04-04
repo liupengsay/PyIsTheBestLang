@@ -56,6 +56,7 @@ ABC338F（https://atcoder.jp/contests/abc338/tasks/abc338_f）floyd|shortest_pat
 ABC318D（https://atcoder.jp/contests/abc318/tasks/abc318_d）state_dp|brute_force
 ABC301E（https://atcoder.jp/contests/abc301/tasks/abc301_e）state_dp|build_graph
 ABC278F（https://atcoder.jp/contests/abc278/tasks/abc278_f）state_dp|classical
+ABC274E（https://atcoder.jp/contests/abc274/tasks/abc274_e）state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1069,5 +1070,48 @@ class Solution:
             if dp[-1][state] <= t:
                 cur = sum(not state & (1 << j) for j in range(k)) - 2
                 ans = max(ans, cur)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_274e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc274/tasks/abc274_e
+        tag: state_dp|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [ac.read_list_ints() for _ in range(m)]
+        n = len(nums)
+        dis = [[0] * n for _ in range(n)]
+        for i in range(n):
+            x1, y1 = nums[i]
+            for j in range(i + 1, n):
+                x2, y2 = nums[j]
+                dis[i][j] = dis[j][i] = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) ** 0.5
+
+        s = [inf] * (1 << n)
+        for i in range(1 << n):
+            c = sum(not i & (1 << j) for j in range(n - m, n))
+            s[i] = 1 << c
+
+        dp = [[inf] * (1 << n) for _ in range(n)]
+        tot = ((1 << n) - 1) ^ 1
+        dp[0][tot] = 0
+        target = (1 << (n - m)) - 1
+        ans = inf
+        for state in range((1 << n) - 1, -1, -1):
+            pre = []
+            post = []
+            for i in range(n):
+                if not state & (1 << i):
+                    pre.append(i)
+                else:
+                    post.append(i)
+            for x in pre:
+                for y in post:
+                    dp[y][state ^ (1 << y)] = min(dp[y][state ^ (1 << y)], dis[x][y] / s[state] + dp[x][state])
+            if not state & target:
+                for i in range(n):
+                    ans = min(ans, dp[i][state] + dis[i][0] / s[state])
         ac.st(ans)
         return

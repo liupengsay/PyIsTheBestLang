@@ -26,6 +26,7 @@ B3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maxim
 from typing import List
 
 from src.graph.bipartite_matching.template import BipartiteMatching
+from src.graph.network_flow.template import DinicMaxflowMinCut
 from src.utils.fast_io import FastIO
 
 
@@ -135,3 +136,104 @@ class Solution:
                             bm.add_edge(x * n + y, i * n + j)
         matching = bm.solve()
         return len(matching) // 2
+
+    @staticmethod
+    def abc_274g_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc274/tasks/abc274_g
+        tag: bipartite_matching|minimum_point_cover|maximum_match|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        row = [[-1] * n for _ in range(m)]
+        r = flag = 0
+        for i in range(m):
+            if flag:
+                r += 1
+            flag = 0
+            for j in range(n):
+                if grid[i][j] == ".":
+                    row[i][j] = r
+                    flag = 1
+                else:
+                    if flag:
+                        r += 1
+                        flag = 0
+        if flag:
+            r += 1
+
+        edge = set()
+        c = flag = 0
+        for j in range(n):
+            if flag:
+                c += 1
+            flag = 0
+            for i in range(m):
+                if grid[i][j] == ".":
+                    edge.add((row[i][j], c))
+                    flag = 1
+                else:
+                    if flag:
+                        c += 1
+                        flag = 0
+        if flag:
+            c += 1
+        bm = BipartiteMatching(r, c)
+        for i, j in edge:
+            bm.add_edge(i, j)
+        matching = bm.solve()
+        ac.st(len(matching))
+        return
+
+    @staticmethod
+    def abc_274g_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc274/tasks/abc274_g
+        tag: bipartite_matching|minimum_point_cover|maximum_match|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        row = [[-1] * n for _ in range(m)]
+        r = flag = 0
+        for i in range(m):
+            if flag:
+                r += 1
+            flag = 0
+            for j in range(n):
+                if grid[i][j] == ".":
+                    row[i][j] = r
+                    flag = 1
+                else:
+                    if flag:
+                        r += 1
+                        flag = 0
+        if flag:
+            r += 1
+
+        edge = set()
+        c = flag = 0
+        for j in range(n):
+            if flag:
+                c += 1
+            flag = 0
+            for i in range(m):
+                if grid[i][j] == ".":
+                    edge.add((row[i][j], c))
+                    flag = 1
+                else:
+                    if flag:
+                        c += 1
+                        flag = 0
+        if flag:
+            c += 1
+
+        flow = DinicMaxflowMinCut(r + c + 2)
+        for i in range(1, r + 1):
+            flow.add_edge(r + c + 1, i, 1)
+        for i in range(r + 1, r + c + 1):
+            flow.add_edge(i, r + c + 2, 1)
+        for i, j in edge:
+            flow.add_edge(i + 1, j + r + 1, 1)
+        ans = flow.max_flow_min_cut(r + c + 1, r + c + 2)
+        ac.st(ans)
+        return

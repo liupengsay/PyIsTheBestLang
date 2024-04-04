@@ -26,6 +26,8 @@ class DinicMaxflowMinCut:
         return
 
     def add_edge(self, u, v, cap):
+        # assert 1 <= u <= self.n
+        # assert 1 <= v <= self.n
         self.add_single_edge(u, v, cap)
         self.add_single_edge(v, u, 0)
         return
@@ -127,6 +129,8 @@ class DinicMaxflowMinCost:
         return
 
     def add_edge(self, u, v, cap, c):
+        # assert 1 <= u <= self.n
+        # assert 1 <= v <= self.n
         self.add_single_edge(u, v, cap, c)
         self.add_single_edge(v, u, 0, -c)
         return

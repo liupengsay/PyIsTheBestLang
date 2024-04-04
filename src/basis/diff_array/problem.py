@@ -103,6 +103,7 @@ ABC309C（https://atcoder.jp/contests/abc309/tasks/abc309_c）discretization_dif
 ABC288D（https://atcoder.jp/contests/abc288/tasks/abc288_d）diff_array|brain_teaser|classical
 ABC347E（https://atcoder.jp/contests/abc347/tasks/abc347_e）diff_array|implemention|prefix
 ABC347F（https://atcoder.jp/contests/abc347/tasks/abc347_f）diff_array|matrix_prefix_sum|matrix_rotate|brute_force|implemention
+ABC274F（https://atcoder.jp/contests/abc274/tasks/abc274_f）brute_force|brain_teaser|discretization_diff_array|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1885,5 +1886,47 @@ class Solution:
                         i + 1]
                     ans = max(ans, cur)
 
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_274f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc274/tasks/abc274_f
+        tag: brute_force|brain_teaser|discretization_diff_array|classical
+        """
+        n, a = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = 0
+        for i in range(n):
+            w, x, v = nums[i]
+            dct = defaultdict(int)
+            cur = 0
+            lst = []
+            for j, (ww, xx, vv) in enumerate(nums):
+                if vv == v:
+                    if x <= xx <= x + a:
+                        cur += ww
+                    continue
+                ceil = (x + a - xx) / (vv - v)
+                floor = (x - xx) / (vv - v)
+                if vv - v < 0:
+                    floor, ceil = ceil, floor
+                floor = max(0, floor)
+                if floor <= ceil:
+                    lst.append([floor, ceil, ww])
+
+            nodes = [inf]
+            for ls in lst:
+                nodes.extend(ls[:-1])
+            nodes = sorted(set(nodes))
+            ind = {num: i for i, num in enumerate(nodes)}
+            for aa, bb, ww in lst:
+                dct[ind[aa]] += ww
+                dct[ind[bb] + 1] -= ww
+            m = len(nodes)
+            for j in range(1, m):
+                dct[j] += dct[j - 1]
+            ans = max(ans, cur + max(dct.values()) if dct else cur)
         ac.st(ans)
         return

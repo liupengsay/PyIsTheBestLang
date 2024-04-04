@@ -79,6 +79,7 @@ ABC321E（https://atcoder.jp/contests/abc321/tasks/abc321_e）implemention|binar
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
 ABC278D（https://atcoder.jp/contests/abc278/tasks/abc278_d）brain_teaser|classical
 ABC279E（https://atcoder.jp/contests/abc279/tasks/abc279_e）prefix_suffix|implemention|brain_teaser|classical
+ABC274D（https://atcoder.jp/contests/abc274/tasks/abc274_d）brute_force|implemention
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
