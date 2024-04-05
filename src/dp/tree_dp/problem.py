@@ -50,6 +50,7 @@ P8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
 P8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
 P8744（https://www.luogu.com.cn/problem/P8744）tree_dp
 P3047（https://www.luogu.com.cn/problem/P3047）reroot_dp|classical
+U420033（https://www.luogu.com.cn/problem/U420033）reroot_dp|classical
 
 ====================================AtCoder=====================================
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
@@ -1332,4 +1333,88 @@ class Solution:
                     stack.append([y, x, nex])
         for ls in sub:
             ac.st(sum(ls))
+        return
+
+    @staticmethod
+    def lg_u420033(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/U420033
+        tag: reroot_dp|classical
+        """
+
+        def standard_procedure(n: int) -> int:
+            dct = [[] for _ in range(n)]
+            for i, j, w in edges:
+                dct[i].append((j, w))
+                dct[j].append((i, w))
+            father = [-1] * n
+            stack = [(0, -1)]
+            sub = [[0, 0, 0] for _ in range(n)]
+            dia = [0] * n
+            while stack:
+                x, fa = stack.pop()
+                if x >= 0:
+                    stack.append((~x, fa))
+                    for y, w in dct[x]:
+                        if y != fa:
+                            stack.append((y, x))
+                            father[y] = x
+                else:
+                    x = ~x
+                    a = b = c = d = 0
+                    for y, ww in dct[x]:
+                        if y != fa:
+                            for w in sub[y][:1]:
+                                if w + ww >= a:
+                                    a, b, c = w + ww, a, b
+                                elif w + ww >= b:
+                                    b, c = w + ww, b
+                                elif w + ww >= c:
+                                    c = w + ww
+                            d = max(d, dia[y])
+                    sub[x] = [a, b, c]
+                    d = max(d, a + b)
+                    dia[x] = d
+
+            ans = inf
+            stack = [(0, -1, 0, 0)]
+            while stack:
+                x, fa, pre, pre_dia = stack.pop()
+                a, b, c = sub[x]
+                aa = bb = -inf
+                for y, _ in dct[x]:
+                    if y != fa:
+                        dd = dia[y]
+                        if dd >= aa:
+                            aa, bb = dd, aa
+                        elif dd >= bb:
+                            bb = dd
+                for y, w in dct[x]:
+                    if y != fa:
+                        down = dia[y]
+                        if sub[y][0] == a - w:
+                            up = max(pre + b, b + c, pre_dia)
+                            nex = max(pre, b) + w
+                            nex_dia = max(pre_dia, pre + b, b + w, b + c)
+                        elif sub[y][0] == b - w:
+                            up = max(pre + a, a + c, pre_dia)
+                            nex = max(pre, a) + w
+                            nex_dia = max(pre_dia, pre + a, a + w, a + c)
+                        else:
+                            up = max(pre + a, a + b, pre_dia)
+                            nex = max(pre, a) + w
+                            nex_dia = max(pre_dia, pre + a, a + w, a + b)
+                        if dia[y] == aa:
+                            up = max(up, bb)
+                            nex_dia = max(nex_dia, bb)
+                        else:
+                            up = max(up, aa)
+                            nex_dia = max(nex_dia, aa)
+                        ans = min(ans, abs(up - down))
+                        stack.append((y, x, nex, nex_dia))
+            return ans
+
+        n = ac.read_int()
+        edges = [ac.read_list_ints() for _ in range(n - 1)]
+        ac.st(standard_procedure(n))
         return
