@@ -24,6 +24,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
+ABC268F（https://atcoder.jp/contests/abc268/tasks/abc268_f）custom_sort|classical
 
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）custom_sort
@@ -240,4 +241,47 @@ class Solution:
         arr = [0] * n
         merge(0, n - 1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_268f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc268/tasks/abc268_f
+        tag: custom_sort|classical
+        """
+
+        def compare(i, j):
+            cnt1 = cnt[i]
+            cnt2 = cnt[j]
+            s1 = cnt1[0] * cnt2[1]
+            s2 = cnt2[0] * cnt1[1]
+            if s1 > s2:
+                return -1
+            if s1 < s2:
+                return 1
+            return 0
+
+        n = ac.read_int()
+        words = [ac.read_str().replace("X", "0") for _ in range(n)]
+        cnt = []
+        score = []
+        for word in words:
+            cur = [0] * 2
+            ss = cc = 0
+            for w in word:
+                if w == "0":
+                    cur[0] += 1
+                    cc += 1
+                else:
+                    cur[1] += int(w)
+                    ss += cc * int(w)
+            score.append(ss)
+            cnt.append(cur[:])
+        ind = list(range(n))
+        ind.sort(key=cmp_to_key(compare))
+        ans = post = 0
+        for x in range(n - 1, -1, -1):
+            ans += cnt[ind[x]][0] * post
+            post += cnt[ind[x]][1]
+        ac.st(ans + sum(score))
         return

@@ -63,6 +63,7 @@ ABC328E（https://atcoder.jp/contests/abc328/tasks/abc328_e）dfs|back_trace|uni
 ABC326D（https://atcoder.jp/contests/abc326/tasks/abc326_d）dfs|back_trace|brute_force
 ABC322D（https://atcoder.jp/contests/abc322/tasks/abc322_d）dfs|back_trace|brute_force
 ABC284E（https://atcoder.jp/contests/abc284/tasks/abc284_e）dfs|back_trace|classical
+ABC268D（https://atcoder.jp/contests/abc268/tasks/abc268_d）dfs|back_trace|prune|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1130,4 +1131,47 @@ class Solution:
 
         dfs(0)
         ac.st(min(ans[0], ceil))
+        return
+
+    @staticmethod
+    def abc_268d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc268/tasks/abc268_d
+        tag: dfs|back_trace|prune|classical
+        """
+        n, m = ac.read_list_ints()
+        words = [ac.read_str() for _ in range(n)]
+        forbid = set([ac.read_str() for _ in range(m)])
+
+        ans = ""
+        for lst in permutations(words, n):
+            pre_len = ac.accumulate([len(w) for w in lst])
+
+            if ans:
+                break
+
+            def dfs(i):
+                nonlocal pre, ans
+                if ans:
+                    return
+                if i == n:
+                    if 3 <= len(pre) <= 16 and pre not in forbid:
+                        ans = pre
+                    return
+                if len(pre) + n - i + pre_len[-1] - pre_len[i] > 16:
+                    return
+
+                for c in range(1, 20):
+                    if len(pre) + c + pre_len[-1] - pre_len[i] + n - i - 1 <= 16:
+                        tmp = pre
+                        pre += "_" * c + lst[i]
+                        dfs(i + 1)
+                        pre = tmp
+                    else:
+                        break
+                return
+
+            pre = lst[0]
+            dfs(1)
+        ac.st(ans if ans else -1)
         return

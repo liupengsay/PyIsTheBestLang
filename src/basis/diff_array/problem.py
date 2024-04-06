@@ -105,7 +105,7 @@ ABC347E（https://atcoder.jp/contests/abc347/tasks/abc347_e）diff_array|impleme
 ABC347F（https://atcoder.jp/contests/abc347/tasks/abc347_f）diff_array|matrix_prefix_sum|matrix_rotate|brute_force|implemention
 ABC274F（https://atcoder.jp/contests/abc274/tasks/abc274_f）brute_force|brain_teaser|discretization_diff_array|classical
 ABC269F（https://atcoder.jp/contests/abc269/tasks/abc269_f）diff_array|inclusion_exclusion|prefix_sum|math|classical
-
+ABC268E（https://atcoder.jp/contests/abc268/tasks/abc268_e）brute_force|diff_array|action_scope|brain_teaser|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -1964,4 +1964,112 @@ class Solution:
             a, b, c, d = ac.read_list_ints()
             ans = check(b, d) - check(b, c - 1) - check(a - 1, d) + check(a - 1, c - 1)
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc268/tasks/abc268_e
+        tag: brute_force|diff_array|action_scope|brain_teaser|classical
+        """
+        n = ac.read_int()
+        tmp = ac.read_list_ints()
+        diff = [0] * n
+
+        def range_add(a, b, c):
+            diff[a] += c
+            if b + 1 < n:
+                diff[b + 1] -= c
+            return
+
+        mid = n // 2
+        for i in range(n):
+            x = tmp[i]
+            if x >= i:
+                d = x - i
+            else:
+                d = n + x - i
+            if d > mid:
+                range_add(0, 0, n - d)
+                if n % 2:
+                    if 1 <= d - mid - 1:
+                        range_add(1, d - mid - 1, 1)
+                else:
+                    range_add(1, d - mid, 1)
+                range_add(d - mid + 1, d, -1)
+                if d + 1 < n:
+                    range_add(d + 1, n - 1, 1)
+            elif d == mid:
+                range_add(0, 0, mid)
+                range_add(1, d, -1)
+                range_add(d + 1, n - 1, 1)
+            elif d + mid < n - 1:
+                range_add(0, 0, d)
+                range_add(1, d, -1)
+                range_add(d + 1, d + mid, 1)
+                if n % 2:
+                    if d + mid + 2 < n:
+                        range_add(d + mid + 2, n - 1, -1)
+                else:
+                    range_add(d + mid + 1, n - 1, -1)
+            else:
+                range_add(d + 1, d + mid, 1)
+                range_add(0, 0, d)
+                range_add(1, d, -1)
+        res = ac.accumulate(ac.accumulate(diff)[1:])[1:]
+        ac.st(min(res))
+        return
+
+    @staticmethod
+    def abc_268e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc268/tasks/abc268_e
+        tag: brute_force|diff_array|action_scope|brain_teaser|classical
+        """
+        n = ac.read_int()
+        tmp = ac.read_list_ints()
+        diff = [0] * n
+
+        def range_add(a, b, c):
+            diff[a] += c
+            if b + 1 < n:
+                diff[b + 1] -= c
+            return
+
+        mid = n // 2
+        for i in range(n):
+            x = tmp[i]
+            if x >= i:
+                d = x - i
+            else:
+                d = n + x - i
+            if d > mid:
+                range_add(0, 0, n - d)
+                if n % 2:
+                    if 1 <= d - mid - 1:
+                        range_add(1, d - mid - 1, 1)
+                else:
+                    range_add(1, d - mid, 1)
+                range_add(d - mid + 1, d, -1)
+                if d + 1 < n:
+                    range_add(d + 1, n - 1, 1)
+            elif d == mid:
+                range_add(0, 0, mid)
+                range_add(1, d, -1)
+                range_add(d + 1, n - 1, 1)
+            elif d + mid < n - 1:
+                range_add(0, 0, d)
+                range_add(1, d, -1)
+                range_add(d + 1, d + mid, 1)
+                if n % 2:
+                    if d + mid + 2 < n:
+                        range_add(d + mid + 2, n - 1, -1)
+                else:
+                    range_add(d + mid + 1, n - 1, -1)
+            else:
+                range_add(d + 1, d + mid, 1)
+                range_add(0, 0, d)
+                range_add(1, d, -1)
+        res = ac.accumulate(ac.accumulate(diff)[1:])[1:]
+        ac.st(min(res))
         return
