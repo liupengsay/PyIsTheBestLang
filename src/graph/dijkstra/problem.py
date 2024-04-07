@@ -107,6 +107,7 @@ ABC342E（https://atcoder.jp/contests/abc342/tasks/abc342_e）classical|dijkstra
 ABC325E（https://atcoder.jp/contests/abc325/tasks/abc325_e）classical|data_range
 ABC305E（https://atcoder.jp/contests/abc305/tasks/abc305_e）dijkstra|classical|several_source|shortest_path
 ABC271E（https://atcoder.jp/contests/abc271/tasks/abc271_e）shortest_path|brain_teaser|implemention
+ABC348D（https://atcoder.jp/contests/abc348/tasks/abc348_d）bfs|dijkstra|limited_shortest_path|state|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -506,7 +507,6 @@ class Solution:
         ac.st(dis[n - 1][1])
         return
 
-
     @staticmethod
     def lg_p1807(ac=FastIO()):
         """
@@ -720,6 +720,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1354
         tag: build_graph|dijkstra|shortest_path
         """
+
         # build_graph|求shortest_path
 
         def dis(x1, y1, x2, y2):
@@ -944,6 +945,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2914
         tag: dijkstra|build_graph|dynamic_graph
         """
+
         # Dijkstra动态build_graph|距离
 
         def dis(x, y):
@@ -2033,4 +2035,44 @@ class Solution:
                 ac.st("Unreachable")
             else:
                 ac.st(-d)
+        return
+
+    @staticmethod
+    def abc_348d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc348/tasks/abc348_d
+        tag: bfs|dijkstra|limited_shortest_path|state|classical
+        """
+        m, n = ac.read_list_ints()
+        visit = [[-1] * n for _ in range(m)]
+        grid = [ac.read_str() for _ in range(m)]
+        start = [-1, -1]
+        end = [-1, -1]
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "S":
+                    start = [i, j]
+                elif grid[i][j] == "T":
+                    end = [i, j]
+        power = [[0] * n for _ in range(m)]
+        for _ in range(ac.read_int()):
+            r, c, w = ac.read_list_ints()
+            power[r - 1][c - 1] = w
+        stack = [(-power[start[0]][start[1]], start[0], start[1])]
+        heapify(stack)
+        visit[start[0]][start[1]] = power[start[0]][start[1]]
+        while stack:
+            x, i, j = heappop(stack)
+            if x >= 0:
+                break
+            for a, b in [(i - 1, j), (i + 1, j), (i, j - 1), (i, j + 1)]:
+                if 0 <= a < m and 0 <= b < n and grid[a][b] != "#":
+                    nex = max(-x - 1, power[a][b])
+                    if nex > visit[a][b]:
+                        visit[a][b] = nex
+                        heappush(stack, (-nex, a, b))
+                        if [a, b] == end:
+                            ac.st("Yes")
+                            return
+        ac.st("Yes" if visit[end[0]][end[1]] > -1 else "No")
         return

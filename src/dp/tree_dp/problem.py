@@ -56,6 +56,7 @@ U420033（https://www.luogu.com.cn/problem/U420033）reroot_dp|classical
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
 ABC329F（https://atcoder.jp/contests/abc329/tasks/abc329_f）heuristic_merge|classical|implemention
+ABC348E（https://atcoder.jp/contests/abc348/tasks/abc348_e）reroot_dp|classical
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -361,7 +362,6 @@ class Solution:
         url: https://codeforces.com/contest/1092/problem/F
         tag: tree_dis|reroot_dp
         """
-        # 带权重树中的总距离，迭代法实现树形reroot_dp
         n = ac.read_int()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1417,4 +1417,21 @@ class Solution:
         n = ac.read_int()
         edges = [ac.read_list_ints() for _ in range(n - 1)]
         ac.st(standard_procedure(n))
+        return
+
+    @staticmethod
+    def abc_348e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc348/tasks/abc348_e
+        tag: reroot_dp|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            a, b = ac.read_list_ints_minus_one()
+            dct[a].append(b)
+            dct[b].append(a)
+        weight = ac.read_list_ints()
+        ans = ReRootDP().get_tree_distance_weight(dct, weight)
+        ac.st(min(ans))
         return
