@@ -36,6 +36,7 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
 ABC292F（https://atcoder.jp/contests/abc292/tasks/abc292_f）brain_teaser|math
 ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geometry|square|angle|classical
+ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_convex_quad|classical
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -322,4 +323,14 @@ class Solution:
                         if gm.vertical_angle(perm[0], perm[1], perm[2]):
                             ans += 1
         ac.st(ans // 2)
+        return
+
+    @staticmethod
+    def abc_266c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc266/tasks/abc266_c
+        tag: math|geometry|is_convex_quad|classical
+        """
+        points = [ac.read_list_ints() for _ in range(4)]
+        ac.st("Yes" if Geometry().is_convex_quad(points) else "No")
         return

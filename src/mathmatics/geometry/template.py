@@ -10,6 +10,25 @@ class Geometry:
         return
 
     @staticmethod
+    def is_convex_quad(points):
+        n = len(points)
+
+        def cross_product():
+            return (p2[0] - p1[0]) * (p3[1] - p1[1]) - (p3[0] - p1[0]) * (p2[1] - p1[1])
+
+        prev_cross_product = None
+        for i in range(n):
+            p1 = points[i]
+            p2 = points[(i + 1) % n]
+            p3 = points[(i + 2) % n]
+            cp = cross_product()
+            if prev_cross_product is None:
+                prev_cross_product = cp
+            elif cp * prev_cross_product < 0:
+                return False
+        return True
+
+    @staticmethod
     def compute_center(x1, y1, x2, y2, r):
         # Calculate the centers of two circles passing through two different points and determining the radius
         px, py = (x1 + x2) / 2, (y1 + y2) / 2

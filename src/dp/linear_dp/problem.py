@@ -136,6 +136,8 @@ ABC283E（https://atcoder.jp/contests/abc283/tasks/abc283_e）linear_dp
 ABC275F（https://atcoder.jp/contests/abc275/tasks/abc275_f）matrix_dp|linear_dp|classical
 ABC271D（https://atcoder.jp/contests/abc271/tasks/abc271_d）linear_dp|specific_plan
 ABC270D（https://atcoder.jp/contests/abc270/tasks/abc270_d）linear_dp
+ABC266D（https://atcoder.jp/contests/abc266/tasks/abc266_d）linear_dp|implemention
+ABC267D（https://atcoder.jp/contests/abc267/tasks/abc267_d）linear_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower

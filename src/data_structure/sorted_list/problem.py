@@ -59,6 +59,7 @@ ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_po
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
 ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
 ABC281E（https://atcoder.jp/contests/abc281/tasks/abc281_e）top_k_sum|sorted_list|classical
+ABC267E（https://atcoder.jp/contests/abc267/tasks/abc267_e）implemention|greedy|sorted_list|degree|classical
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
@@ -560,4 +561,34 @@ class Solution:
             ans.append(lst.top_k_sum)
             lst.discard(nums[i])
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_267e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc267/tasks/abc267_e
+        tag: implemention|greedy|sorted_list|degree|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += nums[j]
+            degree[j] += nums[i]
+        lst = SortedList([(degree[i], i) for i in range(n)])
+        ans = 0
+        while lst:
+            d, i = lst.pop(0)
+            ans = max(ans, d)
+            degree[i] = 0
+            for j in dct[i]:
+                if degree[j]:
+                    lst.discard((degree[j], j))
+                    degree[j] -= nums[i]
+                    lst.add((degree[j], j))
+        ac.st(ans)
         return

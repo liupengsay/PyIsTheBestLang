@@ -15,6 +15,7 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
 
 ====================================AtCoder=====================================
+ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
 
 =====================================AcWing=====================================
 
@@ -191,4 +192,51 @@ class Solution:
         _, _, path, d = tree.get_diameter_info()
         ac.lst([d, len(path)])
         ac.lst(path)
+        return
+
+    @staticmethod
+    def abc_267f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc267/tasks/abc267_f
+        tag: tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append((j, 1))
+            dct[j].append((i, 1))
+        _, _, stack, _ = TreeDiameter(dct).get_diameter_info()
+        ind = {num: i for i, num in enumerate(stack)}
+        queries = [[] for _ in range(n)]
+        q = ac.read_int()
+        for i in range(q):
+            u, k = ac.read_list_ints()
+            queries[u - 1].append((k, i))
+        visit = [0] * n
+        for i in stack:
+            visit[i] = 1
+        ans = [-2] * q
+        depth = [0] * n
+        for i in stack:
+            fa = ind[i]
+            cur = [(i, 0)]
+            while cur:
+                x, d = cur.pop()
+                depth[d] = x
+                for k, y in queries[x]:
+                    if k > d:
+                        dd = k - d
+                        if fa + dd < len(stack):
+                            ans[y] = stack[fa + dd]
+                        elif fa >= dd:
+                            ans[y] = stack[fa - dd]
+                    else:
+                        ans[y] = depth[d - k]
+                for y, _ in dct[x]:
+                    if not visit[y]:
+                        cur.append((y, d + 1))
+                        visit[y] = 1
+        for a in ans:
+            ac.st(a + 1)
         return

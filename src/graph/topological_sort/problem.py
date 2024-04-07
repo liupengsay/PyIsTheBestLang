@@ -76,7 +76,7 @@ class Solution:
         return
 
     @staticmethod
-    def abc_266f(ac=FastIO()):
+    def abc_266f_1(ac=FastIO()):
         """
         urL: https://atcoder.jp/contests/abc266/tasks/abc266_f
         tag: undirected_circle_based_tree|classical|connected
@@ -114,6 +114,51 @@ class Solution:
                 ac.st("Yes")
             else:
                 ac.st("No")
+        return
+
+    @staticmethod
+    def abc_266f_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc266/tasks/abc266_f
+        tag: topological|sort|circle_based_tree|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(n):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        stack = [i for i in range(n) if degree[i] == 1]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if degree[j] == 1:
+                        nex.append(j)
+            stack = nex[:]
+        circle = [i for i in range(n) if degree[i] >= 2]
+        father = [-1] * n
+        for i in circle:
+            father[i] = i
+        stack = circle[:]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if father[j] == -1:
+                        father[j] = father[i]
+                        nex.append(j)
+            stack = nex[:]
+        for _ in range(ac.read_int()):
+            x, y = ac.read_list_ints_minus_one()
+            if father[x] != father[y]:
+                ac.st("No")
+            else:
+                ac.st("Yes")
         return
 
     @staticmethod
@@ -177,6 +222,7 @@ class Solution:
         url: https://leetcode.cn/problems/build-a-matrix-with-conditions/
         tag: build_graph|union_find|topological_sort
         """
+
         def check(cond):
             dct = defaultdict(list)
             degree = defaultdict(int)

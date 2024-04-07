@@ -20,6 +20,7 @@ ABC298E（https://atcoder.jp/contests/abc298/tasks/abc298_e）prob_dp
 ABC297F（https://atcoder.jp/contests/abc297/tasks/abc297_f）matrix_dp|inclusion_exclusion|prob_dp
 ABC280E（https://atcoder.jp/contests/abc280/tasks/abc280_e）prob_dp|expectation_dp|classical
 ABC275E（https://atcoder.jp/contests/abc275/tasks/abc275_e）prob_dp|linear_dp|classical
+ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|brain_teaser|classical
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -246,4 +247,23 @@ class Solution:
             ans += dp[-1]
             ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_266e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc266/tasks/abc266_e
+        tag: expectation_dp|brain_teaser|classical
+        """
+        n = ac.read_int()
+        pre = 0
+        for i in range(1, n + 1):
+            cur = 0
+            for j in range(1, 6 + 1):
+                if j > pre:
+                    cur += j
+                else:
+                    cur += pre
+            pre = cur / 6
+        ac.st(pre)
         return
