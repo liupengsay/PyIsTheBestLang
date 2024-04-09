@@ -106,6 +106,8 @@ ABC347F（https://atcoder.jp/contests/abc347/tasks/abc347_f）diff_array|matrix_
 ABC274F（https://atcoder.jp/contests/abc274/tasks/abc274_f）brute_force|brain_teaser|discretization_diff_array|classical
 ABC269F（https://atcoder.jp/contests/abc269/tasks/abc269_f）diff_array|inclusion_exclusion|prefix_sum|math|classical
 ABC268E（https://atcoder.jp/contests/abc268/tasks/abc268_e）brute_force|diff_array|action_scope|brain_teaser|classical
+ABC263D（https://atcoder.jp/contests/abc263/tasks/abc263_d）prefix_sum|brute_force
+ABC265D（https://atcoder.jp/contests/abc265/tasks/abc265_d）prefix_sum|brute_force
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum

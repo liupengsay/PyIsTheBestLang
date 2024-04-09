@@ -126,7 +126,7 @@ class UnionFindGeneral:
         root_y = self.find(y)
         if root_x == root_y:
             return False
-        if self.size[root_x] >= self.size[root_y]:
+        if self.size[root_x] >= self.size[root_y]:  # merge to bigger size part
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
         self.size[root_y] += self.size[root_x]
@@ -137,7 +137,9 @@ class UnionFindGeneral:
     def union_right(self, x, y):
         root_x = self.find(x)
         root_y = self.find(y)
-        if root_x > root_y:
+        if root_x == root_y:
+            return False
+        if root_x > root_y:  # merge to bigger root number
             root_x, root_y = root_y, root_x
         self.root[root_x] = root_y
         self.size[root_y] += self.size[root_x]

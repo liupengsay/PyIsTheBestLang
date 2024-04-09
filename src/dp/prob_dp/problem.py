@@ -21,6 +21,8 @@ ABC297F（https://atcoder.jp/contests/abc297/tasks/abc297_f）matrix_dp|inclusio
 ABC280E（https://atcoder.jp/contests/abc280/tasks/abc280_e）prob_dp|expectation_dp|classical
 ABC275E（https://atcoder.jp/contests/abc275/tasks/abc275_e）prob_dp|linear_dp|classical
 ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|brain_teaser|classical
+ABC263E（https://atcoder.jp/contests/abc263/tasks/abc263_e）expectation_dp|reverse_order|math|brain_teaser|classical
+
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -30,6 +32,7 @@ ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|bra
 import math
 from collections import deque
 
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
 
 
@@ -266,4 +269,25 @@ class Solution:
                     cur += pre
             pre = cur / 6
         ac.st(pre)
+        return
+
+    @staticmethod
+    def abc_263e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc263/tasks/abc263_e
+        tag: expectation_dp|reverse_order|math|brain_teaser|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        post = [0] * (n + 1)
+        mod = 998244353
+        cb = Combinatorics(n + 10, mod)
+        dp = [0] * n
+        for i in range(n - 2, -1, -1):
+            x = min(n - 1, i + nums[i])
+            p = post[i + 1] - post[x + 1]
+            dp[i] = (p + nums[i] + 1) * cb.inv[nums[i]]
+            dp[i] %= mod
+            post[i] = (post[i + 1] + dp[i]) % mod
+        ac.st(dp[0])
         return

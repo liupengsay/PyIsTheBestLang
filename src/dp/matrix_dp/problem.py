@@ -133,6 +133,8 @@ ABC311F（https://atcoder.jp/contests/abc311/tasks/abc311_f）matrix_dp|prefix_s
 ABC311E（https://atcoder.jp/contests/abc311/tasks/abc311_e）matrix_dp|classical
 ABC298G（https://atcoder.jp/contests/abc298/tasks/abc298_g）matrix_dp|brute_force|classical
 ABC281D（https://atcoder.jp/contests/abc281/tasks/abc281_d）matrix_dp
+ABC265E（https://atcoder.jp/contests/abc265/tasks/abc265_e）matrix_dp|brain_teaser|classical
+ABC264F（https://atcoder.jp/contests/abc264/tasks/abc264_f）matrix_dp|tle
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2734,5 +2736,41 @@ class Solution:
             else:
                 ndp[0] += pre[2]
             dp = [x % mod for x in ndp]
+        ac.st(sum(dp) % mod)
+        return
+
+    @staticmethod
+    def abc_265e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc265/tasks/abc265_e
+        tag: matrix_dp|brain_teaser|classical
+        """
+        mod = 998244353
+        n, m = ac.read_list_ints()
+        a, b, c, d, e, f = ac.read_list_ints()
+        lst = [(a, b), (c, d), (e, f)]
+        obs = [ac.read_list_ints() for _ in range(m)]
+        obs = set((x, y) for x, y in obs)
+        dp = [0] * (n + 1) * (n + 1)
+        dp[0] = 1
+        for i in range(1, n + 1):
+            ndp = [0] * (n + 1) * (n + 1)
+            for p in range(i):
+                for q in range(i - p):
+                    r = i - 1 - p - q
+                    aa = p * a + q * c + r * e
+                    bb = p * b + q * d + r * f
+                    x, y = lst[0]
+                    if (x + aa, y + bb) not in obs:
+                        ndp[(p + 1) * (n + 1) + q] = (ndp[(p + 1) * (n + 1) + q] + dp[p * (n + 1) + q]) % mod
+
+                    x, y = lst[1]
+                    if (x + aa, y + bb) not in obs:
+                        ndp[p * (n + 1) + q + 1] = (ndp[p * (n + 1) + q + 1] + dp[p * (n + 1) + q]) % mod
+
+                    x, y = lst[2]
+                    if (x + aa, y + bb) not in obs:
+                        ndp[p * (n + 1) + q] = (ndp[p * (n + 1) + q] + dp[p * (n + 1) + q]) % mod
+            dp = ndp
         ac.st(sum(dp) % mod)
         return

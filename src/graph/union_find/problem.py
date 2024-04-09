@@ -110,6 +110,7 @@ ABC314F（https://atcoder.jp/contests/abc314/tasks/abc314_f）union_find|bfs|bui
 ABC295G（https://atcoder.jp/contests/abc295/tasks/abc295_g）union_find|implemention|tree|union_min|classical
 ABC293D（https://atcoder.jp/contests/abc293/tasks/abc293_d）union_find
 ABC280F（https://atcoder.jp/contests/abc270/tasks/abc270_f）union_find|build_graph|brute_force|classical
+ABC264E（https://atcoder.jp/contests/abc264/tasks/abc264_e）union_right|reverse_order|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2287,4 +2288,33 @@ class Solution:
             else:
                 x = lst[1] - 1
                 ac.st(uf.find(x) + 1)
+        return
+
+    @staticmethod
+    def abc_264e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc264/tasks/abc264_e
+        tag: union_right|reverse_order|classical
+        """
+        n, m, e = ac.read_list_ints()
+        edges = [ac.read_list_ints_minus_one() for _ in range(e)]
+        queries = [ac.read_int() - 1 for _ in range(ac.read_int())]
+        uf = UnionFindGeneral(n + m + 1)
+        uf.size = [1] * n + [0] * (m + 1)
+        for i in range(n, n + m):
+            uf.union_right(i, n + m)
+        rem = set(queries)
+        for i in range(e):
+            if i not in rem:
+                u, v = edges[i]
+                uf.union_right(u, v)
+        ans = [uf.size[uf.find(n + m)]]
+        for i in queries[::-1]:
+            u, v = edges[i]
+            uf.union_right(u, v)
+            ans.append(uf.size[uf.find(n + m)])
+        ans.pop()
+        ans.reverse()
+        for a in ans:
+            ac.st(a)
         return
