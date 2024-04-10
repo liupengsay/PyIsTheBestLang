@@ -92,47 +92,50 @@ class VariousSort:
         return nums
 
     @staticmethod
-    def range_merge_to_disjoint_sort_inverse_pair(nums, n):
+    def range_merge_to_disjoint_sort_inverse_pair(nums):
         """Use range_merge_to_disjoint sort to calculate the minimum number of times needed
         to make an array sorted by exchanging only adjacent elements
         which is equal the number of reverse_order_pair
         """
-        def range_merge_to_disjoint(left, right):
-            nonlocal ans
-            if left >= right:
-                return
-
-            mid = (left + right) // 2
-            range_merge_to_disjoint(left, mid)
-            range_merge_to_disjoint(mid + 1, right)
-
-            i, j = left, mid + 1
-            k = left
-            while i <= mid and j <= right:
-                if nums[i] <= nums[j]:
-                    arr[k] = nums[i]
-                    i += 1
-                else:
-                    arr[k] = nums[j]
-                    j += 1
-                    ans += mid - i + 1
-                k += 1
-            while i <= mid:
-                arr[k] = nums[i]
-                i += 1
-                k += 1
-            while j <= right:
-                arr[k] = nums[j]
-                j += 1
-                k += 1
-
-            for i in range(left, right + 1):
-                nums[i] = arr[i]
-            return
 
         ans = 0
+        n = len(nums)
         arr = [0] * n
-        range_merge_to_disjoint(0, n - 1)
+        stack = [(0, n - 1)]
+        while stack:
+            left, right = stack.pop()
+            if left >= 0:
+                if left >= right:
+                    continue
+                mid = (left + right) // 2
+                stack.append((~left, right))
+                stack.append((left, mid))
+                stack.append((mid + 1, right))
+            else:
+                left = ~left
+                mid = (left + right) // 2
+                i, j = left, mid + 1
+                k = left
+                while i <= mid and j <= right:
+                    if nums[i] <= nums[j]:
+                        arr[k] = nums[i]
+                        i += 1
+                    else:
+                        arr[k] = nums[j]
+                        j += 1
+                        ans += mid - i + 1
+                    k += 1
+                while i <= mid:
+                    arr[k] = nums[i]
+                    i += 1
+                    k += 1
+                while j <= right:
+                    arr[k] = nums[j]
+                    j += 1
+                    k += 1
+
+                for i in range(left, right + 1):
+                    nums[i] = arr[i]
         return ans
 
     @staticmethod

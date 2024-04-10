@@ -34,6 +34,7 @@ import random
 from functools import cmp_to_key
 from typing import List
 
+from src.basis.various_sort.template import VariousSort
 from src.utils.fast_io import FastIO
 
 
@@ -202,44 +203,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1908
         tag: tree_array|reverse_order_pair|P1774
         """
-        ans = 0
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
-
-        def merge(left, right):
-            nonlocal ans
-            if left >= right:
-                return
-
-            mid = (left + right) // 2
-            merge(left, mid)
-            merge(mid + 1, right)
-
-            i, j = left, mid + 1
-            k = left
-            while i <= mid and j <= right:
-                if nums[i] <= nums[j]:
-                    arr[k] = nums[i]
-                    i += 1
-                else:
-                    arr[k] = nums[j]
-                    j += 1
-                    ans += mid - i + 1
-                k += 1
-            while i <= mid:
-                arr[k] = nums[i]
-                i += 1
-                k += 1
-            while j <= right:
-                arr[k] = nums[j]
-                j += 1
-                k += 1
-            for i in range(left, right + 1):
-                nums[i] = arr[i]
-            return
-
-        arr = [0] * n
-        merge(0, n - 1)
+        ans = VariousSort().range_merge_to_disjoint_sort_inverse_pair(nums)
         ac.st(ans)
         return
 

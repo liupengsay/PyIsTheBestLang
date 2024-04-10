@@ -69,6 +69,7 @@ ABC147D（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical|xor_sum
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
 ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|dynamic
 ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
+ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
@@ -820,4 +821,28 @@ class Solution:
 
         ans = dfs(29, 0, n - 1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_261e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc261/tasks/abc261_e
+        tag: bit_operation|brain_teaser|implemention|classical
+        """
+        n, c = ac.read_list_ints()
+        o = (1 << 31) - 1
+        z = 0
+        for _ in range(n):
+            t, a = ac.read_list_ints()
+            if t == 1:
+                o &= a
+                z &= a
+            elif t == 2:
+                o |= a
+                z |= a
+            else:
+                o ^= a
+                z ^= a
+            c = (c & o) | (~c & z)
+            ac.st(c)
         return

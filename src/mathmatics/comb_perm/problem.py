@@ -62,6 +62,7 @@ ABC110D（https://atcoder.jp/contests/abc110/tasks/abc110_d）prime_factorizatio
 ABC127E（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_method|comb|counter
 ABC132D（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 ABC266G（https://atcoder.jp/contests/abc266/tasks/abc266_g）comb|brain_teaser|inclusion_exclusion|classical
+ABC262E（https://atcoder.jp/contests/abc262/tasks/abc262_e）brain_teaser|comb|classical
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -984,4 +985,27 @@ class Solution:
         cb = Combinatorics(2 * 10 ** 6, mod)
         ans = cb.comb(g + b, g - k) * cb.comb(b + k, k) * cb.comb(b + r, b + k)
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def abc_262e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc262/tasks/abc262_e
+        tag: brain_teaser|comb|classical
+        """
+        n, m, k = ac.read_list_ints()
+        degree = [0] * n
+        mod = 998244353
+        for _ in range(m):
+            u, v = ac.read_list_ints_minus_one()
+            degree[u] += 1
+            degree[v] += 1
+        odd = sum(x % 2 for x in degree)
+        ans = 0
+        cb = Combinatorics(n + 10, mod)
+        for x in range(0, odd + 1, 2):
+            if x <= k <= n - odd + x:
+                ans += cb.comb(odd, x) * cb.comb(n - odd, k - x)
+                ans %= mod
+        ac.st(ans)
         return

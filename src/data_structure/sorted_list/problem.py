@@ -60,6 +60,7 @@ ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contri
 ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
 ABC281E（https://atcoder.jp/contests/abc281/tasks/abc281_e）top_k_sum|sorted_list|classical
 ABC267E（https://atcoder.jp/contests/abc267/tasks/abc267_e）implemention|greedy|sorted_list|degree|classical
+ABC261F（https://atcoder.jp/contests/abc261/tasks/abc261_f）reverse_pair|sorted_list|classical
 
 ===================================CodeForces===================================
 129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
@@ -69,6 +70,7 @@ import bisect
 from bisect import insort_left, bisect_left
 from typing import List
 
+from src.basis.various_sort.template import VariousSort
 from src.data_structure.sorted_list.template import SortedList, TopKSum
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -592,3 +594,45 @@ class Solution:
                     lst.add((degree[j], j))
         ac.st(ans)
         return
+
+    @staticmethod
+    def abc_261f_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc261/tasks/abc261_f
+        tag: reverse_pair|inverse_pair|sorted_list|classical
+        """
+        n = ac.read_int()
+        c = ac.read_list_ints()
+        x = ac.read_list_ints()
+        dct = [SortedList() for _ in range(n + 1)]
+        ans = 0
+        pre = SortedList()
+        for i in range(n):
+            cc, xx = c[i], x[i]
+            bigger = i - pre.bisect_right(x[i])
+            bigger -= len(dct[cc]) - dct[cc].bisect_right(xx)
+            ans += bigger
+            pre.add(xx)
+            dct[cc].add(xx)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_261f_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc261/tasks/abc261_f
+        tag: reverse_pair|inverse_pair|sorted_list|classical
+        """
+        n = ac.read_int()
+        c = ac.read_list_ints_minus_one()
+        x = ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for i in range(n):
+            dct[c[i]].append(x[i])
+        ans = VariousSort().range_merge_to_disjoint_sort_inverse_pair(x)
+        for ls in dct:
+            if ls:
+                ans -= VariousSort().range_merge_to_disjoint_sort_inverse_pair(ls)
+        ac.st(ans)
+        return
+

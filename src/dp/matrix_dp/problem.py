@@ -135,6 +135,8 @@ ABC298G（https://atcoder.jp/contests/abc298/tasks/abc298_g）matrix_dp|brute_fo
 ABC281D（https://atcoder.jp/contests/abc281/tasks/abc281_d）matrix_dp
 ABC265E（https://atcoder.jp/contests/abc265/tasks/abc265_e）matrix_dp|brain_teaser|classical
 ABC264F（https://atcoder.jp/contests/abc264/tasks/abc264_f）matrix_dp|tle
+ABC261D（https://atcoder.jp/contests/abc261/tasks/abc261_d）matrix_dp
+ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix_dp|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2773,4 +2775,32 @@ class Solution:
                         ndp[p * (n + 1) + q] = (ndp[p * (n + 1) + q] + dp[p * (n + 1) + q]) % mod
             dp = ndp
         ac.st(sum(dp) % mod)
+        return
+
+    @staticmethod
+    def abc_262d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc262/tasks/abc262_d
+        tag: brute_force|matrix_dp|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 998244353
+
+        ans = 0
+        dp = [[0] * n for _ in range(n + 1)]
+        for m in range(1, n + 1):
+            for i in range(m + 1):
+                for j in range(m):
+                    dp[i][j] = 0
+            dp[0][0] = 1
+            for num in nums:
+                for j in range(m, 0, -1):
+                    for x in range(m):
+                        w = (x + num) % m
+                        dp[j][w] += dp[(j - 1)][x]
+                        dp[j][w] %= mod
+            ans += dp[m][0]
+            ans %= mod
+        ac.st(ans)
         return
