@@ -84,6 +84,7 @@ ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_po
 ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
 ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pollard_rho|num_factor|classical
 ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greedy|classical
+ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|num_factor
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization

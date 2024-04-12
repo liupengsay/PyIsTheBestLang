@@ -57,6 +57,7 @@ ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
 ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
 ABC329F（https://atcoder.jp/contests/abc329/tasks/abc329_f）heuristic_merge|classical|implemention
 ABC348E（https://atcoder.jp/contests/abc348/tasks/abc348_e）reroot_dp|classical
+ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teaser|greedy
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -1434,4 +1435,47 @@ class Solution:
         weight = ac.read_list_ints()
         ans = ReRootDP().get_tree_distance_weight(dct, weight)
         ac.st(min(ans))
+        return
+
+    @staticmethod
+    def abc_259f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc259/tasks/abc259_f
+        tag: tree_dp|brain_teaser|greedy
+        """
+        n = ac.read_int()
+        d = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for i in range(n-1):
+            u, v, w = ac.read_list_ints_minus_one()
+            w += 1
+            dct[u].append((v, w))
+            dct[v].append((u, w))
+        sub = [(0, 0) for _ in range(n)]
+        stack = [(0, -1)]
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append((~x, fa))
+                for y, _ in dct[x]:
+                    if y != fa:
+                        stack.append((y, x))
+            else:
+                x = ~x
+                pos = 0
+                son = []
+                for y, w in dct[x]:
+                    if y != fa:
+                        a, b = sub[y]
+                        diff = w+b-a
+                        pos += a
+                        if diff > 0 and d[y]:
+                            son.append(diff)
+                son.sort(reverse=True)
+                if d[x]:
+                    a = pos + sum(son[:d[x]])
+                    sub[x] = (a, a - son[d[x] - 1] if len(son) >= d[x] else a)
+                else:
+                    sub[x] = (pos, 0)
+        ac.st(max(sub[0]))
         return

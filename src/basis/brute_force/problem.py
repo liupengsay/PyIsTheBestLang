@@ -163,6 +163,8 @@ ABC296D（https://atcoder.jp/contests/abc296/tasks/abc296_d）brute_force|math
 ABC346D（https://atcoder.jp/contests/abc346/tasks/abc346_d）brute_force|prefix_suffix
 ABC290E（https://atcoder.jp/contests/abc290/tasks/abc290_e）brute_force|contribution_method
 ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）manhattan_distance|prefix_suffix|classical
+ABC260F（https://atcoder.jp/contests/abc260/tasks/abc260_f）brute_force|data_range|brain_teaser|classical
+
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1610,3 +1612,25 @@ class Solution:
             dy = max(ceil_y1 if i != ceil_iy else ceil_y2) - min(floor_y2 if i != floor_iy else floor_y1)
             ans = min(ans, max(dx, dy))
         return ans
+
+    @staticmethod
+    def abc_260f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc260/tasks/abc260_f
+        tag: brute_force|data_range|brain_teaser|classical
+        """
+        s, t, m = ac.read_list_ints()
+        edge = [[] for _ in range(s)]
+        pre = [-1] * t * t
+        for _ in range(m):
+            u, v = ac.read_list_ints_minus_one()
+            v -= s
+            for i in edge[u]:
+                if pre[i * t + v] != -1:
+                    ans = [pre[i * t + v] + 1, i + s + 1, v + s + 1, u + 1]
+                    ac.lst(ans)
+                    return
+                pre[i * t + v] = pre[v * t + i] = u
+            edge[u].append(v)
+        ac.st(-1)
+        return

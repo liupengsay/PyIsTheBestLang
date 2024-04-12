@@ -111,6 +111,7 @@ ABC295G（https://atcoder.jp/contests/abc295/tasks/abc295_g）union_find|impleme
 ABC293D（https://atcoder.jp/contests/abc293/tasks/abc293_d）union_find
 ABC280F（https://atcoder.jp/contests/abc270/tasks/abc270_f）union_find|build_graph|brute_force|classical
 ABC264E（https://atcoder.jp/contests/abc264/tasks/abc264_e）union_right|reverse_order|classical
+ABC259D（https://atcoder.jp/contests/abc259/tasks/abc259_d）geometry|union_find|circle_location|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2317,4 +2318,34 @@ class Solution:
         ans.reverse()
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def abc_259d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc259/tasks/abc259_d
+        tag: geometry|union_find|circle_location|classical
+        """
+        n = ac.read_int()
+        sx, sy, tx, ty = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        uf = UnionFind(n + 2)
+        for i in range(n):
+            x1, y1, r1 = nums[i]
+            for j in range(i + 1, n):
+                x2, y2, r2 = nums[j]
+                dis = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
+                if dis > (r1 + r2) ** 2:
+                    continue
+                if dis < (r1 - r2) ** 2:
+                    continue
+                uf.union(i, j)
+            if (x1 - sx) * (x1 - sx) + (y1 - sy) * (y1 - sy) == r1 * r1:
+                uf.union(i, n)
+            if (x1 - tx) * (x1 - tx) + (y1 - ty) * (y1 - ty) == r1 * r1:
+                uf.union(i, n + 1 )
+            if uf.is_connected(n, n + 1):
+                ac.st("Yes")
+                return
+        ac.st("No")
         return

@@ -108,6 +108,7 @@ ABC269F（https://atcoder.jp/contests/abc269/tasks/abc269_f）diff_array|inclusi
 ABC268E（https://atcoder.jp/contests/abc268/tasks/abc268_e）brute_force|diff_array|action_scope|brain_teaser|classical
 ABC263D（https://atcoder.jp/contests/abc263/tasks/abc263_d）prefix_sum|brute_force
 ABC265D（https://atcoder.jp/contests/abc265/tasks/abc265_d）prefix_sum|brute_force
+ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_scope|two_pointer|hash|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -2074,4 +2075,41 @@ class Solution:
                 range_add(1, d, -1)
         res = ac.accumulate(ac.accumulate(diff)[1:])[1:]
         ac.st(min(res))
+        return
+
+    @staticmethod
+    def abc_260e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc260/tasks/abc260_e
+        tag: diff_array|action_scope|two_pointer|hash|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(m)]
+        for i in range(n):
+            x, y = ac.read_list_ints_minus_one()
+            dct[x].append(i)
+            dct[y].append(i)
+        cnt = [0] * n
+        tot = 0
+        ans = 0
+        diff = [0] * (m + 2)
+        j = 0
+        for i in range(m):
+            while j < m and tot < n:
+                for x in dct[j]:
+                    cnt[x] += 1
+                    if cnt[x] == 1:
+                        tot += 1
+                j += 1
+            if tot == n:
+                low = j - i
+                high = m - i
+                diff[low] += 1
+                diff[high + 1] -= 1
+            for x in dct[i]:
+                cnt[x] -= 1
+                if not cnt[x]:
+                    tot -= 1
+        diff = ac.accumulate(diff[1:])
+        ac.lst(diff[1:m + 1])
         return
