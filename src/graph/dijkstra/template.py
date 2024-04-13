@@ -251,14 +251,16 @@ class Dijkstra:
         """shortest path implemention by 01 bfs """
         n = len(dct)
         dis = [initial] * n
-        stack = deque([src])
+        stack = [src]
         dis[src] = 0
         while stack:
-            i = stack.popleft()
-            for j in dct[i]:
-                if dis[j] == -1:
-                    dis[j] = dis[i] + 1
-                    stack.append(j)
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if dis[j] == initial:
+                        dis[j] = dis[i] + 1
+                        nex.append(j)
+            stack = nex
         return dis
 
     @staticmethod

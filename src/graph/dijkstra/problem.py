@@ -108,6 +108,7 @@ ABC325E（https://atcoder.jp/contests/abc325/tasks/abc325_e）classical|data_ran
 ABC305E（https://atcoder.jp/contests/abc305/tasks/abc305_e）dijkstra|classical|several_source|shortest_path
 ABC271E（https://atcoder.jp/contests/abc271/tasks/abc271_e）shortest_path|brain_teaser|implemention
 ABC348D（https://atcoder.jp/contests/abc348/tasks/abc348_d）bfs|dijkstra|limited_shortest_path|state|classical
+ABC257F（https://atcoder.jp/contests/abc257/tasks/abc257_f）shortest_path|brute_force|bfs|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2075,4 +2076,27 @@ class Solution:
                             ac.st("Yes")
                             return
         ac.st("Yes" if visit[end[0]][end[1]] > -1 else "No")
+        return
+
+    @staticmethod
+    def abc_257f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc257/tasks/abc257_f
+        tag: shortest_path|brute_force|bfs|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            i, j = ac.read_list_ints()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        dis_1 = Dijkstra().get_shortest_path_by_bfs(dct, 1, inf)
+        dis_n = Dijkstra().get_shortest_path_by_bfs(dct, n, inf)
+        ans = []
+
+        for i in range(1, n + 1):
+            cur = min(dis_1[n], min(dis_1[0], dis_1[i]) + min(dis_n[0], dis_n[i]))
+            ans.append(cur if cur < inf else -1)
+        ac.lst(ans)
         return

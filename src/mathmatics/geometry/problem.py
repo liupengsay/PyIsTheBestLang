@@ -46,7 +46,7 @@ ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_c
 
 """
 from collections import defaultdict
-from itertools import pairwise, accumulate
+from itertools import accumulate, pairwise
 from typing import List
 
 from src.mathmatics.geometry.template import Geometry, ClosetPair

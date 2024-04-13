@@ -23,6 +23,8 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 1760F（https://codeforces.com/contest/1760/problem/F）circle_section|brute_force
 
+===================================AtCoder===================================
+ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
 
 """
 import math
@@ -180,4 +182,55 @@ class Solution:
 
         for i in ans:
             ac.st(i + 1)
+        return
+
+    @staticmethod
+    def abc_258e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc258/tasks/abc258_e
+        tag: two_pointer|brute_force|circle_section|classical
+        """
+        n, q, x = ac.read_list_ints()
+        w = ac.read_list_ints()
+        nex = [-1] * n
+        t = sum(w)
+        mid = n * (x // t)
+        x %= t
+        pre = j = 0
+        for i in range(n):
+            if x == 0:
+                nex[i] = i
+            else:
+                while pre < x:
+                    pre += w[j % n]
+                    j += 1
+                nex[i] = j % n
+            pre -= w[i]
+
+        dct = dict()
+        xx = 0
+        lst = []
+        while xx not in dct:
+            dct[xx] = len(lst)
+            lst.append(xx)
+            xx = nex[xx]
+
+        ind = dct[xx]
+        length = len(dct)
+        for _ in range(q):
+            k = ac.read_int() - 1
+            if x == 0:
+                ac.st(mid)
+                continue
+            if k < len(lst):
+                xx = lst[k]
+            else:
+                circle = length - ind
+                k -= length
+                j = k % circle
+                xx = lst[ind + j]
+            if xx < nex[xx]:
+                ac.st(nex[xx] - xx + mid)
+            else:
+                ac.st(n + nex[xx] - xx + mid)
         return

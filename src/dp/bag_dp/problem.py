@@ -100,6 +100,7 @@ ABC341F（https://atcoder.jp/contests/abc341/tasks/abc341_f）bag_dp|tree_dp|gre
 ABC327E（https://atcoder.jp/contests/abc327/tasks/abc327_e）bag_dp|brute_force
 ABC321f（https://atcoder.jp/contests/abc321/tasks/abc321_f）bag_dp|classical
 ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force|classical
+ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greedy
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -1420,3 +1421,40 @@ class Solution:
                 if dp[i - num]:
                     dp[i] = 1
         return min(abs(s - 2 * i) for i in range(s // 2 + 1) if dp[i])
+
+    @staticmethod
+    def abc_257e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc257/tasks/abc257_e
+        tag: bag_dp|greedy
+        """
+        n = ac.read_int()
+        c = ac.read_list_ints()
+        dp = [[0] * 10 for _ in range(n + 1)]
+        s = [0] * (n + 1)
+
+        def check(x1, x2, lst1, lst2):
+            if x1 > x2:
+                return True
+            if x1 < x2:
+                return False
+            for jj in range(9, 0, -1):
+                if lst1[jj] > lst2[jj]:
+                    return True
+                if lst1[jj] < lst2[jj]:
+                    return False
+            return False
+
+        for i in range(1, n + 1):
+            for j in range(9, 0, -1):
+                if i >= c[j - 1]:
+                    pre = dp[i - c[j - 1]][:]
+                    pre[j] += 1
+                    if check(s[i - c[j - 1]] + 1, s[i], pre, dp[i][:]):
+                        dp[i] = pre[:]
+                        s[i] = s[i - c[j - 1]] + 1
+        ans = []
+        for i in range(9, 0, -1):
+            ans.append(str(i) * dp[n][i])
+        ac.st("".join(ans))
+        return

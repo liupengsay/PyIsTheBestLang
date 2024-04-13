@@ -78,6 +78,7 @@ class TestGeneral(unittest.TestCase):
         run_example(os.path.join(grandparent_path, "src"))
         return
 
+
     def test_run_template_or_problem(self):
 
         def run_template_or_problem(path):

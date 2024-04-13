@@ -110,6 +110,7 @@ P9006（https://www.luogu.com.cn/problem/P9006）brute_force|mod|counter
 P8948（https://www.luogu.com.cn/problem/P8948）brute_force
 P8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
 P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
+P1989（https://www.luogu.com.cn/problem/P1989）ternary_circle|dag|build_graph|counter|brute_force|classical
 
 ===================================CodeForces===================================
 1426F（https://codeforces.com/problemset/problem/1426/F）classification_discussion|brute_force|counter|fast_power
@@ -1633,4 +1634,29 @@ class Solution:
                 pre[i * t + v] = pre[v * t + i] = u
             edge[u].append(v)
         ac.st(-1)
+        return
+
+    @staticmethod
+    def lg_p1989(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1989
+        tag: ternary_circle|dag|build_graph|counter|brute_force|classical
+        """
+        n, m = ac.read_list_ints()
+        edge = [set() for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            edge[i].add(j)
+            edge[j].add(i)
+        degree = [len(e) for e in edge]
+        dct = [[] for _ in range(n)]
+        for i in range(n):
+            for j in edge[i]:
+                if (degree[i] < degree[j]) or (degree[i] == degree[j] and i < j):
+                    dct[i].append(j)
+        ans = 0
+        for i in range(n):
+            for j in dct[i]:
+                ans += sum(k in edge[i] for k in dct[j])
+        ac.st(ans)
         return

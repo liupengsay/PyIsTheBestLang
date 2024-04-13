@@ -31,6 +31,8 @@ P5410（https://www.luogu.com.cn/problem/P5410）kmp|z-function
 P1368（https://www.luogu.com.cn/problem/P1368）
 P3121（https://www.luogu.com.cn/problem/P3121）
 P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classical|border|longest_common_border|tree_lca
+P8112（https://www.luogu.com.cn/problem/P8112）z_function|point_set|range_min|classical
+
 
 ===================================CodeForces===================================
 1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
@@ -60,6 +62,7 @@ P5829（https://www.luogu.com.cn/problem/P5829）kmp|z-function|fail_tree|classi
 =====================================AtCoder=====================================
 ABC284F（https://atcoder.jp/contests/abc284/tasks/abc284_f）
 ABC343G（https://atcoder.jp/contests/abc343/tasks/abc343_g）kmp|state_dp|classical
+ABC257G（https://atcoder.jp/contests/abc257/tasks/abc257_g）z_function|point_set|range_min|classical
 
 =====================================LibraryChecker=====================================
 1（https://www.luogu.com.cn/training/53971）
@@ -90,6 +93,7 @@ from functools import lru_cache
 from itertools import permutations
 from typing import List
 
+from src.data_structure.segment_tree.template import PointSetRangeMin
 from src.data_structure.sorted_list.template import SortedList
 from src.graph.tree_lca.template import TreeAncestor
 from src.graph.union_find.template import UnionFind
@@ -1153,4 +1157,47 @@ class Solution:
                         x = len(tmp)
                     ans = ans * x // math.gcd(ans, x)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_257g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc257/tasks/abc257_g
+        tag: z_function|point_set|range_min|classical
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        n = len(s)
+        m = len(t)
+        z = KMP().z_function(s + "#" + t)
+        tree = PointSetRangeMin(m + 1)
+        tree.point_set(m, 0)
+        for i in range(m - 1, -1, -1):
+            s = z[i + n + 1]
+            if s:
+                nex = tree.range_min(i + 1, i + s) + 1
+                tree.point_set(i, nex)
+        ans = tree.range_min(0, 0)
+        ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p8112(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P8112
+        tag: z_function|point_set|range_min|classical
+        """
+        n, m = ac.read_list_ints()  # TLE
+        s = ac.read_str()
+        t = ac.read_str()
+        z = KMP().z_function(s + "#" + t)
+        tree = PointSetRangeMin(m + 1)
+        tree.point_set(m, 0)
+        for i in range(m - 1, -1, -1):
+            s = z[i + n + 1]
+            if s:
+                nex = tree.range_min(i + 1, i + s) + 1
+                tree.point_set(i, nex)
+        ans = tree.range_min(0, 0)
+        ac.st(ans if ans < inf else "Fake")
         return
