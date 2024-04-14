@@ -405,6 +405,276 @@ class RangeAddRangeAvgDev:
         return [avg, dev]
 
 
+class RangeAddRangePrePreSum:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * (4 * self.n)  # range sum
+        self.lazy_tag = [0] * (4 * self.n)  # lazy tag
+        self.floor = [0] * (4 * self.n)  # range min
+        self.ceil = [0] * (4 * self.n)  # range max
+        self.pre_pre = [0] * (4 * self.n)
+        self.pre_pre_pre = [0] * (4 * self.n)
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self._push_up(i, s, m, t)
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy_tag[i]:
+            self.cover[i << 1] += self.lazy_tag[i] * (m - s + 1)
+            self.cover[(i << 1) | 1] += self.lazy_tag[i] * (t - m)
+
+            self.floor[i << 1] += self.lazy_tag[i]
+            self.floor[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.ceil[i << 1] += self.lazy_tag[i]
+            self.ceil[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i << 1] += self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.pre_pre[i] += self.lazy_tag[i] * (1 + t - s + 1) * (t - s + 1)
+            self.pre_pre[i] %= mod
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i, s, m, t):
+        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        self.pre_pre[i] = self.pre_pre[i << 1] + self.pre_pre[(i << 1) | 1] + self.cover[i << 1] * (t - m)
+        self.pre_pre[i] %= mod
+        return
+
+    def _make_tag(self, i, s, t, val):
+        self.cover[i] += val * (t - s + 1)
+        self.floor[i] += val
+        self.ceil[i] += val
+        self.pre_pre[i] += val *  (t - s + 1)
+        self.lazy_tag[i] += val
+        return
+
+    def range_add(self, left, right, val):
+        # update the range add
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                m = s + (t - s) // 2
+                self._push_up(i, s, m, t)
+        return
+
+    def range_sum(self, left, right):
+        # query the range sum
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_pre_pre(self, left, right):
+        # query the range sum
+        stack = [(0, self.n - 1, 1)]
+        ans = tot = pre = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.pre_pre[i] + pre * (t-s+1)
+                pre += self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+            ans %= mod
+        return ans
+
+    def point_get(self, ind):
+        s, t, i = 0, self.n - 1, 1  #
+        while True:
+            if s == t == ind:
+                ans = self.cover[i]
+                break
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans
+
+    def range_min(self, left, right):
+        # query the range min
+        stack = [(0, self.n - 1, 1)]
+        lowest = inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                lowest = min(lowest, self.floor[i])
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return lowest
+
+    def range_min_bisect_left(self, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if self.floor[i << 1] <= val:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
+    def range_max(self, left, right):
+        # query the rang max
+        stack = [(0, self.n - 1, 1)]
+        highest = -inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                highest = max(highest, self.ceil[i])
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return highest
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def get_pre_pre(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.pre_pre[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_max_bisect_left(self, left, right, val):
+        stack = [(0, self.n - 1, 1)]
+        res = -1
+        while stack and res == -1:
+            s, t, i = stack.pop()
+            if s == t:
+                if left <= s <= right and self.ceil[i] >= val:
+                    res = s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if right > m and self.ceil[(i << 1) | 1] >= val:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m and self.ceil[i << 1] >= val:
+                stack.append((s, m, i << 1))
+        return res
+
+    def range_sum_bisect_right_non_zero(self, left):
+        if not self.range_sum(0, left):
+            return inf
+
+        stack = [(0, self.n - 1, 1)]
+        res = inf
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                if s <= left:
+                    return s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if s < left and self.cover[i << 1]:
+                stack.append((s, m, i << 1))
+            if left > m and self.cover[(i << 1) | 1]:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return res
+
+    def range_sum_bisect_left_non_zero(self, right):
+        if not self.range_sum(right, self.n - 1):
+            return inf
+
+        stack = [(0, self.n - 1, 1)]
+        res = inf
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                if s >= right:
+                    return s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if t >= right and self.cover[(i << 1) | 1]:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if right <= m and self.cover[i << 1]:
+                stack.append((s, m, i << 1))
+        return res
+
+
 class RangeDescendRangeMin:
     def __init__(self, n):
         self.n = n

@@ -23,6 +23,7 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 882（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）dijkstra
 2577（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）dijkstra|matrix
 2065（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）back_track|dijkstra|shortest_path|prune
+3112（https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/description/）dijkstra|template|classical
 
 =====================================LuoGu======================================
 P3371（https://www.luogu.com.cn/problem/P3371）shortest_path
@@ -2100,3 +2101,30 @@ class Solution:
             ans.append(cur if cur < inf else -1)
         ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_3112(n: int, edges: List[List[int]], disappear: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/description/
+        tag: dijkstra|template|classical
+        """
+        dct = [[] for _ in range(n)]
+        for i, j, t in edges:
+            dct[i].append((j, t))
+            dct[j].append((i, t))
+        initial = 0
+        src = 0
+        dis = [inf] * n
+        stack = [(initial, src)]
+        dis[src] = initial
+
+        while stack:
+            d, i = heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = d + w
+                if dj < dis[j] and disappear[j] > dj:
+                    dis[j] = dj
+                    heappush(stack, (dj, j))
+        return [x if x < inf else -1 for x in dis]

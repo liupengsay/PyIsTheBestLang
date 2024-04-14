@@ -47,6 +47,8 @@ P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 112（https://www.acwing.com/problem/content/114/）greedy
 4421（https://www.acwing.com/problem/content/4424/）minimum_range_cover
 
+=====================================AtCoder=====================================
+ABC256D（https://atcoder.jp/contests/abc256/tasks/abc256_d）range_merge_to_disjoint|classical
 
 """
 import bisect
@@ -392,4 +394,17 @@ class Solution:
                 lst.append([a, b])
         ans = Range().minimum_range_cover(0, n - 1, lst, False)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_256d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc256/tasks/abc256_d
+        tag: range_merge_to_disjoint|classical
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = Range().range_merge_to_disjoint(nums)
+        for a in ans:
+            ac.lst(a)
         return

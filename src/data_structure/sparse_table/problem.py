@@ -9,6 +9,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2470（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
 2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
+100259（https://leetcode.com/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
@@ -41,6 +42,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 import bisect
 import math
 from collections import defaultdict
+from functools import lru_cache
 from heapq import heappop, heapify, heappush
 from typing import List
 
@@ -485,3 +487,30 @@ class Solution:
                     ans = j - i + 2
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100259(nums: List[int], and_values: List[int]) -> int:
+        """
+        url: https://leetcode.com/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/
+        tag: range_and|linear_dp|classical
+        """
+        n = len(nums)
+        m = len(and_values)
+
+        @lru_cache(None)
+        def dfs(i, pre, a):
+            if i == n:
+                return nums[-1] if pre == and_values[-1] and a == m else inf
+            if a > m:
+                return inf
+            if pre == -1:
+                res = dfs(i + 1, nums[i], a + 1)
+                return res
+            res = inf
+            if pre == and_values[a - 1]:
+                res = dfs(i + 1, nums[i], a + 1) + nums[i - 1]
+            res = min(res, dfs(i + 1, nums[i] & pre, a))
+            return res
+
+        ans = dfs(0, -1, 0)
+        return ans if ans < inf else -1

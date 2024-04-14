@@ -43,6 +43,7 @@ ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contribution_method|classical
 ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_min|tree_array|classical
 ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|tree_array|contribution_method|classical
+ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulative_cumulative_cumulative_sum|math|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1182,4 +1183,38 @@ class Solution:
             tree_sum.point_add(m + 1 - num, num)
             tree_cnt.point_add(num, 1)
             ac.st(tot * cnt * cnt % mod)
+        return
+
+    @staticmethod
+    def abc_256f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc256/tasks/abc256_f
+        tag: tree_array|cumulative_cumulative_cumulative_sum|math|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree1 = PointAddRangeSum(n)
+        tree1.build([nums[i - 1] * i * i for i in range(1, n + 1)])
+        tree2 = PointAddRangeSum(n)
+        tree2.build([nums[i - 1] * i for i in range(1, n + 1)])
+        tree3 = PointAddRangeSum(n)
+        tree3.build(nums)
+        mod = 998244353
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x, v = lst[1:]
+                p = v * x * x - nums[x - 1] * x * x
+                tree1.point_add(x, p)
+                p = v * x - nums[x - 1] * x
+                tree2.point_add(x, p)
+                p = v - nums[x - 1]
+                tree3.point_add(x, p)
+                nums[x - 1] = v
+            else:
+                x = lst[1]
+                ans = (tree1.range_sum(1, x) - (2 * x + 3) * tree2.range_sum(1, x) + (x + 1) * (
+                            x + 2) * tree3.range_sum(1, x)) // 2
+                ans %= mod
+                ac.st(ans)
         return

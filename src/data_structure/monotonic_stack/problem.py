@@ -26,6 +26,7 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 907（https://leetcode.cn/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
 2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greedy
+3113（https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/）brute_force|teo_pointer|monotonic_stack|classical）
 
 =====================================LuoGu======================================
 P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
@@ -1009,3 +1010,33 @@ class Solution:
             cnt[w] -= 1
         ac.lst(stack)
         return
+
+    @staticmethod
+    def lc_3113(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
+        tag: brute_force|teo_pointer|monotonic_stack|classical
+        """
+
+        n = len(nums)
+        post = [n] * n
+        stack = []
+        for i in range(n):
+            while stack and nums[i] > nums[stack[-1]]:
+                post[stack.pop()] = i
+            stack.append(i)
+        ans = 0
+        dct = defaultdict(list)
+        for i, num in enumerate(nums):
+            dct[num].append(i)
+        for num in dct:
+            lst = dct[num]
+            j = 0
+            m = len(lst)
+            for i in range(m):
+                if j < i:
+                    j = i
+                while j + 1 < m and post[lst[i]] >= lst[j + 1]:
+                    j += 1
+                ans += j - i + 1
+        return ans

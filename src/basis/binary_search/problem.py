@@ -23,6 +23,8 @@ Description：monotonicity is necessary for solution like these, which always wo
 2560（https://leetcode.cn/problems/house-robber-iv/）binary_search|dp
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
+100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
+
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
@@ -119,6 +121,7 @@ ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|
 import bisect
 import math
 from collections import deque, defaultdict
+from functools import reduce
 from itertools import accumulate, combinations
 from typing import List
 
@@ -1644,3 +1647,26 @@ class Solution:
         ans = BinarySearch().find_float_right(0, 2 * 10 ** 9, check, 10 ** (-10))
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100267(coins: List[int], k: int) -> int:
+        """
+        url: https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/
+        tag: inclusion_exclusion|binary_search|math|classical
+        """
+        n = len(coins)
+        dct = defaultdict(list)
+        for i in range(1, 1 << n):
+            lst = [coins[x] for x in range(n) if i & (1 << x)]
+            dct[len(lst)].append(reduce(math.lcm, lst))
+
+        def check(s):
+            res = 0
+            for num in dct:
+                sign = (-1) ** (num - 1)
+                for val in dct[num]:
+                    res += sign * (s // val)
+            return res >= k
+
+        ans = BinarySearch().find_int_left(0, min(coins) * k, check)
+        return ans

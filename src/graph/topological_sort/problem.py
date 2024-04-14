@@ -48,6 +48,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
 ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|topological_sort
 ABC296E（https://atcoder.jp/contests/abc296/tasks/abc296_e）topological_sort|directed_graph
+ABC256E（https://atcoder.jp/contests/abc256/tasks/abc256_e）topological_sort|greedy|circle_based_tree|classical
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction
@@ -1007,3 +1008,35 @@ class Solution:
                         nex.append(j)
             stack = nex[:]
         return all(degree[x] == 0 for x in pos)
+
+    @staticmethod
+    def abc_256e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc256/tasks/abc256_e
+        tag: topological_sort|greedy|circle_based_tree|classical
+        """
+        n = ac.read_int()
+        x = ac.read_list_ints_minus_one()
+        c = ac.read_list_ints()
+        degree = [0] * n
+        for i in range(n):
+            degree[x[i]] += 1
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            i = stack.pop()
+            degree[x[i]] -= 1
+            if not degree[x[i]]:
+                stack.append(x[i])
+        ans = 0
+        for i in range(n):
+            if degree[i]:
+                p = i
+                cur = c[p]
+                degree[p] = 0
+                while x[p] != i:
+                    p = x[p]
+                    cur = min(cur, c[p])
+                    degree[p] = 0
+                ans += cur
+        ac.st(ans)
+        return

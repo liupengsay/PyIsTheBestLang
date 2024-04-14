@@ -165,7 +165,8 @@ ABC346D（https://atcoder.jp/contests/abc346/tasks/abc346_d）brute_force|prefix
 ABC290E（https://atcoder.jp/contests/abc290/tasks/abc290_e）brute_force|contribution_method
 ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）manhattan_distance|prefix_suffix|classical
 ABC260F（https://atcoder.jp/contests/abc260/tasks/abc260_f）brute_force|data_range|brain_teaser|classical
-
+ABC255E（https://atcoder.jp/contests/abc255/tasks/abc255_e）brute_force|hash|counter|contribution_method|data_range
+ABC256C（https://atcoder.jp/contests/abc256/tasks/abc256_c）brute_force
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
