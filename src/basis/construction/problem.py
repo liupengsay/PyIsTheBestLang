@@ -74,6 +74,9 @@ ABC126F（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|const
 ABC109D（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
 ABC345F（https://atcoder.jp/contests/abc345/tasks/abc345_f）construction|union_find|greedy|implemention
 ABC299E（https://atcoder.jp/contests/abc299/tasks/abc299_e）construction|bfs
+ABC251F（https://atcoder.jp/contests/abc251/tasks/abc251_f）construction|dfs|bfs|classical
+ABC251D（https://atcoder.jp/contests/abc251/tasks/abc251_d）construction|brute_force|brain_teaser
+
 """
 import math
 from collections import deque, Counter, defaultdict
@@ -520,5 +523,69 @@ class Solution:
                     if cur > color:
                         cur = 1
         ac.st(color)
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_251f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc251/tasks/abc251_f
+        tag: construction|dfs|bfs|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for ind in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            dct[x].append(y)
+            dct[y].append(x)
+
+        ind = [0]*n
+        ans = []
+        stack = [0]
+        visit = [0] * n
+        visit[0] = 1
+        while stack:
+            x = stack[-1]
+            while ind[x] < len(dct[x]):
+                y = dct[x][ind[x]]
+                ind[x] += 1
+                if not visit[y]:
+                    stack.append(y)
+                    ans.append([x + 1, y + 1])
+                    visit[y] = 1
+                    break
+            else:
+                stack.pop()
+        for a in ans:
+            ac.lst(a)
+
+        ans = []
+        stack = [0]
+        visit = [0] * n
+        visit[0] = 1
+        while stack:
+            x = stack.pop()
+            for y in dct[x]:
+                if not visit[y]:
+                    stack.append(y)
+                    ans.append([x + 1, y + 1])
+                    visit[y] = 1
+        for a in ans:
+            ac.lst(a)
+        return
+
+    @staticmethod
+    def abc_251d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc251/tasks/abc251_d
+        tag: construction|brute_force|brain_teaser
+        """
+        ac.read_int()
+        base = list(range(1, 100))
+        ans = base[:]
+        ans.extend([x * 100 for x in base])
+        ans.extend([x * 10000 for x in base])
+        ans.append(1000000)
+        ac.st(len(ans))
         ac.lst(ans)
         return

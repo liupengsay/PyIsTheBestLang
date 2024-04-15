@@ -137,6 +137,7 @@ ABC265E（https://atcoder.jp/contests/abc265/tasks/abc265_e）matrix_dp|brain_te
 ABC264F（https://atcoder.jp/contests/abc264/tasks/abc264_f）matrix_dp|tle
 ABC261D（https://atcoder.jp/contests/abc261/tasks/abc261_d）matrix_dp
 ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix_dp|classical
+ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2803,4 +2804,26 @@ class Solution:
             ans += dp[m][0]
             ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_253e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc253/tasks/abc253_e
+        tag: prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
+        """
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+        dp = [0] + [1] * m
+        for _ in range(1, n):
+            pre = ac.accumulate(dp)
+            for i in range(1, m + 1):
+                low = max(i - (k - 1), 1)
+                high = min(k - 1 + i, m)
+                if low <= high:
+                    dp[i] = (pre[-1] - (pre[high + 1] - pre[low])) % mod
+                else:
+                    dp[i] = pre[-1] % mod
+
+        ac.st(sum(dp) % mod)
         return

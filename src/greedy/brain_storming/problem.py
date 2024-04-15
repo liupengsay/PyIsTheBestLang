@@ -218,6 +218,8 @@ ABC293F（https://atcoder.jp/contests/abc293/tasks/abc293_f）binary_search|brut
 ABC290D（https://atcoder.jp/contests/abc290/tasks/abc290_d）brain_teaser|implemention|math
 ABC347C（https://atcoder.jp/contests/abc347/tasks/abc347_c）brain_teaser|implemention
 ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greedy
+ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greedy|small_to_big|reverse_order|classical
+ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_teaser
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -245,6 +247,7 @@ import math
 from bisect import insort_left, bisect_left
 from collections import Counter, deque, defaultdict
 from functools import reduce
+from heapq import heappop, heapify, heappush
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
@@ -1802,4 +1805,51 @@ class Solution:
                         ans.add(b)
 
             ac.st(len([x for x in ans if x >= 2]))
+        return
+
+    @staticmethod
+    def abc_252f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc252/tasks/abc252_f
+        tag: greedy|small_to_big|reverse_order|classical
+        """
+        n, ll = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tot = sum(nums)
+        if ll > tot:
+            nums.append(ll - tot)
+        heapify(nums)
+        ans = 0
+        while len(nums) >= 2:
+            a, b = heappop(nums), heappop(nums)
+            ans += a + b
+            heappush(nums, a + b)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_349d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc349/tasks/abc349_d
+        tag: greedy|brain_teaser
+        """
+        lst = []
+        for _ in range(3):
+            lst.extend(ac.read_list_ints())
+        ind = list()
+        ind.append([[i, i] for i in range(3)])
+        ind.append([[i, 2 - i] for i in range(3)])
+        ind.extend([[i, j] for j in range(3)] for i in range(3))
+        ind.extend([[i, j] for i in range(3)] for j in range(3))
+        ll, rr = ac.read_list_ints()
+        ans = []
+        while ll < rr:
+            for i in range(60, -1, -1):
+                if ll % (1 << i) == 0 and ll + (1 << i) <= rr:
+                    ans.append((ll, ll + (1 << i)))
+                    ll += 1 << i
+                    break
+        ac.st(len(ans))
+        for a in ans:
+            ac.lst(a)
         return

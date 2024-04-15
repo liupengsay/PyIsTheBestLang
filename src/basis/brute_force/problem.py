@@ -167,6 +167,8 @@ ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）manhattan_distance
 ABC260F（https://atcoder.jp/contests/abc260/tasks/abc260_f）brute_force|data_range|brain_teaser|classical
 ABC255E（https://atcoder.jp/contests/abc255/tasks/abc255_e）brute_force|hash|counter|contribution_method|data_range
 ABC256C（https://atcoder.jp/contests/abc256/tasks/abc256_c）brute_force
+ABC252C（https://atcoder.jp/contests/abc252/tasks/abc252_c）brute_force
+ABC251C（https://atcoder.jp/contests/abc251/tasks/abc251_c）brute_force
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1661,3 +1663,4 @@ class Solution:
                 ans += sum(k in edge[i] for k in dct[j])
         ac.st(ans)
         return
+

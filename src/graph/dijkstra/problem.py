@@ -110,6 +110,7 @@ ABC305E（https://atcoder.jp/contests/abc305/tasks/abc305_e）dijkstra|classical
 ABC271E（https://atcoder.jp/contests/abc271/tasks/abc271_e）shortest_path|brain_teaser|implemention
 ABC348D（https://atcoder.jp/contests/abc348/tasks/abc348_d）bfs|dijkstra|limited_shortest_path|state|classical
 ABC257F（https://atcoder.jp/contests/abc257/tasks/abc257_f）shortest_path|brute_force|bfs|classical
+ABC252E（https://atcoder.jp/contests/abc252/tasks/abc252_e）shortest_path_spanning_tree|dijkstra|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2128,3 +2129,33 @@ class Solution:
                     dis[j] = dj
                     heappush(stack, (dj, j))
         return [x if x < inf else -1 for x in dis]
+
+    @staticmethod
+    def abc_252e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc252/tasks/abc252_e
+        tag: shortest_path_spanning_tree|dijkstra|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for ind in range(m):
+            x, y, w = ac.read_list_ints_minus_one()
+            dct[x].append((y, w + 1, ind))
+            dct[y].append((x, w + 1, ind))
+
+        dis = [inf] * n
+        stack = [(0, 0)]
+        dis[0] = 0
+        father = [-1] * n
+        while stack:
+            d, i = heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w, ind in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    father[j] = ind
+                    heappush(stack, (dj, j))
+        ac.lst([x + 1 for x in father if x != -1])
+        return

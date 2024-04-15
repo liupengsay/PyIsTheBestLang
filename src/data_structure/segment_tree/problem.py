@@ -98,6 +98,7 @@ ABC307E（https://atcoder.jp/contests/abc307/tasks/abc307_e）circular_array|lin
 ABC307F（https://atcoder.jp/contests/abc307/tasks/abc307_f）segment_tree|range_max_bisect_left|dijkstra
 ABC346G（https://atcoder.jp/contests/abc346/tasks/abc346_g）contribution_method|segment_tree|range_add|range_sum
 ABC292H（https://atcoder.jp/contests/abc292/tasks/abc292_h）segment_tree|range_add|range_max_bisect_left
+ABC253F（https://atcoder.jp/contests/abc253/tasks/abc253_f）offline_query|data_range|limited_operation|brain_teaser|preprocess|classical
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -3175,4 +3176,43 @@ class Solution:
                 res = n - 1
             ans = tree.range_sum(res, res) / (res + 1) + b
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_253f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc253/tasks/abc253_f
+        tag: offline_query|data_range|limited_operation|brain_teaser|preprocess|classical
+        """
+        _, _, q = ac.read_list_ints()
+        n = m = 2 * 10 ** 5 + 10
+        post = [[] for _ in range(q)]
+        queries = [ac.read_list_ints() for _ in range(q)]
+        row = [[] for _ in range(n + 1)]
+        for ind in range(q - 1, -1, -1):
+            if queries[ind][0] == 3:
+                i, j = queries[ind][1:]
+                row[i].append(j)
+            elif queries[ind][0] == 2:
+                i = queries[ind][1]
+                for j in row[i]:
+                    post[ind].append(j)
+                row[i] = []
+        pre = defaultdict(int)
+        row_val = [0] * (n + 1)
+        tree = RangeAddPointGet(m + 1)
+        for ind in range(q):
+            lst = queries[ind]
+            if lst[0] == 1:
+                ll, rr, x = lst[1:]
+                tree.range_add(ll, rr, x)
+            elif lst[0] == 2:
+                i, x = lst[1:]
+                for j in post[ind]:
+                    pre[(i, j)] = tree.point_get(j)
+                row_val[i] = x
+            else:
+                i, j = lst[1:]
+                ans = row_val[i] + tree.point_get(j) - pre[(i, j)]
+                ac.st(ans)
         return

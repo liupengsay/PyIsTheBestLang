@@ -85,6 +85,7 @@ ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac
 ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pollard_rho|num_factor|classical
 ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greedy|classical
 ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|num_factor
+ABC253D（https://atcoder.jp/contests/abc253/tasks/abc253_d）inclusion_exclusion|lcm|math|corner_case|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1087,4 +1088,27 @@ class Solution:
                 if c <= 0:
                     break
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_253d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc253/tasks/abc253_d
+        tag: inclusion_exclusion|lcm|math|corner_case|classical
+        """
+        n, a, b = ac.read_list_ints()
+        ans = n * (n + 1) // 2
+        if a != b:
+            x = n // a
+            ans -= x * (x + 1) * a // 2
+            x = n // b
+            ans -= x * (x + 1) * b // 2
+            gg = math.lcm(a, b)
+            x = n // gg
+            ans += (x * (x + 1) * gg) // 2
+            ac.st(ans)
+        else:
+            x = n // a
+            ans -= x * (x + 1) * a // 2
+            ac.st(ans)
         return

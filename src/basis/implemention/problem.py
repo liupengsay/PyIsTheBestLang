@@ -84,6 +84,7 @@ ABC273D（https://atcoder.jp/contests/abc273/tasks/abc273_d）binary_search|impl
 ABC273E（https://atcoder.jp/contests/abc273/tasks/abc273_e）tree|implemention|implemention|classical
 ABC272E（https://atcoder.jp/contests/abc272/tasks/abc272_e）brute_force|implemention|euler_series|classical
 ABC270B（https://atcoder.jp/contests/abc270/tasks/abc270_b）brute_force|implemention
+ABC253G（https://atcoder.jp/contests/abc253/tasks/abc253_g）inclusion_exclusion|prefix_sum|implemention|permutation|classical
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
@@ -613,4 +614,35 @@ class Solution:
             ac.st(-1)
         else:
             ac.st(abs(z) + abs(x - z))
+        return
+
+    @staticmethod
+    def abc_253g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc253/tasks/abc253_g
+        tag: inclusion_exclusion|prefix_sum|implemention|permutation|classical
+        """
+        n, ll, rr = ac.read_list_ints()
+
+        def check(x):
+            if x == 0:
+                return list(range(n))
+            pre = 0
+            while x >= (n - pre - 1) >= 0:
+                x -= (n - pre - 1)
+                pre += 1
+            nums = list(range(n - 1, n - pre - 1, -1)) + list(range(n - pre))
+            if pre < n:
+                start = pre
+                for y in range(1, x + 1):
+                    nums[start], nums[start + y] = nums[start + y], nums[start]
+            return nums
+
+        nums1 = check(ll - 1)
+        nums2 = check(rr)
+        dct = {num: i for i, num in enumerate(nums2)}
+        ans = [0] * n
+        for i in range(n):
+            ans[dct[nums1[i]]] = i
+        ac.lst([x + 1 for x in ans])
         return

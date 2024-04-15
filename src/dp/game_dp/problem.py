@@ -19,9 +19,14 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 =====================================AcWing=====================================
 4005（https://www.acwing.com/problem/content/description/4008/）classical|game_dp|brain_teaser|classification_discussion
 
+=====================================AtCoder=====================================
+ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
+
+
 """
 from functools import lru_cache
 from functools import reduce
+from math import inf
 from operator import xor
 
 from src.dp.game_dp.template import DateTime
@@ -171,4 +176,40 @@ class Solution:
                 ac.st("YES")
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def abc_349e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc349/tasks/abc349_e
+        tag: game_dp|implemention|classical
+        """
+        lst = []
+        for _ in range(3):
+            lst.extend(ac.read_list_ints())
+        ind = list()
+        ind.append([[i, i] for i in range(3)])
+        ind.append([[i, 2 - i] for i in range(3)])
+        ind.extend([[i, j] for j in range(3)] for i in range(3))
+        ind.extend([[i, j] for i in range(3)] for j in range(3))
+
+        @lru_cache(None)
+        def dfs(tup):
+            cur = sum(-inf < x < inf for x in tup)
+            if cur == 0:
+                return 0
+            res = -inf
+            flag = -inf if cur % 2 else inf
+            for i in range(3):
+                for j in range(3):
+                    if -inf < tup[i * 3 + j] < inf:
+                        nex = list(tup)
+                        nex[i * 3 + j] = flag
+                        if any(all(nex[a * 3 + b] == flag for a, b in ls) for ls in ind):
+                            return inf
+                        res = max(res, tup[i * 3 + j] - dfs(tuple(nex)))
+            return res
+
+        ans = dfs(tuple(lst))
+        ac.st("Takahashi" if ans > 0 else "Aoki")
         return
