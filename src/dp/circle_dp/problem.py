@@ -1,5 +1,5 @@
 """
-Algorithm：circular_array|liner_dp|interval_dp|brute_force
+Algorithm：circular_array|liner_dp|interval_dp|brute_force|circle_to_linear
 Description：operations on circular_array, always copy the array to double or use index to implement liner_dp
 
 
