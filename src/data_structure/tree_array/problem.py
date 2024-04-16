@@ -44,6 +44,7 @@ ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contrib
 ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_min|tree_array|classical
 ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|tree_array|contribution_method|classical
 ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulative_cumulative_cumulative_sum|math|classical
+ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_ascend|pre_max|implemention|set|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1217,4 +1218,39 @@ class Solution:
                             x + 2) * tree3.range_sum(1, x)) // 2
                 ans %= mod
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_250e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc250/tasks/abc250_e
+        tag: tree_array|point_ascend|pre_max|implemention|set|classical
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        ind = dict()
+        for i in range(n - 1, -1, -1):
+            ind[a[i]] = i
+        b = ac.read_list_ints()
+        pre_a = [0] * n
+        tmp = set()
+        for i in range(n):
+            tmp.add(a[i])
+            pre_a[i] = len(tmp)
+
+        pre_b = [0] * n
+        tmp = set()
+        for i in range(n):
+            tmp.add(b[i])
+            pre_b[i] = len(tmp)
+
+        tree = PointAscendPreMax(n)
+        for i in range(n):
+            tree.point_ascend(i + 1, ind.get(b[i], inf) + 1)
+        for _ in range(ac.read_int()):
+            x, y = ac.read_list_ints()
+            if pre_a[x - 1] == pre_b[y - 1] and tree.pre_max(y) <= x:
+                ac.st("Yes")
+            else:
+                ac.st("No")
         return

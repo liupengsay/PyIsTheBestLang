@@ -138,6 +138,7 @@ ABC271D（https://atcoder.jp/contests/abc271/tasks/abc271_d）linear_dp|specific
 ABC270D（https://atcoder.jp/contests/abc270/tasks/abc270_d）linear_dp
 ABC266D（https://atcoder.jp/contests/abc266/tasks/abc266_d）linear_dp|implemention
 ABC267D（https://atcoder.jp/contests/abc267/tasks/abc267_d）linear_dp
+ABC248F（https://atcoder.jp/contests/abc248/tasks/abc248_f）connected_graph|linear_dp|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -1326,4 +1327,31 @@ class Solution:
         for x in range(1, m + 1):
             ans = min(dp[0][x], dp[1][x])
             ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_248f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc248/tasks/abc248_f
+        tag: connected_graph|linear_dp|classical
+        """
+        n, mod = ac.read_list_ints()
+
+        dp = [[0] * n for _ in range(2)]
+        dp[1][0] = 1
+        for _ in range(n - 1):
+            for rem in range(n - 1, -1, -1):
+                for state in range(2):
+                    res = 0
+                    if not state:
+                        if rem > 0:
+                            res += dp[state][rem - 1]
+                        res += dp[1][rem]
+                    else:
+                        res += dp[0][rem - 2] * 2
+                        res += dp[1][rem - 1] * 3
+                        res += dp[1][rem]
+                    dp[state][rem] = res % mod
+        ans = [(dp[0][x - 1] + dp[1][x]) % mod for x in range(1, n)]
+        ac.lst(ans)
         return

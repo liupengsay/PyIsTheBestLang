@@ -169,6 +169,7 @@ ABC255E（https://atcoder.jp/contests/abc255/tasks/abc255_e）brute_force|hash|c
 ABC256C（https://atcoder.jp/contests/abc256/tasks/abc256_c）brute_force
 ABC252C（https://atcoder.jp/contests/abc252/tasks/abc252_c）brute_force
 ABC251C（https://atcoder.jp/contests/abc251/tasks/abc251_c）brute_force
+ABC249D（https://atcoder.jp/contests/abc249/tasks/abc249_d）euler_series|nlogn|brute_force|contribution_method|classical
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1664,3 +1665,29 @@ class Solution:
         ac.st(ans)
         return
 
+    @staticmethod
+    def abc_249d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc249/tasks/abc249_d
+        tag: euler_series|nlogn|brute_force|contribution_method|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        n = 2 * 10 ** 5
+        cnt = [0] * (n + 1)
+        for num in nums:
+            cnt[num] += 1
+        ans = cnt[1] ** 3
+        for i in range(2, n + 1):
+            ans += 2 * cnt[1] * cnt[i] * cnt[i]
+
+        for i in range(2, n + 1):
+            for j in range(i, n + 1):
+                if i * j > n:
+                    break
+                if i == j:
+                    ans += cnt[i] * cnt[j] * cnt[i * j]
+                else:
+                    ans += cnt[i] * cnt[j] * cnt[i * j] * 2
+        ac.st(ans)
+        return

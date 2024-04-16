@@ -220,6 +220,8 @@ ABC347C（https://atcoder.jp/contests/abc347/tasks/abc347_c）brain_teaser|imple
 ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greedy
 ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greedy|small_to_big|reverse_order|classical
 ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_teaser
+ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implemention|reverse_order|classical
+
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1852,4 +1854,33 @@ class Solution:
         ac.st(len(ans))
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def abc_249f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc249/tasks/abc249_f
+        tag: greedy|implemention|reverse_order|classical
+        """
+        n, k = ac.read_list_ints()
+        not_use = []
+        post = 0
+        nums = [[1, 0]] + [ac.read_list_ints() for _ in range(n)]
+        nums.reverse()
+        ans = -inf
+        for t, y in nums:
+            if t == 1:
+                while len(not_use) > k:
+                    x = heapq.heappop(not_use)
+                    post -= x
+                k -= 1
+                ans = max(ans, post + y)
+                if k < 0:
+                    break
+            else:
+                if y >= 0:
+                    post += y
+                else:
+                    heapq.heappush(not_use, -y)
+        ac.st(ans)
         return

@@ -86,6 +86,7 @@ ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pol
 ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greedy|classical
 ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|num_factor
 ABC253D（https://atcoder.jp/contests/abc253/tasks/abc253_d）inclusion_exclusion|lcm|math|corner_case|classical
+ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counter|contribution_method|math
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1111,4 +1112,21 @@ class Solution:
             x = n // a
             ans -= x * (x + 1) * a // 2
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_250d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc250/tasks/abc250_d
+        tag: brute_force|counter|contribution_method|math
+        """
+        primes = PrimeSieve().eratosthenes_sieve(10 ** 6)
+        n = ac.read_int()
+        ans = 0
+        for q in primes:
+            high = n // (q ** 3)
+            high = min(high, q - 1)
+            if high >= primes[0]:
+                ans += bisect.bisect_right(primes, high)
+        ac.st(ans)
         return

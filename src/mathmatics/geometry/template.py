@@ -102,6 +102,11 @@ class Geometry:
         return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3)) / 2
 
     @staticmethod
+    def compute_triangle_area_double(x1, y1, x2, y2, x3, y3):
+        # Can be used to determine the positional relationship between points and triangles
+        return abs((x1 * y2 - x2 * y1) + (x2 * y3 - x3 * y2) + (x3 * y1 - x1 * y3))
+
+    @staticmethod
     def line_intersection_line(start1, end1, start2, end2):
         # Calculate the intersection point of two line segments that are bottommost and leftmost
         # If there is no intersection point, return empty

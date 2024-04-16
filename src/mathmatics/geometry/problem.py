@@ -37,6 +37,7 @@ ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_
 ABC292F（https://atcoder.jp/contests/abc292/tasks/abc292_f）brain_teaser|math
 ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geometry|square|angle|classical
 ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_convex_quad|classical
+ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointer|brain_teaser
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -45,8 +46,9 @@ ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_c
 （https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）collinearity|random
 
 """
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import accumulate, pairwise
+from math import inf
 from typing import List
 
 from src.mathmatics.geometry.template import Geometry, ClosetPair
@@ -333,4 +335,75 @@ class Solution:
         """
         points = [ac.read_list_ints() for _ in range(4)]
         ac.st("Yes" if Geometry().is_convex_quad(points) else "No")
+        return
+
+    @staticmethod
+    def abc_248e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc248/tasks/abc248_e
+        tag: linear_scope|compute_slope|geometry|brute_force
+        """
+        n, k = ac.read_list_ints()
+        points = [ac.read_list_ints() for _ in range(n)]
+        dct = Counter((x, y) for x, y in points)
+        if max(dct.values()) >= k:
+            ac.st("Infinity")
+            return
+        ans = 0
+        gm = Geometry()
+        points = list(dct.keys())
+        n = len(points)
+        pre = set()
+        for i in range(n):
+            x1, y1 = points[i]
+            cur = defaultdict(lambda: [(x1, y1)])
+            for j in range(i + 1, n):
+                x2, y2 = points[j]
+                s = gm.compute_slope(x1, y1, x2, y2)
+                if (x1, y1, s) not in pre:
+                    cur[s].append((x2, y2))
+            for s in cur:
+                tot = sum(dct[t] for t in cur[s])
+                ans += tot >= k
+                pre |= {(x, y, s) for x, y in cur[s]}
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_250f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc250/tasks/abc250_f
+        tag: geometry|circular_array|two_pointer|brain_teaser
+        """
+        gm = Geometry()
+        n = ac.read_int()
+        points = [ac.read_list_ints() for _ in range(n)]
+        points += points
+        tot = 0
+        x1, y1 = points[0]
+        for i in range(1, n - 1):
+            x2, y2 = points[i]
+            x3, y3 = points[i + 1]
+            tot += gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
+        ans2 = inf
+        j = pre = 0
+        for i in range(len(points) - 2):
+            x1, y1 = points[i]
+            if j < i + 1:
+                j = i + 1
+                x2, y2 = points[j]
+                x3, y3 = points[j + 1]
+                pre = gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
+            ans2 = min(ans2, abs(tot - 4 * pre))
+            while pre * 4 < tot and j + 2 < len(points):
+                j += 1
+                x2, y2 = points[j]
+                x3, y3 = points[j + 1]
+                pre += gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
+                if pre < tot:
+                    ans2 = min(ans2, abs(tot - 4 * pre))
+            x2, y2 = points[i + 1]
+            x3, y3 = points[j + 1]
+            pre -= gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
+        ac.st(ans2)
         return

@@ -32,6 +32,7 @@ P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
 =====================================AtCoder=====================================
 ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greedy|implemention|classical
+ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greedy|brain_teaser|classical
 
 =====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）heapq
@@ -570,3 +571,21 @@ class Solution:
                 cur += tree_sum.range_sum(x + 1, ceil) - tree_cnt.range_sum(x + 1, ceil) * x
             ans.append(cur % mod)
         return ans
+
+    @staticmethod
+    def abc_250g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc250/tasks/abc250_g
+        tag: regret_heapq|greedy|brain_teaser|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ans = 0
+        stack = []
+        for num in nums:
+            if stack and num > stack[0]:
+                ans += num - heappop(stack)
+                heappush(stack, num)
+            heappush(stack, num)
+        ac.st(ans)
+        return
