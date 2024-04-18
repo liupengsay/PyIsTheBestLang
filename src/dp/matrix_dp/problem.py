@@ -23,7 +23,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1092（https://leetcode.cn/problems/shortest-common-supersequence/）lis|lcs|specific_plan
 1692（https://leetcode.cn/problems/count-ways-to-distribute-candies/）matrix_dp|specific_plan|counter
 1771（https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/）longest_palindrome_subsequence|matrix_dp
-1883（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp
+1883（https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/）matrix_dp|high_precision|bag_dp
 1977（https://leetcode.cn/problems/number-of-ways-to-separate-numbers/）matrix_dp|lcp|prefix_sum
 2430（https://leetcode.cn/problems/maximum-deletions-on-a-string/）lcp|matrix_dp
 1216（https://leetcode.cn/problems/valid-palindrome-iii/）matrix_dp|longest_palindrome_subsequence
@@ -2827,3 +2827,22 @@ class Solution:
 
         ac.st(sum(dp) % mod)
         return
+
+    @staticmethod
+    def lc_1883(dist: List[int], speed: int, hours: int) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-skips-to-arrive-at-meeting-on-time/
+        tag: matrix_dp|high_precision|bag_dp
+        """
+        n = len(dist)
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        s = speed
+        for d in dist:
+            for i in range(n, 0, -1):
+                dp[i] = min(dp[i - 1] + d, s * ((dp[i] + s - 1) // s) + d)
+            dp[0] = s * ((dp[0] + s - 1) // s) + d
+        for i in range(n + 1):
+            if dp[i] <= hours * s:
+                return i
+        return -1
