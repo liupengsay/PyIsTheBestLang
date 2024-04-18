@@ -24,6 +24,9 @@ P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
 
 ===================================CodeForces===================================
 
+===================================AtCoder===================================
+ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
+
 
 """
 import math
@@ -361,3 +364,38 @@ class Solution:
                 flow.add_edge(2 * (i + 1), 2 * m + 2 * (j + 1) - 1, 1, score)
         ans = flow.max_flow_min_cost(2 * m + 2 * n + 1, 2 * m + 2 * n + 2)
         return ans[1]
+
+    @staticmethod
+    def abc_247g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc247/tasks/abc247_g
+        tag: max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dct = defaultdict(int)
+        for a, b, c in nums:
+            dct[(a, b)] = max(dct[(a, b)], c)
+        aa = {a for a, _, _ in nums}
+        bb = {b for _, b, _ in nums}
+        ans = []
+        flow = DinicMaxflowMinCost(304)
+        for a, b in dct:
+            c = dct[(a, b)]
+            flow.add_edge(a, b + 150, 1, -c)
+        for a in aa:
+            flow.add_edge(302, a, 1, 0)
+        for b in bb:
+            flow.add_edge(b + 150, 303, 1, 0)
+        for k in range(1, n + 1):
+            flow.add_edge(301, 302, 1, 0)
+            flow.add_edge(303, 304, 1, 0)
+            max_flow, min_cost = flow.max_flow_min_cost(301, 304)
+            if max_flow < k:
+                break
+            assert max_flow == k
+            ans.append(-min_cost)
+        ac.st(len(ans))
+        for a in ans:
+            ac.st(a)
+        return

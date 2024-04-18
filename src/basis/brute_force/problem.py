@@ -170,6 +170,9 @@ ABC256C（https://atcoder.jp/contests/abc256/tasks/abc256_c）brute_force
 ABC252C（https://atcoder.jp/contests/abc252/tasks/abc252_c）brute_force
 ABC251C（https://atcoder.jp/contests/abc251/tasks/abc251_c）brute_force
 ABC249D（https://atcoder.jp/contests/abc249/tasks/abc249_d）euler_series|nlogn|brute_force|contribution_method|classical
+ABC246F（https://atcoder.jp/contests/abc246/tasks/abc246_f）brute_force|inclusion_exclusion|math|counter|bit_operation
+ABC247F（https://atcoder.jp/contests/abc247/tasks/abc247_f）brute_force|guess_table|union_find|dp|brain_teaser
+ABC247E（https://atcoder.jp/contests/abc247/tasks/abc247_e）inclusion_exclusion|two_pointer|counter|brain_teaser|classical
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -180,9 +183,10 @@ import math
 from collections import defaultdict, deque
 from functools import reduce, lru_cache
 from itertools import combinations, permutations
-from operator import mul, or_
+from operator import mul, or_, and_
 from typing import List
 
+from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1689,5 +1693,74 @@ class Solution:
                     ans += cnt[i] * cnt[j] * cnt[i * j]
                 else:
                     ans += cnt[i] * cnt[j] * cnt[i * j] * 2
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_246f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc246/tasks/abc246_f
+        tag: brute_force|inclusion_exclusion|math|counter|bit_operation
+        """
+        n, ll = ac.read_list_ints()
+        lst = [sum(1 << (ord(w) - ord("a")) for w in ac.read_str()) for _ in range(n)]
+        mod = 998244353
+        p = [pow(x, ll, mod) for x in range(27)]
+        res = 0
+        for x in range(1, 1 << n):
+            cur = [lst[j] for j in range(n) if x & (1 << j)]
+            val = reduce(and_, cur)
+            res += (-1) ** (len(cur) - 1) * p[val.bit_count()]
+            res %= mod
+        ac.st(res)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc247/tasks/abc247_f
+        tag: brute_force|guess_table|union_find|dp|brain_teaser
+        """
+        mod = 998244353
+        n = ac.read_int()
+        dp = [0] * (2 * 10 ** 5 + 1)
+        dp[2] = 3
+        dp[3] = 4
+        for x in range(4, 2 * 10 ** 5 + 1):
+            dp[x] = (dp[x - 1] + dp[x - 2]) % mod
+        p = ac.read_list_ints_minus_one()
+        q = ac.read_list_ints_minus_one()
+        uf = UnionFind(n)
+        for i in range(n):
+            uf.union(p[i], q[i])
+        ans = 1
+        group = uf.get_root_size()
+        for g in group.values():
+            if g != 1:
+                ans *= dp[g]
+                ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_247e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc247/tasks/abc247_e
+        tag: inclusion_exclusion|two_pointer|counter|brain_teaser|classical
+        """
+        n, x, y = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        pre_x = pre_y = -1
+        last = ans = 0
+        for i, num in enumerate(nums):
+            if num < y or num > x:
+                last = i + 1
+                pre_x = pre_y = -1
+            if num == x:
+                pre_x = i
+            if num == y:
+                pre_y = i
+            if pre_x != -1 and pre_y != -1:
+                ans += min(pre_x, pre_y) - last + 1
         ac.st(ans)
         return

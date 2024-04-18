@@ -1,24 +1,5 @@
-from sys import stdin, stdout
-import bisect
-import decimal
-import heapq
-from types import GeneratorType
-import random
-from math import inf
-from bisect import bisect_left, bisect_right
-from heapq import heappush, heappop, heappushpop
-from functools import cmp_to_key
-from collections import defaultdict, Counter, deque
-import math
 from functools import lru_cache
-from heapq import nlargest
-from functools import reduce
-from decimal import Decimal
-from itertools import combinations, permutations
-from operator import xor, add
-from operator import mul
-from typing import List, Callable, Dict, Set, Tuple, DefaultDict
-from heapq import heappush, heappop, heapify
+from sys import stdin
 
 
 class FastIO:
@@ -88,6 +69,77 @@ class FastIO:
         return pre
 
 
+class BinarySearch:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def find_int_left(low: int, high: int, check) -> int:
+        """find the minimum int x which make check true"""
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
+
+    @staticmethod
+    def find_int_left_strictly(low: int, high: int, check) -> int:
+        """find the minimum int x which make check true"""
+        while low < high:
+            mid = low + (high - low) // 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid + 1
+        return low
+
+    @staticmethod
+    def find_int_right(low: int, high: int, check) -> int:
+        """find the maximum int x which make check true"""
+        while low < high - 1:
+            mid = low + (high - low) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+    @staticmethod
+    def find_int_right_strictly(low: int, high: int, check) -> int:
+        """find the maximum int x which make check true"""
+        while low < high:
+            mid = low + (high - low + 1) // 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid - 1
+        return high
+
+    @staticmethod
+    def find_float_left(low: float, high: float, check, error=1e-6) -> float:
+        """find the minimum float x which make check true"""
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                high = mid
+            else:
+                low = mid
+        return low if check(low) else high
+
+    @staticmethod
+    def find_float_right(low: float, high: float, check, error=1e-6) -> float:
+        """find the maximum float x which make check true"""
+        while low < high - error:
+            mid = low + (high - low) / 2
+            if check(mid):
+                low = mid
+            else:
+                high = mid
+        return high if check(high) else low
+
+
 class Solution:
     def __init__(self):
         return
@@ -98,8 +150,42 @@ class Solution:
         url: url of the problem
         tag: algorithm tag
         """
-        for _ in range(ac.read_int()):
-            pass
+
+        @lru_cache(None)
+        def dfs(x):
+            if x == 1:
+                return 1
+            return sum(dfs(y) for y in range(1, int(x ** 0.5) + 1))
+
+        pre = 0
+        cnt = 0
+        for x in range(1, 1000):
+            def find(ans):
+                if ans <= 3:
+                    cc = ans
+                else:
+                    cc = (ans-3)//2+3
+                return (3 + 2 * (cc - 1) + 3)*cc // 2 >= x
+
+            ans1 = dfs(x)
+            ans2 = BinarySearch().find_int_left(1, 2**63, find)
+            #print(x, ans1, ans2)
+            if ans1 == pre:
+                cnt += 1
+            else:
+                print(ans1-pre, pre, cnt)
+                pre = ans1
+                cnt = 1
+            #assert ans1 == ans2
+
+        # for _ in range(ac.read_int()):
+        #     x = ac.read_int()
+        #
+        #     def find(ans):
+        #         return (3 + 2 * (ans - 1) + 3) // 2 >= x
+        #
+        #     ans2 = BinarySearch().find_int_left(1, 2 ** 63, find)
+        #     ac.st(ans2)
         return
 
 
