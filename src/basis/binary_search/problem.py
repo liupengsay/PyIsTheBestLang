@@ -101,6 +101,7 @@ ABC294F（https://atcoder.jp/contests/abc294/tasks/abc294_f）binary_search|clas
 ABC346F（https://atcoder.jp/contests/abc346/tasks/abc346_f）binary_search|brute_force|greedy|implemention|pointer|circular_array
 ABC270E（https://atcoder.jp/contests/abc270/tasks/abc270_e）binary_search|implemention
 ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|brute_force
+ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -1670,3 +1671,25 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, min(coins) * k, check)
         return ans
+
+    @staticmethod
+    def abc_246d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc246/tasks/abc246_d
+        tag: binary_search|brute_force
+        """
+        n = ac.read_int()
+        ans = inf
+
+        def check(b):
+            return a * a * a + a * a * b + a * b * b + b * b * b >= n
+
+        pre = n
+        for a in range(10 ** 6 + 1):
+            bb = BinarySearch().find_int_left(a, pre, check)
+            ans = min(ans, a * a * a + a * a * bb + a * bb * bb + bb * bb * bb)
+            pre = bb
+            if a > bb:
+                break
+        ac.st(ans)
+        return

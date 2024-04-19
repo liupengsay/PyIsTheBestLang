@@ -25,9 +25,12 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 
 ===================================AtCoder===================================
 ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
+ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|brute_force|circular_section
+
 
 """
 import math
+from itertools import combinations
 from typing import List
 
 from src.utils.fast_io import FastIO
@@ -233,4 +236,41 @@ class Solution:
                 ac.st(nex[xx] - xx + mid)
             else:
                 ac.st(n + nex[xx] - xx + mid)
+        return
+
+    @staticmethod
+    def abc_244d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc244/tasks/abc244_d
+        tag: dfs|back_trace|brute_force|circular_section
+        """
+        s = ac.read_list_strs()
+        t = ac.read_list_strs()
+        m = 10 ** 18
+        ans = [False]
+
+        def dfs(cur):
+            if ans[0]:
+                return
+            for item in combinations([0, 1, 2], 2):
+                i, j = item
+                tmp = cur[:]
+                tmp[i], tmp[j] = tmp[j], tmp[i]
+                if tmp in pre:
+                    ind = pre.index(tmp)
+                    length = len(pre)
+                    circle = length - ind
+                    tm = m - length
+                    j = tm % circle
+                    if pre[ind + j] == t:
+                        ans[0] = True
+                        return
+                else:
+                    pre.append(tmp)
+                    dfs(tmp[:])
+                    pre.pop()
+
+        pre = [s]
+        dfs(s[:])
+        ac.st("Yes" if ans[0] else "No")
         return

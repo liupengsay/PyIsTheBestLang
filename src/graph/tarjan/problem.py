@@ -42,7 +42,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 ===================================CodeForces===================================
 ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
 ABC334E（https://atcoder.jp/contests/abc334/tasks/abc334_e）union_find|mod_reverse|expectation|math|classical
-
+ABC245F（https://atcoder.jp/contests/abc245/tasks/abc245_f）scc|reverse_graph|implemention|bfs|classical
 
 =====================================AcWing=====================================
 3582（https://www.acwing.com/problem/content/3582/）scc
@@ -898,4 +898,40 @@ class Solution:
         ans *= p
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_245f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc245/tasks/abc245_f
+        tag: scc|reverse_graph|implemention|bfs|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        rev = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            degree[j] += 1
+            dct[i].append(j)
+            rev[j].append(i)
+
+        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, dct)
+        stack = []
+        for ls in scc_node_id:
+            if len(ls) > 1:
+                stack.extend(ls)
+
+        visit = [0] * n
+        for i in stack:
+            visit[i] = 1
+        while stack:
+            nex = []
+            for i in stack:
+                for j in rev[i]:
+                    if not visit[j]:
+                        visit[j] = 1
+                        nex.append(j)
+            stack = nex
+        ac.st(sum(x > 0 for x in visit))
         return

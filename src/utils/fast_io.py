@@ -95,6 +95,14 @@ class FastIO:
     def min(a, b):
         return a if a < b else b
 
+    def yes(self):
+        self.st("Yes")
+        return
+
+    def no(self):
+        self.st("No")
+        return
+
     @staticmethod
     def ceil(a, b):
         return a // b + int(a % b != 0)

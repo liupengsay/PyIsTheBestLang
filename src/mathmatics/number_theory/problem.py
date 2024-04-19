@@ -87,6 +87,7 @@ ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorizatio
 ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|num_factor
 ABC253D（https://atcoder.jp/contests/abc253/tasks/abc253_d）inclusion_exclusion|lcm|math|corner_case|classical
 ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counter|contribution_method|math
+ABC245D（https://atcoder.jp/contests/abc245/tasks/abc245_d）implemention|math|data_range|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -104,6 +105,7 @@ ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counte
 
 
 """
+import bisect
 import math
 from collections import Counter
 from collections import defaultdict
@@ -1129,4 +1131,24 @@ class Solution:
             if high >= primes[0]:
                 ans += bisect.bisect_right(primes, high)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc245/tasks/abc245_d
+        tag: implemention|math|data_range|classical
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints()
+        c = ac.read_list_ints()
+        b = [0] * (m + 1)
+        for i in range(m, -1, -1):
+            pre = 0
+            for ii in range(n + 1):
+                jj = n + i - ii
+                if i < jj <= m:
+                    pre += a[ii] * b[jj]
+            b[i] = (c[n + i] - pre) // a[n]
+        ac.lst(b)
         return

@@ -139,6 +139,7 @@ ABC270D（https://atcoder.jp/contests/abc270/tasks/abc270_d）linear_dp
 ABC266D（https://atcoder.jp/contests/abc266/tasks/abc266_d）linear_dp|implemention
 ABC267D（https://atcoder.jp/contests/abc267/tasks/abc267_d）linear_dp
 ABC248F（https://atcoder.jp/contests/abc248/tasks/abc248_f）connected_graph|linear_dp|classical
+ABC244E（https://atcoder.jp/contests/abc244/tasks/abc244_e）implemention|linear_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -1354,4 +1355,32 @@ class Solution:
                     dp[state][rem] = res % mod
         ans = [(dp[0][x - 1] + dp[1][x]) % mod for x in range(1, n)]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_244e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc244/tasks/abc244_e
+        tag: implemention|linear_dp
+        """
+        mod = 998244353
+        n, m, k, s, t, x = ac.read_list_ints()
+        s -= 1
+        t -= 1
+        x -= 1
+        dp = [[0] * n, [0] * n]
+        dp[0][s] = 1
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        for _ in range(k):
+            ndp = [[0] * n, [0] * n]
+            for i, j in edges:
+                for a, b in [(i, j), (j, i)]:
+                    for w in range(2):
+                        if b == x:
+                            ndp[1 - w][b] += dp[w][a]
+                        else:
+                            ndp[w][b] += dp[w][a]
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ans = dp[0][t]
+        ac.st(ans)
         return

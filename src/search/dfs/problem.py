@@ -64,6 +64,7 @@ ABC326D（https://atcoder.jp/contests/abc326/tasks/abc326_d）dfs|back_trace|bru
 ABC322D（https://atcoder.jp/contests/abc322/tasks/abc322_d）dfs|back_trace|brute_force
 ABC284E（https://atcoder.jp/contests/abc284/tasks/abc284_e）dfs|back_trace|classical
 ABC268D（https://atcoder.jp/contests/abc268/tasks/abc268_d）dfs|back_trace|prune|classical
+ABC244G（https://atcoder.jp/contests/abc244/tasks/abc244_g）construction|euler_order|brain_teaser|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1174,4 +1175,54 @@ class Solution:
             pre = lst[0]
             dfs(1)
         ac.st(ans if ans else -1)
+        return
+
+    @staticmethod
+    def abc_244g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc244/tasks/abc244_g
+        tag: construction|euler_order|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        uf = UnionFind(n)
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            if uf.union(i, j):
+                dct[i].append(j)
+                dct[j].append(i)
+        s = [int(w) for w in ac.read_str()]
+        t = [0] * n
+        euler_order = []
+        root = 0
+        stack = [(root, -1)]
+        parent = [-1] * n
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                euler_order.append(i)
+                t[i] ^= 1
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        parent[j] = i
+                        stack.append((j, i))
+            else:
+                i = ~i
+                if i != root:
+                    euler_order.append(parent[i])
+                    t[parent[i]] ^= 1
+                    if t[i] != s[i]:
+                        euler_order.append(i)
+                        t[i] ^= 1
+                        euler_order.append(parent[i])
+                        t[parent[i]] ^= 1
+                elif t[i] != s[i]:
+                    euler_order.append(dct[i][0])
+                    euler_order.append(i)
+                    t[i] ^= 1
+                    euler_order.append(dct[i][0])
+        assert t == s
+        ac.st(len(euler_order))
+        ac.lst([x + 1 for x in euler_order])
         return

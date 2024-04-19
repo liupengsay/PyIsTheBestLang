@@ -117,6 +117,8 @@ ABC280F（https://atcoder.jp/contests/abc280/tasks/abc280_f）bfs|negative_circl
 ABC277F（https://atcoder.jp/contests/abc277/tasks/abc277_e）bfs
 ABC277C（https://atcoder.jp/contests/abc277/tasks/abc277_c）bfs
 ABC276E（https://atcoder.jp/contests/abc276/tasks/abc276_e）bfs
+ABC244F（https://atcoder.jp/contests/abc244/tasks/abc244_f）bfs|bit_operation|brain_teaser
+ABC246E（https://atcoder.jp/contests/abc246/tasks/abc246_e）bfs|union_find|brain_teaser|prune|classical）
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2320,4 +2322,176 @@ class Solution:
                 ac.st("inf")
             else:
                 ac.st(dis[y] - dis[x])
+        return
+
+    @staticmethod
+    def abc_246e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc246/tasks/abc246_e
+        tag: bfs|union_find|brain_teaser|prune|classical
+        """
+        n = ac.read_int()
+        sx, sy = ac.read_list_ints_minus_one()
+        tx, ty = ac.read_list_ints_minus_one()
+
+        grid = [ac.read_str() for _ in range(n)]
+        visit = [[inf] * n for _ in range(n)]
+        ind = [[-1, 1], [-1, -1], [1, 1], [1, -1]]
+        visit[sx][sy] = 0
+        stack = [(sx, sy)]
+        while stack:
+            nex = []
+            for x, y in stack:
+                d = visit[x][y] + 1
+                for dx, dy in ind:
+                    px, py = x, y
+                    while 0 <= px + dx < n and 0 <= py + dy < n and grid[px + dx][py + dy] != "#" and visit[px + dx][
+                        py + dy] >= d:
+                        px, py = px + dx, py + dy
+                        if visit[px][py] == inf:
+                            visit[px][py] = d
+                            nex.append((px, py))
+
+            stack = nex
+        ans = visit[tx][ty]
+        ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_246e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc246/tasks/abc246_e
+        tag: bfs|union_find|brain_teaser|prune|classical
+        """
+        n = ac.read_int()
+        sx, sy = ac.read_list_ints_minus_one()
+        tx, ty = ac.read_list_ints_minus_one()
+        visit = [[inf] * n for _ in range(n)]
+        grid = [ac.read_str() for _ in range(n)]
+        stack = [(sx, sy)]
+        visit[sx][sy] = 0
+        uf1 = UnionFind(n * n)
+        uf2 = UnionFind(n * n)
+        uf3 = UnionFind(n * n)
+        uf4 = UnionFind(n * n)
+
+        while stack:
+            nex = []
+            for x, y in stack:
+                cx, cy = x, y
+                while True:
+                    root = uf1.find(cx * n + cy)
+                    if root == cx * n + cy:
+                        root = (cx - 1) * n + cy + 1
+                    if not (0 <= (cx - 1) < n and 0 <= cy + 1 < n and 0 <= root < n * n):
+                        break
+                    px, py = root // n, root % n
+                    if 0 <= px < n and 0 <= py < n:
+                        uf1.union_right(cx * n + cy, root)
+                        if grid[px][py] != '#':
+                            if visit[px][py] == inf:
+                                nex.append((px, py))
+                                visit[px][py] = visit[x][y] + 1
+                            cx, cy = px, py
+                        else:
+                            break
+                    else:
+                        break
+
+                cx, cy = x, y
+                while True:
+                    root = uf2.find(cx * n + cy)
+                    if root == cx * n + cy:
+                        root = (cx - 1) * n + cy - 1
+                    if not (0 <= (cx - 1) < n and 0 <= cy - 1 < n and 0 <= root < n * n):
+                        break
+                    px, py = root // n, root % n
+                    if 0 <= px < n and 0 <= py < n:
+                        uf2.union_right(cx * n + cy, root)
+                        if grid[px][py] != '#':
+                            if visit[px][py] == inf:
+                                nex.append((px, py))
+                                visit[px][py] = visit[x][y] + 1
+                            cx, cy = px, py
+                        else:
+                            break
+                    else:
+                        break
+
+                cx, cy = x, y
+                while True:
+                    root = uf3.find(cx * n + cy)
+                    if root == cx * n + cy:
+                        root = (cx + 1) * n + cy - 1
+                    if not (0 <= (cx + 1) < n and 0 <= cy - 1 < n and 0 <= root < n * n):
+                        break
+                    px, py = root // n, root % n
+
+                    if 0 <= px < n and 0 <= py < n:
+                        uf3.union_right(cx * n + cy, root)
+                        if grid[px][py] != '#':
+                            if visit[px][py] == inf:
+                                nex.append((px, py))
+                                visit[px][py] = visit[x][y] + 1
+                            cx, cy = px, py
+                        else:
+                            break
+                    else:
+                        break
+
+                cx, cy = x, y
+                while True:
+                    root = uf4.find(cx * n + cy)
+                    if root == cx * n + cy:
+                        root = (cx + 1) * n + cy + 1
+                    if not (0 <= (cx + 1) < n and 0 <= cy + 1 < n and 0 <= root < n * n):
+                        break
+                    px, py = root // n, root % n
+
+                    if 0 <= px < n and 0 <= py < n:
+                        uf4.union_right(cx * n + cy, root)
+                        if grid[px][py] != '#':
+                            if visit[px][py] == inf:
+                                nex.append((px, py))
+                                visit[px][py] = visit[x][y] + 1
+                            cx, cy = px, py
+                        else:
+                            break
+                    else:
+                        break
+
+            stack = nex
+        ac.st(visit[tx][ty] if visit[tx][ty] < inf else -1)
+        return
+
+    @staticmethod
+    def abc_244f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc244/tasks/abc244_f
+        tag: bfs|bit_operation|brain_teaser
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints()
+            dct[i - 1].append(j - 1)
+            dct[j - 1].append(i - 1)
+        dis = [[inf] * (1 << n) for _ in range(n)]
+        for i in range(n):
+            dis[i][0] = 0
+        stack = []
+        for i in range(n):
+            dis[i][1 << i] = 1
+            stack.append((1 << i, i))
+        while stack:
+            nex = []
+            for s, i in stack:
+                d = dis[i][s]
+                for j in dct[i]:
+                    dj = d + 1
+                    if dis[j][s ^ (1 << j)] == inf:
+                        dis[j][s ^ (1 << j)] = dj
+                        nex.append((s ^ (1 << j), j))
+            stack = nex
+        ac.st(sum(min(dis[i][j] for i in range(n)) for j in range(1 << n)))
         return

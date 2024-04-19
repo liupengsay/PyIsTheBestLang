@@ -60,6 +60,14 @@ class FastIO:
     def st(self, x):
         return print(x, flush=self.flush)
 
+    def yes(self):
+        self.st("Yes")
+        return
+
+    def no(self):
+        self.st("No")
+        return
+
     def lst(self, x):
         return print(*x, flush=self.flush)
 

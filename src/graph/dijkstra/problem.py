@@ -111,6 +111,7 @@ ABC271E（https://atcoder.jp/contests/abc271/tasks/abc271_e）shortest_path|brai
 ABC348D（https://atcoder.jp/contests/abc348/tasks/abc348_d）bfs|dijkstra|limited_shortest_path|state|classical
 ABC257F（https://atcoder.jp/contests/abc257/tasks/abc257_f）shortest_path|brute_force|bfs|classical
 ABC252E（https://atcoder.jp/contests/abc252/tasks/abc252_e）shortest_path_spanning_tree|dijkstra|classical
+ABC245G（https://atcoder.jp/contests/abc245/tasks/abc245_g）shortest_path|second_shortest_path|dijkstra|brain_teaser|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2158,4 +2159,55 @@ class Solution:
                     father[j] = ind
                     heappush(stack, (dj, j))
         ac.lst([x + 1 for x in father if x != -1])
+        return
+
+    @staticmethod
+    def abc_245g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc245/tasks/abc245_g
+        tag: shortest_path|second_shortest_path|dijkstra|brain_teaser|classical
+        """
+        n, m, k, ll = ac.read_list_ints()
+        a = ac.read_list_ints_minus_one()
+        b = ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            dct[i].append((j, w + 1))
+            dct[j].append((i, w + 1))
+        dis1 = [inf] * n
+        dis2 = [inf] * n
+        fa1 = [inf] * n
+        fa2 = [inf] * n
+
+        stack = []
+        for i in b:
+            fa1[i] = a[i]
+            dis1[i] = 0
+            stack.append((0, i, a[i]))
+
+        while stack:
+            d, i, color = heappop(stack)
+            if color == fa1[i] and dis1[i] < d:
+                continue
+            if color == fa2[i] and dis2[i] < d:
+                continue
+            if dis2[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = d + w
+                if dj < dis1[j]:
+                    if dis1[j] < dis2[j] and fa1[j] != color:
+                        dis2[j] = dis1[j]
+                        fa2[j] = fa1[j]
+                    dis1[j] = dj
+                    fa1[j] = color
+                    heappush(stack, (dj, j, color))
+                elif dj < dis2[j] and color != fa1[j]:
+                    dis2[j] = dj
+                    fa2[j] = color
+                    heappush(stack, (dj, j, color))
+        ans = [dis2[i] if fa1[i] == a[i] else dis1[i] for i in range(n)]
+        ans = [x if x < inf else -1 for x in ans]
+        ac.lst(ans)
         return

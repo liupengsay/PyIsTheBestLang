@@ -75,7 +75,7 @@ class DfsEulerOrder:
     def build(self, dct, root):
         """build dfs order and euler order and relative info"""
         order = 0
-        stack = [[root, -1]]
+        stack = [(root, -1)]
         while stack:
             i, fa = stack.pop()
             if i >= 0:
@@ -85,13 +85,13 @@ class DfsEulerOrder:
                 self.end[i] = order
                 self.order_depth[order] = self.node_depth[i]
                 order += 1
-                stack.append([~i, fa])
+                stack.append((~i, fa))
                 for j in dct[i]:
                     if j != fa:
                         # the order of son nodes can be assigned for lexicographical order
                         self.parent[j] = i
                         self.node_depth[j] = self.node_depth[i] + 1
-                        stack.append([j, i])
+                        stack.append((j, i))
             else:
                 i = ~i
                 if i != root:
