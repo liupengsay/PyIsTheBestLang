@@ -32,6 +32,7 @@ ABC051D（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_pat
 ARC083B（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
 ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
 ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
+ABC243E（https://atcoder.jp/contests/abc243/tasks/abc243_e）get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
 
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
@@ -42,6 +43,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
+from src.graph.floyd.template import Floyd
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -620,4 +622,44 @@ class Solution:
                 ac.st("Impossible")
             else:
                 ac.lst([dis[u * n + v], gain[u * n + v]])
+        return
+
+    @staticmethod
+    def abc_243e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc243/tasks/abc243_e
+        tag: get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
+        """
+        n, m = ac.read_list_ints()
+        edges = []
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            x, y, w = ac.read_list_ints_minus_one()
+            edges.append((x, y, w + 1))
+            dct[x].append((y, w + 1))
+            dct[y].append((x, w + 1))
+        dis = []
+        cnt = []
+        for i in range(n):
+            cur_cnt, cur_dis = Dijkstra().get_cnt_of_shortest_path(dct, i)
+            dis.append(cur_dis)
+            cnt.append(cur_cnt)
+        ans = sum(cnt[x][y] > 1 or dis[x][y] < w for x, y, w in edges)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_243e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc243/tasks/abc243_e
+        tag: get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
+        """
+        n, m = ac.read_list_ints()
+        edges = []
+        for _ in range(m):
+            x, y, w = ac.read_list_ints_minus_one()
+            edges.append((x, y, w + 1))
+        cnt, dis = Floyd().get_cnt_of_shortest_path(edges, n)
+        ans = sum(cnt[x][y] > 1 or dis[x][y] < w for x, y, w in edges)
+        ac.st(ans)
         return

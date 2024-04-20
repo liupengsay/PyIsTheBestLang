@@ -140,6 +140,8 @@ ABC266D（https://atcoder.jp/contests/abc266/tasks/abc266_d）linear_dp|implemen
 ABC267D（https://atcoder.jp/contests/abc267/tasks/abc267_d）linear_dp
 ABC248F（https://atcoder.jp/contests/abc248/tasks/abc248_f）connected_graph|linear_dp|classical
 ABC244E（https://atcoder.jp/contests/abc244/tasks/abc244_e）implemention|linear_dp
+ABC243G（https://atcoder.jp/contests/abc243/tasks/abc243_g）prefix_sum|preprocess|linear_dp|brain_teaser|high_precision|sqrt_sqrt_n|math
+
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -156,6 +158,8 @@ from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
+from src.mathmatics.number_theory.template import PrimeSieve
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -646,7 +650,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2359
         tag: linear_dp
         """
-        primes = NumberTheory().sieve_of_eratosthenes(10000)
+        primes = PrimeSieve().eratosthenes_sieve(10000)
         primes = [str(num) for num in primes if 1000 >
                   num >= 100 and "0" not in str(num)]
         cnt = defaultdict(list)
@@ -1383,4 +1387,41 @@ class Solution:
             dp = [[x % mod for x in ls] for ls in ndp]
         ans = dp[0][t]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_243g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc243/tasks/abc243_g
+        tag: prefix_sum|preprocess|linear_dp|brain_teaser|high_precision|sqrt_sqrt_n|math
+        """
+
+        def sqrt(m):
+
+            def check(s):
+                return s * s <= m
+
+            return BinarySearch().find_int_right(1, m, check)
+
+        def sqrt_sqrt(m):
+
+            def check(s):
+                return s * s * s * s <= m
+
+            return BinarySearch().find_int_right(1, m, check)
+
+        x = 9 * 10 ** 18
+        n = sqrt_sqrt(x) + 10
+        dp = [0] * (n + 1)
+        dp[1] = 1
+        pre = ac.accumulate(dp)
+        for i in range(2, n + 1):
+            dp[i] = pre[sqrt(i) + 1] - pre[1]
+            pre[i + 1] = pre[i] + dp[i]
+        for _ in range(ac.read_int()):
+            x = ac.read_int()
+            sx = sqrt(x)
+            fx = sqrt_sqrt(x)
+            ans = sum(dp[i] * (sx - i * i + 1) for i in range(1, fx + 1))
+            ac.st(ans)
         return

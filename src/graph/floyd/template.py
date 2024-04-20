@@ -6,6 +6,31 @@ class Floyd:
         return
 
     @staticmethod
+    def get_cnt_of_shortest_path(edges, n):  # undirected
+        dis = [[inf] * n for _ in range(n)]
+        cnt = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dis[i][i] = 0
+            cnt[i][i] = 1
+        for x, y, w in edges:
+            dis[x][y] = dis[y][x] = w
+            cnt[x][y] = cnt[y][x] = 1
+        for k in range(n):  # mid point
+            for i in range(n):  # start point
+                if dis[i][k] == inf or i == k:
+                    continue
+                for j in range(i + 1, n):  # end point
+                    if j == k:
+                        continue
+                    if dis[i][k] + dis[k][j] < dis[j][i]:
+                        dis[i][j] = dis[j][i] = dis[i][k] + dis[k][j]
+                        cnt[i][j] = cnt[j][i] = cnt[i][k] * cnt[k][j]
+                    elif dis[i][k] + dis[k][j] == dis[j][i]:
+                        cnt[i][j] += cnt[i][k] * cnt[k][j]
+                        cnt[j][i] += cnt[i][k] * cnt[k][j]
+        return cnt, dis
+
+    @staticmethod
     def directed_shortest_path(n):
         # Calculate the shortest path between all point pairs using the Floyd algorithm
         dis = [inf] * n * n  # need to be initial

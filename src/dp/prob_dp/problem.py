@@ -22,7 +22,7 @@ ABC280E（https://atcoder.jp/contests/abc280/tasks/abc280_e）prob_dp|expectatio
 ABC275E（https://atcoder.jp/contests/abc275/tasks/abc275_e）prob_dp|linear_dp|classical
 ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|brain_teaser|classical
 ABC263E（https://atcoder.jp/contests/abc263/tasks/abc263_e）expectation_dp|reverse_order|math|brain_teaser|classical
-
+ABC243F（https://atcoder.jp/contests/abc243/tasks/abc243_f）matrix_dp|prob_dp|brain_teaser|comb|math
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -290,4 +290,33 @@ class Solution:
             dp[i] %= mod
             post[i] = (post[i + 1] + dp[i]) % mod
         ac.st(dp[0])
+        return
+
+    @staticmethod
+    def abc_243f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc243/tasks/abc243_f
+        tag: matrix_dp|prob_dp|brain_teaser|comb|math
+        """
+        mod = 998244353
+        cb = Combinatorics(50, mod)
+
+        n, m, k = ac.read_list_ints()
+        w = [ac.read_int() for _ in range(n)]
+        tot = sum(w)
+        p = pow(tot, -1, mod)
+        pp = [ww * p % mod for ww in w]
+        dp = [[0] * (m + 1) for _ in range(k + 1)]
+        dp[k][m] = 1
+        for i in range(n - 1, -1, -1):
+            ndp = [[0] * (m + 1) for _ in range(k + 1)]
+            for j in range(k + 1):
+                for x in range(m + 1):
+                    res = dp[j][x]
+                    if x + 1 <= m:
+                        for c in range(1, k - j + 1):
+                            res += dp[j + c][x + 1] * cb.comb(j + c, c) * pow(pp[i], c, mod)
+                    ndp[j][x] = res % mod
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ac.st(dp[0][0])
         return

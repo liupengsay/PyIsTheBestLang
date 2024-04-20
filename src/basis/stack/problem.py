@@ -33,6 +33,7 @@ P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 ====================================AtCoder=====================================
 ARC074B（https://atcoder.jp/contests/abc062/tasks/arc074_b）heapq|prefix_suffix
 ABC283B（https://atcoder.jp/contests/abc283/tasks/abc283_d）stack
+ABC243D（https://atcoder.jp/contests/abc243/tasks/abc243_d）data_range|big_number|stack|implemention|binary_tree|classical
 
 =====================================AcWing=====================================
 128（https://www.acwing.com/problem/content/130/）heapq|stack|implemention
@@ -538,4 +539,34 @@ class Solution:
         for i in range(n):
             if s[i] == "#":
                 ac.st(ans[i])
+        return
+
+    @staticmethod
+    def abc_243d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc243/tasks/abc243_d
+        tag: data_range|big_number|stack|implemention|binary_tree|classical
+        """
+        n, x = ac.read_list_ints()
+        s = ac.read_str()
+        pre = []
+        while x > 1:
+            pre.append("L" if x % 2 == 0 else "R")
+            x //= 2
+        pre.reverse()
+        for w in s:
+            if w == "L":
+                pre.append(w)
+            elif w == "R":
+                pre.append(w)
+            else:
+                pre.pop()
+        for w in pre:
+            if w == "L":
+                x *= 2
+            elif w == "R":
+                x = x * 2 + 1
+            else:
+                x //= 2
+        ac.st(x)
         return
