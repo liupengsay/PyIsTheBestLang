@@ -37,3 +37,19 @@ def min(a, b):
     return a if a < b else b
 
 
+class Solution:
+
+    @staticmethod
+    def example() -> int:
+        return 0
+
+
+class TestGeneral(unittest.TestCase):
+
+    def test_example(self):
+        assert Solution().example() == 0
+        return
+
+
+if __name__ == '__main__':
+    unittest.main()

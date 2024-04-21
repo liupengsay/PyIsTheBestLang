@@ -17,6 +17,8 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
 ABC279D（https://atcoder.jp/contests/abc279/tasks/abc279_d）ternary_search|high_precision|classical
+ABC240F（https://atcoder.jp/contests/abc240/tasks/abc240_f）implemention|ternary_search|binary_search|brute_force|classical
+
 
 """
 import bisect
@@ -313,4 +315,33 @@ class Solution:
         y = int(y)
         ans = min(Decimal(check(x)) for x in range(y - 5, y + 6))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_240f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc240/tasks/abc240_f
+        tag: implemention|ternary_search|binary_search|brute_force|classical
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            ans = nums[0][0]
+            pre = 0
+            pre_pre = 0
+
+            def check(s):
+                return pre_pre + pre * s + s * (s + 1) * x // 2
+
+            for x, y in nums:
+                ans = max(ans, pre_pre + pre + x)
+                if x < 0:
+                    ceil = TernarySearch().find_ceil_point_int(check, 1, y)
+                    for ss in range(ceil - 5, ceil + 5):
+                        if 1 <= ss <= y:
+                            ans = max(ans, check(ss))
+                pre_pre = pre_pre + pre * y + y * (y + 1) * x // 2
+                pre += x * y
+                ans = max(ans, pre_pre)
+            ac.st(ans)
         return

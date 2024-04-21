@@ -40,52 +40,14 @@ def min(a, b):
 class Solution:
 
     @staticmethod
-    def example(n) -> int:
-
-        ans = [[0] * n for _ in range(n)]
-
-        def dfs(x):
-            nonlocal res
-            if x == n * n or all(x==1 for x in row) or all(x==1 for x in col):
-                #print([a for a in ans])
-                lst = []
-                for a in ans:
-                    lst.extend(a)
-                res.add(tuple(lst))
-                return
-
-            for i in range(n):
-                for j in range(n):
-                    if row[i] == 0 and col[j] == 0 and ans[i][j] == 0:
-                        ans[i][j] = 1
-                        row[i] = col[j] = 1
-                        if i != j:
-                            ans[j][i] = -1
-                            row[j] = col[i] = 1
-                        dfs(x+1)
-                        row[i] = col[j] = 0
-                        ans[i][j] = 0
-                        if i != j:
-                            ans[j][i] = 0
-                            row[j] = col[i] = 0
-            return
-
-        res = set()
-        row = [0]*n
-        col = [0]*n
-        dfs(0)
-        return res
+    def example() -> int:
+        return 0
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_example(self):
-        lst = []
-        for x in range(1, 8):
-            y = len(Solution().example(x))
-            #print(x, y)
-            lst.append(y)
-        print(",".join(str(x) for x in lst))
+        assert Solution().example() == 0
         return
 
 

@@ -8,6 +8,7 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 2585（https://leetcode.cn/problems/number-of-ways-to-earn-points/）bag_dp
 2189（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）bag_dp
 254（https://leetcode.cn/problems/factor-combinations/）bag_dp|mul
+377（https://leetcode.cn/problems/factor-combinations/）infinite|no_order|bag_dp
 1449（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）bag_dp
 1049（https://leetcode.cn/problems/last-stone-weight-ii/）bag_dp
 2742（https://leetcode.cn/problems/painting-the-walls/description/）bag_dp
@@ -257,6 +258,7 @@ class Solution:
         url: https://leetcode.cn/problems/painting-the-walls/description/
         tag: bag_dp
         """
+
         @lru_cache(None)
         def dfs(i, pre):
             if pre >= n - i:
@@ -771,6 +773,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1541
         tag: brute_force|matrix_dp|fill_table
         """
+
         def idx(i1, i2, i3, i4):
             return i1 * (b + 1) * (c + 1) * (d + 1) + i2 * (c + 1) * (d + 1) + i3 * (d + 1) + i4
 
@@ -796,7 +799,7 @@ class Solution:
                             if p:
                                 pre = ac.max(pre, dp[idx(i, j, k, p - 1)])
                             dp[idx(i, j, k, p)] = ac.max(dp[idx(i, j, k, p)],
-                                                                pre + nums[i + 2 * j + 3 * k + 4 * p])
+                                                         pre + nums[i + 2 * j + 3 * k + 4 * p])
                         if i + 2 * j + 3 * k + 4 * p == n - 1:
                             ans = ac.max(ans, dp[idx(i, j, k, p)])
         ac.st(ans)
@@ -873,6 +876,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1833
         tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp|classical
         """
+
         def check(st):
             hh, mm = st.split(":")
             return int(hh) * 60 + int(mm)
@@ -1458,3 +1462,20 @@ class Solution:
             ans.append(str(i) * dp[n][i])
         ac.st("".join(ans))
         return
+
+    @staticmethod
+    def lc_377(nums: List[int], target: int) -> int:
+        """
+        url: https://leetcode.cn/problems/factor-combinations/
+        tag: infinite|no_order|bag_dp
+        """
+        dp = [0] * (target + 1)
+        dp[0] = 1
+        nums.sort()
+        for i in range(1, target + 1):
+            for num in nums:
+                if i >= num:
+                    dp[i] += dp[i - num]
+                else:
+                    break
+        return dp[-1]

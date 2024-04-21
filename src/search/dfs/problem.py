@@ -65,6 +65,7 @@ ABC322D（https://atcoder.jp/contests/abc322/tasks/abc322_d）dfs|back_trace|bru
 ABC284E（https://atcoder.jp/contests/abc284/tasks/abc284_e）dfs|back_trace|classical
 ABC268D（https://atcoder.jp/contests/abc268/tasks/abc268_d）dfs|back_trace|prune|classical
 ABC244G（https://atcoder.jp/contests/abc244/tasks/abc244_g）construction|euler_order|brain_teaser|classical
+ABC240F（https://atcoder.jp/contests/abc240/tasks/abc240_e）dfs_order|leaf|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1225,4 +1226,48 @@ class Solution:
         assert t == s
         ac.st(len(euler_order))
         ac.lst([x + 1 for x in euler_order])
+        return
+
+    @staticmethod
+    def abc_240e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc240/tasks/abc240_e
+        tag: dfs_order|leaf|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        start = [0] * n
+        end = [0] * n
+        order = 0
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                cnt = 0
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append((j, i))
+                        cnt += 1
+                if not cnt:
+                    start[i] = order
+                    end[i] = order
+                    order += 1
+                    stack.pop()
+            else:
+                i = ~i
+                s = inf
+                e = -inf
+                for j in dct[i]:
+                    if j != fa:
+                        s = min(s, start[j])
+                        e = max(e, end[j])
+                start[i] = s
+                end[i] = e
+        for i in range(n):
+            ac.lst([start[i] + 1, end[i] + 1])
         return

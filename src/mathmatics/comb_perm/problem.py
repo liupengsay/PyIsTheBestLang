@@ -63,6 +63,7 @@ ABC127E（https://atcoder.jp/contests/abc127/tasks/abc127_e）contribution_metho
 ABC132D（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|classical|equation
 ABC266G（https://atcoder.jp/contests/abc266/tasks/abc266_g）comb|brain_teaser|inclusion_exclusion|classical
 ABC262E（https://atcoder.jp/contests/abc262/tasks/abc262_e）brain_teaser|comb|classical
+ABC240G（https://atcoder.jp/contests/abc240/tasks/abc240_g）math|comb|counter|classical
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1007,5 +1008,34 @@ class Solution:
             if x <= k <= n - odd + x:
                 ans += cb.comb(odd, x) * cb.comb(n - odd, k - x)
                 ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_240g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc240/tasks/abc240_g
+        tag: math|comb|counter|classical
+        """
+        n, x, y, z = ac.read_list_ints()
+        mod = 998244353
+        x = abs(x)
+        y = abs(y)
+        z = abs(z)
+        m = n - x - y - z
+        if m < 0 or m % 2:
+            ac.st(0)
+            return
+
+        def check(step, target):
+            if step >= target and (step - target) % 2 == 0:
+                return cb.comb(step, (step + target) // 2)
+            return 0
+
+        cb = Combinatorics(n, mod)
+        ans = 0
+        for a in range(x, n - y - z + 1):
+            ans += cb.comb(n, a) * check(a, x) * check(n - a, z + y) * check(n - a, abs(z - y))
+            ans %= mod
         ac.st(ans)
         return
