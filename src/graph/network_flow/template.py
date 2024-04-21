@@ -17,7 +17,7 @@ class DinicMaxflowMinCut:
         self.edge_id = 2
         self.cur = [0] * (self.n + 1)
 
-    def add_single_edge(self, u, v, cap):
+    def _add_single_edge(self, u, v, cap):
         self.edge_capacity.append(cap)
         self.edge_to.append(v)
         self.edge_next.append(self.point_head[u])
@@ -28,11 +28,11 @@ class DinicMaxflowMinCut:
     def add_edge(self, u, v, cap):
         # assert 1 <= u <= self.n
         # assert 1 <= v <= self.n
-        self.add_single_edge(u, v, cap)
-        self.add_single_edge(v, u, 0)
+        self._add_single_edge(u, v, cap)
+        self._add_single_edge(v, u, 0)
         return
 
-    def bfs(self, s, t):
+    def _bfs(self, s, t):
         for i in range(1, self.n + 1):
             self.depth[i] = -1
         self.depth[s] = 0
@@ -48,7 +48,7 @@ class DinicMaxflowMinCut:
                 i = self.edge_next[i]
         return self.depth[t] != -1
 
-    def dfs(self, s, t, ff=inf):
+    def _dfs(self, s, t, ff=inf):
         stack = [(s, ff, 0)]
         ind = 1
         max_flow = [0]
@@ -92,13 +92,13 @@ class DinicMaxflowMinCut:
 
     def max_flow_min_cut(self, s, t):
         total_flow = 0
-        while self.bfs(s, t):
+        while self._bfs(s, t):
             for i in range(1, self.n + 1):
                 self.cur[i] = self.point_head[i]
-            flow = self.dfs(s, t)
+            flow = self._dfs(s, t)
             while flow > 0:
                 total_flow += flow
-                flow = self.dfs(s, t)
+                flow = self._dfs(s, t)
         return total_flow
 
 
@@ -119,7 +119,7 @@ class DinicMaxflowMinCost:
         self.pre_edge = [0] * (self.n + 1)
         self.pre_point = [0] * (self.n + 1)
 
-    def add_single_edge(self, u, v, cap, c):
+    def _add_single_edge(self, u, v, cap, c):
         self.edge_capacity.append(cap)
         self.edge_cost.append(c)
         self.edge_to.append(v)
@@ -131,11 +131,11 @@ class DinicMaxflowMinCost:
     def add_edge(self, u, v, cap, c):
         # assert 1 <= u <= self.n
         # assert 1 <= v <= self.n
-        self.add_single_edge(u, v, cap, c)
-        self.add_single_edge(v, u, 0, -c)
+        self._add_single_edge(u, v, cap, c)
+        self._add_single_edge(v, u, 0, -c)
         return
 
-    def spfa(self, s):
+    def _spfa(self, s):
         self.h[s] = 0
         q = deque([s])
         self.vis[s] = 1
@@ -153,7 +153,7 @@ class DinicMaxflowMinCost:
                 i = self.edge_next[i]
         return
 
-    def dijkstra(self, s, t):
+    def _dijkstra(self, s, t):
         for i in range(1, self.n + 1):
             self.dis[i] = inf
             self.vis[i] = 0
@@ -178,8 +178,8 @@ class DinicMaxflowMinCost:
         return self.dis[t] < inf
 
     def max_flow_min_cost(self, s, t):
-        self.spfa(s)
-        while self.dijkstra(s, t):
+        self._spfa(s)
+        while self._dijkstra(s, t):
             for i in range(1, self.n + 1):
                 self.h[i] += self.dis[i]
 

@@ -1,6 +1,6 @@
 """
 Algorithm：number_theory|euler_sieve|linear_sieve|prime|euler_phi|factorization|prime_factorization|base
-Description：digital_dp|n-base|prime_factorization|factorization|linear_sieve|euler_phi|pollard_rho|meissel_lehmer|range_prime_count
+Description：digital_dp|n_base|prime_factorization|factorization|linear_sieve|euler_phi|pollard_rho|meissel_lehmer|range_prime_count
 
 ====================================LeetCode====================================
 264（https://leetcode.cn/problems/ugly-number-ii/）pointer|dp|ugly_number|classical
@@ -24,7 +24,7 @@ Description：digital_dp|n-base|prime_factorization|factorization|linear_sieve|e
 P1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
 P1748（https://www.luogu.com.cn/problem/P1748）heapq|implemention|pointer|inclusion_exclusion|binary_search
 P2723（https://www.luogu.com.cn/problem/P2723）ugly_number
-P1952（https://www.luogu.com.cn/problem/P1952）n-base
+P1952（https://www.luogu.com.cn/problem/P1952）n_base
 P1555（https://www.luogu.com.cn/problem/P1555）2-base|3-base
 P1465（https://www.luogu.com.cn/problem/P1465）int_to_roman
 P1112（https://www.luogu.com.cn/problem/P1112）brute_force
@@ -67,18 +67,18 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
 1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
 1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
-1360H（https://codeforces.com/contest/1360/problem/H）n-base
+1360H（https://codeforces.com/contest/1360/problem/H）n_base
 1475G（https://codeforces.com/contest/1475/problem/G）linear_dp|brute_force|euler_series|reverse_thinking|brute_force
 1512G（https://codeforces.com/contest/1512/problem/G）euler_sieve|number_theory|all_factor_sum|multiplicative_function|classical
 1593D2（https://codeforces.com/contest/1593/problem/D2）brute_force|number_theory|classical
 1822G2（https://codeforces.com/contest/1822/problem/G2）eratosthenes_sieve|get_all_factor_square
-1811E（https://codeforces.com/contest/1811/problem/E）n-base
+1811E（https://codeforces.com/contest/1811/problem/E）n_base
 1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
-ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n-base|classical
+ABC337E（https://atcoder.jp/contests/abc337/tasks/abc337_e）n_base|classical
 ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusion_exclusion
 ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointer
 ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
@@ -88,6 +88,8 @@ ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|nu
 ABC253D（https://atcoder.jp/contests/abc253/tasks/abc253_d）inclusion_exclusion|lcm|math|corner_case|classical
 ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counter|contribution_method|math
 ABC245D（https://atcoder.jp/contests/abc245/tasks/abc245_d）implemention|math|data_range|classical
+ABC242F（https://atcoder.jp/contests/abc242/tasks/abc242_f）inclusion_exclusion|counter|brute_force|classical
+ABC242E（https://atcoder.jp/contests/abc242/tasks/abc242_e）n_base|math
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -114,6 +116,7 @@ from operator import mul
 from sys import stdout
 from typing import List
 
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.gcd_like.template import GcdLike
 from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
 from src.utils.fast_io import FastIO
@@ -509,7 +512,7 @@ class Solution:
     def lg_p5248(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5248
-        tag: n-base|classical
+        tag: n_base|classical
         """
         n, fn = ac.read_list_ints()
         lst = []
@@ -644,7 +647,7 @@ class Solution:
     def ac_4484(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4487/
-        tag: n-base
+        tag: n_base
         """
 
         for _ in range(ac.read_int()):
@@ -816,7 +819,7 @@ class Solution:
     def abc_337e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc337/tasks/abc337_e
-        tag: n-base|classical
+        tag: n_base|classical
         """
         n = ac.read_int()
         m = n.bit_length() if n.bit_count() > 1 else n.bit_length() - 1
@@ -1134,7 +1137,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def abc_245d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc245/tasks/abc245_d
         tag: implemention|math|data_range|classical
@@ -1151,4 +1154,64 @@ class Solution:
                     pre += a[ii] * b[jj]
             b[i] = (c[n + i] - pre) // a[n]
         ac.lst(b)
+        return
+
+    @staticmethod
+    def abc_242f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc242/tasks/abc242_f
+        tag: inclusion_exclusion|counter|brute_force|classical
+        """
+        m, n, b, w = ac.read_list_ints()
+        mod = 998244353
+        cb = Combinatorics(m * n + 10, mod)
+
+        @lru_cache(None)
+        def dfs(row, col, x):
+            if x > row * col:
+                return 0
+            tot = cb.comb(row * col, x)
+            for i in range(1, row + 1):
+                for j in range(1, col + 1):
+                    if i == row and j == col:
+                        continue
+                    tot -= cb.comb(row, i) * cb.comb(col, j) * dfs(i, j, x)
+            return tot % mod
+
+        ans = 0
+        for ii in range(1, m + 1):
+            for jj in range(1, n + 1):
+                if (m - ii) * (n - jj) >= w:
+                    ans += cb.comb(m, ii) * cb.comb(n, jj) * dfs(ii, jj, b) * cb.comb((m - ii) * (n - jj), w)
+                    ans %= mod
+                else:
+                    break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_242e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc242/tasks/abc242_e
+        tag: n_base|math
+        """
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            if n % 2:
+                t = s[:n // 2 + 1]
+            else:
+                t = s[:n // 2]
+            ans = 0
+            for w in t:
+                ans = ans * 26 + ord(w) - ord("A")
+                ans %= mod
+            ans += 1
+            if n % 2 and t + t[:-1][::-1] > s:
+                ans -= 1
+            elif n % 2 == 0 and t + t[::-1] > s:
+                ans -= 1
+            ans %= mod
+            ac.st(ans)
         return

@@ -26,6 +26,7 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 ===================================AtCoder===================================
 ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
 ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|brute_force|circular_section
+ABC241E（https://atcoder.jp/contests/abc241/tasks/abc241_e）circular_section|brute_force_valid|classical
 
 
 """
@@ -273,4 +274,42 @@ class Solution:
         pre = [s]
         dfs(s[:])
         ac.st("Yes" if ans[0] else "No")
+        return
+
+    @staticmethod
+    def abc_241e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc241/tasks/abc241_e
+        tag: circular_section|brute_force_valid|classical
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        lst = [0]
+        dct = dict()
+        x = 0
+        index = [-1]
+        while True:
+            x += nums[x % n]
+            if x % n in dct:
+                break
+            lst.append(x)
+            index.append(x % n)
+            dct[x % n] = len(lst) - 1
+
+        tm = k
+        length = len(lst)
+        # the first pos of circle section
+        ind = dct[x % n]
+        # current lst is enough
+        if tm < length:
+            ac.st(lst[tm])
+            return
+        tm = k - 1
+        # compute by circle section
+        circle = length - ind
+        tm -= length - 1
+        j = tm % circle
+        circle_sum = sum(nums[x % n] for x in lst[ind:])
+        res = lst[-1] + nums[lst[-1] % n] + sum(nums[x % n] for x in lst[ind:ind + j]) + circle_sum * (tm // circle)
+        ac.st(res)
         return

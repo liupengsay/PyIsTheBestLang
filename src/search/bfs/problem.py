@@ -119,6 +119,7 @@ ABC277C（https://atcoder.jp/contests/abc277/tasks/abc277_c）bfs
 ABC276E（https://atcoder.jp/contests/abc276/tasks/abc276_e）bfs
 ABC244F（https://atcoder.jp/contests/abc244/tasks/abc244_f）bfs|bit_operation|brain_teaser
 ABC246E（https://atcoder.jp/contests/abc246/tasks/abc246_e）bfs|union_find|brain_teaser|prune|classical）
+ABC241F（https://atcoder.jp/contests/abc241/tasks/abc241_f）bfs|implemention
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2494,4 +2495,78 @@ class Solution:
                         nex.append((s ^ (1 << j), j))
             stack = nex
         ac.st(sum(min(dis[i][j] for i in range(n)) for j in range(1 << n)))
+        return
+
+    @staticmethod
+    def abc_241f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc241/tasks/abc241_f
+        tag: bfs|implemention
+        """
+        m, n, k = ac.read_list_ints()
+        sx, sy = ac.read_list_ints()
+        gx, gy = ac.read_list_ints()
+        points = [ac.read_list_ints() for _ in range(k)]
+        dct_x = defaultdict(list)
+        dct_y = defaultdict(list)
+        obs = {(x, y) for x, y in points}
+        for x, y in points:
+            for a, b in [(0, 0)]:
+                if 1 <= x + a <= m and 1 <= y + b <= n:
+                    dct_x[x + a].append(y + b)
+                    dct_y[y + b].append(x + a)
+
+        for x in dct_x:
+            dct_x[x] = sorted(set(dct_x[x]))
+        for y in dct_y:
+            dct_y[y] = sorted(set(dct_y[y]))
+
+        dis = defaultdict(lambda: inf)
+        dis[(sx, sy)] = 0
+        stack = [(0, sx, sy)]
+
+        while stack:
+            d, i, j = heappop(stack)
+            if dis[(i, j)] < d:
+                continue
+            ind = bisect.bisect_left(dct_y[j], i) - 1
+            if 0 <= ind < len(dct_y[j]):
+                ii = dct_y[j][ind] + 1
+
+                if (ii, j) not in obs:
+                    dj = d + 1
+                    if dj < dis[(ii, j)]:
+                        dis[(ii, j)] = dj
+                        heappush(stack, (dj, ii, j))
+
+            ind = bisect.bisect_right(dct_y[j], i)
+            if 0 <= ind < len(dct_y[j]):
+                ii = dct_y[j][ind] - 1
+
+                if (ii, j) not in obs:
+                    dj = d + 1
+                    if dj < dis[(ii, j)]:
+                        dis[(ii, j)] = dj
+                        heappush(stack, (dj, ii, j))
+
+            ind = bisect.bisect_left(dct_x[i], j) - 1
+            if 0 <= ind < len(dct_x[i]):
+                jj = dct_x[i][ind] + 1
+                if (i, jj) not in obs:
+                    dj = d + 1
+                    if dj < dis[(i, jj)]:
+                        dis[(i, jj)] = dj
+                        heappush(stack, (dj, i, jj))
+
+            ind = bisect.bisect_right(dct_x[i], j)
+            if 0 <= ind < len(dct_x[i]):
+                jj = dct_x[i][ind] - 1
+                if (i, jj) not in obs:
+                    dj = d + 1
+                    if dj < dis[(i, jj)]:
+                        dis[(i, jj)] = dj
+                        heappush(stack, (dj, i, jj))
+
+        ans = dis[(gx, gy)]
+        ac.st(ans if ans < inf else -1)
         return

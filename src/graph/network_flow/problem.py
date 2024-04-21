@@ -26,7 +26,7 @@ P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
 
 ===================================AtCoder===================================
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
-
+ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greedy|implemention|classical
 
 """
 import math
@@ -398,4 +398,51 @@ class Solution:
         ac.st(len(ans))
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def abc_241g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc241/tasks/abc241_g
+        tag: network_flow|brain_teaser|brute_force|greedy|implemention|classical
+        """
+        n, m = ac.read_list_ints()
+        lose = [0] * (n + 1)
+        visit = [[0] * (n + 1) for _ in range(n + 1)]
+        for _ in range(m):
+            ww, ll = ac.read_list_ints()
+            lose[ll] += 1
+            visit[ww][ll] = 1
+            visit[ll][ww] = 0
+
+        ans = []
+        e = n * (n - 1) // 2
+        for i in range(1, n + 1):
+            ceil = n - 1 - lose[i]
+            if ceil == 0:
+                continue
+            s = e + n + 1
+            t = e + n + 2
+            ind = 0
+            flow = DinicMaxflowMinCut(e + n + 2)
+            for a in range(1, n + 1):
+                for b in range(a + 1, n + 1):
+                    ind += 1
+                    flow.add_edge(s, ind, 1)
+                    if visit[a][b]:
+                        flow.add_edge(ind, a + e, 1)
+                        continue
+                    if visit[b][a]:
+                        flow.add_edge(ind, b + e, 1)
+                        continue
+                    flow.add_edge(ind, a + e, 1)
+                    flow.add_edge(ind, b + e, 1)
+                if a != i:
+                    flow.add_edge(a + e, t, min(ceil - 1, n - 1 - lose[a]))
+                else:
+                    flow.add_edge(a + e, t, ceil)
+            assert ind == e
+            if flow.max_flow_min_cut(s, t) == e:
+                ans.append(i)
+        ac.lst(ans)
         return

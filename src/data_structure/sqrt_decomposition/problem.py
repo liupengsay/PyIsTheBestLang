@@ -28,6 +28,7 @@ P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
 ABC335F（https://atcoder.jp/contests/abc335/tasks/abc335_f）sqrt_decomposition|linear_dp|refresh_table|fill_table|classical
 ABC293G（https://atcoder.jp/contests/abc293/tasks/abc293_g）sqrt_decomposition|brain_teaser|classical
+ABC242G（https://atcoder.jp/contests/abc242/tasks/abc242_g）sqrt_decomposition|classical
 
 """
 import bisect
@@ -849,6 +850,59 @@ class Solution:
             cnt[num] += xx
             if cnt[num] >= 3:
                 cur[0] += compute(cnt[num])
+            return
+
+        ans = [0] * q
+        x = y = 0
+        cnt[nums[0]] = 1
+        cur = [0]
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            for a, b, j in queries[i]:
+                while y > b:
+                    add(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    add(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    add(nums[x], 1)
+                while x < a:
+                    add(nums[x], -1)
+                    x += 1
+                ans[j] = cur[0]
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def abc_242g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc242/tasks/abc242_g
+        tag: sqrt_decomposition|classical
+        """
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        cnt = [0] * (n + 1)
+        q = ac.read_int()
+
+        size = int(n ** 0.5) + 1
+        queries = [[] for _ in range(size)]
+        for i in range(q):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append((a, b, i))
+
+        def add(num, xx):
+            if cnt[num] >= 2:
+                cur[0] -= cnt[num] // 2
+            cnt[num] += xx
+            if cnt[num] >= 2:
+                cur[0] += cnt[num] // 2
             return
 
         ans = [0] * q

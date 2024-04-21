@@ -66,7 +66,7 @@ class Solution:
     def cf_1144e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1144/problem/E
-        tag: big_number|minus|mul|divide|n-base
+        tag: big_number|minus|mul|divide|n_base
         """
 
         n = ac.read_int()

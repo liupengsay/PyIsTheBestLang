@@ -141,7 +141,7 @@ ABC267D（https://atcoder.jp/contests/abc267/tasks/abc267_d）linear_dp
 ABC248F（https://atcoder.jp/contests/abc248/tasks/abc248_f）connected_graph|linear_dp|classical
 ABC244E（https://atcoder.jp/contests/abc244/tasks/abc244_e）implemention|linear_dp
 ABC243G（https://atcoder.jp/contests/abc243/tasks/abc243_g）prefix_sum|preprocess|linear_dp|brain_teaser|high_precision|sqrt_sqrt_n|math
-
+ABC350E（https://atcoder.jp/contests/abc350/tasks/abc350_e）linear_dp|implemention|prob_dp|expectation_dp|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -1424,4 +1424,24 @@ class Solution:
             fx = sqrt_sqrt(x)
             ans = sum(dp[i] * (sx - i * i + 1) for i in range(1, fx + 1))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_350e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc350/tasks/abc350_e
+        tag: linear_dp|implemention|prob_dp|expectation_dp|classical
+        """
+
+        n, a, x, y = ac.read_list_ints()
+
+        @lru_cache(None)
+        def dfs(num):
+            if num == 0:
+                return 0
+            res = dfs(num // a) + x
+            res = min(res, (sum(dfs(num // aa) for aa in range(2, 7)) + 6 * y) / 5)
+            return res
+
+        ac.st(dfs(n))
         return

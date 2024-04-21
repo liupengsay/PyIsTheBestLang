@@ -29,6 +29,9 @@ P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 93（https://www.acwing.com/problem/content/95/）recursion|comb|iteration
 118（https://www.acwing.com/problem/content/120/）recursion
 
+===================================AtCoder===================================
+ABC350F（https://atcoder.jp/contests/abc350/tasks/abc350_f）implemention|divide_and_conquer|recursion|classical
+
 """
 from functools import lru_cache
 from itertools import combinations
@@ -400,4 +403,58 @@ class Solution:
             for ls in dp[x - 1]:
                 ac.st("".join(ls))
             ac.st("-")
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc350/tasks/abc350_f
+        tag: implemention|divide_and_conquer|recursion|classical
+        """
+        s = ac.read_str()
+        n = len(s)
+        right = [-1] * n
+        stack = []
+        for i in range(n):
+            if s[i] == "(":
+                stack.append(i)
+            elif s[i] == ")":
+                right[stack.pop()] = i
+
+        pre = ac.accumulate([int(w not in "()") for w in s])
+        ans = [""] * pre[-1]
+        dct = dict()
+        for i in range(26):
+            dct[chr(ord("a") + i)] = chr(ord("A") + i)
+            dct[chr(ord("A") + i)] = chr(ord("a") + i)
+        stack = [(0, n - 1, 0, pre[-1] - 1, 0)]
+        while stack:
+            a, b, ll, rr, state = stack.pop()
+            if right[a] == -1:
+                if not state:
+                    ans[ll] = s[a]
+                    ll += 1
+                else:
+                    ans[rr] = dct[s[a]]
+                    rr -= 1
+                if a + 1 <= b and pre[b + 1] - pre[a + 1]:
+                    stack.append((a + 1, b, ll, rr, state))
+            else:
+                bb = right[a]
+                if a + 1 <= bb - 1:
+                    cnt = pre[bb] - pre[a + 1]
+                    if cnt:
+                        if not state:
+                            stack.append((a + 1, bb - 1, ll, ll + cnt - 1, state ^ 1))
+                        else:
+                            stack.append((a + 1, bb - 1, rr - cnt + 1, rr, state ^ 1))
+
+                if bb + 1 <= b:
+                    cnt = pre[b + 1] - pre[bb + 1]
+                    if cnt:
+                        if not state:
+                            stack.append((bb + 1, b, rr - cnt + 1, rr, state))
+                        else:
+                            stack.append((bb + 1, b, ll, ll + cnt - 1, state))
+        ac.st("".join(ans))
         return

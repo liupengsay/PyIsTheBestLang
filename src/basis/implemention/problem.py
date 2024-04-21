@@ -646,3 +646,34 @@ class Solution:
             ans[dct[nums1[i]]] = i
         ac.lst([x + 1 for x in ans])
         return
+
+    @staticmethod
+    def abc_242d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc242/tasks/abc242_d
+        tag: implemention|data_range|classical
+        """
+        s = ac.read_str()
+        dct = {"A": "BC", "B": "CA", "C": "AB"}
+        for _ in range(ac.read_int()):
+            t, k = ac.read_list_ints()
+            lst = []
+            while t and k > 1:
+                lst.append(k % 2)
+                k = (k + 1) // 2
+                t -= 1
+            if t == 0:
+                root = s[k - 1]
+            else:
+                t %= 3
+                if s[0] == "A":
+                    root = "ABC"[t]
+                elif s[0] == "B":
+                    root = "BCA"[t]
+                else:
+                    root = "CAB"[t]
+            lst.reverse()
+            for w in lst:
+                root = dct[root][1 - w]
+            ac.st(root)
+        return

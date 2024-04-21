@@ -374,7 +374,7 @@ class Solution:
     def arc_060b(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc044/tasks/arc060_b
-        tag: n-base|classification_discussion|brute_force|factorization|math
+        tag: n_base|classification_discussion|brute_force|factorization|math
 
         """
 

@@ -112,6 +112,8 @@ ABC293D（https://atcoder.jp/contests/abc293/tasks/abc293_d）union_find
 ABC280F（https://atcoder.jp/contests/abc270/tasks/abc270_f）union_find|build_graph|brute_force|classical
 ABC264E（https://atcoder.jp/contests/abc264/tasks/abc264_e）union_right|reverse_order|classical
 ABC259D（https://atcoder.jp/contests/abc259/tasks/abc259_d）geometry|union_find|circle_location|classical
+ABC350G（https://atcoder.jp/contests/abc350/tasks/abc350_g）implemention|union_find|data_range|heuristic_merge|brain_teaser|classical
+ABC350D（https://atcoder.jp/contests/abc350/tasks/abc350_d）union_find|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2348,4 +2350,72 @@ class Solution:
                 ac.st("Yes")
                 return
         ac.st("No")
+        return
+
+    @staticmethod
+    def abc_350g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc350/tasks/abc350_g
+        tag: implemention|union_find|data_range|heuristic_merge|brain_teaser|classical
+        """
+        n, q = ac.read_list_ints()
+        uf = UnionFind(n)
+        mod = 998244353
+        dct = [set() for _ in range(n)]
+        pre = dict()
+        ans = 0
+        for _ in range(q):
+            a, b, c = ac.read_list_ints()
+            op, u, v = 1 + ((a * (1 + ans)) % mod) % 2, 1 + ((b * (1 + ans)) % mod) % n, 1 + ((c * (1 + ans)) % mod) % n
+            u -= 1
+            v -= 1
+            op -= 1
+            if u > v:
+                u, v = v, u
+            if op == 0:
+                dct[u].add(v)
+                dct[v].add(u)
+                uf.union(u, v)
+            else:
+                ans = 0
+                if uf.is_connected(u, v):
+                    if (u, v) in pre:
+                        ans = pre[(u, v)]
+                    else:
+                        if len(dct[u]) < len(dct[v]):
+                            for w in dct[u]:
+                                if w in dct[v]:
+                                    ans = w + 1
+                                    break
+                        else:
+                            for w in dct[v]:
+                                if w in dct[u]:
+                                    ans = w + 1
+                                    break
+                        pre[(u, v)] = ans
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_350d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc350/tasks/abc350_d
+        tag: union_find|classical
+        """
+
+        n, m = ac.read_list_ints()
+        uf = UnionFind(n)
+        edges = []
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            uf.union(i, j)
+            edges.append((i, j))
+        group = defaultdict(int)
+        for i, j in edges:
+            group[uf.find(i)] += 1
+        size = uf.get_root_size()
+        ans = 0
+        for g in size:
+            ans += size[g] * (size[g] - 1) // 2 - group[g]
+        ac.st(ans)
         return
