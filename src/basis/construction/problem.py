@@ -76,12 +76,15 @@ ABC345F（https://atcoder.jp/contests/abc345/tasks/abc345_f）construction|union
 ABC299E（https://atcoder.jp/contests/abc299/tasks/abc299_e）construction|bfs
 ABC251F（https://atcoder.jp/contests/abc251/tasks/abc251_f）construction|dfs|bfs|classical
 ABC251D（https://atcoder.jp/contests/abc251/tasks/abc251_d）construction|brute_force|brain_teaser
+ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|construction|greedy|brain_teaser|union_find
 
 """
 import math
 from collections import deque, Counter, defaultdict
+from heapq import heappush, heappop
 from typing import List
 
+from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO, inf
 
@@ -539,7 +542,7 @@ class Solution:
             dct[x].append(y)
             dct[y].append(x)
 
-        ind = [0]*n
+        ind = [0] * n
         ans = []
         stack = [0]
         visit = [0] * n
@@ -588,4 +591,87 @@ class Solution:
         ans.append(1000000)
         ac.st(len(ans))
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_239f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc239/tasks/abc239_f
+        tag: implemention|construction|greedy|brain_teaser|union_find
+        """
+        n, m = ac.read_list_ints()
+        degree = ac.read_list_ints()
+        uf = UnionFind(n)
+        pre = degree[:]
+        edges = []
+        for _ in range(m):
+            a, b = ac.read_list_ints_minus_one()
+            if not uf.union(a, b):
+                ac.st(-1)
+                return
+            degree[a] -= 1
+            degree[b] -= 1
+            edges.append((a, b))
+        if min(degree) < 0:
+            ac.st(-1)
+            return
+        group = uf.get_root_part()
+        group_degree = []
+        group_wait = defaultdict(list)
+        for g in group:
+            dd = sum(degree[x] for x in group[g])
+            if dd:
+                heappush(group_degree, (-dd, g))
+                for x in group[g]:
+                    if degree[x]:
+                        heappush(group_wait[g], (-degree[x], x))
+        ans = []
+        while group_degree:
+            if len(group_degree) == 1:
+                ac.st(-1)
+                return
+            d1, g1 = heappop(group_degree)
+            d2, g2 = heappop(group_degree)
+            d1 = -d1
+            d2 = -d2
+            d1 -= 1
+            d2 -= 1
+            dd1, xx1 = heappop(group_wait[g1])
+            dd2, xx2 = heappop(group_wait[g2])
+            dd1 = -dd1 - 1
+            dd2 = -dd2 - 1
+            ans.append([xx1 + 1, xx2 + 1])
+            if dd1:
+                heappush(group_wait[g1], (-dd1, xx1))
+            if dd2:
+                heappush(group_wait[g2], (-dd2, xx2))
+
+            d = d1 + d2
+            if len(group_wait[g1]) > len(group_wait[g2]):
+                g = g1
+                while group_wait[g2]:
+                    heappush(group_wait[g1], heappop(group_wait[g2]))
+            else:
+                g = g2
+                while group_wait[g1]:
+                    heappush(group_wait[g2], heappop(group_wait[g1]))
+            if d:
+                heappush(group_degree, (-d, g))
+        if len(ans) == n - m - 1:
+            uf = UnionFind(n)
+            for a, b in edges:
+                pre[a] -= 1
+                pre[b] -= 1
+                uf.union(a, b)
+            for a, b in ans:
+                pre[a - 1] -= 1
+                pre[b - 1] -= 1
+                uf.union(a - 1, b - 1)
+            if uf.part != 1 or any(x != 0 for x in pre):
+                ac.st(-1)
+                return
+            for a in ans:
+                ac.lst(a)
+        else:
+            ac.st(-1)
         return

@@ -27,6 +27,7 @@ P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
 ===================================AtCoder===================================
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
 ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greedy|implemention|classical
+ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_g）specific_plan|network_flow|max_flow|min_cut|greedy|implemention
 
 """
 import math
@@ -444,5 +445,33 @@ class Solution:
             assert ind == e
             if flow.max_flow_min_cut(s, t) == e:
                 ans.append(i)
+        ac.lst(ans)
+        return
+
+
+
+    @staticmethod
+    def abc_239e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc239/tasks/abc239_g
+        tag: specific_plan|network_flow|max_flow|min_cut|greedy|implemention
+        """
+        n, m = ac.read_list_ints()
+        s = 1
+        t = n
+        edges = [ac.read_list_ints() for _ in range(m)]
+        c = ac.read_list_ints()
+        c[0] = c[-1] = inf
+
+        flow = DinicMaxflowMinCut(n * 2)
+        for i in range(1, n + 1):
+            flow.add_edge(i * 2 - 1, i * 2, c[i - 1])
+        for x, y in edges:
+            flow.add_edge(x * 2, y * 2 - 1, inf)
+            flow.add_edge(y * 2, x * 2 - 1, inf)
+        min_cut = flow.max_flow_min_cut(2 * s, 2 * t - 1)
+        ac.st(min_cut)
+        ans = [i for i in range(2, n) if flow.depth[i * 2 - 1] != -1 and flow.depth[i * 2] == -1]
+        ac.st(len(ans))
         ac.lst(ans)
         return

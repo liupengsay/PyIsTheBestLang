@@ -173,6 +173,7 @@ ABC249D（https://atcoder.jp/contests/abc249/tasks/abc249_d）euler_series|nlogn
 ABC246F（https://atcoder.jp/contests/abc246/tasks/abc246_f）brute_force|inclusion_exclusion|math|counter|bit_operation
 ABC247F（https://atcoder.jp/contests/abc247/tasks/abc247_f）brute_force|guess_table|union_find|dp|brain_teaser
 ABC247E（https://atcoder.jp/contests/abc247/tasks/abc247_e）inclusion_exclusion|two_pointer|counter|brain_teaser|classical
+ABC238C（https://atcoder.jp/contests/abc238/tasks/abc238_c）digit_num|counter|brute_force|classical
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1762,5 +1763,26 @@ class Solution:
                 pre_y = i
             if pre_x != -1 and pre_y != -1:
                 ans += min(pre_x, pre_y) - last + 1
+        ac.st(ans)
+        return
+
+
+    @staticmethod
+    def abc_238c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc238/tasks/abc238_c
+        tag: digit_num|counter|brute_force|classical
+        """
+        n = ac.read_int()
+        m = len(str(n))
+        mod = 998244353
+        ans = 0
+        for x in range(1, m + 1):
+            cnt = min(10 ** x, n) - 10 ** (x - 1)
+            if n < 10 ** x:
+                cnt += 1
+            ans += (1 + cnt) * cnt // 2
+            ans %= mod
+        ans %= mod
         ac.st(ans)
         return

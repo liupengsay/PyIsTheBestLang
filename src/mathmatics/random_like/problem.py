@@ -9,6 +9,7 @@ Description：
 
 ====================================AtCoder====================================
 ABC272G（https://atcoder.jp/contests/abc272/tasks/abc272_g）random_guess|brute_force|num_factor|classical
+ABC238G（https://atcoder.jp/contests/abc238/tasks/abc238_g）random_hash|prime_hash|classical|sqrt_decomposition|offline_query|classical
 
 =====================================LuoGu======================================
 
@@ -20,6 +21,7 @@ from collections import Counter
 
 from src.data_structure.segment_tree.template import RangeSetRangeSumMinMax
 from src.mathmatics.number_theory.template import NumFactor
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 
 
@@ -85,4 +87,44 @@ class Solution:
                         ac.st(m)
                         return
         ac.st(-1)
+        return
+
+    @staticmethod
+    def abc_238g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc238/tasks/abc238_g
+        tag: random_hash|prime_hash|classical|sqrt_decomposition|offline_query|classical
+        """
+        ceil = 10 ** 6
+        pf = PrimeFactor(ceil)
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        prime_hash = [(0, 0, 0) for _ in range(ceil + 1)]
+        for i in range(ceil + 1):
+            if pf.is_prime[i]:
+                h1 = random.getrandbits(64)
+                h2 = random.getrandbits(64)
+                h3 = h1 ^ h2
+                prime_hash[i] = (h1, h2, h3)
+
+        pre_xor = [0] * (n + 1)
+        prime_cnt = [0] * (ceil + 1)
+        for i, num in enumerate(nums):
+            cur = 0
+            while num > 1:
+                p = pf.min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                for _ in range(cnt % 3):
+                    cur ^= prime_hash[p][prime_cnt[p] % 3]
+                    prime_cnt[p] += 1
+            pre_xor[i + 1] = pre_xor[i] ^ cur
+        for _ in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            if pre_xor[ll] == pre_xor[rr + 1]:
+                ac.yes()
+            else:
+                ac.no()
         return

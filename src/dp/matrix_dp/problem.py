@@ -138,6 +138,7 @@ ABC264F（https://atcoder.jp/contests/abc264/tasks/abc264_f）matrix_dp|tle
 ABC261D（https://atcoder.jp/contests/abc261/tasks/abc261_d）matrix_dp
 ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix_dp|classical
 ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
+ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix_dp|implemention|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2846,3 +2847,35 @@ class Solution:
             if dp[i] <= hours * s:
                 return i
         return -1
+
+    @staticmethod
+    def abc_238f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc238/tasks/abc238_f
+        tag: sort|greedy|matrix_dp|implemention|classical
+        """
+        n, k = ac.read_list_ints()
+        p = ac.read_list_ints()
+        q = ac.read_list_ints()
+        ind = list(range(n))
+        ind.sort(key=lambda it: -p[it])
+        p = [p[i] for i in ind]
+        q = [q[i] for i in ind]
+        mod = 998244353
+
+        dp = [[0] * (k + 2) for _ in range(n + 1)]
+        for j in range(n + 1):
+            dp[j][k] = 1
+        for i in range(n - 1, -1, -1):
+            ndp = [[0] * (k + 2) for _ in range(n + 1)]
+            for j in range(n + 1):
+                for x in range(k + 1):
+                    if j > q[i]:
+                        ndp[j][x] = dp[j][x + 1]
+                    else:
+                        res = dp[q[i]][x + 1]
+                        res += dp[j][x]
+                        ndp[j][x] = res % mod
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ac.st(dp[0][0])
+        return

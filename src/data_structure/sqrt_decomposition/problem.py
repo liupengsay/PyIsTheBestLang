@@ -29,6 +29,7 @@ ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counte
 ABC335F（https://atcoder.jp/contests/abc335/tasks/abc335_f）sqrt_decomposition|linear_dp|refresh_table|fill_table|classical
 ABC293G（https://atcoder.jp/contests/abc293/tasks/abc293_g）sqrt_decomposition|brain_teaser|classical
 ABC242G（https://atcoder.jp/contests/abc242/tasks/abc242_g）sqrt_decomposition|classical
+ABC238G（https://atcoder.jp/contests/abc238/tasks/abc238_g）sqrt_decomposition|offline_query|classical
 
 """
 import bisect
@@ -40,6 +41,7 @@ from typing import List
 from src.data_structure.segment_tree.template import PointSetMergeRangeMode, PointSetBitRangeMode, \
     PointSetRandomRangeMode
 from src.data_structure.sqrt_decomposition.template import BlockSize
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO, inf
 
 
@@ -928,6 +930,60 @@ class Solution:
                     add(nums[x], -1)
                     x += 1
                 ans[j] = cur[0]
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def abc_238g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc238/tasks/abc238_g
+        tag: sqrt_decomposition|offline_query|classical
+        """
+        pf = PrimeFactor(10 ** 6 + 10)  # TLE
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        m = 2 * 10 ** 5
+        size = int(m ** 0.5) + 1
+        queries = [[] for _ in range(size)]
+        for i in range(q):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append((a, b, i))
+        cnt = Counter()
+        tot = [0, 0, 0]
+
+        def add(num, xx):
+            for p, c in pf.prime_factor[num]:
+                tot[cnt[p] % 3] -= 1
+            for p, c in pf.prime_factor[num]:
+                cnt[p] += c * xx
+                tot[cnt[p] % 3] += 1
+            return
+
+        ans = [0] * q
+        x = y = 0
+        for pp, cc in pf.prime_factor[nums[0]]:
+            cnt[pp] += cc
+            tot[cnt[pp] % 3] += 1
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            for a, b, j in queries[i]:
+                while y > b:
+                    add(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    add(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    add(nums[x], 1)
+                while x < a:
+                    add(nums[x], -1)
+                    x += 1
+                ans[j] = "Yes" if tot[1] == tot[2] == 0 else "No"
         for a in ans:
             ac.st(a)
         return

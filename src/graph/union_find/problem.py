@@ -114,6 +114,7 @@ ABC264E（https://atcoder.jp/contests/abc264/tasks/abc264_e）union_right|revers
 ABC259D（https://atcoder.jp/contests/abc259/tasks/abc259_d）geometry|union_find|circle_location|classical
 ABC350G（https://atcoder.jp/contests/abc350/tasks/abc350_g）implemention|union_find|data_range|heuristic_merge|brain_teaser|classical
 ABC350D（https://atcoder.jp/contests/abc350/tasks/abc350_d）union_find|classical
+ABC238E（https://atcoder.jp/contests/abc238/tasks/abc238_e）prefix_sum|union_find|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
