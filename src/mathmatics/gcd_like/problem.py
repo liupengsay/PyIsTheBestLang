@@ -40,17 +40,17 @@ class Solution:
         n, a, b = [ac.read_int() for _ in range(3)]
         lst = GcdLike().solve_equation(a, b, n)
         if not lst:
-            ac.st("NO")
+            ac.no()
         else:
             gcd, x0, y0 = lst
             low = math.ceil((-x0 * gcd) / b)
             high = (y0 * gcd) // a
             if low <= high:
                 x = x0 + (b // gcd) * low
-                ac.st("YES")
+                ac.yes()
                 ac.lst([x, (n - a * x) // b])
             else:
-                ac.st("NO")
+                ac.no()
         return
 
     @staticmethod

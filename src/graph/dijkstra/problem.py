@@ -1079,7 +1079,7 @@ class Solution:
                     dis0[j] = dj
                     heappush(stack, (dj, j))
         if dis0[destination] > target:
-            ac.st("NO")
+            ac.no()
             return
 
         # 第二遍shortest_path
@@ -1104,11 +1104,11 @@ class Solution:
                     heappush(stack, (dj, j))
 
         if dis1[destination] == target:
-            ac.st("YES")
+            ac.yes()
             for e in edges:
                 ac.lst(e)
         else:
-            ac.st("NO")
+            ac.no()
         return
 
     @staticmethod
@@ -1340,10 +1340,10 @@ class Solution:
             x -= 1
             # 只要同odd_even的最短距离小于等于 y 就有解
             if dis[x][y % 2] > y:
-                ac.st("No")
+                ac.no()
             else:
                 # 差距可在两个节点之间反复横跳
-                ac.st("Yes")
+                ac.yes()
         return
 
     @staticmethod
@@ -2076,7 +2076,7 @@ class Solution:
                         visit[a][b] = nex
                         heappush(stack, (-nex, a, b))
                         if [a, b] == end:
-                            ac.st("Yes")
+                            ac.yes()
                             return
         ac.st("Yes" if visit[end[0]][end[1]] > -1 else "No")
         return

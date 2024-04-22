@@ -1561,10 +1561,10 @@ class Solution:
                 else:
                     ascend = nums[i]
             else:
-                ac.st("NO")
+                ac.no()
                 break
         else:
-            ac.st("YES")
+            ac.yes()
             ac.lst(ans)
         return
 
@@ -1614,7 +1614,7 @@ class Solution:
                     row[i] = 1
                 cnt += 1
         if cnt <= 1:
-            ac.st("YES")
+            ac.yes()
             ac.st("".join(str(x) for x in row))
             ac.st("".join(str(x) for x in col))
             return
@@ -1656,11 +1656,11 @@ class Solution:
                     row[i] = 1
                 cnt += 1
         if cnt <= 1:
-            ac.st("YES")
+            ac.yes()
             ac.st("".join(str(x) for x in row))
             ac.st("".join(str(x) for x in col))
             return
-        ac.st("NO")
+        ac.no()
         return
 
     @staticmethod

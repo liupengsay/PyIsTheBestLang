@@ -875,7 +875,7 @@ class Solution:
             if uf.part == 1:
                 break
         else:
-            ac.st("NO")
+            ac.no()
             return
         ans = inf
         uf = UnionFind(n)
@@ -889,7 +889,7 @@ class Solution:
                     if uf.part == 1 and w - s <= ans:
                         ans = w - s
                     break
-        ac.st("YES")
+        ac.yes()
         ac.st(ans)
         return
 

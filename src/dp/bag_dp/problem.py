@@ -247,9 +247,9 @@ class Solution:
                         dp[i] = 1
         for t in target:
             if dp[t]:
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod
@@ -1044,9 +1044,9 @@ class Solution:
                         dp[i] = ac.max(dp[i], dp[i - x * a] + x * b)
         ans = max(dp)
         if ans >= k:
-            ac.st("yes")
+            ac.yes()
         else:
-            ac.st("no")
+            ac.no()
         ac.st(ans)
         return
 

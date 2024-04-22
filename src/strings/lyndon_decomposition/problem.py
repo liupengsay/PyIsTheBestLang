@@ -50,10 +50,10 @@ class Solution:
         _, s1 = LyndonDecomposition().min_express(s)
         _, t1 = LyndonDecomposition().min_express(t)
         if s1 == t1:
-            ac.st("Yes")
+            ac.yes()
             ac.st(s1)
         else:
-            ac.st("No")
+            ac.no()
         return
 
     @staticmethod

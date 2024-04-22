@@ -173,9 +173,9 @@ class Solution:
                     break
         for _ in range(ac.read_int()):
             if dp[ac.read_int()]:
-                ac.st("YES")
+                ac.yes()
             else:
-                ac.st("NO")
+                ac.no()
         return
 
     @staticmethod

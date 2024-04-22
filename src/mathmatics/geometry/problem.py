@@ -283,10 +283,10 @@ class Solution:
                                           - inter3 * 3)
                                 inter1 = 3 * (7 * 7 * 7) - 2 * inter2 - 3 * inter3
                                 if (v1, v2, v3) == (inter1, inter2, inter3):
-                                    ac.st("Yes")
+                                    ac.yes()
                                     ac.lst([a1, b1, c1, a2, b2, c2, a3, b3, c3])
                                     return
-        ac.st("No")
+        ac.no()
         return
 
     @staticmethod

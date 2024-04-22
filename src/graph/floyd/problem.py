@@ -379,14 +379,14 @@ class Solution:
         grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
             if grid[i][i]:
-                ac.st("NO")
+                ac.no()
                 return
             for j in range(i + 1, n):
                 if grid[i][j] != grid[j][i] or not grid[i][j]:
-                    ac.st("NO")
+                    ac.no()
                     return
         if n == 1:
-            ac.st("YES")
+            ac.yes()
             return
         for i in range(n):
             j = 1 if not i else 0
@@ -395,9 +395,9 @@ class Solution:
                     j = r
             for k in range(n):
                 if abs(grid[i][k] - grid[j][k]) != grid[i][j]:
-                    ac.st("NO")
+                    ac.no()
                     return
-        ac.st("YES")
+        ac.yes()
         return
 
     @staticmethod

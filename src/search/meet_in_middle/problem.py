@@ -283,7 +283,7 @@ class Solution:
                 state |= res1[xx] | res2[x - xx]
                 break
         else:
-            ac.st("No")
+            ac.no()
             return
 
         axis = list(range(0, n, 2))
@@ -297,10 +297,10 @@ class Solution:
                 state |= res1[yy] | res2[y - yy]
                 break
         else:
-            ac.st("No")
+            ac.no()
             return
 
-        ac.st("Yes")
+        ac.yes()
         ans = ""
         pre = 1
         for i in range(n):

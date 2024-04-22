@@ -164,7 +164,7 @@ class Solution:
             n = len(matchsticks)
             tot = sum(matchsticks)
             if tot % 4:
-                ac.st("no")
+                ac.no()
                 continue
             single = tot // 4
             dp = [-1] * (1 << n)

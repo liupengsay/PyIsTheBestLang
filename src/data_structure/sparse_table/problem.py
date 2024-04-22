@@ -329,10 +329,10 @@ class Solution:
         for _ in range(ac.read_int()):
             x1, y1, x2, y2, k = ac.read_list_ints()
             if x1 % k != x2 % k or y1 % k != y2 % k:
-                ac.st("NO")
+                ac.no()
                 continue
             if y1 == y2:
-                ac.st("YES")
+                ac.yes()
                 continue
             if y1 > y2:
                 y1, y2 = y2, y1
@@ -340,9 +340,9 @@ class Solution:
             y = (n - x1) // k
             w = k * y + x1
             if w <= ceil:
-                ac.st("NO")
+                ac.no()
             else:
-                ac.st("YES")
+                ac.yes()
         return
 
     @staticmethod

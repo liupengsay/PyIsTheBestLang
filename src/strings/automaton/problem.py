@@ -58,11 +58,11 @@ class Solution:
             for w in lst:
                 j = bisect.bisect_left(ind[w], i)
                 if j >= len(ind[w]):
-                    ac.st("No")
+                    ac.no()
                     break
                 i = ind[w][j] + 1
             else:
-                ac.st("Yes")
+                ac.yes()
         return
 
     @staticmethod
@@ -253,10 +253,10 @@ class Solution:
                     pre = set()
                     i += 1
                     if i == m:
-                        ac.st("NO")
+                        ac.no()
                         return
                     ll, rr = int(s1[i]), int(s2[i])
-            ac.st("YES")
+            ac.yes()
             return
 
         for _ in range(ac.read_int()):

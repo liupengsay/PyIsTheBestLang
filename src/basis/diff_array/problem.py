@@ -1826,10 +1826,10 @@ class Solution:
                 if j == (rr + 1) % k:
                     continue
                 if v:
-                    ac.st("No")
+                    ac.no()
                     break
             else:
-                ac.st("Yes")
+                ac.yes()
         return
 
     @staticmethod

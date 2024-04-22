@@ -323,16 +323,16 @@ class Solution:
             m1 = y1 - x1 + 1
             m2 = y2 - x2 + 1
             if m1 != m2:
-                ac.st("No")
+                ac.no()
                 continue
             cur1 = ((pre1[y1 + 1] - pre1[x1] * pow(p1, m1, mod1)) % mod1,
                     (pre2[y1 + 1] - pre2[x1] * pow(p2, m2, mod2)) % mod2)
             cur2 = ((pre1[y2 + 1] - pre1[x2] * pow(p1, m1, mod1)) % mod1,
                     (pre2[y2 + 1] - pre2[x2] * pow(p2, m2, mod2)) % mod2)
             if cur1 == cur2:
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod
@@ -981,10 +981,10 @@ class Solution:
             cur1 = [tree1.range_hash(num - length + 1, num), tree2.range_hash(num - length + 1, num)]
             cur2 = [tree1.range_hash_reverse(num, num + length - 1), tree2.range_hash_reverse(num, num + length - 1)]
             if cur1 != cur2:
-                ac.st("YES")
+                ac.yes()
                 break
         else:
-            ac.st("NO")
+            ac.no()
         return
 
     @staticmethod
@@ -1008,16 +1008,16 @@ class Solution:
             else:
                 l, r, d = lst[1:]
                 if d == r - l + 1:
-                    ac.st("YES")
+                    ac.yes()
                     continue
                 else:
                     if tree1.range_hash(l - 1, r - d - 1) == tree1.range_hash(l + d - 1, r - 1):
                         if tree2.range_hash(l - 1, r - d - 1) == tree2.range_hash(l + d - 1, r - 1):
-                            ac.st("YES")
+                            ac.yes()
                         else:
-                            ac.st("NO")
+                            ac.no()
                     else:
-                        ac.st("NO")
+                        ac.no()
         return
 
     @staticmethod
@@ -1440,9 +1440,9 @@ class Solution:
                 cur1 = (tree1.range_hash(ll, rr), tree2.range_hash(ll, rr))
                 cur2 = (tree1.range_hash_reverse(ll, rr), tree2.range_hash_reverse(ll, rr))
                 if cur1 == cur2:
-                    ac.st("Yes")
+                    ac.yes()
                 else:
-                    ac.st("No")
+                    ac.no()
         return
 
     @staticmethod

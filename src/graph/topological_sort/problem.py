@@ -112,9 +112,9 @@ class Solution:
         for _ in range(q):
             x, y = ac.read_list_ints_minus_one()
             if uf.is_connected(x, y):
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod
@@ -157,9 +157,9 @@ class Solution:
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
             if father[x] != father[y]:
-                ac.st("No")
+                ac.no()
             else:
-                ac.st("Yes")
+                ac.yes()
         return
 
     @staticmethod
@@ -201,10 +201,10 @@ class Solution:
                                 nex.append(j)
                     stack = nex[:]
                 if any(degree[x] > 0 for x in range(n)):
-                    ac.st("NO")
+                    ac.no()
                     return
 
-                ac.st("YES")
+                ac.yes()
                 for x, y in edges:
                     if order[x] < order[y]:
                         ac.lst([x + 1, y + 1])

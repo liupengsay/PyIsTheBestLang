@@ -1249,9 +1249,9 @@ class Solution:
             x = lcp(i1, i2)
             x = ac.min(x, j1 - i1 + 1)
             if j1 - i1 + 1 == j2 - i2 + 1 == x:
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod
@@ -1378,9 +1378,9 @@ class Solution:
             n = len(s)
             x = bs.find_int_left(0, m - 1, check)
             if t[sa[x]:sa[x] + n] == s:
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod

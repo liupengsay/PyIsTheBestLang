@@ -112,9 +112,9 @@ class Solution:
                             dp[j] = 1
             for num in queries:
                 if num >= 10 * d + 9 or dp[num]:
-                    ac.st("YES")
+                    ac.yes()
                 else:
-                    ac.st("NO")
+                    ac.no()
         return
 
     @staticmethod
@@ -154,7 +154,7 @@ class Solution:
         for _ in range(ac.read_int()):
             n = ac.read_int()
             if n % 2:
-                ac.st("YES")
+                ac.yes()
                 x = n // 2
                 for i in range(1, n + 1):
                     if i <= x:
@@ -162,7 +162,7 @@ class Solution:
                     else:
                         ac.lst([i, i - x + n])
             else:
-                ac.st("NO")
+                ac.no()
         return
 
     @staticmethod
@@ -401,7 +401,7 @@ class Solution:
                 dx = x[i + 1] - x[i]
                 dc = c[i + 1] - c[i]
                 if dx < dc:
-                    ac.st("NO")
+                    ac.no()
                     break
                 ans.append(chr(ord("d") + i) * dc)
                 for _ in range(dx - dc):
@@ -409,7 +409,7 @@ class Solution:
                     ind += 1
                     ind %= 3
             else:
-                ac.st("YES")
+                ac.yes()
                 ac.st("".join(ans))
         return
 

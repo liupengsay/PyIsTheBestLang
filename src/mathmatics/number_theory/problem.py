@@ -497,15 +497,15 @@ class Solution:
                 if cnt[num] and num != 1:
                     rest.append((num, cnt[num]))
             if len(rest) != 1:
-                ac.st("NO")
+                ac.no()
             elif len(rest) == 1:
                 if rest[0][1] > 1:
-                    ac.st("NO")
+                    ac.no()
                 else:
                     if pj.is_prime_speed(rest[0][0]):
-                        ac.st("YES")
+                        ac.yes()
                     else:
-                        ac.st("NO")
+                        ac.no()
         return
 
     @staticmethod
@@ -594,9 +594,9 @@ class Solution:
                     flag = False
                     break
             if flag and check(num):
-                ac.st("yes")
+                ac.yes()
             else:
-                ac.st("no")
+                ac.no()
         return
 
     @staticmethod
@@ -634,9 +634,9 @@ class Solution:
                     for i, va in enumerate(lst):
                         cnt[i] += va
                         if cnt[i] > 1:
-                            ac.st("NO")
+                            ac.no()
                             return
-                ac.st("YES")
+                ac.yes()
                 return
 
             check()
@@ -732,18 +732,18 @@ class Solution:
                 if a < b:
                     a, b = b, a
                 if x == a or x == b:
-                    ac.st("YES")
+                    ac.yes()
                     break
                 if x > a or b == 0:
-                    ac.st("NO")
+                    ac.no()
                     break
                 if (a - x) % b == 0:
-                    ac.st("YES")
+                    ac.yes()
                     break
                 y = ac.ceil(a, b) - 1
                 a -= y * b
                 if y == 0:
-                    ac.st("NO")
+                    ac.no()
                     break
 
         return

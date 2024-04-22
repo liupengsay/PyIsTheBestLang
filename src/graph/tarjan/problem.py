@@ -358,12 +358,12 @@ class Solution:
                 cnt = Counter()
                 for a, b in nums:
                     if a == b:
-                        ac.st("NO")
+                        ac.no()
                         return
                     cnt[a] += 1
                     cnt[b] += 1
                 if max(cnt.values()) > 2:
-                    ac.st("NO")
+                    ac.no()
                     return
 
                 dct = [[] for _ in range(n)]
@@ -375,9 +375,9 @@ class Solution:
                 group_id, group_node, node_group_id = Tarjan().get_pdcc(n, dct)
                 for g in group_node:
                     if len(group_node[g]) % 2:
-                        ac.st("NO")
+                        ac.no()
                         return
-                ac.st("YES")
+                ac.yes()
                 return
 
             check()

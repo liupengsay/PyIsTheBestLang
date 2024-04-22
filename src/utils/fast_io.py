@@ -95,12 +95,12 @@ class FastIO:
     def min(a, b):
         return a if a < b else b
 
-    def yes(self):
-        self.st("Yes")
+    def yes(self, s=None):
+        self.st("Yes" if not s else s)
         return
 
-    def no(self):
-        self.st("No")
+    def no(self, s=None):
+        self.st("No" if not s else s)
         return
 
     @staticmethod

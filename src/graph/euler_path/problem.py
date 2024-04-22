@@ -55,7 +55,7 @@ class Solution:
         if euler.exist:
             ac.lst([x + 1 for x in euler.nodes])
         else:
-            ac.st("No")
+            ac.no()
         return
 
     @staticmethod

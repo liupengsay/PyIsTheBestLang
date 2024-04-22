@@ -47,6 +47,14 @@ class FastIO:
         self.st("\n".join(str(x) for x in lst))
         return
 
+    def yes(self, s=None):
+        self.st("Yes" if not s else s)
+        return
+
+    def no(self, s=None):
+        self.st("No" if not s else s)
+        return
+
     @staticmethod
     def max(a, b):
         return a if a > b else b

@@ -482,9 +482,9 @@ class Solution:
             if cur[0] <= cnt[0] and cur[1] <= cnt[1] \
                     and total[0] - cur_total[0] >= cnt[0] - cur[0] \
                     and total[1] - cur_total[1] >= cnt[1] - cur[1]:
-                ac.st("YES")
+                ac.yes()
             else:
-                ac.st("NO")
+                ac.no()
 
         return
 
@@ -505,14 +505,14 @@ class Solution:
             cur = (x, y)
             x += ind[w][0]
             if (x, y) in pre:
-                ac.st("NO")
+                ac.no()
                 return
             for a, b in [[-1, 0], [0, 1], [1, 0], [0, -1]]:
                 if (x + a, y + b) in pre and (x + a, y + b) != cur:
-                    ac.st("NO")
+                    ac.no()
                     return
             pre.add((x, y))
-        ac.st("YES")
+        ac.yes()
         return
 
     @staticmethod

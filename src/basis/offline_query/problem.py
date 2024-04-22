@@ -87,10 +87,10 @@ class Solution:
                 lst.add(d[ind2[j]])
                 j += 1
             if not lst or lst[-1] < bb:
-                ac.st("No")
+                ac.no()
                 break
             i = lst.bisect_left(bb)
             lst.pop(i)
         else:
-            ac.st("Yes")
+            ac.yes()
         return

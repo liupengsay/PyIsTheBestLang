@@ -78,9 +78,9 @@ class Solution:
                 if (a ^ ac.random_seed in start
                         and b ^ ac.random_seed in end
                         and start[a ^ ac.random_seed] < end[b ^ ac.random_seed]):
-                    ac.st("YES")
+                    ac.yes()
                 else:
-                    ac.st("NO")
+                    ac.no()
             return
 
         for _ in range(ac.read_int()):

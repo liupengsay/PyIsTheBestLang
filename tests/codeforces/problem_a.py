@@ -60,12 +60,12 @@ class FastIO:
     def st(self, x):
         return print(x, flush=self.flush)
 
-    def yes(self):
-        self.st("Yes")
+    def yes(self, s=None):
+        self.st("Yes" if not s else s)
         return
 
-    def no(self):
-        self.st("No")
+    def no(self, s=None):
+        self.st("No" if not s else s)
         return
 
     def lst(self, x):

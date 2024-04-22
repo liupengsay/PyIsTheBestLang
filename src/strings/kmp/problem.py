@@ -1027,10 +1027,10 @@ class Solution:
 
         n = len(s)
         if len(t) != n:
-            ac.st("No")
+            ac.no()
             return
         if s == t:
-            ac.st("Yes")
+            ac.yes()
             ac.st(0)
             return
 
@@ -1038,10 +1038,10 @@ class Solution:
         z2 = KMP().z_function(t[::-1] + "#" + s)[n + 1:]
         for i in range(n):
             if z1[i] == n - i and z2[0] >= i:
-                ac.st("Yes")
+                ac.yes()
                 ac.st(i)
                 return
-        ac.st("No")
+        ac.no()
         return
 
     @staticmethod

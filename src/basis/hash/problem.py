@@ -272,7 +272,7 @@ class Solution:
                     cnt = Counter(cur)
                     cnt_cnt = Counter([va % 2 for va in cnt.values()])
                     if cnt_cnt[1] > 1:
-                        ac.st("NO")
+                        ac.no()
                         return
                     for y in edge[x]:
                         if y != fa and cnt[hash_id[y]] % 2 == 1:
@@ -280,7 +280,7 @@ class Solution:
                             break
                     else:
                         break
-                ac.st("YES")
+                ac.yes()
                 return
 
             check()

@@ -381,12 +381,12 @@ class Solution:
                     elif cur_sum > rr - ll + 1 - cur_sum:
                         tree.range_set(ll, rr, 1)
                     else:
-                        ac.st("NO")
+                        ac.no()
                         return
                 if tree.get() == s:
-                    ac.st("YES")
+                    ac.yes()
                 else:
-                    ac.st("NO")
+                    ac.no()
                 return
 
             check()
@@ -976,10 +976,10 @@ class Solution:
             if c != -1:
                 tree.range_or(a, b, c + 1)
         if all(tree.range_and(a, b) == c + 1 for a, b, c in nums):
-            ac.st("YES")
+            ac.yes()
             ac.lst(tree.get())
         else:
-            ac.st("NO")
+            ac.no()
         return
 
     @staticmethod
@@ -2235,7 +2235,7 @@ class Solution:
                 a = ac.read_list_ints()
                 b = ac.read_list_ints()
                 if Counter(a) != Counter(b):
-                    ac.st("NO")
+                    ac.no()
                     return
                 tree = PointSetRangeMin(n, n + 1)
                 tree.build(a)
@@ -2246,10 +2246,10 @@ class Solution:
                     x = b[i]
                     j = dct[x].popleft()
                     if tree.range_min(0, j) != x:
-                        ac.st("NO")
+                        ac.no()
                         return
                     tree.point_set(j, n + 1)
-                ac.st("YES")
+                ac.yes()
                 return
 
             check()
@@ -2433,9 +2433,9 @@ class Solution:
                     if ans == length * (length + 1) // 2:
                         if all(tree_cnt[i].range_sum(ll + 1, rr + 1) == tree_cnt[i].range_sum(1, n) for i in
                                range(tree.lst[ll] + 1, tree.lst[rr])):
-                            ac.st("Yes")
+                            ac.yes()
                             return
-                    ac.st("No")
+                    ac.no()
                 return
 
             check()
@@ -3025,11 +3025,11 @@ class Solution:
                 if y:
                     pre = tree.range_min(0, y - 1)
                     if pre < z:
-                        ac.st("Yes")
+                        ac.yes()
                         return
             for y, z in ind[x]:
                 tree.range_descend(y, y, z)
-        ac.st("No")
+        ac.no()
         return
 
     @staticmethod

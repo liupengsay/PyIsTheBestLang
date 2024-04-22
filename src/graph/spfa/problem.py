@@ -165,7 +165,7 @@ class Solution:
             edge[0].append((i, 0))
         ans, dis, _ = SPFA().negative_circle_edge(edge, 0, 0)
         if ans:
-            ac.st("NO")
+            ac.no()
         else:
             ac.lst(dis[1:])
         return

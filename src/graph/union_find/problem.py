@@ -241,9 +241,9 @@ class Solution:
                 for x, y in [[i, j + 1], [i + 1, j]]:
                     if 0 <= x < m and 0 <= y < n and grid[x][y] == grid[i][j]:
                         if not uf.union(i * n + j, x * n + y):
-                            ac.st("Yes")
+                            ac.yes()
                             return
-        ac.st("No")
+        ac.no()
         return
 
     @staticmethod
@@ -606,9 +606,9 @@ class Solution:
                 else:
                     res.append((ind[i], ind[j]))
             if any(uf.is_connected(i, j) for i, j in res):
-                ac.st("NO")
+                ac.no()
             else:
-                ac.st("YES")
+                ac.yes()
         return
 
     @staticmethod
@@ -1987,17 +1987,17 @@ class Solution:
             if lst[0] == "1":
                 i, j = ind[lst[1]], ind[lst[2]]
                 if uf.is_connected(i, j + n):
-                    ac.st("NO")
+                    ac.no()
                 else:
-                    ac.st("YES")
+                    ac.yes()
                     uf.union(i, j)
                     uf.union(i + n, j + n)
             else:
                 i, j = ind[lst[1]], ind[lst[2]]
                 if uf.is_connected(i, j):
-                    ac.st("NO")
+                    ac.no()
                 else:
-                    ac.st("YES")
+                    ac.yes()
                     uf.union(i, j + n)
                     uf.union(i + n, j)
         for _ in range(q):
@@ -2348,9 +2348,9 @@ class Solution:
             if (x1 - tx) * (x1 - tx) + (y1 - ty) * (y1 - ty) == r1 * r1:
                 uf.union(i, n + 1 )
             if uf.is_connected(n, n + 1):
-                ac.st("Yes")
+                ac.yes()
                 return
-        ac.st("No")
+        ac.no()
         return
 
     @staticmethod

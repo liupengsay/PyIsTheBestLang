@@ -560,14 +560,14 @@ class Solution:
         stack = deque([{0}])
         for num in nums:
             if not stack or num not in stack[0]:
-                ac.st("NO")
+                ac.no()
                 return
             stack[0].discard(num)
             if not stack[0]:
                 stack.popleft()
             if dct[num]:
                 stack.append(dct[num])
-        ac.st("YES")
+        ac.yes()
         return
 
     @staticmethod
@@ -1287,7 +1287,7 @@ class Solution:
                     if [x, y] == [p, q] == tt:
                         ac.st(visit[x][y][p][q])
                         return
-        ac.st("no")
+        ac.no()
         return
 
     @staticmethod

@@ -721,9 +721,9 @@ class Solution:
                     for i, va in enumerate(lst):
                         cnt[i] += va
                         if cnt[i] > 1:
-                            ac.st("NO")
+                            ac.no()
                             return
-                ac.st("YES")
+                ac.yes()
                 return
 
             check()

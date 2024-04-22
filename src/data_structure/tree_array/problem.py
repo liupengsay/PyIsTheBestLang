@@ -836,9 +836,9 @@ class Solution:
                 x1, y1, x2, y2 = [w - 1 for w in lst[1:]]
                 if (row_tree.range_sum(x1 + 1, x2 + 1) == x2 - x1 + 1
                         or col_tree.range_sum(y1 + 1, y2 + 1) == y2 - y1 + 1):
-                    ac.st("Yes")
+                    ac.yes()
                     continue
-                ac.st("No")
+                ac.no()
         return
 
     @staticmethod
@@ -1250,7 +1250,7 @@ class Solution:
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints()
             if pre_a[x - 1] == pre_b[y - 1] and tree.pre_max(y) <= x:
-                ac.st("Yes")
+                ac.yes()
             else:
-                ac.st("No")
+                ac.no()
         return
