@@ -23,6 +23,7 @@ P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_ro
 
 ====================================AtCoder=====================================
 ABC344E（https://atcoder.jp/contests/abc344/tasks/abc344_e）linked_list
+ABC237D（https://atcoder.jp/contests/abc237/tasks/abc237_d）double_linked_list|implemention|classical
 
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）linked_list|reverse_thinking
@@ -511,4 +512,35 @@ class Solution:
         ac.st(len(ans))
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def abc_237d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc237/tasks/abc237_d
+        tag: double_linked_list|implemention|classical
+        """
+        n = ac.read_int()
+        pre = [-1] * (n + 3)
+        post = [-1] * (n + 3)
+        post[n + 1] = 0
+        pre[0] = n + 1
+        post[0] = n + 2
+        pre[n + 2] = 0
+        s = ac.read_str()
+        for i in range(1, n + 1):
+            if s[i - 1] == "L":
+                pre[i] = pre[i - 1]
+                post[pre[i - 1]] = i
+                pre[i - 1] = i
+                post[i] = i - 1
+            else:
+                post[i] = post[i - 1]
+                pre[post[i - 1]] = i
+                post[i - 1] = i
+                pre[i] = i - 1
+        ans = [n + 1]
+        while ans[-1] != n + 2:
+            ans.append(post[ans[-1]])
+        ac.lst(ans[1:-1])
         return

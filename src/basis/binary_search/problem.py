@@ -102,6 +102,7 @@ ABC346F（https://atcoder.jp/contests/abc346/tasks/abc346_f）binary_search|brut
 ABC270E（https://atcoder.jp/contests/abc270/tasks/abc270_e）binary_search|implemention
 ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|brute_force
 ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
+ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -1691,5 +1692,42 @@ class Solution:
             pre = bb
             if a > bb:
                 break
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_236e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc236/tasks/abc236_e
+        tag: median|average|dp|greedy|binary_search|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dp = [0] * (n + 1)
+
+        def check(x):
+            dp[1] = nums[0] - x
+            for i in range(1, n):
+                dp[i + 1] = max(dp[i], dp[i - 1]) + nums[i] - x
+            return max(dp[-1], dp[-2]) >= 0
+
+        ans = BinarySearch().find_float_right(0, max(nums), check)
+        ac.st(ans)
+
+        def check(x):
+            dp[0] = 0
+            dp[1] = int(nums[0] >= x)
+            for i in range(1, n):
+                dp[i + 1] = 0
+                if nums[i] >= x:
+                    dp[i + 1] = 1
+                else:
+                    if not dp[i]:
+                        dp[i + 1] = 1
+            ceil = sum(num >= x for num in nums)
+            tot = sum(dp)
+            return ceil >= tot - ceil if tot % 2 else ceil >= tot // 2 + 1
+
+        ans = BinarySearch().find_int_right(0, max(nums), check)
         ac.st(ans)
         return

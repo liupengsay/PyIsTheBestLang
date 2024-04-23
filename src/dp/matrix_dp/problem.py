@@ -139,6 +139,7 @@ ABC261D（https://atcoder.jp/contests/abc261/tasks/abc261_d）matrix_dp
 ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix_dp|classical
 ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
 ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix_dp|implemention|classical
+ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|counter|brain_teaser|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2878,4 +2879,35 @@ class Solution:
                         ndp[j][x] = res % mod
             dp = [[x % mod for x in ls] for ls in ndp]
         ac.st(dp[0][0])
+        return
+
+    @staticmethod
+    def abc_237f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc237/tasks/abc237_f
+        tag: matrix_dp|lis|counter|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        mod = 998244353
+        dp = [[[0] * (m + 1) for _ in range(m + 1)] for _ in range(m + 1)]
+        dp[m][m][m] = 1
+        for _ in range(n):
+            ndp = [[[0] * (m + 1) for _ in range(m + 1)] for _ in range(m + 1)]
+            for a in range(m + 1):
+                for b in range(m + 1):
+                    for c in range(m + 1):
+                        for x in range(m):
+                            if x <= a:
+                                ndp[x][b][c] += dp[a][b][c]
+                            elif x <= b:
+                                ndp[a][x][c] += dp[a][b][c]
+                            elif x <= c:
+                                ndp[a][b][x] += dp[a][b][c]
+            dp = [[[xx % mod for xx in x] for x in ls] for ls in ndp]
+        ans = 0
+        for a in range(m):
+            for b in range(a + 1, m):
+                for c in range(b + 1, m):
+                    ans += dp[a][b][c]
+        ac.st(ans % mod)
         return

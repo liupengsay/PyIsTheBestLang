@@ -112,6 +112,7 @@ ABC348D（https://atcoder.jp/contests/abc348/tasks/abc348_d）bfs|dijkstra|limit
 ABC257F（https://atcoder.jp/contests/abc257/tasks/abc257_f）shortest_path|brute_force|bfs|classical
 ABC252E（https://atcoder.jp/contests/abc252/tasks/abc252_e）shortest_path_spanning_tree|dijkstra|classical
 ABC245G（https://atcoder.jp/contests/abc245/tasks/abc245_g）shortest_path|second_shortest_path|dijkstra|brain_teaser|classical
+ABC237E（https://atcoder.jp/contests/abc237/tasks/abc237_e）dijkstra|negative_weight|graph_mapping|brain_teaser|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2210,4 +2211,28 @@ class Solution:
         ans = [dis2[i] if fa1[i] == a[i] else dis1[i] for i in range(n)]
         ans = [x if x < inf else -1 for x in ans]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_237e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc237/tasks/abc237_e
+        tag: dijkstra|negative_weight|graph_mapping|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        h = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v = ac.read_list_ints_minus_one()
+            if h[u] >= h[v]:
+                dct[u].append((v, 0))
+            else:
+                dct[u].append((v, h[v] - h[u]))
+            if h[v] >= h[u]:
+                dct[v].append((u, 0))
+            else:
+                dct[v].append((u, h[u] - h[v]))
+        dis = Dijkstra().get_shortest_path(dct, 0)
+        ans = max(h[0] - h[i] - dis[i] for i in range(n))
+        ac.st(ans)
         return

@@ -1,6 +1,6 @@
 """
 Algorithm：segment_tree|bisect_left
-Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaulteddict
+Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaultdict
 
 ====================================LeetCode====================================
 218（https://leetcode.cn/problems/the-skyline-problem/solution/by-liupengsay-isfo/）segment_tree|RangeChangeRangeMax
@@ -44,6 +44,7 @@ P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeM
 P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|offline_query
 P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pre_max_sum|dynamic
+P2824（https://www.luogu.com.cn/problem/P2824）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -99,6 +100,7 @@ ABC307F（https://atcoder.jp/contests/abc307/tasks/abc307_f）segment_tree|range
 ABC346G（https://atcoder.jp/contests/abc346/tasks/abc346_g）contribution_method|segment_tree|range_add|range_sum
 ABC292H（https://atcoder.jp/contests/abc292/tasks/abc292_h）segment_tree|range_add|range_max_bisect_left
 ABC253F（https://atcoder.jp/contests/abc253/tasks/abc253_f）offline_query|data_range|limited_operation|brain_teaser|preprocess|classical
+ABC237G（https://atcoder.jp/contests/abc237/tasks/abc237_g）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -151,6 +153,7 @@ from functools import lru_cache
 from heapq import heappush, heappop
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeSetRangeOr, \
     RangeAddRangeAvgDev, \
@@ -3215,4 +3218,75 @@ class Solution:
                 i, j = lst[1:]
                 ans = row_val[i] + tree.point_get(j) - pre[(i, j)]
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_237g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc237/tasks/abc237_g
+        tag: segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
+        """
+        n, q, x = ac.read_list_ints()
+        x -= 1
+        p = ac.read_list_ints_minus_one()
+        ans = p.index(x)
+        lst = [int(num >= x) for num in p]
+        tree = RangeSetRangeSumMinMax(n)
+        tree.build(lst)
+        for _ in range(q):
+            op, ll, rr = ac.read_list_ints_minus_one()
+            cnt1 = tree.range_sum(ll, rr)
+            cnt0 = rr - ll + 1 - cnt1
+            if op == 0:
+                if cnt1:
+                    tree.range_set(rr - cnt1 + 1, rr, 1)
+                if cnt0:
+                    tree.range_set(ll, ll + cnt0 - 1, 0)
+                if ll <= ans <= rr:
+                    ans = rr - cnt1 + 1
+            else:
+                if cnt0:
+                    tree.range_set(rr - cnt0 + 1, rr, 0)
+                if cnt1:
+                    tree.range_set(ll, ll + cnt1 - 1, 1)
+                if ll <= ans <= rr:
+                    ans = ll + cnt1 - 1
+        ac.st(ans + 1)
+        return
+
+    @staticmethod
+    def lg_p2824(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2824
+        tag: segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
+        """
+        n, q = ac.read_list_ints()  # TLE
+        p = ac.read_list_ints_minus_one()
+        queries = [ac.read_list_ints_minus_one() for _ in range(q)]
+        pos = ac.read_int() - 1
+        tree = RangeSetRangeSumMinMax(n, 2)
+
+        def check(x):
+            for i in range(4 * n):
+                tree.cover[i] = 0
+                tree.lazy_tag[i] = tree.initial
+            lst = [int(num >= x) for num in p]
+            tree.build(lst)
+            for op, ll, rr in queries:
+                cnt1 = tree.range_sum(ll, rr)
+                cnt0 = rr - ll + 1 - cnt1
+                if op == -1:
+                    if cnt1:
+                        tree.range_set(rr - cnt1 + 1, rr, 1)
+                    if cnt0:
+                        tree.range_set(ll, ll + cnt0 - 1, 0)
+                else:
+                    if cnt0:
+                        tree.range_set(rr - cnt0 + 1, rr, 0)
+                    if cnt1:
+                        tree.range_set(ll, ll + cnt1 - 1, 1)
+            return tree.point_get(pos) == 1
+
+        ans = BinarySearch().find_int_right_strictly(0, n - 1, check) + 1
+        ac.st(ans)
         return

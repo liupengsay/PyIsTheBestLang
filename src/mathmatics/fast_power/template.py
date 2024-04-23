@@ -1,3 +1,6 @@
+from math import inf
+
+
 class FastPower:
     def __init__(self):
         return
@@ -74,13 +77,38 @@ class MatrixFastPowerFlatten:
             p >>= 1
         return ans
 
+class MatrixFastPowerMin:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def _matrix_mul(a, b):
+        n = len(a)
+        res = [[0] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
+                res[i][j] = min(max(a[i][k], b[k][j]) for k in range(n))
+        return res
+
+    def matrix_pow(self, base, p):
+        n = len(base)
+        ans = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            ans[i][i] = 0
+        while p:
+            if p & 1:
+                ans = self._matrix_mul(ans, base)
+            base = self._matrix_mul(base, base)
+            p >>= 1
+        return ans
+
 
 class MatrixFastPower:
     def __init__(self):
         return
 
     @staticmethod
-    def matrix_mul(a, b, mod=10 ** 9 + 7):
+    def _matrix_mul(a, b, mod=10 ** 9 + 7):
         n = len(a)
         res = [[0] * n for _ in range(n)]
         for i in range(n):
@@ -95,7 +123,7 @@ class MatrixFastPower:
             ans[i][i] = 1
         while p:
             if p & 1:
-                ans = self.matrix_mul(ans, base, mod)
-            base = self.matrix_mul(base, base, mod)
+                ans = self._matrix_mul(ans, base, mod)
+            base = self._matrix_mul(base, base, mod)
             p >>= 1
         return ans

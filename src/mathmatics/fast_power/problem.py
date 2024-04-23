@@ -33,12 +33,13 @@ P1306（https://www.luogu.com.cn/problem/P1306）matrix_fast_power|math|fibonacc
 =====================================AcWing=====================================
 27（https://www.acwing.com/problem/content/26/）float_fast_power|classical
 
-
+=====================================AtCoder=====================================
+ABC236G（https://atcoder.jp/contests/abc236/tasks/abc236_g）matrix_fast_power|matrix_fast_power_min|brain_teaser|classical
 
 """
 import math
-
-from src.mathmatics.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten
+from math import inf
+from src.mathmatics.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten, MatrixFastPowerMin
 from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO
 
@@ -339,4 +340,22 @@ class Solution:
         mod = 10 ** 8
         ans = MatrixFastPower().matrix_pow(base, g, mod)
         ac.st(ans[0][1])
+        return
+
+    @staticmethod
+    def abc_236g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc236/tasks/abc236_g
+        tag: matrix_fast_power|matrix_fast_power_min|brain_teaser|classical
+        """
+        n, t, ll = ac.read_list_ints()
+        grid = [[inf] * n for _ in range(n)]
+        for i in range(1, t + 1):
+            u, v = ac.read_list_ints_minus_one()
+            grid[v][u] = i
+        initial = [0] + [inf] * (n - 1)
+        res = MatrixFastPowerMin().matrix_pow(grid, ll)
+        ans = [max(res[i][0], initial[0]) for i in range(n)]
+        ans = [x if x < inf else -1 for x in ans]
+        ac.lst(ans)
         return

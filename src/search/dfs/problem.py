@@ -66,6 +66,7 @@ ABC284E（https://atcoder.jp/contests/abc284/tasks/abc284_e）dfs|back_trace|cla
 ABC268D（https://atcoder.jp/contests/abc268/tasks/abc268_d）dfs|back_trace|prune|classical
 ABC244G（https://atcoder.jp/contests/abc244/tasks/abc244_g）construction|euler_order|brain_teaser|classical
 ABC240F（https://atcoder.jp/contests/abc240/tasks/abc240_e）dfs_order|leaf|classical
+ABC236D（https://atcoder.jp/contests/abc236/tasks/abc236_d）back_trace|prune|brute_force|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1270,4 +1271,38 @@ class Solution:
                 end[i] = e
         for i in range(n):
             ac.lst([start[i] + 1, end[i] + 1])
+        return
+
+    @staticmethod
+    def abc_236d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc236/tasks/abc236_d
+        tag: back_trace|prune|brute_force|classical
+        """
+        n = ac.read_int()
+        grid = [[0] * 2 * n for _ in range(2 * n)]
+        for i in range(2 * n - 1):
+            lst = ac.read_list_ints()
+            for j in range(i + 1, 2 * n):
+                grid[i][j] = lst[j - i - 1]
+
+        def dfs(x):
+            if x == n:
+                ans[0] = max(ans[0], pre[0])
+                return
+            ind = [x for x in range(2 * n) if not visit[x]]
+            a = ind[0]
+            for b in ind[1:]:
+                pre[0] ^= grid[a][b]
+                visit[a] = visit[b] = 1
+                dfs(x + 1)
+                pre[0] ^= grid[a][b]
+                visit[a] = visit[b] = 0
+            return
+
+        ans = [-inf]
+        pre = [0]
+        visit = [0] * 2 * n
+        dfs(0)
+        ac.st(ans[0])
         return
