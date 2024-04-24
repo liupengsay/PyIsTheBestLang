@@ -142,6 +142,8 @@ ABC248F（https://atcoder.jp/contests/abc248/tasks/abc248_f）connected_graph|li
 ABC244E（https://atcoder.jp/contests/abc244/tasks/abc244_e）implemention|linear_dp
 ABC243G（https://atcoder.jp/contests/abc243/tasks/abc243_g）prefix_sum|preprocess|linear_dp|brain_teaser|high_precision|sqrt_sqrt_n|math
 ABC350E（https://atcoder.jp/contests/abc350/tasks/abc350_e）linear_dp|implemention|prob_dp|expectation_dp|classical
+ABC234G（https://atcoder.jp/contests/abc234/tasks/abc234_g）monotonic_stack|linear_dp|prefix_sum|contribution_method|classical
+ABC234F（https://atcoder.jp/contests/abc234/tasks/abc234_f）brute_force|linear_dp|comb|math
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -159,6 +161,7 @@ from functools import lru_cache
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1444,4 +1447,70 @@ class Solution:
             return res
 
         ac.st(dfs(n))
+        return
+
+    @staticmethod
+    def abc_234g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc234/tasks/abc234_g
+        tag: monotonic_stack|linear_dp|prefix_sum|contribution_method|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dp = [0] * (n + 1)
+        mx = [0] * (n + 1)
+        mi = [0] * (n + 1)
+        mod = 998244353
+        dp[0] = 1
+        mx_stack = []
+        mi_stack = []
+        for i in range(1, n + 1):
+            while mx_stack and nums[mx_stack[-1] - 1] <= nums[i - 1]:
+                mx_stack.pop()
+            while mi_stack and nums[mi_stack[-1] - 1] >= nums[i - 1]:
+                mi_stack.pop()
+
+            if not mx_stack:
+                mx[i] = dp[i - 1] * nums[i - 1] % mod
+            else:
+                x = mx_stack[-1]
+                mx[i] = mx[x] + (dp[i - 1] - dp[x - 1]) * nums[i - 1]
+                mx[i] %= mod
+
+            if not mi_stack:
+                mi[i] = dp[i - 1] * nums[i - 1] % mod
+            else:
+                x = mi_stack[-1]
+                mi[i] = mi[x] + (dp[i - 1] - dp[x - 1]) * nums[i - 1]
+                mi[i] %= mod
+
+            dp[i] = (dp[i - 1] + mx[i] - mi[i]) % mod
+            mx_stack.append(i)
+            mi_stack.append(i)
+
+        ac.st((dp[n] - dp[n - 1]) % mod)
+        return
+
+    @staticmethod
+    def abc_234f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc234/tasks/abc234_f
+        tag: brute_force|linear_dp|comb|math
+        """
+        mod = 998244353
+        s = ac.read_str()
+        cnt = Counter(s)
+        n = len(s)
+        cb = Combinatorics(n + 10, mod)
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for w in cnt:
+            ndp = dp[:]
+            for x in range(n + 1):
+                for y in range(1, cnt[w] + 1):
+                    if x + y > n:
+                        break
+                    ndp[x + y] += dp[x] * cb.comb(x + y, y)
+            dp = [x % mod for x in ndp]
+        ac.st(sum(dp[1:]) % mod)
         return

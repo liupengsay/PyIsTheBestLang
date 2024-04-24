@@ -64,6 +64,7 @@ ABC132D（https://atcoder.jp/contests/abc132/tasks/abc132_d）comb|math|counter|
 ABC266G（https://atcoder.jp/contests/abc266/tasks/abc266_g）comb|brain_teaser|inclusion_exclusion|classical
 ABC262E（https://atcoder.jp/contests/abc262/tasks/abc262_e）brain_teaser|comb|classical
 ABC240G（https://atcoder.jp/contests/abc240/tasks/abc240_g）math|comb|counter|classical
+ABC235G（https://atcoder.jp/contests/abc235/tasks/abc235_g）inclusion_exclusion|comb|counter|math|brain_teaser|classical
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1036,6 +1037,36 @@ class Solution:
         ans = 0
         for a in range(x, n - y - z + 1):
             ans += cb.comb(n, a) * check(a, x) * check(n - a, z + y) * check(n - a, abs(z - y))
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_235g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc235/tasks/abc235_g
+        tag: inclusion_exclusion|comb|counter|math|brain_teaser|classical
+        """
+        mod = 998244353
+        n, a, b, c = ac.read_list_ints()
+        cb = Combinatorics(n + 10, mod)
+
+        def check(m):
+            f = [0] * (n + 1)
+            f[n] = sum(cb.comb(n, j) for j in range(m + 1)) % mod
+            for i in range(n - 1, -1, -1):
+                f[i] = (f[i + 1] + cb.comb(i, m)) * cb.inv[2]
+                f[i] %= mod
+            return f
+
+        fa = check(a)
+        fb = check(b)
+        fc = check(c)
+
+        ans = 0
+        for x in range(n + 1):
+            sign = 1 if x % 2 == 0 else -1
+            ans += sign * cb.comb(n, x) * fa[n - x] * fb[n - x] * fc[n - x]
             ans %= mod
         ac.st(ans)
         return

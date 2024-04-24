@@ -174,6 +174,7 @@ ABC246F（https://atcoder.jp/contests/abc246/tasks/abc246_f）brute_force|inclus
 ABC247F（https://atcoder.jp/contests/abc247/tasks/abc247_f）brute_force|guess_table|union_find|dp|brain_teaser
 ABC247E（https://atcoder.jp/contests/abc247/tasks/abc247_e）inclusion_exclusion|two_pointer|counter|brain_teaser|classical
 ABC238C（https://atcoder.jp/contests/abc238/tasks/abc238_c）digit_num|counter|brute_force|classical
+ABC234E（https://atcoder.jp/contests/abc234/tasks/abc234_e）brute_force|data_range|classical
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

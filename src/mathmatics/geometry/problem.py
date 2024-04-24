@@ -38,6 +38,7 @@ ABC292F（https://atcoder.jp/contests/abc292/tasks/abc292_f）brain_teaser|math
 ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geometry|square|angle|classical
 ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_convex_quad|classical
 ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointer|brain_teaser
+ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain_teaser|classical
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -406,4 +407,29 @@ class Solution:
             x3, y3 = points[j + 1]
             pre -= gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
         ac.st(ans2)
+        return
+
+    @staticmethod
+    def abc_234h(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc234/tasks/abc234_h
+        tag: closest_pair|brain_teaser|classical
+        """
+        n, k = ac.read_list_ints()
+        points = [ac.read_list_ints() for _ in range(n)]
+        dct = defaultdict(list)
+        ans = []
+        for i, (x, y) in enumerate(points):
+            a, b = x // k, y // k
+            for aa in range(-1, 2):
+                for bb in range(-1, 2):
+                    for j in dct[(a + aa, b + bb)]:
+                        x0, y0 = points[j]
+                        if (x - x0) * (x - x0) + (y - y0) * (y - y0) <= k * k:
+                            ans.append((j + 1, i + 1))
+            dct[(a, b)].append(i)
+        ac.st(len(ans))
+        ans.sort()
+        for a in ans:
+            ac.lst(a)
         return

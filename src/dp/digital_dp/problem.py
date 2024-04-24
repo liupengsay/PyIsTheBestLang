@@ -24,6 +24,7 @@ ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digit
 ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brut_force|digital_dp
 ABC317F（https://atcoder.jp/contests/abc317/tasks/abc317_f）2-base|digital_dp|classical
 ABC295F（https://atcoder.jp/contests/abc295/tasks/abc295_f）digital_dp|kmp_automaton|classical
+ABC235F（https://atcoder.jp/contests/abc235/tasks/abc235_f）digital_dp|classical
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -350,5 +351,59 @@ class Solution:
             nex = KMP().kmp_automaton(lst, 10)
             cur = check(int(rr)) - check(int(ll) - 1)
             ac.st(cur)
-
         return
+
+    @staticmethod
+    def abc_235f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc235/tasks/abc235_f
+        tag: digital_dp|classical
+        """
+
+        mod = 998244353  # TLE
+        s = ac.read_str()
+        ac.read_int()
+        c = ac.read_list_ints()
+        target = sum(1 << x for x in c)
+        k = len(s)
+
+        weight = [[0] * 10 for _ in range(k + 1)]
+        for x in range(10):
+            weight[1][x] = x % mod
+        for ii in range(2, k + 1):
+            for x in range(10):
+                weight[ii][x] = (weight[ii - 1][x] * 10) % mod
+
+        @lru_cache(None)
+        def dfs(i, state, is_limit, is_num):
+            if i == k:
+                return (1, 0) if state & target == target else (0, -1)
+            res = -1
+            tot = -1
+            if not is_num:
+                cc, ss = dfs(i + 1, 0, False, False)
+                if ss > -1:
+                    if res == -1:
+                        res = ss
+                        tot = cc
+                    else:
+                        res += ss
+                        tot += cc
+
+            floor = 0 if is_num else 1
+            ceil = int(s[i]) if is_limit else 9
+            for x in range(floor, ceil + 1):
+                cc, ss = dfs(i + 1, state | (1 << x), is_limit and ceil == x, True)
+                if ss > -1:
+                    if res == -1:
+                        res = ss + weight[k - i][x] * cc
+                        tot = cc
+                    else:
+                        res += ss + weight[k - i][x] * cc
+                        tot += cc
+            return (tot % mod, res % mod) if res > -1 else (0, -1)
+
+        ans = dfs(0, 0, 1, 0)[1]
+        ac.st(ans if ans > -1 else 0)
+        return
+

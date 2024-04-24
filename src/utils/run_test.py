@@ -269,6 +269,28 @@ class TestGeneral(unittest.TestCase):
         print(f"total rem：{rem}")
         return
 
+    def test_codeforces_contest(self):
+        num = "1957"
+        for i in range(8):
+            url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
+            print(url)
+        return
+
+    def test_atcoder_problem(self):
+        num = "234"
+        print(f"https://atcoder.jp/contests/abc{num}")
+        print(f"https://atcoder.jp/contests/abc{num}/standings")
+        print(f"https://atcoder.jp/contests/abc{num}/results")
+        print(f"https://atcoder.jp/contests/abc{num}/submissions/me")
+        for i in range(8):
+            url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i+ord("a"))
+            print(url)
+        print("=================")
+        for i in range(8):
+            w = chr(i+ord("a"))
+            url = f"https://atcoder.jp/contests/abc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
+            print(url)
+        return
 
 if __name__ == "__main__":
     unittest.main()

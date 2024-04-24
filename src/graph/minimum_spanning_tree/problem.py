@@ -51,6 +51,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
 ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|brain_teaser|classical
+ABC235E（https://atcoder.jp/contests/abc235/tasks/abc235_e）online_query|data_range|offline_query|mst|maximum_weight|classical
 
 =====================================AcWing=====================================
 3731（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan
@@ -985,4 +986,63 @@ class Solution:
         n = ac.read_int()
         ans = ManhattanMST().build([ac.read_list_ints() for _ in range(n)])
         ac.st((ans[-1][-1] + 1) // 2)
+        return
+
+    @staticmethod
+    def abc_235e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc235/tasks/abc235_e
+        tag: online_query|data_range|offline_query|mst|maximum_weight|classical
+        """
+        n, m, q = ac.read_list_ints()
+        edges = [ac.read_list_ints() for _ in range(m)]
+        edges.sort(key=lambda it: it[-1])
+        uf = UnionFind(n)
+        dct = [dict() for _ in range(n)]
+        for a, b, c in edges:
+            a -= 1
+            b -= 1
+            if uf.union(a, b):
+                dct[a][b] = c
+                dct[b][a] = c
+        mst = SecondMinimumSpanningTreeLight(dct)
+        for _ in range(q):
+            u, v, w = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            ceil = mst.get_dist_weight_max_second(u, v)
+
+            if ceil > w:
+                ac.yes()
+            else:
+                ac.no()
+        return
+
+    @staticmethod
+    def abc_235e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc235/tasks/abc235_e
+        tag: online_query|data_range|offline_query|mst|maximum_weight|classical
+        """
+        n, m, q = ac.read_list_ints()
+        edges = []
+        for i in range(m):
+            lst = ac.read_list_ints() + [i]
+            edges.append(lst)
+        for i in range(q):
+            lst = ac.read_list_ints() + [i + m]
+            edges.append(lst)
+        edges.sort(key=lambda it: it[-2])
+        uf = UnionFind(n + 1)
+        visit = [0] * (m + q)
+        for a, b, _, i in edges:
+            if not uf.is_connected(a, b):
+                visit[i] = 1
+            if i < m:
+                uf.union(a, b)
+        for i in range(m, m + q):
+            if visit[i]:
+                ac.yes()
+            else:
+                ac.no()
         return
