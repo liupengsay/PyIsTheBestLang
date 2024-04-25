@@ -77,6 +77,8 @@ ABC299E（https://atcoder.jp/contests/abc299/tasks/abc299_e）construction|bfs
 ABC251F（https://atcoder.jp/contests/abc251/tasks/abc251_f）construction|dfs|bfs|classical
 ABC251D（https://atcoder.jp/contests/abc251/tasks/abc251_d）construction|brute_force|brain_teaser
 ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|construction|greedy|brain_teaser|union_find
+ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|construction|mst|brain_teaser|classical
+
 
 """
 import math
@@ -674,4 +676,67 @@ class Solution:
                 ac.lst(a)
         else:
             ac.st(-1)
+        return
+
+    @staticmethod
+    def abc_233f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc233/tasks/abc233_f
+        tag: graph|union_find|construction|mst|brain_teaser|classical
+        """
+        n = ac.read_int()
+        p = ac.read_list_ints_minus_one()
+        m = ac.read_int()
+        dct = [dict() for _ in range(n)]
+        uf = UnionFind(n)
+        edges = []
+        for i in range(m):
+            a, b = ac.read_list_ints_minus_one()
+            if uf.union(a, b):
+                dct[a][b] = i
+                dct[b][a] = i
+            edges.append((a, b))
+        lst = p[:]
+        group = uf.get_root_part()
+        for g in group:
+            vals = [p[x] for x in group[g]]
+            ind = group[g]
+            vals.sort()
+            for i, v in zip(ind, vals):
+                lst[i] = v
+        if lst != list(range(n)):
+            ac.st(-1)
+            return
+        res = []
+
+        for i in range(n):
+            if p[i] != i:
+                parent = [-1] * n
+                j = p.index(i)
+                stack = [(i, -1)]
+                visit = [0] * n
+                visit[i] = 1
+                while stack:
+                    x, fa = stack.pop()
+                    for y in dct[x]:
+                        if y != fa and not visit[y]:
+                            stack.append((y, x))
+                            parent[y] = x
+                            visit[y] = 1
+                path = [j]
+                while path[-1] != i:
+                    path.append(parent[path[-1]])
+
+                m = len(path)
+                for x in range(1, m):
+                    a, b = path[x - 1], path[x]
+                    p[a], p[b] = p[b], p[a]
+                    res.append(dct[a][b] + 1)
+
+                for x in range(m - 2, 0, -1):
+                    a, b = path[x - 1], path[x]
+                    p[a], p[b] = p[b], p[a]
+                    res.append(dct[a][b] + 1)
+        ac.st(len(res))
+        ac.lst(res)
         return

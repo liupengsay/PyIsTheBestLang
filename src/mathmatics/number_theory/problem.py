@@ -90,6 +90,7 @@ ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counte
 ABC245D（https://atcoder.jp/contests/abc245/tasks/abc245_d）implemention|math|data_range|classical
 ABC242F（https://atcoder.jp/contests/abc242/tasks/abc242_f）inclusion_exclusion|counter|brute_force|classical
 ABC242E（https://atcoder.jp/contests/abc242/tasks/abc242_e）n_base|math
+ABC233E（https://atcoder.jp/contests/abc233/tasks/abc233_e）big_number|prefix_sum|data_range
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1215,3 +1216,26 @@ class Solution:
             ans %= mod
             ac.st(ans)
         return
+
+    @staticmethod
+    def abc_233e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc233/tasks/abc233_e
+        tag: big_number|prefix_sum|data_range
+        """
+        s = [int(w) for w in ac.read_str()]
+        pre = ac.accumulate(s)
+        ans = []
+        n = len(s)
+        x = 0
+        for i in range(n - 1, -1, -1):
+            x += pre[i + 1]
+            ans.append(x % 10)
+            x //= 10
+        while x:
+            ans.append(x % 10)
+            x //= 10
+        ans.reverse()
+        ac.st("".join(str(x) for x in ans))
+        return
+
