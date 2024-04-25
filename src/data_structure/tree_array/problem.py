@@ -45,6 +45,7 @@ ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_
 ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|tree_array|contribution_method|classical
 ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulative_cumulative_cumulative_sum|math|classical
 ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_ascend|pre_max|implemention|set|classical
+ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointer
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1253,4 +1254,41 @@ class Solution:
                 ac.yes()
             else:
                 ac.no()
+        return
+
+    @staticmethod
+    def abc_231f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc231/tasks/abc231_f
+        tag: discretize|tree_array|inclusion_exclusion|two_pointer
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        tot = sorted(set(a + b))
+        ind = {num: i for i, num in enumerate(tot)}
+        a = [ind[x] for x in a]
+        b = [ind[x] for x in b]
+        m = len(tot)
+        tree = PointAddRangeSum(m)
+        ind = list(range(n))
+        ind.sort(key=lambda it: a[it])
+        ans = tot = 0
+        k = -1
+        for i in ind:
+            while k + 1 < n and a[ind[k + 1]] <= a[i]:
+                tree.point_add(b[ind[k + 1]] + 1, 1)
+                tot += 1
+                k += 1
+            tree.point_add(b[i] + 1, -1)
+            tot -= 1
+            aa, bb = a[i], b[i]
+            if bb == 0:
+                ans += tot
+            else:
+                ans += tot - tree.range_sum(1, bb)
+            tree.point_add(b[i] + 1, 1)
+            tot += 1
+        ans += n
+        ac.st(ans)
         return

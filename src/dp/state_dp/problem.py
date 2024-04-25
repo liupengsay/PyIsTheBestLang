@@ -57,6 +57,7 @@ ABC318D（https://atcoder.jp/contests/abc318/tasks/abc318_d）state_dp|brute_for
 ABC301E（https://atcoder.jp/contests/abc301/tasks/abc301_e）state_dp|build_graph
 ABC278F（https://atcoder.jp/contests/abc278/tasks/abc278_f）state_dp|classical
 ABC274E（https://atcoder.jp/contests/abc274/tasks/abc274_e）state_dp|classical
+ABC232F（https://atcoder.jp/contests/abc232/tasks/abc232_f）state_dp|brain_teaser|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1114,4 +1115,27 @@ class Solution:
                 for i in range(n):
                     ans = min(ans, dp[i][state] + dis[i][0] / s[state])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_232f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc232/tasks/abc232_f
+        tag: state_dp|brain_teaser|classical
+        """
+        n, x, y = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        dp = [inf] * (1 << n)
+        dp[0] = 0
+        for state in range(1, 1 << n):
+            res = inf
+            lst = [j for j in range(n) if state & (1 << j)]
+            m = len(lst)
+            for rk, j in enumerate(lst):
+                cur = dp[state ^ (1 << j)]
+                cur += (j - rk) * y + abs(a[m - 1] - b[j]) * x
+                res = min(res, cur)
+            dp[state] = res
+        ac.st(dp[-1])
         return

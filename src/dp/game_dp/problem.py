@@ -21,6 +21,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
+ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greedy|dfs|linear_dp
 
 
 """
@@ -212,4 +213,33 @@ class Solution:
 
         ans = dfs(tuple(lst))
         ac.st("Takahashi" if ans > 0 else "Aoki")
+        return
+
+    @staticmethod
+    def abc_231e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc231/tasks/abc231_e
+        tag: implemention|greedy|dfs|linear_dp
+        """
+        n, x = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        @lru_cache(None)
+        def dfs(num):
+            if num == 0:
+                return 0
+            res = inf
+            for i in range(n - 1, -1, -1):
+                if num >= nums[i]:
+                    cur = num // nums[i] + dfs(num % nums[i])
+                    res = min(res, cur)
+            for i in range(n):
+                if nums[i] - num < num < nums[i]:
+                    cur = 1 + dfs(nums[i] - num)
+                    res = min(res, cur)
+                    break
+            return res
+
+        ans = dfs(x)
+        ac.st(ans)
         return

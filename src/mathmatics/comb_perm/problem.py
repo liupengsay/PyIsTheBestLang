@@ -53,7 +53,6 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 414B（https://codeforces.com/contest/414/problem/B）min_prime|partition_method|counter|dp
 1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
-ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -65,6 +64,8 @@ ABC266G（https://atcoder.jp/contests/abc266/tasks/abc266_g）comb|brain_teaser|
 ABC262E（https://atcoder.jp/contests/abc262/tasks/abc262_e）brain_teaser|comb|classical
 ABC240G（https://atcoder.jp/contests/abc240/tasks/abc240_g）math|comb|counter|classical
 ABC235G（https://atcoder.jp/contests/abc235/tasks/abc235_g）inclusion_exclusion|comb|counter|math|brain_teaser|classical
+ABC232E（https://atcoder.jp/contests/abc232/tasks/abc232_e）brute_force|linear_dp|comb
+ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1067,6 +1068,40 @@ class Solution:
         for x in range(n + 1):
             sign = 1 if x % 2 == 0 else -1
             ans += sign * cb.comb(n, x) * fa[n - x] * fb[n - x] * fc[n - x]
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_232e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc232/tasks/abc232_e
+        tag: brute_force|linear_dp|comb
+        """
+        mod = 998244353
+        m, n, k = ac.read_list_ints()
+        x1, y1, x2, y2 = ac.read_list_ints()
+        cb = Combinatorics(k + 10, mod)
+
+        def check(tot, start, target):
+            dp = [[0, 0]]
+            if start == target:
+                dp[0][0] = 1
+            else:
+                dp[0][1] = 1
+            for _ in range(k):
+                a, b = dp[-1]
+                aa = b
+                bb = a * (tot - 1) + b * (tot - 2)
+                dp.append([aa % mod, bb % mod])
+            return dp
+
+        dp1 = check(m, x1, x2)
+        dp2 = check(n, y1, y2)
+        ans = 0
+        for x in range(k + 1):
+            c = cb.comb(k, x) * dp1[x][0] * dp2[k - x][0]
+            ans += c
             ans %= mod
         ac.st(ans)
         return

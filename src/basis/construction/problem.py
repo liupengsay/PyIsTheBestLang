@@ -78,7 +78,7 @@ ABC251F（https://atcoder.jp/contests/abc251/tasks/abc251_f）construction|dfs|b
 ABC251D（https://atcoder.jp/contests/abc251/tasks/abc251_d）construction|brute_force|brain_teaser
 ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|construction|greedy|brain_teaser|union_find
 ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|construction|mst|brain_teaser|classical
-
+ABC231D（https://atcoder.jp/contests/abc231/tasks/abc231_d）union_find|construction
 
 """
 import math
