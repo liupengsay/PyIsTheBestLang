@@ -123,6 +123,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1353E（https://codeforces.com/contest/1353/problem/E）linear_dp|greedy|brute_force
 1472F（https://codeforces.com/contest/1472/problem/F）linear_dp|classical
 1624E（https://codeforces.com/contest/1624/problem/E）linear_dp|brute_force
+1969C（https://codeforces.com/contest/1969/problem/C）linear_dp|data_range|implemention
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1513,4 +1514,39 @@ class Solution:
                     ndp[x + y] += dp[x] * cb.comb(x + y, y)
             dp = [x % mod for x in ndp]
         ac.st(sum(dp[1:]) % mod)
+        return
+
+    @staticmethod
+    def cf_1969c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1969/problem/C
+        tag: linear_dp|data_range|implemention
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+
+            dp = deque([[inf] * (k + 1) for _ in range(20)])
+            dp[-1][0] = 0
+            for i in range(n):
+                cur = [inf] * (k + 1)
+                cnt = 0
+                val = inf
+                for x in range(k + 1):
+                    cur[x] = dp[-1][x] + nums[i]
+                for j in range(i, max(-1, i - 11), -1):
+                    if nums[j] < val:
+                        val = nums[j]
+                        cnt = 1
+                    elif nums[j] == val:
+                        cnt += 1
+                    tot = i - j + 1
+                    for x in range(k + 1):
+                        y = x + (tot - cnt)
+                        if y > k:
+                            break
+                        cur[y] = min(cur[y], dp[-(i - j + 1)][x] + val * tot)
+                dp.append(cur[:])
+                dp.popleft()
+            ac.st(min(dp[-1]))
         return

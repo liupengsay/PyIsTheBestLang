@@ -115,6 +115,8 @@ ABC259D（https://atcoder.jp/contests/abc259/tasks/abc259_d）geometry|union_fin
 ABC350G（https://atcoder.jp/contests/abc350/tasks/abc350_g）implemention|union_find|data_range|heuristic_merge|brain_teaser|classical
 ABC350D（https://atcoder.jp/contests/abc350/tasks/abc350_d）union_find|classical
 ABC238E（https://atcoder.jp/contests/abc238/tasks/abc238_e）prefix_sum|union_find|classical
+ABC229E（https://atcoder.jp/contests/abc229/tasks/abc229_e）reverse_order|union_find|classical
+ABC228D（https://atcoder.jp/contests/abc228/tasks/abc228_d）union_find_range|classical|implemention
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2419,4 +2421,27 @@ class Solution:
         for g in size:
             ans += size[g] * (size[g] - 1) // 2 - group[g]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_228d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc228/tasks/abc228_d
+        tag: union_find_range|classical|implemention
+        """
+        q = ac.read_int()
+        n = 2 ** 20
+        uf = UnionFind(n)
+        nums = [-1] * n
+        for _ in range(q):
+            t, x = ac.read_list_ints()
+            if t == 1:
+                i = uf.find(x % n)
+                if nums[i] != -1:
+                    i = uf.find(0)
+                nums[i] = x
+                if i + 1 < n:
+                    uf.union_right(i, i + 1)
+            else:
+                ac.st(nums[x % n])
         return

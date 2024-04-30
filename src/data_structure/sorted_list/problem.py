@@ -51,6 +51,7 @@ P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 1915F（https://codeforces.com/contest/1915/problem/F）sorted_list|sorting
 1462F（https://codeforces.com/contest/1462/problem/F）sorted_list|brute_force|prefix_suffix
 1690G（https://codeforces.com/contest/1690/problem/G）sorted_list|implemention
+1969D（https://codeforces.com/contest/1969/problem/D）sorted_list|top_k_sum|greedy
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
@@ -637,3 +638,30 @@ class Solution:
         ac.st(ans)
         return
 
+
+    @staticmethod
+    def cf_1969d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1969/problem/D
+        tag: sorted_list|top_k_sum|greedy
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            ind = list(range(n))
+            ind.sort(key=lambda it: -b[it])
+            lst = TopKSum(k)
+            tot = sum(b[i] - a[i] for i in range(n) if b[i] >= a[i])
+            if k == 0:
+                ans = tot
+            else:
+                ans = 0
+                for i in ind:
+                    if b[i] >= a[i]:
+                        tot -= b[i] - a[i]
+                    lst.add(a[i])
+                    if len(lst.lst) >= k > 0:
+                        ans = max(ans, tot - lst.top_k_sum)
+            ac.st(ans)
+        return

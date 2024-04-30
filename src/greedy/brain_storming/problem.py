@@ -221,7 +221,8 @@ ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greedy
 ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greedy|small_to_big|reverse_order|classical
 ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_teaser
 ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implemention|reverse_order|classical
-
+ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greedy
+ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointer|classical|prefix_sum
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1882,5 +1883,42 @@ class Solution:
                     post += y
                 else:
                     heapq.heappush(not_use, -y)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_229g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc229/tasks/abc229_g
+        tag: implemention|median_greedy|two_pointer|classical|prefix_sum
+        """
+        s = ac.read_str()
+        k = ac.read_int()
+        n = len(s)
+        ind = [i for i in range(n) if s[i] == "Y"]
+        m = len(ind)
+        pre = ac.accumulate(ind)
+
+        def check(x, y):
+            mid = (x + y) // 2
+            res = 0
+            cnt = mid - x
+            if cnt:
+                start = ind[mid] - cnt
+                res += (start + start + cnt - 1) * cnt // 2 - (pre[mid] - pre[x])
+
+            cnt = y - mid
+            if cnt:
+                start = ind[mid] + 1
+                res += -(start + start + cnt - 1) * cnt // 2 + (pre[y + 1] - pre[mid + 1])
+            return res
+
+        ans = j = 0
+        for i in range(m):
+            if j < i:
+                j = i
+            while j + 1 < m and check(i, j + 1) <= k:
+                j += 1
+            ans = max(ans, j - i + 1)
         ac.st(ans)
         return

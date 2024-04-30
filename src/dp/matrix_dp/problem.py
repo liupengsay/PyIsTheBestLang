@@ -140,6 +140,7 @@ ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix
 ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
 ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix_dp|implemention|classical
 ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|counter|brain_teaser|classical
+ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_force|brain_teaser
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2910,4 +2911,32 @@ class Solution:
                 for c in range(b + 1, m):
                     ans += dp[a][b][c]
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def abc_227f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc227/tasks/abc227_f
+        tag: matrix_dp|bryte_force|brain_teaser
+        """
+        m, n, k = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ans = inf
+        nums = []
+        for g in grid:
+            nums.extend(g)
+        for num in nums:
+            dp = [[inf] * (k + 1) for _ in range(n)]
+            dp[0][0] = 0
+            for i in range(m):
+                ndp = [[inf] * (k + 1) for _ in range(n)]
+                for j in range(n):
+                    for x in range(k + 1):
+                        if x and grid[i][j] >= num:
+                            ndp[j][x] = min(ndp[j][x], ndp[j - 1][x - 1] if j else inf, dp[j][x - 1]) + grid[i][j]
+                        if grid[i][j] <= num:
+                            ndp[j][x] = min(ndp[j][x], min(ndp[j - 1][x] if j else inf, dp[j][x]))
+                dp = [ls[:] for ls in ndp]
+            ans = min(ans, dp[-1][k])
+        ac.st(ans)
         return

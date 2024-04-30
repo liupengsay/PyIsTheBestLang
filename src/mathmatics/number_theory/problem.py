@@ -91,6 +91,8 @@ ABC245D（https://atcoder.jp/contests/abc245/tasks/abc245_d）implemention|math|
 ABC242F（https://atcoder.jp/contests/abc242/tasks/abc242_f）inclusion_exclusion|counter|brute_force|classical
 ABC242E（https://atcoder.jp/contests/abc242/tasks/abc242_e）n_base|math
 ABC233E（https://atcoder.jp/contests/abc233/tasks/abc233_e）big_number|prefix_sum|data_range
+ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|divide_block|template
+ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1239,3 +1241,34 @@ class Solution:
         ac.st("".join(str(x) for x in ans))
         return
 
+    @staticmethod
+    def abc_230e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc230/tasks/abc230_e
+        tag: brain_teaser|math|divide_block|template
+        """
+
+        n = ac.read_int()
+        ans = 0
+        ll = 1
+        while ll <= n:
+            rr = n // (n // ll)
+            ans += (rr - ll + 1) * (n // ll)
+            ll = rr + 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_228e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc228/tasks/abc228_e
+        tag: math|fast_power|classical
+        """
+        n, k, m = ac.read_list_ints()
+        mod = 998244353
+        if m % mod == 0:
+            ac.st(0)
+        else:
+            ans = pow(m, pow(k, n, mod - 1), mod)
+            ac.st(ans)
+        return
