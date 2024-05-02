@@ -117,6 +117,7 @@ ABC350D（https://atcoder.jp/contests/abc350/tasks/abc350_d）union_find|classic
 ABC238E（https://atcoder.jp/contests/abc238/tasks/abc238_e）prefix_sum|union_find|classical
 ABC229E（https://atcoder.jp/contests/abc229/tasks/abc229_e）reverse_order|union_find|classical
 ABC228D（https://atcoder.jp/contests/abc228/tasks/abc228_d）union_find_range|classical|implemention
+ABC351D（https://atcoder.jp/contests/abc351/tasks/abc351_d）union_find|bfs|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2444,4 +2445,48 @@ class Solution:
                     uf.union_right(i, i + 1)
             else:
                 ac.st(nums[x % n])
+        return
+
+    @staticmethod
+    def abc_351d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc351/tasks/abc351_d
+        tag: union_find|bfs|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        uf = UnionFind(m * n)
+        safe = [[1] * n for _ in range(m)]
+        ind = [(0, 1), (0, -1), (-1, 0), (1, 0)]
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == ".":
+                    if any(0 <= i + a < m and 0 <= j + b < n and grid[i + a][j + b] == "#" for a, b in ind):
+                        safe[i][j] = 0
+                    ans = 1
+                else:
+                    safe[i][j] = 0
+        for i in range(m):
+            for j in range(n):
+                if safe[i][j]:
+                    for a, b in ind:
+                        if 0 <= i + a < m and 0 <= j + b < n and safe[i + a][j + b]:
+                            uf.union(i * n + j, (i + a) * n + j + b)
+
+        group = uf.get_root_part()
+        for g in group:
+            lst = group[g]
+            x = lst[0]
+            if safe[x // n][x % n] == 0:
+                continue
+            cur = len(lst)
+            flag = set()
+            for x in lst:
+                i, j = x // n, x % n
+                for a, b in ind:
+                    if 0 <= i + a < m and 0 <= j + b < n and grid[i + a][j + b] == "." and not safe[i + a][j + b]:
+                        flag.add((i + a, j + b))
+            ans = max(ans, cur + len(flag))
+        ac.st(ans)
         return

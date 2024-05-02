@@ -39,6 +39,7 @@ ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geomet
 ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_convex_quad|classical
 ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointer|brain_teaser
 ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain_teaser|classical
+ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -432,4 +433,36 @@ class Solution:
         ans.sort()
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def abc_351e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc351/tasks/abc351_e
+        tag: chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def check(lst):
+            if not lst:
+                return 0
+            x, y = lst[0]
+            w = (x - y) % 2
+            cur = [(x - y + w) // 2 for x, y in lst]
+            cur.sort()
+            res = pre = 0
+            for i, val in enumerate(cur):
+                pre += val
+                res += (i + 1) * val - pre
+            cur = [(x + y + w) // 2 for x, y in lst]
+            cur.sort()
+            pre = 0
+            for i, val in enumerate(cur):
+                pre += val
+                res += (i + 1) * val - pre
+            return res
+
+        ans = sum(check([[x, y] for x, y in nums if (x - y) % 2 == w]) for w in range(2))
+        ac.st(ans)
         return

@@ -270,14 +270,14 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1969"
+        num = "1972"
         for i in range(8):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
             print(url)
         return
 
     def test_atcoder_problem(self):
-        num = "227"
+        num = "351"
         print(f"https://atcoder.jp/contests/abc{num}")
         print(f"https://atcoder.jp/contests/abc{num}/standings")
         print(f"https://atcoder.jp/contests/abc{num}/results")

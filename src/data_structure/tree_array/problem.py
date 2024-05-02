@@ -46,6 +46,7 @@ ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|t
 ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulative_cumulative_cumulative_sum|math|classical
 ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_ascend|pre_max|implemention|set|classical
 ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointer
+ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discretize|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1290,5 +1291,26 @@ class Solution:
             tree.point_add(b[i] + 1, 1)
             tot += 1
         ans += n
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_351f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc351/tasks/abc351_f
+        tag: tree_array|discretize|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ind = {num: i + 1 for i, num in enumerate(sorted(set(nums)))}
+
+        m = len(ind)
+        tree_sum = PointAddRangeSum(m)
+        tree_cnt = PointAddRangeSum(m)
+        ans = 0
+        for num in nums:
+            tree_cnt.point_add(ind[num], 1)
+            tree_sum.point_add(ind[num], num)
+            ans += tree_cnt.range_sum(1, ind[num]) * num - tree_sum.range_sum(1, ind[num])
         ac.st(ans)
         return
