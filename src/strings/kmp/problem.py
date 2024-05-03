@@ -53,6 +53,7 @@ P8112（https://www.luogu.com.cn/problem/P8112）z_function|point_set|range_min|
 1051E（https://codeforces.com/contest/1051/problem/E）kmp|z-function|linear_dp
 1015F（https://codeforces.com/contest/1015/problem/F）kmp_automaton|matrix_dp
 1690F（https://codeforces.com/contest/1690/problem/F）permutation_circle|kmp|circle_section
+1968G2（https://codeforces.com/contest/1968/problem/G2）z_algorithm|offline_query|binary_search|brute_force|preprocess
 
 =====================================AcWing=====================================
 143（https://www.acwing.com/problem/content/143/）kmp|circular_section
@@ -1200,4 +1201,41 @@ class Solution:
                 tree.point_set(i, nex)
         ans = tree.range_min(0, 0)
         ac.st(ans if ans < inf else "Fake")
+        return
+
+    @staticmethod
+    def cf_1968g2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1968/problem/G2
+        tag: z_algorithm|offline_query|binary_search|brute_force|preprocess
+        """
+        for _ in range(ac.read_int()):
+            n, ll, rr = ac.read_list_ints()
+            s = ac.read_str()
+            z = KMP().z_function(s + "#" + s)
+
+            lst = [(z[i + n + 1], i) for i in range(n)]
+            lst.sort(reverse=True)
+
+            ans = [-n - 1] * (n + 1)
+            i = 0
+            ind = SortedList()
+            for x in range(n, 0, -1):
+                while i < n and lst[i][0] >= x:
+                    ind.add(lst[i][1])
+                    i += 1
+                if not ind:
+                    continue
+                cur = ind[0]
+                cnt = 1
+                while cur + x <= ind[-1]:
+                    cur = ind[ind.bisect_left(cur + x)]
+                    cnt += 1
+                ans[x] = -cnt
+
+            res = []
+            for x in range(ll, rr + 1):
+                res.append(bisect.bisect_right(ans, -x) - 1)
+
+            ac.lst(res)
         return

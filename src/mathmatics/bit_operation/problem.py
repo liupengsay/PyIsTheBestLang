@@ -62,6 +62,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1760G（https://codeforces.com/contest/1760/problem/G）bit_operation|dfs|brute_force
 1066E（https://codeforces.com/contest/1066/problem/E）bit_operation|brute_force|implemention|prefix_sum
 1790E（https://codeforces.com/contest/1790/problem/E）bit_operation
+1968F（https://codeforces.com/contest/1968/problem/F）brute_force|bit_operation|binary_search
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
