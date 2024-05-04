@@ -40,6 +40,7 @@ ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_c
 ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointer|brain_teaser
 ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain_teaser|classical
 ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
+ABC226D（https://atcoder.jp/contests/abc226/tasks/abc226_d）geometry|linear_scope|classical
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -48,6 +49,7 @@ ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance
 （https://www.hackerrank.com/contests/2023-1024-1/challenges/challenge-4219）collinearity|random
 
 """
+import math
 from collections import defaultdict, Counter
 from itertools import accumulate, pairwise
 from math import inf
@@ -465,4 +467,34 @@ class Solution:
 
         ans = sum(check([[x, y] for x, y in nums if (x - y) % 2 == w]) for w in range(2))
         ac.st(ans)
+        return
+
+
+    @staticmethod
+    def abc_226d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc226/tasks/abc226_d
+        tag: geometry|linear_scope|classical
+        """
+        n = ac.read_int()
+        points = [ac.read_list_ints() for _ in range(n)]
+        ans = set()
+        for i in range(n):
+            x1, y1 = points[i]
+            for j in range(n):
+                if i == j:
+                    continue
+                x2, y2 = points[j]
+                a = x2 - x1
+                b = y2 - y1
+                if b == 0:
+                    a = -1 if a < 0 else 1
+                elif a == 0:
+                    b = -1 if b < 0 else 1
+                else:
+                    g = math.gcd(abs(a), abs(b))
+                    a //= g
+                    b //= g
+                ans.add((a, b))
+        ac.st(len(ans))
         return

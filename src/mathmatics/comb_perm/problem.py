@@ -66,6 +66,7 @@ ABC240G（https://atcoder.jp/contests/abc240/tasks/abc240_g）math|comb|counter|
 ABC235G（https://atcoder.jp/contests/abc235/tasks/abc235_g）inclusion_exclusion|comb|counter|math|brain_teaser|classical
 ABC232E（https://atcoder.jp/contests/abc232/tasks/abc232_e）brute_force|linear_dp|comb
 ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
+ABC226F（https://atcoder.jp/contests/abc226/tasks/abc226_f）bag_dp|brute_force|comb
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1102,6 +1103,56 @@ class Solution:
         for x in range(k + 1):
             c = cb.comb(k, x) * dp1[x][0] * dp2[k - x][0]
             ans += c
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_226f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc226/tasks/abc226_f
+        tag: bag_dp|brute_force|comb
+        """
+
+        n, k = ac.read_list_ints()
+        mod = 998244353
+
+        dp = [set() for _ in range(n + 1)]
+        dp[0].add(tuple())
+        for num in range(1, n + 1):
+            for i in range(num, n + 1):
+                dp[i] |= {tuple(list(p) + [num]) for p in dp[i - num]}
+
+        ans = 0
+        f = [1] * (n + 1)
+        for x in range(1, n + 1):
+            f[x] = f[x - 1] * x
+            f[x] %= mod
+
+        cb = Combinatorics(n + 10, mod)
+
+        @lru_cache(None)
+        def dfs(a, b):
+            return math.lcm(a, b)
+
+        for tp in dp[-1]:
+            dct = Counter(tp)
+            cnt = 1
+            tot = n
+            g = 1
+            for x in sorted(dct, reverse=True):
+                cc = dct[x]
+                if x > 1:
+                    g = dfs(g, x)
+                    for _ in range(cc):
+                        cnt *= cb.comb(tot, x) * f[x - 1]
+                        cnt %= mod
+                        tot -= x
+                    cnt *= cb.rev[cc]
+                    cnt %= mod
+                else:
+                    break
+            ans += pow(g, k, mod) * cnt
             ans %= mod
         ac.st(ans)
         return

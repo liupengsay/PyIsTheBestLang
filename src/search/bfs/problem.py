@@ -120,6 +120,7 @@ ABC276E（https://atcoder.jp/contests/abc276/tasks/abc276_e）bfs
 ABC244F（https://atcoder.jp/contests/abc244/tasks/abc244_f）bfs|bit_operation|brain_teaser
 ABC246E（https://atcoder.jp/contests/abc246/tasks/abc246_e）bfs|union_find|brain_teaser|prune|classical）
 ABC241F（https://atcoder.jp/contests/abc241/tasks/abc241_f）bfs|implemention
+ABC226C（https://atcoder.jp/contests/abc226/tasks/abc226_c）reverse_graph|bfs
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -129,8 +130,9 @@ ABC241F（https://atcoder.jp/contests/abc241/tasks/abc241_f）bfs|implemention
 4484（https://www.acwing.com/problem/content/description/4484/）01-bfs
 
 """
-
+import bisect
 from collections import deque, defaultdict
+from heapq import heappush
 from typing import List
 
 from src.graph.union_find.template import UnionFind
@@ -2569,4 +2571,35 @@ class Solution:
 
         ans = dis[(gx, gy)]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_226c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc226/tasks/abc226_c
+        tag: reverse_graph|bfs
+        """
+        n = ac.read_int()
+
+        rev = [[] for _ in range(n)]
+        ans = [0] * n
+        for i in range(n):
+            lst = ac.read_list_ints()
+            for x in lst[2:]:
+                rev[i].append(x - 1)
+            ans[i] = lst[0]
+
+        stack = [n - 1]
+        res = ans[n - 1]
+        ans[n - 1] = -1
+        while stack:
+            nex = []
+            for i in stack:
+                for j in rev[i]:
+                    if ans[j] != -1:
+                        nex.append(j)
+                        res += ans[j]
+                        ans[j] = -1
+            stack = nex[:]
+        ac.st(res)
         return

@@ -118,6 +118,7 @@ ABC238E（https://atcoder.jp/contests/abc238/tasks/abc238_e）prefix_sum|union_f
 ABC229E（https://atcoder.jp/contests/abc229/tasks/abc229_e）reverse_order|union_find|classical
 ABC228D（https://atcoder.jp/contests/abc228/tasks/abc228_d）union_find_range|classical|implemention
 ABC351D（https://atcoder.jp/contests/abc351/tasks/abc351_d）union_find|bfs|classical
+ABC226E（https://atcoder.jp/contests/abc226/tasks/abc226_e）circle_based_tree|union_find|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2489,4 +2490,31 @@ class Solution:
                         flag.add((i + a, j + b))
             ans = max(ans, cur + len(flag))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_226e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc226/tasks/abc226_e
+        tag: circle_based_tree|union_find|classical
+        """
+        n, m = ac.read_list_ints()
+        uf = UnionFind(n)
+        mod = 998244353
+        edges = []
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            uf.union(i, j)
+            edges.append((i, j))
+        group = uf.get_root_part()
+        degree = defaultdict(int)
+        for i, j in edges:
+            degree[uf.find(i)] += 1
+        ans = 0
+        for g in group:
+            if len(group[g]) != degree[g]:
+                ac.st(0)
+                return
+            ans += 1
+        ac.st(pow(2, ans, mod))
         return
