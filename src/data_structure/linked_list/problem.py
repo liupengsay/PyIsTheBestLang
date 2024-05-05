@@ -24,6 +24,7 @@ P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_ro
 ====================================AtCoder=====================================
 ABC344E（https://atcoder.jp/contests/abc344/tasks/abc344_e）linked_list
 ABC237D（https://atcoder.jp/contests/abc237/tasks/abc237_d）double_linked_list|implemention|classical
+ABC225D（https://atcoder.jp/contests/abc225/tasks/abc225_d）linked_list
 
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）linked_list|reverse_thinking

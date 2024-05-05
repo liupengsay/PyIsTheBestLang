@@ -49,10 +49,12 @@ P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 
 =====================================AtCoder=====================================
 ABC256D（https://atcoder.jp/contests/abc256/tasks/abc256_d）range_merge_to_disjoint|classical
+ABC225E（https://atcoder.jp/contests/abc225/tasks/abc225_e）greedy|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
 
 """
 import bisect
 from collections import defaultdict, deque
+from functools import cmp_to_key
 from typing import List
 
 from src.basis.range.template import Range
@@ -407,4 +409,40 @@ class Solution:
         ans = Range().range_merge_to_disjoint(nums)
         for a in ans:
             ac.lst(a)
+        return
+
+    @staticmethod
+    def abc_225e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc225/tasks/abc225_e
+        tag: greedy|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
+        """
+        n = ac.read_int()
+        points = [ac.read_list_ints() for _ in range(n)]
+        line = []
+        for x, y in points:
+            if y == 1:
+                low = (1, 0)
+            else:
+                low = (x, y - 1)
+            if x == 1:
+                high = (1, inf)
+            else:
+                high = (x - 1, y)
+            line.append([low, high])
+
+        def compare_(xx, yy):
+            if xx[1][1] * yy[1][0] < yy[1][1] * xx[1][0]:
+                return -1
+            return 1
+
+        line.sort(key=cmp_to_key(compare_))
+
+        ans = 0
+        pre = (1, 0)
+        for low, high in line:
+            if low[1] * pre[0] >= low[0] * pre[1]:
+                ans += 1
+                pre = high
+        ac.st(ans)
         return

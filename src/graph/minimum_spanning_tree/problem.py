@@ -52,6 +52,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
 ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|brain_teaser|classical
 ABC235E（https://atcoder.jp/contests/abc235/tasks/abc235_e）online_query|data_range|offline_query|mst|maximum_weight|classical
+ABC352E（https://atcoder.jp/contests/abc352/tasks/abc352_e）union_find|mst|reverse_order
 
 =====================================AcWing=====================================
 3731（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan

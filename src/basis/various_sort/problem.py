@@ -25,6 +25,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
 ABC268F（https://atcoder.jp/contests/abc268/tasks/abc268_f）custom_sort|classical
+ABC225F（https://atcoder.jp/contests/abc225/tasks/abc225_f）linear_dp|cmp_to_key|custom_sort|brain_teaser|reverse_order
 
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）custom_sort
@@ -250,4 +251,31 @@ class Solution:
             ans += cnt[ind[x]][0] * post
             post += cnt[ind[x]][1]
         ac.st(ans + sum(score))
+        return
+
+    @staticmethod
+    def abc_225f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc225/tasks/abc225_f
+        tag: linear_dp|cmp_to_key|custom_sort|brain_teaser|reverse_order
+        """
+        n, k = ac.read_list_ints()
+
+        def compare_(x, y):
+            if x + y < y + x:
+                return -1
+            return 1
+
+        words = [ac.read_str() for _ in range(n)]
+        words.sort(key=cmp_to_key(compare_))
+
+        dp = [chr(ord("z") + 1) for _ in range(k + 1)]
+        dp[0] = ""
+        for i in range(n - 1, -1, -1):
+            word = words[i]
+            ndp = dp[:]
+            for j in range(1, k + 1):
+                ndp[j] = min(ndp[j], word + dp[j - 1])
+            dp = ndp[:]
+        ac.st(dp[-1])
         return

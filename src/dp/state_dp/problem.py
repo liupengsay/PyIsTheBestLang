@@ -58,6 +58,7 @@ ABC301E（https://atcoder.jp/contests/abc301/tasks/abc301_e）state_dp|build_gra
 ABC278F（https://atcoder.jp/contests/abc278/tasks/abc278_f）state_dp|classical
 ABC274E（https://atcoder.jp/contests/abc274/tasks/abc274_e）state_dp|classical
 ABC232F（https://atcoder.jp/contests/abc232/tasks/abc232_f）state_dp|brain_teaser|classical
+ABC352F（https://atcoder.jp/contests/abc352/tasks/abc352_f）union_find|brute_force|state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1138,4 +1139,80 @@ class Solution:
                 res = min(res, cur)
             dp[state] = res
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def abc_352f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc352/tasks/abc352_f
+        tag: union_find|brute_force|state_dp|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            a, b, c = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            dct[a].append((b, c))
+            dct[b].append((a, -c))
+
+        roots = []
+        group = []
+        pre = []
+        visit = [n] * n
+        for g in range(n):
+            if visit[g] == n:
+                visit[g] = 0
+                stack = [g]
+                lst = [g]
+                roots.append(g)
+                while stack:
+                    x = stack.pop()
+                    for b, w in dct[x]:
+                        if visit[b] == n:
+                            visit[b] = visit[x] - w
+                            stack.append(b)
+                            lst.append(b)
+                low = min(visit[x] for x in lst)
+                cur = 0
+                for x in lst:
+                    visit[x] -= low
+                    cur |= 1 << visit[x]
+                pre.append(cur)
+                group.append(lst[:])
+
+        @lru_cache(None)
+        def dfs(rest_group, rest_ind):
+            if rest_ind == 0:
+                return rest_group == 0
+            for ind in range(k):
+                if rest_ind & (1 << ind):
+                    for y in range(n):
+                        if (rest_group & (pre[ind] << y)) == (pre[ind] << y) and dfs(rest_group ^ (pre[ind] << y),
+                                                                                     rest_ind ^ (1 << ind)):
+                            return True
+                    break
+            return False
+
+        k = len(roots)
+        ans = [[] for _ in range(k)]
+        tot = (1 << n) - 1
+        index = (1 << k) - 1
+
+        for i in range(k):
+            for x in range(n):
+                if ((pre[i] << x) & tot) == (pre[i] << x):
+                    rest = tot ^ (pre[i] << x)
+                    if dfs(rest, index ^ (1 << i)):
+                        ans[i].append(x)
+                        if len(ans[i]) >= 2:
+                            break
+        for i in range(k):
+            if len(ans[i]) == 1:
+                for r in group[i]:
+                    visit[r] += ans[i][0] + 1
+            else:
+                for r in group[i]:
+                    visit[r] = -1
+        ac.lst(visit)
         return
