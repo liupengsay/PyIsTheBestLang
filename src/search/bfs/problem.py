@@ -121,6 +121,7 @@ ABC244F（https://atcoder.jp/contests/abc244/tasks/abc244_f）bfs|bit_operation|
 ABC246E（https://atcoder.jp/contests/abc246/tasks/abc246_e）bfs|union_find|brain_teaser|prune|classical）
 ABC241F（https://atcoder.jp/contests/abc241/tasks/abc241_f）bfs|implemention
 ABC226C（https://atcoder.jp/contests/abc226/tasks/abc226_c）reverse_graph|bfs
+ABC224D（https://atcoder.jp/contests/abc224/tasks/abc224_d）bfs|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

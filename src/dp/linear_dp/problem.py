@@ -145,6 +145,8 @@ ABC243G（https://atcoder.jp/contests/abc243/tasks/abc243_g）prefix_sum|preproc
 ABC350E（https://atcoder.jp/contests/abc350/tasks/abc350_e）linear_dp|implemention|prob_dp|expectation_dp|classical
 ABC234G（https://atcoder.jp/contests/abc234/tasks/abc234_g）monotonic_stack|linear_dp|prefix_sum|contribution_method|classical
 ABC234F（https://atcoder.jp/contests/abc234/tasks/abc234_f）brute_force|linear_dp|comb|math
+ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_e）reverse_thinking|linear_dp|classical
+ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_f）linear_dp|contribution_method|math
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -1549,4 +1551,33 @@ class Solution:
                 dp.append(cur[:])
                 dp.popleft()
             ac.st(min(dp[-1]))
+        return
+
+    @staticmethod
+    def abc_224f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc224/tasks/abc224_f
+        tag: linear_dp|contribution_method|math
+        """
+        mod = 998244353
+        s = ac.read_str()
+        n = len(s)
+        dp = [0] * (n + 1)
+        cnt = [0] * (n + 1)
+        cnt[n] = 1
+        cnt[n - 1] = 1
+        post_sum = post = 0
+        tot = 10
+        for i in range(n - 1, -1, -1):
+            cnt[i] = 2 * cnt[i + 1] if i < n - 1 else 1
+            cnt[i] %= mod
+            if i == n - 1:
+                tot = 0
+            else:
+                tot = (tot + cnt[i + 2]) * 10 % mod
+            post = post + int(s[i]) * tot + int(s[i]) * cnt[i + 1]
+            post %= mod
+            dp[i] = (post_sum + post) % mod
+            post_sum = (post_sum + dp[i]) % mod
+        ac.st(dp[0] % mod)
         return
