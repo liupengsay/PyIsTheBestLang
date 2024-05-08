@@ -41,6 +41,7 @@ ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_
 ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain_teaser|classical
 ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
 ABC226D（https://atcoder.jp/contests/abc226/tasks/abc226_d）geometry|linear_scope|classical
+ABC224C（https://atcoder.jp/contests/abc224/tasks/abc224_c）geometry
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -497,4 +498,42 @@ class Solution:
                     b //= g
                 ans.add((a, b))
         ac.st(len(ans))
+        return
+
+    @staticmethod
+    def abc_224c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc224/tasks/abc224_c
+        tag: geometry
+        """
+        n = ac.read_int()
+        ans = 0
+        points = [ac.read_list_ints() for _ in range(n)]
+        for i in range(n - 2):
+            for j in range(i + 1, n - 1):
+                for k in range(j + 1, n):
+                    if not Geometry().same_line(points[i], points[j], points[k]):
+                        ans += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_224c_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc224/tasks/abc224_c
+        tag: geometry
+        """
+        n = ac.read_int()
+        points = [ac.read_list_ints() for _ in range(n)]
+        ans = n * (n - 1) * (n - 2) // 6
+        for i in range(n - 1):
+            dct = defaultdict(int)
+            x1, y1 = points[i]
+            for j in range(i + 1, n):
+                x2, y2 = points[j]
+                dct[Geometry().compute_slope(x1, y1, x2, y2)] += 1
+            for va in dct.values():
+                if va >= 2:
+                    ans -= va * (va - 1) // 2
+        ac.st(ans)
         return
