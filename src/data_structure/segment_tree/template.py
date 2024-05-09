@@ -3586,6 +3586,144 @@ class PointSetRangeOr:
         return ans
 
 
+class RangeSetPreSumMax:
+    def __init__(self, n, initial=-inf):
+        # dynamic adding point segment tree in which n can be 1e9
+        self.n = n
+        self.initial = initial
+        self.pre_sum_max = [0] * 4 * n
+        self.sum = [0] * 4 * n
+        self.lazy_tag = [initial] * 4 * n  # lazy tag must be initial inf
+        return
+
+    def build(self, nums):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.sum[i] = nums[s]
+                    self.pre_sum_max[i] = nums[s]
+                    continue
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy_tag[i] != self.initial:
+            self._make_tag(i << 1, s, m, self.lazy_tag[i])
+            self._make_tag((i << 1) | 1, m + 1, t, self.lazy_tag[i])
+            self.lazy_tag[i] = self.initial
+
+    def _push_up(self, i):
+        self.sum[i] = self.sum[i << 1] + self.sum[(i << 1) | 1]
+        self.pre_sum_max[i] = max(self.pre_sum_max[i << 1],
+                                  self.sum[i << 1] + max(0, self.pre_sum_max[(i << 1) | 1]))
+        return
+
+    def _make_tag(self, i, s, t, val):
+        self.pre_sum_max[i] = val * (t - s + 1) if val >= 0 else val
+        self.sum[i] = val * (t - s + 1)
+        self.lazy_tag[i] = val
+        return
+
+    def range_set(self, left, right, val):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_sum(self, left, right):
+        if left > right:
+            return 0
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.sum[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def range_pre_sum_max(self, left):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        pre_sum = 0
+        while stack:
+            s, t, i = stack.pop()
+            if t <= left:
+                ans = max(ans, pre_sum + self.pre_sum_max[i])
+                pre_sum += self.sum[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            stack.append((s, m, i << 1))
+        return ans
+
+    def range_pre_sum_max_range(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        pre_sum = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans = max(ans, pre_sum + self.pre_sum_max[i])
+                pre_sum += self.sum[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return ans
+
+    def range_pre_sum_max_bisect_left(self, val):
+        s, t, i = 0, self.n - 1, 1
+        pre_sum = 0
+        while s < t:
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if pre_sum + self.pre_sum_max[i << 1] > val:
+                s, t, i = s, m, i << 1
+            else:
+                pre_sum += self.sum[i << 1]
+                s, t, i = m + 1, t, (i << 1) | 1
+        if t == self.n - 1 and self.range_pre_sum_max(self.n - 1) <= val:
+            return t + 1
+        return t
+
+
 class PointSetRangeXor:
 
     def __init__(self, n):

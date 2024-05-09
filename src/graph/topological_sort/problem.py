@@ -49,6 +49,8 @@ ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_
 ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|topological_sort
 ABC296E（https://atcoder.jp/contests/abc296/tasks/abc296_e）topological_sort|directed_graph
 ABC256E（https://atcoder.jp/contests/abc256/tasks/abc256_e）topological_sort|greedy|circle_based_tree|classical
+ABC223D（https://atcoder.jp/contests/abc223/tasks/abc223_d）topological_sort
+
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction

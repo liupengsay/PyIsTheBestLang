@@ -101,6 +101,7 @@ ABC346G（https://atcoder.jp/contests/abc346/tasks/abc346_g）contribution_metho
 ABC292H（https://atcoder.jp/contests/abc292/tasks/abc292_h）segment_tree|range_add|range_max_bisect_left
 ABC253F（https://atcoder.jp/contests/abc253/tasks/abc253_f）offline_query|data_range|limited_operation|brain_teaser|preprocess|classical
 ABC237G（https://atcoder.jp/contests/abc237/tasks/abc237_g）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
+ABC223F（https://atcoder.jp/contests/abc223/tasks/abc223_f）segment_tree|point_set|range_set|pre_sum_max
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -168,7 +169,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
-    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount
+    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -3289,4 +3290,28 @@ class Solution:
 
         ans = BinarySearch().find_int_right_strictly(0, n - 1, check) + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_223f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc223/tasks/abc223_f
+        tag: segment_tree|point_set|range_set|pre_sum_max
+        """
+        n, q = ac.read_list_ints()
+        s = [1 if w == ")" else -1 for w in ac.read_str()]
+        tree = RangeSetPreSumMax(n)
+        tree.build(s)
+        for _ in range(q):
+            op, ll, rr = ac.read_list_ints_minus_one()
+            if op == 0:
+                if s[ll] != s[rr]:
+                    tree.range_set(ll, ll, s[ll] * (-1))
+                    tree.range_set(rr, rr, s[rr] * (-1))
+                    s[ll], s[rr] = s[rr], s[ll]
+            else:
+                if (rr - ll + 1) % 2 == 0 and tree.range_pre_sum_max_range(ll, rr) == tree.range_sum(ll, rr) == 0:
+                    ac.yes()
+                else:
+                    ac.no()
         return
