@@ -102,6 +102,7 @@ ABC327E（https://atcoder.jp/contests/abc327/tasks/abc327_e）bag_dp|brute_force
 ABC321f（https://atcoder.jp/contests/abc321/tasks/abc321_f）bag_dp|classical
 ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force|classical
 ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greedy
+ABC222E（https://atcoder.jp/contests/abc222/tasks/abc222_e）bfs|bag_dp
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -1479,3 +1480,57 @@ class Solution:
                 else:
                     break
         return dp[-1]
+
+    @staticmethod
+    def abc_222e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc222/tasks/abc222_e
+        tag: bfs|bag_dp
+        """
+        n, m, k = ac.read_list_ints()
+        a = ac.read_list_ints_minus_one()
+        dct = [dict() for _ in range(n)]
+        for x in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i][j] = x
+            dct[j][i] = x
+        cnt = [0] * (n - 1)
+        for i in range(m - 1):
+            s, t = a[i], a[i + 1]
+            if s == t:
+                continue
+            parent = [-1] * n
+            stack = [s]
+            while stack and parent[t] == -1:
+                nex = []
+                for y in stack:
+                    for xx in dct[y]:
+                        if parent[xx] == -1 and xx != s:
+                            parent[xx] = y
+                            nex.append(xx)
+                stack = nex[:]
+            node = t
+            while node != s:
+                cnt[dct[node][parent[node]]] += 1
+                node = parent[node]
+        mod = 998244353
+        tot = sum(cnt)
+        if (tot + k) % 2 or (tot+k) // 2 < 0:
+            ac.st(0)
+            return
+        r = (tot + k) // 2
+        dp = [0] * (r + 1)
+        dp[0] = 1
+        ans = 1
+        for i in range(n - 1):
+            if cnt[i] == 0:
+                ans *= 2
+                ans %= mod
+                continue
+            c = cnt[i]
+            for x in range(r, c - 1, -1):
+                dp[x] = (dp[x] + dp[x - c]) % mod
+        ans *= dp[r]
+        ans %= mod
+        ac.st(ans)
+        return

@@ -59,6 +59,7 @@ ABC329F（https://atcoder.jp/contests/abc329/tasks/abc329_f）heuristic_merge|cl
 ABC348E（https://atcoder.jp/contests/abc348/tasks/abc348_e）reroot_dp|classical
 ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teaser|greedy
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_e）tree_dp|classical
+ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp|classical
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -1479,4 +1480,62 @@ class Solution:
                 else:
                     sub[x] = (pos, 0)
         ac.st(max(sub[0]))
+        return
+
+    @staticmethod
+    def abc_222f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc222/tasks/abc222_f
+        tag: reroot_dp|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, w = ac.read_list_ints()
+            i -= 1
+            j -= 1
+            dct[i].append((j, w))
+            dct[j].append((i, w))
+        d = ac.read_list_ints()
+
+        sub = [0] * n
+        stack = [[0, -1]]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append([~i, fa])
+                for j, w in dct[i]:
+                    if j != fa:
+                        stack.append([j, i])
+            else:
+                i = ~i
+                cur = 0
+                for j, w in dct[i]:
+                    if j != fa:
+                        cur = max(cur, max(sub[j], d[j]) + w)
+                sub[i] = cur
+
+        ans = [0] * n
+        stack = [[0, -1, 0]]
+        while stack:
+            i, fa, pre = stack.pop()
+
+            ans[i] = max(pre, sub[i])
+            aa = bb = -inf
+            for j, w in dct[i]:
+                if j != fa:
+                    cur = max(sub[j], d[j]) + w
+                    if cur > aa:
+                        aa, bb = cur, aa
+                    elif cur > bb:
+                        bb = cur
+            for j, w in dct[i]:
+                if j != fa:
+                    cur = max(sub[j], d[j]) + w
+                    if cur == aa:
+                        stack.append((j, i, max(pre, bb, d[i]) + w))
+                    else:
+                        stack.append((j, i, max(pre, aa, d[i]) + w))
+        for a in ans:
+            ac.st(a)
         return
