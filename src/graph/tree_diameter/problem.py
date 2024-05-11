@@ -16,6 +16,7 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 ====================================AtCoder=====================================
 ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
+ABC221F（https://atcoder.jp/contests/abc221/tasks/abc221_f）diameter|linear_dp
 
 =====================================AcWing=====================================
 
@@ -23,7 +24,7 @@ ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|rero
 1（https://judge.yosupo.jp/problem/tree_diameter）tree_diameter
 
 """
-
+from collections import Counter
 from typing import List
 
 from src.graph.tree_diameter.template import TreeDiameter
@@ -239,4 +240,66 @@ class Solution:
                         visit[y] = 1
         for a in ans:
             ac.st(a + 1)
+        return
+
+    @staticmethod
+    def abc_221f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc221/tasks/abc221_f
+        tag: diameter|linear_dp
+        """
+        mod = 998244353
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append((j, 1))
+            dct[j].append((i, 1))
+        if n == 2:
+            ac.st(1)
+            return
+
+        x, y, path, d = TreeDiameter(dct).get_diameter_info()
+        if len(path) % 2 == 0:
+            m = len(path)
+            i, j = path[m // 2 - 1], path[m // 2]
+            n += 1
+            dct.append([])
+            dct[i].remove((j, 1))
+            dct[j].remove((i, 1))
+            dct[n - 1].append((i, 1))
+            dct[i].append((n - 1, 1))
+            dct[n - 1].append((j, 1))
+            dct[j].append((n - 1, 1))
+            x, y, path, d = TreeDiameter(dct).get_diameter_info()
+        m = len(path)
+        mid = path[m // 2]
+        dis = [-1] * n
+        stack = [mid]
+        dis[mid] = 0
+        parent = [-1] * n
+
+        while stack:
+            nex = []
+            for i in stack:
+                for j, _ in dct[i]:
+                    if dis[j] == -1:
+                        if parent[i] == -1:
+                            parent[j] = j
+                        else:
+                            parent[j] = parent[i]
+                        dis[j] = dis[i] + 1
+                        nex.append(j)
+            stack = nex[:]
+        ceil = max(dis)
+
+        cnt = list(Counter([parent[x] for x in range(n) if dis[x] == ceil]).values())
+        dp = [1, 0, 0]
+        for c in cnt:
+            ndp = [0, 0, 0]
+            ndp[0] = dp[0]
+            ndp[1] = dp[0] * c + dp[1]
+            ndp[2] = (dp[1] + dp[2]) * c + dp[2]
+            dp = [x % mod for x in ndp]
+        ac.st(dp[-1])
         return

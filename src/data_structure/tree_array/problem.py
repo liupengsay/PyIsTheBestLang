@@ -47,6 +47,7 @@ ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulat
 ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_ascend|pre_max|implemention|set|classical
 ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointer
 ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discretize|classical
+ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contribution_method
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1312,5 +1313,34 @@ class Solution:
             tree_cnt.point_add(ind[num], 1)
             tree_sum.point_add(ind[num], num)
             ans += tree_cnt.range_sum(1, ind[num]) * num - tree_sum.range_sum(1, ind[num])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_221e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc221/tasks/abc221_e
+        tag: tree_array|contribution_method
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        pp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            pp[i] = (pp[i - 1] * 2) % mod
+        rev = [1] * (n + 1)
+        x = pow(2, -1, mod)
+        for i in range(1, n + 1):
+            rev[i] = (rev[i - 1] * x) % mod
+        ind = {num: i + 1 for i, num in enumerate(sorted(set(nums)))}
+        m = len(ind)
+        tree = PointAddRangeSum(m)
+        ans = 0
+        for i in range(n):
+            j = ind[nums[i]]
+            if i:
+                ans += tree.range_sum(1, j) * pp[i - 1] % mod
+                ans %= mod
+            tree.point_add(j, rev[i])
         ac.st(ans)
         return
