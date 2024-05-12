@@ -27,6 +27,8 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
 100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
+100295（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range
+233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation

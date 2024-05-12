@@ -94,6 +94,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1619G（https://codeforces.com/contest/1619/problem/G）union_find|implemention
 1618G（https://codeforces.com/contest/1618/problem/G）union_find_left|union_find_right|classical|offline_query
 1941G（https://codeforces.com/contest/1941/problem/G）union_find|build_graph|bfs|brain_teaser|classical
+1971G（https://codeforces.com/contest/1971/problem/G）union_find|bit_operation
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find

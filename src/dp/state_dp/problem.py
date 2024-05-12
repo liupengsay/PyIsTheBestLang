@@ -26,6 +26,7 @@ Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_fo
 2305（https://leetcode.cn/problems/fair-distribution-of-cookies/description/）classical|state_dp|brute_force|sub_set
 980（https://leetcode.cn/problems/unique-paths-iii/description/）classical|state_dp|back_track
 2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
+100312（https://leetcode.cn/problems/find-the-minimum-cost-array-permutation/description/）specific_plan|state_dp
 
 =====================================LuoGu======================================
 P1896（https://www.luogu.com.cn/problem/P1896）brute_force|state_dp
@@ -1216,3 +1217,54 @@ class Solution:
                     visit[r] = -1
         ac.lst(visit)
         return
+
+    @staticmethod
+    def lc_100312(nums: List[int]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/find-the-minimum-cost-array-permutation/description/
+        tag: specific_plan|state_dp
+        """
+
+        @lru_cache(None)
+        def one(ss):
+            return [j for j in range(14) if ss & (1 << j)]
+
+        @lru_cache(None)
+        def zero(ss):
+            return [j for j in range(14) if not ss & (1 << j)]
+
+        m = 14
+        dp = [[0] * m for _ in range((1 << m) - 1)]
+        tp = [[0] * m for _ in range((1 << m) - 1)]
+
+        n = len(nums)
+        for state in range((1 << n) - 1):
+            if state == 0:
+                for pre in range(n):
+                    dp[state][pre] = abs(pre - nums[0])
+                    tp[state][pre] = pre
+                continue
+            for pre in zero(state):
+                if pre >= n:
+                    break
+                cur_cost = inf
+                cur_tp = ()
+                for i in one(state):
+                    if i >= n:
+                        break
+                    c = dp[state ^ (1 << i)][i] + abs(pre - nums[i])
+                    if c < cur_cost:
+                        cur_cost = c
+                        cur_tp = i
+                dp[state][pre] = cur_cost
+                tp[state][pre] = cur_tp
+        ans = []
+        pre = 0
+        state = (1 << n) - 2
+        while state:
+            ans.append(pre)
+            pre = tp[state][pre]
+            state = state ^ (1 << pre)
+
+        ans.append(pre)
+        return ans

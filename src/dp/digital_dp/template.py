@@ -35,6 +35,29 @@ class DigitalDP:
         return ans
 
     @staticmethod
+    def count_bin2(m):
+        cnt = []
+        val = 1
+        while val <= m:
+            # a, b 分别是循环节和剩余元素个数
+            a, b = divmod(m, val * 2)
+            # 统计 1 的数量
+            cnt.append(a * val + min(max(b - val + 1, 0), val))
+            val *= 2
+        return cnt
+
+
+    @staticmethod
+    def count_digit_1(n):
+        k, kk = 0, 1
+        ans = 0
+        while n >= kk:
+            ans += (n // (kk * 10)) * kk + min(max(n % (kk * 10) - kk + 1, 0), kk)
+            k += 1
+            kk *= 10
+        return ans
+
+    @staticmethod
     def count_digit_dfs(num, d):
         # Calculate the number of occurrences of digit d within 1 to num
 

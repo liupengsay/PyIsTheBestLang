@@ -179,6 +179,10 @@ ABC232C（https://atcoder.jp/contests/abc232/tasks/abc232_c）brute_force|implem
 ABC230C（https://atcoder.jp/contests/abc230/tasks/abc230_c）brute_force|implemention
 ABC223E（https://atcoder.jp/contests/abc223/tasks/abc223_e）brute_force|implemention
 ABC353D（https://atcoder.jp/contests/abc353/tasks/abc353_d）contribution_method|implemention
+ABC220E（https://atcoder.jp/contests/abc220/tasks/abc220_e）contribution_method|classical|brute_force|binary_tree
+
+===================================CodeForces===================================
+1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
@@ -1789,5 +1793,30 @@ class Solution:
             ans += (1 + cnt) * cnt // 2
             ans %= mod
         ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_220e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc220/tasks/abc220_e
+        tag: contribution_method|classical|brute_force|binary_tree
+        """
+        mod = 998244353
+        n, d = ac.read_list_ints()
+        p = [1] * (n + 1)
+        for x in range(1, n + 1):
+            p[x] = (p[x - 1] * 2) % mod
+
+        ans = 0
+        for ll in range(d + 1):
+            rr = d - ll
+            ss = max(ll, rr)
+            if ss <= n - 1:
+                root = p[n - ss] - 1
+                left = p[max(0, ll - 1)]
+                right = p[max(0, rr - 1)]
+                ans += root * left * right * 2
+                ans %= mod
         ac.st(ans)
         return

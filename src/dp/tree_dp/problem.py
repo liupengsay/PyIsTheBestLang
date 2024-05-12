@@ -60,6 +60,7 @@ ABC348E（https://atcoder.jp/contests/abc348/tasks/abc348_e）reroot_dp|classica
 ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teaser|greedy
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_e）tree_dp|classical
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp|classical
+ABC220F（https://atcoder.jp/contests/abc220/tasks/abc220_f）reroot_dp|classical
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -1536,6 +1537,23 @@ class Solution:
                         stack.append((j, i, max(pre, bb, d[i]) + w))
                     else:
                         stack.append((j, i, max(pre, aa, d[i]) + w))
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def abc_220f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc220/tasks/abc220_f
+        tag: reroot_dp|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        ans = ReRootDP().get_tree_distance_weight(dct, [1] * n)
         for a in ans:
             ac.st(a)
         return
