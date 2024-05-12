@@ -50,6 +50,7 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 ====================================AtCoder=====================================
 ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
 ABC337F（https://atcoder.jp/contests/abc337/tasks/abc337_f）two_pointers|implemention|greedy
+ABC353C（https://atcoder.jp/contests/abc353/tasks/abc353_c）two_pointers|brute_force
 
 =====================================AcWing=====================================
 4217（https://www.acwing.com/problem/content/4220/）two_pointers|sliding_window

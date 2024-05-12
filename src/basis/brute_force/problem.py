@@ -178,6 +178,7 @@ ABC234E（https://atcoder.jp/contests/abc234/tasks/abc234_e）brute_force|data_r
 ABC232C（https://atcoder.jp/contests/abc232/tasks/abc232_c）brute_force|implemention
 ABC230C（https://atcoder.jp/contests/abc230/tasks/abc230_c）brute_force|implemention
 ABC223E（https://atcoder.jp/contests/abc223/tasks/abc223_e）brute_force|implemention
+ABC353D（https://atcoder.jp/contests/abc353/tasks/abc353_d）contribution_method|implemention
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

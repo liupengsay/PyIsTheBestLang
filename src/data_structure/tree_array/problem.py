@@ -48,6 +48,7 @@ ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_a
 ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointer
 ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discretize|classical
 ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contribution_method
+ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range_max|pre_max|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1342,5 +1343,35 @@ class Solution:
                 ans += tree.range_sum(1, j) * pp[i - 1] % mod
                 ans %= mod
             tree.point_add(j, rev[i])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_353g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc353/tasks/abc353_g
+        tag: point_ascend|range_max|pre_max|classical
+        """
+        n, c = ac.read_list_ints()
+        tree_ceil = PointAscendPreMax(n, -inf)
+        tree_ceil.point_ascend(1, c)
+        ceil = [-inf] * (n + 1)
+        ceil[1] = c
+
+        tree_floor = PointAscendPreMax(n, -inf)
+        tree_floor.point_ascend(n, -c)
+
+        ans = 0
+        for _ in range(ac.read_int()):
+            t, p = ac.read_list_ints()
+            cur = ceil[t] - c * t + p
+            if t > 1:
+                cur = max(cur, tree_ceil.pre_max(t - 1) - c * t + p)
+            if t + 1 < n:
+                cur = max(cur, tree_floor.pre_max(n - t) + c * t + p)
+            ans = max(ans, cur)
+            ceil[t] = max(ceil[t], cur + c * t)
+            tree_ceil.point_ascend(t, cur + c * t)
+            tree_floor.point_ascend(n + 1 - t, cur - c * t)
         ac.st(ans)
         return

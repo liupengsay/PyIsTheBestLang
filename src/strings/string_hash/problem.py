@@ -44,6 +44,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
 ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome_judge|classical
 ABC310C（https://atcoder.jp/contests/abc310/tasks/abc310_c）string_hash|classical
+ABC353E（https://atcoder.jp/contests/abc353/tasks/abc353_e）string_hash|trie
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/140/）string_hash
@@ -1464,4 +1465,27 @@ class Solution:
             ans.add(tuple(tp))
             pre += cur
         ac.st(len(ans))
+        return
+
+    @staticmethod
+    def abc_353e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc353/tasks/abc353_e
+        tag: string_hash|trie
+        """
+        ac.read_int()
+        words = ac.read_list_strs()
+        ans = 0
+        p = random.randint(150, 150 * 2)
+        mod = random.getrandbits(64)
+        cnt = defaultdict(int)
+        for word in words:
+            hash_x = 0
+            for i, w in enumerate(word):
+                hash_x = (hash_x * p + ord(w) - ord("a")) % mod
+                cur = cnt[(i, hash_x)]
+                ans -= i * cur
+                ans += (i + 1) * cur
+                cnt[(i, hash_x)] += 1
+        ac.st(ans)
         return
