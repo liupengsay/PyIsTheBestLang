@@ -180,6 +180,7 @@ ABC230C（https://atcoder.jp/contests/abc230/tasks/abc230_c）brute_force|implem
 ABC223E（https://atcoder.jp/contests/abc223/tasks/abc223_e）brute_force|implemention
 ABC353D（https://atcoder.jp/contests/abc353/tasks/abc353_d）contribution_method|implemention
 ABC220E（https://atcoder.jp/contests/abc220/tasks/abc220_e）contribution_method|classical|brute_force|binary_tree
+ABC219E（https://atcoder.jp/contests/abc219/tasks/abc219_e）brute_force|union_find|brain_teaser
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
@@ -1818,5 +1819,44 @@ class Solution:
                 right = p[max(0, rr - 1)]
                 ans += root * left * right * 2
                 ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_219e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc219/tasks/abc219_e
+        tag: brute_force|union_find|brain_teaser
+        """
+        grid = [ac.read_list_ints() for _ in range(4)]
+        ans = 0
+        nodes = []
+        for i in range(4):
+            for j in range(4):
+                if grid[i][j]:
+                    nodes.append(i * 4 + j)
+
+        m = 16
+        target = sum(1 << x for x in nodes)
+        uf = UnionFind(36)
+        for xx in range(1, 1 << m):
+            if xx & target != target:
+                continue
+            mat = [[0] * 6 for _ in range(6)]
+            uf.initialize()
+            ind = [i for i in range(16) if xx & (1 << i)]
+            for i in ind:
+                mat[i // 4 + 1][i % 4 + 1] = 1
+            edge = 0
+            for i in range(6):
+                for j in range(6):
+                    if i + 1 < 6 and mat[i + 1][j] == mat[i][j]:
+                        uf.union(i * 6 + j, i * 6 + j + 6)
+                        edge += 1
+                    if j + 1 < 6 and mat[i][j + 1] == mat[i][j]:
+                        uf.union(i * 6 + j, i * 6 + j + 1)
+                        edge += 1
+            if uf.part == 2:
+                ans += 1
         ac.st(ans)
         return

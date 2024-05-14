@@ -30,6 +30,7 @@ ABC335F（https://atcoder.jp/contests/abc335/tasks/abc335_f）sqrt_decomposition
 ABC293G（https://atcoder.jp/contests/abc293/tasks/abc293_g）sqrt_decomposition|brain_teaser|classical
 ABC242G（https://atcoder.jp/contests/abc242/tasks/abc242_g）sqrt_decomposition|classical
 ABC238G（https://atcoder.jp/contests/abc238/tasks/abc238_g）sqrt_decomposition|offline_query|classical
+ABC219G（https://atcoder.jp/contests/abc219/tasks/abc219_g）sqrt_decomposition|classical
 
 """
 import bisect
@@ -986,4 +987,54 @@ class Solution:
                 ans[j] = "Yes" if tot[1] == tot[2] == 0 else "No"
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def abc_219g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc219/tasks/abc219_g
+        tag: sqrt_decomposition|classical
+        """
+        n, m, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+        k = int(n ** 0.5) + 1
+        heavy = [[x for x in ls if degree[x] >= k] for ls in dct]
+        cur_color = list(range(n))
+        cur_tm = [-1] * n
+
+        out_color = [0] * n
+        out_tm = [-1] * n
+
+        queries = ac.read_list_ints_minus_one()
+        for i in range(q):
+            x = queries[i]
+            c, t = cur_color[x], cur_tm[x]
+            for y in heavy[x]:
+                if out_tm[y] > t:
+                    t = out_tm[y]
+                    c = out_color[y]
+            cur_color[x] = c
+            cur_tm[x] = i
+            if degree[x] < k:
+                for y in dct[x]:
+                    cur_color[y] = c
+                    cur_tm[y] = i
+            else:
+                out_color[x] = c
+                out_tm[x] = i
+        for x in range(n):
+            c, t = cur_color[x], cur_tm[x]
+            for y in heavy[x]:
+                if out_tm[y] > t:
+                    t = out_tm[y]
+                    c = out_color[y]
+            cur_color[x] = c
+        ac.lst([x + 1 for x in cur_color])
         return

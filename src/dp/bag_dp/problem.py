@@ -103,6 +103,7 @@ ABC321f（https://atcoder.jp/contests/abc321/tasks/abc321_f）bag_dp|classical
 ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force|classical
 ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greedy
 ABC222E（https://atcoder.jp/contests/abc222/tasks/abc222_e）bfs|bag_dp
+ABC219D（https://atcoder.jp/contests/abc219/tasks/abc219_d）bag_dp|classical
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -1533,4 +1534,30 @@ class Solution:
         ans *= dp[r]
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_219d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc219/tasks/abc219_d
+        tag: bag_dp|classical
+        """
+        n = ac.read_int()
+        x, y = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        dp = [[inf] * (300 + 1) for _ in range(301)]
+        dp[0][0] = 0
+        for a, b in nums:
+            for xx in range(300, a - 1, -1):
+                for yy in range(300, b - 1, -1):
+                    dp[xx][yy] = min(dp[xx][yy], dp[xx - a][yy - b] + 1)
+            for xx in range(300, -1, -1):
+                for yy in range(300, -1, -1):
+                    if xx + 1 < 301:
+                        dp[xx][yy] = min(dp[xx][yy], dp[xx + 1][yy])
+                    if yy + 1 < 301:
+                        dp[xx][yy] = min(dp[xx][yy], dp[xx][yy + 1])
+        ans = dp[x][y]
+        ac.st(ans if ans < inf else -1)
         return
