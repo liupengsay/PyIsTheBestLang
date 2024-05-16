@@ -141,6 +141,7 @@ ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_
 ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix_dp|implemention|classical
 ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|counter|brain_teaser|classical
 ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_force|brain_teaser
+ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|matrix_dp|comb_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -2939,4 +2940,33 @@ class Solution:
                 dp = [ls[:] for ls in ndp]
             ans = min(ans, dp[-1][k])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_217g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc217/tasks/abc217_g
+        tag: comb|perm|counter|matrix_dp|comb_dp
+        """
+        n, m = ac.read_list_ints()
+        mod = 998244353
+        cb = Combinatorics(n + 10, mod)
+        group = [0 for _ in range(m)]
+        for x in range(1, n + 1):
+            group[x % m] += 1
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        for x in group:
+            if not x:
+                continue
+            ndp = [0] * (n + 1)
+            for i in range(n + 1):
+                if dp[i]:
+                    for j in range(max(i, x), min(i + x + 1, n + 1)):
+                        in_ = x - j + i
+                        ndp[j] += dp[i] * cb.comb(i, in_) * cb.comb(x, in_) * cb.perm[in_]
+                        ndp[j] %= mod
+            dp = ndp[:]
+        for x in range(1, n + 1):
+            ac.st(dp[x])
         return

@@ -122,6 +122,7 @@ ABC246E（https://atcoder.jp/contests/abc246/tasks/abc246_e）bfs|union_find|bra
 ABC241F（https://atcoder.jp/contests/abc241/tasks/abc241_f）bfs|implemention
 ABC226C（https://atcoder.jp/contests/abc226/tasks/abc226_c）reverse_graph|bfs
 ABC224D（https://atcoder.jp/contests/abc224/tasks/abc224_d）bfs|classical
+ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）shortest_path|bfs|brute_force|brain_teaser
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2603,4 +2604,60 @@ class Solution:
                         ans[j] = -1
             stack = nex[:]
         ac.st(res)
+        return
+
+    @staticmethod
+    def abc_218f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc218/tasks/abc218_f
+        tag: shortest_path|bfs|brute_force|brain_teaser
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for x in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append((j, x))
+
+        dis = [inf] * n
+        dis[0] = 0
+        stack = [0]
+        parent = [-1]*n
+        index = [-1]*n
+        while stack:
+            nex = []
+            for i in stack:
+                for j, y in dct[i]:
+                    if dis[j] == inf:
+                        dis[j] = dis[i] + 1
+                        parent[j] = i
+                        index[j] = y
+                        nex.append(j)
+            stack = nex
+
+        if dis[-1] == inf:
+            path = set()
+        else:
+            path = []
+            node = n-1
+            while node != 0:
+                path.append(index[node])
+                node = parent[node]
+            path = set(path)
+        res = dis[-1] if dis[-1] < inf else -1
+        for x in range(m):
+            if x not in path:
+                ac.st(res)
+                continue
+            dis = [inf] * n
+            dis[0] = 0
+            stack = [0]
+            while stack:
+                nex = []
+                for i in stack:
+                    for j, y in dct[i]:
+                        if y != x and dis[j] == inf:
+                            dis[j] = dis[i] + 1
+                            nex.append(j)
+                stack = nex
+            ac.st(dis[-1] if dis[-1] < inf else -1)
         return

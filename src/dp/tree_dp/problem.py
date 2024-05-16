@@ -61,6 +61,7 @@ ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teas
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_e）tree_dp|classical
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp|classical
 ABC220F（https://atcoder.jp/contests/abc220/tasks/abc220_f）reroot_dp|classical
+ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）tree_dp|game_dp|implemention|dfs_order|median
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -1556,4 +1557,56 @@ class Solution:
         ans = ReRootDP().get_tree_distance_weight(dct, [1] * n)
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def abc_218f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc218/tasks/abc218_f
+        tag: tree_dp|game_dp|implemention|dfs_order|median
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        depth = [0] * n
+
+        def find_median():
+            k = len(lst)
+            if k % 2:
+                return lst[k // 2]
+            return (lst[k // 2] + lst[k // 2 - 1]) // 2
+
+        lst = SortedList()
+        stack = [(0, -1)]
+        sub = [0] * n
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                lst.add(nums[i])
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        depth[j] = depth[i] + 1
+                        stack.append((j, i))
+            else:
+                i = ~i
+                d = depth[i]
+                nex = []
+                for j in dct[i]:
+                    if j != fa:
+                        nex.append(sub[j])
+                if not nex:
+                    sub[i] = find_median()
+                else:
+                    if d % 2 == 0:
+                        sub[i] = max(nex)
+                    else:
+                        sub[i] = min(nex)
+                lst.discard(nums[i])
+        ans = sub[0]
+        ac.st(ans)
         return

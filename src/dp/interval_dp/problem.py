@@ -36,6 +36,9 @@ P4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
 1509C（https://codeforces.com/problemset/problem/1509/C）interval_dp
 607B（https://codeforces.com/problemset/problem/607/B）interval_dp
 
+===================================AtCoder===================================
+ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implemention|comb_dp|counter
+
 =====================================AcWing=====================================
 3996（https://www.acwing.com/problem/content/3999/）interval_dp|longest_palindrome_subsequence
 
@@ -44,6 +47,7 @@ from functools import lru_cache
 from itertools import accumulate
 from typing import List
 
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -433,3 +437,57 @@ class Solution:
             for j in range(1, k):
                 dp[i + 1][j] = min(dp[x][j - 1] + cost[x][i] for x in range(i + 1))
         return dp[n][k - 1]
+
+    @staticmethod
+    def abc_217f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc217/tasks/abc217_f
+        tag: interval_dp|implemention|comb_dp|counter
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(2 * n)]
+        edges = [set() for _ in range(2 * n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            if i > j:
+                i, j = j, i
+            if (j - i + 1) % 2 == 0:
+                dct[i].append(j)
+                edges[i].add(j)
+        for i in range(2 * n):
+            dct[i].sort()
+
+        mod = 998244353
+        cb = Combinatorics(n * 4, mod)
+
+        @lru_cache(None)
+        def dfs(x, y):
+            if x == y - 1:
+                return 1 if y in dct[x] else 0
+            res = 0
+            for z in dct[x]:
+                if z > y:
+                    break
+                left = dfs(x + 1, z - 1) if x + 1 < z - 1 else 1
+                right = dfs(z + 1, y) if z + 1 < y else 1
+                cur = left * right
+                if not cur:
+                    continue
+                lst = [1]
+                if x + 1 < z - 1:
+                    lst.append((z - 1 - x - 1 + 1) // 2)
+                else:
+                    lst.append(0)
+                if z + 1 < y:
+                    lst.append((y - z - 1 + 1) // 2)
+                else:
+                    lst.append(0)
+                s = sum(lst)
+                cur *= cb.comb(s, lst[1] + 1)
+                res += cur
+                res %= mod
+            return res
+
+        ans = dfs(0, 2 * n - 1)
+        ac.st(ans)
+        return

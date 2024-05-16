@@ -120,6 +120,7 @@ ABC229E（https://atcoder.jp/contests/abc229/tasks/abc229_e）reverse_order|unio
 ABC228D（https://atcoder.jp/contests/abc228/tasks/abc228_d）union_find_range|classical|implemention
 ABC351D（https://atcoder.jp/contests/abc351/tasks/abc351_d）union_find|bfs|classical
 ABC226E（https://atcoder.jp/contests/abc226/tasks/abc226_e）circle_based_tree|union_find|classical
+ABC218E（https://atcoder.jp/contests/abc218/tasks/abc218_e）union_find|mst
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range

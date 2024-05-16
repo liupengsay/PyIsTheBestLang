@@ -42,6 +42,7 @@ ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain
 ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
 ABC226D（https://atcoder.jp/contests/abc226/tasks/abc226_d）geometry|linear_scope|classical
 ABC224C（https://atcoder.jp/contests/abc224/tasks/abc224_c）geometry
+ABC218D（https://atcoder.jp/contests/abc218/tasks/abc218_d）brute_force|rectangle
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical

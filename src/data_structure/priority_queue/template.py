@@ -1,4 +1,5 @@
 import heapq
+from collections import defaultdict
 
 
 class HeapqMedian:
@@ -50,6 +51,87 @@ class KthLargest:
         while len(self.heap) > self.k:
             heapq.heappop(self.heap)
         return self.heap[0]
+
+
+class FindMedian:
+    def __init__(self):
+        self.small = []
+        self.big = []
+        self.big_dct = defaultdict(int)
+        self.small_dct = defaultdict(int)
+        self.big_cnt = 0
+        self.small_cnt = 0
+
+    def delete(self):
+        while self.small and not self.small_dct[-self.small[0]]:
+            heapq.heappop(self.small)
+        while self.big and not self.big_dct[self.big[0]]:
+            heapq.heappop(self.big)
+        return
+
+    def change(self):
+        self.delete()
+        while self.small and self.big and -self.small[0] > self.big[0]:
+            self.small_dct[-self.small[0]] -= 1
+            self.big_dct[-self.small[0]] += 1
+            self.small_cnt -= 1
+            self.big_cnt += 1
+            heapq.heappush(self.big, -heapq.heappop(self.small))
+            self.delete()
+        return
+
+    def balance(self):
+        self.delete()
+        while self.small_cnt > self.big_cnt:
+            self.small_dct[-self.small[0]] -= 1
+            self.big_dct[-self.small[0]] += 1
+            heapq.heappush(self.big, -heapq.heappop(self.small))
+            self.small_cnt -= 1
+            self.big_cnt += 1
+            self.delete()
+
+        while self.small_cnt < self.big_cnt - 1:
+            self.small_dct[self.big[0]] += 1
+            self.big_dct[self.big[0]] -= 1
+            heapq.heappush(self.small, -heapq.heappop(self.big))
+            self.small_cnt += 1
+            self.big_cnt -= 1
+            self.delete()
+        return
+
+
+    def add(self, num):
+        if not self.big or self.big[0] < num:
+            self.big_dct[num] += 1
+            heapq.heappush(self.big, num)
+            self.big_cnt += 1
+        else:
+            self.small_dct[num] += 1
+            heapq.heappush(self.small, -num)
+            self.small_cnt += 1
+        self.change()
+        self.balance()
+        return
+
+    def remove(self, num):
+        self.change()
+        self.balance()
+        if self.big_dct[num]:
+            self.big_cnt -= 1
+            self.big_dct[num] -= 1
+        else:
+            self.small_cnt -= 1
+            self.small_dct[num] -= 1
+        self.change()
+        self.balance()
+        return
+
+    def find_median(self):
+        self.change()
+        self.balance()
+        if self.big_cnt == self.small_cnt:
+            return (-self.small[0] + self.big[0]) // 2
+        return self.big[0]
 
 
 class MedianFinder:
