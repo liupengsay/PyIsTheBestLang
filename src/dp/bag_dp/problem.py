@@ -104,6 +104,7 @@ ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force
 ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greedy
 ABC222E（https://atcoder.jp/contests/abc222/tasks/abc222_e）bfs|bag_dp
 ABC219D（https://atcoder.jp/contests/abc219/tasks/abc219_d）bag_dp|classical
+ABC216F（https://atcoder.jp/contests/abc216/tasks/abc216_f）matrix_dp|bag_dp
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -1560,4 +1561,31 @@ class Solution:
                         dp[xx][yy] = min(dp[xx][yy], dp[xx][yy + 1])
         ans = dp[x][y]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_216f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc216/tasks/abc216_f
+        tag: matrix_dp|bag_dp
+        """
+        mod = 998244353
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        ind = list(range(n))
+        ind.sort(key=lambda it: a[it])
+        ceil = 5000
+        dp = [0] * (ceil + 1)
+        ans = 0
+        dp[0] = 1
+        for i in ind:
+            num = b[i]
+            for j in range(ceil, -1, -1):
+                if j <= a[i]:
+                    ans += dp[j - num] if j >= num else 0
+                    ans %= mod
+                dp[j] += dp[j - num] if j >= num else 0
+                dp[j] %= mod
+        ac.st(ans)
         return

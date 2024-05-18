@@ -103,6 +103,7 @@ ABC270E（https://atcoder.jp/contests/abc270/tasks/abc270_e）binary_search|impl
 ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|brute_force
 ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
 ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
+ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greedy|implemention
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search

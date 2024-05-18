@@ -39,6 +39,10 @@ ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greed
 147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
 148（https://www.acwing.com/problem/content/150/）greedy|heapq|huffman_tree
 149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greedy
+
+=====================================CodeChef=====================================
+1（https://www.codechef.com/problems/OKLAMA）priority_queue|greedy|implemention|math|brain_teaser|induction_method
+
 """
 
 import heapq
@@ -588,4 +592,56 @@ class Solution:
                 heappush(stack, num)
             heappush(stack, num)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/OKLAMA
+        tag: priority_queue|greedy|implemention|math|brain_teaser|induction_method
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            ans = [0] * n
+            big = []
+            small = []
+            ans[0] = nums[0]
+            big_sum = 0
+            small_sum = 0
+            for i in range(n):
+                if len(big) <= len(small):
+                    heappush(big, nums[i])
+                    big_sum += nums[i]
+                else:
+                    heappush(small, -nums[i])
+                    small_sum += nums[i]
+                if (i + 1) % 2 and i >= 2:
+                    pre = (i + 1) // 2
+
+                    while small and big and -small[0] > big[0]:
+                        x = -heappop(small)
+                        small_sum -= x
+                        big_sum += x
+                        heappush(big, x)
+
+                        x = heappop(big)
+                        big_sum -= x
+                        small_sum += x
+                        heappush(small, -x)
+
+                    while len(small) > pre:
+                        x = -heappop(small)
+                        small_sum -= x
+                        big_sum += x
+                        heappush(big, x)
+                    while len(small) < pre:
+                        x = heappop(big)
+                        big_sum -= x
+                        small_sum += x
+                        heappush(small, -x)
+
+                    ans[i] = big_sum - small_sum
+            res = [ans[q] for q in ac.read_list_ints_minus_one()]
+            ac.lst(res)
         return

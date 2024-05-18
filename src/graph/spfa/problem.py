@@ -24,6 +24,7 @@ P5905（https://www.luogu.com.cn/problem/P5905）johnson_shortest_path|several_s
 ====================================AtCoder=====================================
 ABC061D（https://atcoder.jp/contests/abc061/tasks/abc061_d）reverse_graph|positive_circle|longest_path
 ABC137E（https://atcoder.jp/contests/abc137/tasks/abc137_e）spfa|positive_circle
+ABC216G（https://atcoder.jp/contests/abc216/tasks/abc216_g）differential_constraint|minimum|longest_path|prefix_sum|classical|can_be_dijkstra|reverse_thinking|dijkstra|shortest_path|maximum
 
 ====================================LeetCode====================================
 differential_constraint（https://oi-wiki.org/graph/diff-constraints/）
@@ -459,4 +460,55 @@ class Solution:
             return
 
         ac.st(dis[n])
+        return
+
+    @staticmethod
+    def abc_216g_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc216/tasks/abc216_g
+        tag: differential_constraint|minimum|longest_path|prefix_sum|classical|can_be_dijkstra|reverse_thinking|dijkstra|shortest_path|maximum
+        """
+        n, m = ac.read_list_ints()
+        edge = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            # x2 - x1 >= w is edge[x1].append((x2, w))
+            a, b, c = ac.read_list_ints()
+            if a > b:
+                a, b = b, a
+            edge[a - 1].append((b, c))
+
+        for i in range(1, n + 1):
+            # xi - 0 >= 0
+            edge[0].append((i, 0))
+            if i > 1:
+                # (i) - (i-1) >= 0
+                edge[i - 1].append((i, 0))
+                # (i-1) - (i) >= -1
+                edge[i].append((i - 1, -1))
+        ans, dis, _ = SPFA().positive_circle_edge(edge, 0)
+        ans = [dis[i + 1] - dis[i] for i in range(n)]
+        ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_216g_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc216/tasks/abc216_g
+        tag: differential_constraint|minimum|longest_path|prefix_sum|classical|can_be_dijkstra|reverse_thinking|dijkstra|shortest_path|maximum
+        """
+        n, m = ac.read_list_ints()
+        edge = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            a, b, c = ac.read_list_ints()
+            if a > b:
+                a, b = b, a
+            edge[a - 1].append((b, b-a+1-c))
+
+        for i in range(1, n + 1):
+            edge[i - 1].append((i, 1))
+            edge[i].append((i - 1, 0))
+
+        dis = Dijkstra().get_shortest_path(edge, 0)
+        ans = [1 - (dis[i + 1] - dis[i]) for i in range(n)]
+        ac.lst(ans)
         return

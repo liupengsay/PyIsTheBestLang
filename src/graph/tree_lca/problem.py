@@ -31,6 +31,8 @@ ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
 
+=====================================CodeChef=====================================
+1（https://www.codechef.com/problems/BITTREEMIN）data_range|minimum_xor|tree_lca
 
 
 """
@@ -489,4 +491,54 @@ class Solution:
                             ans += cur
                 ac.st(ans)
 
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/BITTREEMIN
+        tag: data_range|minimum_xor|tree_lca
+        """
+        cnt = [0] * 1001
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+
+            nums = [x//2 for x in ac.read_list_ints()]
+
+            tree = TreeAncestor(dct, 0)
+            for _ in range(q):
+                op, u, v = ac.read_list_ints_minus_one()
+                if op == 0:
+                    nums[u] = (v + 1) // 2
+                else:
+                    dis = tree.get_dist(u, v)
+                    if dis > 1001:
+                        ac.st(0)
+                    else:
+                        lca = tree.get_lca(u, v)
+                        lst = [u]
+                        while lst[-1] != lca:
+                            lst.append(tree.parent[lst[-1]])
+                        while v != lca:
+                            lst.append(v)
+                            v = tree.parent[v]
+                        for i in range(1001):
+                            cnt[i] = 0
+                        for x in lst:
+                            cnt[nums[x]] += 1
+                        ans = pre = inf
+                        for i in range(1001):
+                            if cnt[i] >= 2:
+                                ans = 0
+                                break
+                            if cnt[i]:
+                                if pre < inf:
+                                    ans = min(ans, pre ^ i)
+                                pre = i
+                        ac.st(ans)
         return

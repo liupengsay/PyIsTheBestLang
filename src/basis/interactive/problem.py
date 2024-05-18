@@ -26,6 +26,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1846F（https://codeforces.com/contest/1846/problem/F）interactive
 1934C（https://codeforces.com/contest/1934/problem/C）interactive|brain_teaser
 1937C（https://codeforces.com/contest/1937/problem/C）interactive|brain_teaser
+1973D（https://codeforces.com/contest/1973/problem/D）interactive|brain_teaser
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
