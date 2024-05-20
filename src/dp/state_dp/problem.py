@@ -60,6 +60,8 @@ ABC278F（https://atcoder.jp/contests/abc278/tasks/abc278_f）state_dp|classical
 ABC274E（https://atcoder.jp/contests/abc274/tasks/abc274_e）state_dp|classical
 ABC232F（https://atcoder.jp/contests/abc232/tasks/abc232_f）state_dp|brain_teaser|classical
 ABC352F（https://atcoder.jp/contests/abc352/tasks/abc352_f）union_find|brute_force|state_dp|classical
+ABC354E（https://atcoder.jp/contests/abc354/tasks/abc354_e）state_dp
+ABC215E（https://atcoder.jp/contests/abc215/tasks/abc215_e）state_dp
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan

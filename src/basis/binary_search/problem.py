@@ -104,6 +104,7 @@ ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|
 ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
 ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
 ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greedy|implemention
+ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointer|binary_search|sort|brain_teaser
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -1730,5 +1731,47 @@ class Solution:
             return ceil >= tot - ceil if tot % 2 else ceil >= tot // 2 + 1
 
         ans = BinarySearch().find_int_right(0, max(nums), check)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_215f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc215/tasks/abc215_f
+        tag: two_pointer|binary_search|sort|brain_teaser
+        """
+        n = ac.read_int()
+
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort()
+        pre_min = [inf] * (n + 1)
+        pre_max = [-inf] * (n + 1)
+        for i in range(n):
+            _, y = nums[i]
+            pre_min[i + 1] = min(pre_min[i], y)
+            pre_max[i + 1] = max(pre_max[i], y)
+
+        post_min = [inf] * (n + 1)
+        post_max = [-inf] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            _, y = nums[i]
+            post_min[i] = min(post_min[i + 1], y)
+            post_max[i] = max(post_max[i + 1], y)
+
+        def check(x):
+            jj = 0
+            for ii in range(n):
+                xx, _ = nums[ii]
+                while jj < n and nums[jj][0] - xx < x:
+                    jj += 1
+                if jj == n:
+                    return False
+                for a in [pre_min[ii + 1], pre_max[ii + 1]]:
+                    for c in [post_min[jj], post_max[jj]]:
+                        if abs(a - c) >= x:
+                            return True
+            return False
+
+        ans = BinarySearch().find_int_right_strictly(0, 10 ** 9, check)
         ac.st(ans)
         return

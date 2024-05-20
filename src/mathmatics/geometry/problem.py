@@ -43,6 +43,7 @@ ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance
 ABC226D（https://atcoder.jp/contests/abc226/tasks/abc226_d）geometry|linear_scope|classical
 ABC224C（https://atcoder.jp/contests/abc224/tasks/abc224_c）geometry
 ABC218D（https://atcoder.jp/contests/abc218/tasks/abc218_d）brute_force|rectangle
+ABC354D（https://atcoder.jp/contests/abc354/tasks/abc354_d）brute_force|inclusion_exclusion
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
@@ -536,5 +537,35 @@ class Solution:
             for va in dct.values():
                 if va >= 2:
                     ans -= va * (va - 1) // 2
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_354d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc354/tasks/abc354_d
+        tag: brute_force|inclusion_exclusion
+        """
+        a, b, c, d = ac.read_list_ints()
+        c -= 1
+        d -= 1
+        w = c - a + 1
+        h = d - b + 1
+        ww = 4 * ((w+3)//4)
+        hh = 4 * ((h+3)//4)
+        grid = [[1, 2, 1, 0], [2, 1, 0, 1], [1, 2, 1, 0], [2, 1, 0, 1]]
+        ans = 8 * (ww // 4) * (hh // 4) * 2
+        lst = [3, 3, 1, 1]
+        for rr in range(a + w, a + ww):
+            ans -= (hh // 4) * 2 * lst[rr % 4]
+        lst = [2, 2, 2, 2]
+        for cc in range(b + h, b + hh):
+            ans -= (ww // 4) * 2 * lst[cc % 4]
+
+        for xx in range(a + w, a + ww):
+            for yy in range(b + h, b + hh):
+                rr = xx % 4
+                cc = yy % 4
+                ans += grid[-cc - 1][rr]
         ac.st(ans)
         return

@@ -277,7 +277,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_atcoder_problem(self):
-        num = "216"
+        num = "215"
         print(f"https://atcoder.jp/contests/abc{num}")
         print(f"https://atcoder.jp/contests/abc{num}/standings")
         print(f"https://atcoder.jp/contests/abc{num}/results")
@@ -291,6 +291,23 @@ class TestGeneral(unittest.TestCase):
             url = f"https://atcoder.jp/contests/abc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
             print(url)
         return
+
+    def test_atcoder_problem_arc(self):
+        num = "178"
+        print(f"https://atcoder.jp/contests/arc{num}")
+        print(f"https://atcoder.jp/contests/arc{num}/standings")
+        print(f"https://atcoder.jp/contests/arc{num}/results")
+        print(f"https://atcoder.jp/contests/arc{num}/submissions/me")
+        for i in range(8):
+            url = f"https://atcoder.jp/contests/arc{num}/tasks/arc{num}_" + chr(i+ord("a"))
+            print(url)
+        print("=================")
+        for i in range(8):
+            w = chr(i+ord("a"))
+            url = f"https://atcoder.jp/contests/arc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
+            print(url)
+        return
+
 
 if __name__ == "__main__":
     unittest.main()

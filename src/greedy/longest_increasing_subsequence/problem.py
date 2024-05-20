@@ -46,6 +46,7 @@ P2516（https://www.luogu.com.cn/problem/P2516）length_of_lcs|cnt_of_lcs
 
 ====================================AtCoder=====================================
 ABC134E（https://atcoder.jp/contests/abc134/tasks/abc134_e）minimum_group_increasing_subsequence_partition|length_of_longest_non_increasing_subsequence
+ABC354F（https://atcoder.jp/contests/abc354/tasks/abc354_f）lis|classical
 
 （https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）lis|lexicographical_order
 
@@ -408,4 +409,78 @@ class Solution:
         ans = LcsComputeByLis().length_and_cnt_of_lcs(ac.read_str()[:-1], ac.read_str()[:-1], mod)
         for a in ans:
             ac.st(a)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc354/tasks/abc354_f
+        tag: lis|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = [0] * n
+            dp = []
+            for x, num in enumerate(nums):
+                i = bisect.bisect_left(dp, num)
+                pre[x] = i
+                if 0 <= i < len(dp):
+                    dp[i] = num
+                else:
+                    dp.append(num)
+            ceil = len(dp)
+            post = [0] * n
+            dp = []
+            for x in range(n - 1, -1, -1):
+                num = -nums[x]
+                i = bisect.bisect_left(dp, num)
+                post[x] = i
+                if 0 <= i < len(dp):
+                    dp[i] = num
+                else:
+                    dp.append(num)
+            res = []
+            for i in range(n):
+                if pre[i] + post[i] + 1 == ceil:
+                    res.append(i + 1)
+            ac.st(len(res))
+            ac.lst(res)
+        return
+
+    @staticmethod
+    def abc_354f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc354/tasks/abc354_f
+        tag: lis|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = [0] * n
+            dp = []
+            for x, num in enumerate(nums):
+                i = bisect.bisect_left(dp, num)
+                pre[x] = i
+                if 0 <= i < len(dp):
+                    dp[i] = num
+                else:
+                    dp.append(num)
+            ceil = len(dp)
+            post = [0] * n
+            dp = []
+            for x in range(n - 1, -1, -1):
+                num = -nums[x]
+                i = bisect.bisect_left(dp, num)
+                post[x] = i
+                if 0 <= i < len(dp):
+                    dp[i] = num
+                else:
+                    dp.append(num)
+            res = []
+            for i in range(n):
+                if pre[i] + post[i] + 1 == ceil:
+                    res.append(i + 1)
+            ac.st(len(res))
+            ac.lst(res)
         return
