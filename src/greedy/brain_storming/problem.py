@@ -201,6 +201,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1921E（https://codeforces.com/contest/1921/problem/E）brain_teaser|implemention|greedy|odd_even
 1941F（https://codeforces.com/contest/1941/problem/F）brain_teaser|implemention|greedy|median|binary_search
 1941C（https://codeforces.com/contest/1941/problem/C）brain_teaser|greedy
+1974G（https://codeforces.com/contest/1974/problem/G）regret_heapq|implemention|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1921,4 +1922,32 @@ class Solution:
                 j += 1
             ans = max(ans, j - i + 1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1974g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1974/problem/G
+        tag: regret_heapq|implemention|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            m, x = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            stack = []
+            ans = 0
+            pre = x
+            for num in nums[1:]:
+                if pre >= num:
+                    ans += 1
+                    pre -= num
+                    heapq.heappush(stack, -num)
+                elif stack and -stack[0] > num:
+                    pre -= heapq.heappop(stack)
+                    ans -= 1
+                    if pre >= num:
+                        ans += 1
+                        pre -= num
+                        heapq.heappush(stack, -num)
+                pre += x
+            ac.st(ans)
         return

@@ -92,6 +92,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
 1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greedy|specific_plan|classical
 1862F（https://codeforces.com/contest/1862/problem/F）bag_dp|brute_force
+1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1588,4 +1589,30 @@ class Solution:
                 dp[j] += dp[j - num] if j >= num else 0
                 dp[j] %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1964e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1974/problem/E
+        tag: bag_dp|greedy|data_range|classical
+        """
+        for _ in range(ac.read_int()):
+            m, x = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(m)]
+            tot = sum(h for _, h in nums)
+            dp = [-inf] * (tot + 1)
+            dp[0] = 0
+            for i in range(m):
+                c, h = nums[i]
+                if i:
+                    for j in range(tot + 1):
+                        dp[j] += x
+                for j in range(tot, h - 1, -1):
+                    if dp[j - h] >= c:
+                        dp[j] = max(dp[j], dp[j - h] - c)
+            for ans in range(tot, -1, -1):
+                if dp[ans] >= 0:
+                    ac.st(ans)
+                    break
         return

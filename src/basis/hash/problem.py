@@ -18,6 +18,7 @@ Description：prefix_suffix|counter|index|prefix_sum
 ===================================CodeForces===================================
 1692H（https://codeforces.com/contest/1692/problem/H）hash|prefix_min
 1800G（https://codeforces.com/contest/1800/problem/G）tree_hash|classical
+1974C（https://codeforces.com/contest/1974/problem/C）hash|counter|inclusion_exclusion
 
 =====================================LuoGu======================================
 P2697（https://www.luogu.com.cn/problem/P2697）hash|prefix_sum
