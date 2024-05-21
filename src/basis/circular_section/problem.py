@@ -27,6 +27,7 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
 ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|brute_force|circular_section
 ABC241E（https://atcoder.jp/contests/abc241/tasks/abc241_e）circular_section|brute_force_valid|classical
+ABC214C（https://atcoder.jp/contests/abc214/tasks/abc214_c）circular_section|brain_teaser
 
 
 """

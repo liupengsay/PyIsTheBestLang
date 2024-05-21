@@ -121,6 +121,7 @@ ABC228D（https://atcoder.jp/contests/abc228/tasks/abc228_d）union_find_range|c
 ABC351D（https://atcoder.jp/contests/abc351/tasks/abc351_d）union_find|bfs|classical
 ABC226E（https://atcoder.jp/contests/abc226/tasks/abc226_e）circle_based_tree|union_find|classical
 ABC218E（https://atcoder.jp/contests/abc218/tasks/abc218_e）union_find|mst
+ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|dict|discretization|implemention|linked_list
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2519,4 +2520,31 @@ class Solution:
                 return
             ans += 1
         ac.st(pow(2, ans, mod))
+        return
+
+    @staticmethod
+    def abc_214e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc214/tasks/abc214_e
+        tag: union_find_right|dict|discretization|implemention|linked_list
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            nums.sort(key=lambda it: it[1])
+            post = dict()
+            for a, b in nums:
+                x = a
+                lst = []
+                while x in post:
+                    lst.append(x)
+                    x = post[x]
+                if x > b:
+                    ac.no()
+                    break
+                for y in lst:
+                    post[y] = x + 1
+                post[x] = x + 1
+            else:
+                ac.yes()
         return
