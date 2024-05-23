@@ -188,6 +188,9 @@ ABC219E（https://atcoder.jp/contests/abc219/tasks/abc219_e）brute_force|union_
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
 
+=====================================CodeChef=====================================
+1（https://www.codechef.com/problems/GRAPHCOST）prefix_suffix|brute_force|brain_teaser
+
 """
 import bisect
 import math

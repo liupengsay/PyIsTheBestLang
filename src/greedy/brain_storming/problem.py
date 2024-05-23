@@ -244,6 +244,11 @@ ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|media
 4430（https://www.acwing.com/problem/content/description/4433/）brute_force|prefix_suffix|bracket
 4492（https://www.acwing.com/problem/content/description/4495/）brain_teaser|odd_even
 4623（https://www.acwing.com/problem/content/description/4626/）greedy|implemention
+
+
+=====================================CodeChef=====================================
+1（https://www.codechef.com/problems/CHANGEXY）greedy|implemention
+
 """
 
 import heapq

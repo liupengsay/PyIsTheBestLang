@@ -15,6 +15,9 @@ P9199（https://www.luogu.com.cn/problem/P9199）mex|operation
 ===================================CodeForces===================================
 1905D（https://codeforces.com/contest/1905/problem/D）mex|contribution_method|diff_array|implemention|classical
 
+===================================CodeChef===================================
+1（https://www.codechef.com/problems/LIMITMEX）monotonic_stack|contribution_method|brain_teaser|classical
+
 """
 from typing import List
 
@@ -143,4 +146,40 @@ class Solution:
             for i in range(1, n):
                 diff[i] += diff[i - 1]
             ac.st(max(diff) + n)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/LIMITMEX
+        tag: monotonic_stack|contribution_method|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+
+            n = len(nums)
+            post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
+            pre = [0] * n  # initial can be 0 or -1 dependent on usage
+            stack = []
+            for i in range(n):  # can be also range(n-1, -1, -1) dependent on usage
+                while stack and nums[stack[-1]] < nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                    post[stack.pop()] = i - 1  # can be i or i-1 dependent on usage
+                if stack:  # which can be done only pre and post are no-repeat such as post bigger and pre not-bigger
+                    pre[i] = stack[-1] + 1  # can be stack[-1] or stack[-1]-1 dependent on usage
+                stack.append(i)
+            ans = 0
+            for i in range(n):
+                ans += (nums[i] + 1) * (i - pre[i] + 1) * (post[i] - i + 1)
+
+            post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
+            pre = [0] * n  # initial can be 0 or -1 dependent on usage
+            dct = dict()
+            for i in range(n):  # can be also range(n-1, -1, -1) dependent on usage
+                if nums[i] in dct:
+                    post[dct[nums[i]]] = i - 1
+                dct[nums[i]] = i  # can be i or i-1 dependent on usage
+            for i in range(n):
+                ans -= (i - pre[i] + 1) * (post[i] - i + 1)
+            ac.st(ans)
         return

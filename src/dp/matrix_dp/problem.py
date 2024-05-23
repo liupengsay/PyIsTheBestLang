@@ -149,6 +149,9 @@ ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|
 2694（https://www.acwing.com/problem/content/description/2696/）lcs|matrix_dp|counter
 
 
+=====================================AcWing=====================================
+1（https://www.codechef.com/problems/MILKYDARK）matrix_dp|prefix_optimization|classical
+
 """
 
 import heapq
@@ -2969,4 +2972,36 @@ class Solution:
             dp = ndp[:]
         for x in range(1, n + 1):
             ac.st(dp[x])
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/MILKYDARK
+        tag: matrix_dp|prefix_optimization|classical
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            pre_a = 0
+            pre_b = 0
+            dp = [inf] * (k + 1)
+            dp[0] = 0
+            low_a = [inf] * (k + 1)
+            low_a[0] = 0
+            low_b = [inf] * (k + 1)
+            low_b[0] = 0
+            for i in range(n):
+                ndp = [inf] * (k + 1)
+                pre_a += a[i]
+                pre_b += b[i]
+                for x in range(1, k + 1):
+                    ndp[x] = min(pre_a + low_a[x - 1], pre_b + low_b[x - 1])
+                for x in range(k + 1):
+                    low_a[x] = min(low_a[x], ndp[x] - pre_a)
+                    low_b[x] = min(low_b[x], ndp[x] - pre_b)
+                dp = ndp[:]
+            ans = dp[k]
+            ac.st(ans)
         return

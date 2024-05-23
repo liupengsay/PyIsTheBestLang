@@ -84,6 +84,10 @@ ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|c
 ABC231D（https://atcoder.jp/contests/abc231/tasks/abc231_d）union_find|construction
 ABC225C（https://atcoder.jp/contests/abc225/tasks/abc225_c）construction
 
+====================================AtCoder=====================================
+1（https://www.codechef.com/problems/ENVPILE）bfs|construction|classical
+
+
 """
 import math
 from collections import deque, Counter, defaultdict
@@ -743,4 +747,48 @@ class Solution:
                     res.append(dct[a][b] + 1)
         ac.st(len(res))
         ac.lst(res)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/ENVPILE
+        tag: bfs|construction|classical
+        """
+        for _ in range(ac.read_int()):
+            n, w = ac.read_list_ints()
+            parent = [-1] * 5001
+            nums = ac.read_list_ints()
+            ind = list(range(n))
+            ind.sort(key=lambda it: -nums[it])
+            stack = [w]
+            visit = [0] * 5001
+            visit[w] = 1
+            while stack:
+                nex = []
+                for x in stack:
+                    for i in ind:
+                        if nums[i] <= x:
+                            break
+                        y = nums[i] - x
+                        if not visit[y]:
+                            visit[y] = 1
+                            nex.append(y)
+                            parent[y] = i
+                stack = nex[:]
+            for x in range(nums[0]):
+                if visit[x]:
+                    ans = []
+                    while x != w:
+                        i = parent[x]
+                        ans.append(i + 1)
+                        x = nums[i] - x
+                    ans.reverse()
+                    for i in range(n):
+                        ans.append(i + 1)
+                    ac.st(len(ans))
+                    ac.lst(ans)
+                    break
+            else:
+                ac.st(-1)
         return
