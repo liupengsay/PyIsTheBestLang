@@ -554,33 +554,30 @@ class Solution:
         """
         n = ac.read_int()
         s = [ord(w) - ord("a") for w in ac.read_str()]
-        sa, rk, height = SuffixArray().build(s, 26)
-        height.append(0)
+        sa, rk, nums = SuffixArray().build(s, 26)
 
-        pre = [0] * (n + 1)
+        pre = [0] * n  # initial can be 0 or -1 dependent on usage
         stack = [0]
-        for i in range(n):
-            if i:
-                pre[i] = pre[i - 1]
-            while stack[-1] and height[stack[-1]] > height[i]:
-                j = stack.pop()
-                pre[i] -= (j - stack[-1]) * height[j]
-            pre[i] += (i - stack[-1]) * height[i]
+        for i in range(1, n):  # can be also range(n-1, -1, -1) dependent on usage
+            while stack and nums[stack[-1]] > nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                stack.pop()  # can be i or i-1 dependent on usage
+            pre[i] = pre[stack[-1]] + nums[i] * (i - stack[-1])
             stack.append(i)
 
-        post = [0] * (n + 1)
+        nums.append(0)
+        post = [0] * (n + 1)  # initial can be 0 or -1 dependent on usage
         stack = [n]
-        for i in range(n - 1, -1, -1):
-            post[i] = post[i + 1]
-            while stack[-1] < n and height[stack[-1]] > height[i]:
-                j = stack.pop()
-                post[i] -= (stack[-1] - j) * height[j]
-            post[i] += (stack[-1] - i) * height[i]
+        for i in range(n - 1, -1, -1):  # can be also range(n-1, -1, -1) dependent on usage
+            while stack and nums[stack[-1]] > nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                stack.pop()  # can be i or i-1 dependent on usage
+            post[i] = post[stack[-1]] + nums[i] * (stack[-1] - i)
             stack.append(i)
 
+        ans = [n - i for i in range(n)]
         for i in range(n):
-            cur = pre[rk[i]] + post[rk[i] + 1] + n - i
-            ac.st(cur)
+            ans[i] += pre[rk[i]] + post[rk[i] + 1]
+        for a in ans:
+            ac.st(a)
         return
 
     @staticmethod
