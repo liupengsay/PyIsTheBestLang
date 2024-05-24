@@ -142,6 +142,7 @@ ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix
 ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|counter|brain_teaser|classical
 ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_force|brain_teaser
 ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|matrix_dp|comb_dp
+ABC212E（https://atcoder.jp/contests/abc212/tasks/abc212_e）graph|matrix_dp|inclusion_exclusion|classical
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -3004,4 +3005,26 @@ class Solution:
                 dp = ndp[:]
             ans = dp[k]
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_212e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc212/tasks/abc212_e
+        tag: graph|matrix_dp|inclusion_exclusion|classical
+        """
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+
+        dp = [1] + [0] * (n - 1)
+        for _ in range(k):
+            pre = sum(dp) % mod
+            ndp = [pre - dp[i] for i in range(n)]
+            for i, j in edges:
+                ndp[j] -= dp[i]
+                ndp[i] -= dp[j]
+            dp = [x % mod for x in ndp]
+        ac.st(dp[0])
         return

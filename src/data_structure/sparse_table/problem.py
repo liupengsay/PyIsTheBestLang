@@ -37,6 +37,9 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
 
+=====================================AtCoder=====================================
+ABC212F（https://atcoder.jp/contests/abc212/tasks/abc212_f）multiplication_method|build_graph|brain_teaser|classical
+
 """
 
 import bisect
@@ -514,3 +517,76 @@ class Solution:
 
         ans = dfs(0, -1, 0)
         return ans if ans < inf else -1
+
+    @staticmethod
+    def abc_212f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc212/tasks/abc212_f
+        tag: multiplication_method|build_graph|brain_teaser|classical
+        """
+
+        def tuple_to_num(aa, bb, cc):
+            return (aa << 34) | (bb << 2) | cc
+
+        mask = (1 << 34) - 1
+
+        def num_to_tp(num):
+            return num >> 34, (num & mask) >> 2, num & 1
+
+        n, m, q = ac.read_list_ints()
+        pos = [[] for _ in range(n)]
+        post = dict()
+        for i in range(m):
+            a, b, s, t = ac.read_list_ints()
+            s = 2 * s + 1
+            a -= 1
+            b -= 1
+            t = 2 * t + 1
+            ss = tuple_to_num(a, s, 0)
+            if ss not in post:
+                post[ss] = dict()
+            post[ss][0] = tuple_to_num(b, t, 1)
+            pos[a].append((s, 0))
+            pos[b].append((t, 1))
+
+        lst = []
+        for i in range(n):
+            pos[i].sort(key=lambda it: (it[0], -it[1]))
+            m = len(pos[i])
+            ls = []
+            for j in range(m - 1, -1, -1):
+                if pos[i][j][1] == 0:
+                    ls = pos[i][j][:]
+                else:
+                    if ls:
+                        cur = tuple_to_num(i, pos[i][j][0], pos[i][j][1])
+                        if cur not in post:
+                            post[cur] = dict()
+                        post[cur][0] = tuple_to_num(i, ls[0], ls[1])
+            lst.append([ls[0] for ls in pos[i]])
+
+        for x in range(1, 20):
+            for s in post:
+                if x - 1 in post[s] and post[s][x - 1] in post and x - 1 in post[post[s][x - 1]]:
+                    post[s][x] = post[post[s][x - 1]][x - 1]
+
+        for _ in range(q):
+            x, y, z = ac.read_list_ints()
+            z *= 2
+            x *= 2
+            y -= 1
+            i = bisect.bisect_left(lst[y], x)
+            if i == len(lst[y]):
+                ac.st(y + 1)
+                continue
+            state = tuple_to_num(y, pos[y][i][0], pos[y][i][1])
+            for x in range(19, -1, -1):
+                if state in post and x in post[state] and num_to_tp(post[state][x])[1] <= z:
+                    state = post[state][x]
+            tmp = num_to_tp(state)
+            if tmp[-1] == 0 and z > tmp[1]:
+                res = num_to_tp(post[state][0])
+                ac.lst([tmp[0] + 1, res[0] + 1])
+            else:
+                ac.st(tmp[0] + 1)
+        return

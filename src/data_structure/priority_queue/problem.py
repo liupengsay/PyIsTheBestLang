@@ -33,6 +33,7 @@ P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 =====================================AtCoder=====================================
 ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greedy|implemention|classical
 ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greedy|brain_teaser|classical
+ABC212D（https://atcoder.jp/contests/abc212/tasks/abc212_d）implemention|inclusion_exclusion|stack
 
 =====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）heapq
@@ -644,4 +645,27 @@ class Solution:
                     ans[i] = big_sum - small_sum
             res = [ans[q] for q in ac.read_list_ints_minus_one()]
             ac.lst(res)
+        return
+
+    @staticmethod
+    def abc_212d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc212/tasks/abc212_d
+        tag: implemention|inclusion_exclusion|stack
+        """
+        stack = []
+        cur = 0
+        q = ac.read_int()
+        val = [0] * (q + 1)
+        for i in range(q):
+            tmp = ac.read_list_ints()
+            if tmp[0] == 1:
+                x = tmp[1]
+                heapq.heappush(stack, x - cur)
+            elif tmp[0] == 2:
+                cur += tmp[1]
+            else:
+                x = heapq.heappop(stack)
+                ac.st(x + cur)
+            val[i] = cur
         return
