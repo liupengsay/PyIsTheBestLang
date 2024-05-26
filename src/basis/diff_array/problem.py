@@ -128,7 +128,7 @@ from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix
+from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1458,18 +1458,11 @@ class Solution:
         url: https://leetcode.cn/problems/find-kth-largest-xor-coordinate-value/
         tag: matrix_prefix_xor_sum|classical
         """
+        mat = PreFixXorMatrix(matrix)
         m, n = len(matrix), len(matrix[0])
-        for i in range(1, m):
-            matrix[i][0] = matrix[i][0] ^ matrix[i - 1][0]
-        for j in range(1, n):
-            matrix[0][j] = matrix[0][j] ^ matrix[0][j - 1]
-        for i in range(1, m):
-            for j in range(1, n):
-                matrix[i][j] = matrix[i - 1][j - 1] ^ matrix[i - 1][j] ^ matrix[i][j - 1] ^ matrix[i][j]
-
         lst = []
         for i in range(m):
-            lst.extend(matrix[i])
+            lst.extend(mat.pre[i+1][1:])
         lst.sort()
         return lst[-k]
 

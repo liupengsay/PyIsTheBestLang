@@ -17,6 +17,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
 3003（https://leetcode.cn/problems/maximize-the-number-of-partitions-after-operations）segment_tree|bisect_left|range_or|point_set
 1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
+100314（https://leetcode.cn/problems/block-placement-queries/）point_set|range_max_non_emp_con_sub_sum
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -3315,3 +3316,30 @@ class Solution:
                 else:
                     ac.no()
         return
+
+    @staticmethod
+    def lc_100314(queries: List[List[int]]) -> List[bool]:
+        """
+        url: https://leetcode.cn/problems/block-placement-queries/
+        tag: point_set|range_max_non_emp_con_sub_sum
+        """
+        ceil = 0
+        for ls in queries:
+            ceil = max(ceil, ls[1])
+        ceil += 10
+        ceil *= 2
+        tree = RangeSetRangeMaxNonEmpConSubSum(ceil, ceil)
+        nums = [0]*ceil
+        for i in range(1, ceil, 2):
+            nums[i] = 1
+        tree.build(nums)
+        ans = []
+        for ls in queries:
+            if ls[0] == 1:
+                x = ls[1]*2
+                tree.point_set(x, -ceil)
+            else:
+                x = ls[1]
+                res = tree.range_max_non_emp_con_sub_sum(0, x*2)
+                ans.append(res >= ls[2])
+        return ans

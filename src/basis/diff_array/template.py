@@ -15,6 +15,22 @@ class PreFixSumMatrix:
         assert 0 <= ya <= yb <= self.n - 1
         return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
+class PreFixXorMatrix:
+    def __init__(self, mat):
+        self.mat = mat
+        self.m, self.n = len(mat), len(mat[0])
+        self.pre = [[0] * (self.n + 1) for _ in range(self.m + 1)]
+        for i in range(self.m):
+            for j in range(self.n):
+                self.pre[i + 1][j + 1] = self.pre[i][j + 1] ^ self.pre[i + 1][j] ^ self.pre[i][j] ^ mat[i][j]
+        return
+
+    def query(self, xa: int, ya: int, xb: int, yb: int) -> int:
+        """left up corner is (xa, ya) and right down corner is (xb, yb)"""
+        assert 0 <= xa <= xb <= self.m - 1
+        assert 0 <= ya <= yb <= self.n - 1
+        return self.pre[xb + 1][yb + 1] ^ self.pre[xb + 1][ya] ^ self.pre[xa][yb + 1] ^ self.pre[xa][ya]
+
 
 class DiffArray:
     def __init__(self):
