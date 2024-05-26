@@ -122,6 +122,7 @@ ABC351D（https://atcoder.jp/contests/abc351/tasks/abc351_d）union_find|bfs|cla
 ABC226E（https://atcoder.jp/contests/abc226/tasks/abc226_e）circle_based_tree|union_find|classical
 ABC218E（https://atcoder.jp/contests/abc218/tasks/abc218_e）union_find|mst
 ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|dict|discretization|implemention|linked_list
+ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_teaser|implemention
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
@@ -2547,4 +2548,43 @@ class Solution:
                 post[x] = x + 1
             else:
                 ac.yes()
+        return
+
+    @staticmethod
+    def abc_355f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc355/tasks/abc355_f
+        tag: union_find|brain_teaser|implemention
+        """
+        n, q = ac.read_list_ints()
+        edges = [[] for _ in range(11)]
+        for _ in range(n - 1):
+            a, b, c = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            edges[c].append((a, b))
+        ufs = [UnionFind(n) for _ in range(11)]
+        ans = 0
+        for x in range(1, 11):
+            ufs[x].root_or_size[:] = ufs[x - 1].root_or_size[:]
+            for a, b in edges[x]:
+                ufs[x].union(a, b)
+                ans += x
+        for _ in range(q):
+            u, v, w = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            for x in range(w + 1):
+                if ufs[x].is_connected(u, v):
+                    ac.st(ans)
+                    break
+            else:
+                for y in range(w + 1, 11):
+                    if ufs[y].is_connected(u, v):
+                        ans -= y
+                        ans += w
+                        for yy in range(w, 11):
+                            ufs[yy].union(u, v)
+                        break
+                ac.st(ans)
         return

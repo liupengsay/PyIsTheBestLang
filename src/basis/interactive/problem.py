@@ -33,13 +33,14 @@ ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_
 ABC305F（https://atcoder.jp/contests/abc305/tasks/abc305_f）interactive|brain_teaser|spanning_tree|dfs|back_trace
 ABC282F（https://atcoder.jp/contests/abc282/tasks/abc282_f）brain_teaser|tree_array|interactive|classical
 ABC269E（https://atcoder.jp/contests/abc269/tasks/abc269_e）binary_search_strictly|interactive|classical
-
+ABC355E（https://atcoder.jp/contests/abc355/tasks/abc355_e）build_graph|shortest_path|brain_teaser
 
 """
 import bisect
 import random
 import sys
 from collections import deque
+from math import inf
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAddPointGet
@@ -372,4 +373,56 @@ class Solution:
         row = BinarySearch().find_int_left_strictly(0, n - 1, check1)
         col = BinarySearch().find_int_left_strictly(0, n - 1, check2)
         ac.lst(["!", row + 1, col + 1])
+        return
+
+    @staticmethod
+    def abc_355e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc355/tasks/abc355_e
+        tag: build_graph|shortest_path|brain_teaser
+        """
+        ac.flush = True
+        n, lll, rrr = ac.read_list_ints()
+        rrr += 1
+        m = 1 << n
+        m += 10
+        dct = [[] for _ in range(m)]
+        for i in range(n + 10):
+            for j in range(m + 10):
+                if 0 <= (2 ** i) * j <= (2 ** i) * (j + 1) <= 2 ** n:
+                    ll = (2 ** i) * j
+                    rr = (2 ** i) * (j + 1)
+                    dct[ll].append((i, j, rr))
+                    dct[rr].append((i, j, ll))
+                else:
+                    break
+
+        dis = [inf] * m
+        stack = [lll]
+        parent = [[] for _ in range(m)]
+        dis[lll] = 0
+        while stack:
+            nex = []
+            for x in stack:
+                d = dis[x]
+                for i, j, xx in dct[x]:
+                    dj = d + 1
+                    if dj < dis[xx]:
+                        dis[xx] = dj
+                        parent[xx] = [i, j, x]
+                        nex.append(xx)
+            stack = nex[:]
+        x = rrr
+        ans = 0
+        while x != lll:
+            i, j, xx = parent[x]
+            ac.lst(["?", i, j])
+            cur = ac.read_int()
+            if xx < x:
+                ans += cur
+            else:
+                ans += 100 - cur
+            ans %= 100
+            x = xx
+        ac.lst(["!", ans])
         return

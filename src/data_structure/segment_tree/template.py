@@ -771,6 +771,71 @@ class RangeDescendRangeMin:
                 stack.append((m + 1, b, (i << 1) | 1))
         return lowest
 
+class PointSetRangeMaxSubSumAlter:
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.cover = [0] * (4 * self.n)
+        self.val = [(0,) * 4 for _ in range(4 * self.n)]
+        self.map = ["00", "01", "10", "11"]
+        self.index = []
+        for i in range(4):
+            for j in range(4):
+                if not (self.map[i][-1] == self.map[j][0] == "1"):
+                    self.index.append([i, j, int("0b" + self.map[i][0] + self.map[j][-1], 2)])
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                    continue
+                stack.append((s, t, ~i))
+                m = s + (t - s) // 2
+                stack.append((s, m, i << 1))
+                stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _make_tag(self, i, val):
+        self.cover[i] = val
+        self.val[i] = (0, 0, 0, val)
+        return
+
+    def _push_up(self, i):
+        res1 = self.val[i << 1][:]
+        res2 = self.val[(i << 1) | 1]
+        self.cover[i] = max(self.cover[i << 1], self.cover[(i << 1) | 1])
+        res = [max(res1[j], res2[j]) for j in range(4)]
+
+        for x, y, k in self.index:
+            res[k] = max(res[k], res1[x] + res2[y])
+            self.cover[i] = max(self.cover[i], res[k])
+        self.val[i] = tuple(res)
+        return
+
+    def point_set_range_max_sub_sum(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return self.cover[1]
+
 
 class RangeAddRangeSumMinMax:
     def __init__(self, n):

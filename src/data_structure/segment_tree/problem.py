@@ -18,6 +18,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 3003（https://leetcode.cn/problems/maximize-the-number-of-partitions-after-operations）segment_tree|bisect_left|range_or|point_set
 1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
 100314（https://leetcode.cn/problems/block-placement-queries/）point_set|range_max_non_emp_con_sub_sum
+100306（https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements）point_set|range_max_sub_sum_alter
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -46,6 +47,7 @@ P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddR
 P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|offline_query
 P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pre_max_sum|dynamic
 P2824（https://www.luogu.com.cn/problem/P2824）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
+P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alter
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -170,7 +172,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
-    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax
+    PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
+    PointSetRangeMaxSubSumAlter
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.union_find.template import UnionFind
@@ -3343,3 +3346,38 @@ class Solution:
                 res = tree.range_max_non_emp_con_sub_sum(0, x*2)
                 ans.append(res >= ls[2])
         return ans
+
+    @staticmethod
+    def lc_100306(nums: List[int], queries: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements
+        tag: point_set|range_max_sub_sum_alter
+        """
+        mod = 10**9 + 7
+        ans = 0
+        n = len(nums)
+        nums = [max(x, 0) for x in nums]
+        tree = PointSetRangeMaxSubSumAlter(n)
+        tree.build(nums)
+        for pos, x in queries:
+            x = max(x, 0)
+            ans += tree.point_set_range_max_sub_sum(pos, x)
+            ans %= mod
+        return ans
+
+    @staticmethod
+    def lg_p3097(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3097
+        tag: point_set|range_max_sub_sum_alter
+        """
+        n, q = ac.read_list_ints()
+        nums = [ac.read_int() for _ in range(n)]
+        tree = PointSetRangeMaxSubSumAlter(n)
+        tree.build(nums)
+        ans = 0
+        for _ in range(q):
+            pos, x = ac.read_list_ints()
+            ans += tree.point_set_range_max_sub_sum(pos - 1, x)
+        ac.st(ans)
+        return
