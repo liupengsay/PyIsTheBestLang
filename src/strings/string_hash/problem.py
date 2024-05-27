@@ -39,6 +39,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 452F（https://codeforces.com/contest/452/problem/F）segment_tree_hash|string_hash|point_set|range_hash|range_reverse
 7D（https://codeforces.com/problemset/problem/7/D）string_hash|palindrome|classical
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|string_hash
+1977D（https://codeforces.com/contest/1977/problem/D）string_hash|brute_force|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -69,7 +70,7 @@ from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
-    MatrixHash, MatrixHashReverse, StringHashSingle
+    MatrixHash, MatrixHashReverse, StringHashSingle, StringHashSingleBuild
 from src.utils.fast_io import FastIO, inf
 
 
@@ -1488,4 +1489,44 @@ class Solution:
                 ans += (i + 1) * cur
                 cnt[(i, hash_x)] += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1977d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1977/problem/D
+        tag: string_hash|brute_force|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            dct = defaultdict(set)
+            sh = StringHashSingleBuild(m)
+            for j in range(n):
+                lst = [int(grid[i][j]) for i in range(m)]
+                sh.build(lst)
+                for i in range(m):
+                    left = sh.query(0, i - 1)
+                    right = sh.query(i + 1, m - 1)
+                    mid = 1 - int(grid[i][j])
+                    cur = ((left * sh.p + mid) * sh.pp[m - i - 1] + right) % sh.mod
+                    dct[cur].add(j)
+            res = -1
+            for k in dct:
+                if res == -1 or len(dct[k]) > len(dct[res]):
+                    res = k
+            ac.st(len(dct[res]))
+            j = list(dct[res])[0]
+            lst = [int(grid[i][j]) for i in range(m)]
+            sh.build(lst)
+            for i in range(m):
+                left = sh.query(0, i - 1)
+                right = sh.query(i + 1, m - 1)
+                mid = 1 - int(grid[i][j])
+                cur = ((left * sh.p + mid) * sh.pp[m - i - 1] + right) % sh.mod
+                if cur == res:
+                    ans = [grid[i][j] for i in range(m)]
+                    ans[i] = "1" if grid[i][j] == "0" else "0"
+                    ac.st("".join(ans))
+                    break
         return

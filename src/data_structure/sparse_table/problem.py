@@ -33,6 +33,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 1579F（https://codeforces.com/contest/1579/problem/F）circular_section|range_and
 1709D（https://codeforces.com/contest/1709/problem/D）sparse_table|range_max|implemention
 1516D（https://codeforces.com/contest/1516/problem/D）multiplication_method
+1977C（https://codeforces.com/contest/1977/problem/C）data_range|subsequence_lcm|brain_teaser|classical
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
@@ -44,7 +45,7 @@ ABC212F（https://atcoder.jp/contests/abc212/tasks/abc212_f）multiplication_met
 
 import bisect
 import math
-from collections import defaultdict
+from collections import defaultdict, Counter
 from functools import lru_cache
 from heapq import heappop, heapify, heappush
 from typing import List
@@ -589,4 +590,39 @@ class Solution:
                 ac.lst([tmp[0] + 1, res[0] + 1])
             else:
                 ac.st(tmp[0] + 1)
+        return
+
+    @staticmethod
+    def cf_1977c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1977/problem/C
+        tag: data_range|subsequence_lcm|brain_teaser|classical
+        """
+        ceil = 10 ** 9 + 1
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            ans = pre = 0
+            dct = set(nums)
+            cnt = Counter(nums)
+            for num in nums:
+                pre = math.lcm(pre, num) if pre else num
+                if pre > ceil:
+                    break
+            if pre > ceil or pre not in dct:
+                ans = n
+                ac.st(ans)
+                continue
+            pre = defaultdict(int)
+            pre[1] = 0
+            for num in cnt:
+                cur = pre.copy()
+                for p in pre:
+                    pp = math.lcm(p, num)
+                    cur[pp] = max(cur[pp], pre[p] + cnt[num])
+                pre = cur
+                for k in pre:
+                    if k not in dct:
+                        ans = max(ans, pre[k])
+            ac.st(ans)
         return
