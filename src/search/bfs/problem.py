@@ -124,6 +124,7 @@ ABC226C（https://atcoder.jp/contests/abc226/tasks/abc226_c）reverse_graph|bfs
 ABC224D（https://atcoder.jp/contests/abc224/tasks/abc224_d）bfs|classical
 ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）shortest_path|bfs|brute_force|brain_teaser
 ABC216D（https://atcoder.jp/contests/abc216/tasks/abc216_d）topological_sort
+ABC211E（https://atcoder.jp/contests/abc211/tasks/abc211_e）bfs|classical|not_dfs_back_trace
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2665,4 +2666,32 @@ class Solution:
                             nex.append(j)
                 stack = nex
             ac.st(dis[-1] if dis[-1] < inf else -1)
+        return
+
+    @staticmethod
+    def abc_211e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc211/tasks/abc211_e
+        tag: bfs|classical|not_dfs_back_trace
+        """
+        n = ac.read_int()
+        k = ac.read_int()
+        grid = [ac.read_str() for _ in range(n)]
+        pre = set()
+        for i in range(n):
+            for j in range(n):
+                if grid[i][j] == ".":
+                    pre.add((i * n + j,))
+        for _ in range(k - 1):
+            cur = set()
+            for ls in pre:
+                tmp = list(ls)
+                dct = set(ls)
+                for x in ls:
+                    ii, jj = x // n, x % n
+                    for a, b in ((ii - 1, jj), (ii + 1, jj), (ii, jj - 1), (ii, jj + 1)):
+                        if 0 <= a < n and 0 <= b < n and grid[a][b] == "." and a * n + b not in dct:
+                            cur.add(tuple(sorted(tmp + [a * n + b])))
+            pre = cur
+        ac.st(len(pre))
         return
