@@ -93,6 +93,7 @@ ABC242E（https://atcoder.jp/contests/abc242/tasks/abc242_e）n_base|math
 ABC233E（https://atcoder.jp/contests/abc233/tasks/abc233_e）big_number|prefix_sum|data_range
 ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|divide_block|template
 ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|classical
+ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|ring_mst
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1271,4 +1272,21 @@ class Solution:
         else:
             ans = pow(m, pow(k, n, mod - 1), mod)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_210e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc210/tasks/abc210_e
+        tag: math|brain_teaser|ring_mst
+        """
+        n, m = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(m)]
+        nums.sort(key=lambda it: it[1])
+        ans = 0
+        for a, c in nums:
+            g = math.gcd(a, n)
+            ans += c * (n - g)
+            n = g
+        ac.st(ans if n == 1 else -1)
         return

@@ -270,14 +270,14 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1977"
+        num = "1976"
         for i in range(8):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
             print(url)
         return
 
     def test_atcoder_problem(self):
-        num = "211"
+        num = "210"
         print(f"https://atcoder.jp/contests/abc{num}")
         print(f"https://atcoder.jp/contests/abc{num}/standings")
         print(f"https://atcoder.jp/contests/abc{num}/results")
@@ -293,7 +293,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_atcoder_problem_arc(self):
-        num = "178"
+        num = "210"
         print(f"https://atcoder.jp/contests/arc{num}")
         print(f"https://atcoder.jp/contests/arc{num}/standings")
         print(f"https://atcoder.jp/contests/arc{num}/results")

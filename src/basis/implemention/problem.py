@@ -72,6 +72,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1006D（https://codeforces.com/contest/1006/problem/D）greedy|implemention|brute_force
 1506F（https://codeforces.com/contest/1506/problem/F）implemention|odd_even
 1560E（https://codeforces.com/contest/1560/problem/E）reverse_thinking|implemention
+1976C（https://codeforces.com/contest/1976/problem/C）binary_search|implemention|inclusion_exclusion|reverse_thinking
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -96,6 +97,7 @@ import math
 from collections import deque
 from heapq import heappop, heappush
 
+from src.basis.binary_search.template import BinarySearch
 from src.basis.implemention.template import SpiralMatrix
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -677,4 +679,64 @@ class Solution:
             for w in lst:
                 root = dct[root][1 - w]
             ac.st(root)
+        return
+
+    @staticmethod
+    def cf_1976c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1976/problem/C
+        tag: binary_search|implemention|inclusion_exclusion|reverse_thinking
+        """
+
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            k = n + m + 1
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            pre_a = ac.accumulate(a)
+            pre_b = ac.accumulate(b)
+            lst = [min(a[i], b[i]) for i in range(k)]
+            pre = ac.accumulate(lst)
+            pre_cnt_a = ac.accumulate([int(a[i] > b[i]) for i in range(k)])
+            pre_cnt_b = ac.accumulate([int(b[i] > a[i]) for i in range(k)])
+
+            def compute_a(x):
+                aa = pre_cnt_a[x + 1]
+                if i <= x and a[i] > b[i]:
+                    aa -= 1
+                return aa
+
+            def compute_b(x):
+                bb = pre_cnt_b[x + 1]
+                if i <= x and a[i] < b[i]:
+                    bb -= 1
+                return bb
+
+            def check(x):
+                return compute_a(x) >= n or compute_b(x) >= m
+
+            ans = [0] * k
+            for i in range(k):
+                if n == 0:
+                    ans[i] = pre_b[-1]- b[i]
+                    continue
+                if m == 0:
+                    ans[i] = pre_a[-1] - a[i]
+                    continue
+                j = BinarySearch().find_int_left(0, k - 1, check)
+                cur = pre_a[-1] + pre_b[-1] - a[i] - b[i]
+                cur -= pre[j + 1]
+                if i <= j:
+                    cur += min(a[i], b[i])
+                xx = compute_a(j)
+                if xx == n:
+                    cur -= pre_a[-1] - pre_a[j + 1]
+                    if i > j:
+                        cur += a[i]
+                else:
+                    cur -= pre_b[-1] - pre_b[j + 1]
+                    if i > j:
+                        cur += b[i]
+                ans[i] = cur
+            ac.lst(ans)
         return

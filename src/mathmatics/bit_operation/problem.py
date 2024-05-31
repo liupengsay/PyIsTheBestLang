@@ -81,6 +81,7 @@ ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brai
 
 =====================================Library=====================================
 1（https://ac.nowcoder.com/acm/contest/53485/F）minimum_pair_xor|dynamic|classical
+2（https://www.codechef.com/problems/LEXMAX）bit_operation|maximum_and|lexicographically_maximal|prefix_and|greedy|classical
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
@@ -849,4 +850,23 @@ class Solution:
                 z ^= a
             c = (c & o) | (~c & z)
             ac.st(c)
+        return
+
+    @staticmethod
+    def cc_2(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/LEXMAX
+        tag: bit_operation|maximum_and|lexicographically_maximal|prefix_and|greedy|classical
+        """
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            ans = [max(nums)]
+            nums.remove(ans[0])
+            while nums:
+                val = max(num & ans[-1] for num in nums)
+                cnt = sum((num & ans[-1]) == val for num in nums)
+                ans.extend([val] * cnt)
+                nums = [num for num in nums if (num & ans[-1]) != val]
+            ac.lst(ans)
         return

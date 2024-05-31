@@ -202,6 +202,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1941F（https://codeforces.com/contest/1941/problem/F）brain_teaser|implemention|greedy|median|binary_search
 1941C（https://codeforces.com/contest/1941/problem/C）brain_teaser|greedy
 1974G（https://codeforces.com/contest/1974/problem/G）regret_heapq|implemention|brain_teaser|classical
+1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greedy
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -1954,5 +1955,34 @@ class Solution:
                         pre -= num
                         heapq.heappush(stack, -num)
                 pre += x
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1976b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1976/problem/B
+        tag: brute_force|greedy
+        """
+        for _ in range(ac.read_int()):
+            ac.get_random_seed()
+            n = ac.read_int()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            tot = sum(abs(a[i] - b[i]) for i in range(n))
+            ans = inf
+            target = b[-1]
+            for i in range(n):
+                num = a[i]
+                cur = tot - abs(a[i] - b[i])
+                bb = b[i]
+                if num <= target <= b[i] or num >= target >= b[i]:
+                    cur += 1 + abs(a[i] - b[i])
+                else:
+                    if target <= num <= bb or bb <= num <= target:
+                        cur += abs(num - target) + 1 + abs(a[i] - b[i])
+                    else:
+                        cur += abs(bb - target) + 1 + abs(a[i] - b[i])
+                ans = min(ans, cur)
             ac.st(ans)
         return

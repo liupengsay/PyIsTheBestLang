@@ -110,6 +110,7 @@ ABC263D（https://atcoder.jp/contests/abc263/tasks/abc263_d）prefix_sum|brute_f
 ABC265D（https://atcoder.jp/contests/abc265/tasks/abc265_d）prefix_sum|brute_force
 ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_scope|two_pointer|hash|classical
 ABC221D（https://atcoder.jp/contests/abc221/tasks/abc221_d）discretization_diff_array
+ABC210D（https://atcoder.jp/contests/abc210/tasks/abc210_d）prefix_max|matrix_prefix|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -2106,4 +2107,29 @@ class Solution:
                     tot -= 1
         diff = ac.accumulate(diff[1:])
         ac.lst(diff[1:m + 1])
+        return
+
+    @staticmethod
+    def abc_210d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc210/tasks/abc210_d
+        tag: prefix_max|matrix_prefix|classical
+        """
+        m, n, c = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        ans = inf
+        pre = [[inf] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n):
+                p = min(pre[i + 1][j], pre[i][j + 1])
+                ans = min(ans, p + c * i + c * j + grid[i][j])
+                pre[i + 1][j + 1] = min(p, grid[i][j] - c * i - c * j)
+
+        pre = [[inf] * (n + 1) for _ in range(m + 1)]
+        for i in range(m):
+            for j in range(n - 1, -1, -1):
+                p = min(pre[i][j], pre[i + 1][j + 1])
+                ans = min(ans, p + c * i - c * j + grid[i][j])
+                pre[i + 1][j] = min(p, grid[i][j] - c * i + c * j)
+        ac.st(ans)
         return
