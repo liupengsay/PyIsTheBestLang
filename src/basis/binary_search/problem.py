@@ -90,6 +90,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greedy|classical|binary_search
 1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
 1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
+1843E（https://codeforces.com/problemset/problem/1843/E）binary_search|query_order|classical
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1774,4 +1775,34 @@ class Solution:
 
         ans = BinarySearch().find_int_right_strictly(0, 10 ** 9, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1843e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1843/E
+        tag: binary_search|query_order|classical
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            ran = [ac.read_list_ints_minus_one() for _ in range(m)]
+            q = ac.read_int()
+            change = [ac.read_int() - 1 for _ in range(q)]
+
+            def check(x):
+                lst = [0]*n
+                for i in change[:x]:
+                    lst[i] = 1
+                pre = ac.accumulate(lst)
+                for a, b in ran:
+                    one = pre[b+1]-pre[a]
+                    if b-a+1-one < one:
+                        return True
+                return False
+
+            ans = BinarySearch().find_int_left(0, q, check)
+            if check(ans):
+                ac.st(ans)
+            else:
+                ac.st(-1)
         return

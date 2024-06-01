@@ -24,6 +24,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
+486E（https://codeforces.com/problemset/problem/486/E）lis|greedy|brain_teaser|classical
 
 =====================================LuoGu======================================
 P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
@@ -53,6 +54,7 @@ ABC354F（https://atcoder.jp/contests/abc354/tasks/abc354_f）lis|classical
 """
 
 import bisect
+import random
 from collections import deque, Counter
 from itertools import accumulate
 from typing import List
@@ -483,4 +485,132 @@ class Solution:
                     res.append(i + 1)
             ac.st(len(res))
             ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_486e_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/486/E
+        tag: lis|greedy|brain_teaser|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [0] * n
+        dp = []
+        for x, num in enumerate(nums):
+            i = bisect.bisect_left(dp, num)
+            pre[x] = i
+            if 0 <= i < len(dp):
+                dp[i] = num
+            else:
+                dp.append(num)
+        ceil = len(dp)
+        post = [0] * n
+        dp = []
+        for x in range(n - 1, -1, -1):
+            num = -nums[x]
+            i = bisect.bisect_left(dp, num)
+            post[x] = i
+            if 0 <= i < len(dp):
+                dp[i] = num
+            else:
+                dp.append(num)
+
+        cnt = [0] * n
+        for i in range(n):
+            if pre[i] + post[i] + 1 == ceil:
+                cnt[pre[i]] += 1
+
+        ans = ["1"] * n
+        for i in range(n):
+            if pre[i] + post[i] + 1 != ceil:
+                continue
+            if cnt[pre[i]] == 1:
+                ans[i] = "3"
+            else:
+                ans[i] = "2"
+        ac.st("".join(ans))
+        return
+    
+    @staticmethod
+    def cf_486e_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/486/E
+        tag: lis|greedy|brain_teaser|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = random.getrandbits(64)
+        dp = []  # LIS array
+        s = []  # index is length and value is sum
+        q = []  # index is length and value is [num, cnt]
+        pre = [0] * n
+        cnt = [0] * n
+        for x, num in enumerate(nums):
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(s) <= len(dp):
+                s.append(0)
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                s[length] += 1
+                q[length].append([num, 1])
+            else:
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    s[length - 1] -= q[length - 1].popleft()[1]
+                s[length] += s[length - 1]
+                s[length] %= mod
+                q[length].append([num, s[length - 1]])
+            pre[x] = length - 1
+            cnt[x] = s[length - 1] if length - 1 else 1
+
+        dp = []  # LIS array
+        s = []  # index is length and value is sum
+        q = []  # index is length and value is [num, cnt]
+        post = [0] * n
+        cnt_post = [0] * n
+        for x in range(n - 1, -1, -1):
+            num = -nums[x]
+            if not dp or num > dp[-1]:
+                dp.append(num)
+                length = len(dp)
+            else:
+                i = bisect.bisect_left(dp, num)
+                dp[i] = num
+                length = i + 1
+            while len(s) <= len(dp):
+                s.append(0)
+            while len(q) <= len(dp):
+                q.append(deque())
+
+            if length == 1:
+                s[length] += 1
+                q[length].append([num, 1])
+            else:
+                while q[length - 1] and q[length - 1][0][0] >= num:
+                    s[length - 1] -= q[length - 1].popleft()[1]
+                s[length] += s[length - 1]
+                s[length] %= mod
+                q[length].append([num, s[length - 1]])
+            post[x] = length - 1
+            cnt_post[x] = s[length - 1] if length - 1 else 1
+
+        ceil = len(dp)
+        tot = s[-1] % mod
+        ans = ["1"] * n
+        for i in range(n):
+            if pre[i] + post[i] + 1 != ceil:
+                continue
+            if (cnt[i] * cnt_post[i]) % mod == tot:
+                ans[i] = "3"
+            else:
+                ans[i] = "2"
+        ac.st("".join(ans))
         return

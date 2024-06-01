@@ -154,8 +154,8 @@ class LcsComputeByLis:
         """template to finding the number of LIS"""
         # O(nlogn)
         dp = []  # LIS array
-        s = []  # index if length and value is sum
-        q = []  # index if length and value is [num, cnt]
+        s = []  # index is length and value is sum
+        q = []  # index is length and value is [num, cnt]
         for num in nums:
             if not dp or num > dp[-1]:
                 dp.append(num)

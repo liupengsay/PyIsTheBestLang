@@ -14,6 +14,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1621（https://leetcode.cn/problems/number-of-sets-of-k-non-overlapping-line-segments/）partition_method|comb_perm
 1866（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
+1929（https://leetcode.cn/problems/distribute-candies-among-children-ii）comb|inclusion_exclusion|partition_method
 
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
@@ -1156,3 +1157,19 @@ class Solution:
             ans %= mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_2929(n: int, limit: int) -> int:
+        """
+        url: https://leetcode.cn/problems/distribute-candies-among-children-ii
+        tag: comb|inclusion_exclusion|partition_method
+        """
+
+        def comb2(a):
+            return math.comb(a, 2) if a >= 2 else 0
+
+        ans = comb2(n + 2)
+        ans -= comb2(n - (limit + 1) + 2) * math.comb(3, 1)
+        ans += comb2(n - ((limit + 1) * 2) + 2) * math.comb(3, 1)
+        ans -= comb2(n - ((limit + 1) * 3) + 2)
+        return ans

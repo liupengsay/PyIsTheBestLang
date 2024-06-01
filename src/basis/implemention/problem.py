@@ -73,6 +73,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1506F（https://codeforces.com/contest/1506/problem/F）implemention|odd_even
 1560E（https://codeforces.com/contest/1560/problem/E）reverse_thinking|implemention
 1976C（https://codeforces.com/contest/1976/problem/C）binary_search|implemention|inclusion_exclusion|reverse_thinking
+608B（https://codeforces.com/problemset/problem/608/B）contribution_method|prefix_sum|implemention
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -739,4 +740,24 @@ class Solution:
                         cur += b[i]
                 ans[i] = cur
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_608b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/608/B
+        tag: contribution_method|prefix_sum|implemention
+        """
+        a = ac.read_str()
+        b = ac.read_str()
+        n = len(a)
+        m = len(b)
+        pre = ac.accumulate([int(w) for w in b])
+        ans = 0
+        for i in range(n):
+            low = i
+            high = m - n + i
+            tot = high - low + 1
+            ans += pre[high + 1] - pre[low] if a[i] == "0" else tot - (pre[high + 1] - pre[low])
+        ac.st(ans)
         return

@@ -12,6 +12,7 @@ Description：sliding_window|monotonic
 ====================================LeetCode====================================
 1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
 1941E（https://codeforces.com/contest/1941/problem/E）monotonic_queue|dp
+1976D（https://codeforces.com/contest/1796/problem/D）monotonic_queue|brain_teaser|classical|prefix_min
 
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
@@ -550,4 +551,42 @@ class Solution:
                 stack.pop()
             stack.append(i)
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def cf_1976d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1796/problem/D
+        tag: monotonic_queue|brain_teaser|classical|prefix_min
+        """
+        for _ in range(ac.read_int()):
+            n, k, x = ac.read_list_ints()
+            if x < 0:
+                x = -x
+                k = n - k
+            nums = ac.read_list_ints()
+            nums = [num - x for num in nums]
+
+            # > k
+            ans = pre = 0
+            pre_min = [0] * (n + 1)
+            pre_min[0] = 0
+            for i in range(n):
+                pre += nums[i]
+                if i >= k:
+                    ans = max(ans, pre - pre_min[i - k] + 2 * k * x)
+                pre_min[i + 1] = min(pre_min[i], pre)
+
+            # <= k
+            stack = deque([(-1, 0)])
+            pre = 0
+            for i in range(n):
+                pre += nums[i] + 2 * x
+                while stack and i - stack[0][0] > k:
+                    stack.popleft()
+                while stack and stack[-1][1] > pre:
+                    stack.pop()
+                stack.append((i, pre))
+                ans = max(ans, pre - stack[0][1])
+            ac.st(ans)
         return
