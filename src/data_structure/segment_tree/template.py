@@ -2586,6 +2586,7 @@ class RangeSetRangeSumMinMaxDynamicDct:
         return
 
     def _make_tag(self, i, s, t, val):
+        self._produce(i)
         self.cover[self.dct[i]] = val * (t - s + 1)
         self.floor[self.dct[i]] = val
         self.ceil[self.dct[i]] = val

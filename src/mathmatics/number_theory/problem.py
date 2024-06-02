@@ -94,6 +94,7 @@ ABC233E（https://atcoder.jp/contests/abc233/tasks/abc233_e）big_number|prefix_
 ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|divide_block|template
 ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|classical
 ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|ring_mst
+ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_method|math
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1289,4 +1290,30 @@ class Solution:
             ans += c * (n - g)
             n = g
         ac.st(ans if n == 1 else -1)
+        return
+
+    @staticmethod
+    def abc_356e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc356/tasks/abc356_e
+        tag: contribution_method|math
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 6 + 1
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            cnt[num] += 1
+        ans = 0
+        pre = ac.accumulate(cnt)
+        for x in range(1, ceil + 1):
+            if cnt[x]:
+                for y in range(x, ceil + 1, x):
+                    low = y
+                    high = min(y + x - 1, ceil)
+                    ans += (low // x) * cnt[x] * (pre[high + 1] - pre[low])
+                ans -= cnt[x] * cnt[x]
+                if cnt[x] > 1:
+                    ans += cnt[x] * (cnt[x] - 1) // 2
+        ac.st(ans)
         return

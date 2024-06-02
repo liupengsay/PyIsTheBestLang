@@ -1,6 +1,6 @@
 """
 Algorithm：sparse_table|multiplication_method|aggregation_property|sub_consequence
-Description：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm
+Description：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm|sparse_table|binary_search
 
 ====================================LeetCode====================================
 1521（https://leetcode.cn/problems/find-a-value-of-a-mysterious-function-closest-to-target/）bit_operation|sub_consequence
@@ -10,6 +10,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
 100259（https://leetcode.com/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
+100315（https://leetcode.cn/contest/weekly-contest-400/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max

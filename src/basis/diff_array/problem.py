@@ -33,7 +33,7 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
 3017（https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
-
+100311（https://leetcode.cn/contest/weekly-contest-400/problems/count-days-without-meetings/）discretization_diff_array
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum

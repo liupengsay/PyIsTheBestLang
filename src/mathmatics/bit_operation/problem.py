@@ -74,6 +74,7 @@ ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
 ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|dynamic
 ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
 ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
+ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classical|math|digital_dp
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
@@ -869,4 +870,23 @@ class Solution:
                 ans.extend([val] * cnt)
                 nums = [num for num in nums if (num & ans[-1]) != val]
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_356d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc356/tasks/abc356_d
+        tag: bit_count|classical|math|digital_dp
+        """
+        n, m = ac.read_list_ints()
+        mod = 998244353
+        ans = 0
+        for i in range(61):
+            if m & (1 << i):
+                circle = 1 << (i + 1)
+                ans += (1 << i) * ((n + 1) // circle)
+                if (n+1) % circle > (1 << i):
+                    ans += (n + 1) % circle - (1 << i)
+                ans %= mod
+        ac.st(ans)
         return

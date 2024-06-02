@@ -105,6 +105,7 @@ ABC292H（https://atcoder.jp/contests/abc292/tasks/abc292_h）segment_tree|range
 ABC253F（https://atcoder.jp/contests/abc253/tasks/abc253_f）offline_query|data_range|limited_operation|brain_teaser|preprocess|classical
 ABC237G（https://atcoder.jp/contests/abc237/tasks/abc237_g）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
 ABC223F（https://atcoder.jp/contests/abc223/tasks/abc223_f）segment_tree|point_set|range_set|pre_sum_max
+ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_find_left|union_find_right|segment_tree|sorted_list
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -3380,4 +3381,66 @@ class Solution:
             pos, x = ac.read_list_ints()
             ans += tree.point_set_range_max_sub_sum(pos - 1, x)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_356f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc356/tasks/abc356_f
+        tag: union_find|union_find_left|union_find_right|segment_tree|sorted_list
+        """
+        q, k = ac.read_list_ints()
+        lst = SortedList()
+
+        nums = [ac.read_list_ints() for _ in range(q)]
+        ind = sorted(set([x for _, x in nums]))
+        dct = {num: i for i, num in enumerate(ind)}
+        m = len(dct)
+        pre = set()
+
+        left = RangeSetPointGet(m)
+        left.build(list(range(m)))
+        right = RangeSetPointGet(m)
+        right.build(list(range(m)))
+        cnt = PointSetRangeSum(m)
+
+        for tmp in nums:
+            x = tmp[1]
+            if tmp[0] == 1:
+                if x in pre:
+                    pre.discard(x)
+                    lst.discard(x)
+                    cnt.point_set(dct[x], 0)
+                    ll, rr = left.point_get(dct[x]), right.point_get(dct[x])
+                    i = lst.bisect_left(x)
+                    if not (0 <= i - 1 < i < len(lst) and lst[i] - lst[i - 1] <= k):
+                        if dct[x] + 1 <= rr:
+                            left.range_set(dct[x] + 1, rr, dct[x] + 1)
+                        if ll <= dct[x] - 1:
+                            right.range_set(ll, dct[x] - 1, dct[x] - 1)
+                        left.range_set(dct[x], dct[x], dct[x])
+                        right.range_set(dct[x], dct[x], dct[x])
+
+                else:
+                    pre.add(x)
+                    lst.add(x)
+                    cnt.point_set(dct[x], 1)
+                    i = lst.bisect_left(x)
+                    if 0 <= i - 1 < i + 1 < len(lst) and lst[i + 1] - lst[i] <= k and lst[i] - lst[i - 1] <= k:
+                        ll = left.point_get(dct[lst[i - 1]])
+                        rr = right.point_get(dct[lst[i + 1]])
+                        left.range_set(ll, rr, ll)
+                        right.range_set(ll, rr, rr)
+                    elif i + 1 < len(lst) and lst[i + 1] - lst[i] <= k:
+                        rr = right.point_get(dct[lst[i + 1]])
+                        left.range_set(dct[x], rr, dct[x])
+                        right.range_set(dct[x], rr, rr)
+                    elif i - 1 >= 0 and lst[i] - lst[i - 1] <= k:
+                        ll = left.point_get(dct[lst[i - 1]])
+                        right.range_set(ll, dct[x], dct[x])
+                        left.range_set(ll, dct[x], ll)
+            else:
+                ll, rr = left.point_get(dct[x]), right.point_get(dct[x])
+                ans = cnt.range_sum(ll, rr)
+                ac.st(ans)
         return
