@@ -49,6 +49,7 @@ ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_ar
 ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discretize|classical
 ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contribution_method
 ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range_max|pre_max|classical
+ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_search|bisect_right|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -1374,4 +1375,75 @@ class Solution:
             tree_ceil.point_ascend(t, cur + c * t)
             tree_floor.point_ascend(n + 1 - t, cur - c * t)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_356f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc356/tasks/abc356_f
+        tag: tree_array|binary_search|bisect_right|classical
+        """
+        q, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(q)]
+        nodes = sorted(set([x for _, x in nums] + [-1, 10 ** 18 + 1]))
+        ind = {num: i for i, num in enumerate(nodes)}
+        n = len(ind)
+        tree_cnt = PointAddRangeSum(n)
+        tree_root = PointAddRangeSum(n)  # index is point and value is root or not
+        cur = set()
+        root = set()
+        part = 0
+        for op, x in nums:
+            i = ind[x]
+            if op == 1:
+                if x in cur:
+                    tree_cnt.point_add(i + 1, -1)
+                    cur.remove(x)
+                    loc = tree_cnt.range_sum(1, i + 1)
+                    left = -inf
+                    right = inf
+                    if loc:
+                        left = nodes[tree_cnt.bisect_right(loc - 1)]
+                    if loc < len(cur):
+                        right = nodes[tree_cnt.bisect_right(loc)]
+                    if x - left <= k < right - left:
+                        tree_root.point_add(ind[left] + 1, 1)
+                        root.add(ind[left] + 1)
+                    if right - x > k:
+                        tree_root.point_add(i + 1, -1)
+                        root.remove(i + 1)
+                else:
+                    cur.add(x)
+                    tree_cnt.point_add(i + 1, 1)
+                    loc = tree_cnt.range_sum(1, i + 1)
+                    left = -inf
+                    right = inf
+                    if loc > 1:
+                        left = nodes[tree_cnt.bisect_right(loc - 2)]
+                    if loc < len(cur):
+                        right = nodes[tree_cnt.bisect_right(loc)]
+                    if x - left <= k < right - left:
+                        tree_root.point_add(ind[left] + 1, -1)
+                        root.remove(ind[left] + 1)
+                    if right - x > k:
+                        tree_root.point_add(i + 1, 1)
+                        root.add(i + 1)
+                        part += 1
+            else:
+                loc = tree_root.range_sum(1, i + 1)
+                label = 1 if i + 1 in root else 0
+                if not label:
+                    if loc:
+                        left = tree_root.bisect_right(loc - 1) + 1
+                    else:
+                        left = 0
+                    right = tree_root.bisect_right(loc)
+                else:
+                    if loc >= 2:
+                        left = tree_root.bisect_right(loc - 2) + 1
+                    else:
+                        left = 0
+                    right = i
+                ans = tree_cnt.range_sum(left + 1, right + 1)
+                ac.st(ans)
         return

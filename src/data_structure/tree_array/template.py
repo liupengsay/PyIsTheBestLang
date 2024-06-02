@@ -59,6 +59,7 @@ class PointAddRangeSum:
                 w -= self.t[x + k]
                 x += k
             k //= 2
+        # assert 0 <= x <= self.n
         return x
 
 

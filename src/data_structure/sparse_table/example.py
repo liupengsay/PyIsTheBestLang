@@ -2,6 +2,7 @@ import math
 import random
 import unittest
 from functools import reduce
+from itertools import accumulate
 from operator import or_, and_
 
 from src.data_structure.sparse_table.template import SparseTable2D, SparseTable
@@ -26,7 +27,7 @@ class TestGeneral(unittest.TestCase):
         nums = [9, 3, 1, 7, 5, 6, 0, 8]
         st = SparseTable(nums, max)
         queries = [[1, 6], [1, 5], [2, 7], [2, 6], [1, 8], [4, 8], [3, 7], [1, 8]]
-        assert [st.query(left, right) for left, right in queries] == [9, 9, 7, 7, 9, 8, 7, 9]
+        assert [st.query(left - 1, right - 1) for left, right in queries] == [9, 9, 7, 7, 9, 8, 7, 9]
 
         ceil = 2000
         nums = [random.randint(1, ceil) for _ in range(2000)]
@@ -40,12 +41,26 @@ class TestGeneral(unittest.TestCase):
         for _ in range(ceil):
             left = random.randint(1, ceil - 10)
             right = random.randint(left, ceil)
-            assert st1_max.query(left, right) == max(nums[left - 1:right])
-            assert st1_min.query(left, right) == min(nums[left - 1:right])
-            assert st1_gcd.query(left, right) == reduce(math.gcd, nums[left - 1:right])
-            assert st1_lcm.query(left, right) == reduce(math.lcm, nums[left - 1:right])
-            assert st1_and.query(left, right) == check_and(nums[left - 1:right])
-            assert st1_or.query(left, right) == check_or(nums[left - 1:right])
+            left -= 1
+            right -= 1
+            assert st1_max.query(left, right) == max(nums[left:right + 1])
+            assert st1_min.query(left, right) == min(nums[left:right + 1])
+            assert st1_gcd.query(left, right) == reduce(math.gcd, nums[left:right + 1])
+            assert st1_lcm.query(left, right) == reduce(math.lcm, nums[left:right + 1])
+            assert st1_and.query(left, right) == check_and(nums[left:right + 1])
+            assert st1_or.query(left, right) == check_or(nums[left:right + 1])
+            pre = list(accumulate(nums[left:], and_))
+            for x in range(len(pre)):
+                val = pre[x]
+                right = left
+                cur = nums[left]
+                for y in range(left, ceil):
+                    cur &= nums[y]
+                    if cur >= val:
+                        right = y
+                    else:
+                        break
+                assert right == st1_and.bisect_right(left, val, (1 << 32) - 1)[0]
         return
 
     def test_sparse_table_2d_max_min(self):

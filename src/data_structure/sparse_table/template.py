@@ -10,6 +10,7 @@ class SparseTable:
         n = len(lst)
         self.bit = [0] * (n + 1)
         self.fun = fun
+        self.n = n
         l, r, v = 1, 2, 0
         while True:
             for i in range(l, r):
@@ -22,6 +23,9 @@ class SparseTable:
                 v += 1
                 continue
             break
+
+        for i in range(n+1):
+            assert self.bit[i] == (i.bit_length() - 1 if i else i.bit_length())
         self.st = [[0] * n for _ in range(self.bit[-1] + 1)]
         self.st[0] = lst
         for i in range(1, self.bit[-1] + 1):
@@ -30,10 +34,27 @@ class SparseTable:
 
     def query(self, left, right):
         """index start from 0"""
-        # assert 0 <= left <= right < self.n - 1
+        assert 0 <= left <= right < self.n
         pos = self.bit[right - left + 1]
         return self.fun(self.st[pos][left], self.st[pos][right - (1 << pos) + 1])
 
+    def bisect_right(self, left, val, initial):
+        """index start from 0"""
+        assert 0 <= left < self.n
+        # find the max right such that st.query(left, right) >= val
+        pos = left
+        pre = initial  # 0 or (1<<32)-1
+        for x in range(self.bit[-1], -1, -1):
+            if pos + (1 << x) - 1 < self.n and self.fun(self.st[x][pos], pre) >= val: # can by any of >= > <= <
+                pre = self.fun(self.st[x][pos], pre)
+                pos += (1 << x)
+        # may be pos=left and st.query(left, left) < val
+        if pos > left:
+            pos -= 1
+        else:
+            pre = self.st[0][left]
+        assert left <= pos < self.n
+        return pos, pre
 
 class SparseTableIndex:
     def __init__(self, lst, fun):
@@ -73,40 +94,6 @@ class SparseTableIndex:
         if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:
             return a
         return b
-
-
-# class SparseTableIndex:
-#     def __init__(self, lst, fun):
-#         # as long as Fun satisfies monotonicity
-#         # static interval queries can be performed on the index where the maximum is located
-#         self.fun = fun  # min max and_ or_ math.lcm math.gcd
-#         self.n = len(lst)
-#         self.m = self.n.bit_length() - 1
-#         self.f = [0] * ((self.m + 1) * (self.n + 1))
-#
-#         for i in range(1, self.n + 1):
-#             self.f[i * (self.m + 1) + 0] = i - 1
-#         for j in range(1, self.m + 1):
-#             for i in range(1, self.n - (1 << j) + 2):
-#                 a = self.f[i * (self.m + 1) + j - 1]
-#                 b = self.f[(i + (1 << (j - 1))) * (self.m + 1) + j - 1]
-#
-#                 if self.fun(lst[a], lst[b]) == lst[a]:
-#                     self.f[i * (self.m + 1) + j] = a
-#                 else:
-#                     self.f[i * (self.m + 1) + j] = b
-#         self.lst = lst
-#         return
-#
-#     def query(self, left, right):
-#         left += 1  # assert 0 <= left <= right <= self.n - 1
-#         right += 1
-#         k = (right - left + 1).bit_length() - 1
-#         a = self.f[left * (self.m + 1) + k]
-#         b = self.f[(right - (1 << k) + 1) * (self.m + 1) + k]
-#         if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:
-#             return a
-#         return b
 
 
 class SparseTable2D:

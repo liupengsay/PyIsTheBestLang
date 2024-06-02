@@ -9,8 +9,8 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2470（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
 2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
-100259（https://leetcode.com/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
-100315（https://leetcode.cn/contest/weekly-contest-400/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical
+100259（https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
+100315（https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical|sparse_table|binary_search|binary_right
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
@@ -49,6 +49,7 @@ import math
 from collections import defaultdict, Counter
 from functools import lru_cache
 from heapq import heappop, heapify, heappush
+from operator import and_
 from typing import List
 
 from src.data_structure.sparse_table.template import SparseTable, SparseTableIndex
@@ -627,3 +628,20 @@ class Solution:
                         ans = max(ans, pre[k])
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100315(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/
+        tag: range_and|bit_operation|classical|sparse_table|binary_search|binary_right
+        """
+        n = len(nums)
+        st = SparseTable(nums, and_)
+        ans = inf
+        initial = (1 << 32) - 1
+        for i in range(n):
+            j, val = st.bisect_right(i, k, initial)
+            ans = min(ans, abs(val - k))
+            if j + 1 < n:
+                ans = min(ans, abs((val & nums[j + 1]) - k))
+        return ans
