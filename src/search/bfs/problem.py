@@ -125,6 +125,7 @@ ABC224D（https://atcoder.jp/contests/abc224/tasks/abc224_d）bfs|classical
 ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）shortest_path|bfs|brute_force|brain_teaser
 ABC216D（https://atcoder.jp/contests/abc216/tasks/abc216_d）topological_sort
 ABC211E（https://atcoder.jp/contests/abc211/tasks/abc211_e）bfs|classical|not_dfs_back_trace
+ABC209E（https://atcoder.jp/contests/abc209/tasks/abc209_e）build_graph|reverse_graph|brain_teaser|game_dp
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -2694,4 +2695,59 @@ class Solution:
                             cur.add(tuple(sorted(tmp + [a * n + b])))
             pre = cur
         ac.st(len(pre))
+        return
+
+    @staticmethod
+    def abc_209e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc209/tasks/abc209_e
+        tag: build_graph|reverse_graph|brain_teaser|game_dp
+        """
+        n = ac.read_int()
+        words = [ac.read_str() for _ in range(n)]
+
+        nodes = set()
+        for i, word in enumerate(words):
+            nodes.add(word[:3])
+            nodes.add(word[-3:])
+        nodes = list(nodes)
+        k = len(nodes)
+        rev = [set() for _ in range(k)]
+        ind = {num: i for i, num in enumerate(nodes)}
+
+        for i, word in enumerate(words):
+            rev[ind[word[-3:]]].add(ind[word[:3]])
+
+        degree = [0] * k
+        for i in range(k):
+            for j in rev[i]:
+                degree[j] += 1
+
+        stack = [i for i in range(k) if not degree[i]]
+        dis = [0] * k
+        for i in stack:
+            dis[i] = 1
+
+        while stack:
+            nex = []
+            for i in stack:
+                for j in rev[i]:
+                    degree[j] -= 1
+                    if dis[j] == 0:
+                        if dis[i] == 1:
+                            dis[j] = -1
+                            nex.append(j)
+                        elif dis[i] == -1 and degree[j] == 0:
+                            dis[j] = 1
+                            nex.append(j)
+            stack = nex
+
+        for i in range(n):
+            cur = dis[ind[words[i][-3:]]]
+            if cur == 0:
+                ac.st("Draw")
+            elif cur == -1:
+                ac.st("Aoki")
+            else:
+                ac.st("Takahashi")
         return

@@ -111,6 +111,8 @@ ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_metho
 5052（https://www.acwing.com/problem/content/description/5052/）prime_factorization|comb
 
 
+1（https://www.codechef.com/problems/UQR）math|brain_teaser
+
 """
 import bisect
 import math
@@ -1316,4 +1318,29 @@ class Solution:
                 if cnt[x] > 1:
                     ans += cnt[x] * (cnt[x] - 1) // 2
         ac.st(ans)
+        return
+
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/UQR
+        tag: math|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            n, a, b = ac.read_list_ints()
+            if a == b:
+                ac.st(n // a)
+            else:
+                a = min(a, b)
+                k = n // a
+                if k == 0:
+                    ac.st(0)
+                else:
+                    if k <= a:
+                        ans = k * (k + 1) // 2 - 1
+                    else:
+                        ans = a * (a + 1) // 2 - 1 + (k - a) * a
+                    ans += min(n % a, k) + 1
+                    ac.st(ans)
         return

@@ -4,9 +4,10 @@ Description：
 
 ====================================LeetCode====================================
 2569（https://leetcode.cn/problems/handling-sum-queries-after-update/）segment_tree|range_reverse|bit_set
+100320（https://leetcode.cn/problems/maximum-total-reward-using-operations-ii）bit_set|classical
 
 =====================================LuoGu======================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+xx（xxx）x
 
 ===================================CodeForces===================================
 242E（https://codeforces.com/contest/242/problem/E）range_or_sum|range_xor_sum|SegBitSet
@@ -139,3 +140,14 @@ class Solution:
                     if (1 << j) & xx:
                         tree[j].update(ll, rr)
         return
+
+    @staticmethod
+    def lc_100320(values: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-total-reward-using-operations-ii
+        tag: bit_set|classical
+        """
+        ans = 1
+        for num in sorted(values):
+            ans |= (ans & ((1 << num) - 1)) << num
+        return ans.bit_length() - 1

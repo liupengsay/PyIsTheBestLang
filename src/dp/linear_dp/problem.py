@@ -124,6 +124,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1472F（https://codeforces.com/contest/1472/problem/F）linear_dp|classical
 1624E（https://codeforces.com/contest/1624/problem/E）linear_dp|brute_force
 1969C（https://codeforces.com/contest/1969/problem/C）linear_dp|data_range|implemention
+264C（https://codeforces.com/contest/264/problem/C）linear_dp|classical|maximum_second
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1582,4 +1583,49 @@ class Solution:
             dp[i] = (post_sum + post) % mod
             post_sum = (post_sum + dp[i]) % mod
         ac.st(dp[0] % mod)
+        return
+
+    @staticmethod
+    def cf_264c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/264/problem/C
+        tag: linear_dp|classical|maximum_second
+        """
+        n, q = ac.read_list_ints()
+        v = ac.read_list_ints()
+        c = ac.read_list_ints_minus_one()
+        for _ in range(q):
+            a, b = ac.read_list_ints()
+            dp = [-inf] * n
+            c1, ceil1 = 0, -inf
+            c2, ceil2 = 0, -inf
+            ans = 0
+            for i, x in enumerate(c):
+                cur = dp[x]
+                if a * v[i] > 0:
+                    cur += a * v[i]
+                if c1 != x:
+                    if ceil1 + b * v[i] > cur:
+                        cur = ceil1 + b * v[i]
+                else:
+                    if ceil2 + b * v[i] > cur:
+                        cur = ceil2 + b * v[i]
+                if b * v[i] > cur:
+                    cur = b * v[i]
+                if c1 == x:
+                    if ceil1 < cur:
+                        ceil1 = cur
+                elif c2 == x:
+                    if ceil2 < cur:
+                        ceil2 = cur
+                else:
+                    if cur >= ceil1:
+                        c2, ceil2 = c1, ceil1
+                        c1, ceil1 = x, cur
+                    elif cur > ceil2:
+                        c2, ceil2 = x, cur
+                dp[x] = cur
+                if cur > ans:
+                    ans = cur
+            ac.st(ans)
         return

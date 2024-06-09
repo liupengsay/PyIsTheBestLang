@@ -25,6 +25,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
 486E（https://codeforces.com/problemset/problem/486/E）lis|greedy|brain_teaser|classical
+650D（https://codeforces.com/problemset/problem/650/D）lis|brain_teaser|classical|offline_query
 
 =====================================LuoGu======================================
 P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
@@ -613,4 +614,58 @@ class Solution:
             else:
                 ans[i] = "2"
         ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_650d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/650/D
+        tag: lis|brain_teaser|classical|offline_query
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        queries = [1] * m
+        pos = [[] for _ in range(n)]
+        for x in range(m):
+            i, j = ac.read_list_ints()
+            pos[i - 1].append((j, x))
+
+        pre = [0] * n
+        dp = []
+        for x, num in enumerate(nums):
+            i = bisect.bisect_left(dp, num)
+            for a, j in pos[x]:
+                queries[j] += bisect.bisect_left(dp, a)
+            pre[x] = i
+            if 0 <= i < len(dp):
+                dp[i] = num
+            else:
+                dp.append(num)
+
+        ceil = len(dp)
+        post = [0] * n
+        dp = []
+        for x in range(n - 1, -1, -1):
+            num = -nums[x]
+            i = bisect.bisect_left(dp, num)
+            for a, j in pos[x]:
+                queries[j] += bisect.bisect_left(dp, -a)
+            post[x] = i
+            if 0 <= i < len(dp):
+                dp[i] = num
+            else:
+                dp.append(num)
+
+        cnt = [0] * n
+        for i in range(n):
+            if pre[i] + post[i] + 1 == ceil:
+                cnt[pre[i]] += 1
+        for i in range(n):
+            for a, j in pos[i]:
+                if cnt[pre[i]] > 1 or pre[i] + post[i] + 1 < ceil:
+                    queries[j] = max(queries[j], ceil)
+                else:
+                    queries[j] = max(queries[j], ceil - 1)
+        for q in queries:
+            ac.st(q)
         return

@@ -40,6 +40,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1458（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
 1745（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
 2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greedy|implemention
+100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -3028,3 +3029,20 @@ class Solution:
             dp = [x % mod for x in ndp]
         ac.st(dp[0])
         return
+
+    @staticmethod
+    def lc_100327(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/
+        tag: matrix_dp|bag_dp|brain_teaser
+        """
+        pre = [defaultdict(int) for _ in range(k + 1)]
+        dp = [0 for _ in range(k + 1)]
+        for num in nums:
+            for c in range(k, -1, -1):
+                pre[c][num] += 1
+                if c + 1 <= k:
+                    pre[c + 1][num] = pre[c + 1][num] if pre[c + 1][num] > dp[c] + 1 else dp[c] + 1
+                    dp[c + 1] = pre[c + 1][num] if pre[c + 1][num] > dp[c + 1] else dp[c + 1]
+                dp[c] = pre[c][num] if pre[c][num] > dp[c] else dp[c]
+        return max(dp)

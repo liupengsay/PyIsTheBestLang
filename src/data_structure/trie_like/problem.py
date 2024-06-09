@@ -45,6 +45,7 @@ P4735（https://www.luogu.com.cn/problem/P4735）
 1720D2（https://codeforces.com/contest/1720/problem/D2）
 1849F（https://codeforces.com/problemset/problem/1849/F）
 888G（https://codeforces.com/problemset/problem/888/G）
+1980G（https://codeforces.com/contest/1980/problem/G）binary_trie|bfs|implemention|maximum_xor|classical
 
 ===================================AtCoder===================================
 ABC287E（https://atcoder.jp/contests/abc287/tasks/abc287_e）trie|prefix_suffix|classical
@@ -1095,3 +1096,63 @@ class Solution:
             x = x - 1 if x else ind[0]
             ans.append(x)
         return ans
+
+    @staticmethod
+    def cf_1980g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1980/problem/G
+        tag: binary_trie|bfs|implemention|maximum_xor|classical
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                u, v, w = ac.read_list_ints()
+                dct[u - 1].append((v - 1, w))
+                dct[v - 1].append((u - 1, w))
+
+            dis = [-1] * n
+            path = [0] * n
+            stack = [0]
+            dis[0] = 0
+            while stack:
+                nex = []
+                for x in stack:
+                    for y, w in dct[x]:
+                        if dis[y] == -1:
+                            dis[y] = dis[x] + 1
+                            nex.append(y)
+                            path[y] = path[x] ^ w
+                stack = nex[:]
+            odd_trie = BinaryTrieXor((1 << 32) - 1, n + 1)
+            even_trie = BinaryTrieXor((1 << 32) - 1, n + 1)
+            tot = 0
+            for i in range(n):
+                if dis[i] % 2:
+                    odd_trie.add(path[i], 1)
+                else:
+                    even_trie.add(path[i], 1)
+            res = []
+            for _ in range(m):
+                lst = ac.read_list_strs()
+                if lst[0] == "^":
+                    tot ^= int(lst[1])
+                else:
+                    v, x = int(lst[1]) - 1, int(lst[2])
+                    cur = path[v] ^ x
+                    if dis[v] % 2:
+                        cur ^= tot
+                    ans = -inf
+                    if dis[v] % 2:
+                        odd_trie.remove(path[v], 1)
+                    ans = max(ans, odd_trie.get_maximum_xor(cur ^ tot))
+                    if dis[v] % 2:
+                        odd_trie.add(path[v], 1)
+                    if dis[v] % 2 == 0:
+                        even_trie.remove(path[v], 1)
+                    ans = max(ans, even_trie.get_maximum_xor(cur))
+                    if dis[v] % 2 == 0:
+                        even_trie.add(path[v], 1)
+                    res.append(ans)
+            ac.lst(res)
+        return

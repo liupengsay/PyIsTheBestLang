@@ -73,6 +73,8 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 24（https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B）suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
 25（https://codeforces.com/edu/course/2/lesson/2/4/practice/contest/269119/problem/A）suffix_array|height|lcp
 
+
+1（https://www.codechef.com/problems/CABABAA）sparse_table|suffix_array|monotonic_stack
 """
 
 from collections import deque
@@ -1479,4 +1481,53 @@ class Solution:
         n = len(sa)
         ac.lst([n] + sa)
         ac.lst(height)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/CABABAA
+        tag: sparse_table|suffix_array|monotonic_stack
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = [ord(w) - ord("a") for w in ac.read_str()]
+            sa, rk, height = SuffixArray().build(s, 26)
+            st = SparseTable(height, min)
+            sa.reverse()
+
+            def lcp(ii, jj):
+                ri, rj = rk[ii], rk[jj]
+                if ri > rj:
+                    ri, rj = rj, ri
+                if ri == rj:
+                    return n - sa[ri]
+                return st.query(ri + 1, rj)
+
+            def compare(a, b):
+                i1, j1 = a
+                i2, j2 = b
+                x = lcp(i1, i2)
+                x = ac.min(x, j1 - i1 + 1)
+                x = ac.min(x, j2 - i2 + 1)
+                if x == j1 - i1 + 1:
+                    if x == j2 - i2 + 1:
+                        return -1 if i1 < i2 else 1
+                    return -1
+                if x == j2 - i2 + 1:
+                    return 1
+                return -1 if s[i1 + x] < s[i2 + x] else 1
+
+            stack = [n]
+            for i in range(n - 1, -1, -1):
+                while len(stack) >= 2 and i < stack[-1] and compare((stack[-1], stack[-2] - 1),
+                                                                    (i, stack[-2] - 1)) == -1:
+                    stack.pop()
+                stack.append(i)
+            ans = []
+            right = n - 1
+            for i in stack[1:]:
+                ans.extend(s[i:right + 1])
+                right = i - 1
+            ac.st("".join(chr(x + ord("a")) for x in ans))
         return

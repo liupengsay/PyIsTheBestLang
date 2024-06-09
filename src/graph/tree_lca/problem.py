@@ -27,6 +27,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 
 ====================================AtCoder=====================================
 ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point_set|range_sum|heavy_chain|tree_lca
+ABC209D（https://atcoder.jp/contests/abc209/tasks/abc209_d）tree_ancestor
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
@@ -541,4 +542,26 @@ class Solution:
                                     ans = min(ans, pre ^ i)
                                 pre = i
                         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_209d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc209/tasks/abc209_d
+        tag: tree_ancestor
+        """
+        n, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        tree = TreeAncestor(dct, 0)
+        for _ in range(q):
+            i, j = ac.read_list_ints_minus_one()
+            dis = tree.get_dist(i, j)
+            if dis % 2:
+                ac.st("Road")
+            else:
+                ac.st("Town")
         return

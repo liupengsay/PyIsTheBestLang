@@ -106,6 +106,7 @@ ABC253F（https://atcoder.jp/contests/abc253/tasks/abc253_f）offline_query|data
 ABC237G（https://atcoder.jp/contests/abc237/tasks/abc237_g）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
 ABC223F（https://atcoder.jp/contests/abc223/tasks/abc223_f）segment_tree|point_set|range_set|pre_sum_max
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_find_left|union_find_right|segment_tree|sorted_list
+ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range_add|range_mul_sum
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -150,6 +151,7 @@ ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_f
 37（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/E）segment_tree|range_chmin_chmax|point_get
 38（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/F）segment_tree_dynamic|range_set|range_sum_bisect_left
 
+1（https://www.codechef.com/problems/SPR）reverse_order|brute_force|implemention|range_add|range_min
 
 """
 import bisect
@@ -174,9 +176,10 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
-    PointSetRangeMaxSubSumAlter
+    PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
+from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import AllFactorCnt, PrimeFactor
@@ -3333,18 +3336,18 @@ class Solution:
         ceil += 10
         ceil *= 2
         tree = RangeSetRangeMaxNonEmpConSubSum(ceil, ceil)
-        nums = [0]*ceil
+        nums = [0] * ceil
         for i in range(1, ceil, 2):
             nums[i] = 1
         tree.build(nums)
         ans = []
         for ls in queries:
             if ls[0] == 1:
-                x = ls[1]*2
+                x = ls[1] * 2
                 tree.point_set(x, -ceil)
             else:
                 x = ls[1]
-                res = tree.range_max_non_emp_con_sub_sum(0, x*2)
+                res = tree.range_max_non_emp_con_sub_sum(0, x * 2)
                 ans.append(res >= ls[2])
         return ans
 
@@ -3354,7 +3357,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements
         tag: point_set|range_max_sub_sum_alter
         """
-        mod = 10**9 + 7
+        mod = 10 ** 9 + 7
         ans = 0
         n = len(nums)
         nums = [max(x, 0) for x in nums]
@@ -3442,5 +3445,166 @@ class Solution:
             else:
                 ll, rr = left.point_get(dct[x]), right.point_get(dct[x])
                 ans = cnt.range_sum(ll, rr)
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/SPR
+        tag: reverse_order|brute_force|implemention|range_add|range_min
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            a = ac.read_list_ints()
+            h = ac.read_list_ints()
+            pre = [0] * (n + 1)
+            cur = 0
+            pre[0] = 1
+            for i in range(n):
+                cur += h[i]
+                if cur <= a[i]:
+                    pre[i + 1] = 1
+                else:
+                    break
+            if pre[-1]:
+                ac.st("YES")
+                continue
+            for i in range(n):
+                if pre[i] and a[-1] - a[i] <= 2 * k:
+                    ac.st("YES")
+                    break
+            else:
+                tree = RangeAddRangeSumMinMax(n)
+                tree.build([a[i] for i in range(n)])
+                tree.range_add(n - 1, n - 1, -h[n - 1])
+                pre_sum = ac.accumulate(h)
+                j = n - 1
+                for i in range(n - 2, -1, -1):
+                    while j >= 0 and a[i] - a[j] <= 2 * k:
+                        j -= 1
+                    if pre[j + 1] and tree.range_min(i + 1, n - 1) - pre_sum[j + 1] >= 0:
+                        ac.st("YES")
+                        break
+                    tree.range_add(i, n - 1, -h[i])
+                else:
+                    ac.st("NO")
+        return
+
+    @staticmethod
+    def abc_357f_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc357/tasks/abc357_f
+        tag: segment_tree|range_add|range_mul_sum
+        """
+        n, q = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        mod = 998244353
+        tree = RangeAddRangeMulSum(n, mod)
+        tree.build([(x, y) for x, y in zip(a, b)])
+        for _ in range(q):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] == 0:
+                ll, rr, x = lst[1:]
+                x += 1
+                tree.range_add_mul(ll, rr, x, 1)
+            elif lst[0] == 1:
+                ll, rr, x = lst[1:]
+                x += 1
+                tree.range_add_mul(ll, rr, x, 2)
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_sum(ll, rr)
+                ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def abc_357f_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc357/tasks/abc357_f
+        tag: segment_tree|range_add|range_mul_sum
+        """
+        mod = 998244353
+
+        def combine(a, b):
+            return (a[0] + b[0]) % mod, (a[1] + b[1]) % mod, (a[2] + b[2]) % mod
+
+        def merge_tag(a, b):
+            return (a[0] + b[0]) % mod, (a[1] + b[1]) % mod
+
+        def merge_cover(cover, val, length):
+            cover0, cover1, cover2 = cover
+            if val[0]:
+                cover2 += val[0] * cover1
+                cover0 += val[0] * length
+            if val[1]:
+                cover2 += val[1] * cover0
+                cover1 += val[1] * length
+            return cover0 % mod, cover1 % mod, cover2 % mod
+
+        def num_to_cover(num):
+            return num[0] % mod, num[1] % mod, (num[0] * num[1]) % mod
+
+        cover_initial = (0, 0, 0)
+        tag_initial = (0, 0)
+        n, q = ac.read_list_ints()
+        nums1 = ac.read_list_ints()
+        nums2 = ac.read_list_ints()
+        tree = LazySegmentTree(n, combine, cover_initial, merge_cover, merge_tag, tag_initial, num_to_cover)
+        tree.build([(a, b) for a, b in zip(nums1, nums2)])
+        for _ in range(q):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] < 2:
+                ll, rr, xx = lst[1:]
+                tree.range_update(ll, rr, (0, xx + 1) if lst[0] == 1 else (xx + 1, 0))
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_query(ll, rr)[2] % mod
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_357f_3(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc357/tasks/abc357_f
+        tag: segment_tree|range_add|range_mul_sum
+        """
+        mod = 998244353
+
+        def combine(a, b):
+            return (a[0] + b[0]) % mod, (a[1] + b[1]) % mod, (a[2] + b[2]) % mod
+
+        def merge_tag(a, b):
+            return (a[0] + b[0]) % mod, (a[1] + b[1]) % mod
+
+        def merge_cover(cover, val, length):
+            cover0, cover1, cover2 = cover
+            if val[0]:
+                cover2 += val[0] * cover1
+                cover0 += val[0] * length
+            if val[1]:
+                cover2 += val[1] * cover0
+                cover1 += val[1] * length
+            return cover0 % mod, cover1 % mod, cover2 % mod
+
+        def num_to_cover(num):
+            return num[0] % mod, num[1] % mod, (num[0] * num[1]) % mod
+
+        cover_initial = (0, 0, 0)
+        tag_initial = (0, 0)
+        n, q = ac.read_list_ints()
+        nums1 = ac.read_list_ints()
+        nums2 = ac.read_list_ints()
+        tree = LazySegmentTreeZKW(n, combine, cover_initial, merge_cover, merge_tag, tag_initial, num_to_cover)
+        tree.build([(a, b) for a, b in zip(nums1, nums2)])
+        for _ in range(q):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] < 2:
+                ll, rr, xx = lst[1:]
+                tree.range_update(ll, rr, (0, xx + 1) if lst[0] == 1 else (xx + 1, 0))
+            else:
+                ll, rr = lst[1:]
+                ans = tree.range_query(ll, rr)[2] % mod
                 ac.st(ans)
         return

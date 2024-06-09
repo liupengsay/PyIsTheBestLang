@@ -203,6 +203,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1941C（https://codeforces.com/contest/1941/problem/C）brain_teaser|greedy
 1974G（https://codeforces.com/contest/1974/problem/G）regret_heapq|implemention|brain_teaser|classical
 1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greedy
+985C（https://codeforces.com/problemset/problem/985/C）greedy|brain_teaser|reverse_order
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -225,6 +226,7 @@ ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_tease
 ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implemention|reverse_order|classical
 ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greedy
 ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointer|classical|prefix_sum
+ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_teaser
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1985,4 +1987,44 @@ class Solution:
                         cur += abs(bb - target) + 1 + abs(a[i] - b[i])
                 ans = min(ans, cur)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_209c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc209/tasks/abc209_c
+        tag: greedy|brain_teaser
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        nums.sort()
+        mod = 10 ** 9 + 7
+        ans = 1
+        for i, num in enumerate(nums):
+            if num <= i:
+                ans = 0
+                break
+            ans *= (num - i)
+            ans %= mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_985c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/985/C
+        tag: greedy|brain_teaser|reverse_order
+        """
+        n, k, ll = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+        post = ans = 0
+        ceil = nums[0] + ll
+        for i in range(n * k - 1, -1, -1):
+            if nums[i] <= ceil and post >= k - 1:
+                post -= k - 1
+                ans += nums[i]
+            else:
+                post += 1
+        ac.st(ans if post == 0 else 0)
         return

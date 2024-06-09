@@ -885,7 +885,7 @@ class Solution:
             if m & (1 << i):
                 circle = 1 << (i + 1)
                 ans += (1 << i) * ((n + 1) // circle)
-                if (n+1) % circle > (1 << i):
+                if (n + 1) % circle > (1 << i):
                     ans += (n + 1) % circle - (1 << i)
                 ans %= mod
         ac.st(ans)

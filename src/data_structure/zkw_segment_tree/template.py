@@ -107,27 +107,27 @@ class RangeAddPointGet:
 
 
 class LazySegmentTree:
-    def __init__(self, n, combine=max, initial=-inf, merge_cover=add, merge_tag=add, tag_initial=inf):
+    def __init__(self, n, combine, cover_initial, merge_cover, merge_tag, tag_initial, num_to_cover):
         self.n = n
-        self.initial = initial
-        self.merge_cover = merge_cover
-        self.merge_tag = merge_tag
-        self.tag_initial = tag_initial
+        self.combine = combine  # method of cover push_up
+        self.cover_initial = cover_initial  # cover_initial value of cover
+        self.merge_cover = merge_cover  # method of tag to cover
+        self.merge_tag = merge_tag  # method of tag merge
+        self.tag_initial = tag_initial  # cover_initial value of tag
+        self.num_to_cover = num_to_cover  # cover_initial value from num to cover
         self.lazy_tag = [self.tag_initial] * (2 * self.n)
         self.h = 0
         while (1 << self.h) < n:
             self.h += 1
-        self.combine = combine
-        self.cover = [self.initial] * (2 * self.n)
+        self.cover = [self.cover_initial] * (2 * self.n)
         self.cnt = [1] * (2 * self.n)
         for i in range(self.n - 1, 0, -1):
             self.cnt[i] = self.cnt[i << 1] + self.cnt[(i << 1) | 1]
-
         return
 
     def build(self, nums):
         for i in range(self.n):
-            self.cover[i + self.n] = nums[i]
+            self.cover[i + self.n] = self.num_to_cover(nums[i])
         for i in range(self.n - 1, 0, -1):
             self.cover[i] = self.combine(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
@@ -155,7 +155,7 @@ class LazySegmentTree:
         return
 
     def make_tag(self, i, val):
-        self.cover[i] = self.merge_cover(self.cover[i], val, self.cnt[i])
+        self.cover[i] = self.merge_cover(self.cover[i], val, self.cnt[i])  # cover val length
         self.lazy_tag[i] = self.merge_tag(val, self.lazy_tag[i])
         return
 
@@ -198,7 +198,7 @@ class LazySegmentTree:
         return ans
 
     def range_query(self, left, right):
-        ans_left = ans_right = self.initial
+        ans_left = ans_right = self.cover_initial
         left += self.n
         right += self.n + 1
         self.push_down(left)

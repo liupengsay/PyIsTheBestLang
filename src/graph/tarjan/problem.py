@@ -43,6 +43,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
 ABC334E（https://atcoder.jp/contests/abc334/tasks/abc334_e）union_find|mod_reverse|expectation|math|classical
 ABC245F（https://atcoder.jp/contests/abc245/tasks/abc245_f）scc|reverse_graph|implemention|bfs|classical
+ABC357E（https://atcoder.jp/contests/abc357/tasks/abc357_e）scc|build_graph|reverse_graph
 
 =====================================AcWing=====================================
 3582（https://www.acwing.com/problem/content/3582/）scc
@@ -934,4 +935,45 @@ class Solution:
                         nex.append(j)
             stack = nex
         ac.st(sum(x > 0 for x in visit))
+        return
+
+    @staticmethod
+    def abc_357e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc357/tasks/abc357_e
+        tag: scc|build_graph|reverse_graph
+        """
+        n = ac.read_int()
+        aa = ac.read_list_ints_minus_one()
+        edge = [[x] if x != i else [] for i, x in enumerate(aa)]
+        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, edge)
+        new_dct = [set() for _ in range(scc_id)]
+        for i in range(n):
+            for j in edge[i]:
+                a, b = node_scc_id[i], node_scc_id[j]
+                if a != b:
+                    new_dct[b].add(a)
+        new_degree = [0] * scc_id
+        for i in range(scc_id):
+            for j in new_dct[i]:
+                new_degree[j] += 1
+        stack = [i for i in range(scc_id) if not new_degree[i]]
+        ans = 0
+        scc_cnt = [0] * scc_id
+        cur_cnt = [0] * scc_id
+        for i in range(scc_id):
+            scc_cnt[i] = len(scc_node_id[i])
+            cur_cnt[i] = scc_cnt[i]
+            ans += scc_cnt[i] * scc_cnt[i]
+        while stack:
+            nex = []
+            for i in stack:
+                for j in new_dct[i]:
+                    new_degree[j] -= 1
+                    ans += scc_cnt[i] * cur_cnt[j]
+                    scc_cnt[j] += scc_cnt[i]
+                    if not new_degree[j]:
+                        nex.append(j)
+            stack = nex[:]
+        ac.st(ans)
         return

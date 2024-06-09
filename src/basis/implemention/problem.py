@@ -74,6 +74,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1560E（https://codeforces.com/contest/1560/problem/E）reverse_thinking|implemention
 1976C（https://codeforces.com/contest/1976/problem/C）binary_search|implemention|inclusion_exclusion|reverse_thinking
 608B（https://codeforces.com/problemset/problem/608/B）contribution_method|prefix_sum|implemention
+1980F1（https://codeforces.com/contest/1980/problem/F1）brute_force|implemention
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -760,4 +761,45 @@ class Solution:
             tot = high - low + 1
             ans += pre[high + 1] - pre[low] if a[i] == "0" else tot - (pre[high + 1] - pre[low])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1980f1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1980/problem/F1
+        tag: brute_force|implemention
+        """
+        for _ in range(ac.read_int()):
+            m, n, k = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(k)]
+            tmp = sorted(nums)
+            lst = [(m + 1, n + 1)] + [tuple(tmp[-1])]
+            xx, yy = tmp[-1]
+            for x, y in tmp[::-1]:
+                if y < yy and x == xx:
+                    lst.pop()
+                    lst.append((x, y))
+                    xx, yy = lst[-1]
+                    continue
+                if y < yy and x < xx:
+                    lst.append((x, y))
+                    xx, yy = x, y
+            lst.append((0, 0))
+            lst.reverse()
+
+            w = len(lst)
+            ans = 0
+            for i in range(w - 1):
+                aa, bb = lst[i]
+                cc, dd = lst[i + 1]
+                ans += dd * (cc - aa)
+            ans -= m + 1 + n
+            res = [0] * k
+            dct = {ls: i for i, ls in enumerate(lst)}
+            for i in range(k):
+                x, y = nums[i]
+                if (x, y) in dct:
+                    res[i] = 1
+            ac.st(ans)
+            ac.lst(res)
         return

@@ -465,7 +465,7 @@ class RangeAddRangePrePreSum:
         self.cover[i] += val * (t - s + 1)
         self.floor[i] += val
         self.ceil[i] += val
-        self.pre_pre[i] += val *  (t - s + 1)
+        self.pre_pre[i] += val * (t - s + 1)
         self.lazy_tag[i] += val
         return
 
@@ -518,7 +518,7 @@ class RangeAddRangePrePreSum:
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
-                ans += self.pre_pre[i] + pre * (t-s+1)
+                ans += self.pre_pre[i] + pre * (t - s + 1)
                 pre += self.cover[i]
                 continue
             m = s + (t - s) // 2
@@ -770,6 +770,7 @@ class RangeDescendRangeMin:
             if right > m:
                 stack.append((m + 1, b, (i << 1) | 1))
         return lowest
+
 
 class PointSetRangeMaxSubSumAlter:
     def __init__(self, n, initial=inf):
@@ -1751,6 +1752,136 @@ class RangeAscendPointGet:
             stack.append((s, m, i << 1))
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
+
+
+class RangeAddRangeMulSum:
+
+    def __init__(self, n, mod):
+        self.n = n
+        self.mod = mod
+        self.cover = [0] * (4 * n)
+        self.cover1 = [0] * (4 * n)
+        self.cover2 = [0] * 4 * n
+        self.add1 = [0] * (4 * n)  # lazy_tag for mul
+        self.add2 = [0] * (4 * n)  # lazy_tag for add
+        return
+
+    def _make_tag(self, i, s, t, val, op=1):
+        if op == 2:
+            self.cover[i] = (self.cover[i] + val * self.cover1[i]) % self.mod
+            self.cover2[i] = (self.cover2[i] + (t - s + 1) * val) % self.mod
+            self.add2[i] += val
+            self.add2[i] %= self.mod
+        else:
+            self.cover[i] = (self.cover[i] + val * self.cover2[i]) % self.mod
+            self.cover1[i] = (self.cover1[i] + (t - s + 1) * val) % self.mod
+            self.add1[i] += val
+            self.add1[i] %= self.mod
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = (self.cover[i << 1] + self.cover[(i << 1) | 1]) % self.mod
+        self.cover1[i] = (self.cover1[i << 1] + self.cover1[(i << 1) | 1]) % self.mod
+        self.cover2[i] = (self.cover2[i << 1] + self.cover2[(i << 1) | 1]) % self.mod
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.add1[i]:
+            self._make_tag(i << 1, s, m, self.add1[i], op=1)
+            self._make_tag((i << 1) | 1, m + 1, t, self.add1[i], op=1)
+            self.add1[i] = 0
+        if self.add2[i]:
+            self._make_tag(i << 1, s, m, self.add2[i], op=2)
+            self._make_tag((i << 1) | 1, m + 1, t, self.add2[i], op=2)
+            self.add2[i] = 0
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s][0], 1)
+                    self._make_tag(i, s, t, nums[s][1], 2)
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i] % self.mod
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_add_mul(self, left, right, val, op):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val, op)
+                    continue
+                stack.append([s, t, ~i])
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_sum(self, left, right):
+        if left == right:
+            s, t, i = 0, self.n - 1, 1
+            ans = 0
+            while True:
+                if left <= s <= t <= right:
+                    ans += self.cover[i]
+                    ans %= self.mod
+                    break
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    s, t, i = s, m, i << 1
+                if right > m:
+                    s, t, i = m + 1, t, (i << 1) | 1
+            return ans
+
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans += self.cover[i]
+                ans %= self.mod
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
 
 
 class RangeAddMulRangeSum:
@@ -6118,3 +6249,117 @@ class PointSetRangeGcd:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans <= 1
+
+
+class LazySegmentTree:
+    def __init__(self, n, combine, cover_initial, merge_cover, merge_tag, tag_initial, num_to_cover):
+        self.n = n
+        self.combine = combine  # method of cover push_up
+        self.cover_initial = cover_initial  # cover_initial value of cover
+        self.merge_cover = merge_cover  # method of tag to cover
+        self.merge_tag = merge_tag  # method of tag merge
+        self.tag_initial = tag_initial  # cover_initial value of tag
+        self.num_to_cover = num_to_cover  # cover_initial value from num to cover
+        self.lazy_tag = [self.tag_initial] * (4 * self.n)
+        self.cover = [self.cover_initial] * (4 * self.n)
+        return
+
+    def _make_tag(self, i, s, t, val):
+        self.cover[i] = self.merge_cover(self.cover[i], val, t - s + 1)  # cover val length
+        self.lazy_tag[i] = self.merge_tag(val, self.lazy_tag[i])
+        return
+
+    def _push_up(self, i):
+        self.cover[i] = self.combine(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def _push_down(self, i, s, m, t):
+        if self.lazy_tag[i] != self.tag_initial:
+            self._make_tag(i << 1, s, m, self.lazy_tag[i])
+            self._make_tag((i << 1) | 1, m + 1, t, self.lazy_tag[i])
+            self.lazy_tag[i] = self.tag_initial
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, s, t, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_update(self, left, right, val):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, s, t, val)
+                    continue
+                stack.append([s, t, ~i])
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_query(self, left, right):
+        if left == right:
+            s, t, i = 0, self.n - 1, 1
+            ans = self.cover_initial
+            while True:
+                if left <= s <= t <= right:
+                    ans = self.combine(ans, self.cover[i])
+                    break
+                m = s + (t - s) // 2
+                self._push_down(i, s, m, t)
+                if left <= m:
+                    s, t, i = s, m, i << 1
+                if right > m:
+                    s, t, i = m + 1, t, (i << 1) | 1
+            return ans
+
+        stack = [(0, self.n - 1, 1)]
+        ans = self.cover_initial
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                ans = self.combine(ans, self.cover[i])
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans

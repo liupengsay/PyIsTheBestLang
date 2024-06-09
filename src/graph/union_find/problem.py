@@ -141,6 +141,9 @@ ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_t
 9（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/D）union_find_weighted_dis|classical|hard
 10（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/J）union_find_type|build_graph
 
+
+1（https://www.codechef.com/problems/TFALL）union_find_left|union_find_right|brute_force
+
 """
 
 import decimal
@@ -2587,4 +2590,43 @@ class Solution:
                             ufs[yy].union(u, v)
                         break
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/TFALL
+        tag: union_find_left|union_find_right|brute_force
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            x = ac.read_list_ints()
+            ufr = UnionFind(n)
+            p = ac.read_list_ints()
+            ufl = UnionFind(n)
+            for i in range(1, n):
+                if x[i] - x[i - 1] <= p[i]:
+                    ufl.union_left(i - 1, i)
+
+            for i in range(n - 2, -1, -1):
+                if x[i + 1] - x[i] <= p[i]:
+                    ufr.union_right(i, i + 1)
+            if ufl.is_connected(0, n - 1) or ufr.is_connected(0, n - 1):
+                ac.st("YES")
+            else:
+                for i in range(n - 1):
+                    if ufl.is_connected(0, i) and ufr.is_connected(i + 1, n - 1):
+                        ac.st("YES")
+                        break
+                    if ufr.is_connected(0, i) and ufl.is_connected(i + 1, n - 1):
+                        ac.st("YES")
+                        break
+                    if ufr.is_connected(0, i) and ufr.is_connected(i + 1, n - 1):
+                        ac.st("YES")
+                        break
+                    if ufl.is_connected(0, i) and ufl.is_connected(i + 1, n - 1):
+                        ac.st("YES")
+                        break
+                else:
+                    ac.st("NO")
         return
