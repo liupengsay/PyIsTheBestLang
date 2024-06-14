@@ -33,6 +33,7 @@ ARC083B（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_span
 ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
 ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
 ABC243E（https://atcoder.jp/contests/abc243/tasks/abc243_e）get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
+ABC208D（https://atcoder.jp/contests/abc208/tasks/abc208_d）floyd|shortest_path|classical
 
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
@@ -661,5 +662,34 @@ class Solution:
             edges.append((x, y, w + 1))
         cnt, dis = Floyd().get_cnt_of_shortest_path(edges, n)
         ans = sum(cnt[x][y] > 1 or dis[x][y] < w for x, y, w in edges)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_208d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc208/tasks/abc208_d
+        tag: floyd|shortest_path|classical
+        """
+        n, m = ac.read_list_ints()
+        dp = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 0
+        for _ in range(m):
+            i, j, c = ac.read_list_ints_minus_one()
+            c += 1
+            dp[i][j] = c
+        ans = 0
+        tot = sum(sum(x if x < inf else 0 for x in dp[i]) for i in range(n))
+        for i in range(n):
+            for a in range(n):
+                if dp[a][i] < inf:
+                    for b in range(n):
+                        if dp[a][i] + dp[i][b] < dp[a][b]:
+                            if dp[a][b] < inf:
+                                tot -= dp[a][b]
+                            dp[a][b] = dp[a][i] + dp[i][b]
+                            tot += dp[a][b]
+            ans += tot
         ac.st(ans)
         return

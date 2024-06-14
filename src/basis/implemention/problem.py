@@ -75,6 +75,7 @@ P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 1976C（https://codeforces.com/contest/1976/problem/C）binary_search|implemention|inclusion_exclusion|reverse_thinking
 608B（https://codeforces.com/problemset/problem/608/B）contribution_method|prefix_sum|implemention
 1980F1（https://codeforces.com/contest/1980/problem/F1）brute_force|implemention
+1979D（https://codeforces.com/contest/1979/problem/D）prefix_suffix|brute_force|implemention
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -802,4 +803,52 @@ class Solution:
                     res[i] = 1
             ac.st(ans)
             ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_1979d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1979/problem/D
+        tag: prefix_suffix|brute_force|implemention
+        """
+
+        def check():
+
+            pre = ac.accumulate([int(w) for w in s])
+            post = [0] * (n + 1)
+            for i in range(n - 1, -1, -1):
+                if i + k - 1 < n and pre[i + k] - pre[i] in [0, k]:
+                    post[i] = post[i + k] + 1 if (i + k == n or s[i + k] != s[i]) else 1
+            if post[0] == n // k:
+                return n
+
+            for p in range(1, n):
+                left = n - p
+                right = p
+                ll = left // k
+                if post[p] == ll:
+                    rr = right // k
+                    if post[0] >= rr:
+                        left_rest = left % k
+                        right_rest = right % k
+                        if left_rest == 0 or right_rest == 0:
+                            if s[p - 1] != s[n - 1]:
+                                return p
+                        else:
+                            mid = pre[n] - pre[n - left_rest] + pre[p] - pre[p - right_rest]
+                            if mid not in [0, k]:
+                                continue
+                            mid = "1" if mid > 0 else "0"
+                            left_num = "a" if left < k else s[n - left_rest - 1]
+                            right_num = "a" if right < k else s[p - right_rest - 1]
+                            if mid != left_num and mid != right_num:
+                                return p
+                if post[p] >= n // k:
+                    return p
+            return -1
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            s = ac.read_str()
+            ac.st(check())
         return

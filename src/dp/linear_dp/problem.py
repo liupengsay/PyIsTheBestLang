@@ -125,6 +125,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1624E（https://codeforces.com/contest/1624/problem/E）linear_dp|brute_force
 1969C（https://codeforces.com/contest/1969/problem/C）linear_dp|data_range|implemention
 264C（https://codeforces.com/contest/264/problem/C）linear_dp|classical|maximum_second
+1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greedy
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1628,4 +1629,30 @@ class Solution:
                 if cur > ans:
                     ans = cur
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1984c2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1984/problem/C2
+        tag: linear_dp|implemention|greedy
+        """
+
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            pre = defaultdict(int)
+            pre[0] = 1
+            for num in nums:
+                cur = defaultdict(int)
+                for p in pre:
+                    cur[p + num] += pre[p]
+                    cur[abs(p + num)] += pre[p]
+                floor = min(cur)
+                ceil = max(cur)
+                pre = defaultdict(int)
+                pre[floor] = cur[floor] % mod
+                pre[ceil] = cur[ceil] % mod
+            ac.st(pre[max(pre)])
         return

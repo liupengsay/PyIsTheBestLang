@@ -54,6 +54,7 @@ P8112（https://www.luogu.com.cn/problem/P8112）z_function|point_set|range_min|
 1015F（https://codeforces.com/contest/1015/problem/F）kmp_automaton|matrix_dp
 1690F（https://codeforces.com/contest/1690/problem/F）permutation_circle|kmp|circle_section
 1968G2（https://codeforces.com/contest/1968/problem/G2）z_algorithm|offline_query|binary_search|brute_force|preprocess
+1984D（https://codeforces.com/contest/1984/problem/D）kmp|z_function|euler_series|brain_teaser|brute_force
 
 =====================================AcWing=====================================
 143（https://www.acwing.com/problem/content/143/）kmp|circular_section
@@ -1238,4 +1239,45 @@ class Solution:
                 res.append(bisect.bisect_right(ans, -x) - 1)
 
             ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_1984d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1984/problem/D
+        tag: kmp|z_function|euler_series|brain_teaser|brute_force
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            post = [-1] * (n + 1)
+            start = -1
+            for i in range(n - 1, -1, -1):
+                if s[i] != "a":
+                    start = i
+                post[i] = start
+            if post[0] == -1:
+                ac.st(n - 1)
+                continue
+            z = KMP().z_function(s[start:])
+            ans = 0
+            for j in range(start, n):
+                pre = start
+                length = j - start + 1
+                k = j + 1
+                flag = 1
+                while k < n:
+                    cur = post[k] - k
+                    k = post[k]
+                    if k == -1:
+                        break
+                    pre = min(pre, cur)
+                    if z[k - start] >= length:
+                        k += length
+                    else:
+                        flag = 0
+                        break
+                if flag:
+                    ans += pre + 1
+            ac.st(ans)
         return

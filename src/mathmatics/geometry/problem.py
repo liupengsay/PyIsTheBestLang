@@ -31,6 +31,7 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
 429D（https://codeforces.com/contest/429/problem/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 1133D（https://codeforces.com/contest/1133/problem/D）line_slope
+1979E（https://codeforces.com/contest/1979/problem/E）manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
 
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
@@ -568,4 +569,44 @@ class Solution:
                 cc = yy % 4
                 ans += grid[-cc - 1][rr]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1979e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1979/problem/E
+        tag: manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
+        """
+
+        def check():
+            n, d = ac.read_list_ints()
+            nums = []
+            for _ in range(n):
+                x, y = ac.read_list_ints()
+                nums.append((x + y, x - y))
+
+            for _ in range(2):
+                dct = defaultdict(list)
+                for i, (x, y) in enumerate(nums):
+                    dct[x].append((i, y))
+                for x in dct:
+                    dct[x].sort(key=lambda it: it[1])
+                keys = set(dct.keys())
+                for x in keys:
+                    for w in [x - d, x + d]:
+                        if w in keys:
+                            m = len(dct[w])
+                            pre = dict()
+                            j = 0
+                            for i, y in dct[x]:
+                                while j < m and dct[w][j][1] <= y + d:
+                                    if dct[w][j][1] >= y and dct[w][j][1] - d in pre:
+                                        return [i + 1, dct[w][j][0] + 1, pre[dct[w][j][1] - d] + 1]
+                                    pre[dct[w][j][1]] = dct[w][j][0]
+                                    j += 1
+                nums = [ls[::-1] for ls in nums]
+            return [0, 0, 0]
+
+        for _ in range(ac.read_int()):
+            ac.lst(check())
         return
