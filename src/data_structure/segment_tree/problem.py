@@ -152,6 +152,7 @@ ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range
 38（https://codeforces.com/edu/course/2/lesson/5/4/practice/contest/280801/problem/F）segment_tree_dynamic|range_set|range_sum_bisect_left
 
 1（https://www.codechef.com/problems/SPR）reverse_order|brute_force|implemention|range_add|range_min
+2（https://www.codechef.com/problems/KPRODSUM）range_mul|range_mul
 
 """
 import bisect
@@ -3607,4 +3608,29 @@ class Solution:
                 ll, rr = lst[1:]
                 ans = tree.range_query(ll, rr)[2] % mod
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_2(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/KPRODSUM
+        tag: range_mul|range_mul
+        """
+
+        for _ in range(ac.read_int()):
+            n, k, m = ac.read_list_ints()
+            nums = ac.read_list_ints()
+
+            tree = RangeMulRangeMul(n, m)
+            tree.build(nums)
+            ans = post = 0
+            for i in range(n - 1, -1, -1):
+                ans += nums[i] * (1 + post) % m
+                ans %= m
+                post = nums[i] * (1 + post) % m
+                if i + k - 1 < n:
+                    post -= tree.range_mul_query(i, i + k - 1)
+                    post %= m
+                ans %= m
+            ac.st(ans)
         return

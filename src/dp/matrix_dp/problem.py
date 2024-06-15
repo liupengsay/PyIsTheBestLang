@@ -144,6 +144,7 @@ ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|coun
 ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_force|brain_teaser
 ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|matrix_dp|comb_dp
 ABC212E（https://atcoder.jp/contests/abc212/tasks/abc212_e）graph|matrix_dp|inclusion_exclusion|classical
+ABC207E（https://atcoder.jp/contests/abc207/tasks/abc207_e）matrix_dp|prefix_sum
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -3046,3 +3047,27 @@ class Solution:
                     dp[c + 1] = pre[c + 1][num] if pre[c + 1][num] > dp[c + 1] else dp[c + 1]
                 dp[c] = pre[c][num] if pre[c][num] > dp[c] else dp[c]
         return max(dp)
+
+    @staticmethod
+    def abc_207e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc207/tasks/abc207_e
+        tag: matrix_dp|prefix_sum
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        mod = 10 ** 9 + 7
+        p = ans = 0
+        tot = [[0] * (n + 1) for _ in range(n + 1)]
+        tot[0][0] = 1
+        for i in range(n):
+            p += nums[i]
+            cur = [0] * (n + 1)
+            for j in range(1, n + 1):
+                cur[j] = tot[p % j][j - 1]
+            for j in range(1, n + 1):
+                tot[p % j][j - 1] += cur[j - 1]
+                tot[p % j][j - 1] %= mod
+            ans = sum(cur) % mod
+        ac.st(ans)
+        return

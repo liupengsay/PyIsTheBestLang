@@ -22,6 +22,7 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 1342C（https://codeforces.com/problemset/problem/1342/C）circular_section|counter
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 1760F（https://codeforces.com/contest/1760/problem/F）circle_section|brute_force
+1237D（https://codeforces.com/problemset/problem/1237/D）two_pointer|implemention|circular_array
 
 ===================================AtCoder===================================
 ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
@@ -32,6 +33,7 @@ ABC214C（https://atcoder.jp/contests/abc214/tasks/abc214_c）circular_section|b
 
 """
 import math
+from collections import deque
 from itertools import combinations
 from typing import List
 
@@ -313,4 +315,28 @@ class Solution:
         circle_sum = sum(nums[x % n] for x in lst[ind:])
         res = lst[-1] + nums[lst[-1] % n] + sum(nums[x % n] for x in lst[ind:ind + j]) + circle_sum * (tm // circle)
         ac.st(res)
+        return
+
+    @staticmethod
+    def cf_1237d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1237/D
+        tag: two_pointer|implemention|circular_array
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = []
+        j = 0
+        stack = deque()
+
+        for i in range(n):
+            while j < 3 * n and (not stack or nums[j % n] * 2 >= nums[stack[0] % n]):
+                while stack and nums[stack[-1] % n] <= nums[j % n]:
+                    stack.pop()
+                stack.append(j)
+                j += 1
+            ans.append(j - i if j - i < 2 * n + (n - i) else -1)
+            if stack[0] == i:
+                stack.popleft()
+        ac.lst(ans)
         return

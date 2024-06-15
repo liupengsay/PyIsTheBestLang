@@ -66,6 +66,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1790E（https://codeforces.com/contest/1790/problem/E）bit_operation
 1968F（https://codeforces.com/contest/1968/problem/F）brute_force|bit_operation|binary_search
 1973B（https://codeforces.com/contest/1973/problem/B）bit_operation|implemention|greedy
+1362C（https://codeforces.com/problemset/problem/1362/C）bit_count|bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -83,6 +84,7 @@ ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classica
 =====================================Library=====================================
 1（https://ac.nowcoder.com/acm/contest/53485/F）minimum_pair_xor|dynamic|classical
 2（https://www.codechef.com/problems/LEXMAX）bit_operation|maximum_and|lexicographically_maximal|prefix_and|greedy|classical
+3（https://www.codechef.com/problems/PREFSUFF）bit_operation|construction
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """

@@ -94,6 +94,7 @@ ABC218C（https://atcoder.jp/contests/abc218/tasks/abc218_c）implemention|matri
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
 
+1（https://www.codechef.com/problems/MODE_PROBLEM）contribution_method
 
 """
 import math

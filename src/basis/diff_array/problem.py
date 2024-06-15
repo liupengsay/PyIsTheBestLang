@@ -94,6 +94,8 @@ P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|fl
 1772D（https://codeforces.com/contest/1772/problem/D）discretization_diff_array|action_scope|counter
 1015E2（https://codeforces.com/contest/1015/problem/E2）brute_force|dp|diff_array
 1234E（https://codeforces.com/contest/1234/problem/E）brute_force|diff_array|classical|action_scope
+1985H1（https://codeforces.com/contest/1985/problem/H1）union_find|contribution_method|diff_matrix|brain_teaser
+1985H2（https://codeforces.com/contest/1985/problem/H2）union_find|contribution_method|diff_matrix|brain_teaser
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
@@ -130,6 +132,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix
+from src.graph.union_find.template import UnionFindGeneral
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1463,7 +1466,7 @@ class Solution:
         m, n = len(matrix), len(matrix[0])
         lst = []
         for i in range(m):
-            lst.extend(mat.pre[i+1][1:])
+            lst.extend(mat.pre[i + 1][1:])
         lst.sort()
         return lst[-k]
 
@@ -2132,4 +2135,95 @@ class Solution:
                 ans = min(ans, p + c * i - c * j + grid[i][j])
                 pre[i + 1][j] = min(p, grid[i][j] - c * i + c * j)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1985h1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1985/problem/H1
+        tag: union_find|contribution_method|diff_matrix|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            uf = UnionFindGeneral(m * n)
+            row = [0] * m
+            col = [0] * n
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] == "#":
+                        uf.size[i * n + j] = 1
+                    else:
+                        row[i] += 1
+                        col[j] += 1
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] == "#":
+                        if i + 1 < m and grid[i + 1][j] == "#":
+                            uf.union(i * n + j, i * n + j + n)
+                        if j + 1 < n and grid[i][j + 1] == "#":
+                            uf.union(i * n + j, i * n + j + 1)
+            group = uf.get_root_part()
+            row_diff = [0] * (m + 1)
+            col_diff = [0] * (n + 1)
+            for g in group:
+                if uf.size[g]:
+                    x1 = max(min(x // n for x in group[g]) - 1, 0)
+                    x2 = min(max(x // n for x in group[g]) + 1, m - 1)
+                    y1 = max(min(x % n for x in group[g]) - 1, 0)
+                    y2 = min(max(x % n for x in group[g]) + 1, n - 1)
+                    row_diff[x1] += uf.size[g]
+                    row_diff[x2 + 1] -= uf.size[g]
+                    col_diff[y1] += uf.size[g]
+                    col_diff[y2 + 1] -= uf.size[g]
+            ans = 0
+            for i in range(m):
+                row_diff[i] += row_diff[i - 1] if i else 0
+                ans = max(row[i] + row_diff[i], ans)
+            for j in range(n):
+                col_diff[j] += col_diff[j - 1] if j else 0
+                ans = max(col[j] + col_diff[j], ans)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1985h2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1985/problem/H2
+        tag: union_find|contribution_method|diff_matrix|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            uf = UnionFindGeneral(m * n)
+            row = [0] * m
+            col = [0] * n
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] == "#":
+                        uf.size[i * n + j] = 1
+                    else:
+                        row[i] += 1
+                        col[j] += 1
+            for i in range(m):
+                for j in range(n):
+                    if grid[i][j] == "#":
+                        if i + 1 < m and grid[i + 1][j] == "#":
+                            uf.union(i * n + j, i * n + j + n)
+                        if j + 1 < n and grid[i][j + 1] == "#":
+                            uf.union(i * n + j, i * n + j + 1)
+            group = uf.get_root_part()
+            lst = []
+            for g in group:
+                if uf.size[g]:
+                    x1 = max(min(x // n for x in group[g]) - 1, 0)
+                    x2 = min(max(x // n for x in group[g]) + 1, m - 1)
+                    y1 = max(min(x % n for x in group[g]) - 1, 0)
+                    y2 = min(max(x % n for x in group[g]) + 1, n - 1)
+                    lst.append((x1, x2, y1, y2, -uf.size[g]))
+                    lst.append((x1, x2, 0, n - 1, uf.size[g]))
+                    lst.append((0, m - 1, y1, y2, uf.size[g]))
+            res = DiffMatrix().get_diff_matrix3(m, n, lst)
+            ans = max(max(row[i] + col[j] - (grid[i][j] == ".") + res[i][j] for j in range(n)) for i in range(m))
+            ac.st(ans)
         return
