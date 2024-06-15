@@ -143,6 +143,7 @@ ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_t
 
 
 1（https://www.codechef.com/problems/TFALL）union_find_left|union_find_right|brute_force
+2786（https://yukicoder.me/problems/no/2786）heuristic_merge|union_find|classical
 
 """
 
@@ -2629,4 +2630,49 @@ class Solution:
                         break
                 else:
                     ac.st("NO")
+        return
+
+    @staticmethod
+    def yuki_2786(ac=FastIO()):
+        """
+        url: https://yukicoder.me/problems/no/2786
+        tag: heuristic_merge|union_find|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        q = ac.read_int()
+        ans = [-1] * q
+        dct = [[] for _ in range(m * n)]
+        for i in range(q):
+            x1, y1, x2, y2 = ac.read_list_ints_minus_one()
+            dct[x1 * n + y1].append((i, x2 * n + y2))
+            dct[x2 * n + y2].append((i, x1 * n + y1))
+        ind = list(range(m * n))
+        ind.sort(key=lambda it: grid[it // n][it % n])
+        uf = UnionFind(m * n)
+        for num in ind:
+            x, y = num // n, num % n
+            for a, b in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
+                if 0 <= a < m and 0 <= b < n and grid[a][b] <= grid[x][y] and not uf.is_connected(num, a * n + b):
+                    root1, root2 = uf.find(num), uf.find(a * n + b)
+                    if len(dct[root1]) < len(dct[root2]):
+                        lst = []
+                        for i, xx in dct[root1]:
+                            if uf.is_connected(xx, root2):
+                                ans[i] = grid[x][y]
+                            else:
+                                lst.append((i, xx))
+                        dct[root2].extend(lst)
+                        uf.union_left(root2, root1)
+                    else:
+                        lst = []
+                        for i, xx in dct[root2]:
+                            if uf.is_connected(xx, root1):
+                                ans[i] = grid[x][y]
+                            else:
+                                lst.append((i, xx))
+                        dct[root1].extend(lst)
+                        uf.union_left(root1, root2)
+        for a in ans:
+            ac.st(a)
         return

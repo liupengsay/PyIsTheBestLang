@@ -2,7 +2,7 @@ import os
 import random
 
 import unittest
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 
 class TestGeneral(unittest.TestCase):
@@ -193,6 +193,39 @@ class TestGeneral(unittest.TestCase):
         parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
         grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
         process_directory(os.path.join(grandparent_path, "src"))
+        return
+
+
+    def test_run_problem_tag(self):
+
+        def process_file(file_path):
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
+                lines = file.readlines()
+            for line in lines:
+                if "tag: " in line:
+                    tot.extend(line.split("tag: ")[1].replace("\n", "").replace("\t", "").replace(" ", "").replace("\t", "").split("|"))
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    if file == "problem.py":
+                        file_path = os.path.join(root, file)
+                        process_file(file_path)
+            return
+
+        # get all the problem.py and shuffle the list
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        tot = []
+        process_directory(os.path.join(grandparent_path, "src"))
+        cnt = Counter([w for w in tot if w and w[0].isalpha()])
+        lst = [(k, cnt[k]) for k in cnt]
+        lst.sort(key=lambda it: -it[1])
+        tot = [f"{a}\t{b}" for a, b in lst]
+        with open(os.path.join(grandparent_path, "data/TagStat.md"), "w", encoding="utf-8", errors="ignore") as f:
+            f.writelines("\n".join(tot))
         return
 
     @unittest.skip
