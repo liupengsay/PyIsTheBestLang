@@ -68,6 +68,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1968E（https://codeforces.com/contest/1968/problem/E）construction
 1973C（https://codeforces.com/contest/1973/problem/C）construction
 1974D（https://codeforces.com/contest/1974/problem/D）construction
+1978C（https://codeforces.com/contest/1978/problem/C）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

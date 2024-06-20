@@ -204,6 +204,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1974G（https://codeforces.com/contest/1974/problem/G）regret_heapq|implemention|brain_teaser|classical
 1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greedy
 985C（https://codeforces.com/problemset/problem/985/C）greedy|brain_teaser|reverse_order
+1978D（https://codeforces.com/contest/1978/problem/D）greedy|brain_teaser|implemention
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

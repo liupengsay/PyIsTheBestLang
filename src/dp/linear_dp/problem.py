@@ -126,6 +126,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1969C（https://codeforces.com/contest/1969/problem/C）linear_dp|data_range|implemention
 264C（https://codeforces.com/contest/264/problem/C）linear_dp|classical|maximum_second
 1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greedy
+1984F（https://codeforces.com/contest/1984/problem/F）brute_force|brain_teaser|linear_dp
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1655,4 +1656,51 @@ class Solution:
                 pre[floor] = cur[floor] % mod
                 pre[ceil] = cur[ceil] % mod
             ac.st(pre[max(pre)])
+        return
+
+    @staticmethod
+    def cf_1984f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1984/problem/F
+        tag: brute_force|brain_teaser|linear_dp
+        """
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            s = "P" + ac.read_str() + "S"
+            nums = [0] + ac.read_list_ints() + [0]
+            ans = 0
+            n += 2
+            pre = set()
+            for i in range(n - 1):
+                cur = nums[i] + nums[i + 1]
+                if cur in pre:
+                    continue
+                pre.add(cur)
+                dp = [0, 0]  # PS
+                dp[0] = 1
+                for j in range(1, n):
+                    flag = [0, 0]
+                    ndp = [0, 0]
+                    if s[j] == "P":
+                        flag[0] = 1
+                    elif s[j] == "S":
+                        flag[1] = 1
+                    else:
+                        flag[0] = flag[1] = 1
+                    if abs(nums[j] - nums[j - 1]) <= m:
+                        for k in range(2):
+                            if flag[k]:
+                                ndp[k] += dp[k]
+                    if dp[0] and flag[1] and cur == nums[j - 1] + nums[j]:
+                        ndp[1] += dp[0]
+                    if dp[1] and flag[0]:
+                        xx = nums[j] + nums[j - 1] - cur
+                        large = max(abs(xx // 2), abs(xx - xx // 2))
+                        if large <= m:
+                            ndp[0] += dp[1]
+                    dp = [x % mod for x in ndp]
+                ans += dp[1]
+                ans %= mod
+            ac.st(ans)
         return

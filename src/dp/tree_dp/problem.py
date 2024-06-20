@@ -22,7 +22,7 @@ Description：reroot_dp|up_to_down|down_to_up
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
-P1352（https://www.luogu.com.cn/problem/P1352）tree_dp
+P1352（https://www.luogu.com.cn/problem/P1352）tree_dp|mis|maximum_independent_set
 P1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greedy
 P2016（https://www.luogu.com.cn/problem/P2016）tree_dp|classical
 P1122（https://www.luogu.com.cn/problem/P1122）tree_dp|union_find
@@ -79,6 +79,7 @@ ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）tree_dp|game_dp|im
 1926G（https://codeforces.com/contest/1926/problem/G）tree_dp|classical
 161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 1923E（https://codeforces.com/contest/1923/problem/E）heuristic_merge|tree_dp|counter|classical
+1984E（https://codeforces.com/contest/1984/problem/E）reroot_dp|mis|maximum_independent_set
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -652,9 +653,9 @@ class Solution:
     def lg_p1352(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1352
-        tag: tree_dp
+        tag: tree_dp|mis|maximum_independent_set
         """
-        # tree_dp的迭代写法
+
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
 
@@ -669,7 +670,6 @@ class Solution:
         dp = [[0, 0] for _ in range(n)]
         stack = [[root, -1]]
         while stack:
-            # 为取反码后的负数则直接出stack
             i, fa = stack.pop()
             if i >= 0:
                 stack.append([~i, fa])
@@ -1450,7 +1450,7 @@ class Solution:
         n = ac.read_int()
         d = ac.read_list_ints()
         dct = [[] for _ in range(n)]
-        for i in range(n-1):
+        for i in range(n - 1):
             u, v, w = ac.read_list_ints_minus_one()
             w += 1
             dct[u].append((v, w))
@@ -1471,7 +1471,7 @@ class Solution:
                 for y, w in dct[x]:
                     if y != fa:
                         a, b = sub[y]
-                        diff = w+b-a
+                        diff = w + b - a
                         pos += a
                         if diff > 0 and d[y]:
                             son.append(diff)
@@ -1609,4 +1609,56 @@ class Solution:
                 lst.discard(nums[i])
         ans = sub[0]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1984e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1984/problem/E
+        tag: reroot_dp|mis|maximum_independent_set
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            dct = [[] for _ in range(n)]
+            degree = [0] * n
+            for _ in range(n - 1):
+                x, y = ac.read_list_ints_minus_one()
+                dct[y].append(x)
+                dct[x].append(y)
+                degree[x] += 1
+                degree[y] += 1
+            ans = [0] * n
+            dp = [(0, 0) for _ in range(n)]  # not_include or include
+            stack = [(0, -1)]
+            while stack:
+                i, fa = stack.pop()
+                if i >= 0:
+                    stack.append((~i, fa))
+                    for j in dct[i]:
+                        if j != fa:
+                            stack.append((j, i))
+                else:
+                    i = ~i
+                    x = 1
+                    y = 0
+                    for j in dct[i]:
+                        if j != fa:
+                            a, b = dp[j]
+                            x += a
+                            y += b
+                    dp[i] = (y, ac.max(x, y))
+                    ans[i] = y + 1 if degree[i] == 1 else y
+
+            stack = [(0, -1, 0, 0)]
+            while stack:
+                i, fa, pre_a, pre_b = stack.pop()
+                ans[i] += pre_b
+                lst = [j for j in dct[i] if j != fa]
+                aa = sum(dp[j][0] for j in lst)
+                bb = sum(dp[j][1] for j in lst)
+                for j in lst:
+                    nex_aa = aa - dp[j][0] + pre_a + 1
+                    nex_bb = bb - dp[j][1] + pre_b
+                    stack.append((j, i, nex_bb, max(nex_bb, nex_aa)))
+            ac.st(max(ans))
         return

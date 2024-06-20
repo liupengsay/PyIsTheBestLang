@@ -15,7 +15,7 @@ Description：range_add|range_sum
 2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 2916（https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/）range_add|range_sum|contribution_method|linear_dp
-
+100317（https://leetcode.cn/problems/peaks-in-array/）tree_array|implemention
 
 =====================================LuoGu======================================
 P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
@@ -1447,3 +1447,29 @@ class Solution:
                 ans = tree_cnt.range_sum(left + 1, right + 1)
                 ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100317(nums: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/peaks-in-array/
+        tag: tree_array|implemention
+        """
+        n = len(nums)
+        tree = PointAddRangeSum(n)
+        for i in range(1, n - 1):
+            if nums[i] > nums[i - 1] and nums[i] > nums[i + 1]:
+                tree.point_add(i, 1)
+
+        res = []
+        for op, a, b in queries:
+            if op == 1:
+                res.append(tree.range_sum(a + 1, b - 1) if a + 1 <= b - 1 else 0)
+            else:
+                for aa in [a - 1, a, a + 1]:
+                    if 0 <= aa <= aa + 1 < n and nums[aa] > nums[aa - 1] and nums[aa] > nums[aa + 1]:
+                        tree.point_add(aa, -1)
+                nums[a] = b
+                for aa in [a - 1, a, a + 1]:
+                    if 0 <= aa < aa + 1 < n and nums[aa] > nums[aa - 1] and nums[aa] > nums[aa + 1]:
+                        tree.point_add(aa, 1)
+        return res

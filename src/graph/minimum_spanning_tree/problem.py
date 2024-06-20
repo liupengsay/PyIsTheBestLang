@@ -9,8 +9,6 @@ Description：prim is node wise and kruskal is edge wise, prim is suitable for d
 1584（https://leetcode.cn/problems/min-cost-to-connect-all-points/）manhattan_distance|dense_graph|prim|mst
 1724（https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths-ii/）mst|classical|multiplication_method|lca
 
-
-
 =====================================LuoGu======================================
 P3366（https://www.luogu.com.cn/problem/P3366）mst
 P2820（https://www.luogu.com.cn/problem/P2820）reverse_thinking|mst
@@ -47,6 +45,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1095F（https://codeforces.com/contest/1095/problem/F）mst|brain_teaser|greedy
 1624G（https://codeforces.com/contest/1624/problem/G）or_mst|classical
 1857G（https://codeforces.com/contest/1857/problem/G）mst|brain_teaser|classical
+1981E（https://codeforces.com/contest/1981/problem/E）scan_line|union_find|classical|implemention|mst
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
@@ -1046,4 +1045,49 @@ class Solution:
                 ac.yes()
             else:
                 ac.no()
+        return
+
+    @staticmethod
+    def cf_1981e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1981/problem/E
+        tag: scan_line|union_find|classical|implemention|mst
+        """
+        for _ in range(ac.read_int()):  # TLE
+            n = ac.read_int()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            nodes = set()
+            for x, y, _ in nums:
+                nodes.add(x)
+                nodes.add(y)
+            ac.get_random_seed()
+            start = defaultdict(list)
+            end = defaultdict(list)
+            for i, (x, y, _) in enumerate(nums):
+                start[x ^ ac.random_seed].append(i)
+                end[y ^ ac.random_seed].append(i)
+            lst = SortedList()
+            edges = []
+            for x in sorted(nodes):
+                for i in start[x ^ ac.random_seed]:
+                    lst.add((nums[i][2], i))
+
+                for i in start[x ^ ac.random_seed]:
+                    lst.discard((nums[i][2], i))
+                    j = lst.bisect_left((nums[i][2], -1))
+                    if j - 1 >= 0:
+                        edges.append((i, lst[j - 1][1], abs(nums[i][2] - nums[lst[j - 1][1]][2])))
+                    if j < len(lst):
+                        edges.append((i, lst[j][1], abs(nums[i][2] - nums[lst[j][1]][2])))
+                    lst.add((nums[i][2], i))
+
+                for i in end[x ^ ac.random_seed]:
+                    lst.discard((nums[i][2], i))
+            uf = UnionFind(n)
+            edges.sort(key=lambda it: it[2])
+            ans = 0
+            for i, j, w in edges:
+                if uf.union(i, j):
+                    ans += w
+            ac.st(ans if uf.part == 1 else -1)
         return

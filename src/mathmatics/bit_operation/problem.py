@@ -67,6 +67,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1968F（https://codeforces.com/contest/1968/problem/F）brute_force|bit_operation|binary_search
 1973B（https://codeforces.com/contest/1973/problem/B）bit_operation|implemention|greedy
 1362C（https://codeforces.com/problemset/problem/1362/C）bit_count|bit_operation
+1981B（https://codeforces.com/contest/1981/problem/B）bit_operation|classical|range_or
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -891,4 +892,25 @@ class Solution:
                     ans += (n + 1) % circle - (1 << i)
                 ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1981b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1981/problem/B
+        tag: bit_operation|classical|range_or
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+
+            low = max(n - m, 0)
+            high = n + m
+            ans = 0
+            for i in range(64):
+                cc = 1 << (i + 1)
+                pp = 1 << i
+                if 1 <= (high + 1) % cc <= pp and 1 <= (low + 1) % cc <= pp and (high + 1) // cc == (low + 1) // cc:
+                    continue
+                ans |= 1 << i
+            ac.st(ans)
         return

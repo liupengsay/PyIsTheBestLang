@@ -22,11 +22,11 @@ class TestGeneral(unittest.TestCase):
                 d = random.randint(-ceil, ceil)
                 i = random.randint(0, ceil - 1)
                 nums[i] += d
-                tree_array.point_add(i + 1, d)
+                tree_array.point_add(i, d)
 
                 left = random.randint(0, ceil - 1)
                 right = random.randint(left, ceil - 1)
-                assert sum(nums[left: right + 1]) == tree_array.range_sum(left + 1, right + 1)
+                assert sum(nums[left: right + 1]) == tree_array.range_sum(left, right)
                 assert nums == tree_array.get()
 
         nums = [0, 0, 1, 2, 3, 4, 5]

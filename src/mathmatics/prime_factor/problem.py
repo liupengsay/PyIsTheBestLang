@@ -14,6 +14,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1900D（https://codeforces.com/contest/1900/problem/D）inclusion_exclusion|gcd_pair|counter|classical
 1034A（https://codeforces.com/contest/1034/problem/A）prime_factorization
 1366D（https://codeforces.com/problemset/problem/1366/D）min_prime|construction
+1978E（https://codeforces.com/contest/1978/problem/F）union_find|matrix|math|brain_teaser
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -29,6 +30,7 @@ from functools import reduce
 from itertools import permutations
 from typing import List
 
+from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
@@ -792,4 +794,30 @@ class Solution:
         total = nt.comb(s - 1, n - 1)
         part = nt.comb(s - a[h], n - 1)
         ac.st(1 - part / total)
+        return
+
+    @staticmethod
+    def cf_1978e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1978/problem/F
+        tag: union_find|matrix|math|brain_teaser
+        """
+        pf = PrimeFactor(10 ** 6)
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            dct = dict()
+            uf = UnionFind(2 * n - 1)
+            for i in range(1, 2 * n):
+                num = nums[i % n]
+                for p, _ in pf.prime_factor[num]:
+                    if p in dct and i - dct[p] <= k and p > 1:
+                        uf.union(dct[p] - 1, i - 1)
+                    dct[p] = i
+            ans = uf.part
+            for i in range(n):
+                if nums[i] == 1:
+                    ans += n - 2 if i else n - 1
+            ac.st(ans)
         return

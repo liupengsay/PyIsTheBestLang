@@ -25,6 +25,9 @@ P2731（https://www.luogu.com.cn/problem/P2731）lexicographical_order_minimum|u
 P1341（https://www.luogu.com.cn/problem/P1341）lexicographical_order_minimum|undirected_euler_path|specific_plan
 P1333 （https://www.luogu.com.cn/problem/P1333）lexicographical_order_minimum|undirected_euler_path|specific_plan
 
+=====================================CodeForces======================================
+1981D（https://codeforces.com/contest/1981/problem/D）undirected_euler_path|brain_teaser|prime_sieve
+
 =====================================AcWing=====================================
 4211（https://www.acwing.com/problem/content/4214/）directed_euler_path|specific_plan
 
@@ -34,8 +37,10 @@ https://www.luogu.com.cn/problem/solution/P7771
 """
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
 from src.graph.euler_path.template import DirectedEulerPath, UnDirectedEulerPath
 from src.graph.union_find.template import UnionFind
+from src.mathmatics.number_theory.template import PrimeSieve
 from src.utils.fast_io import FastIO
 
 
@@ -236,4 +241,47 @@ class Solution:
                         pairs.append([i, j])
         dt = DirectedEulerPath(n, pairs)
         ac.lst([nums[x] for x in dt.nodes])
+        return
+
+    @staticmethod
+    def cf_1981d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1981/problem/D
+        tag: undirected_euler_path|brain_teaser|prime_sieve
+        """
+
+        def check(x):
+            if x % 2:
+                return x * (x + 1) // 2 >= n - 1
+            return x * x // 2 + 1 >= n - 1
+
+        # TLE
+        primes = PrimeSieve().eratosthenes_sieve(10 ** 5)
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            m = BinarySearch().find_int_left(1, n + 10, check)
+            edges = set()
+            for i in range(m):
+                for j in range(i + 1, m):
+                    edges.add((i, j))
+            if m % 2 == 0:
+                tot = 0
+                for i in range(1, m - 2, 2):
+                    edges.discard((i, i + 1))
+                    tot += 1
+                assert tot == m // 2 - 1
+            path = UnDirectedEulerPath(n, list(edges))
+            assert path.exist
+            ans = [primes[x] for x in path.nodes[:n]]
+            pre = set()
+            res = []
+            rest = n - len(ans)
+            for num in ans:
+                res.append(num)
+                if num not in pre and rest:
+                    rest -= 1
+                    pre.add(num)
+                    res.append(num)
+            ac.lst(res)
         return

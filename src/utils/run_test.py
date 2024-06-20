@@ -228,6 +228,38 @@ class TestGeneral(unittest.TestCase):
             f.writelines("\n".join(tot))
         return
 
+    def test_run_template_class(self):
+
+        def process_file(file_path):
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
+                lines = file.readlines()
+            for line in lines:
+                if "class " in line and ":" in line:
+                    tot.append(line.split("class ")[1].replace("\n", "").split(":")[0])
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    if file == "template.py":
+                        file_path = os.path.join(root, file)
+                        process_file(file_path)
+            return
+
+        # get all the problem.py and shuffle the list
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        tot = []
+        process_directory(os.path.join(grandparent_path, "src"))
+        cnt = Counter([w for w in tot if w and w[0].isalpha()])
+        lst = [(k, cnt[k]) for k in cnt]
+        lst.sort(key=lambda it: -it[1])
+        tot = [f"{a}\t{b}" for a, b in lst]
+        with open(os.path.join(grandparent_path, "data/Template.md"), "w", encoding="utf-8", errors="ignore") as f:
+            f.writelines("\n".join(tot))
+        return
+
     @unittest.skip
     def test_drop_dup_problem(self):
 
@@ -302,7 +334,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1985"
+        num = "1981"
         print(f"https://codeforces.com/contest/{num}")
         for i in range(8):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
@@ -310,7 +342,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_atcoder_problem(self):
-        num = "207"
+        num = "358"
         print(f"https://atcoder.jp/contests/abc{num}")
         print(f"https://atcoder.jp/contests/abc{num}/standings")
         print(f"https://atcoder.jp/contests/abc{num}/results")
