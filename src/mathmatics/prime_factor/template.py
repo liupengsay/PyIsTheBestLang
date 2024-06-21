@@ -6,12 +6,8 @@ class AllFactorCnt:
         self.n = n
         self.all_factor_cnt = [0, 1] + [2 for _ in range(2, n + 1)]
         for i in range(2, self.n + 1):
-            x = i
-            while x * i <= self.n:
-                self.all_factor_cnt[x * i] += 1
-                if i != x:
-                    self.all_factor_cnt[x * i] += 1
-                x += 1
+            for j in range(i * i, self.n + 1, i):
+                self.all_factor_cnt[j] += 2 if j != i * i else 1
         return
 
 
@@ -53,12 +49,10 @@ class PrimeFactor:
 
         # complexity is O(nlogn)
         for i in range(2, self.n + 1):
-            x = i
-            while x * i <= self.n:
-                self.all_factor[x * i].append(i)
-                if i != x:
-                    self.all_factor[x * i].append(x)
-                x += 1
+            for j in range(i * i, self.n + 1, i):
+                self.all_factor[j].append(i)
+                if j > i * i:
+                    self.all_factor[j].append(j // i)
         for i in range(self.n + 1):
             self.all_factor[i].sort()
         return

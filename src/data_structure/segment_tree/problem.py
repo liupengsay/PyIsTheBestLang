@@ -83,7 +83,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 1234D（https://codeforces.com/contest/1234/problem/D）segment_tree|point_set|range_or
 1538E（https://codeforces.com/contest/1538/problem/E）implemention|segment_tree|merge
 1741F（https://codeforces.com/contest/1741/problem/F）segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
-
+242E（https://codeforces.com/contest/242/problem/E）segment_tree|range_xor|range_reverse|range_sum|range_bit_count
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -156,6 +156,7 @@ ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range
 
 """
 import bisect
+import random
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
 from heapq import heappush, heappop
@@ -320,34 +321,6 @@ class Solution:
         ac.lst(ans)
         return
 
-    @staticmethod
-    def cf_242e(ac=FastIO()):
-        """
-        url: https://codeforces.com/problemset/problem/242/E
-        tag: segment_tree|RangeReverseRangeBitCount
-        """
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        tree = [RangeRevereRangeBitCount(n) for _ in range(22)]
-        for j in range(22):
-            lst = [1 if nums[i] & (1 << j) else 0 for i in range(n)]
-            tree[j].build(lst)
-        for _ in range(ac.read_int()):
-            lst = ac.read_list_ints()
-            if lst[0] == 1:
-                ll, rr = lst[1:]
-                ll -= 1
-                rr -= 1
-                ans = sum((1 << j) * tree[j].range_bit_count(ll, rr) for j in range(22))
-                ac.st(ans)
-            else:
-                ll, rr, xx = lst[1:]
-                ll -= 1
-                rr -= 1
-                for j in range(22):
-                    if (1 << j) & xx:
-                        tree[j].range_reverse(ll, rr)
-        return
 
     @staticmethod
     def cf_1216f(ac=FastIO()):
@@ -3633,4 +3606,52 @@ class Solution:
                     post %= m
                 ans %= m
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_242e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/242/problem/E
+        tag: segment_tree|range_xor|range_reverse|range_sum|range_bit_count
+        """
+        debug = 0
+        if debug:
+            n = 10 ** 5
+            nums = [random.randint(0, 10 ** 6) for _ in range(n)]
+            q = 5 * 10 ** 4
+            queries = []
+            for _ in range(q):
+                op = random.randint(0, 1)
+                ll = random.randint(1, n)
+                rr = random.randint(ll, n)
+                xx = -1
+                if op == 2:
+                    xx = random.randint(1, 10 ** 6)
+                queries.append([op, ll, rr] if op == 1 else [op, ll, rr, xx])
+        else:
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            q = ac.read_int()
+            queries = [ac.read_list_ints() for _ in range(q)]
+
+        ans = [0] * q
+        tree = RangeRevereRangeBitCount(n)
+        for j in range(22):
+            tree.build([1 if (nums[i] >> j) & 1 else 0 for i in range(n)])
+            for i in range(q):
+                lst = queries[i]
+                if lst[0] == 1:
+                    ll, rr = lst[1:]
+                    ll -= 1
+                    rr -= 1
+                    ans[i] += (1 << j) * tree.range_bit_count(ll, rr)
+                else:
+                    ll, rr, xx = lst[1:]
+                    ll -= 1
+                    rr -= 1
+                    if (xx >> j) & 1:
+                        tree.range_reverse(ll, rr)
+        for i in range(q):
+            if queries[i][0] == 1:
+                ac.st(ans[i])
         return

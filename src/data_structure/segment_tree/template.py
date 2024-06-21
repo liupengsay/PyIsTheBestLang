@@ -3201,6 +3201,12 @@ class RangeRevereRangeBitCount:
         self.lazy_tag = [0] * (4 * self.n)
         return
 
+    def initial(self):
+        for i in range(self.n):
+            self.cover[i] = 0
+            self.lazy_tag[i] = 0
+        return
+
     def build(self, nums):
         stack = [(0, self.n - 1, 1)]
         while stack:
@@ -3208,6 +3214,7 @@ class RangeRevereRangeBitCount:
             if i >= 0:
                 if s == t:
                     self.cover[i] = nums[s]
+                    self.lazy_tag[i] = 0
                 else:
                     stack.append((s, t, ~i))
                     m = s + (t - s) // 2
@@ -3216,6 +3223,7 @@ class RangeRevereRangeBitCount:
             else:
                 i = ~i
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
+                self.lazy_tag[i] = 0
         return
 
     def get(self):
@@ -3295,7 +3303,6 @@ class RangeRevereRangeBitCount:
                 val -= self.cover[i << 1]
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
-
 
 class RangeRevereRangeAlter:
     def __init__(self, n):

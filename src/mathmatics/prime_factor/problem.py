@@ -15,6 +15,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1034A（https://codeforces.com/contest/1034/problem/A）prime_factorization
 1366D（https://codeforces.com/problemset/problem/1366/D）min_prime|construction
 1978E（https://codeforces.com/contest/1978/problem/F）union_find|matrix|math|brain_teaser
+1627D（https://codeforces.com/contest/1627/problem/D）euler_series|prime_factor|all_factor|implemention|brute_force
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -822,4 +823,32 @@ class Solution:
                 if nums[i] == 1:
                     ans += n - 2 if i else n - 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1627d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1627/problem/D
+        tag: euler_series|prime_factor|all_factor|implemention|brute_force
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = max(nums)
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            cnt[num] = 1
+        ans = 0
+        for i in range(ceil, 0, -1):
+            if cnt[i]:
+                continue
+            g = 0
+            for j in range(i * 2, ceil + 1, i):
+                if cnt[j]:
+                    if g == 0:
+                        g = j
+                    elif math.gcd(g, j) == i:
+                        cnt[i] = 1
+                        ans += 1
+                        break
+        ac.st(ans)
         return
