@@ -22,6 +22,8 @@ ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorizatio
 =====================================AcWing=====================================
 199（https://www.acwing.com/problem/content/199/）factorial|prime_factorization
 
+1（https://www.codechef.com/problems/COUNTN）min_prime|prime_number
+
 """
 import math
 from collections import Counter

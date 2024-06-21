@@ -341,6 +341,12 @@ class TestGeneral(unittest.TestCase):
             print(url)
         return
 
+    def test_codeforces_practice(self):
+        for x in range(1700, 2200, 100):
+            url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
+            print(url)
+        return
+
     def test_atcoder_problem(self):
         num = "358"
         print(f"https://atcoder.jp/contests/abc{num}")

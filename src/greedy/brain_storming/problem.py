@@ -252,6 +252,7 @@ ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_tease
 
 =====================================CodeChef=====================================
 1（https://www.codechef.com/problems/CHANGEXY）greedy|implemention
+2（https://www.codechef.com/problems/DESTBRIDGE2）greedy|implemention
 
 """
 
