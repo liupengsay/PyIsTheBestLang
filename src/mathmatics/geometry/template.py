@@ -131,6 +131,26 @@ class Geometry:
         return max(t1[0], t2[0])
 
 
+    @staticmethod
+    def circumscribed_circle_of_triangle(x1, y1, x2, y2, x3, y3):
+        x = ((y2 - y1) * (y3 * y3 - y1 * y1 + x3 * x3 - x1 * x1) - (y3 - y1) * (
+                y2 * y2 - y1 * y1 + x2 * x2 - x1 * x1)) * 1.0 / (
+                    2 * (x3 - x1) * (y2 - y1) - 2 * (x2 - x1) * (y3 - y1))
+
+        y = ((x2 - x1) * (x3 * x3 - x1 * x1 + y3 * y3 - y1 * y1) - (x3 - x1) * (
+                x2 * x2 - x1 * x1 + y2 * y2 - y1 * y1)) * 1.0 / (
+                    2 * (y3 - y1) * (x2 - x1) - 2 * (y2 - y1) * (x3 - x1))
+
+        r = math.sqrt((x1 - x) ** 2 + (y1 - y) ** 2)
+        return x, y, r
+
+    @staticmethod
+    def get_circle_sector_angle(x1, y1, x2, y2, r):
+        d_square = ((x1 - x2) ** 2 + (y1 - y2) ** 2)
+        angle = math.acos(1 - d_square * 0.5 / r / r)
+        return angle
+
+
 class ClosetPair:
     def __init__(self):
         return

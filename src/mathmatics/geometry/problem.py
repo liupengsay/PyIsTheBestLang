@@ -32,6 +32,7 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 429D（https://codeforces.com/contest/429/problem/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 1133D（https://codeforces.com/contest/1133/problem/D）line_slope
 1979E（https://codeforces.com/contest/1979/problem/E）manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
+1C（https://codeforces.com/contest/1/problem/C）geometry|circle|triangle
 
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
@@ -609,4 +610,34 @@ class Solution:
 
         for _ in range(ac.read_int()):
             ac.lst(check())
+        return
+
+    @staticmethod
+    def cf_1c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1/problem/C
+        tag: geometry|circle|triangle
+        """
+
+        x1, y1 = [float(x) for x in ac.read_list_strs()]
+        x2, y2 = [float(x) for x in ac.read_list_strs()]
+        x3, y3 = [float(x) for x in ac.read_list_strs()]
+
+        x, y, r = Geometry().circumscribed_circle_of_triangle(x1, y1, x2, y2, x3, y3)
+
+        theta1 = Geometry().get_circle_sector_angle(x1, y1, x2, y2, r)
+        theta2 = Geometry().get_circle_sector_angle(x1, y1, x3, y3, r)
+        theta3 = 2 * math.pi - theta1 - theta2
+
+        lst = theta1 * 0.5 / math.pi, theta2 * 0.5 / math.pi, theta3 * 0.5 / math.pi
+
+        n = 0
+        error = 1e-5
+        for d in range(3, 201):
+            if all(abs(p * d - int(p * d + error)) < error for p in lst):
+                n = d
+                break
+        theta = 2 * math.pi / n
+        ans = n * 0.5 * (r ** 2) * math.sin(theta)
+        ac.st(ans)
         return

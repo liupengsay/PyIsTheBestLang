@@ -101,6 +101,8 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1196F（https://codeforces.com/contest/1196/problem/F）shortest_path|data_range|kth_shortest|brute_force|data_range
 1741G（https://codeforces.com/contest/1741/problem/G）shortest_path|brute_force|state_dp
 1846G（https://codeforces.com/contest/1846/problem/G）shortest_path
+449B（https://codeforces.com/contest/449/problem/B）shortest_path|not_shortest_path_spanning_tree|union_find
+
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -2236,4 +2238,47 @@ class Solution:
         dis = Dijkstra().get_shortest_path(dct, 0)
         ans = max(h[0] - h[i] - dis[i] for i in range(n))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_449bb(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/449/problem/B
+        tag: shortest_path|not_shortest_path_spanning_tree|union_find
+        """
+        n, m, k = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for ind in range(m):
+            x, y, w = ac.read_list_ints()
+            x -= 1
+            y -= 1
+            dct[x].append((y, w))
+            dct[y].append((x, w))
+
+        dis = [inf] * n
+        use = [0] * n
+        dis[0] = 0
+        for i in range(k):
+            s, y = ac.read_list_ints()
+            s -= 1
+            if y < dis[s]:
+                use[s] = 1
+                dis[s] = y
+
+        stack = [dis[i] * n + i for i in range(n) if dis[i] < inf] + [0]
+        heapify(stack)
+        while stack:
+            x = heappop(stack)
+            d, i = x // n, x % n
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = w + d
+                if dj < dis[j]:
+                    dis[j] = dj
+                    use[j] = 0
+                    heappush(stack, dj * n + j)
+                elif dj == dis[j]:
+                    use[j] = 0
+        ac.st(k - sum(use))
         return
