@@ -387,7 +387,7 @@ class Solution:
     def lc_1293(grid: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/shortest-path-in-a-grid-with-obstacles-elimination/
-        tag: limited_shortest_path|classical|dijkstra_usage
+        tag: limited_shortest_path|classical|dijkstra_like
         """
         m, n = len(grid), len(grid[0])
         visit = defaultdict(lambda: float("inf"))
@@ -1886,7 +1886,7 @@ class Solution:
     def ac_3772(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3775/
-        tag: build_graph|reverse_grpah|dijkstra|shortest_path|counter|greedy|implemention
+        tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
         """
         # 建立反图并Dijkstrashortest_pathcountergreedyimplemention
         n, m = ac.read_list_ints()

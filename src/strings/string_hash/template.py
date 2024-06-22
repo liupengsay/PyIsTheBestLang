@@ -331,35 +331,6 @@ class PointSetRangeHashReverse:
                 stack.append((m + 1, t, (i << 1) | 1))
         return ans
 
-class StringHashDingleBuild:
-    def __init__(self, n):
-        """two mod to avoid hash crush"""
-        # use two class to compute is faster!!!
-        self.n = n
-        base = 150
-        self.p = random.randint(base, base * 2)
-        self.mod = random.getrandbits(64)
-        self.pre = [0] * (self.n + 1)
-        self.pp = [1] * (self.n + 1)
-        for j in range(n):
-            self.pp[j + 1] = (self.pp[j] * self.p) % self.mod
-        return
-
-
-    def build(self, lst):
-        for j, w in enumerate(lst):
-            self.pre[j + 1] = (self.pre[j] * self.p + w) % self.mod
-        return
-
-    def query(self, x, y):
-        """range hash value index start from 0"""
-        # assert 0 <= x <= y <= self.n - 1
-        if not 0 <= x <= y <= self.n - 1:
-            return 0
-        # with length y - x + 1 important!!!
-        ans = (self.pre[y + 1] - self.pre[x] * self.pp[y - x + 1]) % self.mod
-        return ans
-
 
 class StringHashSingleBuild:
     def __init__(self, n):

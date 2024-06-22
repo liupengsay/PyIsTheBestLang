@@ -38,7 +38,7 @@ P6591（https://www.luogu.com.cn/problem/P6591）reroot_dp|recursion
 P7159（https://www.luogu.com.cn/problem/P7159）tree_dp|brute_force|counter|fast_power
 P2015（https://www.luogu.com.cn/problem/P2015）tree_dp|tree_bag_dp
 P2014（https://www.luogu.com.cn/problem/P2014）tree_dp
-P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sortingDP
+P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sort|dag_dp
 P1351（https://www.luogu.com.cn/problem/P1351）tree_dp
 P3408（https://www.luogu.com.cn/problem/P3408）tree_dp
 P3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
@@ -763,7 +763,7 @@ class Solution:
     def lg_p4316(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4316
-        tag: reverse_graph|topological_sortingDP
+        tag: reverse_graph|topological_sort|dag_dp
         """
         # reverse_graph|topological_sorting树形prob_dp
         n, m = ac.read_list_ints()

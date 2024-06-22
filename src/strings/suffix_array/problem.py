@@ -49,7 +49,7 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/suffixarray）suffix_array
 2（https://judge.yosupo.jp/problem/number_of_substrings）suffix_array|sa
-3（https://www.hackerrank.com/challenges/morgan-and-a-string/）smallest|lexicographical_order|classical
+3（https://www.hackerrank.com/challenges/morgan-and-a-string/）lexicographical_order|classical
 4（https://loj.ac/p/111）suffix_array|template
 5（https://atcoder.jp/contests/practice2/tasks/practice2_i）suffix_array|height
 6（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/A）suffix_array|height
@@ -68,7 +68,7 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 19（https://poj.org/problem?id=3415）
 20（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/E）suffix_array|monotonic_stack|height|counter
 21（https://codeforces.com/edu/course/2/lesson/2/5/practice/contest/269656/problem/C）suffix_array|lexicographical_order|lcp|sparse_table|sub_string|classical
-22（https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A）suffix_array|rk
+22（https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A）suffix_array
 23（https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/A）suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
 24（https://codeforces.com/edu/course/2/lesson/2/3/practice/contest/269118/problem/B）suffix_array|height|lcp|monotonic_stack|prefix_sum|binary_search
 25（https://codeforces.com/edu/course/2/lesson/2/4/practice/contest/269119/problem/A）suffix_array|height|lcp
@@ -193,7 +193,7 @@ class Solution:
     def library_check_3(ac=FastIO()):
         """
         url: https://www.hackerrank.com/challenges/morgan-and-a-string/
-        tag: smallest|lexicographical_order|classical
+        tag: lexicographical_order|classical
         """
         for _ in range(ac.read_int()):
             word1 = ac.read_str()
@@ -1293,7 +1293,7 @@ class Solution:
     def library_check_22(ac=FastIO()):
         """
         url: https://codeforces.com/edu/course/2/lesson/2/2/practice/contest/269103/problem/A
-        tag: suffix_array|rk
+        tag: suffix_array
         """
         s = [ord(w) - ord("a") for w in ac.read_str()]
         sa, _, _ = SuffixArray().build(s, 26)

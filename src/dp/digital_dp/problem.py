@@ -21,7 +21,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 ====================================AtCoder=====================================
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp
 ABC208E（https://atcoder.jp/contests/abc208/tasks/abc208_e）brain_teaser|digital_dp
-ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brut_force|digital_dp
+ABC336E（https://atcoder.jp/contests/abc336/tasks/abc336_e）brute_force|digital_dp
 ABC317F（https://atcoder.jp/contests/abc317/tasks/abc317_f）2-base|digital_dp|classical
 ABC295F（https://atcoder.jp/contests/abc295/tasks/abc295_f）digital_dp|kmp_automaton|classical
 ABC235F（https://atcoder.jp/contests/abc235/tasks/abc235_f）digital_dp|classical
@@ -246,7 +246,7 @@ class Solution:
     def abc_336e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc336/tasks/abc336_e
-        tag: brut_force|digital_dp
+        tag: brute_force|digital_dp
         """
         num = ac.read_int()
         num += 1

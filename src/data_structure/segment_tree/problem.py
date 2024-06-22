@@ -41,7 +41,7 @@ P1558（https://www.luogu.com.cn/problem/P1558）segment_tree|RangeSetRangeOr
 P3740（https://www.luogu.com.cn/problem/P3740）discretization|segment_tree|RangeChangeRangeSum
 P4588（https://www.luogu.com.cn/problem/P4588）segment_tree|RangeChangeRangeMul
 P6627（https://www.luogu.com.cn/problem/P6627）segment_tree|range_xor
-P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scop|segment_tree|RangeSetRangeOr
+P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope|segment_tree|RangeSetRangeOr
 P8812（https://www.luogu.com.cn/problem/P8812）segment_tree|RangeDescendRangeMin
 P8856（https://www.luogu.com.cn/problem/solution/P8856）segment_tree|RangeAddRangeSumMaxMin
 P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|offline_query
@@ -845,7 +845,7 @@ class Solution:
     def lg_p8081(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8081
-        tag: diff_array|counter|action_scop|segment_tree|RangeSetRangeOr
+        tag: diff_array|counter|action_scope|segment_tree|RangeSetRangeOr
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

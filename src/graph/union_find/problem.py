@@ -10,7 +10,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 2421（https://leetcode.cn/problems/number-of-good-paths/）sort|union_find|counter
 2382（https://leetcode.cn/problems/maximum-segment-sum-after-removals/）reverse_order|union_find|implemention|reverse_thinking
 2334（https://leetcode.cn/problems/subarray-with-elements-greater-than-varying-threshold/）sort|brute_force|union_find
-2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_left_root
+2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_left
 2157（https://leetcode.cn/problems/groups-of-strings/）alphabet|brute_force
 2076（https://leetcode.cn/problems/process-restricted-friend-requests/）union_find|reverse_thinking
 2459（https://leetcode.cn/problems/sort-array-by-moving-items-to-empty-space/）permutation_circle
@@ -19,7 +19,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 1559（https://leetcode.cn/problems/detect-cycles-in-2d-grid/）union_find|circle_judge|classical
 1970（https://leetcode.cn/problems/last-day-where-you-can-still-cross/）reverse_thinking|union_find
 1998（https://leetcode.cn/problems/gcd-sort-of-an-array/）union_find|prime_factorization
-2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_range|union_find_left_root|union_find_right_root
+2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_range|union_left|union_find_right_root
 2471（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretization|permutation_circle
 945（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greedy
 947（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
@@ -40,7 +40,7 @@ P6121（https://www.luogu.com.cn/problem/P6121）reverse_order|union_find|size
 P6153（https://www.luogu.com.cn/problem/P6153）union_find|greedy|classical
 P1955（https://www.luogu.com.cn/problem/P1955）union_find
 P1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
-P1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find，reverse_order|brute_force|part
+P1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find|reverse_order|brute_force|part
 P1522（https://www.luogu.com.cn/problem/P1522）connected_part|brute_force|high_precision|tree_diameter
 P1621（https://www.luogu.com.cn/problem/P1621）euler_series|O(nlogn)|prime_factorization
 P1892（https://www.luogu.com.cn/problem/P1892）union_find|bipartite_graph
@@ -125,7 +125,7 @@ ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|d
 ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_teaser|implemention
 
 =====================================AcWing=====================================
-4309（https://www.acwing.com/problem/content/description/4309/）union_find_right_range
+4309（https://www.acwing.com/problem/content/description/4309/）union_right
 4869（https://www.acwing.com/problem/content/description/4869/）union_find|implemention|size
 5148（https://www.acwing.com/problem/content/5148/）union_find|circle_judge
 
@@ -465,7 +465,7 @@ class Solution:
     def lg_p1197(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1197
-        tag: reverse_order|union_find，reverse_order|brute_force|part
+        tag: reverse_order|union_find|reverse_order|brute_force|part
         """
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1093,7 +1093,7 @@ class Solution:
     def lc_2158(paint: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/amount-of-new-area-painted-each-day/
-        tag: union_find_range|union_find_left_root|union_find_right_root
+        tag: union_find_range|union_left|union_find_right_root
         """
         m = max(ls[1] for ls in paint) + 10
         uf = UnionFind(m)
@@ -1157,7 +1157,7 @@ class Solution:
     def ac_4309(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4309/
-        tag: union_find_right_range|greedy
+        tag: union_right|greedy
         """
         n = ac.read_int()
         a = ac.read_list_ints()

@@ -352,7 +352,7 @@ class Solution:
     def lg_p5094(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5094
-        tag: tree_array|RangeAddRangeSumtree_array|RangeAddRangeSum
+        tag: tree_array|RangeAddRangeSum
         """
         n = ac.read_int()
         m = 5 * 10 ** 4

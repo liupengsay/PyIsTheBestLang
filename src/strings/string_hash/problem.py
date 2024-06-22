@@ -43,7 +43,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
-ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome_judge|classical
+ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome|classical
 ABC310C（https://atcoder.jp/contests/abc310/tasks/abc310_c）string_hash|classical
 ABC353E（https://atcoder.jp/contests/abc353/tasks/abc353_e）string_hash|trie
 
@@ -1421,7 +1421,7 @@ class Solution:
     def abc_331f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc331/tasks/abc331_f
-        tag: point_set|range_hash_reverse|palindrome_judge|classical
+        tag: point_set|range_hash_reverse|palindrome|classical
         """
         n, q = ac.read_list_ints()
         tree1 = PointSetRangeHashReverse(n)

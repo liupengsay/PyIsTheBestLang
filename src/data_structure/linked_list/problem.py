@@ -1,6 +1,6 @@
 """
 
-Algorithm：linked_list|double_linked_list|union_find_right_root|union_find_left_root
+Algorithm：linked_list|double_linked_list|union_find_right_root|union_left
 Description：
 
 
