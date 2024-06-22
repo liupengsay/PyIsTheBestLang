@@ -16,6 +16,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1366D（https://codeforces.com/problemset/problem/1366/D）min_prime|construction
 1978E（https://codeforces.com/contest/1978/problem/F）union_find|matrix|math|brain_teaser
 1627D（https://codeforces.com/contest/1627/problem/D）euler_series|prime_factor|all_factor|implemention|brute_force
+1499D（https://codeforces.com/contest/1499/problem/D）math|prime_factor_cnt|classical
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -851,4 +852,45 @@ class Solution:
                         ans += 1
                         break
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1499d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1499/problem/D
+        tag: math|prime_factor_cnt|classical
+        """
+        n = 2 * 10 ** 7
+        min_prime = [0] * (n + 1)
+        min_prime[1] = 1
+        prime_factor_cnt = [0] * (n + 1)
+        for i in range(2, n + 1):
+            if not min_prime[i]:
+                min_prime[i] = i
+                for j in range(i * i, n + 1, i):
+                    if not min_prime[j]:
+                        min_prime[j] = i
+            pre = i // min_prime[i]
+            prime_factor_cnt[i] = prime_factor_cnt[pre] + int(min_prime[i] != min_prime[pre])
+
+        def check(g):
+            if (x // g + d) % c:
+                return 0
+            return p[prime_factor_cnt[(x // g + d) // c]]
+
+        p = [1<< x for x in range(32)]
+        res = []
+        for _ in range(ac.read_int()):
+            c, d, x = ac.read_list_ints()
+            ans = 0
+            for w in range(1, x + 1):
+                if w * w > x:
+                    break
+                if x % w == 0:
+                    ans += check(w)
+                    if x // w > w:
+                        ans += check(x // w)
+            res.append(ans)
+        for a in res:
+            ac.st(a)
         return

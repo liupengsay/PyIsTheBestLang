@@ -125,6 +125,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemen
 1593F（https://codeforces.com/contest/1593/problem/F）matrix_dp|specific_plan|md_vector|flatten
 1729G（https://codeforces.com/contest/1729/problem/G）matrix_dp
 1811G2（https://codeforces.com/contest/1811/problem/G2）matrix_dp|comb
+1132F（https://codeforces.com/problemset/problem/1132/F）matrix_dp|classical
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3070,4 +3071,24 @@ class Solution:
                 tot[p % j][j - 1] %= mod
             ans = sum(cur) % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1132f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1132/F
+        tag: matrix_dp|classical
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            dp[i][i] = 1
+            for j in range(i + 1, n):
+                cur = dp[i + 1][j] + 1 if i + 1 < n else 1
+                for k in range(i + 1, j + 1):
+                    if s[k] == s[i]:
+                        cur = min(cur, dp[i + 1][k - 1] + dp[k][j])
+                dp[i][j] = cur
+        ac.st(dp[0][n - 1])
         return

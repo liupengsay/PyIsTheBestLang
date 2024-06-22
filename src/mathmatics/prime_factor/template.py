@@ -16,10 +16,10 @@ class PrimeFactor:
         self.n = n
         # calculate the minimum prime factor for all numbers from 1 to self.n
         self.min_prime = [0] * (self.n + 1)
+        self.min_prime[1] = 1
         # determine whether all numbers from 1 to self.n are prime numbers
-        self.is_prime = [0] * (self.n + 1)
-        # calculate the prime factorization of all numbers from 1 to self.n
         self.prime_factor = [[] for _ in range(self.n + 1)]
+        self.prime_factor_cnt = [0]*(self.n+1)
         # calculate all factors of all numbers from 1 to self.n, including 1 and the number itself
         self.all_factor = [[], [1]] + [[1, i] for i in range(2, self.n + 1)]
         self.build()
@@ -30,11 +30,14 @@ class PrimeFactor:
         # complexity is O(nlogn)
         for i in range(2, self.n + 1):
             if not self.min_prime[i]:
-                self.is_prime[i] = 1
                 self.min_prime[i] = i
                 for j in range(i * i, self.n + 1, i):
                     if not self.min_prime[j]:
                         self.min_prime[j] = i
+
+        for num in range(2, self.n + 1):
+            pre = num // self.min_prime[num]
+            self.prime_factor_cnt[num] = self.prime_factor_cnt[pre] + int(self.min_prime[num] != self.min_prime[pre])
 
         # complexity is O(nlogn)
         for num in range(2, self.n + 1):
@@ -46,6 +49,7 @@ class PrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append((p, cnt))
+
 
         # complexity is O(nlogn)
         for i in range(2, self.n + 1):
@@ -76,4 +80,4 @@ class PrimeFactor:
         return ans
 
     def get_prime_numbers(self):
-        return [i for i in range(1, self.n + 1) if self.is_prime[i]]
+        return [i for i in range(2, self.n + 1) if self.min_prime[i] == 0]
