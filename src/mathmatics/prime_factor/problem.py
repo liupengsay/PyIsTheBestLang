@@ -17,6 +17,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1978E（https://codeforces.com/contest/1978/problem/F）union_find|matrix|math|brain_teaser
 1627D（https://codeforces.com/contest/1627/problem/D）euler_series|prime_factor|all_factor|implemention|brute_force
 1499D（https://codeforces.com/contest/1499/problem/D）math|prime_factor_cnt|classical
+1986G1（https://codeforces.com/contest/1986/problem/G1）all_factor|brute_force|contribution_method
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -890,6 +891,33 @@ class Solution:
                     ans += check(w)
                     if x // w > w:
                         ans += check(x // w)
+            res.append(ans)
+        for a in res:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_1986g1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1986/problem/G1
+        tag: all_factor|brute_force|contribution_method
+        """
+        n = 10 ** 5
+        pf = PrimeFactor(n)
+        res = []
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            need = defaultdict(lambda: defaultdict(int))
+            ans = 0
+            for i, num in enumerate(nums):
+                i += 1
+                g = math.gcd(num, i)
+                for w in pf.all_factor[num // g]:
+                    for k in need[w]:
+                        if k % (i // g) == 0:
+                            ans += need[w][k]
+                need[i // g][num // g] += 1
             res.append(ans)
         for a in res:
             ac.st(a)

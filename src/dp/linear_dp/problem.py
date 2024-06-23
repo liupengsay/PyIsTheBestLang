@@ -153,6 +153,7 @@ ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_e）reverse_thinking|l
 ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_f）linear_dp|contribution_method|math
 ABC222D（https://atcoder.jp/contests/abc222/tasks/abc222_d）prefix|linear_dp
 ABC214F（https://atcoder.jp/contests/abc214/tasks/abc214_f）prefix|linear_dp
+ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower

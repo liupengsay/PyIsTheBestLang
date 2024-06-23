@@ -38,6 +38,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 1547G（https://codeforces.com/contest/1547/problem/G）scc|shrink_point|build_graph|counter|number_of_path
 1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component|pdcc|undirected|odd_circle
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
+1986E（https://codeforces.com/contest/1986/problem/E）cutting_edge|tarjan|brute_force
 
 ===================================CodeForces===================================
 ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
@@ -976,4 +977,59 @@ class Solution:
                         nex.append(j)
             stack = nex[:]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1986e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1986/problem/E
+        tag: cutting_edge|tarjan|brute_force
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(m):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+            _, edge = Tarjan().get_cut(n, dct)
+            if not edge:
+                ac.st(n * (n - 1) // 2)
+            else:
+                uf = UnionFind(n)
+                new_dct = [[] for _ in range(n)]
+                for i, j in edge:
+                    uf.union(i, j)
+                    new_dct[i].append(j)
+                    new_dct[j].append(i)
+                for i in range(n):
+                    for j in dct[i]:
+                        if uf.union(i, j):
+                            new_dct[i].append(j)
+                            new_dct[j].append(i)
+                sub = [0] * n
+                stack = [(0, -1)]
+                father = [-1] * n
+                while stack:
+                    i, fa = stack.pop()
+                    if i >= 0:
+                        stack.append((~i, fa))
+                        for j in new_dct[i]:
+                            if j != fa:
+                                stack.append((j, i))
+                                father[j] = i
+                    else:
+                        i = ~i
+                        sub[i] = 1
+                        for j in new_dct[i]:
+                            if j != fa:
+                                sub[i] += sub[j]
+                ans = n * (n - 1) // 2
+                for i, j in edge:
+                    if father[i] == j:
+                        cur = sub[i]
+                    else:
+                        cur = sub[j]
+                    ans = min(ans, cur * (cur - 1) // 2 + (n - cur) * (n - cur - 1) // 2)
+                ac.st(ans)
         return

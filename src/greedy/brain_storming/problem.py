@@ -228,6 +228,7 @@ ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implementio
 ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greedy
 ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointer|classical|prefix_sum
 ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_teaser
+ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implemention|stack
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy

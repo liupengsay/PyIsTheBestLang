@@ -62,6 +62,7 @@ ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_e）tree_dp|classical
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp|classical
 ABC220F（https://atcoder.jp/contests/abc220/tasks/abc220_f）reroot_dp|classical
 ABC218F（https://atcoder.jp/contests/abc218/tasks/abc218_f）tree_dp|game_dp|implemention|dfs_order|median
+ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|classical
 
 ===================================CodeForces===================================
 1388C（https://codeforces.com/problemset/problem/1388/C）tree_dp|implemention|recursion|down_to_up|up_to_down
@@ -1661,4 +1662,63 @@ class Solution:
                     nex_bb = bb - dp[j][1] + pre_b
                     stack.append((j, i, nex_bb, max(nex_bb, nex_aa)))
             ac.st(max(ans))
+        return
+
+    @staticmethod
+    def abc_359g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc359/tasks/abc359_g
+        tag: heuristic_merge|classical
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            dct[u].append(v)
+            dct[v].append(u)
+        nums = ac.read_list_ints_minus_one()
+        tot = Counter(nums)
+        stack = [(0, -1)]
+        ans = 0
+        sub = [dict() for _ in range(n)]
+        index = list(range(n))
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                ind = index[i]
+                sub[ind][nums[i]] = (0, 1)
+                for j in dct[i]:
+                    if j != fa:
+                        xj = index[j]
+                        for p in sub[xj]:
+                            if p in sub[ind]:
+                                dis, cnt = sub[xj][p]
+                                dis0, cnt0 = sub[ind].get(p, (0, 0))
+                                ans += dis * cnt0 + dis0 * cnt
+                        if len(sub[xj]) > len(sub[ind]):
+                            nex = ind
+                            ind = xj
+                        else:
+                            nex = xj
+                        for p, (dis, cnt) in sub[nex].items():
+                            if p in sub[ind]:
+                                dis0, cnt0 = sub[ind].get(p, (0, 0))
+                                sub[ind][p] = (dis + dis0, cnt + cnt0)
+                            else:
+                                sub[ind][p] = (dis, cnt)
+                        sub[nex] = None
+                for p in list(sub[ind].keys()):
+                    if tot[p] == sub[ind][p][1]:
+                        del sub[ind][p]
+                    dis, cnt = sub[ind][p]
+                    sub[ind][p] = dis + cnt, cnt
+
+                index[i] = ind
+        ac.st(ans)
         return

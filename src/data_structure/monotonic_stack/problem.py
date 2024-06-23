@@ -63,7 +63,8 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
 ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|linear_dp
 ABC311G（https://atcoder.jp/contests/abc311/tasks/abc311_g）brute_force|prefix_sum|monotonic_stack|classical
-ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack_greedy|implemention|classical
+ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack|greedy|implemention|classical
+ABC359E（https://atcoder.jp/contests/abc359/tasks/abc359_e）monotonic_stack|implemention|classical
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
