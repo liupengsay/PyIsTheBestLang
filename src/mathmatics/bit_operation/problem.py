@@ -68,6 +68,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1973B（https://codeforces.com/contest/1973/problem/B）bit_operation|implemention|greedy
 1362C（https://codeforces.com/problemset/problem/1362/C）bit_count|bit_operation
 1981B（https://codeforces.com/contest/1981/problem/B）bit_operation|classical|range_or
+1285D（https://codeforces.com/problemset/problem/1285/D）bitwise_xor|minimax|divide_and_conquer
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -913,4 +914,34 @@ class Solution:
                     continue
                 ans |= 1 << i
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1285d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1285/D
+        tag: bitwise_xor|minimax|divide_and_conquer
+        """
+        ac.read_int()
+
+        nums = ac.read_list_ints()
+
+        def check(lst, bit):
+            if bit == -1:
+                return 0
+            one = []
+            zero = []
+            for num in lst:
+                if (num >> bit) & 1:
+                    one.append(num)
+                else:
+                    zero.append(num)
+            if not one:
+                return check(zero, bit - 1)
+            if not zero:
+                return check(one, bit - 1)
+            return min(check(one, bit - 1), check(zero, bit - 1)) + (1 << bit)
+
+        ans = check(nums, 29)
+        ac.st(ans)
         return

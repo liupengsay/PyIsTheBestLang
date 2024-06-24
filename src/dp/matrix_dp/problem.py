@@ -126,6 +126,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemen
 1729G（https://codeforces.com/contest/1729/problem/G）matrix_dp
 1811G2（https://codeforces.com/contest/1811/problem/G2）matrix_dp|comb
 1132F（https://codeforces.com/problemset/problem/1132/F）matrix_dp|classical
+1935C（https://codeforces.com/problemset/problem/1935/C）matrix_dp|greedy|sort
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3091,4 +3092,32 @@ class Solution:
                         cur = min(cur, dp[i + 1][k - 1] + dp[k][j])
                 dp[i][j] = cur
         ac.st(dp[0][n - 1])
+        return
+
+    @staticmethod
+    def cf_1935c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1935/C
+        tag: matrix_dp|greedy|sort
+        """
+
+        for _ in range(ac.read_int()):
+            n, ll = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            nums.sort(key=lambda it: it[1])
+
+            pre = [inf for _ in range(n + 1)]
+            pre[0] = 0
+            dp = [inf] * (n + 1)
+            dp[0] = [0] * (n + 1)
+            ans = 0
+            for i in range(n):
+                a, b = nums[i]
+                for j in range(i + 1, 0, -1):
+                    cur = pre[j - 1] + b + a if j > 1 else a
+                    if cur <= ll:
+                        dp[j] = min(dp[j], cur)
+                        ans = max(ans, j)
+                        pre[j] = min(pre[j], cur - b)
+            ac.st(ans)
         return

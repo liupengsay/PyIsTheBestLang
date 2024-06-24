@@ -11,10 +11,26 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
     RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
-    RangeRevereRangeAlter, RangeAddRangeMinCount
+    RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_range_set_point_get(self):
+        for _ in range(1000):
+            n = 1000
+            tree = RangeSetPointGet(n)
+            nums = [random.randint(0, 1) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(10):
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                v = random.randint(0, 1)
+                for i in range(ll, rr + 1):
+                    nums[i] = v
+                tree.range_set(ll, rr, v)
+                assert tree.get() == nums
+        return
 
     def test_range_reverse_alter_query(self):
         for _ in range(100):

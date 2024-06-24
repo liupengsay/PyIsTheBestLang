@@ -24,7 +24,8 @@ class TestGeneral(unittest.TestCase):
     def test_prime_factor(self):  # 1.891
         n = 2*10**5
         pf = PrimeFactor(n)
-        assert pf.prime_factor_cnt[2:] == [len(ls) for ls in pf.prime_factor[2:]]
+        assert pf.prime_factor_cnt[1:] == [len(ls) for ls in pf.prime_factor[1:]]
+        assert pf.prime_factor_mi_cnt[1:] == [sum(x for _, x in ls) for ls in pf.prime_factor[1:]]
         return
 
 if __name__ == '__main__':

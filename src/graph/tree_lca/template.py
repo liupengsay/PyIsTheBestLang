@@ -294,19 +294,13 @@ class HeavyChain:
     def __init__(self, dct, root=0) -> None:
         self.n = len(dct)
         self.dct = dct
-        # father of node
-        self.parent = [-1] * self.n
-        # number of subtree nodes
-        self.cnt_son = [1] * self.n
-        # heavy son
-        self.weight_son = [-1] * self.n
-        # chain forward star
-        self.top = [-1] * self.n
-        # index is original node and value is its dfs order
-        self.dfn = [0] * self.n
-        # index is dfs order and value is its original node
-        self.rev_dfn = [0] * self.n
-        self.depth = [0] * self.n
+        self.parent = [-1] * self.n # father of node
+        self.cnt_son = [1] * self.n # number of subtree nodes
+        self.weight_son = [-1] * self.n # heavy son
+        self.top = [-1] * self.n # chain forward star
+        self.dfn = [0] * self.n # index is original node and value is its dfs order
+        self.rev_dfn = [0] * self.n # index is dfs order and value is its original node
+        self.depth = [0] * self.n # depth of node
         self.build_weight(root)
         self.build_dfs(root)
         return
@@ -352,25 +346,26 @@ class HeavyChain:
         return
 
     def query_chain(self, x, y):
-        # Query the shortest path from x to y that passes through the chain segment
+        # query the shortest path from x to y that passes through the chain segment
         lst = []
         while self.top[x] != self.top[y]:
             if self.depth[self.top[x]] < self.depth[self.top[y]]:
                 x, y = y, x
+            assert self.dfn[self.top[x]] <= self.dfn[x]
             lst.append([self.dfn[self.top[x]], self.dfn[x]])
             x = self.parent[self.top[x]]
         a, b = self.dfn[x], self.dfn[y]
         if a > b:
             a, b = b, a
-        # The returned path is the dfs order of the chain, also known as dfn
+        # the returned path is the dfs order of the chain, also known as dfn!!!
         lst.append([a, b])
         return lst
 
     def query_lca(self, x, y):
-        # Query the LCA nearest common ancestor of x and y
+        # query the LCA nearest common ancestor of x and y
         while self.top[x] != self.top[y]:
             if self.depth[self.top[x]] < self.depth[self.top[y]]:
                 x, y = y, x
             x = self.parent[self.top[x]]
-        # What is returned is the actual number of the node, not the dfn
+        # returned value is the actual number of the node and not the dfn!!!
         return x if self.depth[x] < self.depth[y] else y

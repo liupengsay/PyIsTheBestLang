@@ -91,6 +91,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
 1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
 1843E（https://codeforces.com/problemset/problem/1843/E）binary_search|query_order|classical
+1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_masks
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1805,4 +1806,42 @@ class Solution:
                 ac.st(ans)
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def cf_1288d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1288/problem/D
+        tag: binary_search|bit_masks
+        """
+        n, m = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        tot = (1 << m) - 1
+        low = [min(lst) for lst in nums]
+
+        def compute(x):
+            pre = [-1] * (1 << m)
+            for i, lst in enumerate(nums):
+                if low[i] >= x:
+                    return [i, i]
+                cur = 0
+                for num in lst:
+                    cur = cur * 2 + int(num >= x)
+                mask = cur
+                nex = []
+                while cur:
+                    if pre[cur ^ tot] != -1:
+                        return [pre[cur ^ tot], i]
+                    nex.append(cur)
+                    cur = (cur - 1) & mask
+                nex.append(cur)
+                for xx in nex:
+                    pre[xx] = i
+            return []
+
+        def check(x):
+            return len(compute(x)) > 0
+
+        ans = BinarySearch().find_int_right(max(low), 10 ** 9, check)
+        ac.lst([x + 1 for x in compute(ans)])
         return

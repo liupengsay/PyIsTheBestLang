@@ -20,6 +20,7 @@ class PrimeFactor:
         # determine whether all numbers from 1 to self.n are prime numbers
         self.prime_factor = [[] for _ in range(self.n + 1)]
         self.prime_factor_cnt = [0]*(self.n+1)
+        self.prime_factor_mi_cnt = [0] * (self.n + 1)
         # calculate all factors of all numbers from 1 to self.n, including 1 and the number itself
         self.all_factor = [[], [1]] + [[1, i] for i in range(2, self.n + 1)]
         self.build()
@@ -38,6 +39,13 @@ class PrimeFactor:
         for num in range(2, self.n + 1):
             pre = num // self.min_prime[num]
             self.prime_factor_cnt[num] = self.prime_factor_cnt[pre] + int(self.min_prime[num] != self.min_prime[pre])
+            cur = num
+            p = self.min_prime[cur]
+            cnt = 0
+            while cur % p == 0:
+                cnt += 1
+                cur //= p
+            self.prime_factor_mi_cnt[num] = self.prime_factor_mi_cnt[cur] + cnt
 
         # complexity is O(nlogn)
         for num in range(2, self.n + 1):

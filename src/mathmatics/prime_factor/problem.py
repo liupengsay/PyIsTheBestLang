@@ -18,6 +18,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1627D（https://codeforces.com/contest/1627/problem/D）euler_series|prime_factor|all_factor|implemention|brute_force
 1499D（https://codeforces.com/contest/1499/problem/D）math|prime_factor_cnt|classical
 1986G1（https://codeforces.com/contest/1986/problem/G1）all_factor|brute_force|contribution_method
+546D（https://codeforces.com/problemset/problem/546/D）prime_factor_mi_cnt
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -921,4 +922,36 @@ class Solution:
             res.append(ans)
         for a in res:
             ac.st(a)
+        return
+
+    @staticmethod
+    def cf_546d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/546/D
+        tag: prime_factor_mi_cnt
+        """
+        n = 5 * 10 ** 6
+        prime_factor_mi_cnt = [0] * (n + 1)
+        for i in range(2, n + 1):
+            if not prime_factor_mi_cnt[i]:
+                prime_factor_mi_cnt[i] = 1
+                for j in range(i * i, n + 1, i):
+                    if not prime_factor_mi_cnt[j]:
+                        prime_factor_mi_cnt[j] = i
+            else:
+                cur = i
+                p = prime_factor_mi_cnt[cur]
+                cnt = 0
+                while cur % p == 0:
+                    cnt += 1
+                    cur //= p
+                prime_factor_mi_cnt[i] = prime_factor_mi_cnt[cur] + cnt
+
+        for num in range(1, n + 1):
+            prime_factor_mi_cnt[num] += prime_factor_mi_cnt[num - 1]
+
+        for _ in range(ac.read_int()):
+            a, b = ac.read_list_ints()
+            cnt = prime_factor_mi_cnt[a] - prime_factor_mi_cnt[b]
+            ac.st(cnt)
         return

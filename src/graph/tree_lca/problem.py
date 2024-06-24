@@ -40,7 +40,7 @@ ABC209D（https://atcoder.jp/contests/abc209/tasks/abc209_d）tree_ancestor
 import math
 from typing import List
 
-from src.data_structure.segment_tree.template import PointSetRangeSum
+from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_diff_array.template import TreeDiffArray
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
@@ -564,4 +564,34 @@ class Solution:
                 ac.st("Road")
             else:
                 ac.st("Town")
+        return
+
+    @staticmethod
+    def cf_343d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/343/problem/D
+        tag: heavy_chain|range_set|point_get|classical|implemention
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct, 0)
+        tree = RangeSetPointGet(n, -1)
+        tree.build([0]*n)
+        for _ in range(ac.read_int()):
+            op, v = ac.read_list_ints_minus_one()
+            if op == 0:
+                start = heavy.dfn[v]
+                end = start + heavy.cnt_son[v] - 1
+                tree.range_set(start, end, 1)
+            elif op == 1:
+                x, y = v, 0
+                for a, b in heavy.query_chain(x, y):
+                    tree.range_set(a, b, 0)
+            else:
+                ans = tree.point_get(heavy.dfn[v])  # important!!!
+                ac.st(ans)
         return
