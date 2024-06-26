@@ -1461,6 +1461,241 @@ class PointAddRangeSum1Sum2:
         return ans, cnt, t
 
 
+class PointSetPreMinPostMin:
+
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.pre = [initial] * (4 * n)
+        self.post = [initial] * (4 * n)
+        return
+
+    def _make_tag(self, i, val):
+        self.pre[i] = val
+        self.post[i] = val
+        return
+
+    def _push_up(self, i):
+        self.pre[i] = min(self.pre[i << 1], self.pre[(i << 1) | 1])
+        self.post[i] = min(self.post[i << 1], self.post[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.pre[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def pre_min(self, ind):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        while stack:
+            s, t, i = stack.pop()
+            if t <= ind:
+                ans = min(ans, self.pre[i])
+                continue
+            m = s + (t - s) // 2
+            if ind >= s:
+                stack.append((s, m, i << 1))
+            if ind >= m + 1:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def post_min(self, ind):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        while stack:
+            s, t, i = stack.pop()
+            if s >= ind:
+                ans = min(ans, self.post[i])
+                continue
+            m = s + (t - s) // 2
+            if m >= ind:
+                stack.append((s, m, i << 1))
+            if t >= ind:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def bisect_left_post_min(self, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.post[(i << 1) | 1] >= val:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
+    def bisect_right_pre_min(self, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.pre[i << 1] >= val:
+                s, t, i = m + 1, t, (i << 1) | 1
+            else:
+                s, t, i = s, m, i << 1
+        return t
+
+
+class PointSetPreMaxPostMin:
+
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.pre = [-initial] * (4 * n)
+        self.post = [initial] * (4 * n)
+        return
+
+    def _make_tag(self, i, val):
+        self.pre[i] = val
+        self.post[i] = val
+        return
+
+    def _push_up(self, i):
+        self.pre[i] = max(self.pre[i << 1], self.pre[(i << 1) | 1])
+        self.post[i] = min(self.post[i << 1], self.post[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.pre[i]
+                nums[s] = val
+                continue
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def point_set(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                self._make_tag(i, val)
+                break
+            m = s + (t - s) // 2
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        while i > 1:
+            i //= 2
+            self._push_up(i)
+        return
+
+    def pre_max(self, ind):
+        stack = [(0, self.n - 1, 1)]
+        ans = -self.initial
+        while stack:
+            s, t, i = stack.pop()
+            if t <= ind:
+                ans = max(ans, self.pre[i])
+                continue
+            m = s + (t - s) // 2
+            if ind >= s:
+                stack.append((s, m, i << 1))
+            if ind >= m + 1:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def post_min(self, ind):
+        stack = [(0, self.n - 1, 1)]
+        ans = self.initial
+        while stack:
+            s, t, i = stack.pop()
+            if s >= ind:
+                ans = min(ans, self.post[i])
+                continue
+            m = s + (t - s) // 2
+            if m >= ind:
+                stack.append((s, m, i << 1))
+            if t >= ind:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def bisect_left_post_min(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.post[(i << 1) | 1] >= val and m >= ind:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return t
+
+    def bisect_right_pre_max(self, ind, val):
+        s, t, i = 0, self.n - 1, 1
+        while s < t:
+            m = s + (t - s) // 2
+            if self.pre[i << 1] <= val and m + 1 <= ind:
+                s, t, i = m + 1, t, (i << 1) | 1
+            else:
+                s, t, i = s, m, i << 1
+        return t
+
 class PointAddRangeSumMod5:
 
     def __init__(self, n, initial=0):
@@ -3303,6 +3538,7 @@ class RangeRevereRangeBitCount:
                 val -= self.cover[i << 1]
                 s, t, i = m + 1, t, (i << 1) | 1
         return t
+
 
 class RangeRevereRangeAlter:
     def __init__(self, n):

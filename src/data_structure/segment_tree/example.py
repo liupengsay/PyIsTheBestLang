@@ -11,10 +11,46 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
     RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
-    RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet
+    RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet, PointSetPreMinPostMin, PointSetPreMaxPostMin
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_set_pre_min_post_min(self):
+        for _ in range(1000):
+            n = 1000
+            tree = PointSetPreMinPostMin(n)
+            nums = [random.randint(0, n) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(10):
+                ind = random.randint(0, n - 1)
+                v = random.randint(0, n)
+                nums[ind] = v
+                tree.point_set(ind, v)
+                assert tree.get() == nums
+                ind = random.randint(0, n - 1)
+                assert tree.pre_min(ind) == min(nums[:ind + 1])
+
+                assert tree.post_min(ind) == min(nums[ind:])
+        return
+
+    def test_point_set_pre_max_post_min(self):
+        for _ in range(1000):
+            n = 1000
+            tree = PointSetPreMaxPostMin(n)
+            nums = [random.randint(0, n) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(10):
+                ind = random.randint(0, n - 1)
+                v = random.randint(0, n)
+                nums[ind] = v
+                tree.point_set(ind, v)
+                assert tree.get() == nums
+                ind = random.randint(0, n - 1)
+                assert tree.pre_max(ind) == max(nums[:ind + 1])
+
+                assert tree.post_min(ind) == min(nums[ind:])
+        return
 
     def test_range_set_point_get(self):
         for _ in range(1000):
@@ -102,7 +138,7 @@ class TestGeneral(unittest.TestCase):
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)
             num = random.randint(-high, high)
-            for i in range(ll, rr+1):
+            for i in range(ll, rr + 1):
                 nums[i] += num
             tree.range_add(ll, rr, num)
 

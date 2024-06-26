@@ -84,6 +84,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 1538E（https://codeforces.com/contest/1538/problem/E）implemention|segment_tree|merge
 1741F（https://codeforces.com/contest/1741/problem/F）segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
 242E（https://codeforces.com/contest/242/problem/E）segment_tree|range_xor|range_reverse|range_sum|range_bit_count
+1982F（https://codeforces.com/contest/1982/problem/F）point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -178,7 +179,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
-    PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree
+    PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
@@ -2392,7 +2393,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def abc_285f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc285/tasks/abc285_f
         tag: segment_tree|point_add|range_sum|range_ascend_sub_cnt|point_set
@@ -3654,4 +3655,62 @@ class Solution:
         for i in range(q):
             if queries[i][0] == 1:
                 ac.st(ans[i])
+        return
+
+    @staticmethod
+    def cf_1982f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1982/problem/F
+        tag: point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
+        """
+
+        for _ in range(ac.read_int()):  # TLE
+            n = ac.read_int() + 2
+            nums = [-inf] + ac.read_list_ints() + [inf]
+
+            tree = PointSetPreMaxPostMin(n)
+            tree.build(nums)
+
+            low = PointSetPreMinPostMin(n)
+            low.build([1 if not i or nums[i] >= nums[i - 1] else 0 for i in range(n)])
+
+            def query_rr():
+                ind = low.bisect_left_post_min(1)
+                v = tree.pre_max(ind)
+                r = tree.bisect_left_post_min(ind, v)
+                return r
+
+            def query_ll():
+                ind = low.bisect_right_pre_min(1)
+                v = tree.post_min(ind)
+                l = tree.bisect_right_pre_max(ind, v)
+                return l
+
+            if low.post[1]:
+                ac.lst([-1, -1])
+            else:
+                ll = query_ll()
+                rr = query_rr()
+                ac.lst([ll, rr])
+            for _ in range(ac.read_int()):
+                pos, val = ac.read_list_ints()
+                nums[pos] = val
+                tree.point_set(pos, val)
+                if pos:
+                    if nums[pos] >= nums[pos - 1]:
+                        low.point_set(pos, 1)
+                    else:
+                        low.point_set(pos, 0)
+                if pos + 1 < n:
+                    if nums[pos + 1] >= nums[pos]:
+                        low.point_set(pos + 1, 1)
+                    else:
+                        low.point_set(pos + 1, 0)
+
+                if low.post[1]:
+                    ac.lst([-1, -1])
+                else:
+                    ll = query_ll()
+                    rr = query_rr()
+                    ac.lst([ll, rr])
         return
