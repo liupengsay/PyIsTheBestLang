@@ -74,6 +74,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1822G2（https://codeforces.com/contest/1822/problem/G2）eratosthenes_sieve|get_all_factor_square
 1811E（https://codeforces.com/contest/1811/problem/E）n_base
 1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
+1982D（https://codeforces.com/contest/1982/problem/D）peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1343,4 +1344,25 @@ class Solution:
                         ans = a * (a + 1) // 2 - 1 + (k - a) * a
                     ans += min(n % a, k) + 1
                     ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1982d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1982/problem/D
+        tag: peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
+        """
+        for _ in range(ac.read_int()):
+            m, n, k = ac.read_list_ints()
+            grid = [ac.read_list_ints() for _ in range(m)]
+            st = [[2 * int(w) - 1 for w in ac.read_str()] for _ in range(m)]
+            ans = g = 0
+            for i in range(m):
+                for j in range(n):
+                    ans += grid[i][j] * st[i][j]
+            pre = PreFixSumMatrix(st)
+            for i in range(m - k + 1):
+                for j in range(n - k + 1):
+                    g = math.gcd(g, -pre.query(i, j, i + k - 1, j + k - 1))
+            ac.st("YES" if g == ans == 0 or (g and ans % g == 0) else "NO")
         return

@@ -128,6 +128,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greedy
 1984F（https://codeforces.com/contest/1984/problem/F）brute_force|brain_teaser|linear_dp
 1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greedy
+1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointer
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

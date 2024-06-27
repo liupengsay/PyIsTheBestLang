@@ -69,6 +69,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1362C（https://codeforces.com/problemset/problem/1362/C）bit_count|bit_operation
 1981B（https://codeforces.com/contest/1981/problem/B）bit_operation|classical|range_or
 1285D（https://codeforces.com/problemset/problem/1285/D）bitwise_xor|minimax|divide_and_conquer
+1982E（https://codeforces.com/contest/1982/problem/E）divide_and_conquer|bit_operation|brain_teaser|segment_tree
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -944,4 +945,55 @@ class Solution:
 
         ans = check(nums, 29)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1982e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1982/problem/E
+        tag: divide_and_conquer|bit_operation|brain_teaser|segment_tree
+        """
+        mod = 10 ** 9 + 7
+
+        def compute(x):
+            return (x * (x + 1) // 2) % mod
+
+        @lru_cache(None)
+        def dfs(nn, kk):
+            m = nn.bit_length()
+            if m <= kk:
+                return compute(nn + 1), nn + 1, nn + 1
+            if nn == 0:
+                return compute(1), 1, 1
+            if kk == 0:
+                return compute(1), 1, 0
+            m -= 1
+            res1, s1, e1 = dfs((1 << m) - 1, kk)
+            res2, s2, e2 = dfs(nn - (1 << m), kk - 1)
+            res1 -= compute(s1)
+            if not s1 == e1 == 1 << m:
+                res1 -= compute(e1)
+
+            res2 -= compute(s2)
+            if not s2 == e2 == nn - (1 << m) + 1:
+                res2 -= compute(e2)
+
+            res = res1 + res2
+            if s1 == e1 == 1 << m and s2 == e2 == nn - (1 << m) + 1:
+                res += compute(s1 + s2)
+                return res % mod, s1 + s2, e1 + e2
+            elif s1 == e1 == 1 << m:
+                res += compute(s1 + s2) + compute(e2)
+                return res % mod, s1 + s2, e2
+            elif s2 == e2 == nn - (1 << m) + 1:
+                res += compute(s1) + compute(e1 + e2)
+                return res % mod, s1, e2 + e1
+
+            res += compute(s1) + compute(s2) + compute(e1) + compute(e2)
+            return res % mod, s1, e2
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            ans = dfs(n - 1, k)[0]
+            ac.st(ans)
         return
