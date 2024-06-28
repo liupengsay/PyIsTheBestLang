@@ -127,6 +127,8 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemen
 1811G2（https://codeforces.com/contest/1811/problem/G2）matrix_dp|comb
 1132F（https://codeforces.com/problemset/problem/1132/F）matrix_dp|classical
 1935C（https://codeforces.com/problemset/problem/1935/C）matrix_dp|greedy|sort
+1989B（https://codeforces.com/contest/1989/problem/B）continuous_lcs|dp|classical
+1517D（https://codeforces.com/contest/1517/problem/D）implemention|brain_teaser|observation|even|matrix_dp|bfs
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3120,4 +3122,64 @@ class Solution:
                         ans = max(ans, j)
                         pre[j] = min(pre[j], cur - b)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1989b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1989/problem/B
+        tag: continuous_lcs|dp|classical
+        """
+
+        for _ in range(ac.read_int()):
+            a = ac.read_str()
+            b = ac.read_str()
+            m = len(a)
+            n = len(b)
+            dp = [0] * (n + 1)
+            for i in range(m):
+                for j in range(n - 1, -1, -1):
+                    if a[i] == b[j]:
+                        dp[j + 1] = max(dp[j + 1], dp[j] + 1)
+            ans = m + n - max(dp)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1517d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1517/problem/D
+        tag: implemention|brain_teaser|observation|even|matrix_dp|bfs
+        """
+        m, n, k = ac.read_list_ints()
+        col = []
+        for _ in range(m):
+            col.extend(ac.read_list_ints() + [0])
+
+        row = []
+        for _ in range(m - 1):
+            row.extend(ac.read_list_ints())
+        row.extend([0] * n)
+
+        if k % 2:
+            for _ in range(m):
+                ac.lst([-1] * n)
+            return
+        pre = [0] * m * n
+        for _ in range(k // 2):
+            cur = [inf] * m * n
+            for x in range(m):
+                for y in range(n):
+                    if x:
+                        cur[(x - 1) * n + y] = min(cur[(x - 1) * n + y], pre[x * n + y] + row[(x - 1) * n + y])
+                    if x + 1 < m:
+                        cur[(x + 1) * n + y] = min(cur[(x + 1) * n + y], pre[x * n + y] + row[x * n + y])
+                    if y:
+                        cur[x * n + y - 1] = min(cur[x * n + y - 1], pre[x * n + y] + col[x * n + y - 1])
+                    if y + 1 < n:
+                        cur[x * n + y + 1] = min(cur[x * n + y + 1], pre[x * n + y] + col[x * n + y])
+            pre = cur[:]
+        for i in range(m):
+            ans = [pre[i * n + j] * 2 if pre[i * n + j] < inf else -1 for j in range(n)]
+            ac.lst(ans)
         return

@@ -75,6 +75,7 @@ ABC226F（https://atcoder.jp/contests/abc226/tasks/abc226_f）bag_dp|brute_force
 4499（https://www.acwing.com/problem/content/4499/）partition_method|counter
 5058（https://www.acwing.com/problem/content/5058/）math|comb|mod
 
+1（https://www.codechef.com/problems/LUCMAT）math|comb|brute_force|classical
 
 catalan_number（https://oi-wiki.org/math/combinatorics/catalan/）
 """
@@ -1173,3 +1174,46 @@ class Solution:
         ans += comb2(n - ((limit + 1) * 2) + 2) * math.comb(3, 1)
         ans -= comb2(n - ((limit + 1) * 3) + 2)
         return ans
+
+    @staticmethod
+    def cc_1_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/LUCMAT
+        tag: math|comb|brute_force|classical
+        """
+        mod = 10 ** 9 + 7
+        rev = pow(2, -1, mod)
+        cb = Combinatorics(2 * 10 ** 5 + 10, mod)
+        for _ in range(ac.read_int()):
+            n, m, k, x, y = ac.read_list_ints()
+            p = x * pow(y, -1, mod) % mod
+            p = (1 - 2 * p) % mod
+            pre = 1
+            ans = 0
+            for s in range(1, min(k + 1, n + 1)):
+                pre = (pre * p) % mod
+                even = rev * (1 + pre) % mod
+                ans += cb.comb(n, s) * pow(even, m, mod)
+            ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cc_1_2(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/LUCMAT
+        tag: math|comb|
+        """
+        mod = 10 ** 9 + 7
+
+        cb = Combinatorics(2 * 10 ** 5 + 10, mod)
+        for _ in range(ac.read_int()):
+            n, m, k, x, y = ac.read_list_ints()
+            p = x * pow(y, -1, mod) % mod
+            odd = 0
+            even = 1
+            ans = 0
+            for s in range(1, min(k + 1, n + 1)):
+                odd, even = (even * p + odd * (1 - p)) % mod, (odd * p + even * (1 - p)) % mod
+                ans += cb.comb(n, s) * pow(even, m, mod)
+            ac.st(ans % mod)
+        return

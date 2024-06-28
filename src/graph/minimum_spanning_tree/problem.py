@@ -46,6 +46,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1624G（https://codeforces.com/contest/1624/problem/G）or_mst|classical
 1857G（https://codeforces.com/contest/1857/problem/G）mst|brain_teaser|classical
 1981E（https://codeforces.com/contest/1981/problem/E）scan_line|union_find|classical|implemention|mst
+1242B（https://codeforces.com/contest/1242/problem/B）mst|observation|prim|brain_teaser|implemention|bfs
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
@@ -1090,4 +1091,34 @@ class Solution:
                 if uf.union(i, j):
                     ans += w
             ac.st(ans if uf.part == 1 else -1)
+        return
+
+    @staticmethod
+    def cf_1242b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1242/problem/B
+        tag: mst|observation|prim|brain_teaser|implemention|bfs
+        """
+        n, m = ac.read_list_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            if i > j:
+                i, j = j, i
+            dct[i].add(j)
+            dct[j].add(i)
+
+        ans = 0
+        zero = []
+        rest = set(range(n))
+        while rest:
+            if zero:
+                root = zero.pop()
+            else:
+                root = rest.pop()
+                ans += 1
+            cur = {x for x in rest if root not in dct[x]}
+            zero += cur
+            rest -= cur
+        ac.st(ans - 1)
         return

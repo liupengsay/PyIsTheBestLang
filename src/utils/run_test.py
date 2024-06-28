@@ -334,7 +334,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1982"
+        num = "1989"
         print(f"https://codeforces.com/contest/{num}")
         for i in range(8):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))

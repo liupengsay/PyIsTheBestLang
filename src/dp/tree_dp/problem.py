@@ -81,6 +81,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 1923E（https://codeforces.com/contest/1923/problem/E）heuristic_merge|tree_dp|counter|classical
 1984E（https://codeforces.com/contest/1984/problem/E）reroot_dp|mis|maximum_independent_set
+1363E（https://codeforces.com/problemset/problem/1363/E）greedy|implemention|observation
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1721,4 +1722,53 @@ class Solution:
 
                 index[i] = ind
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1363e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1363/E
+        tag: greedy|implemention|observation
+        """
+        n = ac.read_int()
+        a = []
+        b = []
+        c = []
+        for _ in range(n):
+            x, y, z = ac.read_list_ints()
+            a.append(x)
+            b.append(y)
+            c.append(z)
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        stack = [(0, -1)]
+        sub = [0 for _ in range(n)]
+        ans = 0
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append((~x, fa))
+                for y in dct[x]:
+                    if y != fa:
+                        a[y] = min(a[y], a[x])
+                        stack.append((y, x))
+            else:
+                x = ~x
+                pos = neg = 0
+                if b[x] and not c[x]:
+                    pos += 1
+                elif not b[x] and c[x]:
+                    neg += 1
+                for y in dct[x]:
+                    if y != fa:
+                        if sub[y] > 0:
+                            pos += sub[y]
+                        else:
+                            neg -= sub[y]
+                ans += min(pos, neg) * a[x] * 2
+                sub[x] = pos - neg
+        ac.st(ans if sub[0] == 0 else -1)
         return

@@ -87,6 +87,9 @@ ABC257G（https://atcoder.jp/contests/abc257/tasks/abc257_g）z_function|point_s
 18（https://poj.org/problem?id=1509）
 19（https://codeforces.com/gym/103585/problem/K）
 
+
+1（https://www.codechef.com/problems/BREAKSTRING）kmp|z_function
+
 """
 import bisect
 import math
@@ -1279,5 +1282,28 @@ class Solution:
                         break
                 if flag:
                     ans += pre + 1
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/BREAKSTRING
+        tag: kmp|z_function
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            if n % 2:
+                ac.st(0)
+                continue
+            z1 = KMP().z_function(s)
+            z2 = KMP().z_function(s[::-1])
+            ans = 0
+            for i in range(n // 2 + 1):
+                p = i
+                r = n // 2 - i
+                if z1[i] >= p and z2[r] >= r:
+                    ans += 1
             ac.st(ans)
         return
