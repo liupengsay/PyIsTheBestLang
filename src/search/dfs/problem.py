@@ -55,6 +55,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
 246E（https://codeforces.com/problemset/problem/246/E）tree_array|offline_query|range_unique|dfs_order
 1076E（https://codeforces.com/problemset/problem/1076/E）tree_diff_array|dfs|classical
+383C（https://codeforces.com/problemset/problem/383/C）dfs_order|odd_even|range_add|point_get
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -1306,4 +1307,49 @@ class Solution:
         visit = [0] * 2 * n
         dfs(0)
         ac.st(ans[0])
+        return
+
+    @staticmethod
+    def cf_383c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/383/C
+        tag: dfs_order|odd_even|range_add|point_get
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        res = DFS().gen_bfs_order_iteration(dct, 0)
+        start, end, depth, parent = res
+        dfn = [0] * n
+        for i in range(n):
+            dfn[start[i]] = i
+
+        odd_tree = RangeAddPointGet(n)
+        odd_tree.build([nums[dfn[i]] for i in range(n)])
+        even_tree = RangeAddPointGet(n)
+        even_tree.build([nums[dfn[i]] for i in range(n)])
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                v, c = lst[1], lst[2]
+                v -= 1
+                if depth[v] % 2:
+                    even_tree.range_add(start[v], end[v], -c)
+                    odd_tree.range_add(start[v], end[v], c)
+                else:
+                    even_tree.range_add(start[v], end[v], c)
+                    odd_tree.range_add(start[v], end[v], -c)
+            else:
+                v = lst[1]
+                v -= 1
+                if depth[v] % 2:
+                    ans = odd_tree.point_get(start[v])
+                else:
+                    ans = even_tree.point_get(start[v])
+                ac.st(ans)
         return

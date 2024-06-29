@@ -23,6 +23,7 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 1760F（https://codeforces.com/contest/1760/problem/F）circle_section|brute_force
 1237D（https://codeforces.com/problemset/problem/1237/D）two_pointer|implemention|circular_array
+1372D（https://codeforces.com/problemset/problem/1372/D）circular_array|brain_teaser|brute_force|observation|circular_to_linear
 
 ===================================AtCoder===================================
 ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
@@ -339,4 +340,21 @@ class Solution:
             if stack[0] == i:
                 stack.popleft()
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1372d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1372/D
+        tag: circular_array|brain_teaser|brute_force|observation|circular_to_linear
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums += nums
+        odd = ac.accumulate([nums[i] * (i % 2) for i in range(2 * n)])
+        even = ac.accumulate([nums[i] * (1 - i % 2) for i in range(2 * n)])
+        ans = 0
+        for i in range(n):
+            ans = max(ans, max(odd[i + n] - odd[i], even[i + n] - even[i]))
+        ac.st(ans)
         return

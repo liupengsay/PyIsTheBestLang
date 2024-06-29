@@ -43,6 +43,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 1873H（https://codeforces.com/contest/1873/problem/H）circle_based_tree|topological_sort
 1029E（https://codeforces.com/contest/1029/problem/E）greedy|implemention|rooted_tree|depth|degree
 1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greedy
+1388D（https://codeforces.com/problemset/problem/1388/D）topological_sort|dag_dp|heuristic_merge|classical
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
@@ -1041,4 +1042,61 @@ class Solution:
                     degree[p] = 0
                 ans += cur
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1388d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1388/D
+        tag: topological_sort|dag_dp|heuristic_merge|classical
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        degree = [0] * n
+        for i in range(n):
+            if b[i] != -1:
+                degree[b[i] - 1] += 1
+        res = []
+        ans = 0
+        stack = [i for i in range(n) if degree[i] == 0]
+        ind = [-1] * n
+        path = [[] for _ in range(n)]
+        for i in stack:
+            ind[i] = i
+            path[i].append(i)
+        while stack:
+            nex = []
+            for i in stack:
+                ans += a[i]
+            for i in stack:
+                j = b[i]
+                if j == -1:
+                    res.extend(path[ind[i]][::-1])
+                    continue
+                j -= 1
+                if a[i] < 0:
+                    res.extend(path[ind[i]][::-1])
+                    path[ind[i]] = []
+                    ind[i] = -1
+                degree[j] -= 1
+                a[j] += max(a[i], 0)
+                if ind[j] == -1 and ind[i] != -1:
+                    ind[j] = ind[i]
+                elif ind[i] != -1 and ind[j] != -1:
+                    x, y = ind[i], ind[j]
+                    if len(path[x]) < len(path[y]):
+                        path[y].extend(path[x])
+                        ind[j] = y
+                    else:
+                        path[x].extend(path[y])
+                        ind[j] = x
+                elif ind[j] == -1:
+                    ind[j] = j
+                if degree[j] == 0:
+                    nex.append(j)
+                    path[ind[j]].append(j)
+            stack = nex[:]
+        ac.st(ans)
+        ac.lst([x + 1 for x in res[::-1]])
         return

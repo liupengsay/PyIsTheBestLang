@@ -85,6 +85,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 1741F（https://codeforces.com/contest/1741/problem/F）segment_tree|discretization|range_add|range_sum|bisect_left|bisect_right
 242E（https://codeforces.com/contest/242/problem/E）segment_tree|range_xor|range_reverse|range_sum|range_bit_count
 1982F（https://codeforces.com/contest/1982/problem/F）point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
+620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -3713,4 +3714,34 @@ class Solution:
                     ll = query_ll()
                     rr = query_rr()
                     ac.lst([ll, rr])
+        return
+
+    @staticmethod
+    def cf_620e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/620/E
+        tag: range_set|range_or|dfs_order
+        """
+        n, q = ac.read_list_ints()
+        c = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        start, end = DFS().gen_bfs_order_iteration(dct, 0)
+        dfn = [0] * n
+        for i in range(n):
+            dfn[start[i]] = i
+        tree = RangeSetRangeOr(n)
+        tree.build([1 << c[dfn[i]] for i in range(n)])
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                v, c = lst[1], lst[2]
+                tree.range_set(start[v - 1], end[v - 1], 1 << c)
+            else:
+                v = lst[1]
+                ans = tree.range_or(start[v - 1], end[v - 1])
+                ac.st(ans.bit_count())
         return

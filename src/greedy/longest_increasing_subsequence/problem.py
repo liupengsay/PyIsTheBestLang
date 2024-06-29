@@ -26,6 +26,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
 486E（https://codeforces.com/problemset/problem/486/E）lis|greedy|brain_teaser|classical
 650D（https://codeforces.com/problemset/problem/650/D）lis|brain_teaser|classical|offline_query
+1922E（https://codeforces.com/problemset/problem/1922/E）lis|construction
 
 =====================================LuoGu======================================
 P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence

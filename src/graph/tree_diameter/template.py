@@ -1,6 +1,38 @@
 
 from src.utils.fast_io import inf
 
+class GraphDiameter:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def get_diameter(dct, root=0):
+        n = len(dct)
+        dis = [inf] * n
+        stack = [root]
+        dis[root] = 0
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if dis[j] == inf:
+                        dis[j] = dis[i] + 1
+                        nex.append(j)
+            stack = nex[:]
+        root = dis.index(max(dis))
+        dis = [inf] * n
+        stack = [root]
+        dis[root] = 0
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if dis[j] == inf:
+                        dis[j] = dis[i] + 1
+                        nex.append(j)
+            stack = nex[:]
+        return max(dis)
+
 
 class TreeDiameter:
     def __init__(self, dct):

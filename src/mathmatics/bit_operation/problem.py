@@ -70,6 +70,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1981B（https://codeforces.com/contest/1981/problem/B）bit_operation|classical|range_or
 1285D（https://codeforces.com/problemset/problem/1285/D）bitwise_xor|minimax|divide_and_conquer
 1982E（https://codeforces.com/contest/1982/problem/E）divide_and_conquer|bit_operation|brain_teaser|segment_tree
+1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -996,4 +997,42 @@ class Solution:
             n, k = ac.read_list_ints()
             ans = dfs(n - 1, k)[0]
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1303d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1303/D
+        tag: bit_operation|greedy|implemention
+        """
+
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            cnt = [0] * 64
+            for num in nums:
+                cnt[num.bit_length() - 1] += 1
+            ans = 0
+            for x in range(64):
+                if x:
+                    cnt[x] += cnt[x - 1] // 2
+                if not n & (1 << x):
+                    continue
+                if cnt[x] == 0:
+                    for i in range(x + 1, 64):
+                        if cnt[i]:
+                            for j in range(i - 1, x - 1, -1):
+                                ans += 1
+                                cnt[j + 1] -= 1
+                                cnt[j] += 2
+                            break
+                if cnt[x]:
+                    cnt[x] -= 1
+                    n ^= (1 << x)
+                else:
+                    break
+            if n:
+                ac.st(-1)
+            else:
+                ac.st(ans)
         return

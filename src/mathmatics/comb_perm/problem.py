@@ -54,6 +54,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 414B（https://codeforces.com/contest/414/problem/B）min_prime|partition_method|counter|dp
 1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
+1420D（https://codeforces.com/problemset/problem/1420/D）contribution_method|comb|range
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -84,6 +85,7 @@ from collections import Counter, defaultdict
 from functools import lru_cache
 from typing import List
 
+from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.comb_perm.template import Combinatorics, Lucas
 from src.mathmatics.number_theory.template import NumFactor
 from src.mathmatics.prime_factor.template import PrimeFactor
@@ -968,7 +970,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def abc_266g(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc266/tasks/abc266_g
         tag: comb|brain_teaser|inclusion_exclusion|classical
@@ -1216,4 +1218,25 @@ class Solution:
                 odd, even = (even * p + odd * (1 - p)) % mod, (odd * p + even * (1 - p)) % mod
                 ans += cb.comb(n, s) * pow(even, m, mod)
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cf_1420d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1420/D
+        tag: contribution_method|comb|range
+        """
+        mod = 998244353
+        cb = Combinatorics(3 * 10 ** 5, mod)
+        n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        lst = SortedList()
+        nums.sort()
+        ans = 0
+        for ll, rr in nums:
+            cur = len(lst) - lst.bisect_left(ll)
+            if cur >= k - 1:
+                ans += cb.comb(cur, k - 1)
+            lst.add(rr)
+        ac.st(ans % mod)
         return

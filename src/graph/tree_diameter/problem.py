@@ -13,6 +13,7 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 ===================================CodeForces===================================
 1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
+455C（https://codeforces.com/problemset/problem/455/C）bfs|graph_diameter|union_find|implemention|diameter_merge
 
 ====================================AtCoder=====================================
 ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
@@ -27,7 +28,7 @@ ABC221F（https://atcoder.jp/contests/abc221/tasks/abc221_f）diameter|linear_dp
 from collections import Counter
 from typing import List
 
-from src.graph.tree_diameter.template import TreeDiameter
+from src.graph.tree_diameter.template import TreeDiameter, GraphDiameter
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO, inf
 
@@ -302,4 +303,48 @@ class Solution:
             ndp[2] = (dp[1] + dp[2]) * c + dp[2]
             dp = [x % mod for x in ndp]
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def cf_455c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/455/C
+        tag: bfs|graph_diameter|union_find|implemention|diameter_merge
+        """
+        n, m, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        uf = UnionFind(n)
+        for i, j in edges:
+            uf.union(i, j)
+            dct[i].append(j)
+            dct[j].append(i)
+        diameter = [0] * n
+        group = uf.get_root_part()
+        for g in group:
+            if len(group[g]) > 1:
+                lst = group[g][:]
+                m = len(lst)
+                ind = {num: i for i, num in enumerate(lst)}
+                edge = [[] for _ in range(m)]
+                for i in lst:
+                    for j in dct[i]:
+                        edge[ind[i]].append(ind[j])
+                        edge[ind[j]].append(ind[i])
+                diameter[g] = GraphDiameter().get_diameter(edge)
+
+        def check(aa, bb):
+            if aa > bb:
+                aa, bb = bb, aa
+            return max((aa + 1) // 2 + 1, bb // 2) + (bb + 1) // 2
+
+        for _ in range(q):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] == 0:
+                ac.st(diameter[uf.find(lst[1])])
+            else:
+                x, y = lst[1:]
+                a, b = diameter[uf.find(x)], diameter[uf.find(y)]
+                if uf.union(x, y):
+                    diameter[uf.find(x)] = check(a, b)
         return

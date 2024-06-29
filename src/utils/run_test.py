@@ -1,6 +1,7 @@
 import os
 import random
 
+import webbrowser
 import unittest
 from collections import defaultdict, Counter
 
@@ -335,27 +336,29 @@ class TestGeneral(unittest.TestCase):
 
     def test_codeforces_contest(self):
         num = "1989"
-        print(f"https://codeforces.com/contest/{num}")
+        webbrowser.open(f"https://codeforces.com/contest/{num}")
         for i in range(8):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
-            print(url)
+            webbrowser.open(url)
         return
 
     def test_codeforces_practice(self):
+        webbrowser.open("https://codeforces.com/submissions/liupengsay")
         for x in range(1700, 2200, 100):
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
+            webbrowser.open(url)
             print(url)
         return
 
     def test_atcoder_problem(self):
         num = "359"
-        print(f"https://atcoder.jp/contests/abc{num}")
-        print(f"https://atcoder.jp/contests/abc{num}/standings")
-        print(f"https://atcoder.jp/contests/abc{num}/results")
-        print(f"https://atcoder.jp/contests/abc{num}/submissions/me")
+        webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
+        webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
+        webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
+        webbrowser.open(f"https://atcoder.jp/contests/abc{num}/submissions/me")
         for i in range(8):
             url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i+ord("a"))
-            print(url)
+            webbrowser.open(url)
         print("=================")
         for i in range(8):
             w = chr(i+ord("a"))
@@ -365,13 +368,13 @@ class TestGeneral(unittest.TestCase):
 
     def test_atcoder_problem_arc(self):
         num = "210"
-        print(f"https://atcoder.jp/contests/arc{num}")
-        print(f"https://atcoder.jp/contests/arc{num}/standings")
-        print(f"https://atcoder.jp/contests/arc{num}/results")
-        print(f"https://atcoder.jp/contests/arc{num}/submissions/me")
+        webbrowser.open(f"https://atcoder.jp/contests/arc{num}")
+        webbrowser.open(f"https://atcoder.jp/contests/arc{num}/standings")
+        webbrowser.open(f"https://atcoder.jp/contests/arc{num}/results")
+        webbrowser.open(f"https://atcoder.jp/contests/arc{num}/submissions/me")
         for i in range(8):
             url = f"https://atcoder.jp/contests/arc{num}/tasks/arc{num}_" + chr(i+ord("a"))
-            print(url)
+            webbrowser.open(url)
         print("=================")
         for i in range(8):
             w = chr(i+ord("a"))

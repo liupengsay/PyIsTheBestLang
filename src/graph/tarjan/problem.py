@@ -39,6 +39,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component|pdcc|undirected|odd_circle
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
 1986E（https://codeforces.com/contest/1986/problem/E）cutting_edge|tarjan|brute_force
+118E（https://codeforces.com/problemset/problem/118/E）tarjan|cutting_edge|order|classical
 
 ===================================CodeForces===================================
 ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
@@ -1032,4 +1033,35 @@ class Solution:
                         cur = sub[j]
                     ans = min(ans, cur * (cur - 1) // 2 + (n - cur) * (n - cur - 1) // 2)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_118e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/118/E
+        tag: tarjan|cutting_edge|order|classical
+        """
+        n, m = ac.read_list_ints()
+        edge = [[] for _ in range(n)]
+        nums = []
+        for _ in range(m):
+            x, y = ac.read_list_ints_minus_one()
+            edge[x].append(y)
+            edge[y].append(x)
+            nums.append((x, y))
+
+        res = Tarjan().get_cut(n, edge)
+        cutting_point, cutting_edge, parent, order = res
+        if not cutting_edge:
+            for x, y in nums:
+                if x == parent[y]:
+                    ac.lst([x+1, y+1])
+                elif y == parent[x]:
+                    ac.lst([y+1, x+1])
+                elif order[x] > order[y]:
+                    ac.lst([x + 1, y + 1])
+                else:
+                    ac.lst([y + 1, x + 1])
+        else:
+            ac.st(0)
         return

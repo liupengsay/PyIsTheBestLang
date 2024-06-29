@@ -47,6 +47,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1857G（https://codeforces.com/contest/1857/problem/G）mst|brain_teaser|classical
 1981E（https://codeforces.com/contest/1981/problem/E）scan_line|union_find|classical|implemention|mst
 1242B（https://codeforces.com/contest/1242/problem/B）mst|observation|prim|brain_teaser|implemention|bfs
+1245D（https://codeforces.com/problemset/problem/1245/D）prim|specific_plan|virtual_source|classical
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
@@ -1121,4 +1122,51 @@ class Solution:
             zero += cur
             rest -= cur
         ac.st(ans - 1)
+        return
+
+    @staticmethod
+    def cf_1245d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1245/D
+        tag: prim|specific_plan|virtual_source|classical
+        """
+        n = ac.read_int()
+        nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
+        c = [0] + ac.read_list_ints()
+        k = [0] + ac.read_list_ints()
+
+        def dis(ii, jj):
+            if ii == 0:
+                return c[jj]
+            if jj == 0:
+                return c[ii]
+            return (k[ii] + k[jj]) * (abs(nums[ii][0] - nums[jj][0]) + abs(nums[ii][1] - nums[jj][1]))
+
+        n = len(nums)
+        ans = nex = 0
+        rest = set(list(range(1, n)))
+        visit = [inf] * n
+        visit[nex] = 0
+        parent = [-1] * n
+        while rest:
+            i = nex
+            rest.discard(i)
+            d = visit[i]
+            ans += d
+            nex = -1
+            for j in rest:
+                dj = dis(i, j)
+                if dj < visit[j]:
+                    visit[j] = dj
+                    parent[j] = i
+                if nex == -1 or visit[j] < visit[nex]:
+                    nex = j
+        ac.st(ans)
+        power = [i for i in range(n) if parent[i] == 0]
+        ac.st(len(power))
+        ac.lst(power)
+        edges = [(i, parent[i]) for i in range(n) if parent[i] not in [0, -1]]
+        ac.st(len(edges))
+        for ls in edges:
+            ac.lst(ls)
         return

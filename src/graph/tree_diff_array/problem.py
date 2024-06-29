@@ -12,6 +12,7 @@ P3258（https://www.luogu.com.cn/problem/P3258）offline_lca|tree_diff_array|tre
 P6869（https://www.luogu.com.cn/problem/P6869）offline_lca|tree_diff_array_edge|tree_diff_array_point
 
 ===================================CodeForces===================================
+191C（https://codeforces.com/problemset/problem/191/C）tree_diff_array|tree_lca|implemention
 
 ====================================AtCoder=====================================
 ABC309E（https://atcoder.jp/contests/abc309/tasks/abc309_e）tree_diff_array|dfs_order
@@ -23,7 +24,7 @@ ABC309E（https://atcoder.jp/contests/abc309/tasks/abc309_e）tree_diff_array|df
 from typing import List
 
 from src.graph.tree_diff_array.template import TreeDiffArray
-from src.graph.tree_lca.template import OfflineLCA
+from src.graph.tree_lca.template import OfflineLCA, TreeAncestor
 from src.utils.fast_io import FastIO
 
 
@@ -227,4 +228,29 @@ class Solution:
                     diff[d + buy[x]] += 1
         ans = sum(x > 0 for x in cur)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_191c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/191/C
+        tag: tree_diff_array|tree_lca|implemention
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        edges = []
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            edges.append((i, j))
+            dct[i].append(j)
+            dct[j].append(i)
+        k = ac.read_int()
+        queries = []
+        tree = TreeAncestor(dct, 0)
+        for _ in range(k):
+            u, v = ac.read_list_ints_minus_one()
+            queries.append((u, v, tree.get_lca(u, v)))
+        diff, parent = TreeDiffArray.bfs_iteration_edge(dct, queries, 0)
+        ans = [diff[u] if parent[u] == v else diff[v] for u, v in edges]
+        ac.lst(ans)
         return
