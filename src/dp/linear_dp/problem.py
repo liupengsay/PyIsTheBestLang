@@ -129,6 +129,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1984F（https://codeforces.com/contest/1984/problem/F）brute_force|brain_teaser|linear_dp
 1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greedy
 1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointer
+1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1706,4 +1707,37 @@ class Solution:
                 ans += dp[1]
                 ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1989d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1989/problem/D
+        tag: greedy|linear_dp|implemention
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        c = ac.read_list_ints()
+        ceil = 10 ** 6
+        gain = [inf] * (ceil + 1)
+        ans = 0
+        for i in range(n):
+            gain[a[i]] = min(gain[a[i]], a[i] - b[i])
+
+        for i in range(1, ceil + 1):
+            gain[i] = min(gain[i], gain[i - 1])
+
+        dp = [0] * (ceil + 1)
+        for i in range(1, ceil + 1):
+            if i >= gain[i]:
+                dp[i] = 2 + dp[i - gain[i]]
+
+        for rest in c:
+            if rest > ceil:
+                k = (rest - ceil) // gain[ceil] + ((rest - ceil) % gain[ceil] > 0)
+                ans += k * 2
+                rest -= gain[ceil] * k
+            ans += dp[rest]
+        ac.st(ans)
         return
