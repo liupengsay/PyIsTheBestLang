@@ -23,6 +23,7 @@ P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 ===================================CodeForces===================================
 448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
 1811D（https://codeforces.com/contest/1811/problem/D）recursion|fibonacci
+559B（https://codeforces.com/problemset/problem/559/B）divide_and_conquer|implemention|string_hash
 
 ===================================AcWing===================================
 98（https://www.acwing.com/problem/content/100/）4-tree|recursion|matrix_rotate
@@ -406,7 +407,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def abc_350f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc350/tasks/abc350_f
         tag: implemention|divide_and_conquer|recursion|classical
@@ -457,4 +458,30 @@ class Solution:
                         else:
                             stack.append((bb + 1, b, ll, ll + cnt - 1, state))
         ac.st("".join(ans))
+        return
+
+    @staticmethod
+    def cf_559b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/559/B
+        tag: divide_and_conquer|implemention|string_hash
+        """
+
+        a = ac.read_str()
+        b = ac.read_str()
+
+        def check(s):
+            def dfs(i, j):
+                if (j - i + 1) % 2:
+                    return s[i:j + 1]
+
+                mid = i + (j - i + 1) // 2 - 1
+                s1 = dfs(i, mid)
+                s2 = dfs(mid + 1, j)
+                return s1 + s2 if s1 < s2 else s2 + s1
+
+            return dfs(0, len(s) - 1)
+
+        ans = check(a) == check(b)
+        ac.st("YES" if ans else "NO")
         return

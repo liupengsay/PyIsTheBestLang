@@ -1,5 +1,6 @@
 import os
 import random
+import time
 
 import webbrowser
 import unittest
@@ -335,10 +336,13 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1989"
+        num = "1987"
         webbrowser.open(f"https://codeforces.com/contest/{num}")
-        for i in range(8):
+        webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
+        time.sleep(0.5)
+        for i in range(9):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
+            time.sleep(0.5)
             webbrowser.open(url)
         return
 
@@ -347,20 +351,22 @@ class TestGeneral(unittest.TestCase):
         for x in range(1700, 2200, 100):
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
             webbrowser.open(url)
+            time.sleep(0.5)
             print(url)
         return
 
     def test_atcoder_problem(self):
-        num = "359"
-        webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
+        num = "360"
+        # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
-        webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
+        # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/submissions/me")
         for i in range(8):
+            time.sleep(0.5)
             url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i+ord("a"))
             webbrowser.open(url)
         print("=================")
-        for i in range(8):
+        for i in range(7):
             w = chr(i+ord("a"))
             url = f"https://atcoder.jp/contests/abc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
             print(url)

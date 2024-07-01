@@ -94,6 +94,7 @@ P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brut
 1674G（https://codeforces.com/contest/1674/problem/G）classical|brain_teaser|dag_dp|topologic_sort
 1790F（https://codeforces.com/contest/1790/problem/F）classical|data_range|limit_operation
 1840F（https://codeforces.com/contest/1840/problem/F）bfs|classical
+796D（https://codeforces.com/problemset/problem/796/D）bfs
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

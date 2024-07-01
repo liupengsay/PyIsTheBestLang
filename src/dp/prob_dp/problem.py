@@ -23,6 +23,7 @@ ABC275E（https://atcoder.jp/contests/abc275/tasks/abc275_e）prob_dp|linear_dp|
 ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|brain_teaser|classical
 ABC263E（https://atcoder.jp/contests/abc263/tasks/abc263_e）expectation_dp|reverse_order|math|brain_teaser|classical
 ABC243F（https://atcoder.jp/contests/abc243/tasks/abc243_f）matrix_dp|prob_dp|brain_teaser|comb|math
+ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implemention|math
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -319,4 +320,27 @@ class Solution:
                     ndp[j][x] = res % mod
             dp = [[x % mod for x in ls] for ls in ndp]
         ac.st(dp[0][0])
+        return
+
+    @staticmethod
+    def abc_360e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc360/tasks/abc360_e
+        tag: prob_dp|implemention|math
+        """
+        n, k = ac.read_list_ints()
+
+        if n == 1:
+            ac.st(1)
+            return
+        mod = 998244353
+        nn = pow(n * n, -1, mod)
+        pp = pow(n - 1, -1, mod)
+        a = (n * n - 2 * n) * nn % mod
+        b = 2 * nn % mod
+        ak = pow(a, k, mod)
+        one = (ak + b * (ak - 1) * pow(a - 1, -1, mod)) % mod
+        zero = ((1 - one) * pp) % mod
+        ans = (one + zero * (n * (n + 1) // 2 - 1)) % mod
+        ac.st(ans)
         return

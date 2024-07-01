@@ -113,6 +113,7 @@ ABC265D（https://atcoder.jp/contests/abc265/tasks/abc265_d）prefix_sum|brute_f
 ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_scope|two_pointer|hash|classical
 ABC221D（https://atcoder.jp/contests/abc221/tasks/abc221_d）discretization_diff_array
 ABC210D（https://atcoder.jp/contests/abc210/tasks/abc210_d）prefix_max|matrix_prefix|classical
+ABC360D（https://atcoder.jp/contests/abc360/tasks/abc360_d）diff_array|implemention|contribution_method
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum

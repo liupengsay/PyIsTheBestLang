@@ -4958,6 +4958,149 @@ class PointSetRangeMaxSecondCnt:
         return ans1 + ans2
 
 
+class RangeAddRangeMaxIndex:
+    def __init__(self, n):
+        self.n = n
+        self.lazy_tag = [0] * (4 * self.n)  # lazy tag
+        self.ceil = [0] * (4 * self.n)  # range max
+        self.index = [0] * (4 * self.n)  # minimum index of range max
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self.ceil[i] = nums[s]
+                    self.index[i] = s
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i):
+        if self.lazy_tag[i]:
+            self.ceil[i << 1] += self.lazy_tag[i]
+            self.ceil[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i << 1] += self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i):
+        if self.ceil[i << 1] >= self.ceil[(i << 1) | 1]:
+            self.ceil[i] = self.ceil[i << 1]
+            self.index[i] = self.index[i << 1]
+        else:
+            self.ceil[i] = self.ceil[(i << 1) | 1]
+            self.index[i] = self.index[(i << 1) | 1]
+        return
+
+    def _make_tag(self, i, val):
+        self.ceil[i] += val
+        self.lazy_tag[i] += val
+        return
+
+    def range_add(self, left, right, val):
+        # update the range add
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                val = self.ceil[i]
+                nums[s] = val
+                continue
+            self._push_down(i)
+            m = s + (t - s) // 2
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
+    def range_max_bisect_left(self, left, right, val):
+        stack = [(0, self.n - 1, 1)]
+        res = -1
+        while stack and res == -1:
+            s, t, i = stack.pop()
+            if s == t:
+                if left <= s <= right and self.ceil[i] >= val:
+                    res = s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if right > m and self.ceil[(i << 1) | 1] >= val:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m and self.ceil[i << 1] >= val:
+                stack.append((s, m, i << 1))
+        return res
+
+    def range_max(self, left, right):
+        # query the rang max
+        stack = [(0, self.n - 1, 1)]
+        highest = -inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                highest = max(highest, self.ceil[i])
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return highest
+
+    def range_max_index(self, left, right):
+        stack = [(0, self.n - 1, 1)]
+        highest = -inf
+        ind = -1
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                if self.ceil[i] > highest:
+                    highest = self.ceil[i]
+                    ind = self.index[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return highest, ind
+
+
 class PointSetRangeMaxIndex:
 
     def __init__(self, n, initial=0):

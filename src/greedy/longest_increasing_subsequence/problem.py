@@ -26,7 +26,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
 486E（https://codeforces.com/problemset/problem/486/E）lis|greedy|brain_teaser|classical
 650D（https://codeforces.com/problemset/problem/650/D）lis|brain_teaser|classical|offline_query
-1922E（https://codeforces.com/problemset/problem/1922/E）lis|construction
+1922E（https://codeforces.com/problemset/problem/1922/E）lis|construction|divide_and_conquer
 
 =====================================LuoGu======================================
 P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
@@ -50,6 +50,7 @@ P2516（https://www.luogu.com.cn/problem/P2516）length_of_lcs|cnt_of_lcs
 ====================================AtCoder=====================================
 ABC134E（https://atcoder.jp/contests/abc134/tasks/abc134_e）minimum_group_increasing_subsequence_partition|length_of_longest_non_increasing_subsequence
 ABC354F（https://atcoder.jp/contests/abc354/tasks/abc354_f）lis|classical
+ABC360G（https://atcoder.jp/contests/abc360/tasks/abc360_g）lis|greedy|implemention|classical|linear_dp|prefix_suffix
 
 （https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）lis|lexicographical_order
 
@@ -59,6 +60,7 @@ import bisect
 import random
 from collections import deque, Counter
 from itertools import accumulate
+from math import inf
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax
@@ -669,4 +671,46 @@ class Solution:
                     queries[j] = max(queries[j], ceil - 1)
         for q in queries:
             ac.st(q)
+        return
+
+    @staticmethod
+    def abc_360g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc360/tasks/abc360_g
+        tag: lis|greedy|implemention|classical|linear_dp|prefix_suffix
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        post = [(0, 0) for _ in range(n + 1)]
+        post[n] = (0, inf)
+        dp = []
+        for x in range(n - 1, -1, -1):
+            num = -nums[x]
+            i = bisect.bisect_left(dp, num)
+            post[x] = post[x + 1]
+            if 0 <= i < len(dp):
+                dp[i] = num
+                cur = i + 1
+            else:
+                dp.append(num)
+                cur = len(dp)
+            if (cur, -num) > post[x]:
+                post[x] = (cur, -num)
+
+        ans = post[0][0]
+        pre = (0, inf)
+        dp = []
+        for x, num in enumerate(nums):
+            i = bisect.bisect_left(dp, num)
+            if x + 1 < n and post[x + 1][1] > -pre[1] + 1:
+                ans = max(ans, post[x + 1][0] + pre[0] + 1)
+            if 0 <= i < len(dp):
+                dp[i] = num
+                cur = i + 1
+            else:
+                dp.append(num)
+                cur = len(dp)
+            if (cur, -num) > pre:
+                pre = (cur, -num)
+        ac.st(ans)
         return

@@ -109,6 +109,7 @@ ABC237G（https://atcoder.jp/contests/abc237/tasks/abc237_g）segment_tree|range
 ABC223F（https://atcoder.jp/contests/abc223/tasks/abc223_f）segment_tree|point_set|range_set|pre_sum_max
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_find_left|union_find_right|segment_tree|sorted_list
 ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range_add|range_mul_sum
+ABC360F（https://atcoder.jp/contests/abc360/tasks/abc360_f）range_add|scan_line|range_max|range_max_bisect_left
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -3744,4 +3745,53 @@ class Solution:
                 v = lst[1]
                 ans = tree.range_or(start[v - 1], end[v - 1])
                 ac.st(ans.bit_count())
+        return
+
+    @staticmethod
+    def abc_360f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc360/tasks/abc360_f
+        tag: range_add|scan_line|range_max|range_max_bisect_left
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ceil = 10 ** 9
+        nodes = [0, ceil]
+        right = defaultdict(list)
+        left = defaultdict(int)
+        for ll, rr in nums:
+            for x in [ll, rr]:
+                for y in [-1, 0, 1]:
+                    nodes.append(x + y)
+            right[ll].append(rr)
+            left[rr] += 1
+
+        nodes = sorted(set(nodes))
+        ind = {num: i for i, num in enumerate(nodes)}
+        m = len(ind)
+        tree = RangeAddRangeSumMinMax(m)
+        diff = [0] * m
+        for ll, rr in nums:
+            if ll + 1 <= rr - 1:
+                diff[ind[ll + 1]] += 1
+                diff[ind[rr - 1] + 1] -= 1
+        tree.build(ac.accumulate(diff)[1:])
+
+        ans = [0, 1]
+        res = 0
+        for x in nodes:
+            for rr in right[x]:
+                if x + 1 <= rr - 1:
+                    tree.range_add(ind[x + 1], ind[rr - 1], -1)
+            if left[x]:
+                tree.range_add(ind[x + 1], m - 1, -left[x])
+            post = tree.range_max(ind[x] + 1, m - 1) if ind[x] + 1 <= m - 1 else 0
+            if post > res and 0 <= x <= ceil:
+                j = tree.range_max_bisect_left(ind[x] + 1, m - 1, post)
+                if 0 <= x < nodes[j] <= ceil:
+                    res = post
+                    ans = [x, nodes[j]]
+            for rr in right[x]:
+                tree.range_add(ind[rr + 1], m - 1, 1)
+        ac.lst(ans)
         return

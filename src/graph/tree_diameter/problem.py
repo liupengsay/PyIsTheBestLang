@@ -4,7 +4,7 @@ Description：multi_source_bfs|bilateral_bfs|spfa|a-star|heuristic_search
 
 ====================================LeetCode====================================
 1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
-
+100318（https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees）graph_diameter|diameter_merge|classical
 
 =====================================LuoGu======================================
 P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical
@@ -348,3 +348,30 @@ class Solution:
                 if uf.union(x, y):
                     diameter[uf.find(x)] = check(a, b)
         return
+
+    @staticmethod
+    def lc_100318(edges1: List[List[int]], edges2: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees
+        tag: graph_diameter|diameter_merge|classical
+        """
+        n = len(edges1) + 1
+        dct1 = [[] for _ in range(n)]
+        for i, j in edges1:
+            dct1[i].append(j)
+            dct1[j].append(i)
+        path1 = GraphDiameter().get_diameter(dct1, 0)
+
+        m = len(edges2) + 1
+        dct1 = [[] for _ in range(m)]
+        for i, j in edges2:
+            dct1[i].append(j)
+            dct1[j].append(i)
+        path2 = GraphDiameter().get_diameter(dct1, 0)
+
+        def check(aa, bb):
+            if aa > bb:
+                aa, bb = bb, aa
+            return max((aa + 1) // 2 + 1, bb // 2) + (bb + 1) // 2
+
+        return check(path1, path2)

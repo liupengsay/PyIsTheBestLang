@@ -41,6 +41,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1745（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
 2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greedy|implemention
 100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
+100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -3183,3 +3184,21 @@ class Solution:
             ans = [pre[i * n + j] * 2 if pre[i * n + j] < inf else -1 for j in range(n)]
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_100358(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/
+        tag: matrix_dp|implemention
+        """
+        ans = 0
+        dp = [[0] * k for _ in range(k)]
+        for num in nums:
+            y = num % k
+            for i in range(k):
+                dp[i][y] = max(dp[i][y], dp[y][i] + 1)
+
+        for ls in dp:
+            for num in ls:
+                ans = max(ans, num)
+        return ans
