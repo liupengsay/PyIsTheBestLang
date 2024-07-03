@@ -95,6 +95,8 @@ P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brut
 1790F（https://codeforces.com/contest/1790/problem/F）classical|data_range|limit_operation
 1840F（https://codeforces.com/contest/1840/problem/F）bfs|classical
 796D（https://codeforces.com/problemset/problem/796/D）bfs
+1063B（https://codeforces.com/problemset/problem/1063/B）bfs|observation|classical
+1344B（https://codeforces.com/contest/1344/problem/B）bfs|observation
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -2751,4 +2753,90 @@ class Solution:
                 ac.st("Aoki")
             else:
                 ac.st("Takahashi")
+        return
+
+    @staticmethod
+    def cf_1063b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1063/B
+        tag: bfs|observation|classical
+        """
+        m, n = ac.read_list_ints()
+        r, c = ac.read_list_ints_minus_one()
+        x, y = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        stack = deque([(r, c, x, y)])
+        visit = [-1] * n * m
+        visit[r*n+c] = 0
+        while stack:
+            a, b, xx, yy = stack.pop()
+            for i, j in [(a + 1, b), (a - 1, b), (a, b - 1), (a, b + 1)]:
+                if 0 <= i < m and 0 <= j < n and grid[i][j] == ".":
+                    dij = [xx, yy]
+                    if j != b:
+                        if j == b - 1:
+                            dij[0] -= 1
+                        else:
+                            dij[1] -= 1
+                    if dij[0] < 0 or dij[1] < 0:
+                        continue
+                    if visit[i*n+j] < dij[0]:
+                        visit[i*n+j] = dij[0]
+                        if dij[0] == xx:
+                            stack.appendleft((i, j, dij[0], dij[1]))
+                        else:
+                            stack.append((i, j, dij[0], dij[1]))
+        ans = sum(x > -1 for x in visit)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1344b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1344/problem/B
+        tag: bfs|observation
+        """
+        m, n = ac.read_list_ints()
+        grid = [list(ac.read_str()) for _ in range(m)]
+        flag1 = 0
+        for i in range(m):
+            pre = -1
+            for j in range(n):
+                if grid[i][j] == "#":
+                    if pre != -1 and j - pre > 1:
+                        ac.st(-1)
+                        return
+                    pre = j
+            if pre == -1:
+                flag1 = 1
+
+        flag2 = 0
+        for j in range(n):
+            pre = -1
+            for i in range(m):
+                if grid[i][j] == "#":
+                    if pre != -1 and i - pre > 1:
+                        ac.st(-1)
+                        return
+                    pre = i
+            if pre == -1:
+                flag2 = 1
+        if flag1 != flag2:
+            ac.st(-1)
+            return
+        ans = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == "#":
+                    ans += 1
+                    stack = [(i, j)]
+                    grid[i][j] = "."
+                    while stack:
+                        x, y = stack.pop()
+                        for a, b in [(x - 1, y), (x, y + 1), (x, y - 1), (x + 1, y)]:
+                            if 0 <= a < m and 0 <= b < n and grid[a][b] == "#":
+                                stack.append((a, b))
+                                grid[a][b] = "."
+        ac.st(ans)
         return

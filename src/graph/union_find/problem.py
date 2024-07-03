@@ -95,6 +95,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1618G（https://codeforces.com/contest/1618/problem/G）union_find_left|union_find_right|classical|offline_query
 1941G（https://codeforces.com/contest/1941/problem/G）union_find|build_graph|bfs|brain_teaser|classical
 1971G（https://codeforces.com/contest/1971/problem/G）union_find|bit_operation
+1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2676,3 +2677,30 @@ class Solution:
         for a in ans:
             ac.st(a)
         return
+
+    @staticmethod
+    def cf_1383a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1383/A
+        tag: build_graph|greedy|implemention|union_find|brain_teaser|observation
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            t = ac.read_str()
+            if all(s[i] <= t[i] for i in range(n)):
+                uf = UnionFind(26)
+                dct = defaultdict(set)
+                for i in range(n):
+                    if s[i] < t[i]:
+                        dct[t[i]].add(s[i])
+                ans = 0
+                for w in dct:
+                    for y in dct[w]:
+                        if uf.union(ord(w) - ord("a"), ord(y) - ord("a")):
+                            ans += 1
+                ac.st(ans)
+            else:
+                ac.st(-1)
+        return
+

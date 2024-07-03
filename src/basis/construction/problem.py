@@ -74,6 +74,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1854A1（https://codeforces.com/problemset/problem/1854/A1）construction
 1854A2（https://codeforces.com/problemset/problem/1854/A2）construction
 1416B（https://codeforces.com/problemset/problem/1416/B）construction
+1217D（https://codeforces.com/problemset/problem/1217/D）construction|observation|classical
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -797,4 +798,35 @@ class Solution:
                     break
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def cf_1217d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1217/D
+        tag: construction|observation|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        edges = []
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            degree[j] += 1
+            edges.append((i, j))
+        stack = [i for i in range(n) if not degree[i]]
+        while stack:
+            i = stack.pop()
+            for j in dct[i]:
+                degree[j] -= 1
+                if not degree[j]:
+                    stack.append(j)
+        if not max(degree):
+            ac.st(1)
+            ac.lst([1] * m)
+        else:
+            ac.st(2)
+            ans = [1 if i >  j else 2 for i, j in edges]
+            ac.lst(ans)
         return

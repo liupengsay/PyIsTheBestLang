@@ -130,6 +130,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemen
 1935C（https://codeforces.com/problemset/problem/1935/C）matrix_dp|greedy|sort
 1989B（https://codeforces.com/contest/1989/problem/B）continuous_lcs|dp|classical
 1517D（https://codeforces.com/contest/1517/problem/D）implemention|brain_teaser|observation|even|matrix_dp|bfs
+1625C（https://codeforces.com/problemset/problem/1625/C）matrix_dp|brute_force|implemention
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3202,3 +3203,28 @@ class Solution:
             for num in ls:
                 ans = max(ans, num)
         return ans
+
+    @staticmethod
+    def cf_1625c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1625/C
+        tag: matrix_dp|brute_force|implemention
+        """
+        n, ll, kk = ac.read_list_ints()
+        d = ac.read_list_ints()
+        a = ac.read_list_ints()
+        dp = [[inf] * (kk + 1) for _ in range(n)]
+        dp[0][0] = 0
+        for i in range(1, n):
+            for j in range(i):
+                skip = i - j - 1
+                dis = d[i] - d[j]
+                for x in range(0, min(i, kk + 1) - skip):
+                    dp[i][x + skip] = min(dp[i][x + skip], dp[j][x] + a[j] * dis)
+        ans = inf
+        for i in range(n):
+            for j in range(kk + 1):
+                if j + n - i - 1 <= kk:
+                    ans = min(ans, dp[i][j] + (ll - d[i]) * a[i])
+        ac.st(ans)
+        return

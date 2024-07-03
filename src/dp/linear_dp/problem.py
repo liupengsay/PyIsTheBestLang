@@ -130,6 +130,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greedy
 1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointer
 1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
+1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1739,5 +1740,25 @@ class Solution:
                 ans += k * 2
                 rest -= gain[ceil] * k
             ans += dp[rest]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1155d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1155/D
+        tag: linear_dp|classical|max_con_sub_sum
+        """
+        n, x = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dp = [0, -inf, -inf]
+        ans = 0
+        for num in nums:
+            ndp = [0, 0, 0]
+            ndp[0] = max(dp[0] + num, num, 0)
+            ndp[1] = max(dp[1], dp[0]) + x * num
+            ndp[2] = max(dp[1], dp[2]) + num
+            dp = ndp[:]
+            ans = max(ans, max(dp))
         ac.st(ans)
         return

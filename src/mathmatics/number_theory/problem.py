@@ -75,6 +75,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1811E（https://codeforces.com/contest/1811/problem/E）n_base
 1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
 1982D（https://codeforces.com/contest/1982/problem/D）peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
+1656D（https://codeforces.com/problemset/problem/1656/D）math|odd_even|observation|bain_teaser
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -124,6 +125,7 @@ from operator import mul
 from sys import stdout
 from typing import List
 
+from src.basis.diff_array.template import PreFixSumMatrix
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.gcd_like.template import GcdLike
 from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
@@ -1365,4 +1367,24 @@ class Solution:
                 for j in range(n - k + 1):
                     g = math.gcd(g, -pre.query(i, j, i + k - 1, j + k - 1))
             ac.st("YES" if g == ans == 0 or (g and ans % g == 0) else "NO")
+        return
+
+    @staticmethod
+    def cf_1656d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1656/D
+        tag: math|odd_even|observation|bain_teaser
+        """
+        for _ in range(ac.read_int()):
+            b = ac.read_int() * 2
+            a = 1
+            while b % 2 == 0:
+                b //= 2
+                a *= 2
+            if a < b:
+                ac.st(a)
+            elif a > b > 1:
+                ac.st(b)
+            else:
+                ac.st(-1)
         return

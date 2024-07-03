@@ -93,6 +93,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greedy|specific_plan|classical
 1862F（https://codeforces.com/contest/1862/problem/F）bag_dp|brute_force
 1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
+837D（https://codeforces.com/problemset/problem/837/D）matrix_dp|observation|classical|brain_teaser|bag_dp
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1615,4 +1616,40 @@ class Solution:
                 if dp[ans] >= 0:
                     ac.st(ans)
                     break
+        return
+
+    @staticmethod
+    def cf_837d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/837/D
+        tag: matrix_dp|observation|classical|brain_teaser|bag_dp
+        """
+        tot5 = 0
+        num = 1
+        while num <= 10 ** 18:
+            num *= 5
+            tot5 += 1
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tot5 *= n
+        dp = [-inf] * tot5 * (k + 1)
+        dp[0] = 0
+        pre5 = 0
+        for i, num in enumerate(nums):
+            f2 = 0
+            while num % 2 == 0:
+                f2 += 1
+                num //= 2
+            f5 = 0
+            while num % 5 == 0:
+                f5 += 1
+                num //= 5
+            pre5 += f5
+            for x in range(k, 0, -1):
+                for y in range(min(tot5 - 1, pre5), f5 - 1, -1):
+                    dp[x * tot5 + y] = max(dp[x * tot5 + y], dp[(x - 1) * tot5 + y - f5] + f2)
+        ans = 0
+        for y in range(tot5):
+            ans = max(ans, min(y, dp[k * tot5 + y]))
+        ac.st(ans)
         return

@@ -92,6 +92,8 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
 1843E（https://codeforces.com/problemset/problem/1843/E）binary_search|query_order|classical
 1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_masks
+1393C（https://codeforces.com/problemset/problem/1393/C）binary_search|implemention|stack|classical|math
+1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -125,8 +127,9 @@ ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointer|binary
 
 """
 import bisect
+import heapq
 import math
-from collections import deque, defaultdict
+from collections import deque, defaultdict, Counter
 from functools import reduce
 from itertools import accumulate, combinations
 from typing import List
@@ -1844,4 +1847,88 @@ class Solution:
 
         ans = BinarySearch().find_int_right(max(low), 10 ** 9, check)
         ac.lst([x + 1 for x in compute(ans)])
+        return
+
+    @staticmethod
+    def cf_1393c_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1393/C
+        tag: binary_search|implemention|stack|classical|math
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            dct = list(Counter(nums).values())
+
+            def check(x):
+                total = [(0, -c) for c in dct]
+                now = []
+                for i in range(n):
+                    while total and total[0][0] <= i:
+                        _, y = heapq.heappop(total)
+                        heapq.heappush(now, y)
+                    if not now:
+                        return False
+                    y = heapq.heappop(now)
+                    y += 1
+                    if y:
+                        heapq.heappush(total, (i + x + 1, y))
+                return True
+
+            ans = BinarySearch().find_int_right(0, n, check)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1393c_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1393/C
+        tag: binary_search|implemention|stack|classical|math
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            dct = Counter(Counter(nums).values())
+            ceil = max(dct)
+            cnt = dct[ceil]
+            ans = (n - cnt * ceil) // (ceil - 1) + cnt - 1
+            ac.st(ans)
+        return
+
+
+    @staticmethod
+    def cf_1117c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1117/C
+        tag: binary_search|observation|brain_teaser
+        """
+        x1, y1 = ac.read_list_ints()
+        x2, y2 = ac.read_list_ints()
+        n = ac.read_int()
+        s = ac.read_str()
+        pre_x = [0] * (n + 1)
+        pre_y = [0] * (n + 1)
+
+        for i, w in enumerate(s):
+            if w == "L":
+                pre_x[i + 1] = pre_x[i] - 1
+                pre_y[i + 1] = pre_y[i]
+            elif w == "R":
+                pre_x[i + 1] = pre_x[i] + 1
+                pre_y[i + 1] = pre_y[i]
+            elif w == "U":
+                pre_x[i + 1] = pre_x[i]
+                pre_y[i + 1] = pre_y[i] + 1
+            else:
+                pre_x[i + 1] = pre_x[i]
+                pre_y[i + 1] = pre_y[i] - 1
+
+        def check(d):
+            xx = pre_x[-1] * (d // n) + pre_x[d % n]
+            yy = pre_y[-1] * (d // n) + pre_y[d % n]
+
+            return abs(x1 + xx - x2) + abs(y1 + yy - y2) <= d
+
+        ans = BinarySearch().find_int_left_strictly(0, 10 ** 20, check)
+        ac.st(ans if ans < 10 ** 20 else -1)
         return

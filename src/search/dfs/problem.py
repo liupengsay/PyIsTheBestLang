@@ -56,6 +56,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 246E（https://codeforces.com/problemset/problem/246/E）tree_array|offline_query|range_unique|dfs_order
 1076E（https://codeforces.com/problemset/problem/1076/E）tree_diff_array|dfs|classical
 383C（https://codeforces.com/problemset/problem/383/C）dfs_order|odd_even|range_add|point_get
+3C（https://codeforces.com/problemset/problem/3/C）dfs|back_trace|brute_force|implemention
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -1352,4 +1353,69 @@ class Solution:
                 else:
                     ans = even_tree.point_get(start[v])
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_3c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/3/C
+        tag: dfs|back_trace|brute_force|implemention
+        """
+
+        def check():
+            for i in range(3):
+                if all(grid[i][j] == "X" for j in range(3)):
+                    return "the first player won"
+                if all(grid[i][j] == "0" for j in range(3)):
+                    return "the second player won"
+            for j in range(3):
+                if all(grid[i][j] == "X" for i in range(3)):
+                    return "the first player won"
+                if all(grid[i][j] == "0" for i in range(3)):
+                    return "the second player won"
+
+            if all(grid[i][i] == "X" for i in range(3)):
+                return "the first player won"
+            if all(grid[i][i] == "0" for i in range(3)):
+                return "the second player won"
+            if all(grid[i][2 - i] == "X" for i in range(3)):
+                return "the first player won"
+            if all(grid[i][2 - i] == "0" for i in range(3)):
+                return "the second player won"
+            if all(grid[i][j] != "." for i in range(3) for j in range(3)):
+                return "draw"
+            return ""
+
+        def dfs():
+            if state in ans:
+                return
+            cur_state = "".join("".join(ls) for ls in grid)
+            if cur_state in ans:
+                return
+            res = check()
+            if res:
+                ans[cur_state] = res
+                return
+            order[0] = 1 - order[0]
+            ans[cur_state] = "first" if order[0] == 0 else "second"
+            for i in range(3):
+                for j in range(3):
+                    if grid[i][j] == "." and st[order[0]] == cur[i][j]:
+                        grid[i][j] = st[order[0]]
+                        dfs()
+                        grid[i][j] = "."
+            order[0] = 1 - order[0]
+            return
+
+        grid = [["."] * 3 for _ in range(3)]
+        st = "X0"
+        order = [1]
+        cur = [ac.read_str() for _ in range(3)]
+        state = "".join(cur)
+        ans = dict()
+        dfs()
+        if state not in ans:
+            ac.st("illegal")
+        else:
+            ac.st(ans[state])
         return

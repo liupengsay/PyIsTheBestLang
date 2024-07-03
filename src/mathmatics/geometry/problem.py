@@ -33,6 +33,8 @@ P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|
 1133D（https://codeforces.com/contest/1133/problem/D）line_slope
 1979E（https://codeforces.com/contest/1979/problem/E）manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
 1C（https://codeforces.com/contest/1/problem/C）geometry|circle|triangle
+1354C1（https://codeforces.com/problemset/problem/1354/C1）geometry
+1354C2（https://codeforces.com/problemset/problem/1354/C2）geometry
 
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical

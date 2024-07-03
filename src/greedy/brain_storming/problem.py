@@ -205,6 +205,8 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greedy
 985C（https://codeforces.com/problemset/problem/985/C）greedy|brain_teaser|reverse_order
 1978D（https://codeforces.com/contest/1978/problem/D）greedy|brain_teaser|implemention
+1316C（https://codeforces.com/problemset/problem/1316/C）observation|math|brain_teaser
+1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointer|classical|brain_teaser
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2030,4 +2032,26 @@ class Solution:
             else:
                 post += 1
         ac.st(ans if post == 0 else 0)
+        return
+
+    @staticmethod
+    def cf_1156c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1156/C
+        tag: greedy|two_pointer|classical|brain_teaser
+        """
+        n, z = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+        ans = 0
+        j = n//2
+        for i in range(n//2):
+            while j < n and nums[j] < z + nums[i]:
+                j += 1
+            if j < n:
+                ans += 1
+                j += 1
+            else:
+                break
+        ac.st(ans)
         return
