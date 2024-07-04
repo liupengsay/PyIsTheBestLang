@@ -3273,7 +3273,7 @@ class Solution:
                         tree.range_set(ll, ll + cnt1 - 1, 1)
             return tree.point_get(pos) == 1
 
-        ans = BinarySearch().find_int_right_strictly(0, n - 1, check) + 1
+        ans = BinarySearch().find_int_right(0, n - 1, check) + 1
         ac.st(ans)
         return
 

@@ -15,7 +15,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1624F（https://codeforces.com/contest/1624/problem/F）binary_search|interactive
 1713D（https://codeforces.com/contest/1713/problem/D）binary_search|interactive
 1846F（https://codeforces.com/problemset/problem/1846/F）interactive
-1697D（https://codeforces.com/contest/1697/problem/D）strictly_binary_search|interactive|find_int_right_strictly
+1697D（https://codeforces.com/contest/1697/problem/D）strictly_binary_search|interactive|find_int_right
 1729E（https://codeforces.com/problemset/problem/1729/E）interactive
 1762D（https://codeforces.com/problemset/problem/1762/D）interactive
 1903E（https://codeforces.com/problemset/problem/1903/E）interactive
@@ -370,8 +370,8 @@ class Solution:
             cnt = ac.read_int()
             return cnt < x + 1
 
-        row = BinarySearch().find_int_left_strictly(0, n - 1, check1)
-        col = BinarySearch().find_int_left_strictly(0, n - 1, check2)
+        row = BinarySearch().find_int_left(0, n - 1, check1)
+        col = BinarySearch().find_int_left(0, n - 1, check2)
         ac.lst(["!", row + 1, col + 1])
         return
 

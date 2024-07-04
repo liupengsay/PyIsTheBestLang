@@ -1777,7 +1777,7 @@ class Solution:
                             return True
             return False
 
-        ans = BinarySearch().find_int_right_strictly(0, 10 ** 9, check)
+        ans = BinarySearch().find_int_right(0, 10 ** 9, check)
         ac.st(ans)
         return
 
@@ -1929,6 +1929,6 @@ class Solution:
 
             return abs(x1 + xx - x2) + abs(y1 + yy - y2) <= d
 
-        ans = BinarySearch().find_int_left_strictly(0, 10 ** 20, check)
+        ans = BinarySearch().find_int_left(0, 10 ** 20, check)
         ac.st(ans if ans < 10 ** 20 else -1)
         return

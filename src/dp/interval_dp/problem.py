@@ -491,3 +491,29 @@ class Solution:
         ans = dfs(0, 2 * n - 1)
         ac.st(ans)
         return
+
+    @staticmethod
+    def cf_1114d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1114/D
+        tag: interval_dp|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        pre = []
+        for num in nums:
+            if pre and pre[-1] == num:
+                continue
+            pre.append(num)
+        n = len(pre)
+        dp = [0] * n
+        for i in range(n - 2, -1, -1):
+            ndp = [0] * n
+            for j in range(i + 1, n):
+                if pre[i] == pre[j]:
+                    ndp[j] = dp[j - 1] + 1
+                else:
+                    ndp[j] = min(ndp[j - 1] + 1, dp[j] + 1)
+            dp = ndp[:]
+        ac.st(dp[n - 1])
+        return

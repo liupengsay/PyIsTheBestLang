@@ -71,6 +71,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1285D（https://codeforces.com/problemset/problem/1285/D）bitwise_xor|minimax|divide_and_conquer
 1982E（https://codeforces.com/contest/1982/problem/E）divide_and_conquer|bit_operation|brain_teaser|segment_tree
 1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
+1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1035,4 +1036,34 @@ class Solution:
                 ac.st(-1)
             else:
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1466e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1466/E
+        tag: bit_operation|math|contribution_method|classical
+        """
+        mod = 10 ** 9 + 7
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            ans = 0
+            cnt = [0] * 61
+            for x in range(61):
+                for num in nums:
+                    if (num >> x) & 1:
+                        cnt[x] += 1
+            for num in nums:
+                left = right = 0
+                for x in range(61):
+                    if (num >> x) & 1:
+                        left += (1 << x) * cnt[x]
+                        right += n * (1 << x)
+                    else:
+                        right += cnt[x] * (1 << x)
+                ans += left * right
+                ans %= mod
+            ac.st(ans)
         return

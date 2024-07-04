@@ -55,6 +55,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
 1420D（https://codeforces.com/problemset/problem/1420/D）contribution_method|comb|range
+1359E（https://codeforces.com/problemset/problem/1359/E）math|comb|brute_force
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -1239,4 +1240,22 @@ class Solution:
                 ans += cb.comb(cur, k - 1)
             lst.add(rr)
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cf_1359e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1359/E
+        tag: math|comb|brute_force
+        """
+        mod = 998244353
+        cb = Combinatorics(5 * 10 ** 5, mod)
+        n, k = ac.read_list_ints()
+        ans = 0
+        for x in range(1, n + 1):
+            if n // x < k:
+                break
+            ans += cb.comb(n // x - 1, k - 1)
+            ans %= mod
+        ac.st(ans)
         return

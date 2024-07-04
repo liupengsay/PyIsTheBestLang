@@ -13,6 +13,7 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 939E（https://codeforces.com/problemset/problem/939/E）greedy|two_pointers|ternary_search|ceil
 439D（https://codeforces.com/problemset/problem/439/D）ternary_search
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
+1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
@@ -344,4 +345,30 @@ class Solution:
                 pre += x * y
                 ans = max(ans, pre_pre)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1355e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1355/E
+        tag: ternary_search|classical|greedy
+        """
+        n, a, r, m = ac.read_list_ints()
+        h = ac.read_list_ints()
+
+        h.sort()
+        pre = ac.accumulate(h)
+
+        def check(x):
+            i = bisect.bisect_left(h, x)
+            low = x * i - pre[i]
+            high = pre[-1] - pre[i] - (n - i) * x
+            y = min(low, high)
+            res = y * min(m, a + r)
+            res += (low - y) * a + (high - y) * r
+            return res
+
+        mid = TernarySearch().find_floor_point_int(check, 0, max(h))
+        ans = min(check(x) for x in range(mid - 5, mid + 5) if x >= 0)
+        ac.st(ans)
         return

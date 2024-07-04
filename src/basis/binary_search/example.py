@@ -18,7 +18,7 @@ class TestGeneral(unittest.TestCase):
             lst = []
             for y in range(1, n + 1):
                 tm = 0
-                bs.find_int_left_strictly(1, n, check)
+                bs.find_int_left(1, n, check)
                 lst.append(tm)
             assert (1 << max(lst)) >= n > (1 << (max(lst) - 1))
 
@@ -32,7 +32,7 @@ class TestGeneral(unittest.TestCase):
             lst = []
             for y in range(1, n + 1):
                 tm = 0
-                bs.find_int_right_strictly(1, n, check_right)
+                bs.find_int_right(1, n, check_right)
                 lst.append(tm)
             assert (1 << max(lst)) >= n > (1 << (max(lst) - 1))
         return

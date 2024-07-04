@@ -131,6 +131,7 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointer
 1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
 1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
+319C（https://codeforces.com/problemset/problem/319/C）slope_dp|linear_dp|monotonic_queue
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1761,4 +1762,29 @@ class Solution:
             dp = ndp[:]
             ans = max(ans, max(dp))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_319c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/319/C
+        tag: slope_dp|linear_dp|monotonic_queue
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+
+        def slope(x, y):
+            return (dp[y] - dp[x]) / (b[y] - b[x])
+
+        dp = [0] * n
+        stack = deque([0])
+        for i in range(1, n):
+            while len(stack) >= 2 and slope(stack[0], stack[1]) >= -a[i]:
+                stack.popleft()
+            dp[i] = dp[stack[0]] + a[i] * b[stack[0]]
+            while len(stack) >= 2 and slope(stack[-2], i) >= slope(stack[-2], stack[-1]):
+                stack.pop()
+            stack.append(i)
+        ac.st(dp[n - 1])
         return

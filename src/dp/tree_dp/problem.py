@@ -82,6 +82,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1923E（https://codeforces.com/contest/1923/problem/E）heuristic_merge|tree_dp|counter|classical
 1984E（https://codeforces.com/contest/1984/problem/E）reroot_dp|mis|maximum_independent_set
 1363E（https://codeforces.com/problemset/problem/1363/E）greedy|implemention|observation
+1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1771,4 +1772,62 @@ class Solution:
                 ans += min(pos, neg) * a[x] * 2
                 sub[x] = pos - neg
         ac.st(ans if sub[0] == 0 else -1)
+        return
+
+    @staticmethod
+    def cf_1406c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1406/C
+        tag: link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+            stack = [(0, -1)]
+            sub = [1] * n
+            parent = [-1] * n
+            dp = [0] * n
+            depth = [0] * n
+            while stack:
+                x, fa = stack.pop()
+                if x >= 0:
+                    stack.append((~x, fa))
+                    for y in dct[x]:
+                        if y != fa:
+                            stack.append((y, x))
+                            parent[y] = x
+                            depth[y] = depth[x] + 1
+                else:
+                    x = ~x
+                    nex = 0
+                    for y in dct[x]:
+                        if y != fa:
+                            sub[x] += sub[y]
+                            nex = max(nex, sub[y])
+                    dp[x] = max(nex, n - sub[x])
+            floor = min(dp)
+            ind = [i for i in range(n) if dp[i] == floor]
+            if len(ind) == 1:
+                ac.lst([1, dct[0][0] + 1])
+                ac.lst([1, dct[0][0] + 1])
+            else:
+                assert len(ind) == 2
+                x, y = ind[0], ind[1]
+                if depth[x] > depth[y]:
+                    x, y = y, x
+
+                a, fa = y, parent[y]
+                while True:
+                    for b in dct[a]:
+                        if b != fa:
+                            a, fa = b, a
+                            break
+                    else:
+                        break
+                ac.lst([a + 1, parent[a] + 1])
+                ac.lst([a + 1, x + 1])
         return
