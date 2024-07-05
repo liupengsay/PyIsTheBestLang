@@ -19,6 +19,10 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 =====================================AcWing=====================================
 4005（https://www.acwing.com/problem/content/description/4008/）classical|game_dp|brain_teaser|classification_discussion
 
+
+=====================================CodeForces=====================================
+493D（https://codeforces.com/problemset/problem/493/D）implemention|odd_even|game_dp
+
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
 ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greedy|dfs|linear_dp

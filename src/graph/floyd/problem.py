@@ -1,6 +1,6 @@
 """
 
-Algorithm：floyd|several_source_shortest_path|undirected_graph|directed_graph|pos_weight|neg_weight|negative_circle
+Algorithm：floyd|several_source_shortest_path|undirected_graph|directed_graph|pos_weight|neg_weight|negative_circle|shortest_circle
 Description：shortest_path|longest_path|necessary_point_on_shortest_path|necessary_point_on_longest_path|necessary_edge
 specific_plan： floyd need dp[i][j] where pre[i][j] = k, and bellman-ford dijkstra need pre[v] = u
 
@@ -26,6 +26,8 @@ P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 
 ===================================CodeForces===================================
 472D（https://codeforces.com/problemset/problem/472/D）floyd|construction|shortest_path
+1205B（https://codeforces.com/problemset/problem/1205/B）data_range|floyd|undirected_shortest_circle
+
 
 ====================================AtCoder=====================================
 ABC051D（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_path|necessary_edge|classical
@@ -692,4 +694,49 @@ class Solution:
                             tot += dp[a][b]
             ans += tot
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1205b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1205/B
+        tag: data_range|floyd|undirected_shortest_circle
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        nums = [num for num in nums if num]
+        n = len(nums)
+        if n <= 2:
+            ac.st(-1)
+            return
+        dct = [[] for _ in range(64)]
+        for i, num in enumerate(nums):
+            for x in range(64):
+                if (num >> x) & 1:
+                    dct[x].append(i)
+        if any(len(dct[w]) >= 3 for w in range(64)):
+            ac.st(3)
+            return
+
+        assert n <= 200
+        edge = [inf] * n * n
+        dis = [inf] * n * n
+        for x in range(64):
+            if len(dct[x]) == 2:
+                i, j = dct[x][0], dct[x][1]
+                dis[i * n + j] = dis[j * n + i] = 1
+                edge[i * n + j] = edge[j * n + i] = 1
+        ans = inf
+        for k in range(n):
+            for i in range(n):
+                if dis[i * n + k] == inf:
+                    continue
+                for j in range(i + 1, n):
+                    ans = min(ans, dis[i * n + j] + edge[i * n + k] + edge[k * n + j])  # classical
+            for i in range(n):
+                if dis[i * n + k] == inf:
+                    continue
+                for j in range(i + 1, n):
+                    dis[j * n + i] = dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+        ac.st(ans if ans < inf else -1)
         return

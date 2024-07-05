@@ -75,6 +75,8 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1854A2（https://codeforces.com/problemset/problem/1854/A2）construction
 1416B（https://codeforces.com/problemset/problem/1416/B）construction
 1217D（https://codeforces.com/problemset/problem/1217/D）construction|observation|classical
+1758D（https://codeforces.com/problemset/problem/1758/D）construction
+1268B（https://codeforces.com/problemset/problem/1268/B）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
