@@ -44,6 +44,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 1029E（https://codeforces.com/contest/1029/problem/E）greedy|implemention|rooted_tree|depth|degree
 1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greedy
 1388D（https://codeforces.com/problemset/problem/1388/D）topological_sort|dag_dp|heuristic_merge|classical
+919D（https://codeforces.com/problemset/problem/919/D）topological_sort|dag_dp|classical
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree

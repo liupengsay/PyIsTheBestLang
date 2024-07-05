@@ -22,6 +22,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 
 =====================================CodeForces=====================================
 493D（https://codeforces.com/problemset/problem/493/D）implemention|odd_even|game_dp
+1728D（https://codeforces.com/contest/1728/problem/D）gap_dp|interval_dp
 
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
@@ -246,4 +247,40 @@ class Solution:
 
         ans = dfs(x)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1728d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1728/problem/D
+        tag: gap_dp|interval_dp
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            n = len(s)
+            dp = [[0] * n for _ in range(n)]
+
+            def comb(x, y):
+                if x > y:
+                    return 0
+                elif x < y:
+                    return 2
+                return 1
+
+            for i in range(n - 1, -1, -1):
+                for j in range(i + 1, n, 2):
+                    if i == j - 1:
+                        # 2-win 1-draw 0-lose
+                        dp[i][j] = 2 if s[i] != s[j] else 1
+                        continue
+
+                    # s[i]
+                    f1 = comb(s[i], s[i + 1]) if dp[i + 2][j] == 1 else dp[i + 2][j]
+                    f2 = comb(s[i], s[j]) if dp[i + 1][j - 1] == 1 else dp[i + 1][j - 1]
+                    # s[j]
+                    f3 = comb(s[j], s[j - 1]) if dp[i][j - 2] == 1 else dp[i][j - 2]
+                    f4 = comb(s[j], s[i]) if dp[i + 1][j - 1] == 1 else dp[i + 1][j - 1]
+                    dp[i][j] = max(min(f1, f2), min(f3, f4))
+            ans = dp[0][n - 1]
+            ac.st("Alice" if ans == 2 else "Draw")
         return

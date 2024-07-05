@@ -94,6 +94,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 1862F（https://codeforces.com/contest/1862/problem/F）bag_dp|brute_force
 1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
 837D（https://codeforces.com/problemset/problem/837/D）matrix_dp|observation|classical|brain_teaser|bag_dp
+478D（https://codeforces.com/problemset/problem/478/D）matrix_dp|data_range|implemention|bag_dp
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1652,4 +1653,31 @@ class Solution:
         for y in range(tot5):
             ans = max(ans, min(y, dp[k * tot5 + y]))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_478d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/478/D
+        tag: matrix_dp|data_range|implemention|bag_dp
+        """
+        mod = 10 ** 9 + 7
+        r, g = ac.read_list_ints()
+        h = 1
+        while (h + 1) * (h + 2) // 2 <= r + g:
+            h += 1
+        dp = [0] * (r + 1)
+
+        dp[0] = 1
+        tot = 0
+        for i in range(1, h + 1):
+            for j in range(min(r, tot + i), i - 1, -1):
+                dp[j] = (dp[j] + dp[j - i]) % mod
+            tot += i
+        res = 0
+        low = max(h * (h + 1) // 2 - g, 0)
+        for i in range(low, r + 1):
+            res += dp[i]
+            res %= mod
+        ac.st(res)
         return

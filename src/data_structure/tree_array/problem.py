@@ -60,6 +60,7 @@ ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_
 1550C（https://codeforces.com/contest/1550/problem/C）PointAscendPreMax
 1679C（https://codeforces.com/contest/1679/problem/C）PointAddRangeSum
 1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version|tree_array_2d
+1430E（https://codeforces.com/problemset/problem/1430/E）tree_array|classical|implemention|point_add|range_sum|pre_sum
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -1473,3 +1474,24 @@ class Solution:
                     if 0 <= aa < aa + 1 < n and nums[aa] > nums[aa - 1] and nums[aa] > nums[aa + 1]:
                         tree.point_add(aa, 1)
         return res
+
+    @staticmethod
+    def cf_1430e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1430/E
+        tag: tree_array|classical|implemention|point_add|range_sum|pre_sum
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        dct = defaultdict(list)
+        for i in range(n - 1, -1, -1):
+            dct[s[i]].append(i)
+        tree = PointAddRangeSum(n)
+        tree.build([1] * n)
+        ans = 0
+        for i in range(n - 1, -1, -1):
+            x = dct[s[i]].pop()
+            ans += tree.range_sum(0, x) - 1
+            tree.point_add(x, -1)
+        ac.st(ans)
+        return
