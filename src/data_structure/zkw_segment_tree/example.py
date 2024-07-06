@@ -59,6 +59,7 @@ class TestGeneral(unittest.TestCase):
             rr = random.randint(ll, n - 1)
             ans = tree.range_sum(ll, rr)
             assert ans == sum(nums[ll:rr + 1])
+            assert tree.cover[1] == sum(nums)
 
         assert nums == tree.get()
         return

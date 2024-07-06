@@ -86,6 +86,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 242E（https://codeforces.com/contest/242/problem/E）segment_tree|range_xor|range_reverse|range_sum|range_bit_count
 1982F（https://codeforces.com/contest/1982/problem/F）point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
 620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
+1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -181,7 +182,8 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
     RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
-    PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin
+    PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
+    PointSetRangeMaxSubSumAlterSignal
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
@@ -3794,4 +3796,58 @@ class Solution:
             for rr in right[x]:
                 tree.range_add(ind[rr + 1], m - 1, 1)
         ac.lst(ans)
+        return
+
+
+    @staticmethod
+    def cf_1420c2_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1420/C2
+        tag: point_set|range_max_sub_sum_alter_signal|greedy
+        """
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            nums = ac.read_list_ints()  # TLE
+            tree = PointSetRangeMaxSubSumAlterSignal(n)
+            tree.build(nums)
+            ac.st(tree.cover[1])
+            for _ in range(q):
+                ll, rr = ac.read_list_ints_minus_one()
+                a, b = nums[ll], nums[rr]
+                if a != b:
+                    nums[ll], nums[rr] = b, a
+                    tree.point_set_range_max_sub_sum(ll, b)
+                    ans = tree.point_set_range_max_sub_sum(rr, a)
+                    ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1420c2_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1420/C2
+        tag: point_set|range_max_sub_sum_alter_signal|greedy
+        """
+
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            nums = ac.read_list_ints() + [0]
+            n += 1
+            ans = 0
+            for i in range(n - 1):
+                if nums[i] > nums[i + 1]:
+                    ans += nums[i] - nums[i + 1]
+            ac.st(ans)
+            for _ in range(q):
+                ll, rr = ac.read_list_ints_minus_one()
+                if ll == rr:
+                    ac.st(ans)
+                    continue
+                for y in {ll - 1, ll, rr - 1, rr}:
+                    if 0 <= y < y + 1 < n and nums[y] > nums[y + 1]:
+                        ans -= nums[y] - nums[y + 1]
+                nums[ll], nums[rr] = nums[rr], nums[ll]
+                for y in {ll - 1, ll, rr - 1, rr}:
+                    if 0 <= y < y + 1 < n and nums[y] > nums[y + 1]:
+                        ans += nums[y] - nums[y + 1]
+                ac.st(ans)
         return
