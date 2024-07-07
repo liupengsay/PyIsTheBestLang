@@ -26,6 +26,8 @@ class FastIO:
         self.random_seed = 0
         self.flush = False
         self.inf = 1 << 32
+        self.dire4 = [(0, -1), (0, 1), (1, 0), (-1, 0)]
+        self.dire8 = [(0, -1), (0, 1), (1, 0), (-1, 0)] + [(1, -1), (1, 1), (-1, -1), (-1, 1)]
         return
 
     @staticmethod
@@ -95,9 +97,6 @@ class FastIO:
             pre[i + 1] = pre[i] + nums[i]
         return pre
 
-
-dire4 = [(0, -1), (0, 1), (1, 0), (-1, 0)]
-dire8 = [(0, -1), (0, 1), (1, 0), (-1, 0)] + [(1, -1), (1, 1), (-1, -1), (-1, 1)]
 
 
 class Solution:
