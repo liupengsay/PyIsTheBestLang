@@ -132,6 +132,8 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
 1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
 319C（https://codeforces.com/problemset/problem/319/C）slope_dp|linear_dp|monotonic_queue
+1427C（https://codeforces.com/problemset/problem/1427/C）linear_dp|data_range|observation
+
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1787,4 +1789,31 @@ class Solution:
                 stack.pop()
             stack.append(i)
         ac.st(dp[n - 1])
+        return
+
+    @staticmethod
+    def cf_1427c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1427/C
+        tag: linear_dp|data_range|observation
+        """
+        r, n = ac.read_list_ints()  # TLE
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dp = [-inf] * (n + 1)
+        pre = [0] * (n + 1)
+        dp[0] = 0
+        for i in range(n):
+            t, x, y = nums[i]
+            cur = -inf
+            if x + y - 2 <= t:
+                cur = 1
+            for j in range(i - 1, max(i - 2 * r, 0) - 1, -1):
+                if nums[i][0] - nums[j][0] >= 2 * r:
+                    cur = max(cur, pre[j + 1] + 1)
+                    break
+                if abs(x - nums[j][1]) + abs(y - nums[j][2]) <= nums[i][0] - nums[j][0]:
+                    cur = max(dp[j + 1] + 1, cur)
+            dp[i + 1] = cur
+            pre[i + 1] = max(dp[i + 1], pre[i])
+        ac.st(pre[-1])
         return

@@ -96,6 +96,10 @@ class FastIO:
         return pre
 
 
+dire4 = [(0, -1), (0, 1), (1, 0), (-1, 0)]
+dire8 = [(0, -1), (0, 1), (1, 0), (-1, 0)] + [(1, -1), (1, 1), (-1, -1), (-1, 1)]
+
+
 class Solution:
     def __init__(self):
         return

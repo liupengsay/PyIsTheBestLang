@@ -72,6 +72,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1982E（https://codeforces.com/contest/1982/problem/E）divide_and_conquer|bit_operation|brain_teaser|segment_tree
 1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
 1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
+1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1066,4 +1067,31 @@ class Solution:
                 ans += left * right
                 ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1491d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1491/D
+        tag: bit_operation|observation|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            u, v = ac.read_list_ints()
+            if u > v:
+                ac.no()
+                continue
+            if u == v:
+                ac.yes()
+                continue
+            uu = vv = 0
+            for i in range(30):
+                if (u >> i) & 1:
+                    uu += 1
+                if (v >> i) & 1:
+                    vv += 1
+                if uu < vv:
+                    ac.no()
+                    break
+            else:
+                ac.yes()
         return

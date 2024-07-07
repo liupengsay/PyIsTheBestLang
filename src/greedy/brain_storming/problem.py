@@ -207,6 +207,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1978D（https://codeforces.com/contest/1978/problem/D）greedy|brain_teaser|implemention
 1316C（https://codeforces.com/problemset/problem/1316/C）observation|math|brain_teaser
 1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointer|classical|brain_teaser
+1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -321,45 +322,6 @@ class Solution:
             ac.st(sum(-num for num in nums) + 2 * max(nums))
         else:
             ac.st(sum(abs(num) for num in nums))
-        return
-
-    @staticmethod
-    def main(ac=FastIO()):
-        s = ac.read_str()
-        cnt = Counter(s)
-        n = len(s)
-        double = []
-        single = []
-        for w in cnt:
-            if cnt[w] % 2 == 0:
-                x = cnt[w] // 2
-                double.append([w, x])
-            else:
-                x = cnt[w] // 2
-                if x:
-                    double.append([w, x])
-                single.append(w)
-        if n % 2 == 0:
-            single.sort()
-            m = len(single)
-            for i in range(m // 2):
-                double.append([single[i], 1])
-            double.sort(key=lambda it: it[0])
-            ans = ""
-            for w, c in double:
-                ans += w * c
-            ac.st(ans + ans[::-1])
-
-        else:
-            single.sort()
-            m = len(single)
-            for i in range(m // 2):
-                double.append([single[i], 1])
-            double.sort(key=lambda it: it[0])
-            ans = ""
-            for w, c in double:
-                ans += w * c
-            ac.st(ans + single[m // 2] + ans[::-1])
         return
 
     @staticmethod
@@ -2054,4 +2016,26 @@ class Solution:
             else:
                 break
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1684d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1684/D
+        tag: greedy|observation|contribution_method
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            ind = list(range(n))
+            ind.sort(key=lambda it: nums[it] - (n - it - 1), reverse=True)
+            for i in ind[:k]:
+                nums[i] = 0
+            ans = pre = 0
+            for i in range(n):
+                if nums[i] == 0:
+                    pre += 1
+                else:
+                    ans += nums[i] + pre
+            ac.st(ans)
         return

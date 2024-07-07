@@ -40,6 +40,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
 1986E（https://codeforces.com/contest/1986/problem/E）cutting_edge|tarjan|brute_force
 118E（https://codeforces.com/problemset/problem/118/E）tarjan|cutting_edge|order|classical
+1000E（https://codeforces.com/problemset/problem/1000/E）tarjan|edcc|cutting_edge|tree_diameter
 
 ===================================CodeForces===================================
 ABC334G（https://atcoder.jp/contests/abc334/tasks/abc334_g）union_find|mod_reverse|tarjan|edcc|expectation|math|classical
@@ -1064,4 +1065,72 @@ class Solution:
                     ac.lst([y + 1, x + 1])
         else:
             ac.st(0)
+        return
+
+    @staticmethod
+    def cf_1000e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1000/E
+        tag: tarjan|edcc|cutting_edge|tree_diameter
+        """
+        n, m = ac.read_list_ints()
+        dct = [set() for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].add(j)
+            dct[j].add(i)
+        _, cutting_edges = Tarjan().get_cut(n, [list(e) for e in dct])
+        # edcc
+        nex_dct = [list(e) for e in dct]
+        for i, j in cutting_edges:
+            dct[i].discard(j)
+            dct[j].discard(i)
+        visit = [0] * n
+        node_edcc_id = [-1] * n
+        edcc_id = 0
+        for i in range(n):
+            if visit[i]:
+                continue
+            stack = [i]
+            visit[i] = 1
+            node_edcc_id[i] = edcc_id
+            while stack:
+                x = stack.pop()
+                for j in dct[x]:
+                    if not visit[j]:
+                        visit[j] = 1
+                        stack.append(j)
+                        node_edcc_id[j] = edcc_id
+            edcc_id += 1
+        del dct, visit
+        new_dct = [[] for _ in range(edcc_id)]
+        for i in range(n):
+            for j in nex_dct[i]:
+                a, b = node_edcc_id[i], node_edcc_id[j]
+                if a != b:
+                    new_dct[a].append(b)
+        del nex_dct
+        n = len(new_dct)
+        root = 0
+        dis = [inf] * n
+        stack = [(root, -1)]
+        dis[root] = 0
+        while stack:
+            i, fa = stack.pop()
+            for j in new_dct[i]:  # weighted edge
+                if j != fa:
+                    dis[j] = dis[i] + 1
+                    stack.append((j, i))
+        root = dis.index(max(dis))
+        dis = [inf] * n
+        stack = [(root, -1)]
+        dis[root] = 0
+        while stack:
+            i, fa = stack.pop()
+            for j in new_dct[i]:  # weighted edge
+                if j != fa:
+                    dis[j] = dis[i] + 1
+                    stack.append((j, i))
+
+        ac.st(max(dis))
         return
