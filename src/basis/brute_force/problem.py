@@ -42,7 +42,7 @@ Description：brute force according to the data range
 842（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_track
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
-100240（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
+3102（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -137,6 +137,7 @@ P1989（https://www.luogu.com.cn/problem/P1989）ternary_circle|dag|build_graph|
 1729F（https://codeforces.com/contest/1729/problem/F）brute_force
 1846E2（https://codeforces.com/contest/1846/problem/E2）brute_force|binary_search
 1926F（https://codeforces.com/contest/1926/problem/F）brute_force|greedy|classical
+1689D（https://codeforces.com/contest/1689/problem/D）manhattan_distance|prefix_suffix|classical
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
@@ -1555,7 +1556,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100240_1(points: List[List[int]]) -> int:
+    def lc_3102_1(points: List[List[int]]) -> int:
 
         """
         url: https://leetcode.cn/problems/minimize-manhattan-distances/
@@ -1591,7 +1592,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_100240_2(points: List[List[int]]) -> int:
+    def lc_3102_2(points: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimize-manhattan-distances/
         tag: manhattan_distance|brain_teaser|implemention|prefix_suffix|classical

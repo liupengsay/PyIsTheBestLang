@@ -53,6 +53,7 @@ P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 1690G（https://codeforces.com/contest/1690/problem/G）sorted_list|implemention
 1969D（https://codeforces.com/contest/1969/problem/D）sorted_list|top_k_sum|greedy
 1974F（https://codeforces.com/contest/1974/problem/F）sorted_list|implemention
+1418D（https://codeforces.com/problemset/problem/1418/D）sorted_list|implemention
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum

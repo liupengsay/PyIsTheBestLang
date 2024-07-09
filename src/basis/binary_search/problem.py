@@ -94,6 +94,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_masks
 1393C（https://codeforces.com/problemset/problem/1393/C）binary_search|implemention|stack|classical|math
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
+1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1931,4 +1932,48 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, 10 ** 20, check)
         ac.st(ans if ans < 10 ** 20 else -1)
+        return
+
+    @staticmethod
+    def cf_1379c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1379/problem/C
+        tag: observation|prefix_sum|binary_search|brute_force|greedy
+        """
+        q = ac.read_int()
+        for i in range(q):
+            if i:
+                ac.read_str()
+            n, m = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(m)]
+            nums.sort(reverse=True)
+
+            lst = [a for a, _ in nums]
+            pre = ac.accumulate(lst)
+            ans = sum(lst[:n])
+
+            if n == 1:
+                ac.st(ans)
+                continue
+
+            def check(x):
+                if x == -1:
+                    return True
+                if lst[x] < b:
+                    return False
+                c = x + 1
+                if j <= x:
+                    c -= 1
+                return c <= n - 2
+
+            for j, (a, b) in enumerate(nums):
+                i = BinarySearch().find_int_right(-1, m - 1, check)
+
+                if i < j:
+                    cur = pre[i + 1] + (n - i - 2) * b + a
+                else:
+                    cur = pre[i + 1] + (n - i - 1) * b
+
+                ans = max(ans, cur)
+            ac.st(ans)
         return

@@ -46,6 +46,8 @@ P5390（https://www.luogu.com.cn/problem/P5390）bit_operation
 P6824（https://www.luogu.com.cn/problem/P6824）bit_operation|xor|diff_array|action_scope|counter
 P8842（https://www.luogu.com.cn/problem/P8842）prime_factorization|prefix_sum|counter
 P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
+P3760（https://www.luogu.com.cn/problem/P3760）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
+U360500（https://www.luogu.com.cn/problem/U360500）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
 
 ===================================CodeForces===================================
 305C（https://codeforces.com/problemset/problem/305/C）2-base
@@ -73,6 +75,7 @@ P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
 1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
 1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
+1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointer
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -82,6 +85,7 @@ ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|d
 ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
 ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
 ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classical|math|digital_dp
+ARC092B（https://atcoder.jp/contests/arc092/tasks/arc092_b）bit_operation|contribution_method|classical|two_pointer
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
@@ -101,6 +105,7 @@ from operator import xor, or_
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1094,4 +1099,130 @@ class Solution:
                     break
             else:
                 ac.yes()
+        return
+
+    @staticmethod
+    def cf_1322b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1322/B
+        tag: bit_operation|contribution_method|classical|two_pointer
+        """
+
+        max_bit = 25
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        ans = 0
+        ind = list(range(n))
+        lst = [0] * n
+        for x in range(max_bit):
+            one = []
+            zero = []
+            for i in ind:
+                if (a[i] >> x) & 1:
+                    lst[i] |= 1 << x
+                    one.append(i)
+                else:
+                    zero.append(i)
+            ind = zero + one
+
+
+            tmp = [(1 << x, (1 << (x + 1)) - 1), ((1 << x) + (1 << (x + 1)), (1 << (x + 2)) - 1)]
+            cnt = 0
+            for aa, bb in tmp:
+                j1 = j2 = n - 1
+                res = 0
+                for ii in range(n):
+                    while j2 >= 0 and lst[ind[j2]] > bb - lst[ind[ii]]:
+                        j2 -= 1
+                    while j1 >= 0 and lst[ind[j1]] >= aa - lst[ind[ii]]:
+                        j1 -= 1
+                    cur = j2 - j1
+                    if j1 + 1 <= ii <= j2:
+                        cur -= 1
+                    res += cur
+                assert res % 2 == 0
+                cnt += res // 2
+            if cnt % 2:
+                ans |= 1 << x
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def arc_092b(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/arc092/tasks/arc092_b
+        tag: bit_operation|contribution_method|classical|two_pointer
+        """
+
+        max_bit = 30
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        ans = 0
+        ind = list(range(n))
+        ind_b = list(range(n))
+        for x in range(max_bit):
+            one = []
+            zero = []
+            for i in ind:
+                if (a[i] >> x) & 1:
+                    one.append(i)
+                else:
+                    zero.append(i)
+            ind = zero + one
+
+            one = []
+            zero = []
+            for i in ind_b:
+                if (b[i] >> x) & 1:
+                    one.append(i)
+                else:
+                    zero.append(i)
+            ind_b = zero + one
+            mod = (1 << (x + 1)) - 1
+
+            tmp = [(1 << x, (1 << (x + 1)) - 1), ((1 << x) + (1 << (x + 1)), (1 << (x + 2)) - 1)]
+            cnt = 0
+            for aa, bb in tmp:
+                j1 = j2 = n - 1
+                for ii in range(n):
+                    while j2 >= 0 and b[ind_b[j2]] & mod > bb - (a[ind[ii]] & mod):
+                        j2 -= 1
+                    while j1 >= 0 and b[ind_b[j1]] & mod >= aa - (a[ind[ii]] & mod):
+                        j1 -= 1
+                    cur = j2 - j1
+                    cnt += cur
+            if cnt % 2:
+                ans |= 1 << x
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_u360500(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/U360500
+        tag: bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
+        """
+
+        max_bit = 25
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums = ac.accumulate(nums)
+        n += 1
+        ans = c = 0
+        for x in range(max_bit):
+            a0, a1 = [], []
+            sum_idx = 0
+            for idx, num in enumerate(nums):
+                if (num >> x) & 1:
+                    a1.append(num)
+                else:
+                    a0.append(num)
+                    sum_idx += idx
+            n0, n1 = len(a0), len(a1)
+            if c ^ (n0 * n1 % 2):
+                ans |= 1 << x
+            c ^= (n0 * (n0 - 1) // 2 - sum_idx) % 2
+            nums = a0 + a1
+        ac.st(ans)
         return

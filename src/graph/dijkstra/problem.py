@@ -102,7 +102,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1741G（https://codeforces.com/contest/1741/problem/G）shortest_path|brute_force|state_dp
 1846G（https://codeforces.com/contest/1846/problem/G）shortest_path
 449B（https://codeforces.com/contest/449/problem/B）shortest_path|not_shortest_path_spanning_tree|union_find
-
+1307D（https://codeforces.com/problemset/problem/1307/D）math|graph|shortest_path|observation|brute_force
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -2281,4 +2281,29 @@ class Solution:
                 elif dj == dis[j]:
                     use[j] = 0
         ac.st(k - sum(use))
+        return
+
+    @staticmethod
+    def cf_1307d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1307/D
+        tag: math|graph|shortest_path|observation|brute_force
+        """
+        n, m, k = ac.read_list_ints()
+        color = ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+
+        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
+        dis2 = Dijkstra().get_shortest_path_by_bfs(dct, n - 1, inf)
+        color.sort(key=lambda it: dis1[it] - dis2[it])
+        ans = -inf
+        post = -inf
+        for i in range(k - 1, -1, -1):
+            ans = max(ans, min(dis1[n - 1], post + dis1[color[i]] + 1))
+            post = max(post, dis2[color[i]])
+        ac.st(ans)
         return

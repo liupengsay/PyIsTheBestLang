@@ -19,6 +19,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1499D（https://codeforces.com/contest/1499/problem/D）math|prime_factor_cnt|classical
 1986G1（https://codeforces.com/contest/1986/problem/G1）all_factor|brute_force|contribution_method
 546D（https://codeforces.com/problemset/problem/546/D）prime_factor_mi_cnt
+1470B（https://codeforces.com/problemset/problem/1470/B）prime_factor|observation
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -954,4 +955,51 @@ class Solution:
             a, b = ac.read_list_ints()
             cnt = prime_factor_mi_cnt[a] - prime_factor_mi_cnt[b]
             ac.st(cnt)
+        return
+
+    @staticmethod
+    def cf_1470b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1470/B
+        tag: prime_factor|observation
+        """
+        n = 10 ** 6
+        lst = [[] for _ in range(n+1)]
+
+        min_prime = [0]*(n+1)
+        for i in range(2, n + 1):
+            if not min_prime[i]:
+                min_prime[i] = i
+                for j in range(i * i, n + 1, i):
+                    if not min_prime[j]:
+                        min_prime[j] = i
+
+        for num in range(1, n + 1):
+            i = num
+            cur = 1
+            while num > 1:
+                p = min_prime[num]
+                cnt = 0
+                while num % p == 0:
+                    num //= p
+                    cnt += 1
+                if cnt % 2:
+                    cur *= p
+            lst[i] = cur
+
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            dct = Counter()
+            for num in nums:
+                dct[lst[num]] += 1
+            ans2 = ans1 = 0
+            for w in dct:
+                ans1 = max(ans1, dct[w])
+                if dct[w] % 2 == 0 or w == 1:
+                    ans2 += dct[w]
+            ans2 = max(ans2, ans1)
+            for _ in range(ac.read_int()):
+                w = ac.read_int()
+                ac.st(ans2 if w else ans1)
         return

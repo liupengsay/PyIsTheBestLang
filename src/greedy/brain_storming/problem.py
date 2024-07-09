@@ -208,6 +208,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1316C（https://codeforces.com/problemset/problem/1316/C）observation|math|brain_teaser
 1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointer|classical|brain_teaser
 1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
+1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2037,5 +2038,40 @@ class Solution:
                     pre += 1
                 else:
                     ans += nums[i] + pre
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1379c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1379/problem/C
+        tag: observation|prefix_sum|binary_search|brute_force|greedy
+        """
+        q = ac.read_int()
+        for i in range(q):
+            n, m = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(m)]
+            if i < q - 1:
+                ac.read_str()
+            lst = [a for a, _ in nums]
+            lst.sort()
+            if n == 1:
+                ac.st(max(lst))
+                continue
+
+            pre = ac.accumulate(lst)
+            ans = max(lst[-n:])
+            for a, b in nums:
+                rest = n - 2
+                cur = a + b
+                i = bisect.bisect_left(lst, b)
+                x = min(rest, m - i)
+                cur += pre[m] - pre[m - x]
+                if x and a > b:
+                    x -= 1
+                    cur -= a
+                rest -= x
+                cur += rest * b
+                ans = max(ans, cur)
             ac.st(ans)
         return

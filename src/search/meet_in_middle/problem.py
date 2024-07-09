@@ -14,7 +14,9 @@ P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_
 
 =====================================CodeForces=====================================
 1006F（https://codeforces.com/contest/1006/problem/F）prefix_sum|hash|counter|meet_in_middle
-CF525E（https://www.luogu.com.cn/problem/CF525E）meet_in_middle
+525E（https://codeforces.com/problemset/problem/525/E）meet_in_middle
+888E（https://codeforces.com/problemset/problem/888/E）meet_in_middle|classical
+
 
 =====================================AtCoder=====================================
 ABC326F（https://atcoder.jp/contests/abc326/tasks/abc326_f）meet_in_middle|brain_teaser|classical
@@ -28,6 +30,7 @@ ABC271F（https://atcoder.jp/contests/abc271/tasks/abc271_f）meet_in_middle|bru
 """
 
 import bisect
+import random
 from collections import defaultdict, Counter
 from itertools import combinations
 from typing import List
@@ -376,5 +379,31 @@ class Solution:
             nex = right[i][n - 1 - i]
             for p in pre:
                 ans += nex[p ^ x] * pre[p]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_888e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/888/E
+        tag: meet_in_middle|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        random.shuffle(nums)
+        pre = {0}
+        for num in nums[:n // 2]:
+            pre = pre | {(p + num) % m for p in pre} | {num % m}
+        post = {0}
+        for num in nums[n // 2:]:
+            post = post | {(p + num) % m for p in post} | {num % m}
+        pre = sorted(pre)
+        ans = pre[-1]
+        for num in post:
+            ans = max(ans, (pre[-1] + num) % m)
+            ans = max(ans, num)
+            i = bisect.bisect_left(pre, m - num) - 1
+            if i >= 0:
+                ans = max(ans, (pre[i] + num) % m)
         ac.st(ans)
         return
