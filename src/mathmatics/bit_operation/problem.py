@@ -1107,34 +1107,29 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1322/B
         tag: bit_operation|contribution_method|classical|two_pointer
         """
-
         max_bit = 25
         n = ac.read_int()
-        a = ac.read_list_ints()
+        nums = ac.read_list_ints()
         ans = 0
-        ind = list(range(n))
-        lst = [0] * n
         for x in range(max_bit):
-            one = []
-            zero = []
-            for i in ind:
-                if (a[i] >> x) & 1:
-                    lst[i] |= 1 << x
-                    one.append(i)
+            one, zero = [], []
+            for num in nums:
+                if (num >> x) & 1:
+                    one.append(num)
                 else:
-                    zero.append(i)
-            ind = zero + one
+                    zero.append(num)
+            nums = zero + one
 
-
+            mask = (1 << (x + 1)) - 1
             tmp = [(1 << x, (1 << (x + 1)) - 1), ((1 << x) + (1 << (x + 1)), (1 << (x + 2)) - 1)]
             cnt = 0
             for aa, bb in tmp:
                 j1 = j2 = n - 1
                 res = 0
                 for ii in range(n):
-                    while j2 >= 0 and lst[ind[j2]] > bb - lst[ind[ii]]:
+                    while j2 >= 0 and nums[j2] & mask > bb - (nums[ii] & mask):
                         j2 -= 1
-                    while j1 >= 0 and lst[ind[j1]] >= aa - lst[ind[ii]]:
+                    while j1 >= 0 and nums[j1] & mask >= aa - (nums[ii] & mask):
                         j1 -= 1
                     cur = j2 - j1
                     if j1 + 1 <= ii <= j2:
@@ -1153,42 +1148,39 @@ class Solution:
         url: https://atcoder.jp/contests/arc092/tasks/arc092_b
         tag: bit_operation|contribution_method|classical|two_pointer
         """
-
         max_bit = 30
         n = ac.read_int()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         ans = 0
-        ind = list(range(n))
-        ind_b = list(range(n))
         for x in range(max_bit):
-            one = []
-            zero = []
-            for i in ind:
-                if (a[i] >> x) & 1:
-                    one.append(i)
+            one, zero = [], []
+            for num in a:
+                if (num >> x) & 1:
+                    one.append(num)
                 else:
-                    zero.append(i)
-            ind = zero + one
+                    zero.append(num)
+            a = zero + one
 
             one = []
             zero = []
-            for i in ind_b:
-                if (b[i] >> x) & 1:
-                    one.append(i)
+            for num in b:
+                if (num >> x) & 1:
+                    one.append(num)
                 else:
-                    zero.append(i)
-            ind_b = zero + one
-            mod = (1 << (x + 1)) - 1
+                    zero.append(num)
+            b = zero + one
+
+            mask = (1 << (x + 1)) - 1
 
             tmp = [(1 << x, (1 << (x + 1)) - 1), ((1 << x) + (1 << (x + 1)), (1 << (x + 2)) - 1)]
             cnt = 0
             for aa, bb in tmp:
                 j1 = j2 = n - 1
                 for ii in range(n):
-                    while j2 >= 0 and b[ind_b[j2]] & mod > bb - (a[ind[ii]] & mod):
+                    while j2 >= 0 and b[j2] & mask > bb - (a[ii] & mask):
                         j2 -= 1
-                    while j1 >= 0 and b[ind_b[j1]] & mod >= aa - (a[ind[ii]] & mod):
+                    while j1 >= 0 and b[j1] & mask >= aa - (a[ii] & mask):
                         j1 -= 1
                     cur = j2 - j1
                     cnt += cur
