@@ -27,6 +27,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1934C（https://codeforces.com/contest/1934/problem/C）interactive|brain_teaser
 1937C（https://codeforces.com/contest/1937/problem/C）interactive|brain_teaser
 1973D（https://codeforces.com/contest/1973/problem/D）interactive|brain_teaser
+1556D（https://codeforces.com/problemset/problem/1556/D）interactive|bit_operation|classical
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -425,4 +426,30 @@ class Solution:
             ans %= 100
             x = xx
         ac.lst(["!", ans])
+        return
+
+    @staticmethod
+    def cf_1556d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1556/D
+        tag: interactive|bit_operation|classical
+        """
+        ac.flush = True
+        n, k = ac.read_list_ints()
+        nums = [0] * n
+        for i in range(n - 1):
+            ac.lst(["and", i + 1, i + 2])
+            a = ac.read_int()
+            ac.lst(["or", i + 1, i + 2])
+            b = ac.read_int()
+            nums[i + 1] = a + b
+        ac.lst(["and", 1, 3])
+        a = ac.read_int()
+        ac.lst(["or", 1, 3])
+        b = ac.read_int()
+        nums[0] = (nums[1] - nums[2] + a + b) // 2
+        for i in range(1, n):
+            nums[i] -= nums[i - 1]
+        nums.sort()
+        ac.lst(["finish"] + [nums[k-1]])
         return

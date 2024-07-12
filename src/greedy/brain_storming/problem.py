@@ -209,6 +209,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointer|classical|brain_teaser
 1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
+1451D（https://codeforces.com/problemset/problem/1451/D）data_range|observation|classical|greedy|implemention
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -260,7 +261,7 @@ ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implementio
 2（https://www.codechef.com/problems/DESTBRIDGE2）greedy|implemention
 
 """
-
+import bisect
 import heapq
 import math
 from bisect import insort_left, bisect_left

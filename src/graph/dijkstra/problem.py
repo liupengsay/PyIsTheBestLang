@@ -103,6 +103,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1846G（https://codeforces.com/contest/1846/problem/G）shortest_path
 449B（https://codeforces.com/contest/449/problem/B）shortest_path|not_shortest_path_spanning_tree|union_find
 1307D（https://codeforces.com/problemset/problem/1307/D）math|graph|shortest_path|observation|brute_force
+938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -2306,4 +2307,36 @@ class Solution:
             ans = max(ans, min(dis1[n - 1], post + dis1[color[i]] + 1))
             post = max(post, dis2[color[i]])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_938d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/938/D
+        tag: dijkstra|fake_source|build_graph|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            i, j, w = ac.read_list_ints()
+            dct[i].append((j, w))
+            dct[j].append((i, w))
+        a = ac.read_list_ints()
+        for i in range(n):
+            dct[0].append((i + 1, a[i]))
+
+        n += 1
+        dis = [inf] * n
+        stack = [(0, 0)]
+
+        while stack:
+            d, i = heappop(stack)
+            if dis[i] < d:
+                continue
+            for j, w in dct[i]:
+                dj = d + w if not i else d + w * 2
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heappush(stack, (dj, j))
+        ac.lst(dis[1:])
         return

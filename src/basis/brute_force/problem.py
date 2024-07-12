@@ -138,6 +138,7 @@ P1989（https://www.luogu.com.cn/problem/P1989）ternary_circle|dag|build_graph|
 1846E2（https://codeforces.com/contest/1846/problem/E2）brute_force|binary_search
 1926F（https://codeforces.com/contest/1926/problem/F）brute_force|greedy|classical
 1689D（https://codeforces.com/contest/1689/problem/D）manhattan_distance|prefix_suffix|classical
+1992E（https://codeforces.com/contest/1992/problem/E）brute_force|observation|data_range
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization

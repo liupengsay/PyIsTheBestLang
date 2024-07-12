@@ -78,6 +78,7 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1758D（https://codeforces.com/problemset/problem/1758/D）construction
 1268B（https://codeforces.com/problemset/problem/1268/B）construction
 1552D（https://codeforces.com/problemset/problem/1552/D）construction
+1364D（https://codeforces.com/problemset/problem/1364/D）dfs_tree|construction|independent_set|union_find|undirected_circle|undirected_local_shortest_circle
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -832,4 +833,65 @@ class Solution:
             ac.st(2)
             ans = [1 if i >  j else 2 for i, j in edges]
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1364d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1364/D
+        tag: dfs_tree|construction|independent_set|union_find|undirected_circle|undirected_local_shortest_circle
+        """
+        n, m, k = ac.read_list_ints()
+
+        other = []
+        dct = [[] for _ in range(n)]
+        uf = UnionFind(n)
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            if uf.union(i, j):
+                dct[i].append(j)
+                dct[j].append(i)
+            else:
+                other.append((i, j))
+
+        parent = [-1] * n
+        stack = [0]
+        dis = [0] * n
+        while stack:
+            x = stack.pop()
+            for y in dct[x]:
+                if y != parent[x]:
+                    parent[y] = x
+                    stack.append(y)
+                    dis[y] = dis[x] + 1
+        if not other:
+            odd = [i + 1 for i in range(n) if dis[i] % 2 == 0]
+            ac.st(1)
+            if len(odd) >= (k + 1) // 2:
+                ac.lst(odd[:(k + 1) // 2])
+            else:
+                even = [i + 1 for i in range(n) if dis[i] % 2]
+                ac.lst(even[:(k + 1) // 2])
+        else:
+            res = []
+            for i, j in other:
+                if not res or abs(dis[i] - dis[j]) < abs(dis[res[0]] - dis[res[1]]):
+                    res = [i, j]
+            i, j = res
+            pre = [i]
+            post = [j]
+            while pre[-1] != post[-1]:
+                if dis[pre[-1]] < dis[post[-1]]:
+                    post.append(parent[post[-1]])
+                else:
+                    pre.append(parent[pre[-1]])
+            pre.extend(post[:-1][::-1])
+            if len(pre) <= k:
+                ac.st(2)
+                ac.st(len(pre))
+                ac.lst([x + 1 for x in pre])
+            else:
+                res = [pre[i] + 1 for i in range(0, len(pre) - 1, 2)]
+                ac.st(1)
+                ac.lst(res[:(k + 1) // 2])
         return

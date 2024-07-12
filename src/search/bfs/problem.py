@@ -97,6 +97,7 @@ P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brut
 796D（https://codeforces.com/problemset/problem/796/D）bfs
 1063B（https://codeforces.com/problemset/problem/1063/B）bfs|observation|classical
 1344B（https://codeforces.com/contest/1344/problem/B）bfs|observation
+877D（https://codeforces.com/problemset/problem/877/D）bfs|observation|brain_teaser|union_find
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -144,7 +145,7 @@ ABC209E（https://atcoder.jp/contests/abc209/tasks/abc209_e）build_graph|revers
 """
 import bisect
 from collections import deque, defaultdict
-from heapq import heappush
+from heapq import heappush, heappop
 from typing import List
 
 from src.graph.union_find.template import UnionFind
@@ -2839,4 +2840,39 @@ class Solution:
                                 stack.append((a, b))
                                 grid[a][b] = "."
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_877d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/877/D
+        tag: bfs|observation|brain_teaser|union_find
+        """
+        m, n, k = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        x1, y1, x2, y2 = ac.read_list_ints_minus_one()
+        visit = [-1] * m * n
+
+        visit[x1 * n + y1] = 0
+        stack = [(x1, y1)]
+        while stack:
+            nex = []
+            for x, y in stack:
+                d = visit[x * n + y] + 1
+                for a, b in ac.dire4:
+                    xx, yy = x, y
+                    for _ in range(k):
+                        xx, yy = xx + a, yy + b
+                        if 0 <= xx < m and 0 <= yy < n and grid[xx][yy] == "." and visit[xx * n + yy] <= d:
+                            if visit[xx * n + yy] == -1:
+                                stack.append((xx, yy))
+                                visit[xx * n + yy] = d
+                            elif visit[xx * n + yy] == d:
+                                continue
+                            else:
+                                break
+                        else:
+                            break
+            stack = nex[:]
+        ac.st(visit[x2 * n + y2])
         return

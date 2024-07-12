@@ -83,6 +83,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1984E（https://codeforces.com/contest/1984/problem/E）reroot_dp|mis|maximum_independent_set
 1363E（https://codeforces.com/problemset/problem/1363/E）greedy|implemention|observation
 1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
+461B（https://codeforces.com/problemset/problem/461/B）classical|tree_dp|observation
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1830,4 +1831,42 @@ class Solution:
                         break
                 ac.lst([a + 1, parent[a] + 1])
                 ac.lst([a + 1, x + 1])
+        return
+
+    @staticmethod
+    def cf_461b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/461/B
+        tag: classical|tree_dp|observation
+        """
+
+        n = ac.read_int()
+        p = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for i in range(n - 1):
+            dct[i + 1].append(p[i])
+            dct[p[i]].append(i + 1)
+        dp0 = [0] * n
+        dp1 = [0] * n
+        color = ac.read_list_ints()
+        stack = [(0, -1)]
+        mod = 10 ** 9 + 7
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                if color[i]:
+                    dp1[i] = 1
+                else:
+                    dp0[i] = 1
+                for j in dct[i]:
+                    if j != fa:
+                        dp1[i] = (dp1[i] * (dp0[j] + dp1[j]) + dp0[i] * dp1[j]) % mod
+                        dp0[i] = dp0[i] * (dp0[j] + dp1[j]) % mod
+        ac.st(dp1[0])
         return

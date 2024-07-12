@@ -131,6 +131,7 @@ P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemen
 1989B（https://codeforces.com/contest/1989/problem/B）continuous_lcs|dp|classical
 1517D（https://codeforces.com/contest/1517/problem/D）implemention|brain_teaser|observation|even|matrix_dp|bfs
 1625C（https://codeforces.com/problemset/problem/1625/C）matrix_dp|brute_force|implemention
+505C（https://codeforces.com/contest/505/problem/C）data_range|limited_operation|matrix_dp|classical|array
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3226,5 +3227,34 @@ class Solution:
             for j in range(kk + 1):
                 if j + n - i - 1 <= kk:
                     ans = min(ans, dp[i][j] + (ll - d[i]) * a[i])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_505c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/505/problem/C
+        tag: data_range|limited_operation|matrix_dp|classical|array
+        """
+        n, d = ac.read_list_ints()
+        tot = 3 * 10 ** 4
+        cnt = [0] * (tot + 1)
+        for _ in range(n):
+            x = ac.read_int()
+            cnt[x] += 1
+
+        change = int(60000 ** 0.5) + 1
+        dp = [-1] * (change * 2) * (tot + 1)
+        dp[d * 2 * change] = cnt[d]
+        for i in range(d, tot + 1):
+            for j in range(-change, change):
+                vv = dp[i * 2 * change + j]
+                if vv == -1:
+                    continue
+                step = d + j
+                for yy in [step - 1, step, step + 1]:
+                    if i < i + yy <= tot:
+                        dp[(i + yy) * 2 * change + yy - d] = max(dp[(i + yy) * 2 * change + yy - d], vv + cnt[i + yy])
+        ans = max(dp)
         ac.st(ans)
         return

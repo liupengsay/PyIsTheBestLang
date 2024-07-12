@@ -133,7 +133,8 @@ P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
 1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
 319C（https://codeforces.com/problemset/problem/319/C）slope_dp|linear_dp|monotonic_queue
 1427C（https://codeforces.com/problemset/problem/1427/C）linear_dp|data_range|observation
-
+1992D（https://codeforces.com/contest/1992/problem/D）linear_dp|implemention
+463D（https://codeforces.com/problemset/problem/463/D）observation|linear_dp|classical|lcs|dag_dp|topological_sort
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1816,4 +1817,29 @@ class Solution:
             dp[i + 1] = cur
             pre[i + 1] = max(dp[i + 1], pre[i])
         ac.st(pre[-1])
+        return
+
+    @staticmethod
+    def cf_463d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/463/D
+        tag: observation|linear_dp|classical|lcs|dag_dp|topological_sort
+        """
+        n, k = ac.read_list_ints()
+
+        pos = [[] for _ in range(n)]
+        nums = []
+        for _ in range(k):
+            nums = ac.read_list_ints_minus_one()
+            for i in range(n):
+                pos[nums[i]].append(i)
+
+        dp = [1] * n
+        for i in range(n):
+            x = nums[i]
+            for j in range(i):
+                y = nums[j]
+                if all(pos[y][p] < pos[x][p] for p in range(k)) and dp[j] + 1 > dp[i]:
+                    dp[i] = dp[j] + 1
+        ac.st(max(dp))
         return

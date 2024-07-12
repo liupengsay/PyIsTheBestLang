@@ -56,6 +56,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
 1420D（https://codeforces.com/problemset/problem/1420/D）contribution_method|comb|range
 1359E（https://codeforces.com/problemset/problem/1359/E）math|comb|brute_force
+1992G（https://codeforces.com/contest/1992/problem/G）brute_force|contribution_method|comb
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -1258,4 +1259,30 @@ class Solution:
             ans += cb.comb(n // x - 1, k - 1)
             ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1992g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1992/problem/G
+        tag: brute_force|contribution_method|comb
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(5000, mod)
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = 0
+            for x in range(1, 2 * n + 2):
+                for size in range(x // 2, min(n + 1, x)):
+                    small = x - size - 1
+                    big = size - small
+                    cnt = cb.comb(min(x - 1, n), small)
+                    if max(n - x, 0) < big:
+                        break
+                    if x < n:
+                        cnt *= cb.comb(n - x, big)
+                    ans += x * cnt
+            ans %= mod
+            ac.st(ans)
         return

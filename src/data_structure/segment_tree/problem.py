@@ -87,6 +87,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 1982F（https://codeforces.com/contest/1982/problem/F）point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
 620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
 1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
+1859D（https://codeforces.com/problemset/problem/1859/D）range_ascend|range_max|implemention
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -3850,4 +3851,36 @@ class Solution:
                     if 0 <= y < y + 1 < n and nums[y] > nums[y + 1]:
                         ans += nums[y] - nums[y + 1]
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1859d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1859/D
+        tag: range_ascend|range_max|implemention
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            ac.read_int()
+            queries = ac.read_list_ints()
+
+            nodes = queries[:]
+            for ls in nums:
+                nodes.extend(ls)
+            nodes = sorted(set(nodes))
+            ind = {num: i for i, num in enumerate(nodes)}
+            m = len(ind)
+            tree = RangeAscendRangeMax(m)
+            tree.build(list(range(m)))
+            index = [bb * n + i for i, (_, _, _, bb) in enumerate(nums)]
+            index.sort(reverse=True)
+            for num in index:
+                i = num % n
+                ll, rr, aa, bb = nums[i]
+                pre = tree.range_max(ind[aa], ind[bb])
+                tree.range_ascend(ind[ll], ind[rr], pre)
+            ans = tree.get()
+            ans = [nodes[ans[ind[x]]] for x in queries]
+            ac.lst(ans)
         return

@@ -76,6 +76,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
 1982D（https://codeforces.com/contest/1982/problem/D）peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
 1656D（https://codeforces.com/problemset/problem/1656/D）math|odd_even|observation|bain_teaser
+1992F（https://codeforces.com/contest/1992/problem/F）greedy|implemention|math
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1387,4 +1388,33 @@ class Solution:
                 ac.st(b)
             else:
                 ac.st(-1)
+        return
+
+    @staticmethod
+    def cf_1992f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1992/problem/F
+        tag: greedy|implemention|math
+        """
+
+        for _ in range(ac.read_int()):
+            n, x = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            ans = cnt = 0
+            pre = {1}
+            for num in nums:
+                if any(p * num == x for p in pre) or x == num:
+                    ans += cnt
+                    if x != num:
+                        cnt = 1
+                        pre = {num} if x % num == 0 else set()
+                    else:
+                        cnt = 0
+                        pre = {1}
+                else:
+                    pre = {(p * num) for p in pre if x % (p * num) == 0} | pre
+                    if x % num == 0:
+                        pre.add(num)
+                    cnt = 1
+            ac.st(ans + cnt)
         return
