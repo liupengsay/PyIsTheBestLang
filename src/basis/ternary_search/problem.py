@@ -14,6 +14,7 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 439D（https://codeforces.com/problemset/problem/439/D）ternary_search
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
+1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greedy
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
@@ -371,4 +372,43 @@ class Solution:
         mid = TernarySearch().find_floor_point_int(check, 0, max(h))
         ans = min(check(x) for x in range(mid - 5, mid + 5) if x >= 0)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1389d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1389/D
+        tag: ternary_search|brute_force|implemention|greedy
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            l1, r1 = ac.read_list_ints()
+            l2, r2 = ac.read_list_ints()
+
+            if l1 > l2:
+                l1, l2, r1, r2 = l2, l1, r2, r1
+
+            def check(xx):
+                gap = (l2 - r1) * xx
+                cost = gap
+                kk = k
+                cur = min(xx * (r2 - l1), kk)
+                kk -= cur
+                cost += cur
+                return cost + 2 * kk
+
+            if r1 <= l2:
+                x = TernarySearch().find_floor_point_int(check, 1, n)
+                ans = min(check(y) for y in range(x - 5, x + 5) if 1 <= y <= n)
+            else:
+                zero = min(r1, r2) - max(l1, l2)
+                one = r2 - l2 + r1 - l1 - 2 * zero
+                one *= n
+                zero *= n
+                k -= min(k, zero)
+                x = min(k, one)
+                ans = x
+                k -= x
+                ans += k * 2
+            ac.st(ans)
         return

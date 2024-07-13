@@ -210,6 +210,10 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 1451D（https://codeforces.com/problemset/problem/1451/D）data_range|observation|classical|greedy|implemention
+1295B（https://codeforces.com/problemset/problem/1295/B）observation|brain_teaser|classification_discussion
+1870D（https://codeforces.com/problemset/problem/1870/D）observation|greedy|monotonic_stack
+1415D（https://codeforces.com/problemset/problem/1415/D）observation|bit_operation|data_range
+
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2075,4 +2079,28 @@ class Solution:
                 cur += rest * b
                 ans = max(ans, cur)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1415d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1415/D
+        tag: observation|bit_operation|data_range
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        if n > 65:
+            ac.st(1)
+            return
+        pre = [0] * (n + 1)
+        for i in range(n):
+            pre[i + 1] = pre[i] ^ nums[i]
+
+        ans = inf
+        for i in range(n):
+            for j in range(i + 1, n):
+                for k in range(i, j):
+                    if pre[k + 1] ^ pre[i] > pre[j + 1] ^ pre[k + 1]:
+                        ans = min(ans, j - i - 1)
+        ac.st(ans if ans < inf else -1)
         return

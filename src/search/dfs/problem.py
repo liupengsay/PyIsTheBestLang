@@ -57,6 +57,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 1076E（https://codeforces.com/problemset/problem/1076/E）tree_diff_array|dfs|classical
 383C（https://codeforces.com/problemset/problem/383/C）dfs_order|odd_even|range_add|point_get
 3C（https://codeforces.com/problemset/problem/3/C）dfs|back_trace|brute_force|implemention
+459C（https://codeforces.com/problemset/problem/459/C）back_trace|brute_force|classical|implemention
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -1418,4 +1419,45 @@ class Solution:
             ac.st("illegal")
         else:
             ac.st(ans[state])
+        return
+
+    @staticmethod
+    def cf_459c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/459/C
+        tag: back_trace|brute_force|classical|implemention
+        """
+        n, k, d = ac.read_list_ints()
+
+        pre = []
+        res = []
+
+        def dfs():
+            if len(res) == n:
+                return
+            if len(pre) == d:
+                res.append(pre[:])
+                return
+
+            for xx in range(1, k + 1):
+                pre.append(xx)
+                dfs()
+                pre.pop()
+                if len(res) == n:
+                    break
+            return
+
+        dfs()
+        if len(res) < n:
+            ac.st(-1)
+            return
+        ans = [[0] * n for _ in range(d)]
+        for ls in res:
+            if not n:
+                break
+            n -= 1
+            for x in range(d):
+                ans[x][n] = ls[x]
+        for ls in ans:
+            ac.lst(ls)
         return
