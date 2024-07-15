@@ -95,6 +95,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
 837D（https://codeforces.com/problemset/problem/837/D）matrix_dp|observation|classical|brain_teaser|bag_dp
 478D（https://codeforces.com/problemset/problem/478/D）matrix_dp|data_range|implemention|bag_dp
+163A（https://codeforces.com/problemset/problem/163/A）bag_dp|matrix_dp|classical
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1680,4 +1681,27 @@ class Solution:
             res += dp[i]
             res %= mod
         ac.st(res)
+        return
+
+    @staticmethod
+    def cf_163a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/163/A
+        tag: bag_dp|matrix_dp|classical
+        """
+        s = ac.read_str()
+        t = ac.read_str()
+        n = len(s)
+        m = len(t)
+
+        mod = 10 ** 9 + 7
+        dp = [0] * (n + 1)
+        for j in range(m):
+            for i in range(n - 1, -1, -1):
+                if s[i] == t[j]:
+                    dp[i + 1] += dp[i] + 1
+                    dp[i + 1] %= mod
+        ans = sum(dp)
+        ans %= mod
+        ac.st(ans)
         return

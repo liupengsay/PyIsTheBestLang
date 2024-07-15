@@ -3,19 +3,21 @@ Algorithm：automaton|sub_sequence_automaton|suffix_automaton|palindrome_automat
 Description：kmp|trie_like|word_count|text
 
 ====================================LeetCode====================================
-17（https://leetcode.cn/problems/multi-search-lcci/）automaton|counter|trie_like
+1717（https://leetcode.cn/problems/multi-search-lcci/）ac_automaton|counter|trie_like
 727（https://leetcode.cn/problems/minimum-window-subsequence）sub_sequence_automaton
 792（https://leetcode.cn/problems/number-of-matching-subsequences）sub_sequence_automaton
 2014（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）sub_sequence_automaton|brute_force
 2350（https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/）brain_teaser|classical|sub_sequence_automaton
 
 =====================================LuoGu======================================
-P3808（https://www.luogu.com.cn/problem/P3808）automaton|counter|trie_like
-P3796（https://www.luogu.com.cn/problem/P3796）automaton|counter|trie_like
-P5357（https://www.luogu.com.cn/problem/P5357）automaton|counter|trie_like
+P3808（https://www.luogu.com.cn/problem/P3808）ac_automan|classical
+P3796（https://www.luogu.com.cn/problem/P3796）ac_automan|classical
+P5357（https://www.luogu.com.cn/problem/P5357）ac_automan|classical
 P5826（https://www.luogu.com.cn/problem/P5826）sub_sequence_automaton|binary_search
 P9572（https://www.luogu.com.cn/problem/P9572）sub_sequence_automaton|binary_search
 
+=====================================AtCoder======================================
+ABC362G（https://atcoder.jp/contests/abc362/tasks/abc362_g）ac_automan|classical
 
 ===================================CodeForces===================================
 91A（https://codeforces.com/contest/91/problem/A）sub_sequence_automaton
@@ -23,10 +25,12 @@ P9572（https://www.luogu.com.cn/problem/P9572）sub_sequence_automaton|binary_s
 
 """
 import bisect
+from collections import Counter
 from itertools import permutations
+from math import inf
 from typing import List
 
-from src.strings.automaton.template import AhoCorasick
+from src.strings.automaton.template import AcAutomaton, AhoCorasick
 from src.utils.fast_io import FastIO
 
 
@@ -36,10 +40,20 @@ class Solution:
 
     @staticmethod
     def lc_1717(big: str, smalls: List[str]) -> List[List[int]]:
-        # AC自动机匹配关键词在文本中出现的位置信息
-        auto = AhoCorasick(smalls)
-        dct = auto.search_in(big)
-        return [dct.get(w, []) for w in smalls]
+        """
+        url: https://leetcode.cn/problems/construct-string-with-minimum-cost/
+        tag: ac_automaton|AhoCorasick
+        """
+        ac = AhoCorasick()
+        for i, word in enumerate(smalls):
+            ac.insert(word, i)
+        ac.set_fail()
+        res = ac.search(big)
+        ans = [[] for _ in range(len(smalls))]
+        for i in range(len(big)):
+            for j in res[i]:
+                ans[j].append(i)
+        return ans
 
     @staticmethod
     def lg_p5826(ac=FastIO()):
@@ -281,3 +295,94 @@ class Solution:
                 ans += 1
                 pre = set()
         return ans
+
+    @staticmethod
+    def abc_362g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc362/tasks/abc362_g
+        tag: ac_automan|classical
+        """
+        s = ac.read_str()
+        q = ac.read_int()
+        words = [ac.read_str() for _ in range(q)]
+        am = AcAutomaton(words)
+        res = am.search(s)
+        for a in res:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p5357(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5357
+        tag: ac_automan|classical
+        """
+        q = ac.read_int()
+        words = [ac.read_str() for _ in range(q)]
+        s = ac.read_str()
+        am = AcAutomaton(words)
+        res = am.search(s)
+        for a in res:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p3808(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3808
+        tag: ac_automan|classical
+        """
+        q = ac.read_int()
+        words = [ac.read_str() for _ in range(q)]
+        s = ac.read_str()
+        am = AcAutomaton(words)
+        res = am.search(s)
+        ans = sum(x > 0 for x in res)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3796(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3796
+        tag: ac_automan|classical
+        """
+        while True:
+            q = ac.read_int()
+            if not q:
+                break
+            words = [ac.read_str() for _ in range(q)]
+            s = ac.read_str()
+            am = AcAutomaton(words)
+            res = am.search(s)
+            i = res.index(max(res))
+            ac.st(res[i])
+            for j in range(q):
+                if res[j] == res[i]:
+                    ac.st(words[j])
+        return
+
+    @staticmethod
+    def lc_3213(target: str, words: List[str], costs: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/construct-string-with-minimum-cost/
+        tag: ac_automaton|AhoCorasick
+        """
+        ac = AhoCorasick()
+        for word, cost in zip(words, costs):
+            ac.insert(word, cost)
+        ac.set_fail()
+        f = [0] + [inf] * len(target)
+        x = ac.root
+        for i, c in enumerate(target, 1):
+            while x and c not in x.son:
+                x = x.fail
+            x = x.son[c] if x else ac.root
+            cur = x
+            while cur:
+                if cur.len:
+                    tmp = f[i - cur.len] + cur.val
+                    if f[i] > tmp:
+                        f[i] = tmp
+                cur = cur.last
+        return f[-1] if f[-1] < inf else -1

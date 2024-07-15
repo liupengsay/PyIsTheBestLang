@@ -48,7 +48,7 @@ Description：brain_teaser
 3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|perishu_theorem|hard|greedy
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 100227（https://leetcode.cn/problems/minimum-moves-to-pick-k-ones/description/）median_greedy|brute_force|implemention
-
+100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greedy|big_to_small
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -77,7 +77,7 @@ P2772（https://www.luogu.com.cn/problem/P2772）sort|partial_order
 P2878（https://www.luogu.com.cn/problem/P2878）greedy|custom_sort|classical
 P2920（https://www.luogu.com.cn/problem/P2920）sort|greedy
 P2983（https://www.luogu.com.cn/problem/P2983）greedy|sort
-P3173（https://www.luogu.com.cn/problem/P3173）sort|greedy
+P3173（https://www.luogu.com.cn/problem/P3173）sort|greedy|big_to_small
 P5098（https://www.luogu.com.cn/problem/P5098）greedy|partial_order|classification_discussion|prefix_min|sort
 P5159（https://www.luogu.com.cn/problem/P5159）xor_property|brute_force|counter|fast_power
 P5497（https://www.luogu.com.cn/problem/P5497）pigeonhole_principle|classification_discussion
@@ -213,7 +213,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1295B（https://codeforces.com/problemset/problem/1295/B）observation|brain_teaser|classification_discussion
 1870D（https://codeforces.com/problemset/problem/1870/D）observation|greedy|monotonic_stack
 1415D（https://codeforces.com/problemset/problem/1415/D）observation|bit_operation|data_range
-
+893D（https://codeforces.com/problemset/problem/893/D）greedy|brain_teaser|implemention|low_to_high
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

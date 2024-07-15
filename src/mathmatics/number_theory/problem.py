@@ -77,6 +77,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1982D（https://codeforces.com/contest/1982/problem/D）peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
 1656D（https://codeforces.com/problemset/problem/1656/D）math|odd_even|observation|bain_teaser
 1992F（https://codeforces.com/contest/1992/problem/F）greedy|implemention|math
+1361B（https://codeforces.com/problemset/problem/1361/B）observation|limited_operation|data_range|brain_teaser|math
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1417,4 +1418,51 @@ class Solution:
                         pre.add(num)
                     cnt = 1
             ac.st(ans + cnt)
+        return
+
+    @staticmethod
+    def cf_1361b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1361/B
+        tag: observation|limited_operation|data_range|brain_teaser|math
+        """
+        mod = 1000000007
+        for _ in range(ac.read_int()):
+            n, p = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            if p == 1:
+                ac.st(n % 2)
+            else:
+                ceil = 25
+                dct = dict()
+                for num in nums:
+                    dct[num] = dct.get(num, 0) + 1
+                lst = sorted(list(dct.keys()), reverse=True)
+                m = len(lst)
+                for i, x in enumerate(lst):
+                    if dct[x] % 2 == 0:
+                        continue
+                    pre = 0
+                    target = 1
+                    for y in range(1, ceil + 1):
+                        pre *= p
+                        target *= p
+                        if pre + dct.get(x - y, 0) >= target:
+                            need = target - pre
+                            dct[x - y] -= need
+                            for w in range(1, y):
+                                if x - w in dct:
+                                    dct[x - w] = 0
+                            break
+                        pre += dct.get(x - y, 0)
+                    else:
+                        ans = pow(p, x, mod)
+                        for j in range(i + 1, m):
+                            ans -= dct[lst[j]] * pow(p, lst[j], mod)
+                            ans %= mod
+                        ans %= mod
+                        ac.st(ans)
+                        break
+                else:
+                    ac.st(0)
         return

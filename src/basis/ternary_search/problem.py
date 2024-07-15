@@ -15,6 +15,7 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
 1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greedy
+1374E2（https://codeforces.com/problemset/problem/1374/E2）ternary_search|two_pointer|brute_force|classical
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
@@ -411,4 +412,97 @@ class Solution:
                 k -= x
                 ans += k * 2
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1374e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1374/E2
+        tag: ternary_search|two_pointer|brute_force|classical
+        """
+        n, m, k = ac.read_list_ints()
+        aa = []
+        bb = []
+        cc = []
+        dd = []
+        for ii in range(n):
+            t, a, b = ac.read_list_ints()
+            if a == b == 1:
+                cc.append((t, ii + 1))
+            elif a:
+                aa.append((t, ii + 1))
+            elif b:
+                bb.append((t, ii + 1))
+            else:
+                dd.append((t, ii + 1))
+        ma = len(aa)
+        mb = len(bb)
+        mc = len(cc)
+        md = len(dd)
+        aa.sort()
+        bb.sort()
+        cc.sort()
+        dd.sort()
+
+        pre_a = ac.accumulate([a[0] for a in aa])
+        pre_b = ac.accumulate([b[0] for b in bb])
+        pre_c = ac.accumulate([c[0] for c in cc])
+
+        aa.append((inf, 0))
+        bb.append((inf, 0))
+        dd.append((inf, 0))
+
+        lst = []
+        for xx in range(0, min(m, mc) + 1):
+            val = xx
+            rest = ma + mb + md
+            if val < k:
+                if ma < k - val or mb < k - val:
+                    continue
+                val += (k - val) * 2
+                rest -= 2 * (k - val)
+                if val > m:
+                    continue
+            if val + rest < m:
+                continue
+            lst.append(xx)
+        if not lst:
+            ac.st(-1)
+            return
+
+        def compute(x):
+            cur = pre_c[x]
+            cnt = x
+            ia = ib = i = 0
+            if x < k:
+                cnt += 2 * (k - x)
+                cur += pre_a[k - x] + pre_b[k - x]
+                ia = ib = k - x
+            for _ in range(m - cnt):
+                if ia < ma and aa[ia][0] <= bb[ib][0] and aa[ia][0] <= dd[i][0]:
+                    cur += aa[ia][0]
+                    ia += 1
+                elif ib < mb and bb[ib][0] <= aa[ia][0] and bb[ib][0] <= dd[i][0]:
+                    cur += bb[ib][0]
+                    ib += 1
+                elif i < md and dd[i][0] <= bb[ib][0] and dd[i][0] <= aa[ia][0]:
+                    cur += dd[i][0]
+                    i += 1
+            return cur, ia, ib, x, i
+
+        def check(x):
+            return compute(x)[0]
+
+        y = TernarySearch().find_floor_point_int(check, lst[0], lst[-1])
+
+        ans = []
+        for yy in range(y - 5, y + 5):
+            if lst[0] <= yy <= lst[-1]:
+                res = compute(yy)
+                if not ans or res < ans:
+                    ans = res
+        ac.st(ans[0])
+        index = [a[1] for a in aa[:ans[1]]] + [b[1] for b in bb[:ans[2]]] + [c[1] for c in cc[:ans[3]]] + [d[1] for d in
+                                                                                                           dd[:ans[4]]]
+        ac.lst(index)
         return

@@ -79,6 +79,8 @@ P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_e
 1268B（https://codeforces.com/problemset/problem/1268/B）construction
 1552D（https://codeforces.com/problemset/problem/1552/D）construction
 1364D（https://codeforces.com/problemset/problem/1364/D）dfs_tree|construction|independent_set|union_find|undirected_circle|undirected_local_shortest_circle
+949A（https://codeforces.com/problemset/problem/949/A）observation|construction
+1809C（https://codeforces.com/problemset/problem/1809/C）construction|diff_array|reverse_pair
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -894,4 +896,25 @@ class Solution:
                 res = [pre[i] + 1 for i in range(0, len(pre) - 1, 2)]
                 ac.st(1)
                 ac.lst(res[:(k + 1) // 2])
+        return
+
+    @staticmethod
+    def cf_1809c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1809/C
+        tag: construction|diff_array|reverse_pair
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            pre = list(range(n, -1, -1))
+            for i in range(n + 1):
+                for j in range(i + 1, n + 1):
+                    if k:
+                        k -= 1
+                        pre[i], pre[j] = pre[j], pre[i]
+                    else:
+                        break
+            for i in range(n, 0, -1):
+                pre[i] -= pre[i - 1]
+            ac.lst(pre[1:])
         return
