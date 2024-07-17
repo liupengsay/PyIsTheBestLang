@@ -1523,64 +1523,39 @@ class Solution:
         url: https://codeforces.com/problemset/problem/292/D
         tag: union_find_right|prefix_suffix
         """
-        n, m = ac.read_list_ints()
-        block = 80
-        cnt = m // block + 2
-
+        n, m = ac.read_list_ints()  # TLE
+        pre = [0 for _ in range(m + 1)]
+        lst = []
+        uf = UnionFind(n)
+        lst.append(uf.root_or_size[:])
+        parts = [n]
+        ind = 0
         edges = [ac.read_list_ints_minus_one() for _ in range(m)]
-
-        pre = [0] * (m + 1)
-        ind = 0
-        pre_uf = UnionFindInd(n, cnt)
-        pre_range = []
-        start = -1
-        for i in range(m):
-            if i % block == 0:
-                pre_uf.root_or_size[(ind + 1) * n: (ind + 2) * n] = pre_uf.root_or_size[ind * n:(ind + 1) * n]
-                pre_uf.part[ind + 1] = pre_uf.part[ind]
-                pre_range.append((start, i - 1))
-                start = i
-                ind += 1
-            x, y = edges[i]
-            pre_uf.union(x, y, ind)
+        for i, (x, y) in enumerate(edges):
+            if uf.union(x, y):
+                ind = len(lst)
+                lst.append(uf.root_or_size[:])
+                parts.append(uf.part)
             pre[i + 1] = ind
-
-        post = [0] * (m + 1)
-        ind = 0
-        post_uf = UnionFindInd(n, cnt)
-        post_range = []
-        end = m
-        for i in range(m - 1, -1, -1):
-            if (m - 1 - i) % block == 0:
-                post_uf.root_or_size[(ind + 1) * n: (ind + 2) * n] = post_uf.root_or_size[ind * n:(ind + 1) * n]
-                post_uf.part[ind + 1] = post_uf.part[ind]
-                post_range.append((i + 1, end))
-                end = i
-                ind += 1
-            x, y = edges[i]
-            post_uf.union(x, y, ind)
-            post[i] = ind
-
-        res_uf = UnionFindInd(n, 1)
-        for _ in range(ac.read_int()):
+        q = ac.read_int()
+        ans = [0] * q
+        queries = [[] for _ in range(m)]
+        for i in range(q):
             ll, rr = ac.read_list_ints_minus_one()
-            ind = pre[ll + 1] - 1
-            res_uf.root_or_size[:] = pre_uf.root_or_size[ind * n:(ind + 1) * n]
-            res_uf.part[0] = pre_uf.part[ind]
-
-            for i in range(pre_range[ind][1] + 1, ll):
-                x, y = edges[i]
-                res_uf.union(x, y, 0)
-
-            ind = post[rr] - 1
-            for i in range(rr + 1, post_range[ind][0]):
-                x, y = edges[i]
-                res_uf.union(x, y, 0)
-
-            for j in range(n):
-                res_uf.union(j, post_uf.find(j, ind), 0)
-
-            ac.st(res_uf.part[0])
+            queries[rr].append((ll, i))
+        uf = UnionFind(n)
+        cur_uf = UnionFind(n)
+        for rr in range(m - 1, -1, -1):
+            for ll, i in queries[rr]:
+                cur_uf.root_or_size[:] = lst[pre[ll]][:]
+                cur_uf.part = parts[pre[ll]]
+                for j in range(n):
+                    cur_uf.union(j, uf.find(j))
+                ans[i] = cur_uf.part
+            x, y = edges[rr]
+            uf.union(x, y)
+        for a in ans:
+            ac.st(a)
         return
 
     @staticmethod

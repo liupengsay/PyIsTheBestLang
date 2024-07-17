@@ -35,6 +35,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 1709D（https://codeforces.com/contest/1709/problem/D）sparse_table|range_max|implemention
 1516D（https://codeforces.com/contest/1516/problem/D）multiplication_method
 1977C（https://codeforces.com/contest/1977/problem/C）data_range|subsequence_lcm|brain_teaser|classical
+1847F（https://codeforces.com/contest/1847/problem/F）range_or|classical|implemention|sub_consequence
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
@@ -645,3 +646,59 @@ class Solution:
             if j + 1 < n:
                 ans = min(ans, abs((val & nums[j + 1]) - k))
         return ans
+
+    @staticmethod
+    def cf_1847f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1847/problem/F
+        tag: range_or|classical|implemention|sub_consequence
+        """
+
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            nums = ac.read_list_ints()
+
+            def check(length, index):
+                if length == 1:
+                    return index + 1
+                res = n + (length - 2) * (n - 1)
+                start = (-length + 2) % n
+                if index >= start:
+                    res += index - start + 1
+                else:
+                    res += index + 1 + n - start
+                return res
+
+            val = dict()
+            pre = dict()
+            for i in range(2 * n):
+                cur = dict()
+                num = nums[i % n]
+                for p in pre:
+                    cur[p | num] = min(cur.get(p | num, inf), pre[p] + 1)
+                cur[num] = min(cur.get(num, inf), 1)
+                pre = cur
+                for p in pre:
+                    tmp = val.get(p, inf)
+                    ind = check(pre[p], (i - pre[p] + 1) % n)
+                    if ind < tmp:
+                        val[p] = ind
+            lst = [i << 32 | p for p, i in val.items()]
+            lst.sort()
+            ind = []
+            val = []
+            for pi in lst:
+                i = pi >> 32
+                p = pi ^ (i << 32)
+                if val and val[-1] >= p:
+                    continue
+                val.append(p)
+                ind.append(i)
+            for _ in range(q):
+                v = ac.read_int()
+                if v >= val[-1]:
+                    ac.st(-1)
+                else:
+                    i = bisect.bisect_right(val, v)
+                    ac.st(ind[i])
+        return

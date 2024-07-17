@@ -24,6 +24,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 519E（https://codeforces.com/problemset/problem/519/E）lca|kth_ancestor|counter
 1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 1702G2（https://codeforces.com/contest/1702/problem/G2）tree_lca
+1843F2（https://codeforces.com/contest/1843/problem/F2）tree_lca|multiplication_method|classical|max_con_sub_sum
 
 ====================================AtCoder=====================================
 ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point_set|range_sum|heavy_chain|tree_lca
@@ -44,7 +45,7 @@ from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetP
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_diff_array.template import TreeDiffArray
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
-    UnionFindGetLCA
+    UnionFindGetLCA, TreeAncestorMaxSub
 from src.utils.fast_io import FastIO, inf
 
 
@@ -594,4 +595,35 @@ class Solution:
             else:
                 ans = tree.point_get(heavy.dfn[v])  # important!!!
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1843f2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1843/problem/F2
+        tag: tree_lca|multiplication_method|classical|max_con_sub_sum
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            query = []
+            dct = [[]]
+            sub = [1]
+            for _ in range(n):
+                lst = ac.read_list_strs()
+                if lst[0] == "+":
+                    v, x = [int(w) for w in lst[1:]]
+                    v -= 1
+                    sub.append(x)
+                    dct[v].append(len(sub) - 1)
+                    dct.append([])
+                else:
+                    u, v, k = [int(w) - 1 for w in lst[1:]]
+                    query.append((u, v, k + 1))
+
+            ceil = TreeAncestorMaxSub(dct, sub[:])
+            floor = TreeAncestorMaxSub(dct, [-x for x in sub])
+            for u, v, k in query:
+                high = ceil.get_max_con_sum(u, v)
+                low = -floor.get_max_con_sum(u, v)
+                ac.st("YES" if low <= k <= high or k == 0 else "NO")
         return

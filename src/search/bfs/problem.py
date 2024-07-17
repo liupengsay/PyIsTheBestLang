@@ -98,6 +98,7 @@ P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brut
 1063B（https://codeforces.com/problemset/problem/1063/B）bfs|observation|classical
 1344B（https://codeforces.com/contest/1344/problem/B）bfs|observation
 877D（https://codeforces.com/problemset/problem/877/D）bfs|observation|brain_teaser|union_find
+987D（https://codeforces.com/contest/987/problem/D）several_source|bfs|brute_force
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -2875,4 +2876,46 @@ class Solution:
                             break
             stack = nex[:]
         ac.st(visit[x2 * n + y2])
+        return
+
+    @staticmethod
+    def cf_987d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/987/problem/D
+        tag: several_source|bfs|brute_force
+        """
+        n, m, k, s = ac.read_list_ints()
+        a = ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        start = [[] for _ in range(k)]
+        for i in range(n):
+            start[a[i]].append(i)
+
+        res = [[] for _ in range(n)]
+        dis = [inf] * n
+        for c in range(k):
+            for i in range(n):
+                dis[i] = inf
+            stack = start[c][:]
+            for i in stack:
+                dis[i] = 0
+            while stack:
+                nex = []
+                for i in stack:
+                    for j in dct[i]:
+                        if dis[j] == inf:
+                            dis[j] = dis[i] + 1
+                            nex.append(j)
+                stack = nex
+            for i in range(n):
+                res[i].append(dis[i])
+        ans = []
+        for i in range(n):
+            res[i].sort()
+            ans.append(sum(res[i][:s]))
+        ac.lst(ans)
         return

@@ -28,6 +28,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1937C（https://codeforces.com/contest/1937/problem/C）interactive|brain_teaser
 1973D（https://codeforces.com/contest/1973/problem/D）interactive|brain_teaser
 1556D（https://codeforces.com/problemset/problem/1556/D）interactive|bit_operation|classical
+1839E（https://codeforces.com/problemset/problem/1839/E）bag_dp|interactive|game_dp
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -452,4 +453,62 @@ class Solution:
             nums[i] -= nums[i - 1]
         nums.sort()
         ac.lst(["finish"] + [nums[k-1]])
+        return
+
+    @staticmethod
+    def cf_1839e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1839/E
+        tag: bag_dp|interactive|game_dp
+        """
+        ac.flush = True
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        s = sum(nums)
+        dp = [0] * (s // 2 + 1)
+        dp[0] = 1
+        pre = [[] for _ in range(s//2+1)]
+        for i in range(n):
+            num = nums[i]
+            for x in range(s // 2, num - 1, -1):
+                if dp[x - num] and not dp[x]:
+                    dp[x] = 1
+                    pre[x] = pre[x-num][:] + [i]
+
+        if s % 2 or not dp[s // 2] or n == 1:
+            ac.st("First")
+            ac.st(1)
+            index = 0
+            while True:
+                i = ac.read_int()
+                if i <= 0:
+                    break
+                x = min(nums[index], nums[i - 1])
+                nums[index] -= x
+                nums[i - 1] -= x
+                for j in range(n):
+                    if nums[j] > 0:
+                        index = j
+                        ac.st(j+1)
+                        break
+            return
+
+        color = [0] * n
+        for c in pre[s//2]:
+            color[c] = 1
+
+        ac.st("Second")
+
+        while True:
+            i = ac.read_int()
+            if i <= 0:
+                break
+            c = color[i-1]
+            for j in range(n):
+                if color[j] == 1-c and nums[j] > 0 and j + 1 != i:
+                    x = min(nums[j], nums[i-1])
+                    nums[j] -= x
+                    nums[i-1] -= x
+                    ac.st(j+1)
+                    break
         return

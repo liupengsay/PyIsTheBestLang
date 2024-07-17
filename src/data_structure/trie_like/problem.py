@@ -333,7 +333,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5283
         tag: trie_like|kth_xor|heapq|greedy
         """
-        mod = 10 ** 9 + 7
+        mod = 10 ** 9 + 7  # TLE
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         trie = BinaryTrieXor(max(nums), n)
@@ -356,7 +356,7 @@ class Solution:
         url: https://codeforces.com/contest/241/problem/B
         tag: binary_trie|kth_xor|heapq|greedy
         """
-        mod = 10 ** 9 + 7
+        mod = 10 ** 9 + 7  # TLE
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         trie = BinaryTrieXor(max(nums), n)

@@ -290,6 +290,114 @@ class TreeCentroid:
         return centroids, pre_cent, subtree_size
 
 
+
+class TreeAncestorMaxSubNode:
+    def __init__(self, x):
+        self.val = self.pref = self.suf = max(x, 0)
+        self.sm = x
+        pass
+
+
+
+class TreeAncestorMaxSub:
+    def __init__(self, edges: List[List[int]], values):
+        n = len(edges)
+        self.values = values
+        self.parent = [-1] * n
+        self.depth = [-1] * n
+        stack = deque([0])
+        self.depth[0] = 0
+        while stack:
+            i = stack.popleft()
+            for j in edges[i]:
+                if self.depth[j] == -1:
+                    self.depth[j] = self.depth[i] + 1
+                    self.parent[j] = i
+                    stack.append(j)
+
+        self.cols = max(2, math.ceil(math.log2(n)))
+        self.dp = [-1] * self.cols * n
+        self.weight = [TreeAncestorMaxSubNode(0)] * self.cols * n
+        for i in range(n):
+            self.dp[i * self.cols] = self.parent[i]
+            if i:
+                self.weight[i * self.cols] = TreeAncestorMaxSubNode(values[self.parent[i]])
+            else:
+                self.weight[i * self.cols] = TreeAncestorMaxSubNode(0)
+
+        for j in range(1, self.cols):
+            for i in range(n):
+                father = self.dp[i * self.cols + j - 1]
+                pre = self.weight[i * self.cols + j - 1]
+                if father != -1:
+                    self.dp[i * self.cols + j] = self.dp[father * self.cols + j - 1]
+                    self.weight[i * self.cols + j] = self.merge(pre, self.weight[father * self.cols + j - 1])
+
+        return
+
+    @staticmethod
+    def merge(a, b):
+        ret = TreeAncestorMaxSubNode(0)
+        ret.pref = max(a.pref, a.sm + b.pref)
+        ret.suf = max(b.suf, b.sm + a.suf)
+        ret.sm = a.sm + b.sm
+        ret.val = max(a.val, b.val)
+        ret.val = max(ret.val, a.suf + b.pref)
+        return ret
+
+    @staticmethod
+    def reverse(a):
+        a.suf, a.pref = a.pref, a.suf
+        return a
+
+    def get_ancestor_node_max(self, x: int, y: int) -> TreeAncestorMaxSubNode:
+        ans = TreeAncestorMaxSubNode(self.values[x])
+        while self.depth[x] > self.depth[y]:
+            d = self.depth[x] - self.depth[y]
+            ans = self.merge(ans, self.weight[x * self.cols + int(math.log2(d))])
+            x = self.dp[x * self.cols + int(math.log2(d))]
+        return ans
+
+    def get_kth_ancestor(self, node: int, k: int) -> int:
+        for i in range(self.cols - 1, -1, -1):
+            if k & (1 << i):
+                node = self.dp[node * self.cols + i]
+                if node == -1:
+                    break
+        return node
+
+    def get_lca(self, x: int, y: int) -> int:
+        if self.depth[x] < self.depth[y]:
+            x, y = y, x
+        while self.depth[x] > self.depth[y]:
+            d = self.depth[x] - self.depth[y]
+            x = self.dp[x * self.cols + int(math.log2(d))]
+        if x == y:
+            return x
+        for k in range(int(math.log2(self.depth[x])), -1, -1):
+            if self.dp[x * self.cols + k] != self.dp[y * self.cols + k]:
+                x = self.dp[x * self.cols + k]
+                y = self.dp[y * self.cols + k]
+        return self.dp[x * self.cols]
+
+    def get_max_con_sum(self, x: int, y: int) -> int:
+        if x == y:
+            return TreeAncestorMaxSubNode(self.values[x]).val
+        z = self.get_lca(x, y)
+        if z == x:
+            ans = self.get_ancestor_node_max(y, x)
+            return ans.val
+        if z == y:
+            ans = self.get_ancestor_node_max(x, y)
+            return ans.val
+
+        ax = self.get_kth_ancestor(x, self.depth[x] - self.depth[z])
+        by = self.get_kth_ancestor(y, self.depth[y] - self.depth[z] - 1)
+        a = self.get_ancestor_node_max(x, ax)
+        b = self.get_ancestor_node_max(y, by)
+        ans = self.merge(a, self.reverse(b))
+        return ans.val
+
 class HeavyChain:
     def __init__(self, dct, root=0) -> None:
         self.n = len(dct)

@@ -20,6 +20,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1986G1（https://codeforces.com/contest/1986/problem/G1）all_factor|brute_force|contribution_method
 546D（https://codeforces.com/problemset/problem/546/D）prime_factor_mi_cnt
 1470B（https://codeforces.com/problemset/problem/1470/B）prime_factor|observation
+1826C（https://codeforces.com/problemset/problem/1826/C）math|observation|brain_teaser|construction
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -1002,4 +1003,16 @@ class Solution:
             for _ in range(ac.read_int()):
                 w = ac.read_int()
                 ac.st(ans2 if w else ans1)
+        return
+
+    @staticmethod
+    def cf_1826c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1826/C
+        tag: math|observation|brain_teaser|construction
+        """
+        pf = PrimeFactor(10 ** 6)
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            ac.st("YES" if not 1 < pf.min_prime[n] <= m else "NO")
         return

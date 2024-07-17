@@ -30,6 +30,9 @@ P2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay
 P6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
 P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
+=====================================CodeForces=====================================
+1837F（https://codeforces.com/problemset/problem/1837/F）binary_search|priority_queue|implemention|greedy|nlognlogn
+
 =====================================AtCoder=====================================
 ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greedy|implemention|classical
 ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greedy|brain_teaser|classical
@@ -668,4 +671,57 @@ class Solution:
                 x = heapq.heappop(stack)
                 ac.st(x + cur)
             val[i] = cur
+        return
+
+    @staticmethod
+    def cf_1837e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1837/F
+        tag: binary_search|priority_queue|implemention|greedy|nlognlogn
+        """
+        for _ in range(ac.read_int()):  # TLE
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+
+            def check(x):
+                stack = []
+                s = 0
+                for i, num in enumerate(nums):
+                    if s + num <= x:
+                        heappush(stack, -num)
+                        s += num
+                    elif stack and -stack[0] > num:
+                        s += stack[0]
+                        heappushpop(stack, -num)
+                        s += num
+                    pre[i + 1] = len(stack)
+                    if pre[i + 1] >= k:
+                        return True
+
+                s = 0
+                stack = []
+                for i in range(n - 1, -1, -1):
+                    num = nums[i]
+                    if s + num <= x:
+                        heappush(stack, -num)
+                        s += num
+                    elif stack and -stack[0] > num:
+                        s += stack[0]
+                        heappushpop(stack, -num)
+                        s += num
+                    if pre[i] + len(stack) >= k:
+                        return True
+                return False
+
+            pre = [0] * (n + 1)
+
+            low = 0
+            high = sum(nums)
+            while low < high:
+                mid = low + (high - low) // 2
+                if check(mid):
+                    high = mid
+                else:
+                    low = mid + 1
+            ac.st(low)
         return

@@ -17,6 +17,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 2827（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
 17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
 100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
+104301C（https://codeforces.com/gym/104301/problem/C）digital_dp
 
 ====================================AtCoder=====================================
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）xor_property|digital_dp

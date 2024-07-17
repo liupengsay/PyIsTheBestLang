@@ -104,6 +104,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 449B（https://codeforces.com/contest/449/problem/B）shortest_path|not_shortest_path_spanning_tree|union_find
 1307D（https://codeforces.com/problemset/problem/1307/D）math|graph|shortest_path|observation|brute_force
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
+1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -2339,4 +2340,68 @@ class Solution:
                     dis[j] = dj
                     heappush(stack, (dj, j))
         ac.lst(dis[1:])
+        return
+
+    @staticmethod
+    def cf_1817b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1817/B
+        tag: undirected_shortest_circle|brute_force
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+            dct = [set() for _ in range(n)]
+            degree = [0] * n
+            for i, j in edges:
+                dct[i].add(j)
+                dct[j].add(i)
+                degree[i] += 1
+                degree[j] += 1
+
+            parent = [-1] * n
+            dis = [inf] * n
+            for x, y in edges:
+                dct[x].discard(y)
+                dct[y].discard(x)
+                for i in range(n):
+                    parent[i] = -1
+                    dis[i] = inf
+
+                stack = [x]
+                dis[x] = 0
+                while stack:
+                    nex = []
+                    for i in stack:
+                        for j in dct[i]:
+                            if dis[j] == inf:
+                                dis[j] = dis[i]+1
+                                parent[j] = i
+                                nex.append(j)
+                    stack = nex[:]
+                if dis[y] < inf:
+                    lst = [y]
+                    while lst[-1] != x:
+                        lst.append(parent[lst[-1]])
+                    if any(degree[z] >= 4 for z in lst):
+                        ac.st("YES")
+                        i = [z for z in lst if degree[z] >= 4][0]
+                        k = len(lst)
+                        res = k + 2
+                        ac.st(res)
+                        for j in range(k):
+                            ac.lst([lst[j] + 1, lst[(j + 1) % k] + 1])
+                        cnt = 0
+                        cur = set(lst)
+                        for j in dct[i]:
+                            if j not in cur:
+                                ac.lst([i + 1, j + 1])
+                                cnt += 1
+                                if cnt == 2:
+                                    break
+                        break
+                dct[x].add(y)
+                dct[y].add(x)
+            else:
+                ac.st("NO")
         return
