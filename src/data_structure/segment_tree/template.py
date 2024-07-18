@@ -1133,13 +1133,13 @@ class RangeAddRangeSumMinMax:
         return res
 
 
-class RangeAddRangePalindrome:
+class RangeAddRangeConSubPalindrome:
     def __init__(self, n):
         self.n = n
-        self.cover = [0] * (4 * self.n)  # range sum
+        self.cover = [0] * (4 * self.n)  # range cover
         self.lazy_tag = [0] * (4 * self.n)  # lazy tag
-        self.pref = [[] for _ in range(4 * self.n)]  # range sum
-        self.suf = [[] for _ in range(4 * self.n)]  # range sum
+        self.pref = [[0, -1] for _ in range(4 * self.n)]
+        self.suf = [[-1, 0] for _ in range(4 * self.n)]
         return
 
     def build(self, nums):
@@ -1168,20 +1168,27 @@ class RangeAddRangePalindrome:
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] | self.cover[(i << 1) | 1]
-        pref = self.pref[i << 1] + self.pref[(i << 1) | 1]
-        self.pref[i] = pref[:2]
-        suf = self.suf[i << 1] + self.suf[(i << 1) | 1]
-        self.suf[i] = suf[-2:]
-        if self.suf[i << 1][-1] == self.pref[(i << 1) | 1][0] or (
-                len(self.pref[(i << 1) | 1]) >= 2 and self.suf[i << 1][-1] == self.pref[(i << 1) | 1][1]) or (
-                len(self.suf[i << 1]) >= 2 and self.suf[i << 1][-2] == self.pref[(i << 1) | 1][0]):
+        self.pref[i][0] = self.pref[i << 1][0]
+        self.pref[i][1] = self.pref[i << 1][1] if self.pref[i << 1][1] != -1 else self.pref[(i << 1) | 1][0]
+
+        self.suf[i][1] = self.suf[(i << 1) | 1][1]
+        self.suf[i][0] = self.suf[(i << 1) | 1][0] if self.suf[(i << 1) | 1][0] != -1 else self.suf[i << 1][1]
+
+        if self.suf[i << 1][1] == self.pref[(i << 1) | 1][0] or self.suf[i << 1][1] == self.pref[(i << 1) | 1][1] or \
+                self.suf[i << 1][0] == self.pref[(i << 1) | 1][0]:
             self.cover[i] = 1
         return
 
     def _make_tag(self, i, val):
-        self.pref[i] = [(x + val) % 26 for x in self.pref[i]] if self.pref[i] else [val]
-        self.suf[i] = [(x + val) % 26 for x in self.suf[i]] if self.suf[i] else [val]
+        self.pref[i][0] = (self.pref[i][0] + val) % 26
+        if self.pref[i][1] != -1:
+            self.pref[i][1] = (self.pref[i][1] + val) % 26
+
+        self.suf[i][1] = (self.suf[i][1] + val) % 26
+        if self.suf[i][0] != -1:
+            self.suf[i][0] = (self.suf[i][0] + val) % 26
         self.lazy_tag[i] += val
+        self.lazy_tag[i] %= 26
         return
 
     def range_add(self, left, right, val):
@@ -1208,24 +1215,19 @@ class RangeAddRangePalindrome:
                 self._push_up(i)
         return
 
-    def range_palindrome(self, left, right):
-        # query the range sum
+    def range_con_sub_palindrome(self, left, right):
         stack = [(0, self.n - 1, 1)]
         ans = 0
-        cur = []
+        cur = [-1, -1]
         while stack and not ans:
             s, t, i = stack.pop()
             if left <= s and t <= right:
                 ans |= self.cover[i]
                 pref, suf = self.pref[i], self.suf[i]
-                if cur and cur[-1] == pref[0]:
+                if cur[1] != -1 and (cur[1] == pref[0] or cur[1] == pref[1] or cur[0] == pref[0]):
                     ans = 1
-                elif cur and len(pref) >= 2 and cur[-1] == pref[1]:
-                    ans = 1
-                elif len(cur) >= 2 and cur[-2] == pref[0]:
-                    ans = 1
-                cur = cur + suf
-                cur = cur[-2:]
+                cur[0] = suf[0] if suf[0] != -1 else cur[1]
+                cur[1] = suf[1]
                 continue
             m = s + (t - s) // 2
             self._push_down(i)

@@ -214,6 +214,8 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1870D（https://codeforces.com/problemset/problem/1870/D）observation|greedy|monotonic_stack
 1415D（https://codeforces.com/problemset/problem/1415/D）observation|bit_operation|data_range
 893D（https://codeforces.com/problemset/problem/893/D）greedy|brain_teaser|implemention|low_to_high
+1849D（https://codeforces.com/problemset/problem/1849/D）observation|greedy|implemention
+
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

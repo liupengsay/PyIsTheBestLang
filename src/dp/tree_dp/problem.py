@@ -84,6 +84,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1363E（https://codeforces.com/problemset/problem/1363/E）greedy|implemention|observation
 1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
 461B（https://codeforces.com/problemset/problem/461/B）classical|tree_dp|observation
+1551F（https://codeforces.com/problemset/problem/1551/F）tree_dp|bag_dp|brute_force
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1869,4 +1870,58 @@ class Solution:
                         dp1[i] = (dp1[i] * (dp0[j] + dp1[j]) + dp0[i] * dp1[j]) % mod
                         dp0[i] = dp0[i] * (dp0[j] + dp1[j]) % mod
         ac.st(dp1[0])
+        return
+
+
+    @staticmethod
+    def cf_1551f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1551/F
+        tag: tree_dp|bag_dp|brute_force
+        """
+        mod = 10 ** 9 + 7
+        for _ in range(ac.read_int()):
+            ac.read_str()
+            n, k = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+            if k == 2:
+                ac.st(n * (n - 1) // 2)
+                continue
+            ans = 0
+            for i in range(n):
+                dis = [-1] * n
+                parent = [-1] * n
+                stack = [i]
+                dis[i] = 0
+                while stack:
+                    nex = []
+                    for x in stack:
+                        for y in dct[x]:
+                            if dis[y] == -1:
+                                dis[y] = dis[x] + 1
+                                nex.append(y)
+                                if parent[x] != -1:
+                                    parent[y] = parent[x]
+                                else:
+                                    parent[y] = y
+                    stack = nex
+                group = [[] for _ in range(n)]
+                for x in range(n):
+                    group[dis[x]].append(x)
+                for d in range(1, n):
+                    if group[d]:
+                        cnt = Counter([parent[x] for x in group[d]])
+                        dp = [0] * (k + 1)
+                        dp[0] = 1
+                        for w in cnt.values():
+                            for x in range(k, 0, -1):
+                                dp[x] += dp[x - 1] * w
+                                dp[x] %= mod
+                        ans += dp[-1]
+                        ans %= mod
+            ac.st(ans % mod)
         return

@@ -181,10 +181,10 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, RangeChminChmaxPointGet, RangeSetPreSumMaxDynamicDct, \
     PointAddRangeSum1Sum2, PointAddRangeSumMod5, PointSetRangeMaxIndex, RangeModPointSetRangeSum, PointSetRangeGcd, \
     PointSetRangeAscendSubCnt, PointSetRangeNotExistABC, RangeAscendRangeMaxIndex, RangeMulRangeMul, \
-    RangeAddRangePalindrome, RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
+    RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
     PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
-    PointSetRangeMaxSubSumAlterSignal
+    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
@@ -326,7 +326,6 @@ class Solution:
                 pre = height[i]
         ac.lst(ans)
         return
-
 
     @staticmethod
     def cf_1216f(ac=FastIO()):
@@ -2635,21 +2634,21 @@ class Solution:
     def cf_1881g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1881/problem/G
-        tag: segment_tree|range_add|range_palindrome
+        tag: segment_tree|range_add|range_con_sub_palindrome
         """
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
-            tree = RangeAddRangePalindrome(n)
+            tree = RangeAddRangeConSubPalindrome(n)
             s = [ord(w) - ord("a") for w in ac.read_str()]
             tree.build(s)
             for _ in range(m):
                 lst = ac.read_list_ints()
                 if lst[0] == 1:
                     ll, rr, x = lst[1:]
-                    tree.range_add(ll - 1, rr - 1, x)
+                    tree.range_add(ll - 1, rr - 1, x % 26)
                 else:
                     ll, rr = lst[1:]
-                    ans = tree.range_palindrome(ll - 1, rr - 1)
+                    ans = tree.range_con_sub_palindrome(ll - 1, rr - 1)
                     ac.st("YES" if not ans else "NO")
         return
 
@@ -3798,7 +3797,6 @@ class Solution:
                 tree.range_add(ind[rr + 1], m - 1, 1)
         ac.lst(ans)
         return
-
 
     @staticmethod
     def cf_1420c2_1(ac=FastIO()):

@@ -99,6 +99,7 @@ P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brut
 1344B（https://codeforces.com/contest/1344/problem/B）bfs|observation
 877D（https://codeforces.com/problemset/problem/877/D）bfs|observation|brain_teaser|union_find
 987D（https://codeforces.com/contest/987/problem/D）several_source|bfs|brute_force
+82C（https://codeforces.com/problemset/problem/82/C）implemention|bfs
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

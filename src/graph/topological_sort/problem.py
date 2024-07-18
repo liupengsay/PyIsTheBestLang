@@ -45,6 +45,7 @@ P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|ga
 1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greedy
 1388D（https://codeforces.com/problemset/problem/1388/D）topological_sort|dag_dp|heuristic_merge|classical
 919D（https://codeforces.com/problemset/problem/919/D）topological_sort|dag_dp|classical
+1335F（https://codeforces.com/problemset/problem/1335/F）circle_based_tree|implemention|observation|greedy
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
@@ -1100,4 +1101,75 @@ class Solution:
             stack = nex[:]
         ac.st(ans)
         ac.lst([x + 1 for x in res[::-1]])
+        return
+
+    @staticmethod
+    def cf_1335f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1335/F
+        tag: circle_based_tree|implemention|observation|greedy
+        """
+        move = dict()
+        move["U"] = (-1, 0)
+        move["D"] = (1, 0)
+        move["L"] = (0, -1)
+        move["R"] = (0, 1)
+        tm = 10 ** 9
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            color = [ac.read_str() for _ in range(m)]
+            grid = [ac.read_str() for _ in range(m)]
+            ans = [0, 0]
+            dct = [-1] * m * n
+            rev = [[] for _ in range(m * n)]
+            degree = [0] * m * n
+            for i in range(m):
+                for j in range(n):
+                    w = move[grid[i][j]]
+                    dct[i * n + j] = (i + w[0]) * n + j + w[1]
+                    rev[(i + w[0]) * n + j + w[1]].append(i * n + j)
+                    degree[(i + w[0]) * n + j + w[1]] += 1
+            stack = [i for i in range(m * n) if degree[i] == 0]
+            while stack:
+                nex = []
+                for i in stack:
+                    j = dct[i]
+                    degree[j] -= 1
+                    if not degree[j]:
+                        nex.append(j)
+                stack = nex
+            dis = [-1] * m * n
+            parent = [-1] * m * n
+            index = [-1] * m * n
+            for i in range(m * n):
+                if degree[i]:
+                    lst = [i]
+                    while len(lst) == 1 or lst[-1] != i:
+                        lst.append(dct[lst[-1]])
+                    lst.pop()
+                    k = len(lst)
+                    for ii, x in enumerate(lst):
+                        index[x] = ii
+                        degree[x] = 0
+                    ans[0] += len(lst)
+                    stack = lst[:]
+                    for x in stack:
+                        dis[x] = 0
+                        parent[x] = x
+                    cur = set()
+                    while stack:
+                        for x in stack:
+                            pi = index[parent[x]]
+                            if color[x // n][x % n] == "0":
+                                cur.add((tm - dis[x] + dis[parent[x]] + pi) % k)
+                        nex = []
+                        for x in stack:
+                            for y in rev[x]:
+                                if dis[y] == -1:
+                                    dis[y] = dis[x] + 1
+                                    parent[y] = parent[x]
+                                    nex.append(y)
+                        stack = nex
+                    ans[1] += len(cur)
+            ac.lst(ans)
         return
