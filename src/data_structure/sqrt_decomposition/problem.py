@@ -444,9 +444,10 @@ class Solution:
             if k <= size:
                 ind[k].append(i)
         ans = [-1] * q
+        cur = [0] * (n + 1)
         for k in range(1, size + 1):
             if ind[k]:
-                cur = [0] * (n + 1)
+                cur[0] = 0
                 for i in range(n):
                     cur[i + 1] = cur[ac.max(0, i - k + 1)] + nums[i]
                 for x in ind[k]:
@@ -692,7 +693,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1468/M
         tag: sqrt_decomposition
         """
-        for _ in range(ac.read_int()):
+        for _ in range(ac.read_int()):  # TLE
 
             def check():
                 nums = [ac.read_list_ints() for _ in range(ac.read_int())]

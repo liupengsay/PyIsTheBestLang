@@ -43,6 +43,7 @@ P7370（https://www.luogu.com.cn/problem/P7370）ancestor
 P1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
 P8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
 P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
+P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|brain_teaser|observation
 
 ===================================CodeForces===================================
 570D（https://codeforces.com/contest/570/problem/D）dfs_order|binary_search|offline_query
@@ -58,6 +59,7 @@ P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
 383C（https://codeforces.com/problemset/problem/383/C）dfs_order|odd_even|range_add|point_get
 3C（https://codeforces.com/problemset/problem/3/C）dfs|back_trace|brute_force|implemention
 459C（https://codeforces.com/problemset/problem/459/C）back_trace|brute_force|classical|implemention
+1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -86,8 +88,9 @@ from typing import List, Optional
 
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.basis.tree_node.template import TreeNode
+from src.data_structure.segment_tree.template import RangeAddPointGet
 from src.data_structure.tree_array.template import PointAddRangeSum
-from src.graph.tree_lca.template import TreeAncestor
+from src.graph.tree_lca.template import TreeAncestor, OfflineLCA
 from src.graph.union_find.template import UnionFind
 from src.search.dfs.template import DFS, DfsEulerOrder
 from src.utils.fast_io import FastIO
@@ -1460,4 +1463,129 @@ class Solution:
                 ans[x][n] = ls[x]
         for ls in ans:
             ac.lst(ls)
+        return
+
+    @staticmethod
+    def cf_1918f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1918/F
+        tag: dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
+        """
+        n, k = ac.read_list_ints()
+        k += 1
+        parent = [-1] + ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for i in range(1, n):
+            dct[parent[i]].append(i)
+        depth = [0] * n
+        sub = [0] * n
+        stack = [0]
+        while stack:
+            x = stack.pop()
+            if x >= 0:
+                stack.append(~x)
+                for y in dct[x]:
+                    depth[y] = depth[x] + 1
+                    stack.append(y)
+            else:
+                x = ~x
+                sub[x] = depth[x]
+                for y in dct[x]:
+                    sub[x] = max(sub[x], sub[y])
+        for i in range(1, n):
+            dct[i].sort(key=lambda it: -sub[it])
+
+        order = 0
+        start = [-1] * n
+        stack = [0]
+        while stack:
+            i = stack.pop()
+            start[i] = order
+            order += 1
+            for j in dct[i]:
+                parent[j] = i
+                stack.append(j)
+
+        leaf = [i for i in range(n) if not dct[i]]
+        leaf.sort(key=lambda it: start[it])
+        m = len(leaf)
+        queries = [(leaf[i], leaf[i + 1]) for i in range(m - 1)]
+        ancestor = OfflineLCA().bfs_iteration(dct, queries)
+        ans = 2 * (n - 1)
+        dis = [depth[leaf[-1]]]
+        for i in range(m - 1):
+            cur = max(0, depth[leaf[i]] - 2 * depth[ancestor[i]])
+            dis.append(cur)
+        dis.sort(reverse=True)
+        ans -= sum(dis[:k])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1444(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1444
+        tag: dfs|back_trace|circle_check|brain_teaser|observation
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        edges = []
+        dct = defaultdict(list)
+        for i, (x, y) in enumerate(nums):
+            dct[y].append((x, i))
+        for y in dct:
+            dct[y].sort()
+            k = len(dct[y])
+            for i in range(k - 1):
+                edges.append((dct[y][i][1], dct[y][i + 1][1]))
+        nums.sort(key=lambda it: (it[1], it[0]))
+
+        def check():
+            walk = [-1] * n
+            skip = [-1] * n
+            for xx, yy in pre:
+                skip[xx] = yy
+                skip[yy] = xx
+            for xx, yy in edges:
+                if skip[xx] != yy:
+                    walk[xx] = yy
+                else:
+                    return 1
+
+            for s in range(n):
+                cur = {s}
+                while s != -1:
+                    if walk[s] == -1:
+                        break
+                    s = skip[walk[s]]
+                    if s in cur:
+                        return 1
+                    cur.add(s)
+            return 0
+
+        visit = [0] * n
+
+        def dfs():
+            if len(pre) * 2 == n:
+                ans[0] += check()
+                return
+
+            for ind in range(n):
+                if not visit[ind]:
+                    visit[ind] = 1
+                    for nex in range(ind + 1, n):
+                        if not visit[nex]:
+                            visit[nex] = 1
+                            pre.append((ind, nex))
+                            dfs()
+                            visit[nex] = 0
+                            pre.pop()
+                    visit[ind] = 0
+                    break
+            return
+
+        ans = [0]
+        pre = []
+        dfs()
+        ac.st(ans[0])
         return

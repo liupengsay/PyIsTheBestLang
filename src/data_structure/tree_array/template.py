@@ -1,6 +1,53 @@
 from src.utils.fast_io import inf
 
 
+class PointXorRangeXor:
+    def __init__(self, n: int, initial=0) -> None:
+        self.n = n
+        self.t = [initial] * (self.n + 1)
+        return
+
+    def _lowest_bit(self, i: int) -> int:
+        assert 1 <= i <= self.n
+        return i & (-i)
+
+    def _pre_xor(self, i: int) -> int:
+        assert 0 <= i < self.n
+        i += 1
+        val = 0
+        while i:
+            val ^= self.t[i]
+            i -= self._lowest_bit(i)
+        return val
+
+    def build(self, nums) -> None:
+        assert len(nums) == self.n
+        pre = [0] * (self.n + 1)
+        for i in range(self.n):
+            pre[i + 1] = pre[i] ^ nums[i]
+            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self._lowest_bit(i + 1)]
+        return
+
+    def get(self):
+        nums = [self._pre_xor(i) for i in range(self.n)]
+        for i in range(self.n - 1, 0, -1):
+            nums[i] -= nums[i - 1]
+        return nums
+
+    def point_xor(self, i: int, val: int) -> None:
+        assert 0 <= i < self.n
+        i += 1
+        while i < len(self.t):
+            self.t[i] ^= val
+            i += self._lowest_bit(i)
+        return
+
+    def range_xor(self, x: int, y: int) -> int:
+        assert 0 <= x <= y < self.n
+        res = self._pre_xor(y) ^ self._pre_xor(x - 1) if x else self._pre_xor(y)
+        return res
+
+
 class PointAddRangeSum:
     def __init__(self, n: int, initial=0) -> None:
         """index from 1 to n"""
@@ -265,7 +312,8 @@ class PointAscendPreMax:
         return i & (-i)
 
     def pre_max(self, i):
-        assert 1 <= i <= self.n
+        assert 0 <= i <= self.n - 1  # max(nums[:i+1])
+        i += 1
         mx = self.initial
         while i:
             mx = mx if mx > self.t[i] else self.t[i]
@@ -273,7 +321,38 @@ class PointAscendPreMax:
         return mx
 
     def point_ascend(self, i, mx):
-        assert 1 <= i <= self.n
+        assert 0 <= i <= self.n - 1
+        i += 1
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] > mx else mx
+            i += self._lowest_bit(i)
+        return
+
+
+class PointAscendPostMax:
+    def __init__(self, n, initial=-inf):
+        self.n = n
+        self.initial = initial
+        self.t = [initial] * (n + 1)
+
+    @staticmethod
+    def _lowest_bit(i):
+        return i & (-i)
+
+    def post_max(self, i):
+        assert 0 <= i <= self.n - 1  # max(nums[i:])
+        i = self.n - i - 1
+        i += 1
+        mx = self.initial
+        while i:
+            mx = mx if mx > self.t[i] else self.t[i]
+            i -= self._lowest_bit(i)
+        return mx
+
+    def point_ascend(self, i, mx):
+        assert 0 <= i <= self.n - 1
+        i = self.n - i - 1
+        i += 1
         while i < len(self.t):
             self.t[i] = self.t[i] if self.t[i] > mx else mx
             i += self._lowest_bit(i)
@@ -331,7 +410,8 @@ class PointDescendPreMin:
         return i & (-i)
 
     def pre_min(self, i):
-        # assert 1 <= i <= self.n
+        assert 0 <= i <= self.n - 1  # # min(nums[:i+1])
+        i += 1
         val = self.initial
         while i:
             val = val if val < self.t[i] else self.t[i]
@@ -339,7 +419,43 @@ class PointDescendPreMin:
         return val
 
     def point_descend(self, i, val):
-        # assert 1 <= i <= self.n
+        assert 0 <= i <= self.n - 1
+        i += 1
+        while i < len(self.t):
+            self.t[i] = self.t[i] if self.t[i] < val else val
+            i += self._lowest_bit(i)
+        return
+
+
+class PointDescendPostMin:
+    def __init__(self, n, initial=inf):
+        self.n = n
+        self.initial = initial
+        self.t = [self.initial] * (n + 1)
+
+    def initialize(self):
+        for i in range(self.n + 1):
+            self.t[i] = self.initial
+        return
+
+    @staticmethod
+    def _lowest_bit(i):
+        return i & (-i)
+
+    def post_min(self, i):
+        assert 0 <= i <= self.n - 1
+        i = self.n - 1 - i  # min(nums[i:])
+        i += 1
+        val = self.initial
+        while i:
+            val = val if val < self.t[i] else self.t[i]
+            i -= self._lowest_bit(i)
+        return val
+
+    def point_descend(self, i, val):
+        assert 0 <= i <= self.n - 1
+        i = self.n - 1 - i
+        i += 1
         while i < len(self.t):
             self.t[i] = self.t[i] if self.t[i] < val else val
             i += self._lowest_bit(i)

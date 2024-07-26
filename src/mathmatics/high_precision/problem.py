@@ -21,6 +21,7 @@ P2393（https://www.luogu.com.cn/problem/P2393）high_precision
 
 P2399（https://www.luogu.com.cn/problem/P2399）float_to_frac
 P1530（https://www.luogu.com.cn/problem/P1530）frac_to_float
+P1298（https://www.luogu.com.cn/problem/P1298）high_precision|frac_to_float|brute_force
 
 ===================================CodeForces===================================
 1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide|high_precision|classical

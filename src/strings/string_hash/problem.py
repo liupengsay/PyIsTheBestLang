@@ -40,6 +40,7 @@ P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_
 7D（https://codeforces.com/problemset/problem/7/D）string_hash|palindrome|classical
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|string_hash
 1977D（https://codeforces.com/contest/1977/problem/D）string_hash|brute_force|brain_teaser|classical
+1418G（https://codeforces.com/problemset/problem/1418/G）string_hash|random_hash|classical|two_pointer
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -971,7 +972,7 @@ class Solution:
         tag: segment_tree_hash|string_hash|point_set|range_hash|range_reverse
         """
         n = ac.read_int()
-        tree1 = PointSetRangeHashReverse(n)
+        tree1 = PointSetRangeHashReverse(n)  # TLE
         tree2 = PointSetRangeHashReverse(n)
         nums = ac.read_list_ints_minus_one()
         for num in nums:
@@ -1529,4 +1530,38 @@ class Solution:
                     ans[i] = "1" if grid[i][j] == "0" else "0"
                     ac.st("".join(ans))
                     break
+        return
+
+    @staticmethod
+    def cf_1418g(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1418/G
+        tag: string_hash|random_hash|classical|two_pointer
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        rd = [random.getrandbits(64) for _ in range(5 * 10 ** 5 + 1)]
+        ac.get_random_seed()
+        pre_hash = [0] * (n + 1)
+        cnt = defaultdict(int)
+        for i in range(n):
+            pre_hash[i + 1] = pre_hash[i]
+            num = nums[i]
+            pre_hash[i + 1] -= cnt[num] * rd[num]
+            cnt[num] = (cnt[num] + 1) % 3
+            pre_hash[i + 1] += cnt[num] * rd[num]
+
+        pre = defaultdict(int)
+        pre[pre_hash[0]] = 1
+        cur = defaultdict(int)
+        ans = i = 0
+        for j in range(n):
+            cur[nums[j]] += 1
+            while cur[nums[j]] > 3:
+                pre[pre_hash[i]] -= 1
+                cur[nums[i]] -= 1
+                i += 1
+            ans += pre[pre_hash[j + 1]]
+            pre[pre_hash[j + 1]] += 1
+        ac.st(ans)
         return

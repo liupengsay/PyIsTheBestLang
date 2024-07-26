@@ -62,6 +62,7 @@ P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
 P2024（https://www.luogu.com.cn/problem/P2024）union_find_type|build_graph
 P3402（https://www.luogu.com.cn/problem/P3402）
 P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinking
+P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 
 ===================================CodeForces===================================
 25D（https://codeforces.com/problemset/problem/25/D）union_find
@@ -96,6 +97,7 @@ P2391（https://www.luogu.com.cn/problem/P2391）union_find_right|reverse_thinki
 1941G（https://codeforces.com/contest/1941/problem/G）union_find|build_graph|bfs|brain_teaser|classical
 1971G（https://codeforces.com/contest/1971/problem/G）union_find|bit_operation
 1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
+1494D（https://codeforces.com/problemset/problem/1494/D）union_right|union_find|implemention|construction
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2679,3 +2681,45 @@ class Solution:
                 ac.st(-1)
         return
 
+    @staticmethod
+    def cf_1494d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1494/D
+        tag: union_right|union_find|implemention|construction
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(5001)]
+        for i in range(n):
+            lst = ac.read_list_ints()
+            for j in range(n):
+                dct[lst[j]].append((i, j))
+        uf = UnionFind(n * n)
+        parent = [-1] * n * n
+        salary = [-1] * n * n
+        ind = n
+        for d in range(1, 5001):
+            for i, j in dct[d]:
+                pi, pj = uf.find(i), uf.find(j)
+                if pi == pj:
+                    salary[pi] = d
+                    continue
+                if salary[pi] == d:
+                    uf.union_right(pj, pi)
+                    parent[pj] = pi
+                    continue
+                if salary[pj] == d:
+                    uf.union_right(pi, pj)
+                    parent[pi] = pj
+                    continue
+                parent[pi] = ind
+                parent[pj] = ind
+                uf.union_right(pi, ind)
+                uf.union_right(pj, ind)
+                salary[ind] = d
+                ind += 1
+        ac.st(ind)
+        ac.lst(salary[:ind])
+        ac.st(ind)
+        for i in range(ind - 1):
+            ac.lst([i + 1, parent[i] + 1])
+        return

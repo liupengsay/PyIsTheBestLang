@@ -130,6 +130,8 @@ P8669（https://www.luogu.com.cn/problem/P8669）greedy|maximum_mul
 P8709（https://www.luogu.com.cn/problem/P8709）brain_teaser|implemention
 P8732（https://www.luogu.com.cn/problem/P8732）greedy|brute_force|custom_sort
 P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
+P1342（https://www.luogu.com.cn/problem/P1342）brain_teaser|greedy
+P1842（https://www.luogu.com.cn/problem/P1842）greedy
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property
@@ -215,7 +217,7 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 1415D（https://codeforces.com/problemset/problem/1415/D）observation|bit_operation|data_range
 893D（https://codeforces.com/problemset/problem/893/D）greedy|brain_teaser|implemention|low_to_high
 1849D（https://codeforces.com/problemset/problem/1849/D）observation|greedy|implemention
-
+1496D（https://codeforces.com/problemset/problem/1496/D）observation|prefix_suffix|brute_force|greedy|implemention|game
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

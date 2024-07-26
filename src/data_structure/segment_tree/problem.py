@@ -65,7 +65,7 @@ P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alt
 85D（https://codeforces.com/contest/85/problem/D）segment_tree|point_add|range_sum
 474E（https://codeforces.com/contest/474/problem/E）segment_tree|point_set|range_max_index|linear_dp|classical
 920F（https://codeforces.com/problemset/problem/920/F）union_find|all_factor_cnt|range_sum|point_add
-438D（https://codeforces.com/contest/438/problem/D）segment_tree|point_set|range_mod|range_sum|classical
+438D（https://codeforces.com/contest/438/problem/D）segment_tree|point_set|range_mod|range_sum|classical|limited_operation
 1187D（https://codeforces.com/problemset/problem/1187/D）segment_tree|point_set|range_min|classical
 914D（https://codeforces.com/contest/914/problem/D）segment_tree|point_set|range_gcd
 1567E（https://codeforces.com/problemset/problem/1567/E）segment_tree|point_set|range_ascend_sub_cnt
@@ -184,7 +184,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
     PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
-    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome
+    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
@@ -541,7 +541,7 @@ class Solution:
                     nums[i] = k
             elif lst[0] == 2:
                 x, y, k = lst[1:]
-                tree.range_set_add(x - 1, y - 1, (-tree.inf, k))
+                tree.range_set_add(x - 1, y - 1, (-inf, k))
                 for i in range(x - 1, y):
                     nums[i] += k
             else:
@@ -2197,10 +2197,10 @@ class Solution:
     def cf_438d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/438/problem/D
-        tag: segment_tree|point_set|range_mod|range_sum|classical
+        tag: segment_tree|point_set|range_mod|range_sum|classical|limited_operation
         """
         n, q = ac.read_list_ints()
-        tree = RangeModPointSetRangeSum(n)
+        tree = RangeModPointSetRangeSum(n)  # TLE
         tree.build(ac.read_list_ints())
         for _ in range(q):
             lst = ac.read_list_ints()
@@ -2349,7 +2349,7 @@ class Solution:
         return
 
     @staticmethod
-    def cf_703d(ac=FastIO()):
+    def cf_703d_1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/703/D
         tag: segment_tree|point_add|range_xor|offline_query
@@ -2373,6 +2373,38 @@ class Solution:
             pre_xor[rr + 1] = pre_xor[rr] ^ nums[rr]
             if nums[rr] ^ ac.random_seed in pre:
                 tree.point_set(pre[nums[rr] ^ ac.random_seed], 0)
+            pre[nums[rr] ^ ac.random_seed] = rr
+            for i, ll in queries[rr]:
+                ans[i] = tree.range_xor(ll, rr) ^ pre_xor[rr + 1] ^ pre_xor[ll]
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_703d_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/703/D
+        tag: segment_tree|point_xor|range_xor|offline_query
+        """
+        ac.get_random_seed()
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        q = ac.read_int()
+        queries = [[] for _ in range(n)]
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries[rr].append((i, ll))
+
+        ans = [0] * q
+        tree = PointXorRangeXor(n)
+        tree.build(nums)
+        pre_xor = [0] * (n + 1)
+
+        pre = dict()
+        for rr in range(n):
+            pre_xor[rr + 1] = pre_xor[rr] ^ nums[rr]
+            if nums[rr] ^ ac.random_seed in pre:
+                tree.point_xor(pre[nums[rr] ^ ac.random_seed], nums[rr])
             pre[nums[rr] ^ ac.random_seed] = rr
             for i, ll in queries[rr]:
                 ans[i] = tree.range_xor(ll, rr) ^ pre_xor[rr + 1] ^ pre_xor[ll]
@@ -2491,7 +2523,7 @@ class Solution:
         tag: segment_tree|range_set|range_sum|alphabet
         """
         n, q = ac.read_list_ints()
-        s = ac.read_str()
+        s = ac.read_str()  # TLE
         tree = [RangeSetRangeSumMinMax(n, 0) for _ in range(26)]
         for i in range(n):
             x = ord(s[i]) - ord("a")
@@ -2574,32 +2606,37 @@ class Solution:
         tag: segment_tree|range_set|range_sum|range_mul
         """
         primes = PrimeSieve().eratosthenes_sieve(300)
-        mod = 10 ** 9 + 7
+        ind = {p: i for i, p in enumerate(primes)}
+        mod = 10 ** 9 + 7  # MLE
         pf = PrimeFactor(300)
+        m = len(ind)
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
-        uf = dict()
-        for f in primes:
-            uf[f] = RangeSetRangeSumMinMax(n, 0)
-        tree = RangeMulRangeMul(n, mod)
-        tree.build(nums)
+        tree_or = RangeOrRangeOr(n)
+        tree_mul = RangeMulRangeMul(n, mod)
+        tree_mul.build(nums)
         for i in range(n):
             for p, _ in pf.prime_factor[nums[i]]:
-                uf[p].range_set(i, i, 1)
+                tree_or.range_or(i, i, 1 << ind[p])
+        pp = dict()
+        for p in primes:
+            pp[p] = pow(p, -1, mod)
+
         for _ in range(q):
             lst = ac.read_list_strs()
             if lst[0] == "MULTIPLY":
                 ll, rr, x = [int(w) for w in lst[1:]]
-                tree.range_mul_update(ll - 1, rr - 1, x)
+                tree_mul.range_mul_update(ll - 1, rr - 1, x)
                 for p, _ in pf.prime_factor[x]:
-                    uf[p].range_set(ll - 1, rr - 1, 1)
+                    tree_or.range_or(ll - 1, rr - 1, 1 << ind[p])
             else:
                 ll, rr = [int(w) for w in lst[1:]]
-                ans = tree.range_mul_query(ll - 1, rr - 1)
-                for p in uf:
-                    if uf[p].range_sum(ll - 1, rr - 1) > 0:
-                        ans *= (p - 1)
-                        ans *= pow(p, -1, mod)
+                ans = tree_mul.range_mul_query(ll - 1, rr - 1)
+                val = tree_or.range_or_query(ll - 1, rr - 1)
+                for i in range(m):
+                    if (val >> i) & 1:
+                        ans *= (primes[i] - 1)
+                        ans *= pp[primes[i]]
                 ac.st(ans % mod)
         return
 

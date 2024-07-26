@@ -105,6 +105,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1307D（https://codeforces.com/problemset/problem/1307/D）math|graph|shortest_path|observation|brute_force
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
+1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -2404,4 +2405,59 @@ class Solution:
                 dct[y].add(x)
             else:
                 ac.st("NO")
+        return
+
+    @staticmethod
+    def cf_1473e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1473/E
+        tag: layer_dijkstra|observation|classical|brain_teaser
+        """
+
+        n, m = ac.read_list_ints()  # TLE
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            u, v, w = ac.read_list_ints()
+            dct[u - 1].append((v - 1, w))
+            dct[v - 1].append((u - 1, w))
+
+        n = len(dct)
+        dis = [inf] * n * 4
+        ans = [inf] * n
+        stack = [(0, 0)]
+        dis[0] = ans[0] = 0
+
+        while stack:
+            d, s = heappop(stack)
+            if dis[s] < d:
+                continue
+            i = s >> 2
+            s1 = s & 1
+            s2 = s & 2
+            if d < ans[i] and s1 and s2:
+                ans[i] = d
+            for j, w in dct[i]:
+                dj = d + w
+                if dj < dis[(j << 2) | s1 | s2]:
+                    dis[(j << 2) | s1 | s2] = dj
+                    heappush(stack, (dj, (j << 2) | s1 | s2))
+
+                if not s1:
+                    dj = d
+                    if dj < dis[(j << 2) | 1 | s2]:
+                        dis[(j << 2) | 1 | s2] = dj
+                        heappush(stack, (dj, (j << 2) | 1 | s2))
+                    if not s2:
+                        dj = d + w
+                        if dj < dis[(j << 2) | 1 | 2]:
+                            dis[(j << 2) | 1 | 2] = dj
+                            heappush(stack, (dj, (j << 2) | 1 | 2))
+
+                if not s2:
+                    dj = d + w * 2
+                    if dj < dis[(j << 2) | s1 | 2]:
+                        dis[(j << 2) | s1 | 2] = dj
+                        heappush(stack, (dj, (j << 2) | s1 | 2))
+
+        ac.lst(ans[1:])
         return

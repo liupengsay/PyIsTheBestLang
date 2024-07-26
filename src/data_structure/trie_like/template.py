@@ -1,5 +1,45 @@
 from src.utils.fast_io import inf
 
+class BinaryTrieXorDict:
+    def __init__(self, bit_length):
+        self.dct = dict()
+        self.bit_length = bit_length
+        return
+
+    def add(self, num, cnt):
+        cur = self.dct
+        for i in range(self.bit_length, -1, -1):
+            cur["cnt"] = cur.get("cnt", 0) + cnt
+            w = 1 if num & (1 << i) else 0
+            if w not in cur:
+                cur[w] = dict()
+            cur = cur[w]
+        cur["cnt"] = cur.get("cnt", 0) + cnt
+        return
+
+    def get_cnt_smaller_xor(self, num, ceil):
+
+        def dfs(xor, cur, i):
+            nonlocal res
+            if xor > ceil:
+                return
+            if i == -1:
+                res += cur["cnt"]
+                return
+            if xor + (1 << (i + 2) - 1) <= ceil:
+                res += cur["cnt"]
+                return
+            w = 1 if num & (1 << i) else 0
+            if 1 - w in cur:
+                dfs(xor | (1 << i), cur[1 - w], i - 1)
+            if w in cur:
+                dfs(xor, cur[w], i - 1)
+            return
+
+        res = 0
+        dfs(0, self.dct, self.bit_length)
+        return res
+
 
 class BinaryTrieXor:
     def __init__(self, max_num, num_cnt):  # bitwise xor

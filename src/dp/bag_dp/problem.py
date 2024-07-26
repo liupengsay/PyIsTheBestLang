@@ -4,6 +4,7 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 
 ====================================LeetCode====================================
 140（https://leetcode.cn/problems/word-break-ii/）bag_dp|specific_plan
+956（https://leetcode.cn/problems/tallest-billboard/description/）meet_in_middle|bag_dp
 2218（https://leetcode.cn/problems/maximum-value-of-k-coins-from-piles/）group_bag_dp
 2585（https://leetcode.cn/problems/number-of-ways-to-earn-points/）bag_dp
 2189（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）bag_dp
@@ -83,6 +84,9 @@ P5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classica
 P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|infinite|brute_force|counter
 P5662（https://www.luogu.com.cn/problem/P5662）infinite|bag_dp|greedy
 P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
+P1489（https://www.luogu.com.cn/problem/P1489）bag_dp|brute_force
+P1651（https://www.luogu.com.cn/problem/P1651）linear_dp|brain_teaser|classical
+P1687（https://www.luogu.com.cn/problem/P1687）bag_dp
 
 ===================================CodeForces===================================
 577B（https://codeforces.com/problemset/problem/577/B）mod|counter|bin_split|bag_dp
@@ -1704,4 +1708,76 @@ class Solution:
         ans = sum(dp)
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1651(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1651
+        tag: linear_dp|brain_teaser|classical
+        """
+        ac.read_int()  # MLE
+        nums = ac.read_list_ints()
+        s = sum(nums)
+        dp = [-10 ** 9] * (s // 2 + 1)
+        dp[0] = 0
+        for num in nums:
+            ndp = dp[:]
+            for x in range(s // 2 + 1):
+                if x + num <= s // 2:
+                    ndp[x + num] = max(ndp[x + num], dp[x])
+                if num <= x:
+                    ndp[x - num] = max(ndp[x - num], dp[x] + num)
+                elif num - x <= s // 2:
+                    ndp[num - x] = max(ndp[num - x], dp[x] + x)
+            dp = ndp[:]
+        ac.st(dp[0] if dp[0] > 0 else -1)
+        return
+
+    @staticmethod
+    def lc_956(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/tallest-billboard/
+        tag: meet_in_middle|bag_dp
+        """
+        s = sum(nums)
+        dp = [-10 ** 9] * (s // 2 + 1)
+        dp[0] = 0
+        for num in nums:
+            ndp = dp[:]
+            for x in range(s // 2 + 1):
+                if x + num <= s // 2:
+                    ndp[x + num] = max(ndp[x + num], dp[x])
+                if num <= x:
+                    ndp[x - num] = max(ndp[x - num], dp[x] + num)
+                elif num - x <= s//2:
+                    ndp[num - x] = max(ndp[num - x], dp[x] + x)
+            dp = ndp[:]
+        return dp[0]
+
+    @staticmethod
+    def lg_p1687(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1687
+        tag: bag_dp
+        """
+        n, k = ac.read_list_ints()  # TLE
+        nums = ac.read_list_ints()
+        nums = [x for x in nums if x <= 119]
+        dp = [[inf] * 120 for _ in range(k + 1)]
+        dp[0][0] = 1
+        n = len(nums)
+        for i in range(n):
+            num = nums[i]
+            for j in range(min(i, k - 1), -1, -1):
+                for x in range(120):
+                    if num + x < 120:
+                        dp[j + 1][num + x] = min(dp[j + 1][num + x], dp[j][x])
+                    else:
+                        dp[j + 1][num] = min(dp[j + 1][num], dp[j][x] + 1)
+        ans = min(dp[k][i] for i in range(120))
+        if ans < inf:
+            ac.st(ans)
+        else:
+            ac.st("You can't do it.")
         return

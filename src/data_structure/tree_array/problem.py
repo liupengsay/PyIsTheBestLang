@@ -62,6 +62,7 @@ ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_
 1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version|tree_array_2d
 1430E（https://codeforces.com/problemset/problem/1430/E）tree_array|classical|implemention|point_add|range_sum|pre_sum
 1788E（https://codeforces.com/problemset/problem/1788/E）linear_dp|tree_array|point_ascend|pre_max
+677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointer|partial_order|implemention|classical
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -1517,5 +1518,66 @@ class Solution:
             pre_max[i + 1] = max(pre_max[i], cur)
             tree.point_ascend(ind[pre[i + 1]], pre_max[i + 1] - i - 1)
         ans = pre_max[-1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_677d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/677/D
+        tag: layered_bfs|tree_array|two_pointer|partial_order|implemention|classical
+        """
+        m, n, p = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        dct = [[] for _ in range(p + 1)]
+        for i in range(m):
+            for j in range(n):
+                dct[grid[i][j]].append(i * n + j)
+        dct[1].sort()
+        dis = [inf] * m * n
+        for x in dct[1]:
+            i, j = x // n, x % n
+            dis[i * n + j] = i + j
+        tree_pre = PointDescendPreMin(n)
+        tree_post = PointDescendPostMin(n)
+        for x in range(2, p + 1):
+            dct[x].sort()
+            k1 = len(dct[x - 1])
+            k2 = len(dct[x])
+            if k1 * k2 <= 100:
+                for x1 in dct[x - 1]:
+                    i1, j1 = x1 // n, x1 % n
+                    for x2 in dct[x]:
+                        i2, j2 = x2 // n, x2 % n
+                        dis[x2] = min(dis[x2], dis[x1] + abs(i2 - i1) + abs(j2 - j1))
+            else:
+                ind = 0
+                tree_pre.initialize()
+                tree_post.initialize()
+                for x2 in dct[x]:
+                    i2, j2 = x2 // n, x2 % n
+                    while ind < k1 and dct[x - 1][ind] // n <= i2:
+                        x1 = dct[x - 1][ind]
+                        i1, j1 = x1 // n, x1 % n
+                        tree_pre.point_descend(j1, -i1 - j1 + dis[x1])
+                        tree_post.point_descend(j1, j1 - i1 + dis[x1])
+                        ind += 1
+                    cur = min(i2 + j2 + tree_pre.pre_min(j2), i2 - j2 + tree_post.post_min(j2))
+                    dis[x2] = cur
+
+                ind = k1 - 1
+                tree_pre.initialize()
+                tree_post.initialize()
+                for x2 in dct[x][::-1]:
+                    i2, j2 = x2 // n, x2 % n
+                    while ind >= 0 and dct[x - 1][ind] // n >= i2:
+                        x1 = dct[x - 1][ind]
+                        i1, j1 = x1 // n, x1 % n
+                        tree_pre.point_descend(j1, i1 - j1 + dis[x1])
+                        tree_post.point_descend(j1, j1 + i1 + dis[x1])
+                        ind -= 1
+                    cur = min(j2 - i2 + tree_pre.pre_min(j2), - i2 - j2 + tree_post.post_min(j2))
+                    dis[x2] = min(dis[x2], cur)
+        ans = min(dis[x] for x in dct[p])
         ac.st(ans)
         return

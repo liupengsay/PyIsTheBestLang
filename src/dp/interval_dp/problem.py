@@ -31,10 +31,12 @@ P2734（https://www.luogu.com.cn/problem/P2734）prefix_sum|interval_dp
 P3004（https://www.luogu.com.cn/problem/P3004）interval_dp
 P3205（https://www.luogu.com.cn/problem/P3205）interval_dp|rolling_update
 P4170（https://www.luogu.com.cn/problem/P4170）interval_dp|math
+P1063（https://www.luogu.com.cn/problem/P1063）interval_dp|classical|circular_array
 
 ===================================CodeForces===================================
 1509C（https://codeforces.com/problemset/problem/1509/C）interval_dp
 607B（https://codeforces.com/problemset/problem/607/B）interval_dp
+1771D（https://codeforces.com/problemset/problem/1771/D）interval_dp|tree_dp|lps|classical|longest_palindrome_subsequence
 
 ===================================AtCoder===================================
 ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implemention|comb_dp|counter
@@ -43,6 +45,7 @@ ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implem
 3996（https://www.acwing.com/problem/content/3999/）interval_dp|longest_palindrome_subsequence
 
 """
+from collections import defaultdict
 from functools import lru_cache
 from itertools import accumulate
 from typing import List
@@ -516,4 +519,72 @@ class Solution:
                     ndp[j] = min(ndp[j - 1] + 1, dp[j] + 1)
             dp = ndp[:]
         ac.st(dp[n - 1])
+        return
+
+    @staticmethod
+    def cf_1771d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1771/D
+        tag: interval_dp|tree_dp|lps|classical|longest_palindrome_subsequence
+        """
+        def f(ii, jj):
+            return ii * n + jj
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            dct = defaultdict(list)
+            dp = [0] * n * n
+            for i in range(n):
+                dp[f(i, i)] = 1
+            s = ac.read_str()
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+                dp[f(i, j)] = dp[f(j, i)] = 2 if s[i] == s[j] else 1
+
+            parent = [-1] * n * n
+            edges = defaultdict(list)
+            for i in range(n):
+                stack = [(i, -1, 0)]
+                dis = [0] * n
+                while stack:
+                    x, fa, d = stack.pop()
+                    dis[x] = d
+                    for y in dct[x]:
+                        if y != fa:
+                            parent[f(i, y)] = x
+                            stack.append((y, x, d + 1))
+                for j in range(i + 1, n):
+                    edges[dis[j]].append([i, j])
+
+            for d in range(2, n + 1):
+                for i, j in edges[d]:
+                    y = parent[f(i, j)]
+                    x = parent[f(j, i)]
+                    cur = ac.max(dp[f(i, y)], dp[f(j, x)])
+                    if s[i] == s[j]:
+                        cur = ac.max(dp[f(x, y)] + 2, cur)
+                    dp[f(i, j)] = dp[f(j, i)] = cur
+            ac.st(max(dp))
+        return
+
+    @staticmethod
+    def lg_p1063(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1063
+        tag: interval_dp|classical|circular_array
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dp = [[0] * 2 * n for _ in range(2 * n)]
+        nums += nums
+        for i in range(2 * n - 2, -1, -1):
+            for j in range(i + 1, 2 * n):
+                cur = 0
+                for k in range(i, j):
+                    cur = max(cur, dp[i][k] + dp[k + 1][j] + nums[i] * nums[k + 1] * nums[(j + 1) % (2 * n)])
+                dp[i][j] = cur
+        ans = max(dp[i][i + n - 1] for i in range(n))
+        ac.st(ans)
         return

@@ -58,6 +58,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1092D2（https://codeforces.com/contest/1092/problem/D2）monotonic_stack|implemention
 1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greedy|implemention
 1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greedy|classical
+1919D（https://codeforces.com/problemset/problem/1919/D）brain_teaser|monotonic_stack|construction
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
@@ -1041,3 +1042,44 @@ class Solution:
                     j += 1
                 ans += j - i + 1
         return ans
+
+    @staticmethod
+    def cf_1919d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1919/D
+        tag: brain_teaser|monotonic_stack|construction
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            if nums.count(0) != 1:
+                ac.st("NO")
+                continue
+            pre_smaller = [-1] * n
+            stack = []
+            for i in range(n):
+                while stack and nums[i] <= nums[stack[-1]]:
+                    stack.pop()
+                if stack:
+                    pre_smaller[i] = stack[-1]
+                stack.append(i)
+
+            post_smaller = [-1] * n
+            stack = []
+            for i in range(n - 1, -1, -1):
+                while stack and nums[i] <= nums[stack[-1]]:
+                    stack.pop()
+                if stack:
+                    post_smaller[i] = stack[-1]
+                stack.append(i)
+            for i in range(n):
+                if nums[i]:
+                    if pre_smaller[i] != -1 and nums[pre_smaller[i]] == nums[i] - 1:
+                        continue
+                    if post_smaller[i] != -1 and nums[post_smaller[i]] == nums[i] - 1:
+                        continue
+                    ac.st("NO")
+                    break
+            else:
+                ac.st("YES")
+        return

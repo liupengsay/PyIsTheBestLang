@@ -95,6 +95,7 @@ P8784（https://www.luogu.com.cn/problem/P8784）linear_dp|fast_power
 P8786（https://www.luogu.com.cn/problem/P8786）linear_dp|memory_search|implemention
 P8816（https://www.luogu.com.cn/problem/P8816）classical|matrix_dp|implemention
 P2359（https://www.luogu.com.cn/problem/P2359）linear_dp
+P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 
 ===================================CodeForces===================================
 75D（https://codeforces.com/problemset/problem/75/D）compress_array|linear_dp
@@ -1842,4 +1843,50 @@ class Solution:
                 if all(pos[y][p] < pos[x][p] for p in range(k)) and dp[j] + 1 > dp[i]:
                     dp[i] = dp[j] + 1
         ac.st(max(dp))
+        return
+
+    @staticmethod
+    def lg_p1514(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1514
+        tag: bfs|linear_dp|observation
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_list_ints() for _ in range(m)]
+        dp = [inf] * (n + 1)
+        dp[0] = 0
+        cover = [0] * n
+        for j in range(n):
+            stack = [(0, j)]
+            visit = [[0] * n for _ in range(m)]
+            visit[0][j] = 1
+            while stack:
+                x, y = stack.pop()
+                for a, b in ac.dire4:
+                    if 0 <= x + a < m and 0 <= y + b < n and not visit[x + a][y + b] and grid[x + a][y + b] < grid[x][
+                        y]:
+                        stack.append((x + a, y + b))
+                        visit[x + a][y + b] = 1
+            cur = []
+            for i in range(n):
+                if visit[m - 1][i]:
+                    cur.append(i)
+
+            for x in cur:
+                cover[x] = 1
+
+            if cur and cur[-1] - cur[0] + 1 != len(cur):
+                continue
+            if cur and dp[cur[0]] < inf:
+                a, b = cur[0], cur[-1]
+                pre = dp[a]
+                for i in range(a, b + 1):
+                    dp[i + 1] = min(dp[i + 1], pre + 1)
+
+        if dp[-1] < inf:
+            ac.st(1)
+            ac.st(dp[-1])
+        else:
+            ac.st(0)
+            ac.st(n - sum(cover))
         return

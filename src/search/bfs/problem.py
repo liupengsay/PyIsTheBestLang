@@ -79,6 +79,7 @@ P8673（https://www.luogu.com.cn/problem/P8673）01-bfs|implemention
 P8674（https://www.luogu.com.cn/problem/P8674）preprocess|build_graph|bfs|implemention
 P9065（https://www.luogu.com.cn/problem/P9065）brain_teaser|bfs|brute_force
 P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|two_pointers|brute_force|monotonic_queue
+P1363（https://www.luogu.com.cn/problem/P1363）classical|brain_teaser|observation|bfs
 
 ===================================CodeForces===================================
 1594D（https://codeforces.com/contest/1594/problem/D）build_graph|coloring_method|bfs|bipartite_graph

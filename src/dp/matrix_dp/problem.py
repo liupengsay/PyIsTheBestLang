@@ -42,6 +42,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greedy|implemention
 100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
 100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
+3098（https://leetcode.cn/problems/find-the-sum-of-subsequence-powers）matrix_dp
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -103,6 +104,8 @@ P8325（https://www.luogu.com.cn/problem/P8325）brute_force|matrix_dp|maximum_s
 P8614（https://www.luogu.com.cn/problem/P8614）matrix_dp|mod
 P8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_sequence
 P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemention|memory_search
+P1128（https://www.luogu.com.cn/problem/P1128）brain_teaser|data_range|brute_force|matrix_dp|high_precision|specific_plan
+P1373（https://www.luogu.com.cn/problem/P1373）matrix_dp
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
@@ -176,6 +179,8 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.tree_array.template import PointDescendPreMin
 from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
+from src.mathmatics.number_theory.template import PrimeSieve
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -3257,5 +3262,80 @@ class Solution:
                     if i < i + yy <= tot:
                         dp[(i + yy) * 2 * change + yy - d] = max(dp[(i + yy) * 2 * change + yy - d], vv + cnt[i + yy])
         ans = max(dp)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1128(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1128
+        tag: brain_teaser|data_range|brute_force|matrix_dp|high_precision|specific_plan
+        """
+        prime_numbers = PrimeSieve().euler_sieve(300)[:20]
+        log = [math.log(p) for p in prime_numbers]
+        n = ac.read_int()
+        pf = PrimeFactor(n)
+        dp = [[inf] * (n + 1) for _ in range(21)]
+        dp[0][1] = 0
+        pre = [[[] for _ in range(n + 1)] for _ in range(21)]
+        for i in range(1, 21):
+            p = prime_numbers[i - 1]
+            for j in range(n + 1):
+                dp[i][j] = dp[i - 1][j]
+                pre[i][j] = (-1, j)
+            for j in range(1, n + 1):
+                for x in pf.all_factor[j]:
+                    x -= 1
+                    if x * log[i - 1] > dp[i][j]:
+                        break
+                    if dp[i - 1][j // (x + 1)] + x * log[i - 1] < dp[i][j]:
+                        dp[i][j] = dp[i - 1][j // (x + 1)] + x * log[i - 1]
+                        pre[i][j] = (p, x)
+        i, j = 20, n
+        ans = 1
+        while pre[i][j]:
+            p, x = pre[i][j]
+            if p == -1:
+                i -= 1
+                continue
+            ans *= p ** x
+            j = j // (x + 1)
+            i -= 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1373(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1373
+        tag: matrix_dp
+        """
+        m, n, k = ac.read_list_ints()
+        mod = 10 ** 9 + 7
+        k += 1
+        tmp = []
+        while True:
+            cur = ac.read_list_ints()
+            tmp.extend(cur)
+            if len(tmp) == m * n:
+                break
+        assert len(tmp) == m * n
+        dp = [[[0] * 2 for _ in range(k)] for _ in range(n + 1)]
+        ans = 0
+        for i in range(m):
+            ndp = [[[0] * 2 for _ in range(k)] for _ in range(n + 1)]
+            lst = tmp[i * n:i * n + n]
+            for j in range(n):
+                ndp[j + 1][lst[j] % k][0] = 1
+                for x in range(k):
+                    ndp[j + 1][x][0] += (dp[j + 1][(x - lst[j] + k) % k][1] + ndp[j][(x - lst[j] + k) % k][1])
+                    dp[j + 1][x][0] %= mod
+
+                    ndp[j + 1][x][1] += (dp[j + 1][(x + lst[j] + k) % k][0] + ndp[j][(x + lst[j] + k) % k][0])
+                    dp[j + 1][x][1] %= mod
+
+                ans += ndp[j + 1][0][1]
+                ans %= mod
+            dp = [[ls[:] for ls in lst] for lst in ndp]
         ac.st(ans)
         return

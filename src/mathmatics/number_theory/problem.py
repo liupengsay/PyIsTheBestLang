@@ -53,6 +53,8 @@ P7960（https://www.luogu.com.cn/problem/P7960）prime_sieve|preprocess
 P8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sum|counter
 P8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization|O(n^0.25)|classical
 P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
+P5091（https://www.luogu.com.cn/problem/P5091）extend_euler_theorem|classical
+P1619（https://www.luogu.com.cn/problem/P1619）prime_factor|pollard_rho
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -78,6 +80,7 @@ P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 1656D（https://codeforces.com/problemset/problem/1656/D）math|odd_even|observation|bain_teaser
 1992F（https://codeforces.com/contest/1992/problem/F）greedy|implemention|math
 1361B（https://codeforces.com/problemset/problem/1361/B）observation|limited_operation|data_range|brain_teaser|math
+1478D（https://codeforces.com/problemset/problem/1478/D）math|peishu_theorem
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1325,7 +1328,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def cc_1(ac=FastIO()):
         """
@@ -1465,4 +1467,80 @@ class Solution:
                         break
                 else:
                     ac.st(0)
+        return
+
+    @staticmethod
+    def cf_1478d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1478/D
+        tag: math|peishu_theorem
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            g = 0
+            for i in range(1, n):
+                g = math.gcd(nums[i] - nums[0], g)
+            ac.st("YES" if (k - nums[0]) % g == 0 else "NO")
+        return
+
+    @staticmethod
+    def lg_p5091(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5091
+        tag: extend_euler_theorem|classical
+        """
+        a, m, s = ac.read_list_strs()
+        a = int(a)
+        m = int(m)
+        phi = EulerPhi().euler_phi_with_prime_factor(m)
+        b = flag = 0
+        for w in s:
+            b *= 10
+            b += int(w)
+            if b >= phi:
+                flag = 1
+                b %= phi
+        if flag:
+            b += phi
+        ans = pow(a, b, m)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1619(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1619
+        tag: prime_factor|pollard_rho
+        """
+        while True:
+            s = ac.read_str()
+            s = "".join(w for w in s if w.isdigit())
+            ac.st("Enter the number=")
+            if not s:
+                break
+            lst = deque(s)
+            while len(lst) >= 2 and lst[0] == "0":
+                lst.popleft()
+            s = "".join(lst)
+            if len(s) >= 10 or int(s) > 4 * 10 ** 7:
+                ac.st("Prime? No!")
+                ac.st("The number is too large!")
+            else:
+                s = int(s)
+                if s <= 1:
+                    ac.st("Prime? No!")
+                else:
+                    if s <= 10**6:
+                        lst = NumFactor().get_prime_factor(s)
+                    else:
+                        dct = NumFactor().get_prime_with_pollard_rho(s)
+                        lst = [(p, dct[p]) for p in sorted(dct)]
+                    if len(lst) == 1 and lst[0][1] == 1:
+                        ac.st("Prime? Yes!")
+                    else:
+                        ac.st("Prime? No!")
+                        lst = [f"{p}^{c}" for p, c in lst]
+                        ac.st(f"{s}=" + "*".join(lst))
+            ac.st("")
         return

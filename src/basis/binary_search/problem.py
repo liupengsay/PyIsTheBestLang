@@ -70,6 +70,7 @@ P6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
 P8161（https://www.luogu.com.cn/problem/P8161）greedy|binary_search
 P8198（https://www.luogu.com.cn/problem/P8198）binary_search|pointer
 P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy|implemention
+P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implemention
 
 ===================================CodeForces===================================
 1251D（https://codeforces.com/problemset/problem/1251/D）greedy|median|binary_search
@@ -95,6 +96,7 @@ P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy
 1393C（https://codeforces.com/problemset/problem/1393/C）binary_search|implemention|stack|classical|math
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
+1679D（https://codeforces.com/problemset/problem/1679/D）binary_search|graph|longest_path
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -1976,4 +1978,51 @@ class Solution:
 
                 ans = max(ans, cur)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1679d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1679/D
+        tag: binary_search|graph|longest_path
+        """
+        n, m, k = ac.read_list_ints()
+        a = ac.read_list_ints()
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        depth = [-2] * n
+
+        def check(x):
+            for i in range(n):
+                degree[i] = 0
+                dct[i] = []
+                depth[i] = -2
+            for i, j in edges:
+                if a[i] <= x and a[j] <= x:
+                    dct[i].append(j)
+                    degree[j] += 1
+
+            stack = [i for i in range(n) if not degree[i] and a[i] <= x]
+            for i in stack:
+                depth[i] = 0
+            while stack:
+                i = stack.pop()
+                for j in dct[i]:
+                    degree[j] -= 1
+                    if depth[j] < depth[i] + 1:
+                        depth[j] = depth[i] + 1
+                    if depth[j] >= k - 1:
+                        return True
+                    if not degree[j]:
+                        stack.append(j)
+            for i in range(n):
+                if a[i] <= x:
+                    if degree[i] > 0 or depth[i] >= k - 1:
+                        return True
+            return False
+
+        ceil = 10 ** 9 + 1
+        ans = BinarySearch().find_int_left(1, ceil, check)
+        ac.st(ans if ans < ceil else -1)
         return

@@ -927,36 +927,6 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1055f(ac=FastIO()):
-        """
-        url: https://codeforces.com/contest/1055/problem/F
-        tag: binary_trie|get_cnt_smaller_xor
-        """
-        n, k = ac.read_list_ints()
-        dis = [0] * n
-        dct = [[] for _ in range(n)]
-        for i in range(n - 1):
-            p, w = ac.read_list_ints()
-            dct[p - 1].append((i + 1, w))
-        stack = [0]
-        while stack:
-            x = stack.pop()
-            for y, w in dct[x]:
-                dis[y] = dis[x] ^ w
-                stack.append(y)
-
-        trie = BinaryTrieXor(max(dis) + 1, n)
-        for num in dis:
-            trie.add(num, 1)
-        ans = (1 << 62) - 1
-        for i in range(61, -1, -1):
-            cnt = sum(trie.get_cnt_smaller_xor(x, ans ^ (1 << i)) for x in dis)
-            if cnt >= k:
-                ans ^= 1 << i
-        ac.st(ans)
-        return
-
-    @staticmethod
     def cf_817e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/817/problem/E
@@ -1155,4 +1125,34 @@ class Solution:
                         even_trie.add(path[v], 1)
                     res.append(ans)
             ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_1055f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1055/F
+        tag: binary_trie|get_cnt_smaller_xor|binary_search|tree_xor
+        """
+        n, k = ac.read_list_ints()  # MLE
+        dis = [0] * n
+        dct = [[] for _ in range(n)]
+        for i in range(n - 1):
+            p, w = ac.read_list_ints()
+            dct[p - 1].append((i + 1, w))
+        stack = [0]
+        while stack:
+            x = stack.pop()
+            for y, w in dct[x]:
+                dis[y] = dis[x] ^ w
+                stack.append(y)
+
+        trie = BinaryTrieXor(max(dis) + 1, n)
+        for num in dis:
+            trie.add(num, 1)
+        ans = (1 << 62) - 1
+        for i in range(61, -1, -1):
+            cnt = sum(trie.get_cnt_smaller_xor(x, ans ^ (1 << i)) for x in dis)
+            if cnt >= k:
+                ans ^= 1 << i
+        ac.st(ans)
         return

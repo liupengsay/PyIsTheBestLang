@@ -2597,6 +2597,103 @@ class RangeSetRangeSumMinMax:
                 s, t, i = m + 1, t, (i << 1) | 1
         return ans
 
+class RangeOrRangeOr:
+    def __init__(self, n):
+        self.n = n
+        self.cover = [0] * 4 * n
+        self.lazy_tag = [0] * 4 * n
+        return
+
+    def _make_tag(self, i, val):
+        self.cover[i] |= val
+        self.lazy_tag[i] |= val
+        return
+
+    def _push_down(self, i):
+        if self.lazy_tag[i]:
+            self.cover[i << 1] |= self.lazy_tag[i]
+            self.cover[(i << 1) | 1] |= self.lazy_tag[i]
+
+            self.lazy_tag[i << 1] |= self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] |= self.lazy_tag[i]
+
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i):
+        self.cover[i] = self.cover[i << 1] | self.cover[(i << 1) | 1]
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_or(self, left, r, val):
+        """update the range or"""
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= r:
+                    self.cover[i] |= val
+                    self.lazy_tag[i] |= val
+                    continue
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append((s, t, ~i))
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if r > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def range_or_query(self, left, r):
+        """query the range or"""
+        stack = [(0, self.n - 1, 1)]
+        ans = 0
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= r:
+                ans |= self.cover[i]
+                continue
+            self._push_down(i)
+            m = s + (t - s) // 2
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if r > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return ans
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.cover[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
 
 class RangeMulRangeMul:
     def __init__(self, n, mod=10 ** 9 + 7):

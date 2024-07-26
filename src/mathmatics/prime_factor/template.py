@@ -23,7 +23,9 @@ class PrimeFactor:
         self.prime_factor_mi_cnt = [0] * (self.n + 1)
         # calculate all factors of all numbers from 1 to self.n, including 1 and the number itself
         self.all_factor = [[], [1]] + [[1, i] for i in range(2, self.n + 1)]
+        self.euler_phi = list(range(self.n+1))
         self.build()
+
         return
 
     def build(self):
@@ -50,6 +52,7 @@ class PrimeFactor:
         # complexity is O(nlogn)
         for num in range(2, self.n + 1):
             i = num
+            phi = num
             while num > 1:
                 p = self.min_prime[num]
                 cnt = 0
@@ -57,7 +60,8 @@ class PrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append((p, cnt))
-
+                phi =  phi // p * (p - 1)
+            self.euler_phi[i] = phi
 
         # complexity is O(nlogn)
         for i in range(2, self.n + 1):

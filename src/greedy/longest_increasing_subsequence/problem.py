@@ -41,6 +41,7 @@ P5978（https://www.luogu.com.cn/problem/P5978）lis|greedy|brute_force
 P7957（https://www.luogu.com.cn/problem/P7957）lis|lds|construction
 P1410（https://www.luogu.com.cn/problem/P1410）dilworth|lis
 P2516（https://www.luogu.com.cn/problem/P2516）length_of_lcs|cnt_of_lcs
+P1108（https://www.luogu.com.cn/problem/P1108）matrix_dp|lis|classical|brain_teaser
 
 =====================================AcWing=====================================
 3549（https://www.acwing.com/problem/content/3552/）liner_dp|greedy
@@ -713,4 +714,32 @@ class Solution:
             if (cur, -num) > pre:
                 pre = (cur, -num)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p1108(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P1108
+        tag: matrix_dp|lis|classical|brain_teaser
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        length = [1] * n
+        dedup = [1] * n
+        res2 = 0
+        for i in range(n):
+            for j in range(i):
+                if nums[j] > nums[i]:
+                    if length[j] + 1 > length[i]:
+                        length[i] = length[j] + 1
+                        dedup[i] = dedup[j]
+                    elif length[j] + 1 == length[i]:
+                        dedup[i] += dedup[j]
+                elif nums[j] == nums[i]:
+                    dedup[j] = length[j] = 0
+        res1 = max(length)
+        for i in range(n):
+            if length[i] == res1:
+                res2 += dedup[i]
+        ac.lst([res1, res2])
         return

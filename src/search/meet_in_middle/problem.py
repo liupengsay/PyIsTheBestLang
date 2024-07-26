@@ -5,7 +5,7 @@ Description：data_range|brute_force
 ====================================LeetCode====================================
 1755（https://leetcode.cn/problems/closest-subsequence-sum/）meet_in_middle
 2035（https://leetcode.cn/problems/partition-array-into-two-arrays-to-minimize-sum-difference/）meet_in_middle|sort|binary_search|two_pointers
-956（https://leetcode.cn/problems/tallest-billboard/description/）meet_in_middle
+956（https://leetcode.cn/problems/tallest-billboard/description/）meet_in_middle|bag_dp
 
 =====================================LuoGu======================================
 P5194（https://www.luogu.com.cn/problem/P5194）fibonacci|meet_in_middle|brute_force|binary_search
