@@ -9,7 +9,7 @@ Description：make the matrix_state_dp change to outline_dp with flatten matrix 
 
 
 =====================================LuoGu======================================
-xx（xxx）xxxxxxxxxxxxxxxxxxxx
+P2704（https://www.luogu.com.cn/problem/P2704）outline_dp|classical
 
 ===================================CodeForces===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
@@ -21,6 +21,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 """
 from collections import defaultdict
 from typing import List
+
+from src.utils.fast_io import FastIO
 
 
 class Solution:
@@ -112,3 +114,36 @@ class Solution:
                             cur[((p << 1) | 1) & mask] = max(cur[((p << 1) | 1) & mask], pre[p] + 1)
                 pre = cur
         return max(pre.values())
+
+    @staticmethod
+    def lg_p2704(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2704
+        tag: outline_dp|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+        pre = defaultdict(int)
+        pre[0] = ans = 0
+        mask = (1 << (2 * n)) - 1
+        for i in range(m):
+            for j in range(n):
+                cur = defaultdict(int)
+                for p in pre:
+                    pp = (p & mask) << 1
+                    cur[pp] = max(cur[pp], pre[p])
+                    if grid[i][j] == "P":
+                        pp = ((p & mask) << 1) | 1
+                        if j - 1 >= 0 and pp & 2:
+                            continue
+                        if j - 2 >= 0 and pp & 4:
+                            continue
+                        if pp & (1 << (2 * n)):
+                            continue
+                        if pp & (1 << n):
+                            continue
+                        cur[pp] = max(cur[pp], pre[p] + 1)
+                        ans = max(ans, cur[pp])
+                pre = cur
+        ac.st(ans)
+        return

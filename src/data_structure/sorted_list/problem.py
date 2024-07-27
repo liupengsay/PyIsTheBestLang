@@ -40,6 +40,7 @@ P7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
 P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 P3369（https://www.luogu.com.cn/problem/P3369）sorted_list
 P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
+P2161（https://www.luogu.com.cn/problem/P2161）sorted_list|trick
 
 ===================================CodeForces===================================
 459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
@@ -78,6 +79,7 @@ from src.basis.various_sort.template import VariousSort
 from src.data_structure.sorted_list.template import SortedList, TopKSum
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
+from tests.codeforces.problem_a import LocalSortedList
 
 
 class Solution:
@@ -666,4 +668,31 @@ class Solution:
                     if len(lst.lst) >= k > 0:
                         ans = max(ans, tot - lst.top_k_sum)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2161(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2161
+        tag: sorted_list|trick
+        """
+        n = ac.read_int()
+        lst = LocalSortedList()
+        part = 2 * 10 ** 5 + 10
+        for _ in range(n):
+            cur = ac.read_list_strs()
+            if cur[0] == "B":
+                ac.st(len(lst))
+            else:
+                a, b = cur[1:]
+                a = int(a)
+                b = int(b)
+                ans = 0
+                i = lst.bisect_left(a*part+a)
+                for x in [i - 1, i, i + 1]:
+                    while 0 <= x < len(lst) and not (lst[x]//part > b or lst[x]%part < a):
+                        lst.pop(x)
+                        ans += 1
+                ac.st(ans)
+                lst.add(a*part+b)
         return

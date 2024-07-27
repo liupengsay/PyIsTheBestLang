@@ -19,6 +19,7 @@ P2907（https://www.luogu.com.cn/problem/P2907）recursion|implemention
 P7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
 P1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
 P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
+P2101（https://www.luogu.com.cn/problem/P2101）divide_and_conquer|greedy|classical
 
 ===================================CodeForces===================================
 448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
@@ -484,4 +485,38 @@ class Solution:
 
         ans = check(a) == check(b)
         ac.st("YES" if ans else "NO")
+        return
+
+    @staticmethod
+    def lg_p2101(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2101
+        tag: divide_and_conquer|greedy|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        def dfs(i, j):
+            cur = j-i+1
+            low = i
+            for k in range(i, j + 1):
+                if nums[k] < nums[low]:
+                    low = k
+            res = nums[low]
+            for k in range(i, j + 1):
+                nums[k] -= res
+            cnt = 0
+            for k in range(i, j + 1):
+                if nums[k]:
+                    cnt += 1
+                else:
+                    if cnt:
+                        res += dfs(k - cnt, k - 1)
+                    cnt = 0
+            if cnt:
+                res += dfs(j - cnt + 1, j)
+            return min(res, cur)
+
+        ans = dfs(0, n - 1)
+        ac.st(ans)
         return

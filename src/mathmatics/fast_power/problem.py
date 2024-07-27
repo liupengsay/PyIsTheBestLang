@@ -29,6 +29,7 @@ P5343（https://www.luogu.com.cn/problem/P5343）linear_dp|matrix_fast_power
 P8557（https://www.luogu.com.cn/problem/P8557）brain_teaser|fast_power|counter
 P8624（https://www.luogu.com.cn/problem/P8624）matrix_dp|matrix_fast_power
 P1306（https://www.luogu.com.cn/problem/P1306）matrix_fast_power|math|fibonacci_property|classical
+P2174（https://www.luogu.com.cn/problem/P2174）mod_reverse
 
 =====================================AcWing=====================================
 27（https://www.acwing.com/problem/content/26/）float_fast_power|classical

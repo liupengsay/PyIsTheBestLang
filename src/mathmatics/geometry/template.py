@@ -1,5 +1,6 @@
 import math
 import random
+from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
@@ -54,6 +55,35 @@ class Geometry:
         x1, y1 = p1[0] - p2[0], p1[1] - p2[1]
         x2, y2 = p3[0] - p2[0], p3[1] - p2[1]
         return x1 * x2 + y1 * y2 == 0
+
+    @staticmethod
+    def is_rectangle_overlap(rec1: List[int], rec2: List[int]) -> bool:
+        x1, y1, x2, y2 = rec1  # left_down
+        x3, y3, x4, y4 = rec2  # right_up
+        if x2 <= x3 or x4 <= x1 or y4 <= y1 or y2 <= y3:
+            return False
+        return True
+
+    @staticmethod
+    def is_rectangle_separate(rec1: List[int], rec2: List[int]) -> bool:
+        x1, y1, x2, y2 = rec1  # left_down
+        a1, b1, a2, b2 = rec2  # right_up
+        return x2 < a1 or a2 < x1 or y2 < b1 or b2 < y1
+
+    @staticmethod
+    def is_rectangle_touching(rec1: List[int], rec2: List[int]) -> bool:
+        x1, y1, x2, y2 = rec1  # left_down
+        a1, b1, a2, b2 = rec2  # right_up
+        edge_touch = ((x1 == a2 or x2 == a1) and (y1 < b2 and y2 > b1)) or \
+                     ((y1 == b2 or y2 == b1) and (x1 < a2 and x2 > a1))
+
+        # Check if one rectangle's corner is on the other rectangle
+        corner_touch = (x1 == a2 and (y1 == b2 or y2 == b1)) or \
+                       (x2 == a1 and (y1 == b2 or y2 == b1)) or \
+                       (y1 == b2 and (x1 == a2 or x2 == a1)) or \
+                       (y2 == b1 and (x1 == a2 or x2 == a1))
+
+        return edge_touch or corner_touch
 
     @staticmethod
     def compute_slope(x1, y1, x2, y2):

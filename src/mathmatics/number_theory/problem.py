@@ -55,6 +55,9 @@ P8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization
 P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 P5091（https://www.luogu.com.cn/problem/P5091）extend_euler_theorem|classical
 P1619（https://www.luogu.com.cn/problem/P1619）prime_factor|pollard_rho
+P2104（https://www.luogu.com.cn/problem/P2104）stack|n_bin
+P2441（https://www.luogu.com.cn/problem/P2441）implemention|data_range|observation|math
+P3383（https://www.luogu.com.cn/problem/P3383）eratosthenes_sieve
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -123,7 +126,7 @@ ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_metho
 """
 import bisect
 import math
-from collections import Counter
+from collections import Counter, deque
 from collections import defaultdict
 from functools import reduce, lru_cache
 from operator import mul
@@ -1543,4 +1546,32 @@ class Solution:
                         lst = [f"{p}^{c}" for p, c in lst]
                         ac.st(f"{s}=" + "*".join(lst))
             ac.st("")
+        return
+
+    @staticmethod
+    def lg_p2441(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2441
+        tag: implemention|data_range|observation|math
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        parent = [-1] * n
+        for _ in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            parent[y] = x
+        for _ in range(k):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                x = lst[1] - 1
+                num = nums[x]
+                ans = -1
+                while parent[x] != -1:
+                    x = parent[x]
+                    if math.gcd(nums[x], num) > 1:
+                        ans = x + 1
+                        break
+                ac.st(ans)
+            else:
+                nums[lst[1] - 1] = lst[2]
         return

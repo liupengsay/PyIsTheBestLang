@@ -61,6 +61,7 @@ P8898（https://www.luogu.com.cn/problem/P8898）greedy|implemention
 P8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
 P8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
 P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
+P2793（https://www.luogu.com.cn/problem/P2793）implemention
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix

@@ -237,7 +237,7 @@ class Solution:
             x, y = lst[i]
             r = (d * d - y * y) ** 0.5
             lst[i] = [x - r, x + r]
-        ac.st(Range().minimum_point_cover_range(lst))  # minimum_point_cover_range_2 also accepted
+        ac.st(Range().minimum_point_cover_range(lst))
         return
 
     @staticmethod

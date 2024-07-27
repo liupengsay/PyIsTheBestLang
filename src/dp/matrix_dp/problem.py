@@ -106,6 +106,8 @@ P8638（https://www.luogu.com.cn/problem/P8638）matrix_dp|longest_palindrome_se
 P8786（https://www.luogu.com.cn/problem/P8786）classical|md_matrix_dp|implemention|memory_search
 P1128（https://www.luogu.com.cn/problem/P1128）brain_teaser|data_range|brute_force|matrix_dp|high_precision|specific_plan
 P1373（https://www.luogu.com.cn/problem/P1373）matrix_dp
+P2028（https://www.luogu.com.cn/problem/P2028）bag_dp|math|comb|matrix_dp|second_stirling_num
+P2132（https://www.luogu.com.cn/problem/P2132）matrix_dp|classical
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
@@ -3337,5 +3339,53 @@ class Solution:
                 ans += ndp[j + 1][0][1]
                 ans %= mod
             dp = [[ls[:] for ls in lst] for lst in ndp]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2028(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2028
+        tag: bag_dp|math|comb|matrix_dp|second_stirling_num
+        """
+        n, k, p = ac.read_list_ints()
+        dp = [0] * (k + 1)
+        dp[0] = 1
+        for i in range(n):
+            for j in range(min(k, i + 1), 0, -1):
+                dp[j] = (dp[j] * j + dp[j - 1]) % p
+            dp[0] = 0
+        ac.st(dp[k])
+        return
+
+    @staticmethod
+    def lg_p2132(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2132
+        tag: matrix_dp|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        while len(nums) < 5:
+            nums.append(0)
+
+        @lru_cache(None)
+        def dfs(a, b, c, d, e):
+            if a + b + c + d + e == 0:
+                return 1
+            res = 0
+            if a > b:
+                res += dfs(a - 1, b, c, d, e)
+            if b > c:
+                res += dfs(a, b - 1, c, d, e)
+            if c > d:
+                res += dfs(a, b, c - 1, d, e)
+            if d > e:
+                res += dfs(a, b, c, d - 1, e)
+            if e:
+                res += dfs(a, b, c, d, e - 1)
+            return res
+
+        ans = dfs(nums[0], nums[1], nums[2], nums[3], nums[4])
         ac.st(ans)
         return

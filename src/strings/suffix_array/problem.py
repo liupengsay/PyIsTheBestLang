@@ -25,6 +25,7 @@ P5546（https://www.luogu.com.cn/problem/P5546）suffix_array|lcs|lcp|monotonic_
 P4341（https://www.luogu.com.cn/problem/P4341）suffix_array|height
 P4070（https://www.luogu.com.cn/problem/P4070）
 P6095（https://www.luogu.com.cn/problem/P6095）
+P2870（https://www.luogu.com.cn/problem/P2870）suffix_array|greedy|implemention|classical
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/142/）suffix_array|template
@@ -1530,4 +1531,37 @@ class Solution:
                 ans.extend(s[i:right + 1])
                 right = i - 1
             ac.st("".join(chr(x + ord("a")) for x in ans))
+        return
+
+
+    @staticmethod
+    def lg_p2870(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2870
+        tag: suffix_array|greedy|implemention|classical
+        """
+        s = []
+        for _ in range(ac.read_int()):
+            s.append(ord(ac.read_str()[0]) - ord("A"))
+        n = len(s)
+        s += s[::-1]
+
+        _, rk, _ = SuffixArray().build(s, 26)
+
+        ans = []
+        ll, rr = 0, n - 1
+        for _ in range(n):
+            if rk[ll] < rk[2 * n - 1 - rr]:
+                ans.append(s[ll])
+                ll += 1
+            else:
+                ans.append(s[rr])
+                rr -= 1
+            if len(ans) == 80:
+                res = "".join(chr(x + ord("A")) for x in ans)
+                ac.st(res)
+                ans = []
+        if ans:
+            res = "".join(chr(x + ord("A")) for x in ans)
+            ac.st(res)
         return

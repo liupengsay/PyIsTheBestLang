@@ -25,7 +25,7 @@ P3021（https://www.luogu.com.cn/problem/P3021）inclusion_exclusion|counter|bru
 P1257（https://www.luogu.com.cn/problem/P1257）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 P7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
-
+P2449（https://www.luogu.com.cn/problem/P2449）rectangle_overlap|rectangle_edge_touch|rectangle_corner_touch|geometry
 
 ===================================CodeForces===================================
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
@@ -62,6 +62,7 @@ from itertools import accumulate, pairwise
 from math import inf
 from typing import List
 
+from src.graph.union_find.template import UnionFind
 from src.mathmatics.geometry.template import Geometry, ClosetPair
 from src.utils.fast_io import FastIO
 
@@ -642,4 +643,37 @@ class Solution:
         theta = 2 * math.pi / n
         ans = n * 0.5 * (r ** 2) * math.sin(theta)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p2449(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2449
+        tag: rectangle_overlap|rectangle_edge_touch|rectangle_corner_touch|geometry
+        """
+        n = ac.read_int()
+        uf = UnionFind(n)
+        pre = []
+
+        def check_overlap(rec1, rec2):
+            x1, y1, x2, y2 = rec1
+            x3, y3, x4, y4 = rec2
+            if x2 <= x3 or x4 <= x1 or y4 <= y1 or y2 <= y3:
+                return False
+            return True
+
+        def check_edge_touch(rec1, rec2):
+            x1, y1, x2, y2 = rec1
+            a1, b1, a2, b2 = rec2
+            edge_touch = ((x1 == a2 or x2 == a1) and (y1 < b2 and y2 > b1)) or \
+                         ((y1 == b2 or y2 == b1) and (x1 < a2 and x2 > a1))
+            return edge_touch
+
+        for i in range(n):
+            a, b, c, d = ac.read_list_ints()
+            pre.append([a, b, c, d])
+            for j in range(i):
+                if check_overlap(pre[i], pre[j]) or check_edge_touch(pre[i], pre[j]):
+                    uf.union(i, j)
+        ac.st(uf.part)
         return

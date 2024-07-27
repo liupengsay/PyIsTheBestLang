@@ -20,6 +20,7 @@ P2850（https://www.luogu.com.cn/problem/P2850）negative_circle|several_source|
 P4878（https://www.luogu.com.cn/problem/P4878）diff_array|dijkstra|shortest_path
 P5751（https://www.luogu.com.cn/problem/P5751）prefix_sum|differential_constraint
 P5905（https://www.luogu.com.cn/problem/P5905）johnson_shortest_path|several_source|shortest_path
+P2784（https://www.luogu.com.cn/problem/P2784）spfa|classical|dense_graph
 
 ====================================AtCoder=====================================
 ABC061D（https://atcoder.jp/contests/abc061/tasks/abc061_d）reverse_graph|positive_circle|longest_path
@@ -511,4 +512,46 @@ class Solution:
         dis = Dijkstra().get_shortest_path(edge, 0)
         ans = [1 - (dis[i + 1] - dis[i]) for i in range(n)]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2784(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2784
+        tag: spfa|classical|dense_graph
+        """
+        n, m, s, t = ac.read_list_ints()
+        dct = [[] for _ in range(n + 1)]
+        for _ in range(m):
+            x, y, c = ac.read_list_strs()
+            x = int(x)
+            y = int(y)
+            dct[x].append((y, float(c)))
+        n = len(dct)
+        dis = [-inf for _ in range(n)]
+        visit = [False] * n
+        cnt = [0] * n
+        queue = deque([s])
+        dis[s] = 1
+        visit[s] = True
+
+        while queue:
+            u = queue.popleft()
+            visit[u] = False
+            for v, w in dct[u]:
+                if dis[v] < dis[u] * w:
+                    dis[v] = dis[u] * w
+                    cnt[v] = cnt[u] + 1
+                    if cnt[v] >= n:
+                        return True, dis, cnt
+                    if not visit[v]:
+                        queue.append(v)
+                        visit[v] = True
+
+        ans = dis[t]
+        if ans == -inf:
+            ac.st("orz")
+        else:
+            ans = ac.round_5(ans * 10000) / 10000
+            ac.st("%.4f" % ans)
         return

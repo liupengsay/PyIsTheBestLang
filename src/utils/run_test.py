@@ -336,7 +336,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "1992"
+        num = "1996"
         webbrowser.open(f"https://codeforces.com/contest/{num}")
         webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
@@ -356,7 +356,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_atcoder_problem(self):
-        num = "363"
+        num = "364"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
@@ -373,7 +373,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_atcoder_problem_arc(self):
-        num = "210"
+        num = "364"
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/standings")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/results")

@@ -34,6 +34,8 @@ P6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|gree
 P6560（https://www.luogu.com.cn/problem/P6560）reverse_graph|topological_sort|game_dp
 P8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circle_based_tree
 P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
+P1983（https://www.luogu.com.cn/problem/P1983）topological_sort
+P2921（https://www.luogu.com.cn/problem/P2921）circle_based_tree|topological_sort|classical
 
 ===================================CodeForces===================================
 1454E（https://codeforces.com/contest/1454/problem/E）circle_based_tree|counter|brute_force|inclusion_exclusion

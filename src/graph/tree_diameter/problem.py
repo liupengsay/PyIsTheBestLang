@@ -7,8 +7,8 @@ Description：multi_source_bfs|bilateral_bfs|spfa|a-star|heuristic_search
 100318（https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees）graph_diameter|diameter_merge|classical
 
 =====================================LuoGu======================================
-P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical
-P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_queue|classical
+P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greedy
+P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greedy
 P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 ===================================CodeForces===================================

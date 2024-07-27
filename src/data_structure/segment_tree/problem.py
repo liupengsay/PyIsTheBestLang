@@ -48,6 +48,7 @@ P1972（https://www.luogu.com.cn/problem/P1972）point_add|range_sum|tree_array|
 P5848（https://www.luogu.com.cn/problem/P5848）segment_tree|range_set|range_pre_max_sum|dynamic
 P2824（https://www.luogu.com.cn/problem/P2824）segment_tree|range_sort|implemention|brain_teaser|range_set|range_sum|classical
 P3097（https://www.luogu.com.cn/problem/P3097）point_set|range_max_sub_sum_alter
+P2846（https://www.luogu.com.cn/problem/P2846）range_reverse|range_bit_count
 
 ===================================CodeForces===================================
 482B（https://codeforces.com/problemset/problem/482/B）segment_tree|RangeOrRangeAnd
@@ -186,7 +187,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
     PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr
 from src.data_structure.sorted_list.template import SortedList
-from src.data_structure.tree_array.template import PointAddRangeSum
+from src.data_structure.tree_array.template import PointAddRangeSum, PointXorRangeXor
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
@@ -3918,4 +3919,21 @@ class Solution:
             ans = tree.get()
             ans = [nodes[ans[ind[x]]] for x in queries]
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def lg_p2846(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2846
+        tag: range_reverse|range_bit_count
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeRevereRangeBitCount(n)
+        for _ in range(m):
+            lst = ac.read_list_ints()
+            s, e = lst[1:]
+            if lst[0] == 0:
+                tree.range_reverse(s - 1, e - 1)
+            else:
+                ac.st(tree.range_bit_count(s - 1, e - 1))
         return
