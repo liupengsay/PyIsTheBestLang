@@ -61,6 +61,7 @@ class TestGeneral(unittest.TestCase):
         print(f"total time cost：{drop_dup}")
         return
 
+    @unittest.skip
     def test_run_example(self):
 
         def run_example(path):
@@ -79,7 +80,7 @@ class TestGeneral(unittest.TestCase):
         run_example(os.path.join(grandparent_path, "src"))
         return
 
-
+    @unittest.skip
     def test_run_template_or_problem(self):
 
         def run_template_or_problem(path):
@@ -197,7 +198,7 @@ class TestGeneral(unittest.TestCase):
         process_directory(os.path.join(grandparent_path, "src"))
         return
 
-
+    @unittest.skip
     def test_run_problem_tag(self):
 
         def process_file(file_path):
@@ -230,6 +231,7 @@ class TestGeneral(unittest.TestCase):
             f.writelines("\n".join(tot))
         return
 
+    @unittest.skip
     def test_run_template_class(self):
 
         def process_file(file_path):
@@ -335,6 +337,7 @@ class TestGeneral(unittest.TestCase):
         print(f"total rem：{rem}")
         return
 
+    @unittest.skip
     def test_codeforces_contest(self):
         num = "1996"
         webbrowser.open(f"https://codeforces.com/contest/{num}")
@@ -355,7 +358,8 @@ class TestGeneral(unittest.TestCase):
             print(url)
         return
 
-    def test_atcoder_problem(self):
+    @unittest.skip
+    def test_abc_problem(self):
         num = "364"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
@@ -372,7 +376,8 @@ class TestGeneral(unittest.TestCase):
             print(url)
         return
 
-    def test_atcoder_problem_arc(self):
+    @unittest.skip
+    def test_arc_problem_arc(self):
         num = "364"
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/standings")

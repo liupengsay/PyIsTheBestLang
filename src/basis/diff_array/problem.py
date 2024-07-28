@@ -82,6 +82,8 @@ P8666（https://www.luogu.com.cn/problem/P8666）binary_search|md_diff_array|imp
 P8715（https://www.luogu.com.cn/problem/P8715）prefix_suffix|counter
 P8783（https://www.luogu.com.cn/problem/P8783）O(n^3)|two_pointers|brute_force|counter|sub_matrix
 P6070（https://www.luogu.com.cn/problem/P6070）diff_array|matrix_diff_array|flatten
+P3016（https://www.luogu.com.cn/problem/P3016）prefix_sum|triangle|left_up_sum|inclusion_exclusion
+
 
 ===================================CodeForces===================================
 33C（https://codeforces.com/problemset/problem/33/C）prefix_suffix|brute_force
@@ -1969,7 +1971,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def abc_268e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc268/tasks/abc268_e
         tag: brute_force|diff_array|action_scope|brain_teaser|classical
@@ -2227,4 +2229,42 @@ class Solution:
             res = DiffMatrix().get_diff_matrix3(m, n, lst)
             ans = max(max(row[i] + col[j] - (grid[i][j] == ".") + res[i][j] for j in range(n)) for i in range(m))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p3016(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3016
+        tag: prefix_sum|triangle|left_up_sum|inclusion_exclusion
+        """
+        n, k = ac.read_list_ints()
+        grid = []
+        for i in range(n):
+            lst = ac.read_list_ints() + [0] * (n - 1 - i)
+            grid.append(lst)
+        pre = PreFixSumMatrix(grid)
+        left_up = [[0] * (n + 1) for _ in range(n + 1)]
+        for i in range(n):
+            cur = 0
+            for j in range(i + 1):
+                cur += grid[i][j]
+                left_up[i + 1][j + 1] = left_up[i][j] + cur
+        ans = -inf
+        for x in range(k, 2 * k + 1):
+            cnt = x * (x + 1) // 2
+            for i in range(x - 1, n):
+                for j in range(i - x + 2):
+                    cur = left_up[i + 1][j + x] - left_up[i - x + 1][j]
+                    cur -= pre.query(i - x + 1, 0, i, j - 1) if j else 0
+                    ans = max(ans, int(cur / cnt))
+
+        for x in range(k, 2 * k + 1):
+            cnt = x * (x + 1) // 2
+            for i in range(x - 1, n - x + 1):
+                for j in range(x - 1, i + 1):
+                    cur = pre.query(i, 0, i + x - 1, j)
+                    cur -= left_up[i + x][j]
+                    cur += left_up[i][j - x] if j >= x else 0
+                    ans = max(ans, int(cur / cnt))
+        ac.st(ans)
         return

@@ -132,6 +132,8 @@ P8732（https://www.luogu.com.cn/problem/P8732）greedy|brute_force|custom_sort
 P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 P1342（https://www.luogu.com.cn/problem/P1342）brain_teaser|greedy
 P1842（https://www.luogu.com.cn/problem/P1842）greedy
+P2968（https://www.luogu.com.cn/problem/P2968）greedy|implemention|observation
+
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property
@@ -278,6 +280,7 @@ from functools import reduce
 from heapq import heappop, heapify, heappush
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO, inf
@@ -2107,4 +2110,27 @@ class Solution:
                     if pre[k + 1] ^ pre[i] > pre[j + 1] ^ pre[k + 1]:
                         ans = min(ans, j - i - 1)
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def lg_p2968(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P2968
+        tag: greedy|implemention|observation
+        """
+        pos = 0
+        speed = 1
+        ans = 1
+        n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(k)]
+        nums.sort()
+        for i in range(k - 2, -1, -1):
+            nums[i][1] = min(nums[i][1], nums[i + 1][1] + (nums[i + 1][0] - nums[i][0]))
+        for p, s in nums:
+            x = min((p + s - pos - speed) // 2, p - pos)
+            ans = max(ans, speed + x)
+            speed = min(speed + x, s)
+            pos = p
+        ans = max(ans, speed + n - pos)
+        ac.st(ans)
         return

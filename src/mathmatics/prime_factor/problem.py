@@ -5,6 +5,7 @@ Description：
 ====================================LeetCode====================================
 2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
+
 =====================================LuoGu======================================
 P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 

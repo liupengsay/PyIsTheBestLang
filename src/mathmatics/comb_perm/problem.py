@@ -57,6 +57,8 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 1420D（https://codeforces.com/problemset/problem/1420/D）contribution_method|comb|range
 1359E（https://codeforces.com/problemset/problem/1359/E）math|comb|brute_force
 1992G（https://codeforces.com/contest/1992/problem/G）brute_force|contribution_method|comb
+1444B（https://codeforces.com/problemset/problem/1444/B）observation|math|comb
+895C（https://codeforces.com/problemset/problem/895/C）bit_operation|comb|prime_factor|odd_even
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter
@@ -89,7 +91,7 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.comb_perm.template import Combinatorics, Lucas
-from src.mathmatics.number_theory.template import NumFactor
+from src.mathmatics.number_theory.template import NumFactor, PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 
@@ -1285,4 +1287,41 @@ class Solution:
                     ans += x * cnt
             ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_895c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/895/C
+        tag: bit_operation|comb|prime_factor|odd_even
+        """
+        mod = 10 ** 9 + 7
+        primes = PrimeSieve().eratosthenes_sieve(70)
+        k = len(primes)
+        cnt = [0] * 71
+        ac.read_int()
+        nums = ac.read_list_ints()
+        for num in nums:
+            cnt[num] += 1
+        pf = PrimeFactor(70)
+        ind = {p: i for i, p in enumerate(primes)}
+        dp = [0] * (1 << k)
+        dp[0] = 1
+        for num in range(1, 71):
+            if cnt[num]:
+                ndp = dp[:]
+                state = 0
+                for p, c in pf.prime_factor[num]:
+                    if c % 2:
+                        state |= 1 << ind[p]
+                odd = pow(2, cnt[num] - 1, mod)  # sum(cb.comb(cnt[num], x) for x in range(1, cnt[num], 2))
+                even = (odd - 1) % mod
+                for s in range(1 << k):
+                    ndp[s ^ state] += dp[s] * odd
+                    ndp[s] += dp[s] * even
+                    ndp[s] %= mod
+                    ndp[s ^ state] %= mod
+                dp = [x % mod for x in ndp]
+        ans = (dp[0] - 1) % mod
+        ac.st(ans)
         return
