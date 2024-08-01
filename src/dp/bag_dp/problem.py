@@ -87,6 +87,7 @@ P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 P1489（https://www.luogu.com.cn/problem/P1489）bag_dp|brute_force
 P1651（https://www.luogu.com.cn/problem/P1651）linear_dp|brain_teaser|classical
 P1687（https://www.luogu.com.cn/problem/P1687）bag_dp
+P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_dp|classical
 
 ===================================CodeForces===================================
 577B（https://codeforces.com/problemset/problem/577/B）mod|counter|bin_split|bag_dp
@@ -1816,4 +1817,30 @@ class Solution:
             ac.st(ans)
         else:
             ac.st("You can't do it.")
+        return
+
+    @staticmethod
+    def lg_p3861(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3861
+        tag: bag_dp|math|num_factor|matrix_dp|classical
+        """
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            factor = [x for x in NumFactor().get_all_factor(n)]
+            ind = {num: i for i, num in enumerate(factor)}
+            k = len(factor)
+            dp = [0] * k
+            dp[0] = 1
+            for i in range(1, k):
+                f = factor[i]
+                for j in range(k - 1, i - 1, -1):
+                    num = factor[j]
+                    if num % f == 0:
+                        dp[ind[num]] += dp[ind[num // f]]
+                        dp[ind[num]] %= mod
+            ans = dp[-1] - 1
+            ans %= mod
+            ac.st(ans)
         return

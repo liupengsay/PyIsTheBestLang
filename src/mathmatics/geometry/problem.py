@@ -26,6 +26,7 @@ P1257（https://www.luogu.com.cn/problem/P1257）closet_pair|divide_and_conquer|
 P7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 P2449（https://www.luogu.com.cn/problem/P2449）rectangle_overlap|rectangle_edge_touch|rectangle_corner_touch|geometry
+P3844（https://www.luogu.com.cn/problem/P3844）geometry|implemention
 
 ===================================CodeForces===================================
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
@@ -676,4 +677,38 @@ class Solution:
                 if check_overlap(pre[i], pre[j]) or check_edge_touch(pre[i], pre[j]):
                     uf.union(i, j)
         ac.st(uf.part)
+        return
+
+    @staticmethod
+    def lg_p3844(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3844
+        tag: geometry|implemention
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: it[2])
+        color = [0]*n
+        parent = [-1]*n
+        area = [0]*n
+        pre = []
+        for i, (x, y, r) in enumerate(nums):
+            cur = r*r
+            for j in range(i):
+                xx, yy, rr = nums[j]
+                if (x - xx) ** 2 + (y - yy) ** 2 <= r * r:
+                    if parent[j] == -1:
+                        parent[j] = i
+                        cur -= rr*rr
+                    color[j] = 1-color[j]
+            color[i] = 1
+            area[i] = cur
+        ans = sum(area[i] for i in range(n) if color[i])*math.pi
+        ans = str(round(ans, 2))
+        if "." not in ans:
+            ans += ".00"
+        else:
+            while len(ans) - ans.index(".") < 3:
+                ans+="0"
+        ac.st(ans)
         return

@@ -11,19 +11,8 @@ class SparseTable:
         self.bit = [0] * (n + 1)
         self.fun = fun
         self.n = n
-        l, r, v = 1, 2, 0
-        while True:
-            for i in range(l, r):
-                if i >= n + 1:
-                    break
-                self.bit[i] = v
-            else:
-                l *= 2
-                r *= 2
-                v += 1
-                continue
-            break
-
+        for i in range(2, n + 1):
+            self.bit[i] = self.bit[i >> 1] + 1
         for i in range(n+1):
             assert self.bit[i] == (i.bit_length() - 1 if i else i.bit_length())
         self.st = [[0] * n for _ in range(self.bit[-1] + 1)]
