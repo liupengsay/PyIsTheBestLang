@@ -24,7 +24,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
 P2572（https://www.luogu.com.cn/problem/P2572）segment_tree|range_reverse|range_sum
 P2574（https://www.luogu.com.cn/problem/P2574）segment_tree|range_change|range_sum|range_cover
-P3130（https://www.luogu.com.cn/problem/P3130）RangeAddRangeSumMaxMin
+P3130（https://www.luogu.com.cn/problem/P3130）range_add|range_sum|range_min
 P3870（https://www.luogu.com.cn/problem/P3870）segment_tree|range_reverse|range_sum
 P5057（https://www.luogu.com.cn/problem/P5057）segment_tree|range_reverse|range_sum
 P3372（https://www.luogu.com.cn/problem/P3372）RangeAddRangeSumMaxMin
@@ -3936,4 +3936,27 @@ class Solution:
                 tree.range_reverse(s - 1, e - 1)
             else:
                 ac.st(tree.range_bit_count(s - 1, e - 1))
+        return
+
+    @staticmethod
+    def lg_p3130(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3130
+        tag: range_add|range_sum|range_min
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = RangeAddRangeSumMinMax(n)
+        tree.build(nums)
+        for _ in range(m):
+            lst = ac.read_list_strs()
+            if lst[0] == "M":
+                a, b = [int(w) - 1 for w in lst[1:]]
+                ac.st(tree.range_min(a, b))
+            elif lst[0] == "P":
+                a, b, c = [int(w) - 1 for w in lst[1:]]
+                tree.range_add(a, b, c + 1)
+            else:
+                a, b = [int(w) - 1 for w in lst[1:]]
+                ac.st(tree.range_sum(a, b))
         return

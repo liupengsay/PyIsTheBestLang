@@ -58,6 +58,7 @@ P1619（https://www.luogu.com.cn/problem/P1619）prime_factor|pollard_rho
 P2104（https://www.luogu.com.cn/problem/P2104）stack|n_bin
 P2441（https://www.luogu.com.cn/problem/P2441）implemention|data_range|observation|math
 P3383（https://www.luogu.com.cn/problem/P3383）eratosthenes_sieve
+P3601（https://www.luogu.com.cn/problem/P3601）euler_phi|math|number_theory
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -1574,4 +1575,39 @@ class Solution:
                 ac.st(ans)
             else:
                 nums[lst[1] - 1] = lst[2]
+        return
+
+    @staticmethod
+    def lg_p3601(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3601
+        tag: euler_phi|math|number_theory
+        """
+        low, high = ac.read_list_ints()
+
+        n = int(math.sqrt(high)) + 1
+        primes = PrimeSieve().eratosthenes_sieve(n + 1)
+
+        euler_phi = list(range(low, high + 1))
+        rest = list(range(low, high + 1))
+
+        for p in primes:
+            for a in range(low // p, high // p + 2):
+                if low <= a * p <= high:
+                    num = a * p
+                    euler_phi[num - low] *= (p - 1) / p
+                    while rest[num - low] % p == 0:
+                        rest[num - low] //= p
+        for num in range(low, high + 1):
+            if rest[num - low] > 1:
+                euler_phi[num - low] *= (rest[num - low] - 1) / rest[num - low]
+
+        mod = 666623333
+        ans = (high - low + 1) * (low + high) // 2
+        ans %= mod
+        for num in euler_phi:
+            ans -= int(num)
+            ans %= mod
+        ac.st(ans)
+        del euler_phi
         return

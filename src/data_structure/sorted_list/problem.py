@@ -55,6 +55,7 @@ P2161（https://www.luogu.com.cn/problem/P2161）sorted_list|trick
 1969D（https://codeforces.com/contest/1969/problem/D）sorted_list|top_k_sum|greedy
 1974F（https://codeforces.com/contest/1974/problem/F）sorted_list|implemention
 1418D（https://codeforces.com/problemset/problem/1418/D）sorted_list|implemention
+1342D（https://codeforces.com/problemset/problem/1342/D）sorted_list|greedy|reverse_order
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum

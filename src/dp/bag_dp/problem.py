@@ -78,7 +78,7 @@ P2854（https://www.luogu.com.cn/problem/P2854）bag_dp|group_bag_dp|finite
 P2938（https://www.luogu.com.cn/problem/P2938）infinite|group_bag_dp
 P2979（https://www.luogu.com.cn/problem/P2979）bag_dp|group_bag_dp|finite
 P3010（https://www.luogu.com.cn/problem/P3010）bag_dp|heapq
-P3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specific_plan
+P3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specific_plan|monotonic_queue
 P3983（https://www.luogu.com.cn/problem/P3983）infinite|bag_dp
 P5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classical
 P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|infinite|brute_force|counter
@@ -1220,12 +1220,12 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p3423(ac=FastIO()):
+    def lg_p3423_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3423
         tag: bin_split|matrix_bag_dp|specific_plan
         """
-        n = ac.read_int()
+        n = ac.read_int()  # MLE
         b = ac.read_list_ints()
         c = ac.read_list_ints()
         k = ac.read_int()
@@ -1244,6 +1244,42 @@ class Solution:
             cnt[bb] += xx
         ac.st(dp[k])
         ac.lst([cnt[bb] for bb in b])
+        return
+
+    @staticmethod
+    def lg_p3423_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3423
+        tag: bin_split|matrix_bag_dp|specific_plan|monotonic_queue
+        """
+        n = ac.read_int()
+
+        vv = ac.read_list_ints()
+        ss = ac.read_list_ints()
+        m = ac.read_int()
+        dp = [inf] * (m + 1)
+        dp[0] = 0
+        pre = [[0] * (m + 1) for _ in range(n)]
+        for j in range(n):
+            v, w, s = vv[j], 1, ss[j]
+            for r in range(v):
+                stack = deque()
+                for i in range(r, m + 1, v):
+                    while stack and stack[0][0] < i - s * v:
+                        stack.popleft()
+                    while stack and stack[-1][1] + (i - stack[-1][0]) // v * w >= dp[i]:
+                        stack.pop()
+                    stack.append([i, dp[i]])
+                    dp[i] = stack[0][1] + (i - stack[0][0]) // v * w
+                    pre[j][i] = (i - stack[0][0]) // v
+        ac.st(dp[-1])
+        cnt = [0] * n
+        res = m
+        for j in range(n-1, -1, -1):
+            x = pre[j][res]
+            cnt[j] += x
+            res -= x * vv[j]
+        ac.lst(cnt)
         return
 
     @staticmethod

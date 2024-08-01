@@ -880,7 +880,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3478
         tag: tree_centroid
         """
-        # 树的质心
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):

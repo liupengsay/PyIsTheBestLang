@@ -99,6 +99,9 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
 1494D（https://codeforces.com/problemset/problem/1494/D）union_right|union_find|implemention|construction
 
+1209D（https://codeforces.com/problemset/problem/1494/D）union_find|brain_teaser
+
+
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
 ABC126E（https://atcoder.jp/contests/abc126/tasks/abc126_e）union_find|several_union_find

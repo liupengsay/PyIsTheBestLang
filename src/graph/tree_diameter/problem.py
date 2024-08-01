@@ -14,6 +14,7 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 ===================================CodeForces===================================
 1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
 455C（https://codeforces.com/problemset/problem/455/C）bfs|graph_diameter|union_find|implemention|diameter_merge
+734E（https://codeforces.com/problemset/problem/734/E）tree_diameter|brain_teaser|greedy|shrink_node
 
 ====================================AtCoder=====================================
 ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
@@ -375,3 +376,24 @@ class Solution:
             return max((aa + 1) // 2 + 1, bb // 2) + (bb + 1) // 2
 
         return check(path1, path2)
+
+    @staticmethod
+    def cf_734e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/734/E
+        tag: tree_diameter|brain_teaser|greedy|shrink_node
+        """
+        n = ac.read_int()
+        color = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            if color[i] == color[j]:
+                dct[i].append((j, 0))
+                dct[j].append((i, 0))
+            else:
+                dct[i].append((j, 1))
+                dct[j].append((i, 1))
+        _, _, _, dis = TreeDiameter(dct).get_diameter_info()
+        ac.st((dis + 1) // 2)
+        return

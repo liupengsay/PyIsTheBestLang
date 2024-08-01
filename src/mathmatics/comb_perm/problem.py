@@ -40,7 +40,6 @@ P3223（https://www.luogu.com.cn/problem/P3223）inclusion_exclusion|partition_m
 P3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|classical
 P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
 P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
-
 P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
 P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|postfix_mul
 P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
@@ -59,6 +58,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 1992G（https://codeforces.com/contest/1992/problem/G）brute_force|contribution_method|comb
 1444B（https://codeforces.com/problemset/problem/1444/B）observation|math|comb
 895C（https://codeforces.com/problemset/problem/895/C）bit_operation|comb|prime_factor|odd_even
+1312D（https://codeforces.com/problemset/problem/1312/D）comb|observation|reverse_thinking
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter

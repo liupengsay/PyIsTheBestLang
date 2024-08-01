@@ -29,6 +29,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1973D（https://codeforces.com/contest/1973/problem/D）interactive|brain_teaser
 1556D（https://codeforces.com/problemset/problem/1556/D）interactive|bit_operation|classical
 1839E（https://codeforces.com/problemset/problem/1839/E）bag_dp|interactive|game_dp
+1363D（https://codeforces.com/problemset/problem/1363/D）interactive|strictly_binary_search
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser

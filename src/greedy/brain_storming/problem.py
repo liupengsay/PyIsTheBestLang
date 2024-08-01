@@ -133,7 +133,8 @@ P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
 P1342（https://www.luogu.com.cn/problem/P1342）brain_teaser|greedy
 P1842（https://www.luogu.com.cn/problem/P1842）greedy
 P2968（https://www.luogu.com.cn/problem/P2968）greedy|implemention|observation
-
+P3619（https://www.luogu.com.cn/problem/P3619）greedy|classical|custom_sort
+P3550（https://www.luogu.com.cn/problem/P3550）greedy|observation
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property

@@ -13,9 +13,11 @@ P5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
 P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 
-=====================================LuoGu======================================
+=====================================AtCoder======================================
 ABC340F（https://atcoder.jp/contests/abc340/tasks/abc340_f）ex_gcd|equation|math
 
+=====================================CodeForces======================================
+1152C（https://codeforces.com/problemset/problem/1152/C）gcd_like|observation|brute_force
 
 =====================================AcWing=====================================
 4299（https://www.acwing.com/problem/content/4299/）single_equation|ex_gcd

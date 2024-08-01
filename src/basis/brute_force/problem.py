@@ -56,7 +56,7 @@ P1158（https://www.luogu.com.cn/problem/P1158）sort|brute_force|suffix_maximum
 P8928（https://www.luogu.com.cn/problem/P8928）brute_force|counter
 P8892（https://www.luogu.com.cn/problem/P8892）brute_force
 P8799（https://www.luogu.com.cn/problem/P8799）brute_force
-P3142（https://www.luogu.com.cn/problem/P3142）brute_force
+P3142（https://www.luogu.com.cn/problem/P3142）brute_force|sorted_list
 P3143（https://www.luogu.com.cn/problem/P3143）brute_force|prefix_suffix
 P3670（https://www.luogu.com.cn/problem/P3670）hash|brute_force|counter
 P3799（https://www.luogu.com.cn/problem/P3799）brute_force|regular_triangle

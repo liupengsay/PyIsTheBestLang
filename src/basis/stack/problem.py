@@ -25,6 +25,7 @@ P3719（https://www.luogu.com.cn/problem/P3719）string|stack
 P1974（https://www.luogu.com.cn/problem/P1974）greedy|deque|implemention
 P3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
 P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
+P2776（https://www.luogu.com.cn/problem/P2776）stack|implemention
 
 ===================================CodeForces===================================
 5C（https://codeforces.com/problemset/problem/5/C）regular_bracket_subsequence|counter|longest

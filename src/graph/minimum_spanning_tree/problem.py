@@ -48,6 +48,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1981E（https://codeforces.com/contest/1981/problem/E）scan_line|union_find|classical|implemention|mst
 1242B（https://codeforces.com/contest/1242/problem/B）mst|observation|prim|brain_teaser|implemention|bfs
 1245D（https://codeforces.com/problemset/problem/1245/D）prim|specific_plan|virtual_source|classical
+1513D（https://codeforces.com/problemset/problem/1513/D）bfs|gcd_like|mst
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst

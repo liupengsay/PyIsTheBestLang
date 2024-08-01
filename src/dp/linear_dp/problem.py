@@ -77,7 +77,7 @@ P2432（https://www.luogu.com.cn/problem/P2432）liner_dp|pointer
 P2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search
 P2476（https://www.luogu.com.cn/problem/P2476）counter|linear_dp|memory_search
 P2849（https://www.luogu.com.cn/problem/P2849）matrix_dp
-P3448（https://www.luogu.com.cn/problem/P3448）liner_dp|counter
+P3448（https://www.luogu.com.cn/problem/P3448）liner_dp|counter|matrix_dp
 P3558（https://www.luogu.com.cn/problem/P3558）linear_dp|implemention
 B3734（https://www.luogu.com.cn/problem/B3734）linear_dp
 P3901（https://www.luogu.com.cn/problem/P3901）pointer|linear_dp|pointer
@@ -136,6 +136,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1427C（https://codeforces.com/problemset/problem/1427/C）linear_dp|data_range|observation
 1992D（https://codeforces.com/contest/1992/problem/D）linear_dp|implemention
 463D（https://codeforces.com/problemset/problem/463/D）observation|linear_dp|classical|lcs|dag_dp|topological_sort
+1716D（https://codeforces.com/problemset/problem/1716/D）linear_dp|observation|prefix_sum
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1889,4 +1890,32 @@ class Solution:
         else:
             ac.st(0)
             ac.st(n - sum(cover))
+        return
+
+    @staticmethod
+    def cf_1716d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1716/D
+        tag: linear_dp|observation|prefix_sum
+        """
+        n, k = ac.read_list_ints()
+        mod = 998244353
+        dp = [0] * (n + 1)
+        dp[0] = 1
+        pre = [0] * (n + 2)
+        res = dp[:]
+        s = 0
+        for x in range(k, n + 1):
+            s += x
+            if s > n:
+                break
+            for i in range(n + 1):
+                pre[i + 1] = pre[i - x + 1] + dp[i] if i - x + 1 >= 0 else dp[i]
+                dp[i] = 0
+                pre[i + 1] %= mod
+                if i >= x:
+                    dp[i] = pre[i - x + 1]
+                res[i] += dp[i]
+                res[i] %= mod
+        ac.lst(res[1:])
         return

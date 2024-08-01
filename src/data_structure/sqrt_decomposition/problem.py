@@ -761,7 +761,67 @@ class Solution:
         return MajorityChecker
 
     @staticmethod
-    def lg_p3567(ac=FastIO()):
+    def lg_p3567_1(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3567
+        tag: range_super_mode|sqrt_decomposition
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        size = int(n ** 0.5) + 1
+        queries = [[] for _ in range(size)]
+        for i in range(m):
+            a, b = ac.read_list_ints_minus_one()
+            queries[b // size].append(a * m * n + b * m + i)
+
+        def update(num, p):
+            freq[cnt[num]].discard(num)
+            cnt[num] += p
+            freq[cnt[num]].add(num)
+            if p == 1:
+                if ceil[0] < cnt[num]:
+                    ceil[0] = cnt[num]
+            else:
+                if ceil[0] == cnt[num] + 1 and not freq[cnt[num] + 1]:
+                    ceil[0] -= 1
+            return
+
+        cnt = defaultdict(int)
+        freq = defaultdict(set)
+        freq[0] = set(nums)
+        x = y = 0
+        ans = [0] * m
+        ceil = [0]
+        update(nums[0], 1)
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(reverse=True)
+            else:
+                queries[i].sort()
+            for val in queries[i]:
+                a, b, j = val // m // n, (val // m) % n, val % m
+                while y > b:
+                    update(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    update(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    update(nums[x], 1)
+                while x < a:
+                    update(nums[x], -1)
+                    x += 1
+
+                if ceil[0] > (b - a + 1) / 2:
+                    ans[j] = next(iter(freq[ceil[0]]))
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lg_p3567_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3567
         tag: range_super_mode

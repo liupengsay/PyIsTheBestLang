@@ -617,14 +617,14 @@ class Solution:
                     total_c -= 1
                 nums[a - 1] = b
                 if nums[a - 1]:
-                    tree_cnt.range_sum(ind[nums[a - 1]], 1)
-                    tree_sum.range_sum(ind[nums[a - 1]], nums[a - 1])
+                    tree_cnt.point_add(ind[nums[a - 1]], 1)
+                    tree_sum.point_add(ind[nums[a - 1]], nums[a - 1])
                     total_s += nums[a - 1]
                     total_c += 1
             else:
                 c, s = a, b
-                less_than_s = tree_cnt.range_sum(1, ind[s] - 1)
-                less_than_s_sum = tree_sum.range_sum(1, ind[s] - 1)
+                less_than_s = tree_cnt.range_sum(0, ind[s])
+                less_than_s_sum = tree_sum.range_sum(0, ind[s])
                 if (total_c - less_than_s) * s + less_than_s_sum >= c * s:
                     ac.st("TAK")
                 else:

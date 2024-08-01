@@ -1313,7 +1313,7 @@ class Solution:
         n = ac.read_int()
         lst = [ord(w) - ord("a") for w in ac.read_str()]
         sh1 = StringHash(lst)
-        sh2 = StringHash(lst)
+        sh2 = StringHash(lst)  # TLE
 
         def check(cur):
             pre1 = sh1.query(a, b - cur)

@@ -27,6 +27,8 @@ P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 ===================================CodeForces===================================
 472D（https://codeforces.com/problemset/problem/472/D）floyd|construction|shortest_path
 1205B（https://codeforces.com/problemset/problem/1205/B）data_range|floyd|undirected_shortest_circle
+25C（https://codeforces.com/problemset/problem/25/C）floyd
+543B（https://codeforces.com/problemset/problem/543/B）bfs|brute_force|observation|floyd|implemention
 
 
 ====================================AtCoder=====================================

@@ -7,6 +7,7 @@ Description：
 1483（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
 2846（https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree）tree_lca|greedy
 
+
 =====================================LuoGu======================================
 P3379（https://www.luogu.com.cn/problem/P3379）tree_lca|classical
 P7128（https://www.luogu.com.cn/problem/P7128）lca|implemention|sort
@@ -25,6 +26,7 @@ P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|imp
 1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 1702G2（https://codeforces.com/contest/1702/problem/G2）tree_lca
 1843F2（https://codeforces.com/contest/1843/problem/F2）tree_lca|multiplication_method|classical|max_con_sub_sum
+1304E（https://codeforces.com/problemset/problem/1304/E）observation|tree_lca|graph|implemention
 
 ====================================AtCoder=====================================
 ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point_set|range_sum|heavy_chain|tree_lca
@@ -626,4 +628,36 @@ class Solution:
                 high = ceil.get_max_con_sum(u, v)
                 low = -floor.get_max_con_sum(u, v)
                 ac.st("YES" if low <= k <= high or k == 0 else "NO")
+        return
+
+
+    @staticmethod
+    def cf_1304e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1304/E
+        tag: observation|tree_lca|graph|implemention
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            dct[u].append(v)
+            dct[v].append(u)
+        tree = TreeAncestor(dct)
+        for _ in range(ac.read_int()):
+            x, y, a, b, k = ac.read_list_ints_minus_one()
+            k += 1
+            dis = tree.get_dist(a, x) + 1 + tree.get_dist(y, b)
+            if dis <= k and (k - dis) % 2 == 0:
+                ac.yes()
+                continue
+            dis = tree.get_dist(a, y) + 1 + tree.get_dist(x, b)
+            if dis <= k and (k - dis) % 2 == 0:
+                ac.yes()
+                continue
+            dis = tree.get_dist(a, b)
+            if dis <= k and (k - dis) % 2 == 0:
+                ac.yes()
+                continue
+            ac.no()
         return
