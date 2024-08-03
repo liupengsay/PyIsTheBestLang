@@ -85,6 +85,7 @@ P3601（https://www.luogu.com.cn/problem/P3601）euler_phi|math|number_theory
 1992F（https://codeforces.com/contest/1992/problem/F）greedy|implemention|math
 1361B（https://codeforces.com/problemset/problem/1361/B）observation|limited_operation|data_range|brain_teaser|math
 1478D（https://codeforces.com/problemset/problem/1478/D）math|peishu_theorem
+1228C（https://codeforces.com/problemset/problem/1228/C）math|num_factor|contribution_method
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
