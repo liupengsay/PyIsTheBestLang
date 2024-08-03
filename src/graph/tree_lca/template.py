@@ -402,13 +402,13 @@ class HeavyChain:
     def __init__(self, dct, root=0) -> None:
         self.n = len(dct)
         self.dct = dct
-        self.parent = [-1] * self.n # father of node
-        self.cnt_son = [1] * self.n # number of subtree nodes
-        self.weight_son = [-1] * self.n # heavy son
-        self.top = [-1] * self.n # chain forward star
-        self.dfn = [0] * self.n # index is original node and value is its dfs order
-        self.rev_dfn = [0] * self.n # index is dfs order and value is its original node
-        self.depth = [0] * self.n # depth of node
+        self.parent = [-1] * self.n  # father of node
+        self.cnt_son = [1] * self.n  # number of subtree nodes
+        self.weight_son = [-1] * self.n  # heavy son
+        self.top = [-1] * self.n  # chain forward star
+        self.dfn = [0] * self.n  # index is original node and value is its dfs order
+        self.rev_dfn = [0] * self.n  # index is dfs order and value is its original node
+        self.depth = [0] * self.n  # depth of node
         self.build_weight(root)
         self.build_dfs(root)
         return
@@ -455,19 +455,21 @@ class HeavyChain:
 
     def query_chain(self, x, y):
         # query the shortest path from x to y that passes through the chain segment
-        lst = []
+        pre = []
+        post = []
         while self.top[x] != self.top[y]:
-            if self.depth[self.top[x]] < self.depth[self.top[y]]:
-                x, y = y, x
-            assert self.dfn[self.top[x]] <= self.dfn[x]
-            lst.append([self.dfn[self.top[x]], self.dfn[x]])
-            x = self.parent[self.top[x]]
+            if self.depth[self.top[x]] > self.depth[self.top[y]]:
+                pre.append([self.dfn[x], self.dfn[self.top[x]]])
+                x = self.parent[self.top[x]]
+            else:
+                post.append([self.dfn[self.top[y]], self.dfn[y]])
+                y = self.parent[self.top[y]]
+
         a, b = self.dfn[x], self.dfn[y]
-        if a > b:
-            a, b = b, a
-        # the returned path is the dfs order of the chain, also known as dfn!!!
-        lst.append([a, b])
-        return lst
+        pre.append([a, b])
+        lca = a if a < b else b
+        pre += post[::-1]
+        return pre, lca
 
     def query_lca(self, x, y):
         # query the LCA nearest common ancestor of x and y

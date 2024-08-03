@@ -15,6 +15,7 @@ P7167（https://www.luogu.com.cn/problem/P7167）monotonic_stack|tree_lca|build_
 P2912（https://www.luogu.com.cn/problem/P2912）offline_lca|offline_query
 P3019（https://www.luogu.com.cn/problem/P3019）offline_query|lca
 P3384（https://www.luogu.com.cn/problem/P3384）tree_chain_split|tree_array|implemention
+P3976（https://www.luogu.com.cn/problem/P3976）range_add|range_max_gain|range_min_gain
 
 ======================================LibraryChecker==================================
 1（https://judge.yosupo.jp/problem/lca）tree_lca
@@ -43,7 +44,7 @@ ABC209D（https://atcoder.jp/contests/abc209/tasks/abc209_d）tree_ancestor
 import math
 from typing import List
 
-from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet
+from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet, RangeAddRangeMaxGainMinGain
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_diff_array.template import TreeDiffArray
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
@@ -313,12 +314,18 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, z = lst[1:]
-                for a, b in heavy.query_chain(x - 1, y - 1):
+                path, _ = heavy.query_chain(x - 1, y - 1)
+                for a, b in path:
+                    if a > b:
+                        a, b = b, a
                     tree.range_add(a + 1, b + 1, z)
             elif lst[0] == 2:
                 x, y = lst[1:]
                 ans = 0
-                for a, b in heavy.query_chain(x - 1, y - 1):
+                path, _ = heavy.query_chain(x - 1, y - 1)
+                for a, b in path:
+                    if a > b:
+                        a, b = b, a
                     ans += tree.range_sum(a + 1, b + 1)
                     ans %= p
                 ac.st(ans)
@@ -461,7 +468,8 @@ class Solution:
             else:
                 val[i] = w
 
-        tree.build([val[i] for i in heavy.rev_dfn])
+        nums = [val[i] for i in heavy.rev_dfn]
+        tree.build(nums)
 
         for _ in range(ac.read_int()):
             lst = ac.read_list_ints()
@@ -473,28 +481,24 @@ class Solution:
                 j -= 1
                 if heavy.dfn[i] < heavy.dfn[j]:
                     tree.point_set(heavy.dfn[j], w)
+                    nums[heavy.dfn[j]] = w
                 else:
                     tree.point_set(heavy.dfn[i], w)
+                    nums[heavy.dfn[i]] = w
 
             else:
                 x, y = lst[1:]
                 y -= 1
                 x -= 1
-                if heavy.dfn[y] < heavy.dfn[x]:
-                    x, y = y, x
                 ans = 0
-                lca = heavy.dfn[heavy.query_lca(x, y)]
-                for a, b in heavy.query_chain(x, y):
-                    if a <= lca <= b:
-                        lst = [(a, lca - 1), (lca + 1, b)]
+                lst, lca = heavy.query_chain(x, y)
+                for a, b in lst:
+                    if a <= b:
+                        ans += tree.range_sum(a, b)
                     else:
-                        lst = [(a, b)]
-                    for aa, bb in lst:
-                        if 0 <= aa <= bb < n:
-                            cur = tree.range_sum(aa, bb)
-                            ans += cur
+                        ans += tree.range_sum(b, a)
+                ans -= nums[lca]
                 ac.st(ans)
-
         return
 
     @staticmethod
@@ -592,7 +596,10 @@ class Solution:
                 tree.range_set(start, end, 1)
             elif op == 1:
                 x, y = v, 0
-                for a, b in heavy.query_chain(x, y):
+                path, _ = heavy.query_chain(x, y)
+                for a, b in path:
+                    if a > b:
+                        a, b = b, a
                     tree.range_set(a, b, 0)
             else:
                 ans = tree.point_get(heavy.dfn[v])  # important!!!
@@ -660,4 +667,47 @@ class Solution:
                 ac.yes()
                 continue
             ac.no()
+        return
+
+    @staticmethod
+    def lg_p3976(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3976
+        tag: range_add|range_max_gain|range_min_gain
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        heavy = HeavyChain(dct)
+        nums = [nums[i] for i in heavy.rev_dfn]
+        tree = RangeAddRangeMaxGainMinGain(n)
+        tree.build(nums)
+
+        for _ in range(ac.read_int()):
+            a, b, v = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            ans = [inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+            path, _ = heavy.query_chain(a, b)
+            for x, y in path:
+                if x <= y:
+                    floor, ceil, max_gain, min_gain = tree.range_max_gain_min_gain(x, y)
+                else:
+                    floor, ceil, aa, bb = tree.range_max_gain_min_gain(y, x)
+                    max_gain = -bb
+                    min_gain = -aa
+                ans[2] = max(ans[2], max_gain, ceil - ans[0])
+                ans[3] = min(ans[3], min_gain, floor - ans[1])
+                ans[0] = min(ans[0], floor)
+                ans[1] = max(ans[1], ceil)
+            for x, y in path:
+                if x <= y:
+                    tree.range_add(x, y, v)
+                else:
+                    tree.range_add(y, x, v)
+            ac.st(max(ans[2], 0))
         return

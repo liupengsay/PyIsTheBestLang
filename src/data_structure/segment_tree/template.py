@@ -1133,6 +1133,140 @@ class RangeAddRangeSumMinMax:
         return res
 
 
+class RangeAddRangeMaxGainMinGain:
+    def __init__(self, n):
+        self.n = n
+        self.cover1 = [-inf] * (4 * self.n)  # max(post-pre)
+        self.cover2 = [inf] * (4 * self.n)  # min(post-pre)
+        self.lazy_tag = [0] * (4 * self.n)  # lazy tag
+        self.floor = [0] * (4 * self.n)  # range min
+        self.ceil = [0] * (4 * self.n)  # range max
+        return
+
+    def build(self, nums):
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if s == t:
+                    self._make_tag(i, nums[s])
+                else:
+                    stack.append((s, t, ~i))
+                    m = s + (t - s) // 2
+                    stack.append((s, m, i << 1))
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+    def _push_down(self, i):
+        if self.lazy_tag[i]:
+
+            self.floor[i << 1] += self.lazy_tag[i]
+            self.floor[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.ceil[i << 1] += self.lazy_tag[i]
+            self.ceil[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i << 1] += self.lazy_tag[i]
+            self.lazy_tag[(i << 1) | 1] += self.lazy_tag[i]
+
+            self.lazy_tag[i] = 0
+
+    def _push_up(self, i):
+        self.cover1[i] = max(self.cover1[i << 1], self.cover1[(i << 1) | 1], self.ceil[(i << 1) | 1] - self.floor[i << 1])
+        self.cover2[i] = min(self.cover2[i << 1], self.cover2[(i << 1) | 1],
+                             self.floor[(i << 1) | 1] - self.ceil[i << 1])
+
+        self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
+        self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
+        return
+
+    def _make_tag(self, i, val):
+        self.floor[i] += val
+        self.ceil[i] += val
+        self.lazy_tag[i] += val
+        return
+
+    def range_add(self, left, right, val):
+        # update the range add
+
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if i >= 0:
+                if left <= s and t <= right:
+                    self._make_tag(i, val)
+                    continue
+
+                m = s + (t - s) // 2
+                self._push_down(i)
+                stack.append((s, t, ~i))
+
+                if left <= m:
+                    stack.append((s, m, i << 1))
+                if right > m:
+                    stack.append((m + 1, t, (i << 1) | 1))
+            else:
+                i = ~i
+                self._push_up(i)
+        return
+
+
+    def range_min(self, left, right):
+        # query the range min
+        stack = [(0, self.n - 1, 1)]
+        lowest = inf
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                lowest = min(lowest, self.floor[i])
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if left <= m:
+                stack.append((s, m, i << 1))
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return lowest
+
+    def range_max_gain_min_gain(self, left, right):
+        # query the rang max
+        stack = [(0, self.n - 1, 1)]
+        ans = [inf, -inf, -inf, inf] # floor, ceil, max_gain, min_gain
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s and t <= right:
+                floor, ceil, max_gain, min_gain = self.floor[i], self.ceil[i], self.cover1[i], self.cover2[i]
+                ans[2] = max(ans[2], max_gain, ceil - ans[0])
+                ans[3] = min(ans[3], min_gain, floor - ans[1])
+                ans[0] = min(ans[0], floor)
+                ans[1] = max(ans[1], ceil)
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return ans
+
+    def get(self):
+        stack = [(0, self.n - 1, 1)]
+        nums = [0] * self.n
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                nums[s] = self.ceil[i]
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i)
+            stack.append((s, m, i << 1))
+            stack.append((m + 1, t, (i << 1) | 1))
+        return nums
+
 class RangeAddRangeConSubPalindrome:
     def __init__(self, n):
         self.n = n

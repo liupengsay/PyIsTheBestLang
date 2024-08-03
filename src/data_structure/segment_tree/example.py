@@ -1,6 +1,7 @@
 import random
 import unittest
 from functools import reduce
+from math import inf
 from operator import or_, xor
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
@@ -11,10 +12,41 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeSetAddRangeSumMinMax, RangeXorUpdateRangeXorQuery, RangeSetReverseRangeSumLongestConSub, PointSetRangeMinCount, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
     RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
-    RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet, PointSetPreMinPostMin, PointSetPreMaxPostMin
+    RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet, PointSetPreMinPostMin, PointSetPreMaxPostMin, \
+    RangeAddRangeMaxGainMinGain
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_max_gain_min_gain(self):
+        for _ in range(1000):
+            n = 1000
+            tree = RangeAddRangeMaxGainMinGain(n)
+            nums = [random.randint(0, n) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(100):
+                ll = random.randint(0, n - 2)
+                rr = random.randint(ll + 1, n - 1)
+                ans = tree.range_max_gain_min_gain(ll, rr)
+                assert ans[0] == min(nums[ll:rr+1])
+                assert ans[1] == max(nums[ll:rr + 1])
+                floor = nums[ll]
+                ceil = nums[ll]
+                cover1 = -inf
+                cover2 = inf
+                for x in range(ll+1, rr+1):
+                    cover1 = max(cover1, nums[x]-floor)
+                    cover2 = min(cover2, nums[x] - ceil)
+                    ceil = max(ceil, nums[x])
+                    floor = min(floor, nums[x])
+                assert ans[2] == cover1
+                assert ans[3] == cover2
+                v = random.randint(0, 100)
+                tree.range_add(ll, rr, v)
+                for i in range(ll, rr+1):
+                    nums[i] += v
+        return
+
 
     def test_point_set_pre_min_post_min(self):
         for _ in range(1000):
