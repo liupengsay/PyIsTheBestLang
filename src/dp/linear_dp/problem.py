@@ -139,6 +139,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1716D（https://codeforces.com/problemset/problem/1716/D）linear_dp|observation|prefix_sum
 225C（https://codeforces.com/problemset/problem/225/C）linear_dp|corner_case
 710E（https://codeforces.com/problemset/problem/710/E）observation|linear_dp|fill_table
+1391D（https://codeforces.com/contest/1391/problem/D）observation|linear_dp|state_dp
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
