@@ -28,6 +28,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 1562（https://leetcode.cn/problems/find-latest-group-of-size-m/description/）union_find|sorted_list
 407（https://leetcode-cn.com/problems/trapping-rain-water-ii/）union_find|classical
 1632（https://leetcode.cn/problems/rank-transform-of-a-matrix/）union_find|matrix_rank|row_column_union_find
+100376（https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-ii/）build_graph|union_find|union_right
 
 =====================================LuoGu======================================
 P3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
@@ -98,7 +99,6 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1971G（https://codeforces.com/contest/1971/problem/G）union_find|bit_operation
 1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
 1494D（https://codeforces.com/problemset/problem/1494/D）union_right|union_find|implemention|construction
-
 1209D（https://codeforces.com/problemset/problem/1494/D）union_find|brain_teaser
 
 
@@ -2726,3 +2726,18 @@ class Solution:
         for i in range(ind - 1):
             ac.lst([i + 1, parent[i] + 1])
         return
+
+    @staticmethod
+    def lc_100376(n: int, queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-ii/
+        tag: build_graph|union_find|union_right
+        """
+        uf = UnionFind(n-1)
+        ans = []
+        for x, y in queries:
+            while uf.find(x) < y-1:
+                uf.union_right(x, uf.find(x+1))
+                x = uf.find(x+1)
+            ans.append(uf.part)
+        return ans

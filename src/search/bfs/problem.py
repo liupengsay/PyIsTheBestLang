@@ -102,6 +102,7 @@ P2130（https://www.luogu.com.cn/problem/P2130）bfs|data_range
 877D（https://codeforces.com/problemset/problem/877/D）bfs|observation|brain_teaser|union_find
 987D（https://codeforces.com/contest/987/problem/D）several_source|bfs|brute_force
 82C（https://codeforces.com/problemset/problem/82/C）implemention|bfs
+1093D（https://codeforces.com/problemset/problem/1093/D）bfs|color_method|classical
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

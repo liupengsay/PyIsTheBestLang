@@ -151,3 +151,51 @@ class ReRootDP:
                         nex = nex if nex > a else a
                     stack.append((j, i, nex + 1))
         return ans
+
+    @staticmethod
+    def get_tree_distance_max_weighted(dct, weights):
+        # Calculate the maximum distance from each node of the tree to all other nodes
+        # point bfs on diameter can also be used
+
+        n = len(dct)
+        sub = [[0, 0] for _ in range(n)]
+
+        # first bfs compute the largest distance and second large distance from bottom to up
+        stack = [(0, -1)]
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                stack.append((~i, fa))
+                for j in dct[i]:
+                    if j != fa:
+                        stack.append((j, i))
+            else:
+                i = ~i
+                a, b = sub[i]
+                for j in dct[i]:
+                    if j != fa:
+                        x = sub[j][0] + weights[j]
+                        if x >= a:
+                            a, b = x, a
+                        elif x >= b:
+                            b = x
+                sub[i] = [a, b]
+
+        # second bfs compute large distance from up to bottom
+        stack = [(0, -1, 0)]
+        ans = [s[0] for s in sub]
+        while stack:
+            i, fa, d = stack.pop()
+            ans[i] = ans[i] if ans[i] > d else d
+            for j in dct[i]:
+                if j != fa:
+                    nex = d
+                    x = sub[j][0] + weights[j]
+                    a, b = sub[i]
+                    # distance from current child nodes excluded
+                    if x == a:
+                        nex = nex if nex > b else b
+                    else:
+                        nex = nex if nex > a else a
+                    stack.append((j, i, nex + weights[i]))
+        return ans

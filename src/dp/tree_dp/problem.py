@@ -19,6 +19,7 @@ Description：reroot_dp|up_to_down|down_to_up
 971（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
 100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
+100392（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -1924,3 +1925,19 @@ class Solution:
                         ans %= mod
             ac.st(ans % mod)
         return
+
+    @staticmethod
+    def lc_100392(edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/time-taken-to-mark-all-nodes/
+        tag: reroot_dp|classical
+        """
+        n = len(edges) + 1
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append(j)
+            dct[j].append(i)
+
+        weights = [2 if i % 2 == 0 else 1 for i in range(n)]
+        ans = ReRootDP().get_tree_distance_max_weighted(dct, weights)
+        return ans

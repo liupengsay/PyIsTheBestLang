@@ -97,6 +97,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 1679D（https://codeforces.com/problemset/problem/1679/D）binary_search|graph|longest_path
+1244E（https://codeforces.com/problemset/problem/1244/E）binary_search|observation|two_pointer
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
