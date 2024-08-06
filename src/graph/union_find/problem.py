@@ -100,7 +100,8 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
 1494D（https://codeforces.com/problemset/problem/1494/D）union_right|union_find|implemention|construction
 1209D（https://codeforces.com/problemset/problem/1494/D）union_find|brain_teaser
-
+776D（https://codeforces.com/problemset/problem/776/D）union_find|classical|2-sat
+1278D（https://codeforces.com/problemset/problem/1278/D）union_find|range|binary_search|observation|partial_order|observation|bucket_sort
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2741,3 +2742,68 @@ class Solution:
                 x = uf.find(x+1)
             ans.append(uf.part)
         return ans
+
+    @staticmethod
+    def cf_776d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/776/D
+        tag: union_find|classical|2-sat
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        uf = UnionFind(m + m)
+        key = [[] for _ in range(n)]
+        for i in range(m):
+            lst = ac.read_list_ints_minus_one()
+            for x in lst[1:]:
+                key[x].append(i)
+        for x in range(n):
+            a, b = key[x][0], key[x][1]
+            if nums[x]:
+                uf.union(a, b)
+                uf.union(a + m, b + m)
+            else:
+                uf.union(a + m, b)
+                uf.union(a, b + m)
+        for i in range(m):
+            if uf.is_connected(i, m + i):
+                ac.no()
+                break
+        else:
+            ac.yes()
+        return
+
+
+    @staticmethod
+    def cf_1278d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1278/D
+        tag: union_find|range|binary_search|observation|partial_order|observation|bucket_sort
+        """
+        n = ac.read_int()
+        uf = UnionFind(n)
+        line = defaultdict(list)
+        m = 2 * n + 2
+        for i in range(n):
+            ll, rr = ac.read_list_ints()
+            line[ll].append(rr * m + i)
+        pre = SortedList()
+
+        for ll in sorted(line):
+            x = pre.bisect_right(ll * m)
+            for val in line[ll]:
+                rr, i = val // m, val % m
+                j = x
+                while j < len(pre) and pre[j] // m < rr:
+                    k = pre[j] % m
+                    if not uf.union(i, k):
+                        ac.no()
+                        return
+                    j += 1
+            for val in line[ll]:
+                pre.add(val)
+        if uf.part == 1:
+            ac.yes()
+        else:
+            ac.no()
+        return

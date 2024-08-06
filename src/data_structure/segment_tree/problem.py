@@ -89,6 +89,7 @@ P2846（https://www.luogu.com.cn/problem/P2846）range_reverse|range_bit_count
 620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
 1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
 1859D（https://codeforces.com/problemset/problem/1859/D）range_ascend|range_max|implemention
+1555E（https://codeforces.com/problemset/problem/1555/E）brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointer
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -3959,4 +3960,37 @@ class Solution:
             else:
                 a, b = [int(w) - 1 for w in lst[1:]]
                 ac.st(tree.range_sum(a, b))
+        return
+
+    @staticmethod
+    def cf_1555e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1555/E
+        tag: brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointer
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeAddRangeSumMinMax(m)
+        nums = []
+        for _ in range(n):
+            ll, rr, w = ac.read_list_ints()
+            ll -= 1
+            rr -= 2
+            nums.append(w * m * m + ll * m + rr)
+        nums.sort()
+        j = 0
+        ans = inf
+        for i in range(n):
+            while j < n and tree.range_min(0, m - 2) == 0:
+                val = nums[j]
+                w = val // m // m
+                ll, rr = (val - w * m * m) // m, (val - w * m * m) % m
+                tree.range_add(ll, rr, 1)
+                j += 1
+            if tree.range_min(0, m - 2):
+                ans = min(ans, nums[j - 1] // m // m - nums[i] // m // m)
+            val = nums[i]
+            w = val // m // m
+            ll, rr = (val - w * m * m) // m, (val - w * m * m) % m
+            tree.range_add(ll, rr, -1)
+        ac.st(ans)
         return

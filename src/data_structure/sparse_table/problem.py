@@ -36,6 +36,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 1516D（https://codeforces.com/contest/1516/problem/D）multiplication_method
 1977C（https://codeforces.com/contest/1977/problem/C）data_range|subsequence_lcm|brain_teaser|classical
 1847F（https://codeforces.com/contest/1847/problem/F）range_or|classical|implemention|sub_consequence
+359D（https://codeforces.com/problemset/problem/359/D）range_gcd|classical
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
@@ -701,4 +702,46 @@ class Solution:
                 else:
                     i = bisect.bisect_right(val, v)
                     ac.st(ind[i])
+        return
+
+
+    @staticmethod
+    def cf_359d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/359/D
+        tag: range_gcd|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pre = [0] * n
+        dct = defaultdict(int)
+        for i, num in enumerate(nums):
+            cur = defaultdict(int)
+            for p in dct:
+                x = math.gcd(p, num)
+                cur[x] = max(cur[x], dct[p] + 1)
+            cur[num] = max(cur[num], 1)
+            pre[i] = cur[num]
+            dct = cur
+
+        post = [0] * n
+        dct = defaultdict(int)
+        for i in range(n - 1, -1, -1):
+            num = nums[i]
+            cur = defaultdict(int)
+            for p in dct:
+                x = math.gcd(p, num)
+                cur[x] = max(cur[x], dct[p] + 1)
+            cur[num] = max(cur[num], 1)
+            post[i] = cur[num]
+            dct = cur
+
+        ceil = max(pre[i] + post[i] - 1 for i in range(n))
+        ans = set()
+        for i in range(n):
+            if pre[i] + post[i] - 1 == ceil:
+                ans.add(i - pre[i] + 2)
+        ac.lst([len(ans), ceil - 1])
+
+        ac.lst(sorted(ans))
         return

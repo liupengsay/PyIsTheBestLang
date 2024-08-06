@@ -78,6 +78,7 @@ from typing import List
 
 from src.basis.various_sort.template import VariousSort
 from src.data_structure.sorted_list.template import SortedList, TopKSum
+from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 from tests.codeforces.problem_a import LocalSortedList

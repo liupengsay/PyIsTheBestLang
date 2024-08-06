@@ -59,6 +59,9 @@ P2104（https://www.luogu.com.cn/problem/P2104）stack|n_bin
 P2441（https://www.luogu.com.cn/problem/P2441）implemention|data_range|observation|math
 P3383（https://www.luogu.com.cn/problem/P3383）eratosthenes_sieve
 P3601（https://www.luogu.com.cn/problem/P3601）euler_phi|math|number_theory
+P4282（https://www.luogu.com.cn/problem/P4282）math|n_base|classical|high_precision
+P1601（https://www.luogu.com.cn/problem/P1601）math|n_base|classical|high_precision
+P1303（https://www.luogu.com.cn/problem/P1303）math|n_base|classical|high_precision
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -1611,4 +1614,30 @@ class Solution:
             ans %= mod
         ac.st(ans)
         del euler_phi
+        return
+
+    @staticmethod
+    def lg_p4282(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4282
+        tag: math|n_base|classical
+        """
+        n = ac.read_int()
+        t = [0] + ac.read_list_ints()
+        a = [0] + ac.read_list_ints()
+        op = ac.read_str()
+        b = [0] + ac.read_list_ints()
+        ans = [0] * (n + 1)
+        if op == "+":
+            for i in range(n, 0, -1):
+                ans[i] += a[i] + b[i]
+                ans[i - 1] += ans[i] // t[i]
+                ans[i] %= t[i]
+        else:
+            for i in range(n, 0, -1):
+                ans[i] += a[i] - b[i]
+                if ans[i] < 0:
+                    ans[i - 1] -= 1
+                    ans[i] += t[i]
+        ac.lst(ans[1:])
         return

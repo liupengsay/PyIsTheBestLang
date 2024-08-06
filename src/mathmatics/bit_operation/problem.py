@@ -86,6 +86,7 @@ ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort
 ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
 ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classical|math|digital_dp
 ARC092B（https://atcoder.jp/contests/arc092/tasks/arc092_b）bit_operation|contribution_method|classical|two_pointer
+ABC365E（https://atcoder.jp/contests/abc365/tasks/abc365_e）bit_operation|prefix_sum
 
 =====================================AcWing=====================================
 998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy

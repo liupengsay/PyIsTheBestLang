@@ -14,6 +14,7 @@ P4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 
 ===================================CodeForces===================================
 1438C（https://codeforces.com/problemset/problem/1438/C）2-sat|scc|classical
+776D（https://codeforces.com/problemset/problem/776/D）union_find|classical|2-sat
 
 
 """
@@ -180,4 +181,42 @@ class TwoSAT:
                 grid[x // n][x % n] += ans[x]
             for g in grid:
                 ac.lst(g)
+        return
+
+    @staticmethod
+    def cf_776d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/776/D
+        tag: union_find|classical|2-sat
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        key = [[] for _ in range(n)]
+        dct = [set() for _ in range(2 * m)]
+        for i in range(m):
+            lst = ac.read_list_ints_minus_one()
+            for x in lst[1:]:
+                key[x].append(i)
+        for x in range(n):
+            a, b = key[x][0], key[x][1]
+            if nums[x]:
+                dct[a + m].add(b + m)
+                dct[a].add(b)
+                dct[b].add(a)
+                dct[b + m].add(a + m)
+            else:
+                dct[a].add(b + m)
+                dct[a + m].add(b)
+                dct[b].add(a + m)
+                dct[b + m].add(a)
+
+        _, scc_node_id, _ = Tarjan().get_scc(2 * m, [list(e) for e in dct])
+        for s in scc_node_id:
+            pre = set()
+            for node in s:
+                if node - m in pre or node + m in pre:
+                    ac.no()
+                    return
+                pre.add(node)
+        ac.yes()
         return

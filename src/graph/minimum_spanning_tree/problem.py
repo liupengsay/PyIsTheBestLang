@@ -338,8 +338,7 @@ class Solution:
         tag: mst|lca|multiplication_method|strictly_second_mst|classical
         """
 
-        # inf = 1 << 64
-        n, m = ac.read_list_ints()
+        n, m = ac.read_list_ints()  #  TLE
         edges = []
         for _ in range(m):
             i, j, w = ac.read_list_ints()

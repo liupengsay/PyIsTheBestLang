@@ -59,6 +59,7 @@ P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
 1444B（https://codeforces.com/problemset/problem/1444/B）observation|math|comb
 895C（https://codeforces.com/problemset/problem/895/C）bit_operation|comb|prime_factor|odd_even
 1312D（https://codeforces.com/problemset/problem/1312/D）comb|observation|reverse_thinking
+1545B（https://codeforces.com/problemset/problem/1545/B）comb|brain_teaser
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter

@@ -86,6 +86,7 @@ P2902（https://www.luogu.com.cn/problem/P2902）construction
 1658C（https://codeforces.com/problemset/problem/1658/C）construction
 1861D（https://codeforces.com/problemset/problem/1861/D）observation|construction
 1951D（https://codeforces.com/problemset/problem/1951/D）construction
+1187C（https://codeforces.com/problemset/problem/1187/C）build_graph|brain_teaser|construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

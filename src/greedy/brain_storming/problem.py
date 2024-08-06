@@ -224,6 +224,8 @@ P3550（https://www.luogu.com.cn/problem/P3550）greedy|observation
 1436D（https://codeforces.com/problemset/problem/1436/D）tree_bfs|greedy|brain_teaser
 1621D（https://codeforces.com/problemset/problem/1621/D）greedy|brain_teaser
 1700D（https://codeforces.com/problemset/problem/1700/D）greedy|brain_teaser
+1430D（https://codeforces.com/problemset/problem/1430/D）greedy|two_pointer
+1392D（https://codeforces.com/problemset/problem/1392/D）observation|brain_teaser
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
