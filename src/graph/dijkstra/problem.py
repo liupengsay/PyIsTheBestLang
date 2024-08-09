@@ -133,7 +133,7 @@ Shortest Path（https://judge.yosupo.jp/problem/shortest_path）shortest_path|sp
 """
 from collections import defaultdict, deque, Counter
 from heapq import heappush, heappop, heapify
-from itertools import accumulate
+from itertools import accumulate, permutations
 from operator import add
 from typing import List
 
@@ -2376,7 +2376,7 @@ class Solution:
                     for i in stack:
                         for j in dct[i]:
                             if dis[j] == inf:
-                                dis[j] = dis[i]+1
+                                dis[j] = dis[i] + 1
                                 parent[j] = i
                                 nex.append(j)
                     stack = nex[:]
@@ -2460,4 +2460,27 @@ class Solution:
                         heappush(stack, (dj, (j << 2) | s1 | 2))
 
         ac.lst(ans[1:])
+        return
+
+    @staticmethod
+    def lg_p5764(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5764
+        tag: several_dijkstra|shortest_path
+        """
+        n, m = ac.read_list_ints()
+        lst = [0] + ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j, x = ac.read_list_ints_minus_one()
+            x += 1
+            dct[i].append((j, x))
+            dct[j].append((i, x))
+        dis = [Dijkstra().get_shortest_path(dct, x) for x in lst]
+        ans = inf
+        for item in permutations(range(1, 6), 5):
+            cur = [0] + list(item)
+            cost = sum(dis[cur[i]][lst[cur[i + 1]]] for i in range(5))
+            ans = min(ans, cost)
+        ac.st(ans)
         return

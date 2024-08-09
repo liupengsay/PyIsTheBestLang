@@ -3994,3 +3994,21 @@ class Solution:
             tree.range_add(ll, rr, -1)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lg_p5057(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5057
+        tag: segment_tree|range_reverse|range_sum
+        """
+        n, m = ac.read_list_ints()
+        tree = RangeRevereRangeBitCount(n)
+        for _ in range(m):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] == 0:
+                a, b = lst[1:]
+                tree.range_reverse(a, b)
+            else:
+                x = lst[1]
+                ac.st(tree.point_get(x))
+        return

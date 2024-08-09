@@ -48,6 +48,7 @@ P8842（https://www.luogu.com.cn/problem/P8842）prime_factorization|prefix_sum|
 P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
 P3760（https://www.luogu.com.cn/problem/P3760）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
 U360500（https://www.luogu.com.cn/problem/U360500）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
+P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_method
 
 ===================================CodeForces===================================
 305C（https://codeforces.com/problemset/problem/305/C）2-base

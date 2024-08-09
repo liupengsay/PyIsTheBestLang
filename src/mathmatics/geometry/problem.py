@@ -27,6 +27,7 @@ P7883（https://www.luogu.com.cn/problem/P7883）closet_pair|divide_and_conquer|
 P1429（https://www.luogu.com.cn/problem/P1429）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 P2449（https://www.luogu.com.cn/problem/P2449）rectangle_overlap|rectangle_edge_touch|rectangle_corner_touch|geometry
 P3844（https://www.luogu.com.cn/problem/P3844）geometry|implemention
+P6341（https://www.luogu.com.cn/problem/P6341）line_scope|brute_force|right_triangle
 
 ===================================CodeForces===================================
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
@@ -710,5 +711,46 @@ class Solution:
         else:
             while len(ans) - ans.index(".") < 3:
                 ans+="0"
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6341(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6341
+        tag: line_scope|brute_force|right_triangle
+        """
+        n = ac.read_int()  # MLE
+        pos = [ac.read_list_ints() for _ in range(n)]
+        row = defaultdict(int)
+        col = defaultdict(int)
+        for x, y in pos:
+            row[x] += 1
+            col[y] += 1
+        ans = 0
+        for x, y in pos:
+            ans += (row[x] - 1) * (col[y] - 1)
+
+        for i in range(n):
+            pre = dict()
+            x, y = pos[i]
+            for j in range(n):
+                if j != i:
+                    a, b = pos[j]
+                    if a == x or b == y:
+                        continue
+                    g = math.gcd(x - a, y - b)
+                    aa = (x - a) // g
+                    bb = (y - b) // g
+                    if bb < 0:
+                        bb *= -1
+                        aa *= -1
+                    aaa = -bb
+                    bbb = aa
+                    if bbb < 0:
+                        bbb *= -1
+                        aaa *= -1
+                    ans += pre.get((aaa, bbb), 0)
+                    pre[(aa, bb)] = pre.get((aa, bb), 0) + 1
         ac.st(ans)
         return

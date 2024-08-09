@@ -1443,7 +1443,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5096
         tag: state_compression|bfs|implemention
         """
-        n, m, k = ac.read_list_ints()
+        n, m, k = ac.read_list_ints()  # TLE
         dct = [dict() for _ in range(n)]
         cao = dict()
         for i in range(k):

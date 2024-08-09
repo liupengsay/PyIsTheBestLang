@@ -62,6 +62,7 @@ P8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
 P8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
 P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 P2793（https://www.luogu.com.cn/problem/P2793）implemention
+P4924（https://www.luogu.com.cn/problem/P4924）matrix_rotate|implemention|classical
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix
@@ -854,4 +855,34 @@ class Solution:
             n, k = ac.read_list_ints()
             s = ac.read_str()
             ac.st(check())
+        return
+
+    @staticmethod
+    def lg_p4924(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4924
+        tag: matrix_rotate|implemention|classical
+        """
+        n, m = ac.read_list_ints()
+        grid = [[0] * n for _ in range(n)]
+        nums = [ac.read_list_ints() for _ in range(m)]
+        for i in range(n):
+            for j in range(n):
+                val = i * n + j + 1
+                ii, jj = i, j
+                for x, y, r, z in nums:
+                    x -= 1
+                    y -= 1
+                    if x - r <= ii <= x + r and y - r <= jj <= y + r:
+                        ii -= x - r
+                        jj -= y - r
+                        if z == 0:
+                            ii, jj = jj, 2 * r - ii
+                        else:
+                            ii, jj = 2 * r - jj, ii
+                        ii += x - r
+                        jj += y - r
+                grid[ii][jj] = val
+        for g in grid:
+            ac.lst(g)
         return

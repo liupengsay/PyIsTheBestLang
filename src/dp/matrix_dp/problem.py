@@ -108,6 +108,8 @@ P1128（https://www.luogu.com.cn/problem/P1128）brain_teaser|data_range|brute_f
 P1373（https://www.luogu.com.cn/problem/P1373）matrix_dp
 P2028（https://www.luogu.com.cn/problem/P2028）bag_dp|math|comb|matrix_dp|second_stirling_num
 P2132（https://www.luogu.com.cn/problem/P2132）matrix_dp|classical
+P4771（https://www.luogu.com.cn/problem/P4771）matrix_dp|classical
+P5888（https://www.luogu.com.cn/problem/P5888）observation|matrix_dp|inclusion_exclusion|implemention
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
@@ -1253,8 +1255,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4958
         tag: linear_dp|prefix_sum
         """
-        # 三维linear_dpprefix_sum优化
-        mod = 10 ** 9 + 7
+        mod = 10 ** 9 + 7  # TLE
         ind = {chr(i + ord("a")): i for i in range(26)}
         ind["#"] = 26
         s = ac.read_str()
@@ -1307,9 +1308,9 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5858
         tag: matrix_dp|monotonic_queue
         """
-        # matrix_dp| |monotonic_queue
+
         n, w, s = ac.read_list_ints()
-        nums = ac.read_list_ints()
+        nums = ac.read_list_ints()  # TLE
         dp = [[-inf] * w for _ in range(2)]
         pre = 0
         dp[pre][0] = nums[0]
@@ -1321,7 +1322,6 @@ class Solution:
             for j in range(w):
                 if j > i + 1:
                     break
-                # monotonic_queue求区间内最大值
                 while stack and stack[0][0] < j - 1:
                     stack.popleft()
                 while x < w and x <= j + s - 1:
@@ -3387,5 +3387,41 @@ class Solution:
             return res
 
         ans = dfs(nums[0], nums[1], nums[2], nums[3], nums[4])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5888(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5888
+        tag: observation|matrix_dp|inclusion_exclusion|implemention
+        """
+        n, m, k = ac.read_list_ints()
+        edges = [ac.read_list_ints_minus_one() for _ in range(k)]
+        nodes = {0}
+        for i, j in edges:
+            nodes.add(i)
+            nodes.add(j)
+        nodes = sorted(nodes)
+        rest = n - len(nodes)
+        mod = 998244353
+        ind = {num: i for i, num in enumerate(nodes)}
+        s = len(ind) + 1
+        dct = [{i} for i in range(s)]
+        for i, j in edges:
+            dct[ind[j]].add(ind[i])
+        dp = [[0] * s for _ in range(2)]
+        dp[0][ind[0]] = 1
+        for _ in range(m):
+            tot = sum(dp[0][:-1]) + dp[0][-1] * rest
+            for j in range(s):
+                cur = tot
+                for x in dct[j]:
+                    cur -= dp[0][x]
+                cur %= mod
+                dp[1][j] = cur
+            for j in range(s):
+                dp[0][j] = dp[1][j]
+        ans = dp[0][0]
         ac.st(ans)
         return

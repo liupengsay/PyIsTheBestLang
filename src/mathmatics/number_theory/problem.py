@@ -62,6 +62,7 @@ P3601（https://www.luogu.com.cn/problem/P3601）euler_phi|math|number_theory
 P4282（https://www.luogu.com.cn/problem/P4282）math|n_base|classical|high_precision
 P1601（https://www.luogu.com.cn/problem/P1601）math|n_base|classical|high_precision
 P1303（https://www.luogu.com.cn/problem/P1303）math|n_base|classical|high_precision
+P6366（https://www.luogu.com.cn/problem/P6366）n_base|observation
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -89,6 +90,7 @@ P1303（https://www.luogu.com.cn/problem/P1303）math|n_base|classical|high_prec
 1361B（https://codeforces.com/problemset/problem/1361/B）observation|limited_operation|data_range|brain_teaser|math
 1478D（https://codeforces.com/problemset/problem/1478/D）math|peishu_theorem
 1228C（https://codeforces.com/problemset/problem/1228/C）math|num_factor|contribution_method
+1601C（https://codeforces.com/contest/1061/problem/C）get_all_factor|classical
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1640,4 +1642,76 @@ class Solution:
                     ans[i - 1] -= 1
                     ans[i] += t[i]
         ac.lst(ans[1:])
+        return
+
+    @staticmethod
+    def cf_1601c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1061/problem/C
+        tag: get_all_factor|classical
+        """
+        ac.read_int()
+        dp = [0] * (10 ** 6 + 1)
+        dp[0] = 1
+        mod = 10 ** 9 + 7
+        nums = ac.read_list_ints()
+        nm = NumFactor()
+        for num in nums:
+            factor = nm.get_all_factor(num)
+            for f in factor[::-1]:
+                dp[f] += dp[f - 1]
+                dp[f] %= mod
+        ans = sum(dp) - 1
+        ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def lg_p6366(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6366
+        tag: n_base|observation
+        """
+        s = ac.read_str()
+        nums = []
+        for w in s:
+            val = int(w, 16)
+            for j in range(3, -1, -1):
+                if (val >> j) & 1:
+                    nums.append(1)
+                elif nums:
+                    nums.append(0)
+        if not nums:
+            nums = [0]
+        ans = inf
+        cur = 0
+        lst = nums[:]
+        n = len(lst)
+        if n == 1:
+            ac.st(nums[0])
+            return
+        for i in range(1, n):
+            if lst[i - 1]:
+                cur += 1
+                lst[i - 1] = 1 - lst[i - 1]
+                lst[i] = 1 - lst[i]
+                if i + 1 < n:
+                    lst[i + 1] = 1 - lst[i + 1]
+        if sum(lst) == 0:
+            ans = cur
+
+        cur = 1
+        lst = nums[:]
+        lst[0] = 1 - lst[0]
+        lst[1] = 1 - lst[1]
+        n = len(lst)
+        for i in range(1, n):
+            if lst[i - 1]:
+                cur += 1
+                lst[i - 1] = 1 - lst[i - 1]
+                lst[i] = 1 - lst[i]
+                if i + 1 < n:
+                    lst[i + 1] = 1 - lst[i + 1]
+        if sum(lst) == 0:
+            ans = min(ans, cur)
+        ac.st(ans if ans < inf else "No")
         return

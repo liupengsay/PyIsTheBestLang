@@ -86,6 +86,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
 461B（https://codeforces.com/problemset/problem/461/B）classical|tree_dp|observation
 1551F（https://codeforces.com/problemset/problem/1551/F）tree_dp|bag_dp|brute_force
+486D（https://codeforces.com/problemset/problem/486/D）multiplication_method|tree_dp|contribution_method|brute_force
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp

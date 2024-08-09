@@ -1013,7 +1013,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6032
         tag: prefix_suffix|counter|classical
         """
-        n, k, p = ac.read_list_ints()
+        n, k, p = ac.read_list_ints()  # TLE
         nums = [ac.read_list_ints() for _ in range(n)]
         post = [0] * k
         for cc, _ in nums:

@@ -140,6 +140,7 @@ P1989（https://www.luogu.com.cn/problem/P1989）ternary_circle|dag|build_graph|
 1689D（https://codeforces.com/contest/1689/problem/D）manhattan_distance|prefix_suffix|classical
 1992E（https://codeforces.com/contest/1992/problem/E）brute_force|observation|data_range
 1648B（https://codeforces.com/problemset/problem/1648/B）observation|brute_force|data_range|euler_series
+466B（https://codeforces.com/problemset/problem/466/B）observation|brute_force
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
@@ -1667,7 +1668,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1989
         tag: ternary_circle|dag|build_graph|counter|brute_force|classical
         """
-        n, m = ac.read_list_ints()
+        n, m = ac.read_list_ints()  # TLE
         edge = [set() for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()

@@ -41,9 +41,9 @@ P3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|class
 P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
 P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
-P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|postfix_mul
+P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|postfix_mul|inclusion_exclusion
 P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
-P5431（https://www.luogu.com.cn/problem/P5431）prefix_suffix
+P6184（https://www.luogu.com.cn/problem/P6184）comb|inclusion_exclusion|partition_method
 
 ===================================CodeForces===================================
 1795D（https://codeforces.com/problemset/problem/1795/D）comb|counter|mod|mod_reverse
@@ -855,10 +855,10 @@ class Solution:
     def lg_p5431(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5431
-        tag: mod_reverse|prefix_mul|postfix_mul
+        tag: mod_reverse|prefix_mul|postfix_mul|inclusion_exclusion
         """
         n, p, k = ac.read_list_ints()
-        a = ac.read_list_ints()
+        a = ac.read_list_ints()  # MLE
         post = [1] * (n + 1)
         for i in range(n - 1, -1, -1):
             post[i] = (post[i + 1] * a[i]) % p
@@ -1324,5 +1324,17 @@ class Solution:
                     ndp[s ^ state] %= mod
                 dp = [x % mod for x in ndp]
         ans = (dp[0] - 1) % mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6184(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6184
+        tag: comb|inclusion_exclusion|partition_method
+        """
+        n = ac.read_int()
+        ans = (n - 1) * (n - 2) * (n - 3) // 6 - (n // 2 - 1) * (n // 2) * (n // 2 * 2 - 1) // 3 + 2 + (n // 2 + 1) * (
+                n // 2 - 2)
         ac.st(ans)
         return

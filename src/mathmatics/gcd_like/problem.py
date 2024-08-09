@@ -8,8 +8,8 @@ Description：single_equation
 
 =====================================LuoGu======================================
 P1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
-P5435（https://www.luogu.com.cn/problem/P5435）binary_gcd
-P5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd
+P5435（https://www.luogu.com.cn/problem/P5435）binary_gcd|classical
+P5582（https://www.luogu.com.cn/problem/P5582）greedy|brain_teaser|ex_gcd|peishu_theorem
 P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 

@@ -868,7 +868,7 @@ class Solution:
         tag: kmp|z-function
         """
         a = ac.read_str()
-        b = ac.read_str()
+        b = ac.read_str()  # TLE
         m, n = len(a), len(b)
         z = KMP().z_function(b + "#" + a)
         z[0] = n

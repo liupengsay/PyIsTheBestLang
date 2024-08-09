@@ -94,7 +94,7 @@ P6462（https://www.luogu.com.cn/problem/P6462）greedy|classification_discussio
 P6549（https://www.luogu.com.cn/problem/P6549）reverse_thinking|sort|implemention
 P6785（https://www.luogu.com.cn/problem/P6785）brain_teaser|greedy|counter
 P6851（https://www.luogu.com.cn/problem/P6851）greedy|implemention|sort
-P7176（https://www.luogu.com.cn/problem/P7176）greedy
+P7176（https://www.luogu.com.cn/problem/P7176）greedy|classical|maximum_property|observation
 P7228（https://www.luogu.com.cn/problem/P7228）brain_teaser|greedy|tree_dfs
 P7260（https://www.luogu.com.cn/problem/P7260）greedy|dp|operation
 P7319（https://www.luogu.com.cn/problem/P7319）greedy|custom_sort
@@ -135,6 +135,10 @@ P1842（https://www.luogu.com.cn/problem/P1842）greedy
 P2968（https://www.luogu.com.cn/problem/P2968）greedy|implemention|observation
 P3619（https://www.luogu.com.cn/problem/P3619）greedy|classical|custom_sort
 P3550（https://www.luogu.com.cn/problem/P3550）greedy|observation
+P4823（https://www.luogu.com.cn/problem/P4823）greedy|regret_heapq|classical|brain_teaser
+P4998（https://www.luogu.com.cn/problem/P4998）brain_teaser|greedy|prefix_sum
+P5963（https://www.luogu.com.cn/problem/P5963）pair_wise|greedy|classical|custom_sort
+P6002（https://www.luogu.com.cn/problem/P6002）brute_force|greedy|brain_teaser
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property
@@ -844,25 +848,20 @@ class Solution:
     def lg_p5884(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5884
-        tag: brain_teaser
+        tag: brain_teaser|reverse_order|mst
         """
-        # brain_teaser
         n = ac.read_int()
-        degree = [0] * n
-        edge = []
-        while True:
-            lst = ac.read_list_ints()
-            if not lst:
-                break
-            i, j = lst
+        last = [0] * n
+        edges = []
+        for x in range(n * (n - 1) // 2):
+            i, j = ac.read_list_ints()
             if i > j:
                 i, j = j, i
-            degree[i] += 1
-            edge.append([i, j])
-        # 只有一个节点是最后一条边才确认
-        for i, j in edge:
-            degree[i] -= 1
-            if not degree[i]:
+            last[i] = x
+            edges.append(i*n+j)
+        for x, val in enumerate(edges):
+            i, j = val//n, val%n
+            if last[i] == x:
                 ac.st(1)
             else:
                 ac.st(0)
@@ -2138,5 +2137,54 @@ class Solution:
             speed = min(speed + x, s)
             pos = p
         ans = max(ans, speed + n - pos)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4823(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4823
+        tag: greedy|regret_heapq|classical|brain_teaser
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        h = ac.read_int()
+        nums.sort(key=lambda x: x[0] + x[1])
+        post = [0] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            post[i] = post[i + 1] + nums[i][0]
+        ans = tot = 0
+        stack = []
+        for i, (a, b) in enumerate(nums):
+            if tot + post[i] + b >= h:
+                heappush(stack, -a)
+                ans += 1
+            else:
+                if stack and -stack[0] > a:
+                    tot -= heappop(stack)
+                    heappush(stack, -a)
+                else:
+                    tot += a
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p6002(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6002
+        tag: brute_force|greedy|brain_teaser
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ans = 0
+        for x in range(1, 1001):
+            cur = sum(num // x for num in nums)
+            if cur >= k:
+                ans = max(ans, x * k // 2)
+            elif cur >= k // 2:
+                lst = sorted([num % x for num in nums], reverse=True)
+                ans = max(ans, (cur - k // 2) * x + sum(lst[:k - cur]))
+            else:
+                break
         ac.st(ans)
         return

@@ -32,11 +32,11 @@ class Solution:
         tag: the_kth_rank_perm|the_rank_of_perm|cantor_expands
         """
 
-        n = ac.read_int()
+        n = ac.read_int()  # TLE
         nums = ac.read_list_ints()
         mod = 998244353
         ce = CantorExpands(n, mod)
-        ac.st(ce.array_to_rank(nums) % mod)
+        ac.st(ce.array_to_rank(nums) % mod)  # array_to_rank_with_tree
         return
 
     @staticmethod

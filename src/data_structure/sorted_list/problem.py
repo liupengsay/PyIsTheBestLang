@@ -41,6 +41,7 @@ P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 P3369（https://www.luogu.com.cn/problem/P3369）sorted_list
 P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 P2161（https://www.luogu.com.cn/problem/P2161）sorted_list|trick
+P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range|contribution_method|two_pointer
 
 ===================================CodeForces===================================
 459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
@@ -697,4 +698,53 @@ class Solution:
                         ans += 1
                 ac.st(ans)
                 lst.add(a*part+b)
+        return
+
+    @staticmethod
+    def lg_p5677(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5677
+        tag: sorted_list|offline_query|range|contribution_method|two_pointer
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        if n == 1:
+            ac.st(0)
+            return
+        ind = {num: i for i, num in enumerate(nums)}
+        nums.sort()
+        pairs = []
+        for i in range(n):
+            if i == 0:
+                x, y = ind[nums[0]], ind[nums[1]]
+                pairs.append(y * n + x if x < y else x * n + y)
+            elif i == n - 1:
+                x, y = ind[nums[n - 1]], ind[nums[n - 2]]
+                pairs.append(y * n + x if x < y else x * n + y)
+            else:
+                if nums[i] - nums[i - 1] <= nums[i + 1] - nums[i]:
+                    x, y = ind[nums[i]], ind[nums[i - 1]]
+                    pairs.append(y * n + x if x < y else x * n + y)
+                if nums[i] - nums[i - 1] >= nums[i + 1] - nums[i]:
+                    x, y = ind[nums[i]], ind[nums[i + 1]]
+                    pairs.append(y * n + x if x < y else x * n + y)
+        pairs.sort()
+        length = len(pairs)
+        queries = []
+        k = 10 ** 6
+        for i in range(m):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries.append(rr * k * k + ll * k + i)
+        queries.sort()
+        ans = j = 0
+        lst = LocalSortedList()
+        for val in queries:
+            i = val % k
+            left, right = (val // k) % k, val // k // k
+            while j < length and pairs[j] // n <= right:
+                lst.add(pairs[j] % n)
+                j += 1
+            cur = j - lst.bisect_right(left - 1)
+            ans += (i + 1) * cur
+        ac.st(ans)
         return

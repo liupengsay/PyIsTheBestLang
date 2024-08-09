@@ -21,6 +21,7 @@ P4452（https://www.luogu.com.cn/problem/P4452）dinic_max_flow|min_cost
 P2153（https://www.luogu.com.cn/problem/P2153）dinic_max_flow|min_cost
 P2053（https://www.luogu.com.cn/problem/P2053）dinic_max_flow|min_cost
 P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
+P4722（https://www.luogu.com.cn/problem/P4722）dinic_max_flow
 
 ===================================CodeForces===================================
 

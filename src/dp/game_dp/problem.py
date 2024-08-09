@@ -23,6 +23,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 =====================================CodeForces=====================================
 493D（https://codeforces.com/problemset/problem/493/D）implemention|odd_even|game_dp
 1728D（https://codeforces.com/contest/1728/problem/D）gap_dp|interval_dp
+455B（https://codeforces.com/problemset/problem/455/B）gap_dp|dag_dp|odd_even|classical|win_state|lose_state
 
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical

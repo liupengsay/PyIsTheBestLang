@@ -74,6 +74,7 @@ from heapq import heapify, heappop, heappush
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
+from src.graph.network_flow.template import UndirectedGraph
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -447,48 +448,107 @@ class Solution:
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
-        uf = UnionFind(n)
         degree = [0] * n
-        edge = []
+        tot = 0
         for _ in range(n):
             u, v, w, p = ac.read_list_ints()
             u -= 1
             v -= 1
-            dct[u].append([v, w, p])
-            dct[v].append([u, w, p])
-            uf.union(u, v)
-            edge.append([u, v, w])
+            dct[u].append((v, w, p))
+            dct[v].append((u, w, p))
             degree[u] += 1
             degree[v] += 1
-
-        part = uf.get_root_part()
-        ans = [-1] * n
-        for p in part:
-            stack = deque([i for i in part[p] if degree[i] == 1])
-            visit = set()
-            while stack:
-                i = stack.popleft()
-                visit.add(i)
+            tot += w
+        stack = [i for i in range(n) if degree[i] == 1]
+        while stack:
+            nex = []
+            for i in stack:
                 for j, _, _ in dct[i]:
                     degree[j] -= 1
                     if degree[j] == 1:
-                        stack.append(j)
-            circle = [i for i in part[p] if i not in visit]
-            s = sum(w for i, _, w in edge if uf.find(i) == p)
-            for x in circle:
-                cur = [[j, w, p] for j, w, p in dct[x] if degree[j] > 1]
-                cur.sort(key=lambda it: it[-1])
-                ans[x] = s - cur[0][1]
-            stack = deque(circle)
+                        nex.append(j)
+            stack = nex
+        ans = [0] * n
+        for i in range(n):
+            if degree[i] > 1:
+                p1 = inf
+                w1 = 0
+                for j, w, p in dct[i]:
+                    if degree[j] > 1 and p < p1:
+                        p1 = p
+                        w1 = w
+                ans[i] = tot - w1
+            stack = [(i, -1)]
             while stack:
-                i = stack.popleft()
-                for j, _, _ in dct[i]:
-                    if ans[j] == -1:
-                        ans[j] = ans[i]
-                        stack.append(j)
+                x, fa = stack.pop()
+                for y, _, _ in dct[x]:
+                    if degree[y] <= 1 and y != fa:
+                        stack.append((y, x))
+                        ans[y] = ans[i]
         for a in ans:
             ac.st(a)
         return
+
+    @staticmethod
+    def lg_p6037_2(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6037
+        tag: undirected_circle_based_tree|union_find|topological_sort|implemention
+        """
+
+        n = ac.read_int()
+
+        graph = UndirectedGraph(n)
+
+        degree = [0] * (n + 1)
+        tot = 0
+        for i in range(n):
+            u, v, w, p = ac.read_list_ints()
+            graph.add_edge(u, v, w, p)
+            degree[u] += 1
+            degree[v] += 1
+            tot += w
+        stack = [i for i in range(1, n + 1) if degree[i] == 1]
+        while stack:
+            nex = []
+            for u in stack:
+                i = graph.point_head[u]
+                while i:
+                    j = graph.edge_to[i]
+                    degree[j] -= 1
+                    if degree[j] == 1:
+                        nex.append(j)
+                    i = graph.edge_next[i]
+            stack = nex
+
+        ans = [0] * (n + 1)
+        for u in range(1, n + 1):
+            if degree[u] > 1:
+                p1 = inf
+                w1 = 0
+                i = graph.point_head[u]
+                while i:
+                    p, w = graph.edge_p[i], graph.edge_w[i]
+                    j = graph.edge_to[i]
+                    i = graph.edge_next[i]
+                    if degree[j] > 1 and p < p1:
+                        p1 = p
+                        w1 = w
+                ans[u] = tot - w1
+            stack = [(u, -1)]
+            while stack:
+                x, fa = stack.pop()
+                i = graph.point_head[x]
+                while i:
+                    j = graph.edge_to[i]
+                    if degree[j] <= 1:
+                        stack.append((j, x))
+                        ans[j] = ans[u]
+                    i = graph.edge_next[i]
+        for a in ans[1:]:
+            ac.st(a)
+        return
+
 
     @staticmethod
     def lg_p6255(ac=FastIO()):

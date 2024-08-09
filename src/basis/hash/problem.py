@@ -26,6 +26,7 @@ P1114（https://www.luogu.com.cn/problem/P1114）hash|prefix_sum
 P4889（https://www.luogu.com.cn/problem/P4889）math|hash|counter
 P6273（https://www.luogu.com.cn/problem/P6273）hash|prefix|counter
 P8630（https://www.luogu.com.cn/problem/P8630）hash|counter|permutation|brute_force
+P5018（https://www.luogu.com.cn/problem/P5018）tree_hash|random_hash|classical
 
 ====================================AtCoder=====================================
 ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exclusion|counter
@@ -36,7 +37,7 @@ ABC278E（https://atcoder.jp/contests/abc278/tasks/abc278_e）hash|inclusion_exc
 
 """
 import random
-from collections import defaultdict
+from collections import defaultdict, Counter
 from itertools import accumulate
 from typing import List
 
@@ -285,4 +286,55 @@ class Solution:
                 return
 
             check()
+        return
+
+    @staticmethod
+    def lg_p5018(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5018
+        tag: tree_hash|random_hash|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = [ac.read_list_ints_minus_one() for _ in range(n)]
+
+        seed = [random.getrandbits(64) for _ in range(3)]
+
+        def make(aa, bb, cc):
+            return aa*seed[0] + bb*seed[1] + cc*seed[2]
+
+        sub = [1] * n
+        hash1 = [0] * n
+        hash2 = [0] * n
+        seen = dict()
+
+        stack = [0]
+        ans = 1
+        while stack:
+            x = stack.pop()
+            if x >= 0:
+                stack.append(~x)
+                for y in dct[x]:
+                    if y != -2:
+                        stack.append(y)
+            else:
+                x = ~x
+                a, b = dct[x]
+
+                cur = make(hash1[a] if a != -2 else 0, nums[x], hash1[b] if b != -2 else 0)
+                if cur not in seen:
+                    seen[cur] = len(seen) + 1
+                hash1[x] = seen[cur]
+
+                cur = make(hash2[b] if b != -2 else 0, nums[x], hash2[a] if a != -2 else 0)
+                if cur not in seen:
+                    seen[cur] = len(seen) + 1
+                hash2[x] = seen[cur]
+
+                for y in dct[x]:
+                    if y != -2:
+                        sub[x] += sub[y]
+                if a != -2 and b != -2 and hash1[a] == hash2[b] and sub[a] == sub[b]:
+                    ans = max(ans, sub[x])
+        ac.st(ans)
         return

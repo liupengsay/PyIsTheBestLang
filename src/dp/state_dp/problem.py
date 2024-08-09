@@ -602,26 +602,21 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5997
         tag: greedy|bag_dp|state_dp
         """
-        # greedy背包与state_compress 结合
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
         c = ac.read_list_ints()
         c.sort(reverse=True)
-        # 状态最少需要的背包数
-        dp = [m + 1] * (1 << n)
+        dp = [m + 1] * (1 << n)  # MLE
         dp[0] = 0
-        # 状态最新背包剩余的空间
         rest = [0] * (1 << n)
         for i in range(1, 1 << n):
             for j in range(n):
                 if i & (1 << j):
                     dd, rr = dp[i ^ (1 << j)], rest[i ^ (1 << j)]
-                    # 直接原装
                     if rr >= a[j]:
                         if dp[i] > dd or (dp[i] == dd and rest[i] < rr - a[j]):
                             dp[i] = dd
                             rest[i] = rr - a[j]
-                    # 新增背包
                     if dd + 1 <= m:
                         rr = c[dd]
                         if rr >= a[j]:

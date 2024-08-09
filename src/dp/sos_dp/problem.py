@@ -9,7 +9,6 @@ Reference：https://codeforces.com/blog/entry/45223
 
 =====================================AtCoder======================================
 ABC100C（https://atcoder.jp/contests/arc100/tasks/arc100_c）sos_dp|classical|state_dp|bit_operation
-tag:
 
 
 =====================================LuoGu======================================

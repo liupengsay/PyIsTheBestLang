@@ -25,7 +25,6 @@ P2781（https://www.luogu.com.cn/problem/P2781）tree_array|range_sum
 P5200（https://www.luogu.com.cn/problem/P5200）tree_array|greedy|implemention
 P3374（https://www.luogu.com.cn/problem/P3374）tree_array|RangeAddRangeSum
 P3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
-P5677（https://www.luogu.com.cn/problem/P5677）tree_array|RangeAddRangeSum
 P5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
 P1816（https://www.luogu.com.cn/problem/P1816）tree_array|range_min
 P1725（https://www.luogu.com.cn/problem/P1725）reverse_order|liner_dp|PointAscendRangeMax
@@ -35,6 +34,7 @@ P4868（https://www.luogu.com.cn/problem/P4868）math|tree_array|prefix_sum_of_p
 P5463（https://www.luogu.com.cn/problem/P5463）tree_array|counter|brute_force|contribution_method
 P6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
 P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
+P5041（https://www.luogu.com.cn/problem/P5041）tree_array|implemention|classical
 
 ====================================AtCoder=====================================
 ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
@@ -705,29 +705,31 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6225
         tag: tree_array|prefix_xor
         """
-        n, q = ac.read_list_ints()
+        n, q = ac.read_list_ints()  # TLE
         nums = ac.read_list_ints()
 
         tree_odd = PointXorRangeXor(n)
         tree_even = PointXorRangeXor(n)
         for i in range(n):
-            if i % 2 == 0:
-                tree_odd.point_xor(i + 1, nums[i])
+            if i % 2:
+                tree_odd.point_xor(i, nums[i])
             else:
-                tree_even.point_xor(i + 1, nums[i])
+                tree_even.point_xor(i, nums[i])
 
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 i, x = lst[1:]
-                a = nums[i - 1]
-                if i % 2 == 0:
-                    tree_even.point_xor(i, a ^ x)
+                i -= 1
+                if i % 2:
+                    tree_odd.point_xor(i, nums[i] ^ x)
                 else:
-                    tree_odd.point_xor(i, a ^ x)
-                nums[i - 1] = x
+                    tree_even.point_xor(i, nums[i] ^ x)
+                nums[i] = x
             else:
                 left, right = lst[1:]
+                left -= 1
+                right -= 1
                 if (right - left + 1) % 2 == 0:
                     ac.st(0)
                 else:
@@ -1579,5 +1581,53 @@ class Solution:
                     cur = min(j2 - i2 + tree_pre.pre_min(j2), - i2 - j2 + tree_post.post_min(j2))
                     dis[x2] = min(dis[x2], cur)
         ans = min(dis[x] for x in dct[p])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p5041(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P5041
+        tag: tree_array|implemention|classical
+        """
+        s = ac.read_str()
+        n = len(s)
+        lst = list(s)
+        ans = 0
+        dct = defaultdict(deque)
+        for i in range(n):
+            dct[lst[i]].append(i)
+        tree = PointAddRangeSum(n)
+        i, j = 0, n - 1
+        while i < j:
+            if lst[i] == "":
+                i += 1
+                continue
+            if lst[j] == "":
+                j -= 1
+                continue
+            if lst[i] == lst[j]:
+                dct[lst[i]].popleft()
+                dct[lst[j]].pop()
+                i += 1
+                j -= 1
+                continue
+
+            if len(dct[lst[j]]) >= 2:
+                left = dct[lst[j]][0]
+                ans += left - i - tree.range_sum(i, left)
+                x = dct[lst[j]].popleft()
+                dct[lst[j]].pop()
+                lst[x] = ""
+                tree.point_add(x, 1)
+                j -= 1
+            else:
+                right = dct[lst[i]][-1]
+                ans += j - right - tree.range_sum(right, j)
+                x = dct[lst[i]].pop()
+                dct[lst[i]].popleft()
+                tree.point_add(x, 1)
+                lst[x] = ""
+                i += 1
         ac.st(ans)
         return

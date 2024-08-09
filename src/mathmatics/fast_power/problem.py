@@ -251,7 +251,7 @@ class Solution:
         n = ac.read_int()
         ac.read_int()
         a = set(ac.read_list_ints())
-        ac.read_int()
+        ac.read_int()  # TLE
         pre = sorted(list(a.intersection(set(ac.read_list_ints()))))
         m = max(pre)
 

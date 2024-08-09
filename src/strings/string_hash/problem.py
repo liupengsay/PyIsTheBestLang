@@ -30,6 +30,7 @@ P2601（https://www.luogu.com.cn/problem/P2601）matrix_hash
 P4824（https://www.luogu.com.cn/problem/P4824）string_hash
 P4503（https://www.luogu.com.cn/problem/P4503）string_hash
 P3538（https://www.luogu.com.cn/problem/P3538）string_hash|prime_factor|brute_force|circular_section
+P6312（https://www.luogu.com.cn/problem/P6312）string_hash|classical
 
 ===================================CodeForces===================================
 1800D（https://codeforces.com/contest/1800/problem/D）prefix_suffix|hash
@@ -1563,5 +1564,31 @@ class Solution:
                 i += 1
             ans += pre[pre_hash[j + 1]]
             pre[pre_hash[j + 1]] += 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p4503(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4503
+        tag: string_hash|random_hash
+        """
+        n, ll, ss = ac.read_list_ints()  # MLE
+        seed = [random.getrandbits(64) for _ in range(n)]
+        nums = [[0] * (ll + 1) for _ in range(n)]
+        for i in range(n):
+            x = 0
+            s = ac.read_str()
+            for j in range(ll):
+                nums[i][j] = ord(s[j])
+                x += ord(s[j]) * seed[j]
+            nums[i][ll] = x
+        ans = 0
+        for j in range(ll):
+            pre = dict()
+            for i in range(n):
+                val = nums[i][-1] - nums[i][j] * seed[j]
+                ans += pre.get(val, 0)
+                pre[val] = pre.get(val, 0) + 1
         ac.st(ans)
         return

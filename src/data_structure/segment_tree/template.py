@@ -3809,6 +3809,20 @@ class RangeRevereRangeBitCount:
                 self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
         return
 
+    def point_get(self, ind):
+        s, t, i = 0, self.n - 1, 1
+        while True:
+            if s == t == ind:
+                ans = self.cover[i]
+                break
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if ind <= m:
+                s, t, i = s, m, i << 1
+            else:
+                s, t, i = m + 1, t, (i << 1) | 1
+        return ans
+
     def range_bit_count(self, left, right):
         stack = [(0, self.n - 1, 1)]
         ans = 0

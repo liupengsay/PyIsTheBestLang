@@ -20,6 +20,7 @@ P7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
 P1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
 P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
 P2101（https://www.luogu.com.cn/problem/P2101）divide_and_conquer|greedy|classical
+P5551（https://www.luogu.com.cn/problem/P5551）recursion
 
 ===================================CodeForces===================================
 448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp

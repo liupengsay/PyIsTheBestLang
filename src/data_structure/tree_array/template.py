@@ -258,49 +258,6 @@ class RangeAddRangeSum:
         b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
         return a - b
 
-
-class PointXorRangeXor:
-    def __init__(self, n: int) -> None:
-        self.n = n
-        self.t = [0] * (n + 1)
-        return
-
-    @staticmethod
-    def _lowest_bit(i: int) -> int:
-        return i & (-i)
-
-    def _pre_xor(self, i: int) -> int:
-        assert 1 <= i <= self.n
-        val = 0
-        while i:
-            val ^= self.t[i]
-            i -= self._lowest_bit(i)
-        return val
-
-    def build(self, nums) -> None:
-        assert len(nums) == self.n
-        pre = [0] * (self.n + 1)
-        for i in range(self.n):
-            pre[i + 1] = pre[i] ^ nums[i]
-            self.t[i + 1] = pre[i + 1] ^ pre[i + 1 - self._lowest_bit(i + 1)]
-        return
-
-    def get(self):
-        return [self.range_xor(i + 1, i + 1) for i in range(self.n)]
-
-    def point_xor(self, i: int, val: int) -> None:
-        assert 1 <= i <= self.n
-        while i <= self.n:
-            self.t[i] ^= val
-            i += self._lowest_bit(i)
-        return
-
-    def range_xor(self, x: int, y: int) -> int:
-        assert 1 <= x <= y <= self.n
-        res = self._pre_xor(y) ^ self._pre_xor(x - 1) if x > 1 else self._pre_xor(y)
-        return res
-
-
 class PointAscendPreMax:
     def __init__(self, n, initial=-inf):
         self.n = n

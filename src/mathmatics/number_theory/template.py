@@ -137,12 +137,14 @@ class NumFactor:
     def get_all_factor(num):  # faster when 1 <= num <= 10**6!
         """Obtain all factors of an integer, including 1 and itself"""
         assert num >= 1
-        factor = set()
+        pre = []
+        post = []
         for i in range(1, int(math.sqrt(num)) + 1):
             if num % i == 0:
-                factor.add(i)
-                factor.add(num // i)
-        return sorted(list(factor))
+                pre.append(i)
+                if num // i != i:
+                    post.append(num // i)
+        return pre + post[::-1]
 
     @staticmethod
     def get_all_factor_square(primes, num):  # 1 <= num <= 10**9!
@@ -154,15 +156,15 @@ class NumFactor:
                 num //= p
                 cnt += 1
             if cnt > 1:
-                lst.append((p, cnt//2))
-        if int(num**0.5) ** 2 == num:
-            lst.append((int(num**0.5), 1))
+                lst.append((p, cnt // 2))
+        if int(num ** 0.5) ** 2 == num:
+            lst.append((int(num ** 0.5), 1))
         pre = {1}
         for p, c in lst:
             for num in list(pre):
-                for i in range(1, c+1):
-                    pre.add(num*p**i)
-        return sorted([x*x for x in pre])
+                for i in range(1, c + 1):
+                    pre.add(num * p ** i)
+        return sorted([x * x for x in pre])
 
     @staticmethod
     def get_prime_factor(num):  # faster when 1 <= num <= 10**6!
