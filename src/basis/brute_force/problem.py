@@ -185,6 +185,7 @@ ABC223E（https://atcoder.jp/contests/abc223/tasks/abc223_e）brute_force|implem
 ABC353D（https://atcoder.jp/contests/abc353/tasks/abc353_d）contribution_method|implemention
 ABC220E（https://atcoder.jp/contests/abc220/tasks/abc220_e）contribution_method|classical|brute_force|binary_tree
 ABC219E（https://atcoder.jp/contests/abc219/tasks/abc219_e）brute_force|union_find|brain_teaser
+ABC366E（https://atcoder.jp/contests/abc366/tasks/abc366_e）brute_force|prefix_suffix
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision

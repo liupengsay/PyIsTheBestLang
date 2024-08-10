@@ -167,6 +167,7 @@ ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_f）linear_dp|contribu
 ABC222D（https://atcoder.jp/contests/abc222/tasks/abc222_d）prefix|linear_dp
 ABC214F（https://atcoder.jp/contests/abc214/tasks/abc214_f）prefix|linear_dp
 ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
+ABC366F（https://atcoder.jp/contests/abc366/tasks/abc366_f）linear_dp|greedy|custom_sort|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -180,7 +181,7 @@ ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
 """
 import bisect
 from collections import defaultdict, Counter, deque
-from functools import lru_cache
+from functools import lru_cache, cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
@@ -1922,4 +1923,28 @@ class Solution:
                 res[i] += dp[i]
                 res[i] %= mod
         ac.lst(res[1:])
+        return
+
+    @staticmethod
+    def abc_366f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc366/tasks/abc366_f
+        tag: linear_dp|greedy|custom_sort|classical
+        """
+        n, k = ac.read_list_ints()
+        dp = [-inf] * (k + 1)
+        dp[0] = 1
+        nums = [ac.read_list_ints() for _ in range(n)]
+
+        def compare_(x, y):
+            if x[0] * y[1] + x[1] < y[0] * x[1] + y[1]:
+                return -1
+            return 1
+
+        nums.sort(key=cmp_to_key(compare_))
+
+        for a, b in nums:
+            for i in range(k, 0, -1):
+                dp[i] = max(dp[i], a * dp[i - 1] + b)
+        ac.st(dp[-1])
         return

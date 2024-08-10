@@ -789,7 +789,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6706
         tag: directed_graph|union_find|reverse_order|find_range_merge_to_disjoint|classical|hard
         """
-        n = ac.read_int()
+        n = ac.read_int()  # MLE
         edge = ac.read_list_ints()
         q = ac.read_int()
         query = []

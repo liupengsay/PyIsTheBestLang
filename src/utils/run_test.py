@@ -349,18 +349,18 @@ class TestGeneral(unittest.TestCase):
             webbrowser.open(url)
         return
 
+    @unittest.skip
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
-        for x in range(1500, 2200, 100):
+        for x in range(1500, 1600, 100):
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
             webbrowser.open(url)
             time.sleep(0.5)
             print(url)
         return
 
-    @unittest.skip
     def test_abc_problem(self):
-        num = "365"
+        num = "366"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

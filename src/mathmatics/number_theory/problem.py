@@ -63,6 +63,7 @@ P4282（https://www.luogu.com.cn/problem/P4282）math|n_base|classical|high_prec
 P1601（https://www.luogu.com.cn/problem/P1601）math|n_base|classical|high_precision
 P1303（https://www.luogu.com.cn/problem/P1303）math|n_base|classical|high_precision
 P6366（https://www.luogu.com.cn/problem/P6366）n_base|observation
+P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_force
 
 ===================================CodeForces===================================
 1771C（https://codeforces.com/problemset/problem/1771/C）pollard_rho|prime_factorization
@@ -1541,7 +1542,7 @@ class Solution:
                 if s <= 1:
                     ac.st("Prime? No!")
                 else:
-                    if s <= 10**6:
+                    if s <= 10 ** 6:
                         lst = NumFactor().get_prime_factor(s)
                     else:
                         dct = NumFactor().get_prime_with_pollard_rho(s)
@@ -1714,4 +1715,26 @@ class Solution:
         if sum(lst) == 0:
             ans = min(ans, cur)
         ac.st(ans if ans < inf else "No")
+        return
+
+    @staticmethod
+    def lg_p6539(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6539
+        tag: euler_series|classical|brute_force
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 2 * 10 ** 6
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            cnt[num] += 1
+        ans = 0
+        for x in range(1, ceil + 1):
+            cur = 0
+            for y in range(x, ceil + 1, x):
+                cur += cnt[y]
+            if cur >= 2:
+                ans = max(ans, cur * x)
+        ac.st(ans)
         return

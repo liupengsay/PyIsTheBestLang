@@ -1467,7 +1467,7 @@ class Solution:
         pre = PreFixSumMatrix(grid)
         del grid
         states = list(set([tuple(item) for item in permutations([0, 1, 2, 2], 4)]))
-        ind = {state: i for i, state in enumerate(states)}
+        ind = {state: i for i, state in enumerate(states)}  # MLE
 
         def dfs():
             # 最小代价
@@ -1742,10 +1742,10 @@ class Solution:
     def lg_p6870(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6870
-        tag: matrix_dp|comb|counter
+        tag: matrix_dp|comb|counter|classical|inclusion_exclusion
         """
-        # matrix_dp| 与组合数优化counter
-        n = ac.read_int()
+
+        n = ac.read_int()  # TLE
         mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
         dp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -1758,10 +1758,7 @@ class Solution:
                     dp[i][j + k] += dp[i - 1][j] * cb.comb(j + k, k)
                     dp[i][j + k] %= mod
 
-        ans = 1
-        for _ in range(n):
-            ans *= n
-            ans %= mod
+        ans = pow(n, n, mod)
         ac.st((ans - dp[n][n]) % mod)
         return
 

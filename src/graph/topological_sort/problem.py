@@ -601,7 +601,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6417
         tag: directed_circle_based_tree|greedy|topological_sort|brain_teaser|classical
         """
-        n = ac.read_int()
+        n = ac.read_int() # MLE
         dct = [ac.read_int() - 1 for _ in range(n)]
         degree = [0] * n
         for i in range(n):

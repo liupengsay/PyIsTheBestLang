@@ -15,6 +15,48 @@ class PreFixSumMatrix:
         assert 0 <= ya <= yb <= self.n - 1
         return self.pre[xb + 1][yb + 1] - self.pre[xb + 1][ya] - self.pre[xa][yb + 1] + self.pre[xa][ya]
 
+
+class PreFixSumCube:
+    def __init__(self, mat):
+        self.mat = mat
+        self.n = len(mat)
+        self.m = len(mat[0])
+        self.p = len(mat[0][0])
+
+        self.prefix_sum = [[[0] * (self.p + 1) for _ in range(self.m + 1)] for _ in range(self.n + 1)]
+
+        for i in range(1, self.n + 1):
+            for j in range(1, self.m + 1):
+                for k in range(1, self.p + 1):
+                    self.prefix_sum[i][j][k] = (mat[i - 1][j - 1][k - 1]
+                                                + self.prefix_sum[i - 1][j][k]
+                                                + self.prefix_sum[i][j - 1][k]
+                                                + self.prefix_sum[i][j][k - 1]
+                                                - self.prefix_sum[i - 1][j - 1][k]
+                                                - self.prefix_sum[i - 1][j][k - 1]
+                                                - self.prefix_sum[i][j - 1][k - 1]
+                                                + self.prefix_sum[i - 1][j - 1][k - 1])
+        return
+
+    def query(self, x1, x2, y1, y2, z1, z2) -> int:
+        """left up corner is (x1, y1, z1) and right down corner is (x2, y2, z2)"""
+
+        assert 1 <= x1 <= x2 <= self.n and 1 <= y1 <= y2 <= self.m and 1 <= z1 <= z2 <= self.p
+
+        def get_sum(x, y, z):
+            return self.prefix_sum[x][y][z]
+
+        result = (get_sum(x2, y2, z2)
+                  - get_sum(x1 - 1, y2, z2)
+                  - get_sum(x2, y1 - 1, z2)
+                  - get_sum(x2, y2, z1 - 1)
+                  + get_sum(x1 - 1, y1 - 1, z2)
+                  + get_sum(x1 - 1, y2, z1 - 1)
+                  + get_sum(x2, y1 - 1, z1 - 1)
+                  - get_sum(x1 - 1, y1 - 1, z1 - 1))
+        return result
+
+
 class PreFixXorMatrix:
     def __init__(self, mat):
         self.mat = mat

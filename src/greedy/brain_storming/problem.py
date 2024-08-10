@@ -901,10 +901,9 @@ class Solution:
     def lg_p6874(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6874
-        tag: median_greedy
+        tag: median_greedy|brain_teaser
         """
-        # 变换公式转为mediangreedy
-        n = ac.read_int()
+        n = ac.read_int()  # MLE
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         for i in range(n):

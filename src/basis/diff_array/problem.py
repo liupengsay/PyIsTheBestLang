@@ -117,6 +117,7 @@ ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_
 ABC221D（https://atcoder.jp/contests/abc221/tasks/abc221_d）discretization_diff_array
 ABC210D（https://atcoder.jp/contests/abc210/tasks/abc210_d）prefix_max|matrix_prefix|classical
 ABC360D（https://atcoder.jp/contests/abc360/tasks/abc360_d）diff_array|implemention|contribution_method
+ABC366D（https://atcoder.jp/contests/abc366/tasks/abc366_d）prefix_sum_cube|md_prefix_sum
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
@@ -135,7 +136,7 @@ from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix
+from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix, PreFixSumCube
 from src.graph.union_find.template import UnionFindGeneral
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1063,7 +1064,7 @@ class Solution:
         """
         n = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(n)]
-        pre = PreFixSumMatrix(grid)
+        pre = PreFixSumMatrix(grid)  # MLE
         ans = 0
         for i in range(n):
             for j in range(n):
@@ -2268,4 +2269,20 @@ class Solution:
                     cur += left_up[i][j - x] if j >= x else 0
                     ans = max(ans, int(cur / cnt))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_366d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc366/tasks/abc366_d
+        tag: prefix_sum_cube|md_prefix_sum
+        """
+        n = ac.read_int()
+        arr = []
+        for _ in range(n):
+            arr.append([ac.read_list_ints() for _ in range(n)])
+        pre = PreFixSumCube(arr)
+        for _ in range(ac.read_int()):
+            x1, x2, y1, y2, z1, z2 = ac.read_list_ints()
+            ac.st(pre.query(x1, x2, y1, y2, z1, z2))
         return

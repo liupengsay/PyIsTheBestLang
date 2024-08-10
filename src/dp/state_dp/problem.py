@@ -632,8 +632,8 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6883
         tag: classical|state_dp
         """
-        # classicalstate_compress
-        n, k = ac.read_list_ints()
+
+        n, k = ac.read_list_ints()  # TLE
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [inf] * (1 << n)
         dp[-1] = 0

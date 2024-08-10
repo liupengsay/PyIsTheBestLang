@@ -25,7 +25,7 @@ list?user=739032&status=12&page=13（https://www.luogu.com.cn/record/list?user=7
 P1194（https://www.luogu.com.cn/problem/P1194）mst
 P2916（https://www.luogu.com.cn/problem/P2916）custom_sort|mst|classical
 P4955（https://www.luogu.com.cn/problem/P4955）mst
-P6705（https://www.luogu.com.cn/problem/P6705）brute_force|mst
+P6705（https://www.luogu.com.cn/problem/P6705）brute_force|mst|union_find|uf_initial
 P7775（https://www.luogu.com.cn/problem/P7775）bfs|mst_like
 P2658（https://www.luogu.com.cn/problem/P2658）classical|mst
 P4180（https://www.luogu.com.cn/problem/P4180）mst|lca|multiplication_method|strictly_second_mst|classical
