@@ -21,6 +21,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 2826（https://leetcode.cn/problems/sorting-three-groups/）longest_non_decreasing_subsequence|classical
 1964（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）lis
 2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix_sum
+1035（https://leetcode.cn/problems/uncrossed-lines/description/）lcs|classical
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
