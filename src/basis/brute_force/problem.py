@@ -111,6 +111,7 @@ P8948（https://www.luogu.com.cn/problem/P8948）brute_force
 P8894（https://www.luogu.com.cn/problem/P8894）data_range|brute_force|prefix_suffix|counter
 P8872（https://www.luogu.com.cn/problem/P8872）sort|prefix_suffix|brute_force
 P1989（https://www.luogu.com.cn/problem/P1989）ternary_circle|dag|build_graph|counter|brute_force|classical
+P8599（https://www.luogu.com.cn/problem/P8599）brute_force
 
 ===================================CodeForces===================================
 1426F（https://codeforces.com/problemset/problem/1426/F）classification_discussion|brute_force|counter|fast_power

@@ -139,6 +139,7 @@ P4823（https://www.luogu.com.cn/problem/P4823）greedy|regret_heapq|classical|b
 P4998（https://www.luogu.com.cn/problem/P4998）brain_teaser|greedy|prefix_sum
 P5963（https://www.luogu.com.cn/problem/P5963）pair_wise|greedy|classical|custom_sort
 P6002（https://www.luogu.com.cn/problem/P6002）brute_force|greedy|brain_teaser
+P7148（https://www.luogu.com.cn/problem/P7148）greedy
 
 ===================================CodeForces===================================
 1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property

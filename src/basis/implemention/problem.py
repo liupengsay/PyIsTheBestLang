@@ -63,6 +63,7 @@ P8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_e
 P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
 P2793（https://www.luogu.com.cn/problem/P2793）implemention
 P4924（https://www.luogu.com.cn/problem/P4924）matrix_rotate|implemention|classical
+P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 
 ===================================CodeForces===================================
 463C（https://codeforces.com/problemset/problem/463/C）diagonal|matrix

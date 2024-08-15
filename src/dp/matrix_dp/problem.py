@@ -110,6 +110,8 @@ P2028（https://www.luogu.com.cn/problem/P2028）bag_dp|math|comb|matrix_dp|seco
 P2132（https://www.luogu.com.cn/problem/P2132）matrix_dp|classical
 P4771（https://www.luogu.com.cn/problem/P4771）matrix_dp|classical
 P5888（https://www.luogu.com.cn/problem/P5888）observation|matrix_dp|inclusion_exclusion|implemention
+P7074（https://www.luogu.com.cn/problem/P7074）matrix_dp|brain_teaser
+P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bracket
 
 ===================================CodeForces===================================
 1446B（https://codeforces.com/problemset/problem/1446/B）lcs|matrix_dp
@@ -3421,4 +3423,27 @@ class Solution:
                 dp[0][j] = dp[1][j]
         ans = dp[0][0]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def lg_p7248(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P7248
+        tag: matrix_dp|classical|regular_bracket
+        """
+        n = ac.read_int()
+        s = ac.read_str()
+        mod = 10 ** 9 + 9
+        dp = [[0] * n for _ in range(2)]
+        dp[0][0] = 1
+
+        for i in range(1, n + 1):
+            m = min(i, n - i)
+            w = s[i - 1]
+            for j in range(m + 1):
+                if w == ")" or j == 0:
+                    dp[i & 1][j] = dp[(i + 1) & 1][j + 1] % mod
+                else:
+                    dp[i & 1][j] = (dp[(i + 1) & 1][j + 1] + dp[(i + 1) & 1][j - 1]) % mod
+        ac.st(dp[n & 1][0])
         return

@@ -43,7 +43,7 @@ P3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
 P5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
 P6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
 P8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
-P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp
+P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|classical
 
 ===================================CodeForces===================================
 580D（https://codeforces.com/problemset/problem/580/D）state_dp

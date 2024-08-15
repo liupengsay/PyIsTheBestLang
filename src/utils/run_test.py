@@ -337,9 +337,8 @@ class TestGeneral(unittest.TestCase):
         print(f"total rem：{rem}")
         return
 
-    @unittest.skip
     def test_codeforces_contest(self):
-        num = "1996"
+        num = "2000"
         webbrowser.open(f"https://codeforces.com/contest/{num}")
         webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
@@ -349,7 +348,6 @@ class TestGeneral(unittest.TestCase):
             webbrowser.open(url)
         return
 
-    @unittest.skip
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
         for x in range(1500, 1600, 100):
@@ -359,6 +357,7 @@ class TestGeneral(unittest.TestCase):
             print(url)
         return
 
+    @unittest.skip
     def test_abc_problem(self):
         num = "366"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")

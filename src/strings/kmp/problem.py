@@ -1190,7 +1190,7 @@ class Solution:
     def lg_p8112(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8112
-        tag: z_function|point_set|range_min|classical
+        tag: z_function|point_set|range_min|classical|monotonic_queue|binary_search
         """
         n, m = ac.read_list_ints()  # TLE
         s = ac.read_str()

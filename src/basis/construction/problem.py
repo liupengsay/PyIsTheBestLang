@@ -21,6 +21,10 @@ P8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
 P8910（https://www.luogu.com.cn/problem/P8910）permutation_circle|construction
 P8880（https://www.luogu.com.cn/problem/P8880）brain_teaser|construction|odd_even
 P2902（https://www.luogu.com.cn/problem/P2902）construction
+P8248（https://www.luogu.com.cn/problem/P8248）dfs|back_trace|brute_force
+P7814（https://www.luogu.com.cn/problem/P7814）construction
+P7567（https://www.luogu.com.cn/problem/P7567）construction|classical|guess_table
+P8683（https://www.luogu.com.cn/problem/P8683）construction
 
 ===================================CodeForces===================================
 1396A（https://codeforces.com/problemset/problem/1396/A）greedy|construction
