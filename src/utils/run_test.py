@@ -357,9 +357,8 @@ class TestGeneral(unittest.TestCase):
             print(url)
         return
 
-    @unittest.skip
     def test_abc_problem(self):
-        num = "366"
+        num = "361"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

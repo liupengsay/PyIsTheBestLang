@@ -113,6 +113,7 @@ ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|
 ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|classical
 ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|ring_mst
 ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_method|math
+ABC361F（https://atcoder.jp/contests/abc361/tasks/abc361_f）inclusion_exclusion|math
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -141,6 +142,7 @@ from operator import mul
 from sys import stdout
 from typing import List
 
+from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.gcd_like.template import GcdLike
@@ -1737,4 +1739,27 @@ class Solution:
             if cur >= 2:
                 ans = max(ans, cur * x)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_361f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc361/tasks/abc361_f
+        tag: inclusion_exclusion|math
+        """
+        n = ac.read_int()
+        m = 65
+        cnt = [0] * m
+
+        def check(x):
+            return x ** b <= n
+
+        for b in range(2, m):
+            ans = BinarySearch().find_int_right(1, n, check)
+            if ans >= 2:
+                cnt[b] = ans - 1
+        for i in range(m - 1, 1, -1):
+            for j in range(i * 2, m, i):
+                cnt[i] -= cnt[j]
+        ac.st(sum(cnt) + 1)
         return

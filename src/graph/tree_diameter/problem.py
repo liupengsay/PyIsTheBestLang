@@ -18,7 +18,8 @@ P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 ====================================AtCoder=====================================
 ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
-ABC221F（https://atcoder.jp/contests/abc221/tasks/abc221_f）diameter|linear_dp
+ABC221F（https://atcoder.jp/contests/abc221/tasks/abc221_f）tree_diameter|linear_dp
+ABC361E（https://atcoder.jp/contests/abc361/tasks/abc361_e）tree_diameter|classical
 
 =====================================AcWing=====================================
 
