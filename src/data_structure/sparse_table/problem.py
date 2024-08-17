@@ -756,10 +756,9 @@ class Solution:
         n, k = ac.read_list_ints()
         x = ac.read_list_ints_minus_one()
         a = ac.read_list_ints()
-        index = list(range(n))
-        for xx in range(65):
+        for xx in range(60):
             if k & (1<<xx):
-                index = [index[x[i]] for i in range(n)]
+                a = [a[x[i]] for i in range(n)]
             x = [x[x[i]] for i in range(n)]
-        ac.lst([a[i] for i in index])
+        ac.lst(a)
         return
