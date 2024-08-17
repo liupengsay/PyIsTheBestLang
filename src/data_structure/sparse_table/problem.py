@@ -43,6 +43,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 
 =====================================AtCoder=====================================
 ABC212F（https://atcoder.jp/contests/abc212/tasks/abc212_f）multiplication_method|build_graph|brain_teaser|classical
+ABC367E（https://atcoder.jp/contests/abc367/tasks/abc367_e）multiplication_method|classical
 
 """
 
@@ -744,4 +745,21 @@ class Solution:
         ac.lst([len(ans), ceil - 1])
 
         ac.lst(sorted(ans))
+        return
+
+    @staticmethod
+    def abc_367e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc367/tasks/abc367_e
+        tag: multiplication_method|classical
+        """
+        n, k = ac.read_list_ints()
+        x = ac.read_list_ints_minus_one()
+        a = ac.read_list_ints()
+        index = list(range(n))
+        for xx in range(65):
+            if k & (1<<xx):
+                index = [index[x[i]] for i in range(n)]
+            x = [x[x[i]] for i in range(n)]
+        ac.lst([a[i] for i in index])
         return

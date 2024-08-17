@@ -48,6 +48,7 @@ ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|stri
 ABC331F（https://atcoder.jp/contests/abc331/tasks/abc331_f）point_set|range_hash_reverse|palindrome|classical
 ABC310C（https://atcoder.jp/contests/abc310/tasks/abc310_c）string_hash|classical
 ABC353E（https://atcoder.jp/contests/abc353/tasks/abc353_e）string_hash|trie
+ABC367F（https://atcoder.jp/contests/abc367/tasks/abc367_f）random_seed|random_hash
 
 =====================================AcWing=====================================
 140（https://www.acwing.com/problem/content/140/）string_hash
@@ -1591,4 +1592,24 @@ class Solution:
                 ans += pre.get(val, 0)
                 pre[val] = pre.get(val, 0) + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_367f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc367/tasks/abc367_f
+        tag: random_seed|random_hash
+        """
+        n, q=  ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        seed = [random.getrandbits(64) for _ in range(2*10**5+1)]
+        pre_a = ac.accumulate([seed[x] for x in a])
+        pre_b = ac.accumulate([seed[x] for x in b])
+        for _ in range(q):
+            l1, r1, l2, r2 = ac.read_list_ints_minus_one()
+            if pre_a[r1+1]-pre_a[l1] == pre_b[r2+1]-pre_b[l2] and r1-l1==r2-l2:
+                ac.yes()
+            else:
+                ac.no()
         return
