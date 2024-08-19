@@ -6,6 +6,7 @@ Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_
 ====================================LeetCode====================================
 1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
+100401（https://leetcode.cn/problems/find-the-power-of-k-size-subarrays-ii/）max_flow_min_cost|classical
 
 =====================================LuoGu======================================
 P3376（https://www.luogu.com.cn/problem/P3376）dinic_max_flow
@@ -449,8 +450,6 @@ class Solution:
         ac.lst(ans)
         return
 
-
-
     @staticmethod
     def abc_239e(ac=FastIO()):
         """
@@ -476,3 +475,24 @@ class Solution:
         ac.st(len(ans))
         ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_100401(board: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/contest/biweekly-contest-137/problems/find-the-power-of-k-size-subarrays-ii/
+        tag: max_flow_min_cost|classical
+        """
+        m, n = len(board), len(board[0])
+        flow = DinicMaxflowMinCost(m + n + 4)
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
+                flow.add_edge(i, m + j, 1, -board[i - 1][j - 1])
+        for i in range(1, m + 1):
+            flow.add_edge(m + n + 1, i, 1, 0)
+        for j in range(1, n + 1):
+            flow.add_edge(m + j, m + n + 2, 1, 0)
+
+        flow.add_edge(m + n + 3, m + n + 1, 3, 0)
+        flow.add_edge(m + n + 2, m + n + 4, 3, 0)
+        ans = flow.max_flow_min_cost(m + n + 3, m + n + 4)
+        return -ans[1]

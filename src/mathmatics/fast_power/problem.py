@@ -7,6 +7,7 @@ Description：mod|power|doubling|multiplication_method
 1931（https://leetcode.cn/problems/painting-a-grid-with-three-different-colors/）matrix_fast_power|dp
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
 1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|mod_reverse|inclusion_exclusion
+552（https://leetcode.cn/problems/student-attendance-record-ii）matrix_fast_power|dp
 
 =====================================LuoGu======================================
 P1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod

@@ -4,6 +4,7 @@ Description：sort the query interval into blocks and alternate between moving t
 
 ====================================LeetCode====================================
 1157（https://leetcode.cn/problems/online-majority-element-in-subarray/description/）range_super_mode|CF1514D|random_guess|binary_search|bit_operation|segment_tree
+100404（https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii/）sqrt_decomposition|inclusion_exclusion|prefix_sum
 
 =====================================LuoGu======================================
 P3396（https://www.luogu.com.cn/problem/P3396）sqrt_decomposition
@@ -1099,3 +1100,70 @@ class Solution:
             cur_color[x] = c
         ac.lst([x + 1 for x in cur_color])
         return
+
+    @staticmethod
+    def lc_100404(s: str, k: int, lst: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii/
+        tag: sqrt_decomposition|inclusion_exclusion|prefix_sum
+        """
+        s = [int(w) for w in s]
+        pre = list(accumulate(s, initial=0))
+        n = len(s)
+        left = [-1] * n
+        right = [-1] * n
+        j = 0
+        for i in range(n):
+            while j + 1 < n and pre[i + 1] - pre[j + 1] > k and (i - j) - (pre[i + 1] - pre[j + 1]) > k:
+                j += 1
+            if pre[i + 1] - pre[j] > k and (i - j + 1) - (pre[i + 1] - pre[j]) > k:
+                left[i] = j
+
+        j = n - 1
+        for i in range(n - 1, -1, -1):
+            while j - 1 >= 0 and pre[j] - pre[i] > k and (j - i) - (pre[j] - pre[i]) > k:
+                j -= 1
+            if pre[j + 1] - pre[i] > k and (j + 1 - i) - (pre[j + 1] - pre[i]) > k:
+                right[i] = j
+
+        size = int(n ** 0.5) + 500
+
+        queries = [[] for _ in range(size)]
+        m = len(lst)
+        for i in range(m):
+            a, b = lst[i]
+            queries[b // size].append([a, b, i])
+
+        def check_right(ll, rr):
+            if left[rr] >= ll:
+                return left[rr] - ll + 1
+            return 0
+
+        def check_left(ll, rr):
+            if -1 < right[ll] <= rr:
+                return rr - right[ll] + 1
+            return 0
+
+        ans = [0] * m
+        x = y = 0
+        cnt = 0
+        for i in range(size):
+            if i % 2:
+                queries[i].sort(key=lambda it: -it[0])
+            else:
+                queries[i].sort(key=lambda it: it[0])
+            for a, b, j in queries[i]:
+                while y > b:
+                    cnt -= check_right(x, y)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    cnt += check_right(x, y)
+                while x > a:
+                    x -= 1
+                    cnt += check_left(x, y)
+                while x < a:
+                    cnt -= check_left(x, y)
+                    x += 1
+                ans[j] = (b - a + 1) * (b - a + 1 + 1) // 2 - cnt
+        return ans
