@@ -358,12 +358,12 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "367"
+        num = "362"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/submissions/me")
-        for i in range(8):
+        for i in range(7):
             time.sleep(0.5)
             url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i+ord("a"))
             webbrowser.open(url)

@@ -162,6 +162,7 @@ ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_fo
 ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|matrix_dp|comb_dp
 ABC212E（https://atcoder.jp/contests/abc212/tasks/abc212_e）graph|matrix_dp|inclusion_exclusion|classical
 ABC207E（https://atcoder.jp/contests/abc207/tasks/abc207_e）matrix_dp|prefix_sum
+ABC362E（https://atcoder.jp/contests/abc362/tasks/abc362_e）matrix_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp

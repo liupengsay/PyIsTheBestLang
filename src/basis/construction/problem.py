@@ -107,6 +107,7 @@ ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|const
 ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|construction|mst|brain_teaser|classical
 ABC231D（https://atcoder.jp/contests/abc231/tasks/abc231_d）union_find|construction
 ABC225C（https://atcoder.jp/contests/abc225/tasks/abc225_c）construction
+ABC362F（https://atcoder.jp/contests/abc362/tasks/abc362_f）construction|greedy|observation
 
 ====================================AtCoder=====================================
 1（https://www.codechef.com/problems/ENVPILE）bfs|construction|classical
@@ -115,7 +116,7 @@ ABC225C（https://atcoder.jp/contests/abc225/tasks/abc225_c）construction
 """
 import math
 from collections import deque, Counter, defaultdict
-from heapq import heappush, heappop
+from heapq import heappush, heappop, heapify
 from typing import List
 
 from src.graph.union_find.template import UnionFind
@@ -929,3 +930,68 @@ class Solution:
                 pre[i] -= pre[i - 1]
             ac.lst(pre[1:])
         return
+    
+    @staticmethod
+    def abc_362f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc362/tasks/abc362_f
+        tag: construction|greedy|observation
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        sub = [1] * n
+        parent = [-1] * n
+        stack = [(0, -1)]
+        while stack:
+            x, fa = stack.pop()
+            if x >= 0:
+                stack.append((~x, fa))
+                for y in dct[x]:
+                    if y != fa:
+                        stack.append((y, x))
+                        parent[y] = x
+            else:
+                x = ~x
+                for y in dct[x]:
+                    if y != fa:
+                        sub[x] += sub[y]
+        root = -1
+        for i in range(n):
+            lst = [sub[j] for j in dct[i] if j != parent[i]]
+            lst.append(n - sum(lst) - 1)
+            if max(lst) <= n // 2:
+                root = i
+                break
+
+        parent = [-1] * n
+        stack = [(root, -1)]
+        son = [[] for _ in range(n)]
+        while stack:
+            x, fa = stack.pop()
+            for y in dct[x]:
+                if y != fa:
+                    if parent[x] == -1:
+                        parent[y] = y
+                    else:
+                        parent[y] = parent[x]
+                    son[parent[y]].append(y)
+                    stack.append((y, x))
+        stack = [-len(son[x]) * n - x for x in dct[root]]
+        heapify(stack)
+        while len(stack) >= 2:
+            x = -heappop(stack) % n
+            y = -heappop(stack) % n
+            ac.lst([son[x].pop() + 1, son[y].pop() + 1])
+            if son[x]:
+                heappush(stack, -len(son[x]) * n - x)
+            if son[y]:
+                heappush(stack, -len(son[y]) * n - y)
+        if stack:
+            x = -heappop(stack) % n
+            ac.lst([x + 1, root + 1])
+        return
+    
