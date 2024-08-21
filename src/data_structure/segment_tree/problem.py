@@ -90,6 +90,7 @@ P2846（https://www.luogu.com.cn/problem/P2846）range_reverse|range_bit_count
 1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
 1859D（https://codeforces.com/problemset/problem/1859/D）range_ascend|range_max|implemention
 1555E（https://codeforces.com/problemset/problem/1555/E）brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointer
+2001D（https://codeforces.com/contest/2001/problem/D）segment_tree|point_set|range_max|range_max_bisect_right
 
 ====================================AtCoder=====================================
 ABC332F（https://atcoder.jp/contests/abc332/tasks/abc332_f）RangeAffineRangeSum
@@ -4011,4 +4012,44 @@ class Solution:
             else:
                 x = lst[1]
                 ac.st(tree.point_get(x))
+        return
+
+    @staticmethod
+    def cf_2001d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2001/problem/D
+        tag: segment_tree|point_set|range_max|range_max_bisect_right
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            tree1 = RangeAddRangeSumMinMax(n)
+            tree_max = PointSetRangeMax(n)
+            tree_max.build(nums)
+            tree_min = PointSetRangeMin(n)
+            tree_min.build(nums)
+
+            post = defaultdict(list)
+            for i in range(n - 1, -1, -1):
+                if not post[nums[i]]:
+                    tree1.range_add(0, i, 1)
+                post[nums[i]].append(i)
+
+            ans = [-1]
+            while tree1.ceil[1]:
+                j = tree1.range_max_bisect_right(ans[-1] + 1, n - 1, tree1.ceil[1])
+                if len(ans) % 2:
+                    num = tree_max.range_max(ans[-1] + 1, j)
+                else:
+                    num = tree_min.range_min(ans[-1] + 1, j)
+                for x in post[num][::-1]:
+                    if x >= ans[-1] + 1:
+                        ans.append(x)
+                        break
+                tree1.range_add(0, post[num][0], -1)
+                for i in post[num]:
+                    tree_max.point_set(i, -1)
+                    tree_min.point_set(i, inf)
+            ac.st(len(ans) - 1)
+            ac.lst([nums[x] for x in ans[1:]])
         return

@@ -1092,6 +1092,23 @@ class RangeAddRangeSumMinMax:
                 stack.append((s, m, i << 1))
         return res
 
+    def range_max_bisect_right(self, left, right, val):
+        stack = [(0, self.n - 1, 1)]
+        res = -1
+        while stack and res == -1:
+            s, t, i = stack.pop()
+            if s == t:
+                if left <= s <= right and self.ceil[i] >= val:
+                    res = s
+                continue
+            m = s + (t - s) // 2
+            self._push_down(i, s, m, t)
+            if left <= m and self.ceil[i << 1] >= val:
+                stack.append((s, m, i << 1))
+            if right > m and self.ceil[(i << 1) | 1] >= val:
+                stack.append((m + 1, t, (i << 1) | 1))
+        return res
+
     def range_sum_bisect_right_non_zero(self, left):
         if not self.range_sum(0, left):
             return inf

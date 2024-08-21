@@ -25,7 +25,7 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 2527（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）brute_force|brain_teaser|bit_operation
 2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
 100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
-100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
+3007（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
 100295（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range
 233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
@@ -717,7 +717,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100160(k: int, x: int) -> int:
+    def lc_3007(k: int, x: int) -> int:
 
         """
         url: https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/description/
