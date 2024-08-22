@@ -114,6 +114,7 @@ ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|cl
 ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|ring_mst
 ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_method|math
 ABC361F（https://atcoder.jp/contests/abc361/tasks/abc361_f）inclusion_exclusion|math
+ABC206E（https://atcoder.jp/contests/abc206/tasks/abc206_e）inclusion_exclusion|math|contribution_method|brute_force
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -1762,4 +1763,26 @@ class Solution:
             for j in range(i * 2, m, i):
                 cnt[i] -= cnt[j]
         ac.st(sum(cnt) + 1)
+        return
+
+    @staticmethod
+    def abc_206e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc206/tasks/abc206_e
+        tag: inclusion_exclusion|math|contribution_method|brute_force
+        """
+        ll, rr = ac.read_list_ints()
+        cnt = [0] * (rr + 1)
+        rest = 0
+        for num in range(rr, 1, -1):
+            low = ll + (num - ll % num) if ll % num else ll
+            high = rr
+            if low <= high:
+                c = high // num - low // num + 1
+                cnt[num] = c * (c - 1) // 2
+                rest += c - 1 if low <= num <= high else 0
+                for x in range(num + num, rr + 1, num):
+                    cnt[num] -= cnt[x]
+        ans = sum(cnt) * 2 - rest * 2
+        ac.st(ans)
         return
