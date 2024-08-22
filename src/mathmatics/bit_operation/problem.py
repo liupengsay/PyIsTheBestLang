@@ -27,7 +27,7 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
 3007（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
-100295（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range
+3145（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range|classical|inclusion_exclusion|counter
 233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
 
 =====================================LuoGu======================================
@@ -107,7 +107,6 @@ from operator import xor, or_
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -1220,3 +1219,43 @@ class Solution:
             nums = a0 + a1
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3145(queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/find-products-of-elements-of-big-array/
+        tag: bit_operation|data_range|classical|inclusion_exclusion|counter
+        """
+        m = 60
+        count = [1] + [(1 << (i - 1)) * i + 1 for i in
+                       range(1, m)]  # count[i]=sum(num.bit_count() for num in range((1<<i)|1))
+
+        def check(num):
+            ceil = pre = bit = 0
+            for x in range(m - 1, -1, -1):
+                if pre + count[x] + (bit << x) <= num:
+                    ceil |= 1 << x
+                    pre += count[x] + (bit << x)
+                    bit += 1
+            res = []
+            ceil += 1
+            for x in range(m):
+                c = (ceil // (1 << (x + 1))) * (1 << x)
+                if ceil % (1 << (x + 1)) > (1 << x):
+                    c += ceil % (1 << (x + 1)) - (1 << x)
+                res.append(c)
+
+            diff = num - sum(res)
+            if diff:
+                for x in range(m):
+                    if (ceil >> x) & 1:
+                        res[x] += 1
+                        diff -= 1
+                        if not diff:
+                            break
+            return sum([j * res[j] for j in range(m)])
+
+        ans = []
+        for a, b, mod in queries:
+            ans.append(pow(2, check(b + 1) - check(a) if a else check(b + 1), mod))
+        return ans
