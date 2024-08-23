@@ -30,6 +30,7 @@ P4722（https://www.luogu.com.cn/problem/P4722）dinic_max_flow
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
 ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greedy|implemention|classical
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_g）specific_plan|network_flow|max_flow|min_cut|greedy|implemention
+ABC205F（https://atcoder.jp/contests/abc205/tasks/abc205_f）max_flow_min_cut|matrix|build_graph
 
 """
 import math
@@ -496,3 +497,26 @@ class Solution:
         flow.add_edge(m + n + 2, m + n + 4, 3, 0)
         ans = flow.max_flow_min_cost(m + n + 3, m + n + 4)
         return -ans[1]
+
+    @staticmethod
+    def abc_205f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc205/tasks/abc205_f
+        tag: max_flow_min_cut|matrix|build_graph
+        """
+        m, n, k = ac.read_list_ints()
+        flow = DinicMaxflowMinCut(m + n + k + k + 2)
+        for j in range(1, k + 1):
+            a, b, c, d = ac.read_list_ints()
+            for i in range(a, c + 1):
+                flow.add_edge(i, m + n + j, 1)
+            for i in range(b, d + 1):
+                flow.add_edge(m + n + j + k, m + i, 1)
+            flow.add_edge(m + n + j, m + n + j + k, 1)
+        for i in range(1, m + 1):
+            flow.add_edge(m + n + k + k + 1, i, 1)
+        for i in range(1, n + 1):
+            flow.add_edge(m + i, m + n + k + k + 2, 1)
+        ans = flow.max_flow_min_cut(m + n + k + k + 1, m + n + k + k + 2)
+        ac.st(ans)
+        return

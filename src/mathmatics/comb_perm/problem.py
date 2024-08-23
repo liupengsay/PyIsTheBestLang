@@ -75,6 +75,7 @@ ABC235G（https://atcoder.jp/contests/abc235/tasks/abc235_g）inclusion_exclusio
 ABC232E（https://atcoder.jp/contests/abc232/tasks/abc232_e）brute_force|linear_dp|comb
 ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
 ABC226F（https://atcoder.jp/contests/abc226/tasks/abc226_f）bag_dp|brute_force|comb
+ABC205E（https://atcoder.jp/contests/abc205/tasks/abc205_e）comb|math|geometry|brain_teaser|corner_case
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1338,4 +1339,20 @@ class Solution:
         ans = (n - 1) * (n - 2) * (n - 3) // 6 - (n // 2 - 1) * (n // 2) * (n // 2 * 2 - 1) // 3 + 2 + (n // 2 + 1) * (
                 n // 2 - 2)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_205e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc205/tasks/abc205_e
+        tag: comb|math|geometry|brain_teaser|corner_case
+        """
+        n, m, k = ac.read_list_ints()
+        mod = 10 ** 9 + 7
+        if n > m + k:
+            ac.st(0)
+            return
+        cb = Combinatorics(m + n + 10, mod)
+        ans = cb.comb(m + n, m) - cb.comb(m + n, m + k + 1)
+        ac.st(ans % mod)
         return
