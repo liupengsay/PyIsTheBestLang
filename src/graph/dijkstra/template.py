@@ -15,18 +15,20 @@ class Dijkstra:
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
         dis = [inf] * n
-        stack = [(initial, src)]
+        stack = [initial * n + src]
         dis[src] = initial
 
         while stack:
-            d, i = heappop(stack)
+            val = heappop(stack)
+            d, i = val // n, val % n
             if dis[i] < d:
                 continue
             for j, w in dct[i]:
+                assert w >= 0
                 dj = d + w
                 if dj < dis[j]:
                     dis[j] = dj
-                    heappush(stack, (dj, j))
+                    heappush(stack, dj * n + j)
         return dis
 
     @staticmethod

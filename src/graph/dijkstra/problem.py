@@ -119,6 +119,7 @@ ABC252E（https://atcoder.jp/contests/abc252/tasks/abc252_e）shortest_path_span
 ABC245G（https://atcoder.jp/contests/abc245/tasks/abc245_g）shortest_path|second_shortest_path|dijkstra|brain_teaser|classical
 ABC237E（https://atcoder.jp/contests/abc237/tasks/abc237_e）dijkstra|negative_weight|graph_mapping|brain_teaser|classical
 ABC211D（https://atcoder.jp/contests/abc211/tasks/abc211_d）dijkstra|get_cnt_of_shortest_path
+ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_path|classical|observation
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -800,18 +801,14 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1828
         tag: several_dijkstra|shortest_path
         """
-        # 多个单源Dijkstrashortest_path
         n, p, c = ac.read_list_ints()
-        pos = [ac.read_int() - 1 for _ in range(n)]
-        dct = [dict() for _ in range(p)]
+        cnt = Counter([ac.read_int() - 1 for _ in range(n)])
+        dct = [[] for _ in range(p)]
         for _ in range(c):
-            i, j, w = ac.read_list_ints()
-            i -= 1
-            j -= 1
-            dct[i][j] = dct[j][i] = ac.min(dct[i].get(j, inf), w)
+            i, j, w = ac.read_list_ints_minus_one()
+            dct[i].append((j, w + 1))
+            dct[j].append((i, w + 1))
 
-        # 也可以从牧出发，但是最好选择较小的集合遍历可达shortest_path
-        cnt = Counter(pos)
         total = [0] * p
         for i in cnt:
             dis = Dijkstra().get_shortest_path(dct, i)
@@ -2483,4 +2480,37 @@ class Solution:
             cost = sum(dis[cur[i]][lst[cur[i + 1]]] for i in range(5))
             ans = min(ans, cost)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_204e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc204/tasks/abc204_e
+        tag: dijkstra|shortest_path|classical|observation
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            a, b, c, d = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            dct[a].append((b, c, d))
+            dct[b].append((a, c, d))
+
+        n = len(dct)
+        dis = [inf] * n
+        stack = [(0, 0)]
+        dis[0] = 0
+
+        while stack:
+            pre, i = heappop(stack)
+            if dis[i] < pre:
+                continue
+            for j, c, d in dct[i]:
+                t = max(pre, int(d ** 0.5))
+                dd = t + c + d // (t + 1)
+                if dd < dis[j]:
+                    dis[j] = dd
+                    heappush(stack, (dd, j))
+        ac.st(dis[-1] if dis[-1] < inf else -1)
         return

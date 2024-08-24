@@ -42,10 +42,12 @@ P2174（https://www.luogu.com.cn/problem/P2174）mod_reverse
 
 =====================================AtCoder=====================================
 ABC236G（https://atcoder.jp/contests/abc236/tasks/abc236_g）matrix_fast_power|matrix_fast_power_min|brain_teaser|classical
+ABC204F（https://atcoder.jp/contests/abc204/tasks/abc204_f）matrix_fast_power|bag_dp|brute_force|build_graph
 
 """
 import math
 from math import inf
+
 from src.mathmatics.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten, MatrixFastPowerMin
 from src.strings.kmp.template import KMP
 from src.utils.fast_io import FastIO
@@ -365,4 +367,67 @@ class Solution:
         ans = [max(res[i][0], initial[0]) for i in range(n)]
         ans = [x if x < inf else -1 for x in ans]
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_204f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc204/tasks/abc204_f
+        tag: matrix_fast_power|bag_dp|brute_force|build_graph
+        """
+        m, n = ac.read_list_ints()
+        mod = 998244353
+
+        grid = [[0] * (1 << m) for _ in range(1 << m)]
+        for s in range(1 << m):
+            for row in range(1 << m):
+                for col in range(1 << m):
+                    for one in range(1 << m):
+                        cur = s
+                        nex = 0
+                        flag = 1
+                        for r in range(m):
+                            if (row >> r) & 1:
+                                if cur & (1 << r) or nex & (1 << r):
+                                    flag = 0
+                                    break
+                                cur |= 1 << r
+                                nex |= 1 << r
+                        for c in range(m):
+                            if (col >> c) & 1:
+                                if c == m - 1:
+                                    flag = 0
+                                    break
+                                if cur & (1 << c) or cur & (1 << (c + 1)):
+                                    flag = 0
+                                    break
+                                cur |= 1 << c
+                                cur |= 1 << (c + 1)
+                        if cur & one:
+                            flag = 0
+                        if (cur | one) != (1 << m) - 1:
+                            flag = 0
+                        if flag:
+                            grid[nex][s] += 1
+
+        cnt = []
+        for s in range(1 << m):
+            dp = [0] * (m + 1)
+            dp[0] = 1
+            for i in range(m):
+                if (s >> i) & 1:
+                    dp[i + 1] = dp[i]
+                else:
+                    dp[i + 1] = dp[i]
+                    if i - 1 >= 0 and not (s >> (i - 1)) & 1:
+                        dp[i + 1] += dp[i - 1]
+            cnt.append(dp[-1])
+
+        original = [0] * (1 << m)
+        original[-1] = 1
+        res = MatrixFastPower().matrix_pow(grid, n, mod)
+        ans = 0
+        for i in range(1 << m):
+            ans += res[i][-1] * original[-1] * cnt[i]
+        ac.st(ans % mod)
         return
