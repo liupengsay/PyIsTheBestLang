@@ -28,7 +28,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
 ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greedy|dfs|linear_dp
-
+ABC368F（https://atcoder.jp/contests/abc368/tasks/abc368_f）nim|game_dp|xor
 
 """
 from functools import lru_cache
@@ -284,4 +284,22 @@ class Solution:
                     dp[i][j] = max(min(f1, f2), min(f3, f4))
             ans = dp[0][n - 1]
             ac.st("Alice" if ans == 2 else "Draw")
+        return
+
+    @staticmethod
+    def abc_368f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc368/tasks/abc368_f
+        tag: nim|game_dp|xor
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 5
+        dp = [1] * (ceil + 1)
+        dp[0] = dp[1] = 0
+        for num in range(2, ceil + 1):
+            for x in range(num * 2, ceil + 1, num):
+                dp[x] = max(dp[x], dp[num] + 1)
+        ans = reduce(xor, [dp[x] for x in nums])
+        ac.st("Bruno" if not ans else "Anna")
         return

@@ -50,6 +50,7 @@ ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discret
 ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contribution_method
 ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range_max|pre_max|classical
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_search|bisect_right|classical
+ABC368G（https://atcoder.jp/contests/abc368/tasks/abc368_g）point_add|range_sum|observation|data_range
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -78,7 +79,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum
+    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
@@ -1225,7 +1226,7 @@ class Solution:
             else:
                 x = lst[1]
                 ans = (tree1.range_sum(1, x) - (2 * x + 3) * tree2.range_sum(1, x) + (x + 1) * (
-                            x + 2) * tree3.range_sum(1, x)) // 2
+                        x + 2) * tree3.range_sum(1, x)) // 2
                 ans %= mod
                 ac.st(ans)
         return
@@ -1630,4 +1631,49 @@ class Solution:
                 lst[x] = ""
                 i += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_368g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc368/tasks/abc368_g
+        tag: point_add|range_sum|observation|data_range
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        tree = PointAddRangeSum(n)
+        tree.build(a)
+        lst = SortedList([i for i in range(n) if b[i] > 1] + [n])
+
+        for _ in range(ac.read_int()):
+            op, i, x = ac.read_list_ints()
+            if op == 1:
+                tree.point_add(i - 1, x - a[i - 1])
+                a[i - 1] = x
+            elif op == 2:
+                if b[i - 1] != 1:
+                    lst.discard(i - 1)
+                b[i - 1] = x
+                if b[i - 1] != 1:
+                    lst.add(i - 1)
+            else:
+                v = 0
+                i -= 1
+                x -= 1
+                j = lst.bisect_left(i)
+                while i <= x:
+                    while lst[j] < i:
+                        j += 1
+                    if lst[j] == i:
+                        v = max(v + a[lst[j]], v * b[lst[j]])
+                        i += 1
+                    elif lst[j] <= x:
+                        v += tree.range_sum(i, lst[j] - 1)
+                        v = max(v + a[lst[j]], v * b[lst[j]])
+                        i = lst[j] + 1
+                    else:
+                        v += tree.range_sum(i, x)
+                        i = x + 1
+                ac.st(v)
         return
