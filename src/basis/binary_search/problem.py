@@ -24,7 +24,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
 100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
-
+3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointer|classical
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
@@ -113,6 +113,7 @@ ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brut
 ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
 ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greedy|implemention
 ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointer|binary_search|sort|brain_teaser
+ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -139,6 +140,7 @@ from itertools import accumulate, combinations
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.high_precision.template import FloatToFrac
 from src.mathmatics.number_theory.template import NumFactor
@@ -2026,4 +2028,27 @@ class Solution:
         ceil = 10 ** 9 + 1
         ans = BinarySearch().find_int_left(1, ceil, check)
         ac.st(ans if ans < ceil else -1)
+        return
+
+    @staticmethod
+    def abc_203d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc203/tasks/abc203_d
+        tag: binary_search|prefix_sum
+        """
+        n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        cnt = (k * k) // 2 + 1
+
+        def check(x):
+            grid = [[num <= x for num in lls] for lls in nums]
+            pre = PreFixSumMatrix(grid)
+            for i in range(n - k + 1):
+                for j in range(n - k + 1):
+                    if pre.query(i, j, i + k - 1, j + k - 1) >= k * k - cnt + 1:
+                        return True
+            return False
+
+        ans = BinarySearch().find_int_left(0, 10 ** 9, check)
+        ac.st(ans)
         return
