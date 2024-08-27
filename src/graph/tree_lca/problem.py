@@ -32,6 +32,7 @@ P3976（https://www.luogu.com.cn/problem/P3976）range_add|range_max_gain|range_
 ====================================AtCoder=====================================
 ABC294G（https://atcoder.jp/contests/abc294/tasks/abc294_g）segment_tree|point_set|range_sum|heavy_chain|tree_lca
 ABC209D（https://atcoder.jp/contests/abc209/tasks/abc209_d）tree_ancestor
+ABC202E（https://atcoder.jp/contests/abc202/tasks/abc202_e）heuristic_merge|offline_query|classical
 
 =====================================AcWing=====================================
 4202（https://www.acwing.com/problem/content/4205/）bit_operation|build_graph|tree_lca|tree_dis
@@ -41,12 +42,10 @@ ABC209D（https://atcoder.jp/contests/abc209/tasks/abc209_d）tree_ancestor
 
 
 """
-import math
 from typing import List
 
 from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet, RangeAddRangeMaxGainMinGain
 from src.data_structure.tree_array.template import RangeAddRangeSum
-from src.graph.tree_diff_array.template import TreeDiffArray
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
     UnionFindGetLCA, TreeAncestorMaxSub
 from src.utils.fast_io import FastIO, inf
@@ -516,7 +515,7 @@ class Solution:
                 dct[i].append(j)
                 dct[j].append(i)
 
-            nums = [x//2 for x in ac.read_list_ints()]
+            nums = [x // 2 for x in ac.read_list_ints()]
 
             tree = TreeAncestor(dct, 0)
             for _ in range(q):
@@ -587,7 +586,7 @@ class Solution:
             dct[j].append(i)
         heavy = HeavyChain(dct, 0)
         tree = RangeSetPointGet(n, -1)
-        tree.build([0]*n)
+        tree.build([0] * n)
         for _ in range(ac.read_int()):
             op, v = ac.read_list_ints_minus_one()
             if op == 0:
@@ -636,7 +635,6 @@ class Solution:
                 low = -floor.get_max_con_sum(u, v)
                 ac.st("YES" if low <= k <= high or k == 0 else "NO")
         return
-
 
     @staticmethod
     def cf_1304e(ac=FastIO()):
@@ -710,4 +708,51 @@ class Solution:
                 else:
                     tree.range_add(y, x, v)
             ac.st(max(ans[2], 0))
+        return
+
+    @staticmethod
+    def abc_202e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc202/tasks/abc202_e
+        tag: heuristic_merge|offline_query|classical
+        """
+        n = ac.read_int()
+        p = [-1] + ac.read_list_ints_minus_one()
+        dct = [[] for _ in range(n)]
+        for i in range(1, n):
+            dct[p[i]].append(i)
+
+        q = ac.read_int()
+        ans = [-1] * q
+        sub = [dict() for _ in range(n)]
+        node = list(range(n))
+        queries = [[] for _ in range(n)]
+        for i in range(q):
+            u, d = ac.read_list_ints()
+            u -= 1
+            queries[u].append((d, i))
+        depth = [0] * n
+        stack = [0]
+        while stack:
+            x = stack.pop()
+            if x >= 0:
+                stack.append(~x)
+                for y in dct[x]:
+                    depth[y] = depth[x] + 1
+                    stack.append(y)
+            else:
+                x = ~x
+                cur = node[x]
+                sub[cur][depth[x]] = 1
+                for y in dct[x]:
+                    nex = node[y]
+                    if len(sub[cur]) < len(sub[nex]):
+                        cur, nex = nex, cur
+                    for kk, vv in sub[nex].items():
+                        sub[cur][kk] = sub[cur].get(kk, 0) + vv
+                node[x] = cur
+                for dd, ii in queries[x]:
+                    ans[ii] = sub[cur].get(dd, 0)
+        for a in ans:
+            ac.st(a)
         return
