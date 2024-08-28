@@ -29,6 +29,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
 ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greedy|dfs|linear_dp
 ABC368F（https://atcoder.jp/contests/abc368/tasks/abc368_f）nim|game_dp|xor
+ABC201D（https://atcoder.jp/contests/abc201/tasks/abc201_d）game_dp|classical
 
 """
 from functools import lru_cache
