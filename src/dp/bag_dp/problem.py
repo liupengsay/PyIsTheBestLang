@@ -115,6 +115,8 @@ ABC222E（https://atcoder.jp/contests/abc222/tasks/abc222_e）bfs|bag_dp
 ABC219D（https://atcoder.jp/contests/abc219/tasks/abc219_d）bag_dp|classical
 ABC216F（https://atcoder.jp/contests/abc216/tasks/abc216_f）matrix_dp|bag_dp
 ABC204D（https://atcoder.jp/contests/abc204/tasks/abc204_d）bag_dp
+ABC200E（https://atcoder.jp/contests/abc200/tasks/abc200_e）bag_dp|counter|prefix_sum
+ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_plan
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -1844,4 +1846,55 @@ class Solution:
             ans = dp[-1] - 1
             ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_200e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc200/tasks/abc200_e
+        tag: bag_dp|counter|prefix_sum
+        """
+        n, k = ac.read_list_ints()
+        dp = [0] * (3 * n + 1)
+        dp[0] = 0
+        for i in range(1, n + 1):
+            dp[i] = 1
+
+        ndp = [0] * (3 * n + 1)
+        pre = [0] * (3 * n + 1)
+        for i in range(3 * n):
+            pre[i + 1] = pre[i] + dp[i]
+        for x in range(3 * n + 1):
+            ndp[x] = pre[x] - pre[max(0, x - n)]
+        dp = ndp[:]
+        dp2 = ndp[:]
+
+        ndp = [0] * (3 * n + 1)
+        pre = [0] * (3 * n + 1)
+        for i in range(3 * n):
+            pre[i + 1] = pre[i] + dp[i]
+        for x in range(3 * n + 1):
+            ndp[x] = pre[x] - pre[max(0, x - n)]
+        dp = ndp[:]
+
+        for x in range(3 * n + 1):
+            if k > dp[x]:
+                k -= dp[x]
+            else:
+                ans = []
+                for y in range(1, n + 1):
+                    if k > dp2[x - y]:
+                        k -= dp2[x - y]
+                    else:
+                        ans.append(y)
+                        for z in range(1, n + 1):
+                            if x - y - z > n:
+                                continue
+                            if k > 1:
+                                k -= 1
+                            else:
+                                ans.append(z)
+                                ans.append(x - y - z)
+                                ac.lst(ans)
+                                return
         return
