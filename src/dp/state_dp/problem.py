@@ -62,6 +62,8 @@ ABC232F（https://atcoder.jp/contests/abc232/tasks/abc232_f）state_dp|brain_tea
 ABC352F（https://atcoder.jp/contests/abc352/tasks/abc352_f）union_find|brute_force|state_dp|classical
 ABC354E（https://atcoder.jp/contests/abc354/tasks/abc354_e）state_dp
 ABC215E（https://atcoder.jp/contests/abc215/tasks/abc215_e）state_dp
+ABC199E（https://atcoder.jp/contests/abc199/tasks/abc199_e）state_dp
+ABC199D（https://atcoder.jp/contests/abc199/tasks/abc199_d）state_dp
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1265,3 +1267,34 @@ class Solution:
 
         ans.append(pre)
         return ans
+
+    @staticmethod
+    def abc_199d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc199/tasks/abc199_d
+        tag: state_dp
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            if i > j:
+                i, j = j, i
+            dct[i].append(j)
+
+        @lru_cache(None)
+        def dfs(x, post):
+            if x == n:
+                return 1
+            res = 0
+            for state in range(3):
+                lst = list(post)
+                if lst[state]:
+                    for y in dct[x]:
+                        lst[(y - x) * 3 + state] = 0
+                    res += dfs(x + 1, tuple(lst[3:]))
+            return res
+
+        ans = dfs(0, tuple([1] * 3 * n))
+        ac.st(ans)
+        return

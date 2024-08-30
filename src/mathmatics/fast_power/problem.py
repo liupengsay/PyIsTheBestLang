@@ -43,6 +43,7 @@ P2174（https://www.luogu.com.cn/problem/P2174）mod_reverse
 =====================================AtCoder=====================================
 ABC236G（https://atcoder.jp/contests/abc236/tasks/abc236_g）matrix_fast_power|matrix_fast_power_min|brain_teaser|classical
 ABC204F（https://atcoder.jp/contests/abc204/tasks/abc204_f）matrix_fast_power|bag_dp|brute_force|build_graph
+ABC199F（https://atcoder.jp/contests/abc199/tasks/abc199_f）expectation|matrix_fast_power|classical
 
 """
 import math
@@ -430,4 +431,32 @@ class Solution:
         for i in range(1 << m):
             ans += res[i][-1] * original[-1] * cnt[i]
         ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def abc_199f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc199/tasks/abc199_f
+        tag: expectation|matrix_fast_power|classical
+        """
+        n, m, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        mod = 10 ** 9 + 7
+        p = pow(2 * m, -1, mod)
+
+        grid = [[0] * n for _ in range(n)]
+        for x in range(n):
+            grid[x][x] = 1
+            for y in dct[x]:
+                grid[x][y] = p
+            grid[x][x] -= len(dct[x]) * p
+            grid[x][x] %= mod
+        res = MatrixFastPower().matrix_pow(grid, k, mod)
+        for i in range(n):
+            ac.st(sum(res[i][j] * nums[j] for j in range(n)) % mod)
         return
