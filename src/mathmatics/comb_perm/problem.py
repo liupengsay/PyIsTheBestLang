@@ -16,6 +16,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
 1929（https://leetcode.cn/problems/distribute-candies-among-children-ii）comb|inclusion_exclusion|partition_method
 100305（https://leetcode.cn/problems/find-the-n-th-value-after-k-seconds/）yanghui_triangle
+
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
 P1287（https://www.luogu.com.cn/problem/P1287）second_kind_stirling_number|factorial|dp

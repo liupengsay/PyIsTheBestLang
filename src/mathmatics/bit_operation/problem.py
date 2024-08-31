@@ -77,6 +77,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
 1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
 1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointer
+1557C（https://codeforces.com/problemset/problem/1557/C）bit_operation|brain_teaser|brute_force|observation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -109,6 +110,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
+from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1260,3 +1262,35 @@ class Solution:
         for a, b, mod in queries:
             ans.append(pow(2, check(b + 1) - check(a) if a else check(b + 1), mod))
         return ans
+
+    @staticmethod
+    def cf_1557c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1557/C
+        tag: bit_operation|brain_teaser|brute_force|observation
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(2 * 10 ** 5 + 10, mod)
+        p = [0] * (2 * 10 ** 5 + 1)
+        p[0] = 1
+        for i in range(1, 2 * 10 ** 5 + 1):
+            p[i] = p[i - 1] * 2 % mod
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            ans = 0
+            pre = 1
+            even = sum(cb.comb(n, x) for x in range(0, n, 2) if x < n)
+
+            for i in range(k - 1, -1, -1):
+                if n % 2 == 0: # >
+                    ans += pre * pow(p[i], n, mod)
+                if n % 2: # =
+                    pre *= (even + 1)
+                else:
+                    pre *= even
+                pre %= mod
+                ans %= mod
+            ans += pre
+            ans %= mod
+            ac.st(ans)
+        return

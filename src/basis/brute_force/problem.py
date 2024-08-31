@@ -43,6 +43,7 @@ Description：brute force according to the data range
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
 3102（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
+100406（https://leetcode.com/problems/find-the-count-of-good-integers/）brute_force|palindrome_num
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -200,7 +201,7 @@ ABC366E（https://atcoder.jp/contests/abc366/tasks/abc366_e）brute_force|prefix
 """
 import bisect
 import math
-from collections import defaultdict, deque
+from collections import defaultdict, deque, Counter
 from functools import reduce, lru_cache
 from itertools import combinations, permutations
 from operator import mul, or_, and_
@@ -1869,3 +1870,38 @@ class Solution:
                 ans += 1
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100406(n: int, k: int) -> int:
+
+        """
+        url: https://leetcode.com/problems/find-the-count-of-good-integers/
+        tag: brute_force|palindrome_num
+        """
+        length = n // 2 + n % 2
+        ans = 0
+        dct = set()
+        for x in range(10 ** (length - 1), 10 ** length):
+            s = str(x)
+            if n % 2:
+                s = s + s[:-1][::-1]
+            else:
+                s += s[::-1]
+
+            if int(s) % k == 0:
+                sk = "".join(sorted(s))
+                if sk in dct:
+                    continue
+                dct.add(sk)
+                cnt = Counter(sk)
+                pre = n
+                cur = 1
+                if cnt["0"]:
+                    cur = math.comb(pre - 1, cnt["0"])
+                    pre -= cnt["0"]
+                for w in cnt:
+                    if w != "0":
+                        cur = cur * math.comb(pre, cnt[w])
+                        pre -= cnt[w]
+                ans += cur
+        return ans

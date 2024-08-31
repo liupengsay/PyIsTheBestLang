@@ -10,6 +10,7 @@ Description：reverse_order_pair
 45（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）custom_sort|minimum
 2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort|greedy
 1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
+100391（https://leetcode.cn/problems/minimum-amount-of-damage-dealt-to-bob/）greedy|custom_sort|classical
 
 =====================================LuoGu======================================
 P2310（https://www.luogu.com.cn/problem/P2310）sorting
@@ -76,6 +77,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/115/
         tag: custom_sort
         """
+
         def compare_(x, y):
             if compare(x, y):
                 return -1
@@ -111,6 +113,7 @@ class Solution:
         url: https://leetcode.cn/problems/largest-number/
         tag: custom_sort|maximum|classical
         """
+
         def compare(a, b):
             if int(a + b) > int(b + a):
                 return -1
@@ -157,6 +160,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
         tag: custom_sort|greedy|classical
         """
+
         def compare(aa, bb):
             a1, m1 = aa
             a2, m2 = bb
@@ -183,6 +187,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-money-required-before-transactions/
         tag: custom_sort|greedy|classical
         """
+
         def check(it):
             cos, cash = it[:]
             if cos > cash:
@@ -279,3 +284,33 @@ class Solution:
             dp = ndp[:]
         ac.st(dp[-1])
         return
+
+    @staticmethod
+    def lc_100391(power: int, damage: List[int], health: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-amount-of-damage-dealt-to-bob/
+        tag: greedy|custom_sort|classical
+        """
+        n = len(damage)
+
+        def compare(i, j):
+            hi, di = health[i], damage[i]
+            hj, dj = health[j], damage[j]
+            s1 = dj * t[i]
+            s2 = di * t[j]
+            if s1 < s2:
+                return -1
+            if s1 > s2:
+                return 1
+            return 0
+
+        t = [(h + power - 1) // power for h in health]
+        ind = list(range(n))
+        ind.sort(key=cmp_to_key(compare))
+
+        ans = 0
+        tot = sum(damage)
+        for k in ind:
+            ans += tot * ((health[k] + power - 1) // power)
+            tot -= damage[k]
+        return ans
