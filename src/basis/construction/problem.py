@@ -94,6 +94,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1304D（https://codeforces.com/problemset/problem/1304/D）construction
 2001C（https://codeforces.com/contest/2001/problem/C）construction|union_find|observation
 1630A（https://codeforces.com/problemset/problem/1630/A）construction|bit_operation
+1965B（https://codeforces.com/problemset/problem/1965/B）construction
+1991D（https://codeforces.com/problemset/problem/1991/D）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

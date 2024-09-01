@@ -285,6 +285,39 @@ class PointAscendPreMax:
             i += self._lowest_bit(i)
         return
 
+class PointAscendPreMaxIndex:
+    def __init__(self, n, initial=-inf):
+        self.n = n
+        self.initial = initial
+        self.t = [initial] * (n + 1)
+        self.ind = [-1] * (n + 1)
+
+    @staticmethod
+    def _lowest_bit(i):
+        return i & (-i)
+
+    def pre_max(self, i):
+        assert 0 <= i <= self.n - 1  # max(nums[:i+1])
+        i += 1
+        mx = self.initial
+        res = -1
+        while i:
+            if self.t[i] > mx:
+                mx = self.t[i]
+                res = self.ind[i]
+            i -= self._lowest_bit(i)
+        return mx, res
+
+    def point_ascend(self, i, mx, index):
+        assert 0 <= i <= self.n - 1
+        i += 1
+        while i < len(self.t):
+            if self.t[i] < mx:
+                self.t[i] = mx
+                self.ind[i] = index
+            i += self._lowest_bit(i)
+        return
+
 
 class PointAscendPostMax:
     def __init__(self, n, initial=-inf):

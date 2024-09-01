@@ -115,6 +115,7 @@ ABC223F（https://atcoder.jp/contests/abc223/tasks/abc223_f）segment_tree|point
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_find_left|union_find_right|segment_tree|sorted_list
 ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range_add|range_mul_sum
 ABC360F（https://atcoder.jp/contests/abc360/tasks/abc360_f）range_add|scan_line|range_max|range_max_bisect_left
+ABC369G（https://atcoder.jp/contests/abc369/tasks/abc369_g）dfs_order|range_add|range_max|implemention
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -4052,4 +4053,77 @@ class Solution:
                     tree_min.point_set(i, inf)
             ac.st(len(ans) - 1)
             ac.lst([nums[x] for x in ans[1:]])
+        return
+
+    @staticmethod
+    def abc_369g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc369/tasks/abc369_g
+        tag: dfs_order|range_add|range_max|implemention
+        """
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j, ll = ac.read_list_ints_minus_one()
+            ll += 1
+            dct[i].append(ll * n + j)
+            dct[j].append(ll * n + i)
+
+        order = 0
+        # index is original node value is dfs order
+        start = [-1] * n
+        # index is original node value is the maximum subtree dfs order
+        end = [-1] * n
+        # index is original node and value is its parent
+        parent = [-1] * n
+        stack = [(0, -1)]
+        # depth of every original node
+        depth = [0] * n
+        # index is dfs order and value is original node
+        order_to_node = [-1] * n
+        while stack:
+            i, fa = stack.pop()
+            if i >= 0:
+                start[i] = order
+                order_to_node[order] = i
+                end[i] = order
+                order += 1
+                stack.append((~i, fa))
+                for val in dct[i]:
+                    j, w = val % n, val // n
+                    # the order of son nodes can be assigned for lexicographical order
+                    if j != fa:
+                        parent[j] = i
+                        depth[j] = depth[i] + w
+                        stack.append((j, i))
+            else:
+                i = ~i
+                if parent[i] != -1:
+                    end[parent[i]] = end[i]
+
+        tree = RangeAddRangeMaxIndex(n)
+        tree.build([depth[x] for x in order_to_node])
+        ans = 0
+        visit = [0] * n
+        for _ in range(n):
+            ceil = tree.ceil[1]
+            i = order_to_node[tree.index[1]]
+            if ceil <= 0:
+                ac.st(ans)
+                continue
+            visit[i] = 1
+            path = [i]
+            while parent[i] != -1 and not visit[parent[i]]:
+                visit[parent[i]] = 1
+                i = parent[i]
+                path.append(i)
+            path.reverse()
+            for i in path:
+                if parent[i] != -1:
+                    pre = depth[i] - depth[parent[i]]
+                else:
+                    pre = 0
+                tree.range_add(start[i], end[i], -pre)
+            ans += ceil * 2
+            ac.st(ans)
         return

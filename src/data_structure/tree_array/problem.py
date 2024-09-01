@@ -51,6 +51,7 @@ ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contrib
 ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range_max|pre_max|classical
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_search|bisect_right|classical
 ABC368G（https://atcoder.jp/contests/abc368/tasks/abc368_g）point_add|range_sum|observation|data_range
+ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_ascend|pre_max_index|construction|specific_plan
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -79,7 +80,7 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin
+    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
@@ -1676,4 +1677,40 @@ class Solution:
                         v += tree.range_sum(i, x)
                         i = x + 1
                 ac.st(v)
+        return
+
+    @staticmethod
+    def abc_369f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc369/tasks/abc369_f
+        tag: tree_array|point_ascend|pre_max_index|construction|specific_plan
+        """
+        m, n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(k)]
+
+        tree = PointAscendPreMaxIndex(2 * 10 ** 5, 0)
+        ind = list(range(k))
+        ind.sort(key=lambda it: nums[it])
+        dct = dict()
+        for i in ind:
+            x, y = nums[i]
+            pre, ind = tree.pre_max(y)
+            dct[i] = ind
+            tree.point_ascend(y, pre + 1, i)
+
+        ans1, ans2 = tree.pre_max(2 * 10 ** 5 - 1)
+        path = [ans2]
+        while path[-1] != -1:
+            path.append(dct[path[-1]])
+        path.pop()
+        path.reverse()
+        path = [(0, 0)] + [nums[x] for x in path] + [(m - 1, n - 1)]
+        lst = []
+        for i in range(1, len(path)):
+            a, b = path[i - 1]
+            c, d = path[i]
+            lst.append("R" * (d - b))
+            lst.append("D" * (c - a))
+        ac.st(ans1)
+        ac.st("".join(lst))
         return

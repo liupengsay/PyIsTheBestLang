@@ -92,6 +92,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1478D（https://codeforces.com/problemset/problem/1478/D）math|peishu_theorem
 1228C（https://codeforces.com/problemset/problem/1228/C）math|num_factor|contribution_method
 1601C（https://codeforces.com/contest/1061/problem/C）get_all_factor|classical
+1542C（https://codeforces.com/problemset/problem/1542/C）math|inclusion_exclusion|brain_teaser|prefix_lcm
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1785,4 +1786,24 @@ class Solution:
                     cnt[num] -= cnt[x]
         ans = sum(cnt) * 2 - rest * 2
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1542c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1542/C
+        tag: math|inclusion_exclusion|brain_teaser|prefix_lcm
+        """
+
+        pre = [1] * 42
+        for i in range(2, 42):
+            pre[i] = math.lcm(pre[i - 1], i)
+        assert pre[-1] >= 10 ** 16
+        mod = 10 ** 9 + 7
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = 0
+            for x in range(1, 41):
+                ans += (x + 1) * (n // pre[x] - n // pre[x + 1])
+            ac.st(ans % mod)
         return

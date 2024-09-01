@@ -38,12 +38,15 @@ ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|
 ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
 ABC243E（https://atcoder.jp/contests/abc243/tasks/abc243_e）get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
 ABC208D（https://atcoder.jp/contests/abc208/tasks/abc208_d）floyd|shortest_path|classical
+ABC369E（https://atcoder.jp/contests/abc369/tasks/abc369_e）floyd|permutation|brute_force
 
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
 
 """
+from collections import defaultdict
 from heapq import heappop, heappush
+from itertools import permutations
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
@@ -741,4 +744,46 @@ class Solution:
                 for j in range(i + 1, n):
                     dis[j * n + i] = dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_369e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc369/tasks/abc369_e
+        tag: floyd|permutation|brute_force
+        """
+        n, m = ac.read_list_ints()
+        dp = [[inf] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = 0
+        edges = []
+        for _ in range(m):
+            i, j, t = ac.read_list_ints_minus_one()
+            t += 1
+            dp[i][j] = dp[j][i] = min(dp[i][j], t)
+            edges.append((i, j, t))
+
+        for k in range(n):
+            for i in range(n):
+                for j in range(i, n):
+                    dp[i][j] = dp[j][i] = min(dp[i][j], dp[i][k] + dp[k][j])
+
+        for _ in range(ac.read_int()):
+            k = ac.read_int()
+            lst = ac.read_list_ints_minus_one()
+            ans = inf
+            cost = sum(edges[x][-1] for x in lst)
+
+            for item in permutations(lst, k):
+                pre = defaultdict(lambda: inf)
+                pre[0] = cost
+                for x in item:
+                    cur = defaultdict(lambda: inf)
+                    for p in pre:
+                        cur[edges[x][0]] = min(cur[edges[x][0]], pre[p] + dp[p][edges[x][1]])
+                        cur[edges[x][1]] = min(cur[edges[x][1]], pre[p] + dp[p][edges[x][0]])
+                    pre = cur
+
+                ans = min(ans, min(pre[p] + dp[p][-1] for p in pre))
+            ac.st(ans)
         return

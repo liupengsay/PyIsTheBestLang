@@ -12,6 +12,7 @@ Description：prefix_sum|interval_dp|preprocess_dp|memory_search
 1690（https://leetcode.cn/problems/stone-game-vii/description/）interval_dp
 1312（https://leetcode.cn/problems/minimum-insertion-steps-to-make-a-string-palindrome/）interval_dp|longest_palindrome_subsequence
 3040（https://leetcode.com/contest/biweekly-contest-124/problems/maximum-number-of-operations-with-the-same-score-ii/）interval_dp|brute_force
+3277（https://leetcode.cn/problems/maximum-xor-score-subarray-queries/）interval_dp|brain_teaser|divide_and_conquer|reverse_thinking
 
 =====================================LuoGu======================================
 P1521（https://www.luogu.com.cn/problem/P1521）merge_sort|multiplication_method|tree_array
@@ -588,3 +589,24 @@ class Solution:
         ans = max(dp[i][i + n - 1] for i in range(n))
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3277(nums: List[int], queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/maximum-xor-score-subarray-queries/
+        tag: interval_dp|brain_teaser|divide_and_conquer|reverse_thinking
+        """
+        n = len(nums)
+        dp = [[0] * n for _ in range(n)]
+        for i in range(n):
+            dp[i][i] = nums[i]
+        for ll in range(1, n):
+            for i in range(n - ll):
+                j = i + ll
+                dp[i][j] = dp[i][j - 1] ^ dp[i + 1][j]
+        for ll in range(1, n):
+            for i in range(n - ll):
+                j = i + ll
+                dp[i][j] = max(dp[i][j], max(dp[i][j - 1], dp[i + 1][j]))
+
+        return [dp[ll][rr] for ll, rr in queries]
