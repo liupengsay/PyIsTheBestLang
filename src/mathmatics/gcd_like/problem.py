@@ -18,6 +18,7 @@ ABC340F（https://atcoder.jp/contests/abc340/tasks/abc340_f）ex_gcd|equation|ma
 
 =====================================CodeForces======================================
 1152C（https://codeforces.com/problemset/problem/1152/C）gcd_like|observation|brute_force
+1260C（https://codeforces.com/problemset/problem/1260/C）gcd_like|brain_teaser|math|partition_method
 
 =====================================AcWing=====================================
 4299（https://www.acwing.com/problem/content/4299/）single_equation|ex_gcd

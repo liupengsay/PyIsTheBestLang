@@ -20,6 +20,7 @@ P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_ro
 
 ===================================CodeForces===================================
 1154E（https://codeforces.com/contest/1154/problem/E）double_linked_list|union_find_left|union_find_right
+1922D（https://codeforces.com/problemset/problem/1922/D）double_linked_list|bfs|classical|brain_teaser|implemention
 
 ====================================AtCoder=====================================
 ABC344E（https://atcoder.jp/contests/abc344/tasks/abc344_e）linked_list
@@ -544,4 +545,39 @@ class Solution:
         while ans[-1] != n + 2:
             ans.append(post[ans[-1]])
         ac.lst(ans[1:-1])
+        return
+
+    @staticmethod
+    def cf_1922d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1922/D
+        tag: double_linked_list|bfs|classical|brain_teaser|implemention
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            n += 1
+            a = [0] + ac.read_list_ints()
+            d = [inf] + ac.read_list_ints()
+            pre = list(range(-1, n - 1))
+            post = list(range(1, n + 1))
+            pre[0] = post[n - 1] = 0
+            ans = []
+            f = [0] * n
+            stack = set(range(1, n))
+            for _ in range(n - 1):
+                y = set()
+                for x in stack:
+                    if a[pre[x]] + a[post[x]] > d[x]:
+                        y.add(x)
+                        f[x] = 1
+                ans.append(len(y))
+                stack = set()
+                for u in y:
+                    pre[post[u]] = pre[u]
+                    post[pre[u]] = post[u]
+                    if not f[pre[u]]:
+                        stack.add(pre[u])
+                    if not f[post[u]]:
+                        stack.add(post[u])
+            ac.lst(ans)
         return

@@ -143,6 +143,8 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 505C（https://codeforces.com/contest/505/problem/C）data_range|limited_operation|matrix_dp|classical|array
 570E（https://codeforces.com/problemset/problem/570/E）matrix_dp|implemention
 1987D（https://codeforces.com/problemset/problem/1987/D）matrix_dp|brain_teaser|game_dp
+339C（https://codeforces.com/problemset/problem/339/C）matrix_dp|specific_plan
+598E（https://codeforces.com/problemset/problem/598/E）matrix_dp|classical
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3448,4 +3450,92 @@ class Solution:
                 else:
                     dp[i & 1][j] = (dp[(i + 1) & 1][j + 1] + dp[(i + 1) & 1][j - 1]) % mod
         ac.st(dp[n & 1][0])
+        return
+
+    @staticmethod
+    def cf_339c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/339/C
+        tag: matrix_dp|specific_plan
+        """
+        s = ac.read_str()
+        lst = [i + 1 for i in range(10) if s[i] == "1"]
+        m = ac.read_int()
+        dp = [[[0] * 11 for _ in range(23)] for _ in range(m)]
+        pre = [[[(-1, -1) for _ in range(11)] for _ in range(23)] for _ in range(m)]
+        last = (-1, -1)
+        for x in lst:
+            dp[0][x][x] = 1
+            last = (x, x)
+        if last == (-1, -1):
+            ac.st("NO")
+            return
+        for i in range(1, m):
+            last = (-1, -1)
+            if i % 2 == 0:
+                for j in lst:
+                    for x in range(-10, 0, 1):
+                        for y in lst:
+                            if 1 <= (x + y) <= 10 and y != j and dp[i - 1][x][j]:
+                                dp[i][x + y][y] = 1
+                                pre[i][x + y][y] = (x, j)
+                                last = (x + y, y)
+            else:
+                for j in lst:
+                    for x in range(1, 11):
+                        for y in lst:
+                            if -10 <= (x - y) <= -1 and y != j and dp[i - 1][x][j]:
+                                dp[i][x - y][y] = 1
+                                pre[i][x - y][y] = (x, j)
+                                last = (x - y, y)
+        if last == (-1, -1):
+            ac.st("NO")
+        else:
+            ac.st("YES")
+            ans = []
+            ind = m - 1
+            while last != (-1, -1):
+                ans.append(last[-1])
+                last = pre[ind][last[0]][last[1]]
+                ind -= 1
+            ans.reverse()
+            ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_598e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/598/E
+        tag: matrix_dp|classical
+        """
+
+        m = n = 30
+        k = 50
+        dp = [[[inf] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
+        for i in range(m + 1):
+            for j in range(n + 1):
+                for p in range(k + 1):
+                    if p == 0:
+                        dp[i][j][p] = 0
+                    if i * j < p:
+                        continue
+                    if i * j == p:
+                        dp[i][j][p] = 0
+
+                    res = inf
+                    for x in range(1, i):
+                        for k1 in range(max(0, p - (i - x) * j), min(p, x * j) + 1):
+                            cur = dp[x][j][k1] + dp[i - x][j][p - k1] + j * j
+                            res = min(res, cur)
+                    for y in range(1, j):
+                        for k1 in range(max(0, p - (j - y) * i), min(p, y * i) + 1):
+                            cur = dp[i][y][k1] + dp[i][j - y][p - k1] + i * i
+                            res = min(res, cur)
+
+                    dp[i][j][p] = min(dp[i][j][p], res)
+
+        for _ in range(ac.read_int()):
+            mm, nn, kk = ac.read_list_ints()
+            ans = dp[mm][nn][kk]
+            ac.st(ans)
         return
