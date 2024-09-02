@@ -59,6 +59,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greedy|implemention
 1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greedy|classical
 1919D（https://codeforces.com/problemset/problem/1919/D）brain_teaser|monotonic_stack|construction
+1299C（https://codeforces.com/problemset/problem/1299/C）monotonic_stack|convex|brain_teaser|greedy|construction
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
@@ -1082,4 +1083,30 @@ class Solution:
                     break
             else:
                 ac.st("YES")
+        return
+
+    @staticmethod
+    def cf_1299c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1299/C
+        tag: monotonic_stack|convex|brain_teaser|greedy|construction
+        """
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        stack = [(a[0], 0, 0)]
+        for i in range(1, n):
+            stack.append((a[i], i, i))
+            while len(stack) >= 2:
+                s1, l1, r1 = stack[-2]
+                s2, l2, r2 = stack[-1]
+                if s1 * (r2 - l2 + 1) >= s2 * (r1 - l1 + 1):
+                    stack.pop()
+                    stack.pop()
+                    stack.append((s1 + s2, l1, r2))
+                else:
+                    break
+        for ss, ll, rr in stack:
+            ans = ss / (rr - ll + 1)
+            for _ in range(rr - ll + 1):
+                ac.st(ans)
         return

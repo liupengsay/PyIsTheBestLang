@@ -99,6 +99,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1264B（https://codeforces.com/problemset/problem/1264/B）construction
 1603B（https://codeforces.com/problemset/problem/1603/B）construction
 1848C（https://codeforces.com/problemset/problem/1848/C）construction
+735D（https://codeforces.com/problemset/problem/735/D）construction|number_theory
+1616D（https://codeforces.com/problemset/problem/1616/D）construction|observation|brain_teaser|average_trick
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
