@@ -101,6 +101,9 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1848C（https://codeforces.com/problemset/problem/1848/C）construction
 735D（https://codeforces.com/problemset/problem/735/D）construction|number_theory
 1616D（https://codeforces.com/problemset/problem/1616/D）construction|observation|brain_teaser|average_trick
+1545A（https://codeforces.com/problemset/problem/1545/A）construction|observation
+1635D（https://codeforces.com/contest/1635/problem/D）fibonacci|brain_teaser|construction
+552C（https://codeforces.com/problemset/problem/552/C）construction|math|divide_and_conquer
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -1003,4 +1006,48 @@ class Solution:
             x = -heappop(stack) % n
             ac.lst([x + 1, root + 1])
         return
-    
+
+    @staticmethod
+    def cf_1635d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/1635/problem/D
+        tag: fibonacci|brain_teaser|construction
+        """
+        n, p = ac.read_list_ints()
+        mod = 10 ** 9 + 7
+        ceil = 2 * 10 ** 5 + 10
+        f = [0] * (ceil + 1)
+        pre = [0] * (ceil + 1)
+        f[1] = f[2] = 1
+        pre[1] = 1
+        pre[2] = 2
+        for i in range(3, ceil + 1):
+            f[i] = (f[i - 1] + f[i - 2]) % mod
+            pre[i] = (pre[i - 1] + f[i]) % mod
+
+        def check(x):
+            while x:
+                if x in visit:
+                    return False
+                if x & 1:
+                    x >>= 1
+                elif x & 2:
+                    break
+                else:
+                    x >>= 2
+            return True
+
+        nums = ac.read_list_ints()
+        nums.sort()
+        visit = set()
+        for num in nums:
+            if check(num):
+                visit.add(num)
+        ans = 0
+        for num in visit:
+            b = num.bit_length()
+            if p - b + 1 > 0:
+                ans += pre[p - b + 1]
+                ans %= mod
+        ac.st(ans)
+        return

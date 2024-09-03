@@ -93,6 +93,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1228C（https://codeforces.com/problemset/problem/1228/C）math|num_factor|contribution_method
 1601C（https://codeforces.com/contest/1061/problem/C）get_all_factor|classical
 1542C（https://codeforces.com/problemset/problem/1542/C）math|inclusion_exclusion|brain_teaser|prefix_lcm
+1614D2（https://codeforces.com/problemset/problem/1614/D2）euler_series|number_theory|linear_dp|classical|factor_cnt
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1806,4 +1807,30 @@ class Solution:
             for x in range(1, 41):
                 ans += (x + 1) * (n // pre[x] - n // pre[x + 1])
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cf_1614d2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1614/D2
+        tag: euler_series|number_theory|linear_dp|classical|factor_cnt
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 2 * 10 ** 7
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            cnt[num] += 1
+        factor = [0] * (ceil + 1)
+        factor[1] = n
+        for x in range(2, ceil + 1):
+            for y in range(x, ceil + 1, x):
+                factor[x] += cnt[y]
+
+        dp = [0] * (ceil + 1)
+        for x in range(ceil, 0, -1):
+            dp[x] = x * factor[x]
+            for y in range(x * 2, ceil + 1, x):
+                dp[x] = max(dp[x], dp[y] + (factor[x] - factor[y]) * x)
+        ac.st(dp[1])
         return

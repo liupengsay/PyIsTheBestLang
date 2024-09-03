@@ -37,6 +37,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 1977C（https://codeforces.com/contest/1977/problem/C）data_range|subsequence_lcm|brain_teaser|classical
 1847F（https://codeforces.com/contest/1847/problem/F）range_or|classical|implemention|sub_consequence
 359D（https://codeforces.com/problemset/problem/359/D）range_gcd|classical
+475D（https://codeforces.com/problemset/problem/475/D）range_gcd|classical
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
