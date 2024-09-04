@@ -104,6 +104,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1545A（https://codeforces.com/problemset/problem/1545/A）construction|observation
 1635D（https://codeforces.com/contest/1635/problem/D）fibonacci|brain_teaser|construction
 552C（https://codeforces.com/problemset/problem/552/C）construction|math|divide_and_conquer
+1371D（https://codeforces.com/problemset/problem/1371/D）construction
+1332D（https://codeforces.com/problemset/problem/1332/D）construction|brain_teaser
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
