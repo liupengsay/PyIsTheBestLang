@@ -94,6 +94,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1601C（https://codeforces.com/contest/1061/problem/C）get_all_factor|classical
 1542C（https://codeforces.com/problemset/problem/1542/C）math|inclusion_exclusion|brain_teaser|prefix_lcm
 1614D2（https://codeforces.com/problemset/problem/1614/D2）euler_series|number_theory|linear_dp|classical|factor_cnt
+632D（https://codeforces.com/problemset/problem/632/D）linear_dp|math|classical|euler_series
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1833,4 +1834,32 @@ class Solution:
             for y in range(x * 2, ceil + 1, x):
                 dp[x] = max(dp[x], dp[y] + (factor[x] - factor[y]) * x)
         ac.st(dp[1])
+        return
+
+    @staticmethod
+    def cf_632d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/632/D
+        tag: linear_dp|math|classical|euler_series
+        """
+        n, m = ac.read_list_ints()
+        cnt = [0] * (m + 1)
+        nums = ac.read_list_ints()
+        for num in nums:
+            if num <= m:
+                cnt[num] += 1
+        dp = [0] * (m + 1)
+        for x in range(1, m + 1):
+            if cnt[x]:
+                for y in range(x, m + 1, x):
+                    dp[y] += cnt[x]
+        ceil = dp.index(max(dp))
+        lst = []
+        pre = 1
+        for i, num in enumerate(nums):
+            if num <= m and ceil % num == 0:
+                lst.append(i + 1)
+                pre = math.lcm(pre, num)
+        ac.lst([pre, dp[ceil]])
+        ac.lst(lst)
         return

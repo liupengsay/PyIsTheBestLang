@@ -50,6 +50,7 @@ class SparseTableIndex:
         """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""
         n = len(lst)
         self.bit = [0] * (n + 1)
+        self.n = n
         self.fun = fun
         l, r, v = 1, 2, 0
         while True:
@@ -77,7 +78,7 @@ class SparseTableIndex:
 
     def query(self, left, right):
         """index start from 0"""
-        # assert 0 <= left <= right < self.n - 1
+        assert 0 <= left <= right <= self.n - 1
         pos = self.bit[right - left + 1]
         a, b = self.st[pos][left], self.st[pos][right - (1 << pos) + 1]
         if self.fun(self.lst[a], self.lst[b]) == self.lst[a]:

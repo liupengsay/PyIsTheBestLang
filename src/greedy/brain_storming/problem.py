@@ -232,6 +232,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1430D（https://codeforces.com/problemset/problem/1430/D）greedy|two_pointer
 1392D（https://codeforces.com/problemset/problem/1392/D）observation|brain_teaser
 1238D（https://codeforces.com/problemset/problem/1238/D）observation
+1186C（https://codeforces.com/problemset/problem/1186/C）observation|brain_teaser
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

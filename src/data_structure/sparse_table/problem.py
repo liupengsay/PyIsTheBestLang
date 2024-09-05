@@ -38,6 +38,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 1847F（https://codeforces.com/contest/1847/problem/F）range_or|classical|implemention|sub_consequence
 359D（https://codeforces.com/problemset/problem/359/D）range_gcd|classical
 475D（https://codeforces.com/problemset/problem/475/D）range_gcd|classical
+451D（https://codeforces.com/problemset/problem/451/D）sparse_table|divide_and_conquer
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
@@ -762,4 +763,45 @@ class Solution:
                 a = [a[x[i]] for i in range(n)]
             x = [x[x[i]] for i in range(n)]
         ac.lst(a)
+        return
+
+    @staticmethod
+    def cf_451d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/451/D
+        tag: sparse_table|divide_and_conquer
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            mx = SparseTableIndex(nums, max)
+            mn = SparseTableIndex(nums, min)
+
+            dct = dict()
+            stack = [n - 1]
+            while stack:
+                val = stack.pop()
+                if val >= 0:
+
+                    ll, rr = val // n, val % n
+                    if ll == rr:
+                        dct[val] = 0
+                        continue
+                    stack.append(~val)
+                    p1 = mx.query(ll, rr)
+                    p2 = mn.query(ll, rr)
+                    if p1 > p2:
+                        p1, p2 = p2, p1
+                    stack.append(ll * n + p1)
+                    stack.append(p2 * n + rr)
+                else:
+                    val = ~val
+                    ll, rr = val // n, val % n
+                    p1 = mx.query(ll, rr)
+                    p2 = mn.query(ll, rr)
+                    if p1 > p2:
+                        p1, p2 = p2, p1
+                    dct[val] = dct[ll * n + p1] + dct[p2 * n + rr] + 1
+            ans = dct[n - 1]
+            ac.st(ans)
         return

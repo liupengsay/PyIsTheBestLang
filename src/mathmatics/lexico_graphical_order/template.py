@@ -18,7 +18,7 @@ class LexicoGraphicalOrder:
                 first *= 10
             return c
 
-        # assert k <= n
+        assert k <= n
         num = 1
         k -= 1
         while k:
@@ -51,7 +51,7 @@ class LexicoGraphicalOrder:
     @staticmethod
     def get_kth_subset(n, k):
         # The k-th smallest subset of set [1,...,n], with a total of 1<<n subsets
-        # assert k <= (1 << n)
+        assert k <= (1 << n)
         ans = []
         if k == 1:
             # Empty subset output 0
@@ -85,7 +85,7 @@ class LexicoGraphicalOrder:
     @staticmethod
     def get_kth_subset_comb(n, m, k):
         # Select the k-th comb of m elements from the set [1,...,n] to arrange the selection
-        # assert k <= math.comb(n, m)
+        assert k <= math.comb(n, m)
         nums = list(range(1, n + 1))
         ans = []
         while k and nums and len(ans) < m:

@@ -186,7 +186,7 @@ class StringHash:
 
     def query(self, x, y):
         """range hash value index start from 0"""
-        # assert 0 <= x <= y <= self.n - 1
+        assert 0 <= x <= y <= self.n - 1
         if y < x:
             return 0
         # with length y - x + 1 important!!!
@@ -212,7 +212,7 @@ class StringHashSingle:
 
     def query(self, x, y):
         """range hash value index start from 0"""
-        # assert 0 <= x <= y <= self.n - 1
+        assert 0 <= x <= y <= self.n - 1
         if y < x:
             return 0
         # with length y - x + 1 important!!!

@@ -225,8 +225,8 @@ class BinaryTrieXorLimited:
 
 class StringTrieSearch:
     def __init__(self, most_word, word_cnt, string_state=26):  # search index
-        # assert most_word >= 1
-        # assert word_cnt >= 1
+        assert most_word >= 1
+        assert word_cnt >= 1
         self.string_state = string_state
         self.cnt_bit = word_cnt.bit_length()
         self.node_cnt = most_word * self.string_state
@@ -240,7 +240,7 @@ class StringTrieSearch:
         self.ind = 0
 
     def add(self, word, ind):
-        # assert 1 <= ind <= word_cnt
+        assert 1 <= ind <= word_cnt
         cur = 0  # word: List[int]
         for bit in word:
             if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
@@ -262,7 +262,7 @@ class StringTrieSearch:
         return res
 
     def add_ind(self, word, ind):
-        # assert 1 <= ind <= word_cnt
+        assert 1 <= ind <= word_cnt
         cur = 0  # word: List[int]
         for bit in word:
             if not self.son_and_ind[bit + cur * self.string_state] >> self.cnt_bit:
@@ -362,8 +362,8 @@ class StringTrieSearch:
 
 class StringTriePrefix:
     def __init__(self, most_word, word_cnt, string_state=26):  # prefix count
-        # assert most_word >= 1
-        # assert word_cnt >= 1
+        assert most_word >= 1
+        assert word_cnt >= 1
         self.string_state = string_state
         self.cnt_bit = word_cnt.bit_length()
         self.node_cnt = most_word * self.string_state

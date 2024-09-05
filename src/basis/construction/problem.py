@@ -106,6 +106,10 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 552C（https://codeforces.com/problemset/problem/552/C）construction|math|divide_and_conquer
 1371D（https://codeforces.com/problemset/problem/1371/D）construction
 1332D（https://codeforces.com/problemset/problem/1332/D）construction|brain_teaser
+576A（https://codeforces.com/problemset/problem/576/A）eratosthenes_sieve|construction
+348A（https://codeforces.com/problemset/problem/348/A）construction
+1798C（https://codeforces.com/problemset/problem/1798/C）construction
+1380D（）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
