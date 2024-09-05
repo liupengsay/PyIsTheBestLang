@@ -192,6 +192,7 @@ ABC366E（https://atcoder.jp/contests/abc366/tasks/abc366_e）brute_force|prefix
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
 1422C（https://codeforces.com/problemset/problem/1422/C）contribution_method|brute_force
+451D（https://codeforces.com/problemset/problem/451/D）contribution_method|brute_force
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force
