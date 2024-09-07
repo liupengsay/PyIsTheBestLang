@@ -25,6 +25,9 @@ ABC263E（https://atcoder.jp/contests/abc263/tasks/abc263_e）expectation_dp|rev
 ABC243F（https://atcoder.jp/contests/abc243/tasks/abc243_f）matrix_dp|prob_dp|brain_teaser|comb|math
 ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implemention|math
 
+===================================CodeForces===================================
+540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
+
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
 
@@ -343,4 +346,47 @@ class Solution:
         zero = ((1 - one) * pp) % mod
         ans = (one + zero * (n * (n + 1) // 2 - 1)) % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_540d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/540/D
+        tag: prob_dp|bag_dp|math|game_dp
+        """
+
+        r, s, p = ac.read_list_ints()
+        n = r + s + p
+
+        dp = [[[0, 0, 0] for _ in range(s + 1)] for _ in range(r + 1)]
+
+        for i in range(n - 1, -1, -1):
+            for a in range(min(r, n - i), -1, -1):
+                for b in range(min(s, n - i - a), -1, -1):
+                    c = n - i - a - b
+                    if a == b == 0:
+                        dp[a][b] = [0, 0, 1]
+                    elif b == c == 0:
+                        dp[a][b] = [1, 0, 0]
+                    elif a == c == 0:
+                        dp[a][b] = [0, 1, 0]
+                    else:
+                        prob = a * b + b * c + c * a
+                        res = [0, 0, 0]
+                        if a and b:
+                            nex = dp[a][b - 1]
+                            for j in range(3):
+                                res[j] += a * b * nex[j] / prob
+                        if a and c:
+                            nex = dp[a - 1][b]
+                            for j in range(3):
+                                res[j] += a * c * nex[j] / prob
+                        if b and c:
+                            nex = dp[a][b]
+                            for j in range(3):
+                                res[j] += c * b * nex[j] / prob
+                        dp[a][b] = res
+        ans = dp[r][s]
+        tot = sum(ans)
+        ac.lst([x / tot for x in ans])
         return

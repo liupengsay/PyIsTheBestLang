@@ -63,6 +63,7 @@ P7158（https://www.luogu.com.cn/problem/P7158）comb
 1312D（https://codeforces.com/problemset/problem/1312/D）comb|observation|reverse_thinking
 1545B（https://codeforces.com/problemset/problem/1545/B）comb|brain_teaser
 1332E（https://codeforces.com/problemset/problem/1332/E）brute_force|comb|binomial_expansion|odd_even
+1207D（https://codeforces.com/problemset/problem/1207/D）inclusion_exclusion
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter

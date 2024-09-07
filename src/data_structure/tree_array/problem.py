@@ -65,6 +65,7 @@ ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_a
 1430E（https://codeforces.com/problemset/problem/1430/E）tree_array|classical|implemention|point_add|range_sum|pre_sum
 1788E（https://codeforces.com/problemset/problem/1788/E）linear_dp|tree_array|point_ascend|pre_max
 677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointer|partial_order|implemention|classical
+1667B（https://codeforces.com/problemset/problem/1667/B）tree_array|classical|prefix_sum
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -1713,4 +1714,39 @@ class Solution:
             lst.append("D" * (c - a))
         ac.st(ans1)
         ac.st("".join(lst))
+        return
+
+    @staticmethod
+    def cf_1667b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1667/B
+        tag: tree_array|classical|prefix_sum
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            pre = ac.accumulate(nums)
+            ind = {num: i for i, num in enumerate(sorted(set(pre)))}
+            m = len(ind)
+            tree_ceil = PointAscendPreMax(m)
+            tree_floor = PointAscendPreMax(m)
+            ans = 0
+            tree_ceil.point_ascend(ind[0], 0)
+            tree_floor.point_ascend(m - ind[0] - 1, 0)
+            ac.get_random_seed()
+            dct = dict()
+            dct[0 ^ ac.random_seed] = 0
+            for i in range(n):
+                ans = dct.get(pre[i + 1] ^ ac.random_seed, -inf)
+                # < pre[i+1]
+                cur = tree_ceil.pre_max(ind[pre[i + 1]] - 1) if ind[pre[i + 1]] >= 1 else -inf
+                ans = max(ans, cur + i + 1)
+                # > pre[i+1]
+                cur = tree_floor.pre_max(m - 1 - ind[pre[i + 1]] - 1) if m - 1 - ind[pre[i + 1]] >= 1 else -inf
+                ans = max(ans, cur - i - 1)
+                # update
+                tree_floor.point_ascend(m - 1 - ind[pre[i + 1]], ans + (i + 1))
+                tree_ceil.point_ascend(ind[pre[i + 1]], ans - (i + 1))
+                dct[pre[i + 1] ^ ac.random_seed] = max(ans, dct.get(pre[i + 1] ^ ac.random_seed, -inf))
+            ac.st(ans)
         return
