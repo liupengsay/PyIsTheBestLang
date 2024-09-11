@@ -45,7 +45,7 @@ ABC286F（https://atcoder.jp/contests/abc283/tasks/abc283_f）point_descend|pre_
 ABC276F（https://atcoder.jp/contests/abc276/tasks/abc276_f）expectation|comb|tree_array|contribution_method|classical
 ABC256F（https://atcoder.jp/contests/abc256/tasks/abc256_f）tree_array|cumulative_cumulative_cumulative_sum|math|classical
 ABC250E（https://atcoder.jp/contests/abc250/tasks/abc250_e）tree_array|point_ascend|pre_max|implemention|set|classical
-ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointer
+ABC231F（https://atcoder.jp/contests/abc231/tasks/abc231_f）discretize|tree_array|inclusion_exclusion|two_pointers
 ABC351F（https://atcoder.jp/contests/abc351/tasks/abc351_f）tree_array|discretize|classical
 ABC221E（https://atcoder.jp/contests/abc221/tasks/abc221_e）tree_array|contribution_method
 ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range_max|pre_max|classical
@@ -64,7 +64,7 @@ ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_a
 1722E（https://codeforces.com/problemset/problem/1722/E）data_range|matrix_prefix_sum|classical|can_be_discretization_hard_version|tree_array_2d
 1430E（https://codeforces.com/problemset/problem/1430/E）tree_array|classical|implemention|point_add|range_sum|pre_sum
 1788E（https://codeforces.com/problemset/problem/1788/E）linear_dp|tree_array|point_ascend|pre_max
-677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointer|partial_order|implemention|classical
+677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointers|partial_order|implemention|classical
 1667B（https://codeforces.com/problemset/problem/1667/B）tree_array|classical|prefix_sum
 
 =====================================LibraryChecker=====================================
@@ -1272,7 +1272,7 @@ class Solution:
     def abc_231f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc231/tasks/abc231_f
-        tag: discretize|tree_array|inclusion_exclusion|two_pointer
+        tag: discretize|tree_array|inclusion_exclusion|two_pointers
         """
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -1530,7 +1530,7 @@ class Solution:
     def cf_677d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/677/D
-        tag: layered_bfs|tree_array|two_pointer|partial_order|implemention|classical
+        tag: layered_bfs|tree_array|two_pointers|partial_order|implemention|classical
         """
         m, n, p = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]

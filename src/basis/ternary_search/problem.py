@@ -15,7 +15,7 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
 1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
 1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greedy
-1374E2（https://codeforces.com/problemset/problem/1374/E2）ternary_search|two_pointer|brute_force|classical
+1374E2（https://codeforces.com/problemset/problem/1374/E2）ternary_search|two_pointers|brute_force|classical
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
@@ -418,7 +418,7 @@ class Solution:
     def cf_1374e2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1374/E2
-        tag: ternary_search|two_pointer|brute_force|classical
+        tag: ternary_search|two_pointers|brute_force|classical
         """
         n, m, k = ac.read_list_ints()
         aa = []

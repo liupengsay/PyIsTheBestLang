@@ -41,7 +41,7 @@ P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 P3369（https://www.luogu.com.cn/problem/P3369）sorted_list
 P6136（https://www.luogu.com.cn/problem/P6136）sorted_list
 P2161（https://www.luogu.com.cn/problem/P2161）sorted_list|trick
-P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range|contribution_method|two_pointer
+P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range|contribution_method|two_pointers
 
 ===================================CodeForces===================================
 459D（https://codeforces.com/problemset/problem/459/D）sorted_list|counter
@@ -61,7 +61,7 @@ P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
 ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|sorted_list|hash
-ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointer
+ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointers
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
 ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
 ABC281E（https://atcoder.jp/contests/abc281/tasks/abc281_e）top_k_sum|sorted_list|classical
@@ -704,7 +704,7 @@ class Solution:
     def lg_p5677(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5677
-        tag: sorted_list|offline_query|range|contribution_method|two_pointer
+        tag: sorted_list|offline_query|range|contribution_method|two_pointers
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()

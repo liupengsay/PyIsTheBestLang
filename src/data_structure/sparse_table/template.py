@@ -45,6 +45,23 @@ class SparseTable:
         assert left <= pos < self.n
         return pos, pre
 
+    def bisect_right_length(self, left):
+        """index start from 0"""
+        assert 0 <= left < self.n
+        # find the max right such that st.query(left, right) < right-left+1
+        pos = left
+        pre = 0
+        for x in range(self.bit[-1], -1, -1):
+            if pos + (1 << x) - 1 < self.n and self.fun(self.st[x][pos], pre) > pos + (1 << x) - left:
+                pre = self.fun(self.st[x][pos], pre)
+                pos += (1 << x)
+        if pos == left and self.st[0][pos] == 1:
+            return True, pos
+        if pos < self.n and self.fun(pre, self.st[0][pos]) == pos + 1 - left:
+            return True, pos
+        return False, pos
+
+
 class SparseTableIndex:
     def __init__(self, lst, fun):
         """static range queries can be performed as long as the range_merge_to_disjoint fun satisfies monotonicity"""

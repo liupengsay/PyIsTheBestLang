@@ -24,7 +24,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
 100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
-3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointer|classical
+3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointers|classical
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
@@ -97,7 +97,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 1679D（https://codeforces.com/problemset/problem/1679/D）binary_search|graph|longest_path
-1244E（https://codeforces.com/problemset/problem/1244/E）binary_search|observation|two_pointer
+1244E（https://codeforces.com/problemset/problem/1244/E）binary_search|observation|two_pointers
 1998C（https://codeforces.com/problemset/problem/1998/C）binary_search|observation|greedy
 
 ====================================AtCoder=====================================
@@ -113,7 +113,7 @@ ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|
 ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
 ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
 ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greedy|implemention
-ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointer|binary_search|sort|brain_teaser
+ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointers|binary_search|sort|brain_teaser
 ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 
 =====================================AcWing=====================================
@@ -717,7 +717,7 @@ class Solution:
     def lg_p1381(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1381
-        tag: sliding_window|two_pointer
+        tag: sliding_window|two_pointers
         """
         n = ac.read_int()
         dct = set([ac.read_str() for _ in range(n)])
@@ -1750,7 +1750,7 @@ class Solution:
     def abc_215f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc215/tasks/abc215_f
-        tag: two_pointer|binary_search|sort|brain_teaser
+        tag: two_pointers|binary_search|sort|brain_teaser
         """
         n = ac.read_int()
 

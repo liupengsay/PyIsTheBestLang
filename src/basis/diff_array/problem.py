@@ -114,7 +114,7 @@ ABC269F（https://atcoder.jp/contests/abc269/tasks/abc269_f）diff_array|inclusi
 ABC268E（https://atcoder.jp/contests/abc268/tasks/abc268_e）brute_force|diff_array|action_scope|brain_teaser|classical
 ABC263D（https://atcoder.jp/contests/abc263/tasks/abc263_d）prefix_sum|brute_force
 ABC265D（https://atcoder.jp/contests/abc265/tasks/abc265_d）prefix_sum|brute_force
-ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_scope|two_pointer|hash|classical
+ABC260E（https://atcoder.jp/contests/abc260/tasks/abc260_e）diff_array|action_scope|two_pointers|hash|classical
 ABC221D（https://atcoder.jp/contests/abc221/tasks/abc221_d）discretization_diff_array
 ABC210D（https://atcoder.jp/contests/abc210/tasks/abc210_d）prefix_max|matrix_prefix|classical
 ABC360D（https://atcoder.jp/contests/abc360/tasks/abc360_d）diff_array|implemention|contribution_method
@@ -2085,7 +2085,7 @@ class Solution:
     def abc_260e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc260/tasks/abc260_e
-        tag: diff_array|action_scope|two_pointer|hash|classical
+        tag: diff_array|action_scope|two_pointers|hash|classical
         """
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(m)]

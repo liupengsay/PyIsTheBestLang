@@ -50,6 +50,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|cl
 165E（https://codeforces.com/problemset/problem/165/E）liner_dp|state_dp|brute_force
 11D（https://codeforces.com/contest/11/problem/D）state_dp|undirected|counter
 1102F（https://codeforces.com/contest/1102/problem/F）state_dp|classical|brute_force|fill_table|refresh_table
+453BB（https://codeforces.com/problemset/problem/453/B）state_dp|specific_plan|math|number_theory
 
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
@@ -79,6 +80,8 @@ from itertools import combinations, accumulate
 from operator import or_
 from typing import List
 
+from src.mathmatics.number_theory.template import PrimeSieve
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1297,4 +1300,54 @@ class Solution:
 
         ans = dfs(0, tuple([1] * 3 * n))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_453b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/453/B
+        tag: state_dp|specific_plan|math|number_theory
+        """
+        primes = [1] + PrimeSieve().eratosthenes_sieve(58)
+        pf = PrimeFactor(58)
+        ind = {num: i for i, num in enumerate(primes)}
+        states = [0]
+        for num in range(1, 59):
+            s = 0
+            for x, _ in pf.prime_factor[num]:
+                s |= 1 << ind[x]
+            states.append(s)
+        m = 17
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+
+        dp = [inf]*(1<<m)
+        pre_num = [[0 for _ in range(1<<m)] for _ in range(n+1)]
+        pre_state = [[0 for _ in range(1<<m)] for _ in range(n+1)]
+        nex_num = [[] for _ in range(1<<m)]
+
+        for state in range(1 << m):
+            for num in range(1, 59):
+                s = states[num]
+                if state & s == s:
+                    nex_num[state].append(num)
+
+        dp[-1] = 0
+        for i in range(n):
+            ndp = [inf]*(1<<m)
+            for state in range(1 << m):
+                for num in nex_num[state]:
+                    cur = dp[state] + abs(nums[i] - num)
+                    s = states[num]
+                    if cur < ndp[state^s]:
+                        ndp[state ^ s] = cur
+                        pre_num[i+1][state^s] = num
+                        pre_state[i + 1][state ^ s] = state
+            dp = ndp[:]
+        state = dp.index(min(dp))
+        ans = []
+        for i in range(n, 0, -1):
+            ans.append(pre_num[i][state])
+            state = pre_state[i][state]
+        ac.lst(ans[::-1])
         return

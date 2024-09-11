@@ -39,6 +39,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 359D（https://codeforces.com/problemset/problem/359/D）range_gcd|classical
 475D（https://codeforces.com/problemset/problem/475/D）range_gcd|classical
 451D（https://codeforces.com/problemset/problem/451/D）sparse_table|divide_and_conquer
+1632D（https://codeforces.com/problemset/problem/1632/D）sparse_table|binary_search
 
 =====================================AcWing=====================================
 109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
@@ -123,7 +124,7 @@ class Solution:
     def ac_109(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/111/
-        tag: greedy|multiplication_method|two_pointer|merge_sort|hard|classical
+        tag: greedy|multiplication_method|two_pointers|merge_sort|hard|classical
         """
 
         def range_merge_to_disjoint(lst1, lst2):
@@ -453,7 +454,7 @@ class Solution:
     def cf_1548b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1548/B
-        tag: sparse_table|range_gcd|two_pointer|diff_array|brain_teaser|classical
+        tag: sparse_table|range_gcd|two_pointers|diff_array|brain_teaser|classical
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -478,7 +479,7 @@ class Solution:
     def cf_689d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1548/B
-        tag: sparse_table|range_gcd|two_pointer|diff_array|brain_teaser|classical
+        tag: sparse_table|range_gcd|two_pointers|diff_array|brain_teaser|classical
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -804,4 +805,24 @@ class Solution:
                     dct[val] = dct[ll * n + p1] + dct[p2 * n + rr] + 1
             ans = dct[n - 1]
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1632d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1632/D
+        tag: sparse_table|binary_search
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums.reverse()
+        st = SparseTable(nums, math.gcd)
+        dp = [0] * (n + 1)
+        for i in range(n - 1, -1, -1):
+            flag, j = st.bisect_right_length(i)
+            if flag:
+                dp[i] = dp[j + 1] + 1
+            else:
+                dp[i] = dp[i + 1]
+        ac.lst(dp[:-1][::-1])
         return

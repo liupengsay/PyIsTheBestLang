@@ -89,7 +89,7 @@ P2846（https://www.luogu.com.cn/problem/P2846）range_reverse|range_bit_count
 620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
 1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
 1859D（https://codeforces.com/problemset/problem/1859/D）range_ascend|range_max|implemention
-1555E（https://codeforces.com/problemset/problem/1555/E）brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointer
+1555E（https://codeforces.com/problemset/problem/1555/E）brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointers
 2001D（https://codeforces.com/contest/2001/problem/D）segment_tree|point_set|range_max|range_max_bisect_right
 
 ====================================AtCoder=====================================
@@ -3968,7 +3968,7 @@ class Solution:
     def cf_1555e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1555/E
-        tag: brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointer
+        tag: brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointers
         """
         n, m = ac.read_list_ints()
         tree = RangeAddRangeSumMinMax(m)

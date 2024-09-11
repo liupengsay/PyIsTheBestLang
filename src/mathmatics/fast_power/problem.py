@@ -133,7 +133,7 @@ class Solution:
     def lg_p3509(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3509
-        tag: two_pointer|implemention|fast_power|sparse_matrix_fast_power|classical|hard|multiplication_method
+        tag: two_pointers|implemention|fast_power|sparse_matrix_fast_power|classical|hard|multiplication_method
         """
 
         n, k, m = ac.read_list_ints()

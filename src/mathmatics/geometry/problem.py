@@ -33,7 +33,7 @@ P6341（https://www.luogu.com.cn/problem/P6341）line_scope|brute_force|right_tr
 961D（https://codeforces.com/contest/961/problem/D)）pigeonhole_principle|brute_force|line_slope|collinearity
 429D（https://codeforces.com/contest/429/problem/D）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical
 1133D（https://codeforces.com/contest/1133/problem/D）line_slope
-1979E（https://codeforces.com/contest/1979/problem/E）manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
+1979E（https://codeforces.com/contest/1979/problem/E）manhattan_distance|chebyshev_distance|brute_force|two_pointers|map
 1C（https://codeforces.com/contest/1/problem/C）geometry|circle|triangle
 1354C1（https://codeforces.com/problemset/problem/1354/C1）geometry
 1354C2（https://codeforces.com/problemset/problem/1354/C2）geometry
@@ -43,7 +43,7 @@ ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_
 ABC292F（https://atcoder.jp/contests/abc292/tasks/abc292_f）brain_teaser|math
 ABC275C（https://atcoder.jp/contests/abc275/tasks/abc275_c）brute_force|geometry|square|angle|classical
 ABC266C（https://atcoder.jp/contests/abc266/tasks/abc266_c）math|geometry|is_convex_quad|classical
-ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointer|brain_teaser
+ABC250F（https://atcoder.jp/contests/abc250/tasks/abc250_f）geometry|circular_array|two_pointers|brain_teaser
 ABC234H（https://atcoder.jp/contests/abc234/tasks/abc234_h）closest_pair|brain_teaser|classical
 ABC351E（https://atcoder.jp/contests/abc351/tasks/abc351_e）chebyshev_distance|manhattan_distance|brain_teaser|tree_array|classical
 ABC226D（https://atcoder.jp/contests/abc226/tasks/abc226_d）geometry|linear_scope|classical
@@ -389,7 +389,7 @@ class Solution:
     def abc_250f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc250/tasks/abc250_f
-        tag: geometry|circular_array|two_pointer|brain_teaser
+        tag: geometry|circular_array|two_pointers|brain_teaser
         """
         gm = Geometry()
         n = ac.read_int()
@@ -583,7 +583,7 @@ class Solution:
     def cf_1979e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1979/problem/E
-        tag: manhattan_distance|chebyshev_distance|brute_force|two_pointer|map
+        tag: manhattan_distance|chebyshev_distance|brute_force|two_pointers|map
         """
 
         def check():

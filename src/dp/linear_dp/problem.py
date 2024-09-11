@@ -115,7 +115,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 988D（https://codeforces.com/contest/988/problem/D）linear_dp|brute_force
 999F（https://codeforces.com/contest/999/problem/F）linear_dp|brute_force
 1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greedy|sorting
-1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointer
+1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointers
 1108D（https://codeforces.com/contest/1108/problem/D）linear_dp|specific_plan
 1154F（https://codeforces.com/contest/1154/problem/F）linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
 1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greedy|implemention
@@ -129,7 +129,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greedy
 1984F（https://codeforces.com/contest/1984/problem/F）brute_force|brain_teaser|linear_dp
 1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greedy
-1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointer
+1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointers
 1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
 1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
 319C（https://codeforces.com/problemset/problem/319/C）slope_dp|linear_dp|monotonic_queue

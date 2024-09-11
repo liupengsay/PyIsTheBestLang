@@ -46,8 +46,8 @@ P5390（https://www.luogu.com.cn/problem/P5390）bit_operation
 P6824（https://www.luogu.com.cn/problem/P6824）bit_operation|xor|diff_array|action_scope|counter
 P8842（https://www.luogu.com.cn/problem/P8842）prime_factorization|prefix_sum|counter
 P8965（https://www.luogu.com.cn/problem/P8965）tree_dp|xor
-P3760（https://www.luogu.com.cn/problem/P3760）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
-U360500（https://www.luogu.com.cn/problem/U360500）bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
+P3760（https://www.luogu.com.cn/problem/P3760）bit_operation|contribution_method|classical|two_pointers|sorted_list|brain_teaser
+U360500（https://www.luogu.com.cn/problem/U360500）bit_operation|contribution_method|classical|two_pointers|sorted_list|brain_teaser
 P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_method
 
 ===================================CodeForces===================================
@@ -76,7 +76,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
 1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
 1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
-1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointer
+1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointers
 1557C（https://codeforces.com/problemset/problem/1557/C）bit_operation|brain_teaser|brute_force|observation
 
 ====================================AtCoder=====================================
@@ -87,7 +87,7 @@ ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|d
 ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
 ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
 ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classical|math|digital_dp
-ARC092B（https://atcoder.jp/contests/arc092/tasks/arc092_b）bit_operation|contribution_method|classical|two_pointer
+ARC092B（https://atcoder.jp/contests/arc092/tasks/arc092_b）bit_operation|contribution_method|classical|two_pointers
 ABC365E（https://atcoder.jp/contests/abc365/tasks/abc365_e）bit_operation|prefix_sum
 ABC201E（https://atcoder.jp/contests/abc201/tasks/abc201_e）bit_operation|classical
 
@@ -1109,7 +1109,7 @@ class Solution:
     def cf_1322b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1322/B
-        tag: bit_operation|contribution_method|classical|two_pointer
+        tag: bit_operation|contribution_method|classical|two_pointers
         """
         max_bit = 25
         n = ac.read_int()
@@ -1150,7 +1150,7 @@ class Solution:
     def arc_092b(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/arc092/tasks/arc092_b
-        tag: bit_operation|contribution_method|classical|two_pointer
+        tag: bit_operation|contribution_method|classical|two_pointers
         """
         max_bit = 30
         n = ac.read_int()
@@ -1197,7 +1197,7 @@ class Solution:
     def lg_u360500(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/U360500
-        tag: bit_operation|contribution_method|classical|two_pointer|sorted_list|brain_teaser
+        tag: bit_operation|contribution_method|classical|two_pointers|sorted_list|brain_teaser
         """
 
         max_bit = 25

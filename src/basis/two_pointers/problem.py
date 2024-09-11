@@ -47,6 +47,7 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointers|implemention|reverse_array|greedy
 1611F（https://codeforces.com/contest/1611/problem/F）two_pointers|classical
 1413C（https://codeforces.com/problemset/problem/1413/C）two_pointers
+1494C（https://codeforces.com/problemset/problem/1494/C）two_pointers|three_pointers|brute_force|observation
 
 ====================================AtCoder=====================================
 ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
@@ -65,7 +66,7 @@ from math import gcd, inf
 from operator import add
 from typing import List
 
-from src.basis.two_pointer.template import SlidingWindowAggregation
+from src.basis.two_pointers.template import SlidingWindowAggregation
 from src.utils.fast_io import FastIO
 
 
@@ -561,4 +562,35 @@ class Solution:
 
                 color -= 1
                 tot -= 1
+        return
+
+    @staticmethod
+    def cf_1494c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1494/C
+        tag: two_pointers|three_pointers|brute_force|observation
+        """
+        for _ in range(ac.read_int()):
+            ac.read_list_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+
+            def check(lst1, lst2):
+                m, n = len(lst1), len(lst2)
+                cur = set(lst1)
+                cnt = sum(x in cur for x in lst2)
+                res = cnt
+                j = k = 0
+                for i in range(n):
+                    cnt -= lst2[i] in cur
+                    while j < m and lst1[j] <= lst2[i]:
+                        j += 1
+                    while k <= i and lst2[k] < lst2[i] - j+1:
+                        k += 1
+                    res = max(res, cnt+i-k+1)
+                return res
+
+            ans = check(sorted([x for x in a if x > 0]), sorted([x for x in b if x > 0]))
+            ans += check(sorted([-x for x in a if -x > 0]), sorted([-x for x in b if -x > 0]))
+            ac.st(ans)
         return

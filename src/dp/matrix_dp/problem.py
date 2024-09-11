@@ -145,6 +145,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1987D（https://codeforces.com/problemset/problem/1987/D）matrix_dp|brain_teaser|game_dp
 339C（https://codeforces.com/problemset/problem/339/C）matrix_dp|specific_plan
 598E（https://codeforces.com/problemset/problem/598/E）matrix_dp|classical
+711C（https://codeforces.com/problemset/problem/711/C）matrix_dp|prefix_suffix
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp

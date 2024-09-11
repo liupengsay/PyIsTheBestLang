@@ -22,11 +22,11 @@ P6148（https://www.luogu.com.cn/problem/P6148）circular_section|implemention
 1342C（https://codeforces.com/problemset/problem/1342/C）circular_section|counter
 1875B（https://codeforces.com/contest/1875/problem/B）circle_section
 1760F（https://codeforces.com/contest/1760/problem/F）circle_section|brute_force
-1237D（https://codeforces.com/problemset/problem/1237/D）two_pointer|implemention|circular_array
+1237D（https://codeforces.com/problemset/problem/1237/D）two_pointers|implemention|circular_array
 1372D（https://codeforces.com/problemset/problem/1372/D）circular_array|brain_teaser|brute_force|observation|circular_to_linear
 
 ===================================AtCoder===================================
-ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointer|brute_force|circle_section|classical
+ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointers|brute_force|circle_section|classical
 ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|brute_force|circular_section
 ABC241E（https://atcoder.jp/contests/abc241/tasks/abc241_e）circular_section|brute_force_valid|classical
 ABC214C（https://atcoder.jp/contests/abc214/tasks/abc214_c）circular_section|brain_teaser
@@ -196,7 +196,7 @@ class Solution:
     def abc_258e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc258/tasks/abc258_e
-        tag: two_pointer|brute_force|circle_section|classical
+        tag: two_pointers|brute_force|circle_section|classical
         """
         n, q, x = ac.read_list_ints()
         w = ac.read_list_ints()
@@ -322,7 +322,7 @@ class Solution:
     def cf_1237d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1237/D
-        tag: two_pointer|implemention|circular_array
+        tag: two_pointers|implemention|circular_array
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

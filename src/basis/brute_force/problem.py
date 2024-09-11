@@ -178,7 +178,7 @@ ABC251C（https://atcoder.jp/contests/abc251/tasks/abc251_c）brute_force
 ABC249D（https://atcoder.jp/contests/abc249/tasks/abc249_d）euler_series|nlogn|brute_force|contribution_method|classical
 ABC246F（https://atcoder.jp/contests/abc246/tasks/abc246_f）brute_force|inclusion_exclusion|math|counter|bit_operation
 ABC247F（https://atcoder.jp/contests/abc247/tasks/abc247_f）brute_force|guess_table|union_find|dp|brain_teaser
-ABC247E（https://atcoder.jp/contests/abc247/tasks/abc247_e）inclusion_exclusion|two_pointer|counter|brain_teaser|classical
+ABC247E（https://atcoder.jp/contests/abc247/tasks/abc247_e）inclusion_exclusion|two_pointers|counter|brain_teaser|classical
 ABC238C（https://atcoder.jp/contests/abc238/tasks/abc238_c）digit_num|counter|brute_force|classical
 ABC234E（https://atcoder.jp/contests/abc234/tasks/abc234_e）brute_force|data_range|classical
 ABC232C（https://atcoder.jp/contests/abc232/tasks/abc232_c）brute_force|implemention
@@ -1770,7 +1770,7 @@ class Solution:
     def abc_247e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc247/tasks/abc247_e
-        tag: inclusion_exclusion|two_pointer|counter|brain_teaser|classical
+        tag: inclusion_exclusion|two_pointers|counter|brain_teaser|classical
         """
         n, x, y = ac.read_list_ints()
         nums = ac.read_list_ints()

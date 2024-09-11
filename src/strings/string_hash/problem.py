@@ -41,7 +41,7 @@ P6312（https://www.luogu.com.cn/problem/P6312）string_hash|classical
 7D（https://codeforces.com/problemset/problem/7/D）string_hash|palindrome|classical
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|string_hash
 1977D（https://codeforces.com/contest/1977/problem/D）string_hash|brute_force|brain_teaser|classical
-1418G（https://codeforces.com/problemset/problem/1418/G）string_hash|random_hash|classical|two_pointer
+1418G（https://codeforces.com/problemset/problem/1418/G）string_hash|random_hash|classical|two_pointers
 
 ====================================AtCoder=====================================
 ABC141E（https://atcoder.jp/contests/abc141/tasks/abc141_e）binary_search|string_hash|check
@@ -1538,7 +1538,7 @@ class Solution:
     def cf_1418g(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1418/G
-        tag: string_hash|random_hash|classical|two_pointer
+        tag: string_hash|random_hash|classical|two_pointers
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

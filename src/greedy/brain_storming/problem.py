@@ -216,7 +216,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 985C（https://codeforces.com/problemset/problem/985/C）greedy|brain_teaser|reverse_order
 1978D（https://codeforces.com/contest/1978/problem/D）greedy|brain_teaser|implemention
 1316C（https://codeforces.com/problemset/problem/1316/C）observation|math|brain_teaser
-1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointer|classical|brain_teaser
+1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointers|classical|brain_teaser
 1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
 1451D（https://codeforces.com/problemset/problem/1451/D）data_range|observation|classical|greedy|implemention
@@ -229,7 +229,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1436D（https://codeforces.com/problemset/problem/1436/D）tree_bfs|greedy|brain_teaser
 1621D（https://codeforces.com/problemset/problem/1621/D）greedy|brain_teaser
 1700D（https://codeforces.com/problemset/problem/1700/D）greedy|brain_teaser
-1430D（https://codeforces.com/problemset/problem/1430/D）greedy|two_pointer
+1430D（https://codeforces.com/problemset/problem/1430/D）greedy|two_pointers
 1392D（https://codeforces.com/problemset/problem/1392/D）observation|brain_teaser
 1238D（https://codeforces.com/problemset/problem/1238/D）observation
 1186C（https://codeforces.com/problemset/problem/1186/C）observation|brain_teaser
@@ -254,7 +254,7 @@ ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greedy|small_to_bi
 ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_teaser
 ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implemention|reverse_order|classical
 ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greedy
-ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointer|classical|prefix_sum
+ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointers|classical|prefix_sum
 ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_teaser
 ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implemention|stack
 
@@ -1886,7 +1886,7 @@ class Solution:
     def abc_229g(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc229/tasks/abc229_g
-        tag: implemention|median_greedy|two_pointer|classical|prefix_sum
+        tag: implemention|median_greedy|two_pointers|classical|prefix_sum
         """
         s = ac.read_str()
         k = ac.read_int()
@@ -2020,7 +2020,7 @@ class Solution:
     def cf_1156c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1156/C
-        tag: greedy|two_pointer|classical|brain_teaser
+        tag: greedy|two_pointers|classical|brain_teaser
         """
         n, z = ac.read_list_ints()
         nums = ac.read_list_ints()
