@@ -113,6 +113,7 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1553D（https://codeforces.com/problemset/problem/1553/D）construction
 1537E2（https://codeforces.com/problemset/problem/1537/E2）construction
 675C（https://codeforces.com/problemset/problem/675/C）construction
+1208C（https://codeforces.com/problemset/problem/1208/C）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
