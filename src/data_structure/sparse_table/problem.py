@@ -11,6 +11,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
 3117（https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
 100315（https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical|sparse_table|binary_search|binary_right
+2398（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）sparse_table|binary_search|monotonic_queue
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max
@@ -55,6 +56,7 @@ import math
 from collections import defaultdict, Counter
 from functools import lru_cache
 from heapq import heappop, heapify, heappush
+from itertools import accumulate
 from operator import and_
 from typing import List
 
@@ -708,7 +710,6 @@ class Solution:
                     ac.st(ind[i])
         return
 
-
     @staticmethod
     def cf_359d(ac=FastIO()):
         """
@@ -760,7 +761,7 @@ class Solution:
         x = ac.read_list_ints_minus_one()
         a = ac.read_list_ints()
         for xx in range(60):
-            if k & (1<<xx):
+            if k & (1 << xx):
                 a = [a[x[i]] for i in range(n)]
             x = [x[x[i]] for i in range(n)]
         ac.lst(a)
@@ -826,3 +827,30 @@ class Solution:
                 dp[i] = dp[i + 1]
         ac.lst(dp[:-1][::-1])
         return
+
+    @staticmethod
+    def lc_2398(charge: List[int], costs: List[int], budget: int) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-number-of-robots-within-budget/
+        tag: sparse_table|binary_search|monotonic_queue
+        """
+        n = len(charge)
+        m = n.bit_length()
+        st = [[0] * n for _ in range(m + 1)]
+        st[0] = charge[:]
+        acc = list(accumulate(costs, initial=0))
+        for i in range(1, m + 1):
+            for j in range(n - (1 << i) + 1):
+                st[i][j] = max(st[i - 1][j], st[i - 1][j + (1 << (i - 1))])
+        ans = 0
+
+        for i in range(n):
+            pos = i
+            pre = 0
+            for x in range(m, -1, -1):
+                if pos + (1 << x) - 1 < n and max(st[x][pos], pre) + (pos + (1 << x) - i) * (
+                        acc[pos + (1 << x)] - acc[i]) <= budget:
+                    pre = max(st[x][pos], pre)
+                    pos += (1 << x)
+            ans = max(ans, pos - i)
+        return ans

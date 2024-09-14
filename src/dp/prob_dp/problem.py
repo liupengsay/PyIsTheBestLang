@@ -27,6 +27,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 
 ===================================CodeForces===================================
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
+1265E（https://codeforces.com/problemset/problem/1265/E）expectation_dp|math|classical|circle_dp|prob_dp
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -389,4 +390,20 @@ class Solution:
         ans = dp[r][s]
         tot = sum(ans)
         ac.lst([x / tot for x in ans])
+        return
+
+    @staticmethod
+    def cf_1265e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1265/E
+        tag: expectation_dp|math|classical|circle_dp|prob_dp
+        """
+        mod = 998244353
+        ac.read_int()
+        rev = [pow(x, -1, mod) for x in range(1, 101)]
+        ans = 0
+        p = ac.read_list_ints_minus_one()
+        for x in p:
+            ans = (ans + 1) * 100 * rev[x] % mod
+        ac.st(ans)
         return
