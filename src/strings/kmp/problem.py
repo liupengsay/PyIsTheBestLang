@@ -16,6 +16,7 @@ Description：string|prefix_suffix
 1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|kmp_automaton
 459（https://leetcode.cn/problems/repeated-substring-pattern/）kmp|circular_section
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
+3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greedy|linear_dp
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -1307,3 +1308,34 @@ class Solution:
                     ans += 1
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3292(words: List[str], target: str) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/
+        tag: kmp|greedy|linear_dp
+        """
+        m = len(target)
+        post = [0] * m
+        k = len(words)
+        for i in range(k):
+            s = words[i] + target
+            tmp = len(words[i])
+            z = KMP().z_function(s)
+            for j in range(tmp, tmp + m):
+                if z[j]:
+                    post[j - tmp] = max(post[j - tmp], min(z[j], tmp))
+
+        ans = 0
+        right = -1
+        nex = -1
+        for i, num in enumerate(post):
+            if right < i:
+                if nex < i-1:
+                    return -1
+                ans += 1
+                nex = max(nex, i + num - 1)
+                right = nex
+            else:
+                nex = max(nex, i + num - 1)
+        return ans if right >= m-1 else -1

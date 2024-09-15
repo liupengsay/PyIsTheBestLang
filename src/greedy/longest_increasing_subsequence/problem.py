@@ -22,6 +22,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 1964（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）lis
 2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greedy|prefix_sum
 1035（https://leetcode.cn/problems/uncrossed-lines/description/）lcs|classical
+3288（https://leetcode.cn/problems/length-of-the-longest-increasing-path/）lis|partial_order|classical
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
@@ -744,3 +745,21 @@ class Solution:
                 res2 += dedup[i]
         ac.lst([res1, res2])
         return
+
+    @staticmethod
+    def lc_3288(coordinates: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/length-of-the-longest-increasing-path/
+        tag: lis|partial_order|classical
+        """
+        kx, ky = coordinates[k]
+        coordinates.sort(key=lambda it: (it[0], -it[1]))
+        dp = []
+        for x, y in coordinates:
+            if (x < kx and y < ky) or (x > kx and y > ky):
+                i = bisect.bisect_left(dp, y)
+                if 0 <= i < len(dp):
+                    dp[i] = y
+                else:
+                    dp.append(y)
+        return len(dp) + 1

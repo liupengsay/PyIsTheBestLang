@@ -16,6 +16,7 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 2518（https://leetcode.cn/problems/number-of-great-partitions/）bag_dp|counter
 1155（https://leetcode.cn/problems/number-of-dice-rolls-with-target-sum/description/）group_bag_dp|fill_table|refresh_table
 2902（https://leetcode.cn/problems/count-of-sub-multisets-with-bounded-sum/）monotonic_queue|mod|group_bag_dp|prefix_sum|inclusion_exclusion|lazy_bag_like
+3287（https://leetcode.cn/problems/find-the-maximum-sequence-value-of-array）bag_dp|brute_force|bit_operation
 
 =====================================LuoGu======================================
 P1048（https://www.luogu.com.cn/problem/P1048）bag_dp|finite

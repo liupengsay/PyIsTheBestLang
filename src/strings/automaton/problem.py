@@ -8,6 +8,8 @@ Description：kmp|trie_like|word_count|text
 792（https://leetcode.cn/problems/number-of-matching-subsequences）sub_sequence_automaton
 2014（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）sub_sequence_automaton|brute_force
 2350（https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/）brain_teaser|classical|sub_sequence_automaton
+3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii）ac_automaton|AhoCorasick
+3213（https://leetcode.cn/problems/construct-string-with-minimum-cost/）ac_automaton|AhoCorasick
 
 =====================================LuoGu======================================
 P3808（https://www.luogu.com.cn/problem/P3808）ac_automan|classical

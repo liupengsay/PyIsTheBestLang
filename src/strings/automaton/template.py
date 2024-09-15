@@ -1,7 +1,6 @@
-from collections import defaultdict, deque
+from collections import deque
+from math import inf
 
-from queue import Queue
-from typing import List, Dict, Iterable
 
 class Node:
     __slots__ = 'son', 'fail', 'last', 'len', 'val'
