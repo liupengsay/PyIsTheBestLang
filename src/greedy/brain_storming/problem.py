@@ -49,6 +49,7 @@ Description：brain_teaser
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 100227（https://leetcode.cn/problems/minimum-moves-to-pick-k-ones/description/）median_greedy|brute_force|implemention
 100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greedy|big_to_small
+2576（https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices）observation|greedy|classical
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -233,6 +234,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1392D（https://codeforces.com/problemset/problem/1392/D）observation|brain_teaser
 1238D（https://codeforces.com/problemset/problem/1238/D）observation
 1186C（https://codeforces.com/problemset/problem/1186/C）observation|brain_teaser
+372A（https://codeforces.com/problemset/problem/372/A）observation|greedy|classical
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
