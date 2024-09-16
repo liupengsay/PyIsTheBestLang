@@ -142,6 +142,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1391D（https://codeforces.com/contest/1391/problem/D）observation|linear_dp|state_dp
 372C（https://codeforces.com/problemset/problem/372/C）monotonic_queue|classical
 1528B（https://codeforces.com/problemset/problem/1528/B）linear_dp|euler_series
+985E（https://codeforces.com/problemset/problem/985/E）linear_dp
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

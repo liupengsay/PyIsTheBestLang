@@ -87,6 +87,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 461B（https://codeforces.com/problemset/problem/461/B）classical|tree_dp|observation
 1551F（https://codeforces.com/problemset/problem/1551/F）tree_dp|bag_dp|brute_force
 486D（https://codeforces.com/problemset/problem/486/D）multiplication_method|tree_dp|contribution_method|brute_force
+1988D（https://codeforces.com/problemset/problem/1988/D）tree_dp|classical|observation|data_range
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -1942,3 +1943,47 @@ class Solution:
         weights = [2 if i % 2 == 0 else 1 for i in range(n)]
         ans = ReRootDP().get_tree_distance_max_weighted(dct, weights)
         return ans
+
+    @staticmethod
+    def cf_1988d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1988/D
+        tag: tree_dp|classical|observation|data_range
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                dct[i].append(j)
+                dct[j].append(i)
+            dp = [[0] * 21 for _ in range(n)]
+
+            stack = [[0, -1]]
+            while stack:
+                x, fa = stack.pop()
+                if x >= 0:
+                    stack.append([~x, fa])
+                    for y in dct[x]:
+                        if y != fa:
+                            stack.append([y, x])
+                else:
+                    x = ~x
+                    for i in range(21):
+                        dp[x][i] = (i + 1) * nums[x]
+                    for y in dct[x]:
+                        if y != fa:
+                            aa = bb = inf
+                            for j in range(21):
+                                cur = dp[y][j]
+                                if cur < aa:
+                                    aa, bb = cur, aa
+                                elif cur < bb:
+                                    bb = cur
+
+                            for i in range(21):
+                                dp[x][i] += aa if aa != dp[y][i] else bb
+            ans = min(dp[0])
+            ac.st(ans)
+        return
