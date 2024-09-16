@@ -12,7 +12,7 @@ P3868（https://www.luogu.com.cn/problem/P3868）ex_crt|chinese_reminder_theorem
 
 ====================================AtCoder=====================================
 ABC286F（https://atcoder.jp/contests/abc286/tasks/abc286_f）chinese_reminder_theorem|interaction|circular_section|classical
-
+ABC371G（https://atcoder.jp/contests/abc371/tasks/abc371_g）ex_crt|implemention|greedy|classical
 
 
 ===================================CodeForces===================================

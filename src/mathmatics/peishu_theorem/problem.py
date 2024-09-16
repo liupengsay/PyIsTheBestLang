@@ -7,13 +7,16 @@ Description：ax+by=gcd(a,b)  a!=0 or b!=0
 
 ===================================CodeForces===================================
 1478D（https://codeforces.com/contest/1478/problem/D）peishu_theorem|number_theory|math
+510D（https://codeforces.com/problemset/problem/510/D）peishu_theorem|linear_dp|observation
 
 =====================================LuoGu======================================
 P4549（https://www.luogu.com.cn/problem/P4549）gcd|peishu_theorem
 P8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
 
 """
-
+import math
+from collections import defaultdict
+from math import inf
 from typing import List
 
 from src.mathmatics.peishu_theorem.template import PeiShuTheorem
@@ -68,4 +71,24 @@ class Solution:
             ac.st("INF")
         else:
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_510d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/510/D
+        tag: peishu_theorem|linear_dp|observation
+        """
+        n = ac.read_int()
+        ll = ac.read_list_ints()
+        cc = ac.read_list_ints()
+        pre = defaultdict(lambda: inf)
+        for i in range(n):
+            cur = pre.copy()
+            for p in pre:
+                g = math.gcd(p, ll[i])
+                cur[g] = min(cur[g], pre[p] + cc[i])
+            cur[ll[i]] = min(cur[ll[i]], cc[i])
+            pre = cur
+        ac.st(pre[1] if pre[1] < inf else -1)
         return

@@ -78,6 +78,8 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
 1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointers
 1557C（https://codeforces.com/problemset/problem/1557/C）bit_operation|brain_teaser|brute_force|observation
+1592C（https://codeforces.com/contest/1592/problem/C）bit_operation|tree_xor|construction|observation
+1720D1（https://codeforces.com/problemset/problem/1720/D1）linear_dp|data_range|observation|bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1293,4 +1295,21 @@ class Solution:
             ans += pre
             ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1720d1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1720/D1
+        tag: linear_dp|data_range|observation|bit_operation
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            dp = [1] * n
+            for i in range(1, n):
+                for j in range(max(0, i - 400), i):
+                    if (nums[j] ^ i) < (nums[i] ^ j):
+                        dp[i] = max(dp[i], dp[j] + 1)
+            ac.st(max(dp))
         return
