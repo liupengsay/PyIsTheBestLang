@@ -19,7 +19,7 @@ Description：reroot_dp|up_to_down|down_to_up
 971（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
 100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
-100392（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
+3241（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -88,6 +88,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1551F（https://codeforces.com/problemset/problem/1551/F）tree_dp|bag_dp|brute_force
 486D（https://codeforces.com/problemset/problem/486/D）multiplication_method|tree_dp|contribution_method|brute_force
 1988D（https://codeforces.com/problemset/problem/1988/D）tree_dp|classical|observation|data_range
+1101D（https://codeforces.com/problemset/problem/1101/D）tree_dp|prime_factor|classical|observation
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -101,7 +102,9 @@ from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.list_node.template import ListNode
+from src.data_structure.sorted_list.template import SortedList
 from src.dp.tree_dp.template import ReRootDP
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1874,7 +1877,6 @@ class Solution:
         ac.st(dp1[0])
         return
 
-
     @staticmethod
     def cf_1551f(ac=FastIO()):
         """
@@ -1929,7 +1931,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100392(edges: List[List[int]]) -> List[int]:
+    def lc_3241(edges: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/time-taken-to-mark-all-nodes/
         tag: reroot_dp|classical
@@ -1960,16 +1962,18 @@ class Solution:
                 dct[j].append(i)
             dp = [[0] * 21 for _ in range(n)]
 
-            stack = [[0, -1]]
+            stack = [0]
             while stack:
-                x, fa = stack.pop()
-                if x >= 0:
-                    stack.append([~x, fa])
+                val = stack.pop()
+                if val >= 0:
+                    x, fa = val // n, val % n
+                    stack.append(~val)
                     for y in dct[x]:
                         if y != fa:
-                            stack.append([y, x])
+                            stack.append(y * n + x)
                 else:
-                    x = ~x
+                    val = ~val
+                    x, fa = val // n, val % n
                     for i in range(21):
                         dp[x][i] = (i + 1) * nums[x]
                     for y in dct[x]:
@@ -1986,4 +1990,46 @@ class Solution:
                                 dp[x][i] += aa if aa != dp[y][i] else bb
             ans = min(dp[0])
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1101d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1101/D
+        tag: tree_dp|prime_factor|classical|observation
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        pf = PrimeFactor(2 * 10 ** 5 + 10)
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        dp = [dict() for _ in range(n)]
+        ans = 0
+        stack = [0]
+        while stack:
+            val = stack.pop()
+            if val >= 0:
+                x, fa = val // n, val % n
+                stack.append(~val)
+                for y in dct[x]:
+                    if y != fa:
+                        stack.append(y * n + x)
+            else:
+                val = ~val
+                x, fa = val // n, val % n
+                for p, _ in pf.prime_factor[nums[x]]:
+                    aa = bb = 0
+                    for y in dct[x]:
+                        if y != fa:
+                            if p in dp[y]:
+                                if dp[y][p] >= aa:
+                                    aa, bb = dp[y][p], aa
+                                elif dp[y][p] > bb:
+                                    bb = dp[y][p]
+                    ans = max(ans, aa + bb + 1)
+                    dp[x][p] = aa + 1
+        ac.st(ans)
         return

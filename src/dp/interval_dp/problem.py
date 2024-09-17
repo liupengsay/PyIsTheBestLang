@@ -38,6 +38,7 @@ P1063（https://www.luogu.com.cn/problem/P1063）interval_dp|classical|circular_
 1509C（https://codeforces.com/problemset/problem/1509/C）interval_dp
 607B（https://codeforces.com/problemset/problem/607/B）interval_dp
 1771D（https://codeforces.com/problemset/problem/1771/D）interval_dp|tree_dp|lps|classical|longest_palindrome_subsequence
+1025D（https://codeforces.com/problemset/problem/1025/D）interval_dp|brain_teaser
 
 ===================================AtCoder===================================
 ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implemention|comb_dp|counter
@@ -46,6 +47,7 @@ ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implem
 3996（https://www.acwing.com/problem/content/3999/）interval_dp|longest_palindrome_subsequence
 
 """
+import math
 from collections import defaultdict
 from functools import lru_cache
 from itertools import accumulate
@@ -610,3 +612,52 @@ class Solution:
                 dp[i][j] = max(dp[i][j], max(dp[i][j - 1], dp[i + 1][j]))
 
         return [dp[ll][rr] for ll, rr in queries]
+
+    @staticmethod
+    def cf_1025d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1025/D
+        tag: interval_dp|brain_teaser
+        """
+        n = ac.read_int()  # TLE
+        nums = ac.read_list_ints()
+
+        f = [[0] * n for _ in range(n)]
+        for i in range(n):
+            for j in range(i + 1, n):
+                if math.gcd(nums[i], nums[j]) != 1:
+                    f[i][j] = f[j][i] = 1
+
+        dp = [[[0] * 3 for _ in range(n)] for _ in range(n)]
+
+        for length in range(1, n + 1):
+            for i in range(n):
+                j = i + length - 1
+                if j == n:
+                    break
+                for ind in range(3):
+                    if ind == 0:
+                        x = i - 1
+                    elif ind == 1:
+                        x = j + 1
+                    else:
+                        x = 0
+                    if not 0 <= x < n:
+                        continue
+                    if ind == 2 and not (i == 0 and j == n - 1):
+                        continue
+                    if i == j:
+                        dp[i][j][ind] = ind == 2 or f[i][x]
+                        continue
+                    for k in range(i, j + 1):
+                        if ind == 2 or f[k][x]:
+                            left = 1 if i > k - 1 or dp[i][k - 1][1] else 0
+                            right = 1 if k + 1 > j or dp[k + 1][j][0] else 0
+                            if left and right:
+                                dp[i][j][ind] = 1
+                                break
+        if dp[0][n - 1][2]:
+            ac.yes()
+        else:
+            ac.no()
+        return

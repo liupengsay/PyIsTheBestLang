@@ -80,6 +80,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1557C（https://codeforces.com/problemset/problem/1557/C）bit_operation|brain_teaser|brute_force|observation
 1592C（https://codeforces.com/contest/1592/problem/C）bit_operation|tree_xor|construction|observation
 1720D1（https://codeforces.com/problemset/problem/1720/D1）linear_dp|data_range|observation|bit_operation
+1632C（https://codeforces.com/problemset/problem/1632/C）bit_operation|brute_force|construction
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser

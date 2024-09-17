@@ -115,6 +115,9 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 675C（https://codeforces.com/problemset/problem/675/C）construction
 1208C（https://codeforces.com/problemset/problem/1208/C）construction
 1924A（https://codeforces.com/problemset/problem/1924/A）construction
+1325C（https://codeforces.com/contest/1325/problem/C）construction|observation
+1945E（https://codeforces.com/problemset/problem/1945/E）construction|binary_search
+1030D（https://codeforces.com/problemset/problem/1030/D）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

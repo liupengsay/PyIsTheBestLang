@@ -1,3 +1,38 @@
+from src.utils.fast_io import FastIO
+
+
+class ReadGraph:
+    def __init__(self):
+        return
+
+    @staticmethod
+    def read(ac=FastIO()):
+        n = ac.read_int()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        stack = [0]
+        sub = [0] * n
+        while stack:
+            val = stack.pop()
+            if val >= 0:
+                x, fa = val // n, val % n
+                stack.append(~val)
+                for y in dct[x]:
+                    if y != fa:
+                        stack.append(y * n + x)
+            else:
+                val = ~val
+                x, fa = val // n, val % n
+                for y in dct[x]:
+                    if y != fa:
+                        sub[x] += sub[y]
+                sub[x] += 1
+        return sub
+
+
 class ReRootDP:
     def __init__(self):
         return

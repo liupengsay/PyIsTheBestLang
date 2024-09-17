@@ -37,6 +37,7 @@ P6341（https://www.luogu.com.cn/problem/P6341）line_scope|brute_force|right_tr
 1C（https://codeforces.com/contest/1/problem/C）geometry|circle|triangle
 1354C1（https://codeforces.com/problemset/problem/1354/C1）geometry
 1354C2（https://codeforces.com/problemset/problem/1354/C2）geometry
+1552C（https://codeforces.com/problemset/problem/1552/C）geometry
 
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical

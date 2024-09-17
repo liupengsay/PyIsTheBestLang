@@ -198,7 +198,6 @@ class TestGeneral(unittest.TestCase):
         process_directory(os.path.join(grandparent_path, "src"))
         return
 
-    @unittest.skip
     def test_run_problem_tag(self):
 
         def process_file(file_path):
@@ -226,12 +225,12 @@ class TestGeneral(unittest.TestCase):
         cnt = Counter([w for w in tot if w and w[0].isalpha()])
         lst = [(k, cnt[k]) for k in cnt]
         lst.sort(key=lambda it: -it[1])
-        tot = [f"{a}\t{b}" for a, b in lst]
+        tot = [f"# {a}\t{b}\n" for a, b in lst]
         with open(os.path.join(grandparent_path, "data/TagStat.md"), "w", encoding="utf-8", errors="ignore") as f:
             f.writelines("\n".join(tot))
         return
 
-    @unittest.skip
+
     def test_run_template_class(self):
 
         def process_file(file_path):
@@ -259,7 +258,7 @@ class TestGeneral(unittest.TestCase):
         cnt = Counter([w for w in tot if w and w[0].isalpha()])
         lst = [(k, cnt[k]) for k in cnt]
         lst.sort(key=lambda it: -it[1])
-        tot = [f"{a}\t{b}" for a, b in lst]
+        tot = [f"# {a}\t{b}\n" for a, b in lst]
         with open(os.path.join(grandparent_path, "data/Template.md"), "w", encoding="utf-8", errors="ignore") as f:
             f.writelines("\n".join(tot))
         return

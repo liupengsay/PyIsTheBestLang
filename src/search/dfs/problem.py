@@ -60,6 +60,7 @@ P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|bra
 3C（https://codeforces.com/problemset/problem/3/C）dfs|back_trace|brute_force|implemention
 459C（https://codeforces.com/problemset/problem/459/C）back_trace|brute_force|classical|implemention
 1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
+1882D（https://codeforces.com/problemset/problem/1882/D）dfs_order|diff_array|contribution_method|greedy
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -1588,4 +1589,65 @@ class Solution:
         pre = []
         dfs()
         ac.st(ans[0])
+        return
+
+    @staticmethod
+    def cf_1882d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1882/D
+        tag: dfs_order|diff_array|contribution_method|greedy
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            dct = [[] for _ in range(n)]
+            edges = [ac.read_list_ints_minus_one() for _ in range(n - 1)]
+            for i, j in edges:
+                dct[i].append(j)
+                dct[j].append(i)
+
+            order = 0
+            start = [-1] * n
+            end = [-1] * n
+            parent = [-1] * n
+            stack = [0]
+            # depth of every original node
+            depth = [0] * n
+            # index is dfs order and value is original node
+            order_to_node = [-1] * n
+            sub = [1] * n
+            diff = [0] * n
+            while stack:
+                val = stack.pop()
+                if val >= 0:
+                    i, fa = val // n, val % n
+                    stack.append(~val)
+                    start[i] = order
+                    order_to_node[order] = i
+                    end[i] = order
+                    order += 1
+                    for j in dct[i]:
+                        # the order of son nodes can be assigned for lexicographical order
+                        if j != fa:
+                            parent[j] = i
+                            depth[j] = depth[i] + 1
+                            stack.append(j * n + i)
+                else:
+                    val = ~val
+                    i, fa = val // n, val % n
+                    if parent[i] != -1:
+                        end[parent[i]] = end[i]
+                    for j in dct[i]:
+                        # the order of son nodes can be assigned for lexicographical order
+                        if j != fa:
+                            sub[i] += sub[j]
+                            cur = nums[i] ^ nums[j]
+                            s, e = start[j], end[j]
+                            diff[0] += sub[j] * cur
+                            diff[s] += (n - 2 * sub[j]) * cur
+                            if e + 1 < n:
+                                diff[e + 1] -= (n - 2 * sub[j]) * cur
+            for i in range(1, n):
+                diff[i] += diff[i - 1]
+            ac.lst([diff[start[i]] for i in range(n)])
         return

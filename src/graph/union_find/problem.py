@@ -102,6 +102,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1209D（https://codeforces.com/problemset/problem/1494/D）union_find|brain_teaser
 776D（https://codeforces.com/problemset/problem/776/D）union_find|classical|2-sat
 1278D（https://codeforces.com/problemset/problem/1278/D）union_find|range|binary_search|observation|partial_order|observation|bucket_sort
+1994D（https://codeforces.com/problemset/problem/1994/D）reverse_order|pigeonhole_principle|union_find
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2806,4 +2807,29 @@ class Solution:
             ac.yes()
         else:
             ac.no()
+        return
+
+    @staticmethod
+    def cf_1994d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1994/D
+        tag: reverse_order|pigeonhole_principle|union_find
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            uf = UnionFind(n)
+            ac.yes()
+            ans = []
+            for x in range(n - 1, 0, -1):
+                cur = [-1] * x
+                for i in range(n):
+                    j = nums[i] % x
+                    if cur[j] != -1 and uf.union(cur[j], i):
+                        ans.append([cur[j] + 1, i + 1])
+                        break
+                    cur[j] = i
+            ans.reverse()
+            for ls in ans:
+                ac.lst(ls)
         return
