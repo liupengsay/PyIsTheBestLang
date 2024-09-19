@@ -26,7 +26,7 @@ Description：brute force according to the data range
 2077（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）bit_operation|brute_force
 2081（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）palindrome_num|base_n|brute_force
 2170（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）brute_force|secondary_maximum
-1215（https://leetcode.cn/problems/stepping-numbers/）data_range|back_track|brute_force
+1215（https://leetcode.cn/problems/stepping-numbers/）data_range|back_trace|brute_force
 2245（https://leetcode.cn/problems/maximum-trailing-zeros-in-a-cornered-path/）prefix_sum|brute_force
 1878（https://leetcode.cn/problems/get-biggest-three-rhombus-sums-in-a-grid/）prefix_sum|brute_force
 2018（https://leetcode.cn/problems/check-if-word-can-be-placed-in-crossword/description/）brute_force
@@ -36,10 +36,10 @@ Description：brute force according to the data range
 1761（https://leetcode.cn/problems/minimum-degree-of-a-connected-trio-in-a-graph/）directed_graph|undirected_graph|brute_force
 1178（https://leetcode.cn/problems/number-of-valid-words-for-each-puzzle/）hash|counter|brute_force|bit_operation
 1638（https://leetcode.cn/problems/count-substrings-that-differ-by-one-character/description/）brute_force|dp|brute_force
-2212（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）bit_operation|brute_force|back_track
+2212（https://leetcode.cn/problems/maximum-points-in-an-archery-competition/）bit_operation|brute_force|back_trace
 2749（https://leetcode.cn/problems/minimum-operations-to-make-the-integer-zero/）brute_force|bit_operation
 2094（https://leetcode.cn/problems/finding-3-digit-even-numbers/description/）brain_teaser|brute_force|data_range
-842（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_track
+842（https://leetcode.cn/problems/split-array-into-fibonacci-sequence/description/）brain_teaser|brute_force|back_trace
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
 3102（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
@@ -188,6 +188,7 @@ ABC353D（https://atcoder.jp/contests/abc353/tasks/abc353_d）contribution_metho
 ABC220E（https://atcoder.jp/contests/abc220/tasks/abc220_e）contribution_method|classical|brute_force|binary_tree
 ABC219E（https://atcoder.jp/contests/abc219/tasks/abc219_e）brute_force|union_find|brain_teaser
 ABC366E（https://atcoder.jp/contests/abc366/tasks/abc366_e）brute_force|prefix_suffix
+ABC198D（https://atcoder.jp/contests/abc198/tasks/abc198_d）brute_force|permutation
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
@@ -1424,7 +1425,7 @@ class Solution:
     def lc_2212(x: int, y: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-points-in-an-archery-competition/
-        tag: bit_operation|brute_force|back_track
+        tag: bit_operation|brute_force|back_trace
         """
         n = len(y)
         ans = [0] * n

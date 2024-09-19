@@ -95,6 +95,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1542C（https://codeforces.com/problemset/problem/1542/C）math|inclusion_exclusion|brain_teaser|prefix_lcm
 1614D2（https://codeforces.com/problemset/problem/1614/D2）euler_series|number_theory|linear_dp|classical|factor_cnt
 632D（https://codeforces.com/problemset/problem/632/D）linear_dp|math|classical|euler_series
+1753B（https://codeforces.com/contest/1753/problem/B）math|n_base
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter

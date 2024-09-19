@@ -6,8 +6,8 @@ directed_euler_path：start point has out_degree - in_degree = 1, end point has 
 directed_euler_circular_path：all points have in_degree = out_degree, all points can be start or end point
 undirected_euler_path：start and end point have odd degree, others have even degree
 undirected_euler_circular_path：all points have even degree, all points can be start or end point
-hamilton_path：like euler_path, path pass every node exactly once, back_track?
-hamilton_circular_path：like euler_circular_path, path pass every node exactly once, back_track?
+hamilton_path：like euler_path, path pass every node exactly once, back_trace?
+hamilton_circular_path：like euler_circular_path, path pass every node exactly once, back_trace?
 Note1：where there exist euler_circular_path, there exist euler_path
 Note2：where there exist euler_path if and only if the graph is connected
 

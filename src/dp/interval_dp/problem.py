@@ -20,7 +20,7 @@ P1775（https://www.luogu.com.cn/problem/P1775）classical|interval_dp|prefix_su
 P2426（https://www.luogu.com.cn/problem/P2426）classical|interval_dp
 P2690（https://www.luogu.com.cn/problem/P2690）interval_dp|implemention|memory_search
 P1435（https://www.luogu.com.cn/problem/P1435）classical|interval_dp|longest_non_sub_consequence_palindrome
-P1388（https://www.luogu.com.cn/problem/P1388）back_track|brute_force|interval_dp
+P1388（https://www.luogu.com.cn/problem/P1388）back_trace|brute_force|interval_dp
 P1103（https://www.luogu.com.cn/problem/P1103）matrix_dp
 P2858（https://www.luogu.com.cn/problem/P2858）classical|interval_dp
 P1880（https://www.luogu.com.cn/problem/P1880）circular|interval_dp

@@ -22,6 +22,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 
 ===================================CodeForces===================================
 922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
+1983D（https://codeforces.com/problemset/problem/1983/D）inverse_pair|observation|brain_teaser
 
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
@@ -314,3 +315,20 @@ class Solution:
             ans += tot * ((health[k] + power - 1) // power)
             tot -= damage[k]
         return ans
+
+    @staticmethod
+    def cf_1983d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1983/D
+        tag: inverse_pair|observation|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            if sorted(a) != sorted(b) or VariousSort().range_merge_to_disjoint_sort_inverse_pair(
+                    a) % 2 != VariousSort().range_merge_to_disjoint_sort_inverse_pair(b) % 2:
+                ac.no()
+                continue
+            ac.yes()
+        return

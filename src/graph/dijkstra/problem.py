@@ -22,7 +22,7 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 2093（https://leetcode.cn/problems/minimum-cost-to-reach-city-with-discounts/）dijkstra|limited_shortest_path
 882（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）dijkstra
 2577（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）dijkstra|matrix
-2065（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）back_track|dijkstra|shortest_path|prune
+2065（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）back_trace|dijkstra|shortest_path|prune
 3112（https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/description/）dijkstra|template|classical
 
 =====================================LuoGu======================================
@@ -106,6 +106,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
+545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -299,7 +300,7 @@ class Solution:
     def lc_2065(values: List[int], edges: List[List[int]], max_time: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-path-quality-of-a-graph/
-        tag: back_track|dijkstra|shortest_path|prune|data_range
+        tag: back_trace|dijkstra|shortest_path|prune|data_range
         """
         n = len(values)
         dct = [[] for _ in range(n)]
@@ -2513,4 +2514,43 @@ class Solution:
                     dis[j] = dd
                     heappush(stack, (dd, j))
         ac.st(dis[-1] if dis[-1] < inf else -1)
+        return
+
+    @staticmethod
+    def cf_545e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/545/E
+        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        weight = []
+        for ind in range(m):
+            x, y, w = ac.read_list_ints_minus_one()
+            dct[x].append((y, ind))
+            dct[y].append((x, ind))
+            weight.append(w + 1)
+
+        root = ac.read_int() - 1
+        dis = [inf] * n
+        stack = [root]
+        dis[root] = 0
+        father = [-1] * n
+        weights = [inf] * n
+        while stack:
+            val = heappop(stack)
+            d, i = val // n, val % n
+            if dis[i] < d:
+                continue
+            for j, ind in dct[i]:
+                w = weight[ind]
+                dj = w + d
+                if dj < dis[j] or (dj == dis[j] and w < weights[j]):
+                    dis[j] = dj
+                    father[j] = ind
+                    weights[j] = w
+                    heappush(stack, dj * n + j)
+        res = [x + 1 for x in father if x != -1]
+        ac.st(sum(weight[x - 1] for x in res))
+        ac.lst(res)
         return

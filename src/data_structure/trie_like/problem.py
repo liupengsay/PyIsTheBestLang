@@ -11,7 +11,7 @@ Description：string|bit_operation
 2479（https://leetcode.cn/problems/maximum-xor-of-two-non-overlapping-subtrees/）binary_trie|maximum_xor
 1717（https://leetcode.cn/problems/multi-search-lcci/）automaton|counter|trie_like|reverse_thinking
 1707（https://leetcode.cn/problems/maximum-xor-with-an-element-from-array/）sort|offline_query|binary_trie
-1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_track|binary_trie|maximum_xor
+1938（https://leetcode.cn/problems/maximum-genetic-difference-query/）dfs|back_trace|binary_trie|maximum_xor
 1032（https://leetcode.cn/problems/stream-of-characters/description/）trie_like|classical|reverse_order
 1554（https://leetcode.cn/problems/strings-differ-by-one-character/）string_hash|trie
 2935（https://leetcode.cn/problems/maximum-strong-pair-xor-ii/description/）binary_trie|hash|bit_operation
@@ -819,7 +819,7 @@ class Solution:
     def lc_1938(parents: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/maximum-genetic-difference-query/
-        tag: dfs|back_track|binary_trie|maximum_xor
+        tag: dfs|back_trace|binary_trie|maximum_xor
         """
         n = len(parents)
         root = -1

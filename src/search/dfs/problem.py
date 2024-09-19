@@ -1,48 +1,48 @@
 """
 
-Algorithm：dfs|coloring_method|brute_force|back_track|euler_order|dfs_order|prune|iteration
-Description：back_track|brute_force|dfs_order|up_to_down|down_to_up
+Algorithm：dfs|coloring_method|brute_force|back_trace|euler_order|dfs_order|prune|iteration
+Description：back_trace|brute_force|dfs_order|up_to_down|down_to_up
 
 
 ====================================LeetCode====================================
-473（https://leetcode.cn/problems/matchsticks-to-square/）dfs|back_track
-301（https://leetcode.cn/problems/remove-invalid-parentheses/）back_track|dfs|prune
+473（https://leetcode.cn/problems/matchsticks-to-square/）dfs|back_trace
+301（https://leetcode.cn/problems/remove-invalid-parentheses/）back_trace|dfs|prune
 2581（https://leetcode.cn/problems/count-number-of-possible-root-nodes）dfs_order|diff_array|counter|reroot_dp
-1059（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_track
-1718（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）back_track
+1059（https://leetcode.cn/problems/all-paths-from-source-lead-to-destination/）memory_search|dfs|back_trace
+1718（https://leetcode.cn/problems/construct-the-lexicographically-largest-valid-sequence/）back_trace
 2322（https://leetcode.cn/problems/minimum-score-after-removals-on-a-tree/）dfs_order|brute_force
-1240（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）dfs|back_track|prune
-1239（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_track|2-base|brute_force
+1240（https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/）dfs|back_trace|prune
+1239（https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/）dfs|back_trace|2-base|brute_force
 1080（https://leetcode.cn/problems/insufficient-nodes-in-root-to-leaf-paths/description/）dfs|up_to_down|down_to_up
-2056（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）back_track|brute_force
+2056（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）back_trace|brute_force
 2458（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries）dfs_order|classical
 2858（https://leetcode.cn/problems/minimum-edge-reversals-so-every-node-is-reachable/）reroot_dp|dfs|dfs_order|diff_array
 
 =====================================LuoGu======================================
-P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_track
-P1120（https://www.luogu.com.cn/problem/P1120）dfs|back_track
+P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_trace
+P1120（https://www.luogu.com.cn/problem/P1120）dfs|back_trace
 P1692（https://www.luogu.com.cn/problem/P1692）dfs|brute_force|lexicographical_order
 P1612（https://www.luogu.com.cn/problem/P1612）dfs|prefix_sum|binary_search
 P1475（https://www.luogu.com.cn/problem/P1475）dfs
-P2080（https://www.luogu.com.cn/problem/P2080）dfs|back_track|prune
-P2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_track|prune|euclidean_division|euclidean_minus
+P2080（https://www.luogu.com.cn/problem/P2080）dfs|back_trace|prune
+P2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_trace|prune|euclidean_division|euclidean_minus
 P2420（https://www.luogu.com.cn/problem/P2420）brain_teaser|dfs|shortest_path|xor_path|classical
 P1473（https://www.luogu.com.cn/problem/P1473）dfs|brute_force
-P1461（https://www.luogu.com.cn/problem/P1461）dfs|back_track|brute_force
+P1461（https://www.luogu.com.cn/problem/P1461）dfs|back_trace|brute_force
 P1394（https://www.luogu.com.cn/problem/P1394）dfs
 P1180（https://www.luogu.com.cn/problem/P1180）dfs|implemention
 P1118（https://www.luogu.com.cn/problem/P1118）implemention|lexicographical_order|dfs
-P3252（https://www.luogu.com.cn/problem/P3252）dfs|back_track|prefix_sum|hash
+P3252（https://www.luogu.com.cn/problem/P3252）dfs|back_trace|prefix_sum|hash
 P4913（https://www.luogu.com.cn/problem/P4913）dfs
-P5118（https://www.luogu.com.cn/problem/P5118）dfs|back_track|hash|implemention
+P5118（https://www.luogu.com.cn/problem/P5118）dfs|back_trace|hash|implemention
 P5197（https://www.luogu.com.cn/problem/P5197）tree_dp|implemention|coloring_method
 P5198（https://www.luogu.com.cn/problem/P5198）union_find
 P5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sort|dfs_order
 P6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
 P7370（https://www.luogu.com.cn/problem/P7370）ancestor
-P1036（https://www.luogu.com.cn/problem/P1036）back_track|prune
+P1036（https://www.luogu.com.cn/problem/P1036）back_trace|prune
 P8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
-P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_track
+P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_trace
 P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|brain_teaser|observation
 
 ===================================CodeForces===================================
@@ -77,7 +77,7 @@ ABC213D（https://atcoder.jp/contests/abc213/tasks/abc213_d）euler_order|classi
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
-21（https://www.acwing.com/problem/content/description/21/）back_track|template
+21（https://www.acwing.com/problem/content/description/21/）back_trace|template
 
 """
 
@@ -106,7 +106,7 @@ class Solution:
     def lc_473_1(matchsticks: List[int]) -> bool:
         """
         url: https://leetcode.cn/problems/matchsticks-to-square/
-        tag: dfs|back_track|state_dp|classical
+        tag: dfs|back_trace|state_dp|classical
         """
 
         def dfs(i):
@@ -143,7 +143,7 @@ class Solution:
     def lc_473_2(matchsticks: List[int]) -> bool:
         """
         url: https://leetcode.cn/problems/matchsticks-to-square/
-        tag: dfs|back_track|state_dp|classical
+        tag: dfs|back_trace|state_dp|classical
         """
         n = len(matchsticks)
         tot = sum(matchsticks)
@@ -166,7 +166,7 @@ class Solution:
     def lg_2383(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2383
-        tag: dfs|back_track|state_dp|classical
+        tag: dfs|back_trace|state_dp|classical
         """
         for _ in range(ac.read_int()):
             matchsticks = ac.read_list_ints()[1:]
@@ -291,7 +291,7 @@ class Solution:
     def lc_301(s):
         """
         url: https://leetcode.cn/problems/remove-invalid-parentheses/
-        tag: back_track|dfs|prune
+        tag: back_trace|dfs|prune
         """
 
         def dfs(i):
@@ -398,7 +398,7 @@ class Solution:
     def lc_1239(arr: List[str]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-length-of-a-concatenated-string-with-unique-characters/
-        tag: dfs|back_track|2-base|brute_force
+        tag: dfs|back_trace|2-base|brute_force
         """
 
         ans = 0
@@ -426,7 +426,7 @@ class Solution:
     def lc_1240(n: int, m: int) -> int:
         """
         url: https://leetcode.cn/problems/tiling-a-rectangle-with-the-fewest-squares/
-        tag: dfs|back_track|prune
+        tag: dfs|back_trace|prune
         """
 
         def dfs():
@@ -472,7 +472,7 @@ class Solution:
     def lc_2056(pieces: List[str], positions: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/
-        tag: back_track|brute_force
+        tag: back_trace|brute_force
         """
 
         dct = dict()
@@ -761,7 +761,7 @@ class Solution:
     def lg_p8838(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8838
-        tag: dfs|back_track
+        tag: dfs|back_trace
         """
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -879,7 +879,7 @@ class Solution:
     def ac_23(matrix, string):
         """
         url: https://www.acwing.com/problem/content/description/21/
-        tag: back_track|template
+        tag: back_trace|template
         """
         if not matrix:
             return False

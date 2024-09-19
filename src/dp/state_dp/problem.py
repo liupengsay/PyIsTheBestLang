@@ -1,6 +1,6 @@
 """
 Algorithm：state_dp|outline_dp、memory_search|refresh_table|fill_table
-Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_force
+Description：state_dp|dfs|back_trace|brute_force|sub_set|bit_operation|brute_force
 
 ====================================LeetCode====================================
 465（https://leetcode.cn/problems/optimal-account-balancing/）brute_force|sub_set|state_dp
@@ -24,7 +24,7 @@ Description：state_dp|dfs|back_track|brute_force|sub_set|bit_operation|brute_fo
 847（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
 2741（https://leetcode.cn/problems/special-permutations/description/）state_dp
 2305（https://leetcode.cn/problems/fair-distribution-of-cookies/description/）classical|state_dp|brute_force|sub_set
-980（https://leetcode.cn/problems/unique-paths-iii/description/）classical|state_dp|back_track
+980（https://leetcode.cn/problems/unique-paths-iii/description/）classical|state_dp|back_trace
 2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/description/）brain_teaser|memory_search
 100312（https://leetcode.cn/problems/find-the-minimum-cost-array-permutation/description/）specific_plan|state_dp
 

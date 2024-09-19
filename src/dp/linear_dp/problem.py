@@ -143,6 +143,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 372C（https://codeforces.com/problemset/problem/372/C）monotonic_queue|classical
 1528B（https://codeforces.com/problemset/problem/1528/B）linear_dp|euler_series
 985E（https://codeforces.com/problemset/problem/985/E）linear_dp
+1197D（https://codeforces.com/problemset/problem/1197/D）linear_dp|brain_teaser|prefix_sum
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1949,4 +1950,23 @@ class Solution:
             for i in range(k, 0, -1):
                 dp[i] = max(dp[i], a * dp[i - 1] + b)
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def cf_1197d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1197/D
+        tag: linear_dp|brain_teaser|prefix_sum
+        """
+        n, m, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dp = [-inf] * m
+        ans = 0
+        for i in range(n):
+            for j in range(m):
+                dp[j] += nums[i]
+            dp[i % m] = max(dp[i % m], nums[i]) - k
+            for j in range(m):
+                ans = max(ans, dp[j])
+        ac.st(ans)
         return
