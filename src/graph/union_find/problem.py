@@ -131,6 +131,7 @@ ABC226E（https://atcoder.jp/contests/abc226/tasks/abc226_e）circle_based_tree|
 ABC218E（https://atcoder.jp/contests/abc218/tasks/abc218_e）union_find|mst
 ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|dict|discretization|implemention|linked_list
 ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_teaser|implemention
+ABC372E（https://atcoder.jp/contests/abc372/tasks/abc372_e）heuristic_merge|union_find
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -2832,4 +2833,45 @@ class Solution:
             ans.reverse()
             for ls in ans:
                 ac.lst(ls)
+        return
+
+    @staticmethod
+    def abc_372e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc372/tasks/abc372_e
+        tag: heuristic_merge|union_find
+        """
+        n, q = ac.read_list_ints()
+        nodes = [[i] for i in range(n)]
+        uf = UnionFind(n)
+        for _ in range(q):
+            op, a, b = ac.read_list_ints_minus_one()
+            if op == 0:
+                root1, root2 = uf.find(a), uf.find(b)
+                if root1 == root2:
+                    continue
+                uf.union_right(root1, root2)
+                lst1 = nodes[root1]
+                lst2 = nodes[root2]
+                m1, m2 = len(lst1), len(lst2)
+                i1, i2 = 0, 0
+                lst = []
+                while i1 < m1 and i2 < m2:
+                    if lst1[i1] < lst2[i2]:
+                        lst.append(lst1[i1])
+                        i1 += 1
+                    else:
+                        lst.append(lst2[i2])
+                        i2 += 1
+                lst.extend(lst1[i1:])
+                lst.extend(lst2[i2:])
+                nodes[root1] = None
+                nodes[root2] = lst[-10:]
+            else:
+                root1 = uf.find(a)
+                b += 1
+                if len(nodes[root1]) < b:
+                    ac.st(-1)
+                else:
+                    ac.st(nodes[root1][-b] + 1)
         return

@@ -144,6 +144,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1528B（https://codeforces.com/problemset/problem/1528/B）linear_dp|euler_series
 985E（https://codeforces.com/problemset/problem/985/E）linear_dp
 1197D（https://codeforces.com/problemset/problem/1197/D）linear_dp|brain_teaser|prefix_sum
+372F（https://atcoder.jp/contests/abc372/tasks/abc372_f）linear_dp|implemention|deque|array_implemention
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1969,4 +1970,27 @@ class Solution:
             for j in range(m):
                 ans = max(ans, dp[j])
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_372f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc372/tasks/abc372_f
+        tag: linear_dp|implemention|deque|array_implemention
+        """
+        n, m, k = ac.read_list_ints()
+        mod = 998244353
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        dp = [0] * (n + k)
+        dp[k] = 1
+
+        for i in range(k, 0, -1):
+            post = [(y, dp[i + x]) for x, y in edges]
+            for y, num in post:
+                dp[i + y - 1] += num
+                dp[i + y - 1] %= mod
+            dp[i - 1] += dp[i + n - 1]
+            dp[i - 1] %= mod
+            dp[i + n - 1] = 0
+        ac.st(sum(dp) % mod)
         return
