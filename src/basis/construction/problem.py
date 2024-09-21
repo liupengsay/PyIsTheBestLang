@@ -118,6 +118,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1325C（https://codeforces.com/contest/1325/problem/C）construction|observation
 1945E（https://codeforces.com/problemset/problem/1945/E）construction|binary_search
 1030D（https://codeforces.com/problemset/problem/1030/D）construction
+1368C（https://codeforces.com/problemset/problem/1368/C）construction
+1956C（https://codeforces.com/contest/1956/problem/C）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

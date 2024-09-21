@@ -96,6 +96,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1614D2（https://codeforces.com/problemset/problem/1614/D2）euler_series|number_theory|linear_dp|classical|factor_cnt
 632D（https://codeforces.com/problemset/problem/632/D）linear_dp|math|classical|euler_series
 1753B（https://codeforces.com/contest/1753/problem/B）math|n_base
+2013E（https://codeforces.com/contest/2013/problem/E）greedy|gcd_like|number_theory|observation
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1835,6 +1836,39 @@ class Solution:
             for y in range(x * 2, ceil + 1, x):
                 dp[x] = max(dp[x], dp[y] + (factor[x] - factor[y]) * x)
         ac.st(dp[1])
+        return
+
+    @staticmethod
+    def cf_2013e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2013/problem/E
+        tag: greedy|gcd_like|number_theory|observation
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            arr = sorted(list(set(nums)))
+            g = reduce(math.gcd, arr)
+            m = len(arr)
+            use = [0] * m
+            use[0] = 1
+            pre = arr[0]
+            ans = pre
+            while True:
+                cur = inf
+                nex = -1
+                for i in range(m):
+                    if not use[i] and math.gcd(pre, arr[i]) < cur:
+                        cur = math.gcd(pre, arr[i])
+                        nex = i
+                if nex == -1:
+                    break
+                use[nex] = 1
+                pre = cur
+                ans += pre
+                if pre == g:
+                    break
+            ac.st(ans + (n - sum(use)) * g)
         return
 
     @staticmethod

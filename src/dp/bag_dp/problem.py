@@ -102,6 +102,7 @@ P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_d
 837D（https://codeforces.com/problemset/problem/837/D）matrix_dp|observation|classical|brain_teaser|bag_dp
 478D（https://codeforces.com/problemset/problem/478/D）matrix_dp|data_range|implemention|bag_dp
 163A（https://codeforces.com/problemset/problem/163/A）bag_dp|matrix_dp|classical
+1340B（https://codeforces.com/problemset/problem/1340/B）bag_dp|reverse_order|specific_plan
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1898,4 +1899,35 @@ class Solution:
                                 ans.append(x - y - z)
                                 ac.lst(ans)
                                 return
+        return
+
+    @staticmethod
+    def cf_1340b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1340/B
+        tag: bag_dp|reverse_order|specific_plan
+        """
+        n, k = ac.read_list_ints()
+        st = ["1110111", "0010010", "1011101", "1011011", "0111010", "1101011", "1101111", "1010010", "1111111",
+              "1111011"]
+        mask = [int("0b" + x, 2) for x in st]
+        nums = [int("0b" + ac.read_str(), 2) for _ in range(n)]
+        dp = [[-1] * (k + 1) for _ in range(n + 1)]
+        dp[n][0] = 0
+        for i in range(n - 1, -1, -1):
+            change = [(j, (nums[i] ^ mask[j]).bit_count()) for j in range(10) if nums[i] & mask[j] == nums[i]]
+            for x in range(k + 1):
+                if dp[i + 1][x] != -1:
+                    for a, b in change:
+                        if x + b <= k:
+                            dp[i][x + b] = max(dp[i][x + b], a)
+        if dp[0][k] == -1:
+            ac.st(-1)
+        else:
+            ans = [dp[0][k]]
+            x = k - (nums[0] ^ mask[ans[-1]]).bit_count()
+            for i in range(1, n):
+                ans.append(dp[i][x])
+                x -= (nums[i] ^ mask[ans[-1]]).bit_count()
+            ac.st("".join(str(x) for x in ans))
         return

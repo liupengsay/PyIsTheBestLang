@@ -8,6 +8,7 @@ Reference：https://judge.yosupo.jp/problem/associative_array
 1665B（https://codeforces.com/contest/1665/problem/B）hash|xor_random_seed
 1702C（https://codeforces.com/contest/1702/problem/C）hash|xor_random_seed
 1676F（https://codeforces.com/contest/1676/problem/F）hash|dp|sort
+776C（https://codeforces.com/problemset/problem/776/C）prefix_sum|hash|random_seed|random_xor
 
 ================================Library Checker================================
 1（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed
@@ -85,4 +86,33 @@ class Solution:
 
         for _ in range(ac.read_int()):
             solve()
+        return
+
+    @staticmethod
+    def cf_776c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/776/C
+        tag: prefix_sum|hash|random_seed|random_xor
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 15
+        val = []
+        x = 1
+        for _ in range(64):
+            val.append(x)
+            x *= k
+            if abs(x) > ceil:
+                break
+        val = set(val)
+        ans = x = 0
+        pre = dict()
+        ac.get_random_seed()
+        pre[x ^ ac.random_seed] = 1
+        for num in nums:
+            x += num
+            for v in val:
+                ans += pre.get((x - v) ^ ac.random_seed, 0)
+            pre[x ^ ac.random_seed] = pre.get(x ^ ac.random_seed, 0) + 1
+        ac.st(ans)
         return
