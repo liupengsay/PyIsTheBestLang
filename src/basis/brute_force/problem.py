@@ -195,6 +195,7 @@ ABC198D（https://atcoder.jp/contests/abc198/tasks/abc198_d）brute_force|permut
 1422C（https://codeforces.com/problemset/problem/1422/C）contribution_method|brute_force
 451D（https://codeforces.com/problemset/problem/451/D）contribution_method|brute_force
 1995B2（https://codeforces.com/problemset/problem/1995/B2）brute_force
+1379B（https://codeforces.com/problemset/problem/1379/B）brute_force
 
 =====================================AcWing=====================================
 97（https://www.acwing.com/problem/content/description/97/）brute_force

@@ -23,6 +23,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 ===================================CodeForces===================================
 922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
 1983D（https://codeforces.com/problemset/problem/1983/D）inverse_pair|observation|brain_teaser
+632C（https://codeforces.com/problemset/problem/632/C）custom_sort|greedy|classical
 
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
@@ -331,4 +332,25 @@ class Solution:
                 ac.no()
                 continue
             ac.yes()
+        return
+
+    @staticmethod
+    def cf_632c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/632/C
+        tag: custom_sort|greedy|classical
+        """
+        n = ac.read_int()
+
+        words = [ac.read_str() for _ in range(n)]
+
+        def compare(wi, wj):
+            if wi + wj < wj + wi:
+                return -1
+            return 1
+
+        words.sort(key=cmp_to_key(compare))
+
+        ans = "".join(words)
+        ac.st(ans)
         return

@@ -349,7 +349,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
-        for x in range(1500, 2200, 100):
+        for x in range(1400, 2100, 100):
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
             webbrowser.open(url)
             time.sleep(0.5)
@@ -357,7 +357,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "372"
+        num = "197"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

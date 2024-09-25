@@ -120,6 +120,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1030D（https://codeforces.com/problemset/problem/1030/D）construction
 1368C（https://codeforces.com/problemset/problem/1368/C）construction
 1956C（https://codeforces.com/contest/1956/problem/C）construction
+739A（https://codeforces.com/problemset/problem/739/A）construction|observation|mex_like
+582A（https://codeforces.com/problemset/problem/582/A）construction|gcd_like
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

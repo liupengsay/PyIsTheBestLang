@@ -97,7 +97,9 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 632D（https://codeforces.com/problemset/problem/632/D）linear_dp|math|classical|euler_series
 1753B（https://codeforces.com/contest/1753/problem/B）math|n_base
 2013E（https://codeforces.com/contest/2013/problem/E）greedy|gcd_like|number_theory|observation
-
+1750D（https://codeforces.com/problemset/problem/1750/D）number_theory|observation|data_range|limited_operation|inclusion_exclusion|gcd_like|num_factor|classical
+687B（https://codeforces.com/problemset/problem/687/B）math|mod|lcm|classical
+        
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction
@@ -1898,3 +1900,55 @@ class Solution:
         ac.lst([pre, dp[ceil]])
         ac.lst(lst)
         return
+
+    @staticmethod
+    def cf_1750d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1750/D
+        tag: number_theory|observation|data_range|limited_operation|inclusion_exclusion|gcd_like|num_factor|classical
+        """
+        mod = 998244353
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            ans = 1
+            for i in range(1, n):
+                if nums[i - 1] % nums[i]:
+                    ac.st(0)
+                    break
+                high = m // nums[i]
+                low = 1
+                if low > high:
+                    ac.st(0)
+                    break
+                p = nums[i - 1] // nums[i]
+                lst = NumFactor.get_all_factor(p)[1:]
+                k = len(lst)
+                cnt = [0] * k
+                for j in range(k - 1, -1, -1):
+                    cnt[j] = high // lst[j]
+                    for r in range(j + 1, k):
+                        if lst[r] % lst[j] == 0:
+                            cnt[j] -= cnt[r]
+                pre = high - low + 1 - sum(cnt)
+                ans *= pre
+                ans %= mod
+            else:
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_687b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/687/B
+        tag: math|mod|lcm|classical
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        pre = 1
+        for num in nums:
+            pre = math.lcm(pre, num)
+            pre %= k
+        ac.st("Yes" if pre % k == 0 else "No")
+        return
+    

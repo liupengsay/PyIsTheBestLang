@@ -14,6 +14,7 @@ B3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maxim
 
 ===================================CodeForces===================================
 1437C（https://codeforces.com/problemset/problem/1437/C）bipartite_graph|minimum_weight_match|km
+1228D（https://codeforces.com/problemset/problem/1228/D）complete_tripartite|random_seed|random_hash|classical
 
 =====================================AcWing=====================================
 4298（https://www.acwing.com/problem/content/4301/）hungarian|bipartite_graph
@@ -22,7 +23,7 @@ B3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maxim
 1（https://judge.yosupo.jp/problem/bipartitematching）maximum_weight_match|bipartite_matching
 
 """
-
+import random
 from typing import List
 
 from src.graph.bipartite_matching.template import BipartiteMatching
@@ -236,4 +237,52 @@ class Solution:
             flow.add_edge(i + 1, j + r + 1, 1)
         ans = flow.max_flow_min_cut(r + c + 1, r + c + 2)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1228/D
+        tag: complete_tripartite|random_seed|random_hash|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = [random.getrandbits(32) for _ in range(n)]
+        dct = [0] * n
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i] ^= nums[j]
+            dct[j] ^= nums[i]
+        lst = list(set(dct))
+        if len(lst) != 3:
+            ac.st(-1)
+        elif 0 in lst:
+            ac.st(-1)
+        else:
+            for i in range(n):
+                dct[i] = lst.index(dct[i]) + 1
+            ac.lst(dct)
+        return
+
+    @staticmethod
+    def cf_1228d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1228/D
+        tag: complete_tripartite|random_seed|random_hash|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = [random.getrandbits(32) for _ in range(n)]
+        dct = [0] * n
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i] ^= nums[j]
+            dct[j] ^= nums[i]
+        lst = list(set(dct))
+        if len(lst) != 3:
+            ac.st(-1)
+        elif 0 in lst:
+            ac.st(-1)
+        else:
+            for i in range(n):
+                dct[i] = lst.index(dct[i]) + 1
+            ac.lst(dct)
         return
