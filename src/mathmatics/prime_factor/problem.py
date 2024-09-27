@@ -22,6 +22,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 546D（https://codeforces.com/problemset/problem/546/D）prime_factor_mi_cnt
 1470B（https://codeforces.com/problemset/problem/1470/B）prime_factor|observation
 1826C（https://codeforces.com/problemset/problem/1826/C）math|observation|brain_teaser|construction
+1242A（https://codeforces.com/problemset/problem/1242/A）guess_table|brute_force
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -1016,4 +1017,29 @@ class Solution:
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
             ac.st("YES" if not 1 < pf.min_prime[n] <= m else "NO")
+        return
+
+    @staticmethod
+    def cf_1242a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1242/A
+        tag: guess_table|brute_force
+        """
+        n = ac.read_int()
+        prime = []
+        for x in range(2, n + 1):
+            if x * x > n:
+                break
+            cnt = 0
+            while n % x == 0:
+                cnt += 1
+                n //= x
+            if cnt:
+                prime.append(x)
+        if n > 1:
+            prime.append(n)
+        if len(prime) == 1:
+            ac.st(prime[0])
+        else:
+            ac.st(1)
         return
