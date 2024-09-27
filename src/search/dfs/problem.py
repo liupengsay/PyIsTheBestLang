@@ -74,6 +74,7 @@ ABC244G（https://atcoder.jp/contests/abc244/tasks/abc244_g）construction|euler
 ABC240F（https://atcoder.jp/contests/abc240/tasks/abc240_e）dfs_order|leaf|classical
 ABC236D（https://atcoder.jp/contests/abc236/tasks/abc236_d）back_trace|prune|brute_force|classical
 ABC213D（https://atcoder.jp/contests/abc213/tasks/abc213_d）euler_order|classical
+ABC196D（https://atcoder.jp/contests/abc196/tasks/abc196_d）dfs|state_compression|bit_operation
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template

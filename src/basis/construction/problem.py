@@ -122,6 +122,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1956C（https://codeforces.com/contest/1956/problem/C）construction
 739A（https://codeforces.com/problemset/problem/739/A）construction|observation|mex_like
 582A（https://codeforces.com/problemset/problem/582/A）construction|gcd_like
+707C（https://codeforces.com/problemset/problem/707/C）construction|math
+1856C（https://codeforces.com/problemset/problem/1856/C）construction|brute_force|greedy
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
