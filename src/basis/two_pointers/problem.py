@@ -26,7 +26,8 @@ Description：sliding_window|two_pointers|center_extension_method
 1537（https://leetcode.cn/problems/get-the-maximum-score/description/）two_pointers|liner_dp|topological_sorting
 1712（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
 948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greedy
-2953（https://leetcode.cn/problems/count-complete-substrings/）two pointers|brute force
+2953（https://leetcode.cn/problems/count-complete-substrings/）two_pointers|brute_force
+100424（https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/）two_pointers|brute_force
 
 =====================================LuoGu======================================
 P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers

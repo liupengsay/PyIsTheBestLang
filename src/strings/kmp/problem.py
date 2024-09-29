@@ -17,6 +17,7 @@ Description：string|prefix_suffix
 459（https://leetcode.cn/problems/repeated-substring-pattern/）kmp|circular_section
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greedy|linear_dp
+100433（https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greedy|classical
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -1339,3 +1340,21 @@ class Solution:
             else:
                 nex = max(nex, i + num - 1)
         return ans if right >= m-1 else -1
+
+    @staticmethod
+    def lc_100433(s: str, pattern: str) -> int:
+        """
+        url: https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/
+        tag: z_function|greedy|classical
+        """
+        m, n = len(s), len(pattern)
+        z1 = KMP().z_function(pattern + s)
+        z2 = KMP().z_function((s + pattern)[::-1])[::-1]
+        for i in range(m - n + 1):
+            left = min(z1[n + i], n)
+            if left < n - 1:
+                if z2[i + n - 1] >= n - 1 - left:
+                    return i
+            else:
+                return i
+        return -1

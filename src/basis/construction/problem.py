@@ -9,6 +9,7 @@ Description：greedy|sort|construction|specific_plan
 1982（https://leetcode.cn/problems/find-array-given-subset-sums/）construction
 1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
 2573（https://leetcode.cn/problems/find-the-string-with-lcp/）lcp|construction|union_find
+100452（https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greedy|implemention|specific_plan|lexicographical_order
 
 =====================================LuoGu======================================
 P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction

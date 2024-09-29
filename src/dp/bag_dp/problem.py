@@ -119,6 +119,7 @@ ABC216F（https://atcoder.jp/contests/abc216/tasks/abc216_f）matrix_dp|bag_dp
 ABC204D（https://atcoder.jp/contests/abc204/tasks/abc204_d）bag_dp
 ABC200E（https://atcoder.jp/contests/abc200/tasks/abc200_e）bag_dp|counter|prefix_sum
 ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_plan
+ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greedy|brain_teaser
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -135,6 +136,7 @@ ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_pl
 import bisect
 from collections import defaultdict, deque, Counter
 from functools import lru_cache
+from heapq import heapify, heappop, heappush
 from itertools import combinations
 from typing import List
 
@@ -1930,4 +1932,33 @@ class Solution:
                 ans.append(dp[i][x])
                 x -= (nums[i] ^ mask[ans[-1]]).bit_count()
             ac.st("".join(str(x) for x in ans))
+        return
+
+    @staticmethod
+    def abc_373f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc373/tasks/abc373_f
+        tag: bag_dp|heapq|greedy|brain_teaser
+        """
+        n, w = ac.read_list_ints()
+        nums = [[] for _ in range(w + 1)]
+        for _ in range(n):
+            ww, vv = ac.read_list_ints()
+            nums[ww].append(vv)
+        dp = [0] * (w + 1)
+        dp[0] = 0
+        for ww in range(w + 1):
+            if nums[ww]:
+                stack = [-(v - 1) for v in nums[ww]]
+                heapify(stack)
+                cur = [0]
+                for i in range(1, w // ww + 1):
+                    v = -heappop(stack)
+                    cur.append(cur[-1] + v)
+                    heappush(stack, -(v - 2))
+
+                for j in range(w, -1, -1):
+                    for i in range(1, j // ww + 1):
+                        dp[j] = max(dp[j], dp[j - i * ww] + cur[i])
+        ac.st(max(dp))
         return
