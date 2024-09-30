@@ -145,6 +145,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 985E（https://codeforces.com/problemset/problem/985/E）linear_dp
 1197D（https://codeforces.com/problemset/problem/1197/D）linear_dp|brain_teaser|prefix_sum
 372F（https://atcoder.jp/contests/abc372/tasks/abc372_f）linear_dp|implemention|deque|array_implemention
+1082E（https://codeforces.com/problemset/problem/1082/E）linear_dp|prefix_sum|brain_teaser|observation
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -1993,4 +1994,27 @@ class Solution:
             dp[i - 1] %= mod
             dp[i + n - 1] = 0
         ac.st(sum(dp) % mod)
+        return
+
+    @staticmethod
+    def cf_1082e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1082/E
+        tag: linear_dp|prefix_sum|brain_teaser|observation
+        """
+        n, c = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        k = nums.count(c)
+        ans = k
+        ceil = 5 * 10 ** 5
+        cnt = [0] * (ceil + 1)
+        dp = [0] * (ceil + 1)
+        kk = 0
+        for num in nums:
+            k -= num == c
+            cnt[num] += 1
+            dp[num] = max(dp[num], kk - cnt[num] + 1)
+            ans = max(ans, dp[num] + k + cnt[num])
+            kk += num == c
+        ac.st(ans)
         return

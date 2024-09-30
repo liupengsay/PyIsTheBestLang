@@ -237,6 +237,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 372A（https://codeforces.com/problemset/problem/372/A）observation|greedy|classical
 1804D（https://codeforces.com/problemset/problem/1804/D）greedy
 282B（https://codeforces.com/problemset/problem/282/B）greedy
+1257D（https://codeforces.com/problemset/problem/1257/D）suffix_max|greedy|implemention|classical
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2193,4 +2194,35 @@ class Solution:
             else:
                 break
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1257d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1257/D
+        tag: suffix_max|greedy|implemention|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            m = ac.read_int()
+            post = [0] * (n + 1)
+            for _ in range(m):
+                p, s = ac.read_list_ints()
+                post[s] = max(post[s], p)
+            for i in range(n - 1, -1, -1):
+                post[i] = max(post[i], post[i + 1])
+            if max(nums) > post[1]:
+                ac.st(-1)
+                continue
+            ans = i = 0
+            while i < n:
+                j = i
+                cur = nums[i]
+                while j + 1 < n and max(cur, nums[j + 1]) <= post[j - i + 2]:
+                    cur = max(cur, nums[j + 1])
+                    j += 1
+                ans += 1
+                i = j + 1
+            ac.st(ans)
         return

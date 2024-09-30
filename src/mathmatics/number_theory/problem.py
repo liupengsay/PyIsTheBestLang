@@ -99,7 +99,8 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 2013E（https://codeforces.com/contest/2013/problem/E）greedy|gcd_like|number_theory|observation
 1750D（https://codeforces.com/problemset/problem/1750/D）number_theory|observation|data_range|limited_operation|inclusion_exclusion|gcd_like|num_factor|classical
 687B（https://codeforces.com/problemset/problem/687/B）math|mod|lcm|classical
-        
+2020B（https://codeforces.com/contest/2020/problem/B）factor_cnt|number_theory|classical
+
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
 ABC134D（https://atcoder.jp/contests/abc134/tasks/abc134_d）reverse_thinking|construction

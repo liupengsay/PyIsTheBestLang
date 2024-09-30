@@ -28,6 +28,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 ===================================CodeForces===================================
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
 1265E（https://codeforces.com/problemset/problem/1265/E）expectation_dp|math|classical|circle_dp|prob_dp
+2020E（https://codeforces.com/contest/2020/problem/E）expectation_dp|implemention|data_range
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp

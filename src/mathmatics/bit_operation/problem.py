@@ -81,6 +81,8 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1592C（https://codeforces.com/contest/1592/problem/C）bit_operation|tree_xor|construction|observation
 1720D1（https://codeforces.com/problemset/problem/1720/D1）linear_dp|data_range|observation|bit_operation
 1632C（https://codeforces.com/problemset/problem/1632/C）bit_operation|brute_force|construction
+2020C（https://codeforces.com/contest/2020/problem/C）bit_operation|construction
+1715D（https://codeforces.com/problemset/problem/1715/D）greedy|construction|bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1313,4 +1315,29 @@ class Solution:
                     if (nums[j] ^ i) < (nums[i] ^ j):
                         dp[i] = max(dp[i], dp[j] + 1)
             ac.st(max(dp))
+        return
+
+    @staticmethod
+    def cf_1715d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1715/D
+        tag: greedy|construction|bit_operation
+        """
+        n, q = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        ans = [(1 << 30) - 1] * n
+        for _ in range(q):
+            x, y, num = ac.read_list_ints_minus_one()
+            num += 1
+            ans[x] &= num
+            ans[y] &= num
+            dct[x].append(y)
+            dct[y].append(x)
+        for i in range(n):
+            if i not in dct[i]:
+                v = ans[i]
+                for j in dct[i]:
+                    v &= ans[j]
+                ans[i] ^= v
+        ac.lst(ans)
         return
