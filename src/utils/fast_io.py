@@ -22,6 +22,8 @@ class FastIO:
         self.random_seed = 0
         self.flush = False
         self.inf = 1 << 32
+        self.dire4 = [(0, -1), (0, 1), (1, 0), (-1, 0)]
+        self.dire8 = [(0, -1), (0, 1), (1, 0), (-1, 0)] + [(1, -1), (1, 1), (-1, -1), (-1, 1)]
         return
 
     def get_random_seed(self):

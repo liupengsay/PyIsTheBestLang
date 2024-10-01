@@ -125,6 +125,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 582A（https://codeforces.com/problemset/problem/582/A）construction|gcd_like
 707C（https://codeforces.com/problemset/problem/707/C）construction|math
 1856C（https://codeforces.com/problemset/problem/1856/C）construction|brute_force|greedy
+1882C（https://codeforces.com/problemset/problem/1882/C）observation|suffix|brute_force|construction
+1567C（https://codeforces.com/problemset/problem/1567/C）observation|construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -1071,4 +1073,36 @@ class Solution:
                 ans += pre[p - b + 1]
                 ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1882c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1882/C
+        tag: observation|suffix|brute_force|construction
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            post = [0] * (n + 1)
+            for i in range(n - 1, -1, -1):
+                post[i] = post[i + 1] + max(0, nums[i])
+            ans = 0
+            for i in range(n):
+                ans = max(ans, post[i + 1] + nums[i] if i % 2 == 0 else post[i + 1])
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1567c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1567/C
+        tag: observation|construction
+        """
+        for _ in range(ac.read_int()):
+            s = ac.read_str()
+            odd = int("0" + s[:][::2])
+            even = int("0" + s[1:][::2])
+            ans = (odd + 1) * (even + 1) - 2
+            ac.st(ans)
         return

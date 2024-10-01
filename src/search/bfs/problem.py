@@ -104,6 +104,7 @@ P6909（https://www.luogu.com.cn/problem/P6909）01-bfs|preprocess|classical
 987D（https://codeforces.com/contest/987/problem/D）several_source|bfs|brute_force
 82C（https://codeforces.com/problemset/problem/82/C）implemention|bfs
 1093D（https://codeforces.com/problemset/problem/1093/D）bfs|color_method|classical
+1349C（https://codeforces.com/problemset/problem/1349/C）bfs|observation|implemention
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -2925,4 +2926,49 @@ class Solution:
             res[i].sort()
             ans.append(sum(res[i][:s]))
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1349c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1349/C
+        tag: bfs|observation|implemention
+        """
+        m, n, q = ac.read_list_ints()
+        grid = [ac.read_str() for _ in range(m)]
+
+        root = [[-1] * n for _ in range(m)]
+        visit = [[-1] * n for _ in range(m)]
+        stack = []
+        for i in range(m):
+            for j in range(n):
+                if i + 1 < m and grid[i + 1][j] == grid[i][j]:
+                    root[i][j] = root[i + 1][j] = int(grid[i][j])
+                    visit[i][j] = visit[i + 1][j] = 0
+                if j + 1 < n and grid[i][j + 1] == grid[i][j]:
+                    root[i][j] = root[i][j + 1] = int(grid[i][j])
+                    visit[i][j] = visit[i][j + 1] = 0
+                if visit[i][j] != -1:
+                    stack.append((i, j))
+        while stack:
+            nex = []
+            for i, j in stack:
+                for x, y in ac.dire4:
+                    if 0 <= i + x < m and 0 <= j + y < n and visit[i + x][j + y] == -1:
+                        visit[i + x][j + y] = visit[i][j] + 1
+                        root[i + x][j + y] = root[i][j]
+                        nex.append((i + x, j + y))
+            stack = nex
+        for _ in range(q):
+            i, j, p = ac.read_list_ints_minus_one()
+            p += 1
+            if visit[i][j] == 0:
+                ac.st(int(grid[i][j]) ^ (p & 1))
+            elif visit[i][j] == -1:
+                ac.st(int(grid[i][j]))
+            else:
+                if p < visit[i][j]:
+                    ac.st(int(grid[i][j]))
+                else:
+                    ac.st(int(root[i][j]) ^ (p & 1))
         return

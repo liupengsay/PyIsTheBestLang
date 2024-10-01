@@ -349,7 +349,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
-        for x in range(1400, 2100, 100):
+        for x in range(1400, 2200, 100):
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-{x}"
             webbrowser.open(url)
             time.sleep(0.5)
