@@ -16,6 +16,8 @@ P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
 1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greedy
 1374E2（https://codeforces.com/problemset/problem/1374/E2）ternary_search|two_pointers|brute_force|classical
+1999G2（https://codeforces.com/problemset/problem/1999/G2）ternary_search|interactive|classical
+578C（https://codeforces.com/problemset/problem/578/C）ternary_search|linear_dp|prefix_sum|classical
 
 ====================================AtCoder=====================================
 ABC130F（https://atcoder.jp/contests/abc130/tasks/abc130_f）ternary_search|floor|high_precision
@@ -505,4 +507,63 @@ class Solution:
         index = [a[1] for a in aa[:ans[1]]] + [b[1] for b in bb[:ans[2]]] + [c[1] for c in cc[:ans[3]]] + [d[1] for d in
                                                                                                            dd[:ans[4]]]
         ac.lst(index)
+        return
+
+    @staticmethod
+    def cf_1999g2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1999/G2
+        tag: ternary_search|interactive|classical
+        """
+        ac.flush = True
+        for _ in range(ac.read_int()):
+            left = 2
+            right = 999
+            while left < right - 2:
+                diff = (right - left) // 3
+                mid1 = left + diff
+                mid2 = left + 2 * diff
+                ac.lst(["?", mid1, mid2])
+                res = ac.read_int()
+                if res == mid1 * mid2:
+                    left = mid2 + 1
+                elif res == mid1 * (mid2 + 1):
+                    left = mid1 + 1
+                    right = mid2
+                else:
+                    right = mid1
+            for x in range(left, right):
+                ac.lst(["?", x, x])
+                if ac.read_int() == (x + 1) * (x + 1):
+                    ac.lst(["!", x])
+                    break
+            else:
+                ac.lst(["!", right])
+        return
+
+    @staticmethod
+    def cf_578c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/578/C
+        tag: ternary_search|linear_dp|prefix_sum|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            high = -inf
+            low = inf
+            pre_high = pre_low = 0
+            for num in nums:
+                pre_high += num - x
+                pre_low += num - x
+                low = min(pre_low, low)
+                high = max(pre_high, high)
+                pre_high = max(pre_high, 0)
+                pre_low = min(pre_low, 0)
+
+            return max(abs(high), abs(low))
+
+        ans = TernarySearch().find_floor_point_float(check, -10000, 10000, 1e-12)
+        ac.st(check(ans))
         return

@@ -129,6 +129,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1567C（https://codeforces.com/problemset/problem/1567/C）observation|construction
 743C（https://codeforces.com/problemset/problem/743/C）construction|math
 1303C（https://codeforces.com/problemset/problem/1303/C）construction|bfs|euler_path
+1718A2（https://codeforces.com/problemset/problem/1718/A2）bit_operation|brain_teaser|construction|greedy
+1439A2（https://codeforces.com/problemset/problem/1439/A2）construction|implemention
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -1106,5 +1108,30 @@ class Solution:
             odd = int("0" + s[:][::2])
             even = int("0" + s[1:][::2])
             ans = (odd + 1) * (even + 1) - 2
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf1718a2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1718/A2
+        tag: bit_operation|brain_teaser|construction|greedy
+        """
+        ac.get_random_seed()
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            ans = n
+
+            pre = 0
+            dct = {pre ^ ac.random_seed}
+            for num in nums:
+                pre ^= num
+                if pre ^ ac.random_seed in dct:
+                    ans -= 1
+                    pre = 0
+                    dct = {pre ^ ac.random_seed}
+                else:
+                    dct.add(pre ^ ac.random_seed)
             ac.st(ans)
         return

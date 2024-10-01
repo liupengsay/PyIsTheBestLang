@@ -104,6 +104,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1278D（https://codeforces.com/problemset/problem/1278/D）union_find|range|binary_search|observation|partial_order|observation|bucket_sort
 1994D（https://codeforces.com/problemset/problem/1994/D）reverse_order|pigeonhole_principle|union_find
 2020D（https://codeforces.com/contest/2020/problem/D）union_find|union_right|classical
+277A（https://codeforces.com/problemset/problem/277/A）union_find_general
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find

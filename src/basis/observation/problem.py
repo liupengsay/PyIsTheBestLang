@@ -14,6 +14,7 @@ Description：observation|property|data_range
 1809D（https://codeforces.com/problemset/problem/1809/D）observation|data_range|construction
 1749D（https://codeforces.com/problemset/problem/1749/D）observation|data_range
 1185C2（https://codeforces.com/problemset/problem/1185/C2）data_range|bucket_cnt|greedy
+1616C（https://codeforces.com/problemset/problem/1616/C）compute_slope|brute_force|observation|arithmetic_sequence
 
 ====================================AtCoder=====================================
 
@@ -21,6 +22,7 @@ Description：observation|property|data_range
 
 
 """
+from src.mathmatics.geometry.template import Geometry
 from src.utils.fast_io import FastIO
 
 
@@ -52,4 +54,27 @@ class Solution:
             cnt[num] += 1
             pre += num
         ac.lst(ans)
+        return
+
+
+    @staticmethod
+    def cf_1616c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1616/C
+        tag: compute_slope|brute_force|observation|arithmetic_sequence
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            ans = n - 1
+            gm = Geometry()
+            for i in range(n):
+                for j in range(i + 1, n):
+                    cur = gm.compute_slope(nums[i], i, nums[j], j)
+                    cnt = 2
+                    for k in range(j + 1, n):
+                        if gm.compute_slope(nums[i], i, nums[k], k) == cur:
+                            cnt += 1
+                    ans = min(ans, n - cnt)
+            ac.st(ans)
         return
