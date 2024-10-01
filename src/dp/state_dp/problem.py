@@ -65,6 +65,7 @@ ABC354E（https://atcoder.jp/contests/abc354/tasks/abc354_e）state_dp
 ABC215E（https://atcoder.jp/contests/abc215/tasks/abc215_e）state_dp
 ABC199E（https://atcoder.jp/contests/abc199/tasks/abc199_e）state_dp
 ABC199D（https://atcoder.jp/contests/abc199/tasks/abc199_d）state_dp
+ABC195F（https://atcoder.jp/contests/abc195/tasks/abc195_f）state_dp|data_range|classical|brain_teaser|prime_factor
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1350,4 +1351,27 @@ class Solution:
             ans.append(pre_num[i][state])
             state = pre_state[i][state]
         ac.lst(ans[::-1])
+        return
+
+    @staticmethod
+    def abc_195f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc195/tasks/abc195_f
+        tag: state_dp|data_range|classical|brain_teaser|prime_factor
+        """
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71]
+        m = len(primes)
+        a, b = ac.read_list_ints()
+        dp = [0] * (1 << m)
+        dp[0] = 1
+        for num in range(a, b + 1):
+            cur = 0
+            for j in range(m):
+                if num % primes[j] == 0:
+                    cur |= 1 << j
+            for x in range((1 << m) - 1, -1, -1):
+                if x & cur == cur:
+                    dp[x] += dp[x ^ cur]
+        ans = sum(dp)
+        ac.st(ans)
         return

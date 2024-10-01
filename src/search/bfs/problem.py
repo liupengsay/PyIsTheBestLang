@@ -105,6 +105,7 @@ P6909（https://www.luogu.com.cn/problem/P6909）01-bfs|preprocess|classical
 82C（https://codeforces.com/problemset/problem/82/C）implemention|bfs
 1093D（https://codeforces.com/problemset/problem/1093/D）bfs|color_method|classical
 1349C（https://codeforces.com/problemset/problem/1349/C）bfs|observation|implemention
+1214D（https://codeforces.com/problemset/problem/1214/D）bfs|greedy|classical
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

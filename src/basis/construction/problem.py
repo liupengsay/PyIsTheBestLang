@@ -127,6 +127,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1856C（https://codeforces.com/problemset/problem/1856/C）construction|brute_force|greedy
 1882C（https://codeforces.com/problemset/problem/1882/C）observation|suffix|brute_force|construction
 1567C（https://codeforces.com/problemset/problem/1567/C）observation|construction
+743C（https://codeforces.com/problemset/problem/743/C）construction|math
+1303C（https://codeforces.com/problemset/problem/1303/C）construction|bfs|euler_path
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -880,7 +882,7 @@ class Solution:
             ac.lst([1] * m)
         else:
             ac.st(2)
-            ans = [1 if i >  j else 2 for i, j in edges]
+            ans = [1 if i > j else 2 for i, j in edges]
             ac.lst(ans)
         return
 
@@ -965,7 +967,7 @@ class Solution:
                 pre[i] -= pre[i - 1]
             ac.lst(pre[1:])
         return
-    
+
     @staticmethod
     def abc_362f(ac=FastIO()):
         """

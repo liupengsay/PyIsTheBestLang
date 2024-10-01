@@ -17,7 +17,6 @@ Description：undirected_topological_sort|directed_topological_sort|directed_cir
 1591（https://leetcode.cn/problems/strange-printer-ii/）build_graph|topological_sort|circle_judge
 2192（https://leetcode.cn/problems/all-ancestors-of-a-node-in-a-directed-acyclic-graph/）directed_topological_sort|dag_dp
 
-
 =====================================LuoGu======================================
 P1960（https://www.luogu.com.cn/problem/P1960）topological_sort|topological_order
 P1992（https://www.luogu.com.cn/problem/P1992）directed_topological_sort|directed_circle_judge
@@ -48,6 +47,8 @@ P2921（https://www.luogu.com.cn/problem/P2921）circle_based_tree|topological_s
 1388D（https://codeforces.com/problemset/problem/1388/D）topological_sort|dag_dp|heuristic_merge|classical
 919D（https://codeforces.com/problemset/problem/919/D）topological_sort|dag_dp|classical
 1335F（https://codeforces.com/problemset/problem/1335/F）circle_based_tree|implemention|observation|greedy
+1027D（https://codeforces.com/problemset/problem/1027/D）topological_sort|classical|circle_based_tree
+1867D（https://codeforces.com/problemset/problem/1867/D）topological_sort|classical|circle_based_tree
 
 ====================================AtCoder=====================================
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
