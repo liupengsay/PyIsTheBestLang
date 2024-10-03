@@ -15,6 +15,8 @@ Description：observation|property|data_range
 1749D（https://codeforces.com/problemset/problem/1749/D）observation|data_range
 1185C2（https://codeforces.com/problemset/problem/1185/C2）data_range|bucket_cnt|greedy
 1616C（https://codeforces.com/problemset/problem/1616/C）compute_slope|brute_force|observation|arithmetic_sequence
+1239A（https://codeforces.com/problemset/problem/1239/A）fibonacci_array|linear_dp|observation
+1889B（https://codeforces.com/problemset/problem/1889/B）observation|implemention
 
 ====================================AtCoder=====================================
 
@@ -77,4 +79,21 @@ class Solution:
                             cnt += 1
                     ans = min(ans, n - cnt)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1239a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1239/A
+        tag: fibonacci_array|linear_dp|observation
+        """
+        mod = 10 ** 9 + 7
+        m, n = ac.read_list_ints()
+        ceil = max(m, n) + 10
+        dp = [0] * ceil
+        dp[0] = dp[1] = 1
+        for i in range(2, ceil):
+            dp[i] = (dp[i - 1] + dp[i - 2]) % mod
+        ans = (dp[n] + dp[m] - 1) * 2 % mod
+        ac.st(ans)
         return

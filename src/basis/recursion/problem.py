@@ -27,6 +27,7 @@ P5551（https://www.luogu.com.cn/problem/P5551）recursion
 448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
 1811D（https://codeforces.com/contest/1811/problem/D）recursion|fibonacci
 559B（https://codeforces.com/problemset/problem/559/B）divide_and_conquer|implemention|string_hash
+1400E（https://codeforces.com/problemset/problem/1400/E）divide_and_conquer|greedy|classical
 
 ===================================AcWing===================================
 98（https://www.acwing.com/problem/content/100/）4-tree|recursion|matrix_rotate
@@ -520,5 +521,53 @@ class Solution:
             return min(res, cur)
 
         ans = dfs(0, n - 1)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1400e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1400/E
+        tag: divide_and_conquer|greedy|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()  # MLE
+        dp = [inf] * n * n
+
+        sub = [[] for _ in range(n * n)]
+        stack = [n - 1]
+        while stack:
+            val = stack.pop()
+            if val >= 0:
+                stack.append(~val)
+                i, j = val // n, val % n
+                low = i
+                for k in range(i, j + 1):
+                    if nums[k] < nums[low]:
+                        low = k
+                res = nums[low]
+                for k in range(i, j + 1):
+                    nums[k] -= res
+                dp[val] = res
+
+                cnt = 0
+                for k in range(i, j + 1):
+                    if nums[k]:
+                        cnt += 1
+                    else:
+                        if cnt:
+                            stack.append((k - cnt) * n + k - 1)
+                            sub[val].append((k - cnt) * n + k - 1)
+                        cnt = 0
+                if cnt:
+                    stack.append((j - cnt + 1) * n + j)
+                    sub[val].append((j - cnt + 1) * n + j)
+            else:
+                val = ~val
+                i, j = val // n, val % n
+                for y in sub[val]:
+                    dp[val] += dp[y]
+                dp[val] = min(dp[val], j - i + 1)
+        ans = dp[n - 1]
         ac.st(ans)
         return

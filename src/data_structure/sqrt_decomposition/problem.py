@@ -10,6 +10,7 @@ Description：sort the query interval into blocks and alternate between moving t
 P3396（https://www.luogu.com.cn/problem/P3396）sqrt_decomposition
 P3765（https://www.luogu.com.cn/problem/P3765）range_super_mode
 P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
+P3203（https://www.luogu.com.cn/problem/P3203）sqrt_decomposition|classical
 
 ===================================CodeForces===================================
 220B（https://codeforces.com/contest/220/problem/B）block_query|counter
@@ -27,6 +28,7 @@ P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 342E（https://codeforces.com/contest/342/problem/E）block_size|sqt_decomposition|tree_lca|classical
 375D（https://codeforces.com/contest/375/problem/D）dfs_order|tree_sqrt_decomposition|classical
 786C（https://codeforces.com/contest/786/problem/C）sqrt_decomposition|binary_search
+13E（https://codeforces.com/contest/13/problem/E）sqrt_decomposition|classical
 
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
@@ -1331,4 +1333,94 @@ class Solution:
                 stack.append(i * n + mid)
                 stack.append((mid + 1) * n + j)
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_13e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/13/problem/E
+        tag: sqrt_decomposition|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        size = int(n ** 0.5) + 1
+        post = [0] * n
+        cost = [0] * n
+        for j in range(0, n, size):
+            right = min(j + size, n) - 1
+            for i in range(right, j - 1, -1):
+                if i + nums[i] > right:
+                    cost[i] = 1
+                    post[i] = i + nums[i]
+                else:
+                    cost[i] = 1 + cost[i + nums[i]]
+                    post[i] = post[i + nums[i]]
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 0:
+                j, b = lst[1] - 1, lst[2]
+                nums[j] = b
+                right = min(n - 1, j + (size - 1 - (j % size)))
+                left = (j // size) * size
+                for i in range(j, left - 1, -1):
+                    if i + nums[i] > right:
+                        cost[i] = 1
+                        post[i] = i + nums[i]
+                    else:
+                        cost[i] = 1 + cost[i + nums[i]]
+                        post[i] = post[i + nums[i]]
+            else:
+                j = lst[1] - 1
+                ans = 0
+                while post[j] < n:
+                    ans += cost[j]
+                    j = post[j]
+                ans += cost[j]
+                while j + nums[j] < n:
+                    j += nums[j]
+                ac.lst([j + 1, ans])
+        return
+
+    @staticmethod
+    def lg_p3203(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P3203
+        tag: sqrt_decomposition|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        size = int(n ** 0.5) + 1
+        post = [0] * n
+        cost = [0] * n
+        for j in range(0, n, size):
+            right = min(j + size, n) - 1
+            for i in range(right, j - 1, -1):
+                if i + nums[i] > right:
+                    cost[i] = 1
+                    post[i] = i + nums[i]
+                else:
+                    cost[i] = 1 + cost[i + nums[i]]
+                    post[i] = post[i + nums[i]]
+        for _ in range(ac.read_int()):
+            lst = ac.read_list_ints()
+            if lst[0] == 2:
+                j, b = lst[1], lst[2]
+                nums[j] = b
+                right = min(n - 1, j + (size - 1 - (j % size)))
+                left = (j // size) * size
+                for i in range(j, left - 1, -1):
+                    if i + nums[i] > right:
+                        cost[i] = 1
+                        post[i] = i + nums[i]
+                    else:
+                        cost[i] = 1 + cost[i + nums[i]]
+                        post[i] = post[i + nums[i]]
+            else:
+                j = lst[1]
+                ans = 0
+                while j < n:
+                    ans += cost[j]
+                    j = post[j]
+                ac.st(ans)
         return

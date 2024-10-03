@@ -407,7 +407,7 @@ class RangeAddRangeAvgDev:
 
 
 class RangeAddRangePrePreSum:
-    def __init__(self, n, mod=10**9+7):
+    def __init__(self, n, mod=10 ** 9 + 7):
         self.mod = mod
         self.n = n
         self.cover = [0] * (4 * self.n)  # range sum
@@ -922,6 +922,7 @@ class RangeAddRangeSumMinMax:
         while stack:
             s, t, i = stack.pop()
             if i >= 0:
+                self.floor[i] = self.cover[i] = self.lazy_tag[i] = self.ceil[i] = 0
                 if s == t:
                     self._make_tag(i, s, t, nums[s])
                 else:
@@ -6928,8 +6929,8 @@ class SegmentTreeOptBuildGraphZKW:
 
     def build(self):
         for i in range(self.n - 1, 0, -1):
-            self.edges.append((i, i<<1))
-            self.edges.append((i, (i << 1)|1))
+            self.edges.append((i, i << 1))
+            self.edges.append((i, (i << 1) | 1))
         return
 
     def range_opt(self, left, right):

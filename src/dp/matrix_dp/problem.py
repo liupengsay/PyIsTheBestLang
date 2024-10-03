@@ -146,6 +146,8 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 339C（https://codeforces.com/problemset/problem/339/C）matrix_dp|specific_plan
 598E（https://codeforces.com/problemset/problem/598/E）matrix_dp|classical
 711C（https://codeforces.com/problemset/problem/711/C）matrix_dp|prefix_suffix
+1582F2（https://codeforces.com/problemset/problem/1582/F2）data_range|matrix_dp|implemention|limited_operation
+833B（https://codeforces.com/problemset/problem/833/B）matrix_dp|segment_tree|range_add|range_max
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -187,6 +189,7 @@ from itertools import permutations, accumulate
 from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix
+from src.data_structure.segment_tree.template import RangeAddRangeSumMinMax
 from src.data_structure.tree_array.template import PointDescendPreMin
 from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.mathmatics.comb_perm.template import Combinatorics
@@ -3539,4 +3542,27 @@ class Solution:
             mm, nn, kk = ac.read_list_ints()
             ans = dp[mm][nn][kk]
             ac.st(ans)
+        return
+    @staticmethod
+    def cf_833b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/833/B
+        tag: matrix_dp|segment_tree|range_add|range_max
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints_minus_one()  # TLE
+        dp = [0] * (n + 1)
+        dp[0] = 0
+        pre = [-1] * n
+        tree = RangeAddRangeSumMinMax(n + 1)
+        for _ in range(k):
+            tree.build(dp)
+            for i in range(n):
+                pre[i] = -1
+            for i in range(n):
+                tree.range_add(pre[nums[i]] + 1, i, 1)
+                dp[i + 1] = tree.range_max(0, i)
+                pre[nums[i]] = i
+        ans = dp[n]
+        ac.st(ans)
         return

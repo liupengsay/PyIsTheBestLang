@@ -238,6 +238,9 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1804D（https://codeforces.com/problemset/problem/1804/D）greedy
 282B（https://codeforces.com/problemset/problem/282/B）greedy
 1257D（https://codeforces.com/problemset/problem/1257/D）suffix_max|greedy|implemention|classical
+1539D（https://codeforces.com/problemset/problem/1539/D）greedy|two_pointers|implemention
+865D（https://codeforces.com/problemset/problem/865/D）regret_heapq|greedy|classical
+713C（https://codeforces.com/problemset/problem/713/C）greedy|brain_teaser|strictly_monotonic_trick|classical
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2225,4 +2228,75 @@ class Solution:
                 ans += 1
                 i = j + 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1539d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1539/D
+        tag: greedy|two_pointers|implemention
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nums.sort(key=lambda it: -it[1])
+        i, j = 0, n - 1
+        ans = 0
+        cost = 0
+        while i <= j:
+            if nums[j][0] == 0:
+                j -= 1
+                continue
+            if nums[i][0] == 0:
+                i += 1
+                continue
+            if ans >= nums[j][1]:
+                ans += nums[j][0]
+                cost += nums[j][0]
+                nums[j][0] = 0
+                j -= 1
+                continue
+            cur = min(nums[j][1] - ans, nums[i][0])
+            ans += cur
+            cost += cur * 2
+            nums[i][0] -= cur
+
+        ac.st(cost)
+        return
+
+    @staticmethod
+    def cf_865d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/865/D
+        tag: regret_heapq|greedy|classical
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ans = 0
+        pre = []
+        for num in nums:
+            if pre and num > pre[0]:
+                cur = heappop(pre)
+                ans += num - cur
+                heappush(pre, num)
+            heappush(pre, num)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_713c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/713/C
+        tag: greedy|brain_teaser|strictly_monotonic_trick|classical
+        """
+        n = ac.read_int()
+        ans = 0
+        stack = []
+        nums = ac.read_list_ints()
+        for i in range(n):
+            x = nums[i] - i  # important
+            heappush(stack, -x)
+            if stack and x < -stack[0]:
+                heappush(stack, -x)
+                ans += -heappop(stack) - x
+        ac.st(ans)
         return

@@ -81,6 +81,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1979D（https://codeforces.com/contest/1979/problem/D）prefix_suffix|brute_force|implemention
 1491C（https://codeforces.com/problemset/problem/1491/C）implemention|brain_teaser|fill_table
 1990D（https://codeforces.com/problemset/problem/1990/D）implemention
+1346C（https://codeforces.com/problemset/problem/1463/C）implemention
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force

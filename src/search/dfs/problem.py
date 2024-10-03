@@ -1,7 +1,7 @@
 """
 
 Algorithm：dfs|coloring_method|brute_force|back_trace|euler_order|dfs_order|prune|iteration
-Description：back_trace|brute_force|dfs_order|up_to_down|down_to_up
+Description：back_trace|brute_force|dfs_order|up_to_down|down_to_up|heuristic_method|dsu_on_tree
 
 
 ====================================LeetCode====================================
@@ -61,6 +61,7 @@ P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|bra
 459C（https://codeforces.com/problemset/problem/459/C）back_trace|brute_force|classical|implemention
 1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
 1882D（https://codeforces.com/problemset/problem/1882/D）dfs_order|diff_array|contribution_method|greedy
+1009F（https://codeforces.com/problemset/problem/1009/F）heuristic_merge|classical
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -94,7 +95,7 @@ from src.data_structure.segment_tree.template import RangeAddPointGet
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor, OfflineLCA
 from src.graph.union_find.template import UnionFind
-from src.search.dfs.template import DFS, DfsEulerOrder
+from src.search.dfs.template import DFS, DfsEulerOrder, UnWeightedTree
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1651,4 +1652,19 @@ class Solution:
             for i in range(1, n):
                 diff[i] += diff[i - 1]
             ac.lst([diff[start[i]] for i in range(n)])
+        return
+
+    @staticmethod
+    def cf_1009f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1009/F
+        tag: heuristic_merge|classical
+        """
+        n = ac.read_int()
+        graph = UnWeightedTree(n)
+        for _ in range(n - 1):
+            x, y = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(x, y)
+        ans = graph.heuristic_merge()
+        ac.flatten(ans)
         return

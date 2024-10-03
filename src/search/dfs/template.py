@@ -79,6 +79,52 @@ class UnWeightedTree:
 
         return
 
+    def heuristic_merge(self):
+        ans = [0] * self.n
+        sub = [None for _ in range(self.n)]
+        index = list(range(self.n))
+        self.parent = [-1] * self.n
+        self.depth = [0] * self.n
+        stack = [0]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != self.parent[i]:
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                sub[index[i]] = {self.depth[i]: 1}
+                ans[i] = self.depth[i]
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != self.parent[i]:
+                        a, b = index[i], index[j]
+                        if len(sub[a]) > len(sub[b]):
+                            res = ans[i]
+                            a, b = b, a
+                        else:
+                            res = ans[j]
+
+                        for x in sub[a]:
+                            sub[b][x] = sub[b].get(x, 0) + sub[a][x]
+                            if (sub[b][x] > sub[b][res]) or (sub[b][x] == sub[b][res] and x < res):
+                                res = x
+                        sub[a] = None
+                        ans[i] = res
+                        index[i] = b
+                    ind = self.edge_next[ind]
+
+        return [ans[i] - self.depth[i] for i in range(self.n)]
+
+
 class DFS:
     def __init__(self):
         return

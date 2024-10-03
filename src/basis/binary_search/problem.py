@@ -100,6 +100,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1244E（https://codeforces.com/problemset/problem/1244/E）binary_search|observation|two_pointers
 1998C（https://codeforces.com/problemset/problem/1998/C）binary_search|observation|greedy
 1623C（https://codeforces.com/problemset/problem/1623/C）binary_search|reverse_order|greedy
+1610C（https://codeforces.com/problemset/problem/1610/C）binary_search|brain_teaser|monotonic_property
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -2054,4 +2055,30 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, 10 ** 9, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1610c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1610/C
+        tag: binary_search|brain_teaser|monotonic_property
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            a = []
+            b = []
+            for _ in range(n):
+                x, y = ac.read_list_ints()
+                a.append(x)
+                b.append(y)
+
+            def check(num):
+                cnt = 0
+                for i in range(n):
+                    if a[i] >= num - cnt - 1 and b[i] >= cnt:
+                        cnt += 1
+                return cnt >= num
+
+            ans = BinarySearch().find_int_right(1, n, check)
+            ac.st(ans)
         return
