@@ -1,3 +1,84 @@
+class UnWeightedTree:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        self.parent = [-1]
+        self.order = 0
+        self.start = [-1]
+        self.end = [-1]
+        self.parent = [-1]
+        self.depth = [0]
+        self.order_to_node = [-1]
+        return
+
+    def add_directed_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v)
+        self.add_directed_edge(v, u)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def dfs_order(self, root=0):
+
+        self.order = 0
+        # index is original node value is dfs self.order
+        self.start = [-1] * self.n
+        # index is original node value is the maximum subtree dfs self.order
+        self.end = [-1] * self.n
+        # index is original node and value is its self.parent
+        self.parent = [-1] * self.n
+        stack = [root]
+        # self.depth of every original node
+        self.depth = [0] * self.n
+        # index is dfs self.order and value is original node
+        self.order_to_node = [-1] * self.n
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                self.start[i] = self.order
+                self.order_to_node[self.order] = i
+                self.end[i] = self.order
+                self.order += 1
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    # the self.order of son nodes can be assigned for lexicographical self.order
+                    if j != self.parent[i]:
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                if self.parent[i] != -1:
+                    self.end[self.parent[i]] = self.end[i]
+
+        return
+
 class DFS:
     def __init__(self):
         return
@@ -17,25 +98,25 @@ class DFS:
         end = [-1] * n
         # index is original node and value is its parent
         parent = [-1] * n
-        stack = [(root, -1)]
+        stack = [root]
         # depth of every original node
         depth = [0] * n
         # index is dfs order and value is original node
         order_to_node = [-1] * n
         while stack:
-            i, fa = stack.pop()
+            i = stack.pop()
             if i >= 0:
                 start[i] = order
                 order_to_node[order] = i
                 end[i] = order
                 order += 1
-                stack.append((~i, fa))
+                stack.append(~i)
                 for j in dct[i]:
                     # the order of son nodes can be assigned for lexicographical order
-                    if j != fa:
+                    if j != parent[i]:
                         parent[j] = i
                         depth[j] = depth[i] + 1
-                        stack.append((j, i))
+                        stack.append(j)
             else:
                 i = ~i
                 if parent[i] != -1:

@@ -143,6 +143,7 @@ P8599（https://www.luogu.com.cn/problem/P8599）brute_force
 1992E（https://codeforces.com/contest/1992/problem/E）brute_force|observation|data_range
 1648B（https://codeforces.com/problemset/problem/1648/B）observation|brute_force|data_range|euler_series
 466B（https://codeforces.com/problemset/problem/466/B）observation|brute_force
+1804C（https://codeforces.com/problemset/problem/1804/C）brute_force|math
 
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization

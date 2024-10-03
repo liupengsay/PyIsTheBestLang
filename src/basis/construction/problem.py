@@ -131,6 +131,8 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1303C（https://codeforces.com/problemset/problem/1303/C）construction|bfs|euler_path
 1718A2（https://codeforces.com/problemset/problem/1718/A2）bit_operation|brain_teaser|construction|greedy
 1439A2（https://codeforces.com/problemset/problem/1439/A2）construction|implemention
+1202D（https://codeforces.com/problemset/problem/1202/D）construction|binary_search
+1355D（https://codeforces.com/problemset/problem/1355/D）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

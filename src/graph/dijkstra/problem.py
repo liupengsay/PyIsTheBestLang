@@ -107,6 +107,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
 545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy
+786B（https://codeforces.com/contest/786/problem/B）segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -139,7 +140,8 @@ from itertools import accumulate, permutations
 from operator import add
 from typing import List
 
-from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra
+from src.data_structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
+from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra, WeightedGraph, LimitedWeightedGraph
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1736,28 +1738,14 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/
         tag: dijkstra|limited_shortest_path|floyd
         """
-        # Dijkstralimited_shortest_path，也可根据无后效性类似Floyd的动态规划求解
         n = len(passing_fees)
-        dct = [[] for _ in range(n)]
-        for i, j, w in edges:
-            dct[i].append([j, w])
-            dct[j].append([i, w])
+        graph = LimitedWeightedGraph(n)
+        for i, j, t in edges:
+            graph.add_directed_edge(i, j, t, passing_fees[j])
+            graph.add_directed_edge(j, i, t, passing_fees[i])
 
-        # heapq的第一维是代价，第二维是时间，第三维是节点
-        stack = [[passing_fees[0], 0, 0]]
-        dis = [max_time + 1] * n  # hash存的是第二维时间结果，需要持续递减
-        while stack:
-            cost, tm, i = heappop(stack)
-            # 前面的代价已经比当前小了若是换乘次数更多则显然不可取
-            if dis[i] <= tm:
-                continue
-            if i == n - 1:
-                return cost
-            dis[i] = tm
-            for j, w in dct[i]:
-                if tm + w < dis[j]:
-                    heappush(stack, [cost + passing_fees[j], tm + w, j])
-        return -1
+        ans = graph.limited_dijkstra_tuple(0, n - 1, max_time + 1, passing_fees[0])
+        return ans
 
     @staticmethod
     def lc_1928_2(max_time: int, edges: List[List[int]], passing_fees: List[int]) -> int:
@@ -2553,4 +2541,48 @@ class Solution:
         res = [x + 1 for x in father if x != -1]
         ac.st(sum(weight[x - 1] for x in res))
         ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_786b(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/786/problem/B
+        tag: segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
+        """
+
+        n, q, s = ac.read_list_ints()
+        s -= 1
+        graph = WeightedGraph(4 * n)
+        tree = SegmentTreeOptBuildGraphZKW(n)
+        for i in range(1, n):
+            graph.add_directed_edge(i, i << 1, 0)
+            graph.add_directed_edge(i, (i << 1) | 1, 0)
+            graph.add_directed_edge((i << 1) + 2 * n, i + 2 * n, 0)
+            graph.add_directed_edge(((i << 1) | 1) + 2 * n, i + 2 * n, 0)
+
+        for i in range(n):
+            graph.add_directed_edge(i + 3 * n, i + n, 0)
+            graph.add_directed_edge(i + n, i + 3 * n, 0)
+
+        for _ in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                v, u, w = [x - 1 for x in lst[1:]]
+                graph.add_directed_edge(v + n, u + n, w + 1)
+            elif lst[0] == 2:
+                v, ll, rr, w = [x - 1 for x in lst[1:]]
+                lst = tree.range_opt(ll, rr)
+                for j in lst:
+                    graph.add_directed_edge(v + 3 * n, j, w + 1)
+            else:
+                v, ll, rr, w = [x - 1 for x in lst[1:]]
+                lst = tree.range_opt(ll, rr)
+                for j in lst:
+                    graph.add_directed_edge(j + 2 * n, v + n, w + 1)
+
+        graph.dijkstra(s + 3 * n)
+        for i in range(n, 2 * n):
+            if graph.dis[i] == inf:
+                graph.dis[i] = -1
+        ac.lst(graph.dis[n:2 * n])
         return

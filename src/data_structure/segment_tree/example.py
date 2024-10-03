@@ -13,10 +13,71 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, \
     RangeAddPointGet, RangeSetRangeSegCountLength, RangeAddRangeWeightedSum, \
     RangeChminChmaxPointGet, RangeSetPreSumMaxDynamic, RangeSetPreSumMaxDynamicDct, RangeSetRangeSumMinMaxDynamicDct, \
     RangeRevereRangeAlter, RangeAddRangeMinCount, RangeSetPointGet, PointSetPreMinPostMin, PointSetPreMaxPostMin, \
-    RangeAddRangeMaxGainMinGain
+    RangeAddRangeMaxGainMinGain, SegmentTreeOptBuildGraph, SegmentTreeOptBuildGraphZKW
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_segment_tree_build_graph(self):
+        """
+        example： 1
+                / \
+               /   \
+              2     3
+             / \   / \
+            4   5 6   7
+        """
+        n = 8
+        tree = SegmentTreeOptBuildGraph(n)
+        assert tree.edges == [(1, 2), (1, 3), (2, 4), (2, 5), (4, 8), (4, 9), (5, 10), (5, 11), (3, 6), (3, 7), (6, 12),
+                              (6, 13), (7, 14), (7, 15)]
+        assert tree.range_opt(2, 5) == [5, 6]
+        assert tree.range_opt(0, 7) == [1]
+        assert tree.range_opt(3, 7) == [11, 3]
+        assert tree.range_opt(1, 2) == [9, 10]
+        assert tree.range_opt(1,1) == [9]
+        assert tree.range_opt(1, 4) == [9, 5, 12]
+        for _ in range(100):
+            n = random.randint(1, 10 ** 3)
+            tree = SegmentTreeOptBuildGraph(n)
+            assert len(tree.edges) == 2 * (n - 1)
+            nodes = []
+            for edge in tree.edges:
+                nodes.extend(edge)
+            assert len(set(nodes)) <= 2*n
+            assert n==1 or max(nodes) <= 4*n
+            assert len(tree.leaves) == n
+        return
+
+    def test_segment_tree_build_graph_zkw(self):
+        """
+        example： 1
+                / \
+               /   \
+              2     3
+             / \   / \
+            4   5 6   7
+        """
+        n = 8
+        tree = SegmentTreeOptBuildGraphZKW(n, True)
+        assert sorted(tree.edges) == sorted([(1, 2), (1, 3), (2, 4), (2, 5), (4, 8), (4, 9), (5, 10), (5, 11), (3, 6), (3, 7), (6, 12),
+                              (6, 13), (7, 14), (7, 15)])
+        assert tree.range_opt(2, 5) == [5, 6]
+        assert tree.range_opt(0, 7) == [1]
+        assert tree.range_opt(3, 7) == [11, 3]
+        assert tree.range_opt(1, 2) == [9, 10]
+        assert tree.range_opt(1,1) == [9]
+        assert sorted(tree.range_opt(1, 4)) == sorted([9, 5, 12])
+        for _ in range(100):
+            n = random.randint(1, 10 ** 3)
+            tree = SegmentTreeOptBuildGraphZKW(n, True)
+            assert len(tree.edges) == 2 * (n - 1)
+            nodes = []
+            for edge in tree.edges:
+                nodes.extend(edge)
+            assert len(set(nodes)) <= 2*n
+            assert n==1 or max(nodes) <= 2*n
+        return
 
     def test_max_gain_min_gain(self):
         for _ in range(1000):
@@ -28,14 +89,14 @@ class TestGeneral(unittest.TestCase):
                 ll = random.randint(0, n - 2)
                 rr = random.randint(ll + 1, n - 1)
                 ans = tree.range_max_gain_min_gain(ll, rr)
-                assert ans[0] == min(nums[ll:rr+1])
+                assert ans[0] == min(nums[ll:rr + 1])
                 assert ans[1] == max(nums[ll:rr + 1])
                 floor = nums[ll]
                 ceil = nums[ll]
                 cover1 = -inf
                 cover2 = inf
-                for x in range(ll+1, rr+1):
-                    cover1 = max(cover1, nums[x]-floor)
+                for x in range(ll + 1, rr + 1):
+                    cover1 = max(cover1, nums[x] - floor)
                     cover2 = min(cover2, nums[x] - ceil)
                     ceil = max(ceil, nums[x])
                     floor = min(floor, nums[x])
@@ -43,10 +104,9 @@ class TestGeneral(unittest.TestCase):
                 assert ans[3] == cover2
                 v = random.randint(0, 100)
                 tree.range_add(ll, rr, v)
-                for i in range(ll, rr+1):
+                for i in range(ll, rr + 1):
                     nums[i] += v
         return
-
 
     def test_point_set_pre_min_post_min(self):
         for _ in range(1000):

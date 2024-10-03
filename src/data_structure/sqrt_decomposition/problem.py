@@ -24,6 +24,9 @@ P3567（https://www.luogu.com.cn/problem/P3567）range_super_mode
 1921F（https://codeforces.com/contest/1921/problem/F）sqrt_decomposition
 103D（https://codeforces.com/contest/103/problem/D）sqrt_decomposition
 1806E（https://codeforces.com/problemset/problem/1806/E）sqrt_decomposition
+342E（https://codeforces.com/contest/342/problem/E）block_size|sqt_decomposition|tree_lca|classical
+375D（https://codeforces.com/contest/375/problem/D）dfs_order|tree_sqrt_decomposition|classical
+786C（https://codeforces.com/contest/786/problem/C）sqrt_decomposition|binary_search
 
 ====================================AtCoder=====================================
 ABC132F（https://atcoder.jp/contests/abc132/tasks/abc132_f）block_query|counter|dp|prefix_sum
@@ -42,8 +45,12 @@ from typing import List
 
 from src.data_structure.segment_tree.template import PointSetMergeRangeMode, PointSetBitRangeMode, \
     PointSetRandomRangeMode
+from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.sqrt_decomposition.template import BlockSize
+from src.data_structure.tree_array.template import PointAddRangeSum
+from src.graph.tree_lca.template import TreeAncestor
 from src.mathmatics.prime_factor.template import PrimeFactor
+from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO, inf
 
 
@@ -1167,3 +1174,161 @@ class Solution:
                     x += 1
                 ans[j] = (b - a + 1) * (b - a + 1 + 1) // 2 - cnt
         return ans
+
+    @staticmethod
+    def cf_342e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/342/problem/E
+        tag: block_size|sqt_decomposition|tree_lca|classical
+        """
+        n, m = ac.read_list_ints()
+        dct = [[] for _ in range(n)]
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+        tree = TreeAncestor(dct)
+        dis = tree.depth[:]
+        block_size = 100
+        lst = []
+        for i in range(m):
+            op, x = ac.read_list_ints_minus_one()
+            if op == 0:
+                lst.append(x)
+                if len(lst) >= block_size:
+                    for y in lst:
+                        dis[y] = 0
+                    while lst:
+                        nex = []
+                        for x in lst:
+                            for y in dct[x]:
+                                if dis[y] > dis[x] + 1:
+                                    dis[y] = dis[x] + 1
+                                    nex.append(y)
+                        lst = nex
+            else:
+                ans = dis[x]
+                for y in lst:
+                    ans = min(ans, tree.get_dist(y, x))
+                ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_375d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/375/problem/D
+        tag: dfs_order|tree_sqrt_decomposition|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints_minus_one()
+        ceil = 10 ** 5 + 1
+        cnt = [0] * ceil
+        graph = UnWeightedTree(n)
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j)
+        graph.dfs_order()
+
+        size = 200
+        block = n // size + 1
+        queries = [[] for _ in range(block)]
+        right = [-1] * q
+        target = [-1] * q
+        ans = [-1] * q
+        for i in range(q):
+            v, k = ac.read_list_ints_minus_one()
+            target[i] = k + 1
+            right[i] = graph.end[v]
+            queries[graph.end[v] // size].append(graph.start[v] * q + i)
+
+        def add(num, xx):
+            if cnt[num] > 0:
+                tree.point_add(ceil - 1 - cnt[num], -1)
+            cnt[num] += xx
+            if cnt[num] > 0:
+                tree.point_add(ceil - 1 - cnt[num], 1)
+            return
+
+        tree = PointAddRangeSum(ceil)
+        x = y = 0
+        nums = [nums[x] for x in graph.order_to_node]
+        cnt[nums[0]] = 1
+        tree.point_add(ceil - 2, 1)
+        for i in range(block):
+            if i % 2:
+                queries[i].sort(reverse=True)
+            else:
+                queries[i].sort()
+            for val in queries[i]:
+                a, j = val // q, val % q
+                b = right[j]
+                k = target[j]
+                while y > b:
+                    add(nums[y], -1)
+                    y -= 1
+                while y < b:
+                    y += 1
+                    add(nums[y], 1)
+                while x > a:
+                    x -= 1
+                    add(nums[x], 1)
+                while x < a:
+                    add(nums[x], -1)
+                    x += 1
+                ans[j] = tree.range_sum(0, ceil - 1 - k)
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def cf_786c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/786/problem/C
+        tag: sqrt_decomposition|binary_search
+        """
+
+        def check(x):
+            tm[0] += 1
+            if ans[x - 1]:
+                return ans[x - 1]
+            res = cnt = 0
+            for num in nums:
+                if not (cnt < x or visit[num - 1] == tm[0]):
+                    res += 1
+                    tm[0] += 1
+                    visit[num - 1] = tm[0]
+                    cnt = 1
+                else:
+                    if visit[num - 1] != tm[0]:
+                        cnt += 1
+                        visit[num - 1] = tm[0]
+            return res + 1
+
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = [0] * n  # TLE
+        tm = [0] # trick
+        visit = [0] * n
+        l = min(2 * round(n ** 0.5), n - 1)
+        for i in range(l):
+            ans[i] = check(i + 1)
+        stack = [l * n + n - 1]
+        while stack:
+            val = stack.pop()
+            i, j = val // n, val % n
+            if i > j:
+                continue
+            if not ans[i]:
+                ans[i] = check(i + 1)
+            if not ans[j]:
+                ans[j] = check(j + 1)
+            if ans[i] == ans[j]:
+                for k in range(i + 1, j):
+                    ans[k] = ans[i]
+                continue
+            else:
+                mid = i + (j - i) // 2
+                stack.append(i * n + mid)
+                stack.append((mid + 1) * n + j)
+        ac.lst(ans)
+        return

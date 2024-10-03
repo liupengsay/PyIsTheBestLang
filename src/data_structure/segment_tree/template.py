@@ -1,3 +1,4 @@
+import math
 import random
 from collections import defaultdict
 from typing import List
@@ -406,7 +407,8 @@ class RangeAddRangeAvgDev:
 
 
 class RangeAddRangePrePreSum:
-    def __init__(self, n):
+    def __init__(self, n, mod=10**9+7):
+        self.mod = mod
         self.n = n
         self.cover = [0] * (4 * self.n)  # range sum
         self.lazy_tag = [0] * (4 * self.n)  # lazy tag
@@ -450,7 +452,7 @@ class RangeAddRangePrePreSum:
             self.lazy_tag[(i << 1) | 1] += self.lazy_tag[i]
 
             self.pre_pre[i] += self.lazy_tag[i] * (1 + t - s + 1) * (t - s + 1)
-            self.pre_pre[i] %= mod
+            self.pre_pre[i] %= self.mod
             self.lazy_tag[i] = 0
 
     def _push_up(self, i, s, m, t):
@@ -458,7 +460,7 @@ class RangeAddRangePrePreSum:
         self.ceil[i] = max(self.ceil[i << 1], self.ceil[(i << 1) | 1])
         self.floor[i] = min(self.floor[i << 1], self.floor[(i << 1) | 1])
         self.pre_pre[i] = self.pre_pre[i << 1] + self.pre_pre[(i << 1) | 1] + self.cover[i << 1] * (t - m)
-        self.pre_pre[i] %= mod
+        self.pre_pre[i] %= self.mod
         return
 
     def _make_tag(self, i, s, t, val):
@@ -1180,7 +1182,6 @@ class RangeAddRangeMaxGainMinGain:
 
     def _push_down(self, i):
         if self.lazy_tag[i]:
-
             self.floor[i << 1] += self.lazy_tag[i]
             self.floor[(i << 1) | 1] += self.lazy_tag[i]
 
@@ -1193,7 +1194,8 @@ class RangeAddRangeMaxGainMinGain:
             self.lazy_tag[i] = 0
 
     def _push_up(self, i):
-        self.cover1[i] = max(self.cover1[i << 1], self.cover1[(i << 1) | 1], self.ceil[(i << 1) | 1] - self.floor[i << 1])
+        self.cover1[i] = max(self.cover1[i << 1], self.cover1[(i << 1) | 1],
+                             self.ceil[(i << 1) | 1] - self.floor[i << 1])
         self.cover2[i] = min(self.cover2[i << 1], self.cover2[(i << 1) | 1],
                              self.floor[(i << 1) | 1] - self.ceil[i << 1])
 
@@ -1231,7 +1233,6 @@ class RangeAddRangeMaxGainMinGain:
                 self._push_up(i)
         return
 
-
     def range_min(self, left, right):
         # query the range min
         stack = [(0, self.n - 1, 1)]
@@ -1252,7 +1253,7 @@ class RangeAddRangeMaxGainMinGain:
     def range_max_gain_min_gain(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        ans = [inf, -inf, -inf, inf] # floor, ceil, max_gain, min_gain
+        ans = [inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1283,6 +1284,7 @@ class RangeAddRangeMaxGainMinGain:
             stack.append((s, m, i << 1))
             stack.append((m + 1, t, (i << 1) | 1))
         return nums
+
 
 class RangeAddRangeConSubPalindrome:
     def __init__(self, n):
@@ -1915,6 +1917,7 @@ class PointSetPreMaxPostMin:
             else:
                 s, t, i = s, m, i << 1
         return t
+
 
 class PointAddRangeSumMod5:
 
@@ -2747,6 +2750,7 @@ class RangeSetRangeSumMinMax:
             else:
                 s, t, i = m + 1, t, (i << 1) | 1
         return ans
+
 
 class RangeOrRangeOr:
     def __init__(self, n):
@@ -6869,6 +6873,80 @@ class PointSetMergeRangeMode:
             if right > m:
                 stack.append((m + 1, t, (i << 1) | 1))
         return -1
+
+
+class SegmentTreeOptBuildGraph:
+
+    def __init__(self, n):
+        self.n = n
+        self.edges = []
+        self.leaves = []
+        self.build()
+        return
+
+    def build(self):
+        stack = [(0, self.n - 1, 1)]
+        while stack:
+            s, t, i = stack.pop()
+            if s == t:
+                self.leaves.append(i)
+                continue
+            m = s + (t - s) // 2
+            stack.append((m + 1, t, (i << 1) | 1))
+            stack.append((s, m, i << 1))
+            self.edges.append((i, i << 1))
+            self.edges.append((i, (i << 1) | 1))
+        return
+
+    def range_opt(self, left, right):
+        assert 0 <= left <= right < self.n
+        stack = [(0, self.n - 1, 1)]
+        ans = []
+        while stack:
+            s, t, i = stack.pop()
+            if left <= s <= t <= right:
+                ans.append(i)
+                continue
+            if s == t:
+                continue
+            m = s + (t - s) // 2
+            if right > m:
+                stack.append((m + 1, t, (i << 1) | 1))
+            if left <= m:
+                stack.append((s, m, i << 1))
+        return ans
+
+
+class SegmentTreeOptBuildGraphZKW:
+
+    def __init__(self, n, build=False):
+        self.n = n
+        self.edges = []
+        if build:
+            self.build()
+        return
+
+    def build(self):
+        for i in range(self.n - 1, 0, -1):
+            self.edges.append((i, i<<1))
+            self.edges.append((i, (i << 1)|1))
+        return
+
+    def range_opt(self, left, right):
+        assert 0 <= left <= right < self.n
+        left += self.n
+        ans = []
+        right += self.n + 1
+        while left < right:
+            if left & 1:
+                ans.append(left)
+                left += 1
+            if right & 1:
+                right -= 1
+                ans.append(right)
+            left >>= 1
+            right >>= 1
+        return ans
 
 
 class PointSetRangeGcd:

@@ -27,6 +27,9 @@ ABC317F（https://atcoder.jp/contests/abc317/tasks/abc317_f）2-base|digital_dp|
 ABC295F（https://atcoder.jp/contests/abc295/tasks/abc295_f）digital_dp|kmp_automaton|classical
 ABC235F（https://atcoder.jp/contests/abc235/tasks/abc235_f）digital_dp|classical
 
+===================================CodeForces===================================
+628D（https://codeforces.com/problemset/problem/628/D）digital_dp
+
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
 P1239（https://www.luogu.com.cn/problem/P1239）counter|digital_dp
@@ -408,3 +411,64 @@ class Solution:
         ac.st(ans if ans > -1 else 0)
         return
 
+    @staticmethod
+    def cf_628d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/628/D
+        tag: digital_dp
+        """
+        m, d = ac.read_list_ints()  # TLE
+        a = [int(w) for w in ac.read_str()]
+        b = ac.read_str()
+        k = len(a)
+        for i in range(k - 1, -1, -1):
+            if a[i]:
+                a[i] -= 1
+                for j in range(i + 1, k):
+                    a[j] = 9
+                break
+        if len(a) >= 2 and a[0] == 0:
+            a.pop(0)
+        a = "".join(str(x) for x in a)
+        mod = 10 ** 9 + 7
+
+        def count(s):
+            n = len(s)
+            dp = [0] * m * (1 << 3)
+            ndp = [0] * m * (1 << 3)
+            for p in range(n, -1, -1):
+                for rest in range(m):
+                    for state in range(1 << 3):
+                        is_limit = (state >> 2) & 1
+                        is_num = (state >> 1) & 1
+                        odd = state & 1
+                        if p == n:
+                            ndp[state * m + rest] = int(rest == 0 and is_num)
+                            continue
+                        else:
+                            res = 0
+                            if not is_num:
+                                res += dp[0]
+
+                            floor = 0 if is_num else 1
+                            ceil = int(s[p]) if is_limit else 9
+                            if odd == 1:
+                                if floor <= d <= ceil:
+                                    res += dp[
+                                        ((int(is_limit and ceil == d) << 2) | 2 | (odd ^ 1)) * m + (rest * 10 + d) % m]
+                                ndp[state * m + rest] = res % mod
+                                continue
+                            for x in range(floor, ceil + 1):
+                                if odd == 0 and x == d:
+                                    continue
+                                res += dp[
+                                    ((int(is_limit and ceil == x) << 2) | 2 | (odd ^ 1)) * m + (rest * 10 + x) % m]
+                            ndp[state * m + rest] = res % mod
+                for rest in range(m):
+                    for state in range(1 << 3):
+                        dp[state * m + rest] = ndp[state * m + rest]
+            return dp[4 * m]
+
+        final = count(b) - count(a)
+        ac.st(final % mod)
+        return

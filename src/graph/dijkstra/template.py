@@ -4,6 +4,147 @@ from heapq import heappush, heappop
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
 
+class WeightedGraph:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_weight = [0]
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.dis = [inf]
+        self.edge_id = 1
+        return
+
+    def add_directed_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_weight.append(w)
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v, w)
+        self.add_directed_edge(v, u, w)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def dijkstra(self, src=0, initial=0):
+        self.dis = [inf] * (self.n + 1)
+        stack = [initial * self.n + src]
+        self.dis[src] = initial
+        while stack:
+            val = heappop(stack)
+            d, u = val // self.n, val % self.n
+            if self.dis[u] < d:
+                continue
+            i = self.point_head[u]
+            while i:
+                w = self.edge_weight[i]
+                j = self.edge_to[i]
+                dj = d + w
+                if dj < self.dis[j]:
+                    self.dis[j] = dj
+                    heappush(stack, dj * self.n + j)
+                i = self.edge_next[i]
+        return
+
+class LimitedWeightedGraph:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_weight1 = [0]
+        self.edge_weight2 = [0]
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.time = [inf]
+        self.edge_id = 1
+        return
+
+    def add_directed_edge(self, u, v, t, c):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_weight1.append(t)
+        self.edge_weight2.append(c)
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v, t, c):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v, t, c)
+        self.add_directed_edge(v, u, t, c)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def limited_dijkstra(self, src=0, des=0, ceil=inf, initial=0):
+        self.time = [ceil] * (self.n + 1)
+        stack = [initial * ceil * self.n + 0 * self.n + src]
+        self.time[src] = initial  # min(cost) when time<ceil
+        while stack:
+            val = heappop(stack)  # cost time point
+            cost, tm, u = val // (ceil * self.n), (val % (ceil * self.n)) // self.n, (val % (ceil * self.n)) % self.n
+            if u == des:
+                return cost
+            i = self.point_head[u]
+            while i:
+                t = self.edge_weight1[i]
+                c = self.edge_weight2[i]
+                j = self.edge_to[i]
+                dj = tm + t
+                if dj < self.time[j]:
+                    self.time[j] = dj
+                    heappush(stack, (cost + c) * ceil * self.n + dj * self.n + j)
+                i = self.edge_next[i]
+        return -1
+
+    def limited_dijkstra_tuple(self, src=0, des=0, ceil=inf, initial=0):
+        self.time = [ceil] * (self.n + 1)
+        stack = [(initial, 0, src)]
+        self.time[src] = initial  # min(cost) when time<ceil
+        while stack:
+            cost, tm, u = heappop(stack)  # cost time point
+            if u == des:
+                return cost
+            i = self.point_head[u]
+            while i:
+                t = self.edge_weight1[i]
+                c = self.edge_weight2[i]
+                j = self.edge_to[i]
+                dj = tm + t
+                if dj < self.time[j]:
+                    self.time[j] = dj
+                    heappush(stack, (cost + c, dj, j))
+                i = self.edge_next[i]
+        return -1
+
 
 class Dijkstra:
     def __init__(self):

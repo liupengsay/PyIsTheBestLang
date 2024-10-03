@@ -100,6 +100,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1750D（https://codeforces.com/problemset/problem/1750/D）number_theory|observation|data_range|limited_operation|inclusion_exclusion|gcd_like|num_factor|classical
 687B（https://codeforces.com/problemset/problem/687/B）math|mod|lcm|classical
 2020B（https://codeforces.com/contest/2020/problem/B）factor_cnt|number_theory|classical
+1114C（https://codeforces.com/problemset/problem/1114/C）get_prime_factor|num_factor|inclusion_exclusion|n_base
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -1952,4 +1953,35 @@ class Solution:
             pre %= k
         ac.st("Yes" if pre % k == 0 else "No")
         return
-    
+
+    @staticmethod
+    def cf_1114c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1114/C
+        tag: get_prime_factor|num_factor|inclusion_exclusion|n_base
+        """
+        n, b = ac.read_list_ints()
+        factors = NumFactor().get_prime_factor(b)
+        dct = {p: 0 for p, _ in factors}
+        for p in dct:
+            cur = p
+            cnt = 1
+            lst = []
+            while cur <= n:
+                dct[p] += (n // cur) * cnt
+                lst.append(n // cur)
+                cnt += 1
+                cur *= p
+            k = len(lst)
+            if not lst:
+                continue
+            post = 0
+            for i in range(k - 1, -1, -1):
+                lst[i] -= post
+                post += lst[i]
+            dct[p] = sum(lst[i] * (i + 1) for i in range(k))
+        ans = math.inf
+        for p, x in factors:
+            ans = min(ans, dct[p] // x)
+        ac.st(ans)
+        return

@@ -32,6 +32,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1363D（https://codeforces.com/problemset/problem/1363/D）interactive|strictly_binary_search
 1207E（https://codeforces.com/problemset/problem/1207/E）interactive|construction|observation|brain_teaser|data_range|bit_operation
 1534D（https://codeforces.com/problemset/problem/1534/D）interactive|tree|construction|odd_even
+1407C（https://codeforces.com/problemset/problem/1407/C）interactive|observation
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser

@@ -29,6 +29,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
 1265E（https://codeforces.com/problemset/problem/1265/E）expectation_dp|math|classical|circle_dp|prob_dp
 2020E（https://codeforces.com/contest/2020/problem/E）expectation_dp|implemention|data_range
+1753F（https://codeforces.com/problemset/problem/1753/C）expectation_dp|comb|inv|prefix_sum
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -407,4 +408,26 @@ class Solution:
         for x in p:
             ans = (ans + 1) * 100 * rev[x] % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1753f(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1753/C
+        tag: expectation_dp|comb|inv|prefix_sum
+        """
+        mod = 998244353
+        cb = Combinatorics(2 * 10 ** 5, mod)
+        lst = [x * x % mod for x in cb.inv[1:]]
+        pre = ac.accumulate(lst)
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            cnt = sum(nums)
+            x = sum(nums[:n - cnt])
+            if x == 0:
+                ac.st(0)
+                continue
+            ans = pre[x] * n * (n - 1) // 2
+            ac.st(ans % mod)
         return

@@ -101,6 +101,7 @@ class DinicMaxflowMinCut:
                 flow = self._dfs(s, t)
         return total_flow
 
+
 class UndirectedGraph:
     def __init__(self, n):
         self.n = n
@@ -127,6 +128,35 @@ class UndirectedGraph:
         assert 1 <= v <= self.n
         self._add_single_edge(v, u, w, p)
         self._add_single_edge(u, v, w, p)
+        return
+
+
+class DirectedGraph:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_w = [0] * 2
+        self.edge_to = [0] * 2
+        self.edge_next = [0] * 2
+        self.edge_id = 2
+
+    def add_single_edge(self, u, v, w):
+        assert 1 <= u <= self.n
+        assert 1 <= v <= self.n
+        self.edge_w.append(w)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def get_edge_ids(self, u):
+        assert 1 <= u <= self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
         return
 
 
