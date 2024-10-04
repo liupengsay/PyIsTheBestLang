@@ -17,6 +17,7 @@ Description：observation|property|data_range
 1616C（https://codeforces.com/problemset/problem/1616/C）compute_slope|brute_force|observation|arithmetic_sequence
 1239A（https://codeforces.com/problemset/problem/1239/A）fibonacci_array|linear_dp|observation
 1889B（https://codeforces.com/problemset/problem/1889/B）observation|implemention
+1332B（https://codeforces.com/problemset/problem/1332/B）observation|data_range|min_prime|data_range
 
 ====================================AtCoder=====================================
 
@@ -25,6 +26,7 @@ Description：observation|property|data_range
 
 """
 from src.mathmatics.geometry.template import Geometry
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 
 
@@ -96,4 +98,21 @@ class Solution:
             dp[i] = (dp[i - 1] + dp[i - 2]) % mod
         ans = (dp[n] + dp[m] - 1) * 2 % mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1332b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1332/B
+        tag: observation|data_range|min_prime|data_range
+        """
+        pf = PrimeFactor(1000)
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            lst = list(set([pf.min_prime[x] for x in nums]))
+            dct = {num: i + 1 for i, num in enumerate(lst)}
+            ans = [dct[pf.min_prime[x]] for x in nums]
+            ac.st(len(dct))
+            ac.lst(ans)
         return

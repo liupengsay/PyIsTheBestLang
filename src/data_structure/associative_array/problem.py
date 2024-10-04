@@ -9,6 +9,7 @@ Reference：https://judge.yosupo.jp/problem/associative_array
 1702C（https://codeforces.com/contest/1702/problem/C）hash|xor_random_seed
 1676F（https://codeforces.com/contest/1676/problem/F）hash|dp|sort
 776C（https://codeforces.com/problemset/problem/776/C）prefix_sum|hash|random_seed|random_xor
+1188B（https://codeforces.com/problemset/problem/1188/B）hash|math|classical
 
 ================================Library Checker================================
 1（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed
@@ -114,5 +115,23 @@ class Solution:
             for v in val:
                 ans += pre.get((x - v) ^ ac.random_seed, 0)
             pre[x ^ ac.random_seed] = pre.get(x ^ ac.random_seed, 0) + 1
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1188b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1188/B
+        tag: hash|math|classical
+        """
+        n, p, k = ac.read_list_ints()
+        cnt = dict()
+        ac.get_random_seed()
+        nums = ac.read_list_ints()
+        ans = 0
+        for num in nums:
+            cur = ((num ** 4 - k * num) % p) ^ ac.random_seed
+            ans += cnt.get(cur, 0)
+            cnt[cur] = cnt.get(cur, 0) + 1
         ac.st(ans)
         return

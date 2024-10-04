@@ -30,6 +30,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 1265E（https://codeforces.com/problemset/problem/1265/E）expectation_dp|math|classical|circle_dp|prob_dp
 2020E（https://codeforces.com/contest/2020/problem/E）expectation_dp|implemention|data_range
 1753F（https://codeforces.com/problemset/problem/1753/C）expectation_dp|comb|inv|prefix_sum
+518D（https://codeforces.com/contest/518/problem/D）bag_dp|expectation_dp|prob_dp
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp

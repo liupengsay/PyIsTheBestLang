@@ -39,6 +39,7 @@ P1063（https://www.luogu.com.cn/problem/P1063）interval_dp|classical|circular_
 607B（https://codeforces.com/problemset/problem/607/B）interval_dp
 1771D（https://codeforces.com/problemset/problem/1771/D）interval_dp|tree_dp|lps|classical|longest_palindrome_subsequence
 1025D（https://codeforces.com/problemset/problem/1025/D）interval_dp|brain_teaser
+983B（https://codeforces.com/problemset/problem/983/B）interval_dp|matrix_dp|preprocess|classical
 
 ===================================AtCoder===================================
 ABC217F（https://atcoder.jp/contests/abc217/tasks/abc217_f）interval_dp|implemention|comb_dp|counter
@@ -660,4 +661,25 @@ class Solution:
             ac.yes()
         else:
             ac.no()
+        return
+
+    @staticmethod
+    def cf_983b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/983/B
+        tag: interval_dp|matrix_dp|preprocess|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dp = [1] * n * n
+        for i in range(n - 1, -1, -1):
+            dp[i * n + i] = nums[i]
+            for j in range(i + 1, n):
+                dp[i * n + j] = dp[i * n + j - 1] ^ dp[(i + 1) * n + j]
+        for i in range(n - 1, -1, -1):
+            for j in range(i + 1, n):
+                dp[i * n + j] = max(dp[i * n + j], max(dp[i * n + j - 1], dp[(i + 1) * n + j]))
+        for _ in range(ac.read_int()):
+            ll, rr = ac.read_list_ints_minus_one()
+            ac.st(dp[ll * n + rr])
         return

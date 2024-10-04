@@ -49,6 +49,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1242B（https://codeforces.com/contest/1242/problem/B）mst|observation|prim|brain_teaser|implemention|bfs
 1245D（https://codeforces.com/problemset/problem/1245/D）prim|specific_plan|virtual_source|classical
 1513D（https://codeforces.com/problemset/problem/1513/D）bfs|gcd_like|mst
+888G（https://codeforces.com/contest/888/problem/G）heuristic_merge|get_minimum_xor|mst|classical
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
@@ -73,6 +74,7 @@ from collections import defaultdict
 from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
+from src.data_structure.trie_like.template import BinaryTrieXor
 from src.graph.minimum_spanning_tree.template import SecondMinimumSpanningTree, KruskalMinimumSpanningTree, \
     SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree, ManhattanMST
 from src.graph.tarjan.template import Tarjan
@@ -1169,4 +1171,41 @@ class Solution:
         ac.st(len(edges))
         for ls in edges:
             ac.lst(ls)
+        return
+
+    @staticmethod
+    def cf_888g(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/888/problem/G
+        tag: heuristic_merge|get_minimum_xor|mst|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        nums.sort()
+        uf = UnionFind(n)
+        pre = dict()
+        ac.get_random_seed()
+        trie = BinaryTrieXor(1 << 30, n)
+        for i in range(n):
+            cur = nums[i] ^ ac.random_seed
+            if cur in pre:
+                uf.union(i, pre[cur])
+            pre[cur] = i
+            trie.add(nums[i], 1)
+        ans = 0
+        while uf.part > 1:
+            group = uf.get_root_part()
+            for g in group:
+                for x in group[g]:
+                    trie.remove(nums[x], 1)
+                res = [inf, 0, 1]
+                for x in group[g]:
+                    y = trie.get_minimum_xor(nums[x])
+                    if y < res[0]:
+                        res = [y, x, pre[y ^ nums[x] ^ ac.random_seed]]
+                if uf.union(res[1], res[2]):
+                    ans += res[0]
+                for x in group[g]:
+                    trie.add(nums[x], 1)
+        ac.st(ans)
         return

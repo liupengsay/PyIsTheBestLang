@@ -103,6 +103,7 @@ P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_d
 478D（https://codeforces.com/problemset/problem/478/D）matrix_dp|data_range|implemention|bag_dp
 163A（https://codeforces.com/problemset/problem/163/A）bag_dp|matrix_dp|classical
 1340B（https://codeforces.com/problemset/problem/1340/B）bag_dp|reverse_order|specific_plan
+2000E（https://codeforces.com/problemset/problem/2000/F）brute_force|greedy|bag_dp
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1283,7 +1284,7 @@ class Solution:
         ac.st(dp[-1])
         cnt = [0] * n
         res = m
-        for j in range(n-1, -1, -1):
+        for j in range(n - 1, -1, -1):
             x = pre[j][res]
             cnt[j] += x
             res -= x * vv[j]
@@ -1569,7 +1570,7 @@ class Solution:
                 node = parent[node]
         mod = 998244353
         tot = sum(cnt)
-        if (tot + k) % 2 or (tot+k) // 2 < 0:
+        if (tot + k) % 2 or (tot + k) // 2 < 0:
             ac.st(0)
             return
         r = (tot + k) // 2
@@ -1794,7 +1795,7 @@ class Solution:
                     ndp[x + num] = max(ndp[x + num], dp[x])
                 if num <= x:
                     ndp[x - num] = max(ndp[x - num], dp[x] + num)
-                elif num - x <= s//2:
+                elif num - x <= s // 2:
                     ndp[num - x] = max(ndp[num - x], dp[x] + x)
             dp = ndp[:]
         return dp[0]
@@ -1961,4 +1962,36 @@ class Solution:
                     for i in range(1, j // ww + 1):
                         dp[j] = max(dp[j], dp[j - i * ww] + cur[i])
         ac.st(max(dp))
+        return
+
+    @staticmethod
+    def cf_2000e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/2000/F
+        tag: brute_force|greedy|bag_dp
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            if sum(sum(ls) for ls in nums) < k:
+                ac.st(-1)
+                continue
+            dp = [inf] * (k + 1)
+            dp[0] = 0
+            for a, b in nums:
+                lst = []
+                while a and b:
+                    if a > b:
+                        a, b = b, a
+                    lst.append(a)
+                    b -= 1
+                lst.extend([0] * a)
+                lst.extend([0] * b)
+                lst = ac.accumulate(lst)[1:]
+                for j in range(k, -1, -1):
+                    for i in range(j - 1, -1, -1):
+                        if j - i > len(lst):
+                            break
+                        dp[j] = min(dp[j], dp[i] + lst[j - i - 1])
+            ac.st(dp[k])
         return

@@ -60,6 +60,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greedy|classical
 1919D（https://codeforces.com/problemset/problem/1919/D）brain_teaser|monotonic_stack|construction
 1299C（https://codeforces.com/problemset/problem/1299/C）monotonic_stack|convex|brain_teaser|greedy|construction
+1407D（https://codeforces.com/problemset/problem/1407/D）array_implemention|monotonic_stack|linear_dp|classical
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
@@ -1109,4 +1110,35 @@ class Solution:
             ans = ss / (rr - ll + 1)
             for _ in range(rr - ll + 1):
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1407d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1407/D
+        tag: array_implemention|monotonic_stack|linear_dp|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dp = [-1] * (n + 1)
+        ceil = [-1] * (n + 1)
+        floor = [-1] * (n + 1)
+        j1 = j2 = 0
+        for i in range(n):
+            dp[i + 1] = dp[i] + 1
+            while j1 > 0 and nums[ceil[j1]] <= nums[i]:
+                x = nums[ceil[j1]]
+                j1 -= 1
+                if j1 and min(nums[ceil[j1]], nums[i]) > x:
+                    dp[i + 1] = min(dp[i + 1], dp[ceil[j1] + 1] + 1)
+            while j2 > 0 and nums[floor[j2]] >= nums[i]:
+                x = nums[floor[j2]]
+                j2 -= 1
+                if j2 and max(nums[floor[j2]], nums[i]) < x:
+                    dp[i + 1] = min(dp[i + 1], dp[floor[j2] + 1] + 1)
+            j1 += 1
+            j2 += 1
+            ceil[j1] = i
+            floor[j2] = i
+        ac.st(dp[n])
         return

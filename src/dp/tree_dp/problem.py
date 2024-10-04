@@ -89,6 +89,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 486D（https://codeforces.com/problemset/problem/486/D）multiplication_method|tree_dp|contribution_method|brute_force
 1988D（https://codeforces.com/problemset/problem/1988/D）tree_dp|classical|observation|data_range
 1101D（https://codeforces.com/problemset/problem/1101/D）tree_dp|prime_factor|classical|observation
+1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greedy
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -105,6 +106,7 @@ from src.data_structure.list_node.template import ListNode
 from src.data_structure.sorted_list.template import SortedList
 from src.dp.tree_dp.template import ReRootDP
 from src.mathmatics.prime_factor.template import PrimeFactor
+from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -2032,4 +2034,21 @@ class Solution:
                     ans = max(ans, aa + bb + 1)
                     dp[x][p] = aa + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1997d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1997/D
+        tag: tree_dp|greedy
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            tree = UnWeightedTree(n)
+            p = ac.read_list_ints_minus_one()
+            for i in range(n - 1):
+                tree.add_directed_edge(p[i], i + 1)
+            ans = tree.tree_dp(nums)
+            ac.st(ans)
         return

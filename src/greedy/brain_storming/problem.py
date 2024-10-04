@@ -241,6 +241,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1539D（https://codeforces.com/problemset/problem/1539/D）greedy|two_pointers|implemention
 865D（https://codeforces.com/problemset/problem/865/D）regret_heapq|greedy|classical
 713C（https://codeforces.com/problemset/problem/713/C）greedy|brain_teaser|strictly_monotonic_trick|classical
+13C（https://codeforces.com/problemset/problem/13/C）greedy|brain_teaser|regret_heapq|classical
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -2294,6 +2295,25 @@ class Solution:
         nums = ac.read_list_ints()
         for i in range(n):
             x = nums[i] - i  # important
+            heappush(stack, -x)
+            if stack and x < -stack[0]:
+                heappush(stack, -x)
+                ans += -heappop(stack) - x
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_13c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/13/C
+        tag: greedy|brain_teaser|regret_heapq|classical
+        """
+        n = ac.read_int()
+        ans = 0
+        stack = []
+        nums = ac.read_list_ints()
+        for i in range(n):
+            x = nums[i]
             heappush(stack, -x)
             if stack and x < -stack[0]:
                 heappush(stack, -x)

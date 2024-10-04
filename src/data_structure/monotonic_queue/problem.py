@@ -12,7 +12,7 @@ Description：sliding_window|monotonic
 ====================================LeetCode====================================
 1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
 1941E（https://codeforces.com/contest/1941/problem/E）monotonic_queue|dp
-1976D（https://codeforces.com/contest/1796/problem/D）monotonic_queue|brain_teaser|classical|prefix_min
+1976D（https://codeforces.com/contest/1796/problem/D）monotonic_queue|brain_teaser|classical|prefix_min|array_implemention
 
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
@@ -85,12 +85,36 @@ class Solution:
         return
 
     @staticmethod
-    def lc_239(nums: List[int], k: int) -> List[int]:
+    def lc_239_1(nums: List[int], k: int) -> List[int]:
         """
         url: https://leetcode.cn/problems/sliding-window-maximum/
         tag: sliding_window_maximum
         """
         return PriorityQueue().sliding_window(nums, k)
+
+    @staticmethod
+    def lc_239_2(nums: List[int], k: int) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/sliding-window-maximum/
+        tag: sliding_window_maximum|array_implemention
+        """
+        n = len(nums)
+        ind = [0] * (n + 1)
+        val = [0] * (n + 1)
+        j1 = 1
+        j2 = 0
+        ans = []
+        for i in range(n):
+            while j1 <= j2 and ind[j1] < i - k + 1:
+                j1 += 1
+            while j2 >= j1 and val[j2] < nums[i]:
+                j2 -= 1
+            j2 += 1
+            ind[j2] = i
+            val[j2] = nums[i]
+            if i >= k - 1:
+                ans.append(val[j1])
+        return ans
 
     @staticmethod
     def lc_862(nums: List[int], k: int) -> int:
@@ -554,10 +578,10 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1976d(ac=FastIO()):
+    def cf_1796d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1796/problem/D
-        tag: monotonic_queue|brain_teaser|classical|prefix_min
+        tag: monotonic_queue|brain_teaser|classical|prefix_min|array_implemention
         """
         for _ in range(ac.read_int()):
             n, k, x = ac.read_list_ints()
@@ -578,15 +602,19 @@ class Solution:
                 pre_min[i + 1] = min(pre_min[i], pre)
 
             # <= k
-            stack = deque([(-1, 0)])
+            ind = [-1] * (n + 1)
+            val = [0] * (n + 1)  # array_implemention
+            j1 = j2 = 0
             pre = 0
             for i in range(n):
                 pre += nums[i] + 2 * x
-                while stack and i - stack[0][0] > k:
-                    stack.popleft()
-                while stack and stack[-1][1] > pre:
-                    stack.pop()
-                stack.append((i, pre))
-                ans = max(ans, pre - stack[0][1])
+                while j1 <= j2 and i - ind[j1] > k:
+                    j1 += 1
+                while j2 >= j1 and val[j2] > pre:
+                    j2 -= 1
+                j2 += 1
+                ind[j2] = i
+                val[j2] = pre
+                ans = max(ans, pre - val[j1])
             ac.st(ans)
         return

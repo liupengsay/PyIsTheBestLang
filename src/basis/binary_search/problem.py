@@ -101,6 +101,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1998C（https://codeforces.com/problemset/problem/1998/C）binary_search|observation|greedy
 1623C（https://codeforces.com/problemset/problem/1623/C）binary_search|reverse_order|greedy
 1610C（https://codeforces.com/problemset/problem/1610/C）binary_search|brain_teaser|monotonic_property
+1946C（https://codeforces.com/problemset/problem/1946/C）binary_search|point_head|tree_dp|greedy
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -148,6 +149,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.high_precision.template import FloatToFrac
 from src.mathmatics.number_theory.template import NumFactor
+from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -2078,6 +2080,58 @@ class Solution:
                     if a[i] >= num - cnt - 1 and b[i] >= cnt:
                         cnt += 1
                 return cnt >= num
+
+            ans = BinarySearch().find_int_right(1, n, check)
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1946c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1946/C
+        tag: binary_search|point_head|tree_dp|greedy
+        """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, x):
+                sub = [0] * self.n
+                parent = [0] * self.n
+                stack = [0]
+                res = 0
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        sub[i] = 1
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                sub[i] += sub[j]
+                            ind = self.edge_next[ind]
+                        if sub[i] >= x:
+                            res += 1
+                            sub[i] = 0
+                return res
+
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            graph = Graph(n)
+            for _ in range(n - 1):
+                u, v = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(u, v)
+
+            def check(x):
+                return graph.tree_dp(x) >= k + 1
 
             ans = BinarySearch().find_int_right(1, n, check)
             ac.st(ans)

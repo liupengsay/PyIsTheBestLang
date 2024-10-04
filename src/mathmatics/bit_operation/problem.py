@@ -83,6 +83,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1632C（https://codeforces.com/problemset/problem/1632/C）bit_operation|brute_force|construction
 2020C（https://codeforces.com/contest/2020/problem/C）bit_operation|construction
 1715D（https://codeforces.com/problemset/problem/1715/D）greedy|construction|bit_operation
+1416C（https://codeforces.com/problemset/problem/1416/C）bit_operation|divide_and_conquer|reverse_pair
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -114,6 +115,7 @@ from operator import xor, or_
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
@@ -1287,9 +1289,9 @@ class Solution:
             even = sum(cb.comb(n, x) for x in range(0, n, 2) if x < n)
 
             for i in range(k - 1, -1, -1):
-                if n % 2 == 0: # >
+                if n % 2 == 0:  # >
                     ans += pre * pow(p[i], n, mod)
-                if n % 2: # =
+                if n % 2:  # =
                     pre *= (even + 1)
                 else:
                     pre *= even
@@ -1340,4 +1342,42 @@ class Solution:
                     v &= ans[j]
                 ans[i] ^= v
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_1416c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1416/C
+        tag: bit_operation|divide_and_conquer|reverse_pair
+        """
+        ac.read_int()
+        nums = ac.read_list_ints()
+
+        res = pre = 0
+        arr = [nums[:]]
+        for i in range(31, -1, -1):
+            cur_one = 0
+            cur_zero = 0
+            nex = []
+            for ls in arr:
+                one = []
+                zero = []
+                for num in ls:
+                    if (num >> i) & 1:
+                        one.append(num)
+                        cur_one += len(zero)
+                    else:
+                        zero.append(num)
+                        cur_zero += len(one)
+                if one:
+                    nex.append(one)
+                if zero:
+                    nex.append(zero)
+            arr = [ls[:] for ls in nex]
+            if cur_zero <= cur_one:
+                pre += cur_zero
+                continue
+            pre += cur_one
+            res |= 1 << i
+        ac.lst([pre, res])
         return

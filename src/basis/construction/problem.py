@@ -133,6 +133,9 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1439A2（https://codeforces.com/problemset/problem/1439/A2）construction|implemention
 1202D（https://codeforces.com/problemset/problem/1202/D）construction|binary_search
 1355D（https://codeforces.com/problemset/problem/1355/D）construction
+1930C（https://codeforces.com/problemset/problem/1930/C）construction|observation
+1450D（https://codeforces.com/problemset/problem/1450/D）construction|induction|recursion
+1290B（https://codeforces.com/problemset/problem/1290/B）construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -1136,4 +1139,39 @@ class Solution:
                 else:
                     dct.add(pre ^ ac.random_seed)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1450d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1450/D
+        tag: construction|induction|recursion
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints_minus_one()
+            cnt = [0] * n
+            for num in nums:
+                cnt[num] += 1
+            i, j = 0, n - 1
+            ans = ["0"] * n
+            for x in range(n - 1):
+                if cnt[x] == 0:
+                    break
+                ans[x] = "1"
+                if cnt[x] > 1:
+                    break
+                if nums[i] == x:
+                    i += 1
+                elif nums[j] == x:
+                    j -= 1
+                else:
+                    break
+            for x in range(n):
+                if cnt[x] != 1:
+                    ans[n - 1] = "0"
+                    break
+            else:
+                ans[n - 1] = "1"
+            ac.st("".join(ans)[::-1])
         return

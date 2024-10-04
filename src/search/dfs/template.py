@@ -1,3 +1,6 @@
+from math import inf
+
+
 class UnWeightedTree:
     def __init__(self, n):
         self.n = n
@@ -123,6 +126,38 @@ class UnWeightedTree:
                     ind = self.edge_next[ind]
 
         return [ans[i] - self.depth[i] for i in range(self.n)]
+
+    # class Graph(UnWeightedTree):
+    def tree_dp(self, nums):
+        ans = [0] * self.n
+        stack = [0]
+        res = nums[0]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                ind = self.point_head[i]
+                cur = inf
+                while ind:
+                    j = self.edge_to[ind]
+                    cur = min(cur, ans[j])
+                    ind = self.edge_next[ind]
+                if i == 0:
+                    res = max(res, nums[0] + cur)
+                if cur == inf:
+                    ans[i] = nums[i]
+                elif nums[i] >= cur:
+                    ans[i] = cur
+                else:
+                    ans[i] = nums[i] + (cur - nums[i]) // 2
+        return res
 
 
 class DFS:
