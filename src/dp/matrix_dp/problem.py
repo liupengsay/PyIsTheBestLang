@@ -148,6 +148,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 711C（https://codeforces.com/problemset/problem/711/C）matrix_dp|prefix_suffix
 1582F2（https://codeforces.com/problemset/problem/1582/F2）data_range|matrix_dp|implemention|limited_operation
 833B（https://codeforces.com/problemset/problem/833/B）matrix_dp|segment_tree|range_add|range_max
+10D（https://codeforces.com/problemset/problem/10/D）lis|lcs|matrix_dp|specific_plan|classical
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3565,4 +3566,47 @@ class Solution:
                 pre[nums[i]] = i
         ans = dp[n]
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_10d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/10/D
+        tag: lis|lcs|matrix_dp|specific_plan|classical
+        """
+        m = ac.read_int()
+        a = ac.read_list_ints()
+        n = ac.read_int()
+        b = ac.read_list_ints()
+        dp = [0] * m * n
+        plan = [-1] * m * n
+        for i in range(m):
+            if i == 0:
+                for j in range(n):
+                    dp[i * n + j] = int(a[i] == b[j])
+                continue
+            pre = 0
+            ind = -1
+            for j in range(n):
+                if a[i] == b[j]:
+                    dp[i * n + j] = pre + 1
+                    plan[i * n + j] = ind
+                else:
+                    dp[i * n + j] = dp[(i - 1) * n + j]
+                    plan[i * n + j] = (i - 1) * n + j
+                if b[j] < a[i] and dp[(i - 1) * n + j] > pre:
+                    pre = dp[(i - 1) * n + j]
+                    ind = (i - 1) * n + j
+        ans = max(dp)
+        i = dp.index(ans)
+        res = [i]
+        j = i
+        while plan[j] != -1:
+            j = plan[j]
+            if dp[j] < dp[res[-1]]:
+                res.append(j)
+        ac.st(ans)
+        if ans:
+            res.reverse()
+            ac.lst([b[x % n] for x in res])
         return

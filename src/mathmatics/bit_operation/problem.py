@@ -1369,11 +1369,11 @@ class Solution:
                     else:
                         zero.append(num)
                         cur_zero += len(one)
-                if one:
+                if len(one) > 1:
                     nex.append(one)
-                if zero:
+                if len(zero) > 1:
                     nex.append(zero)
-            arr = [ls[:] for ls in nex]
+            arr = nex
             if cur_zero <= cur_one:
                 pre += cur_zero
                 continue

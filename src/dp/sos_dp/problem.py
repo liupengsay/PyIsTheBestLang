@@ -15,7 +15,7 @@ ABC100C（https://atcoder.jp/contests/arc100/tasks/arc100_c）sos_dp|classical|s
 
 ===================================CodeForces===================================
 1234F（https://codeforces.com/contest/1234/problem/F）sos_dp|classical|state_dp|bit_operation
-449D（https://codeforces.com/problemset/problem/449/D）
+449D（https://codeforces.com/problemset/problem/449/D）sos_dp|fill_table|prefix_sum|diff_array|data_range|classical
 1208F（https://codeforces.com/problemset/problem/1208/F）
 383E（https://codeforces.com/contest/383/problem/E）sos_dp|classical|state_dp|bit_operation
 165E（https://codeforces.com/contest/165/problem/E）sos_dp|classical|state_dp|bit_operation
@@ -138,4 +138,36 @@ class Solution:
         for i in range(1, 1 << n):
             ans = max(ans, maximum[i] + second[i])
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_449d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/449/D
+        tag: sos_dp|fill_table|prefix_sum|diff_array|data_range|classical
+        """
+        n = ac.read_int()
+        mod = 10 ** 9 + 7
+        m = 20
+        nums = ac.read_list_ints()
+        ceil = 1 << m
+        p = [1] * (n + 1)
+        for i in range(1, n + 1):
+            p[i] = (p[i - 1] * 2) % mod
+        dp = [0] * ceil
+        for num in nums:
+            dp[num] += 1
+        for j in range(m):
+            for i in range(ceil - 1, -1, -1):
+                if not (i >> j) & 1:
+                    dp[i] += dp[i | (1 << j)]
+        assert dp[0] == n
+        for i in range(ceil - 1, -1, -1):
+            dp[i] = (p[dp[i]] - 1) % mod
+        for j in range(m):
+            for i in range(ceil - 1, -1, -1):
+                if not (i >> j) & 1:
+                    dp[i] -= dp[i | (1 << j)]
+                    dp[i] %= mod
+        ac.st(dp[0])
         return

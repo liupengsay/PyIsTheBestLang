@@ -24,6 +24,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 493D（https://codeforces.com/problemset/problem/493/D）implemention|odd_even|game_dp
 1728D（https://codeforces.com/contest/1728/problem/D）gap_dp|interval_dp
 455B（https://codeforces.com/problemset/problem/455/B）gap_dp|dag_dp|odd_even|classical|win_state|lose_state
+1383B（https://codeforces.com/problemset/problem/1383/B）game_dp|odd_even|win_state|lose_state|draw_state
 
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
@@ -303,4 +304,27 @@ class Solution:
                 dp[x] = max(dp[x], dp[num] + 1)
         ans = reduce(xor, [dp[x] for x in nums])
         ac.st("Bruno" if not ans else "Anna")
+        return
+
+    @staticmethod
+    def cf_1383b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1383/B
+        tag: game_dp|odd_even|win_state|lose_state|draw_state
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            s = reduce(xor, nums)
+            if s == 0:
+                ac.st("DRAW")
+                continue
+            for i in range(31, -1, -1):
+                if (s >> i) & 1:
+                    one = sum((num >> i) & 1 for num in nums)
+                    if one % 4 == 3 and (n - one) % 2 == 0:
+                        ac.st("LOSE")
+                    else:
+                        ac.st("WIN")
+                    break
         return

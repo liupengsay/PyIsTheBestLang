@@ -1,6 +1,169 @@
 from src.utils.fast_io import FastIO
 
 
+class WeightedTree:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_weight = [0]
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        self.parent = [-1]
+        self.order = 0
+        self.start = [-1]
+        self.end = [-1]
+        self.parent = [-1]
+        self.depth = [0]
+        self.order_to_node = [-1]
+        return
+
+    def add_directed_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_weight.append(w)
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v, w)
+        self.add_directed_edge(v, u, w)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def dfs_order(self, root=0):
+
+        self.order = 0
+        # index is original node value is dfs self.order
+        self.start = [-1] * self.n
+        # index is original node value is the maximum subtree dfs self.order
+        self.end = [-1] * self.n
+        # index is original node and value is its self.parent
+        self.parent = [-1] * self.n
+        stack = [root]
+        # self.depth of every original node
+        self.depth = [0] * self.n
+        # index is dfs self.order and value is original node
+        self.order_to_node = [-1] * self.n
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                self.start[i] = self.order
+                self.order_to_node[self.order] = i
+                self.end[i] = self.order
+                self.order += 1
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    # the self.order of son nodes can be assigned for lexicographical self.order
+                    if j != self.parent[i]:
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                if self.parent[i] != -1:
+                    self.end[self.parent[i]] = self.end[i]
+
+        return
+
+    def heuristic_merge(self):
+        ans = [0] * self.n
+        sub = [None for _ in range(self.n)]
+        index = list(range(self.n))
+        self.parent = [-1] * self.n
+        self.depth = [0] * self.n
+        stack = [0]
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != self.parent[i]:
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                sub[index[i]] = {self.depth[i]: 1}
+                ans[i] = self.depth[i]
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != self.parent[i]:
+                        a, b = index[i], index[j]
+                        if len(sub[a]) > len(sub[b]):
+                            res = ans[i]
+                            a, b = b, a
+                        else:
+                            res = ans[j]
+
+                        for x in sub[a]:
+                            sub[b][x] = sub[b].get(x, 0) + sub[a][x]
+                            if (sub[b][x] > sub[b][res]) or (sub[b][x] == sub[b][res] and x < res):
+                                res = x
+                        sub[a] = None
+                        ans[i] = res
+                        index[i] = b
+                    ind = self.edge_next[ind]
+
+        return [ans[i] - self.depth[i] for i in range(self.n)]
+
+    # class Graph(WeightedTree):
+    def tree_dp(self, nums):
+        ans = [0] * self.n
+        parent = [-1] * self.n
+        stack = [0]
+        res = max(nums)
+        while stack:
+            i = stack.pop()
+            if i >= 0:
+                stack.append(~i)
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != parent[i]:
+                        parent[j] = i
+                        stack.append(j)
+                    ind = self.edge_next[ind]
+            else:
+                i = ~i
+                ind = self.point_head[i]
+                a = b = 0
+                while ind:
+                    j = self.edge_to[ind]
+                    if j != parent[i]:
+                        cur = ans[j] - self.edge_weight[ind]
+                        if cur > a:
+                            a, b = cur, a
+                        elif cur > b:
+                            b = cur
+                    ind = self.edge_next[ind]
+                res = max(res, a + b + nums[i])
+                ans[i] = a + nums[i]
+        return res
+
+
 class ReadGraph:
     def __init__(self):
         return

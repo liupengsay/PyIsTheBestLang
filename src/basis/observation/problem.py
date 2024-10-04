@@ -18,6 +18,7 @@ Description：observation|property|data_range
 1239A（https://codeforces.com/problemset/problem/1239/A）fibonacci_array|linear_dp|observation
 1889B（https://codeforces.com/problemset/problem/1889/B）observation|implemention
 1332B（https://codeforces.com/problemset/problem/1332/B）observation|data_range|min_prime|data_range
+1583C（https://codeforces.com/problemset/problem/1583/C）observation
 
 ====================================AtCoder=====================================
 

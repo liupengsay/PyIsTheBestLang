@@ -90,6 +90,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1988D（https://codeforces.com/problemset/problem/1988/D）tree_dp|classical|observation|data_range
 1101D（https://codeforces.com/problemset/problem/1101/D）tree_dp|prime_factor|classical|observation
 1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greedy
+1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greedy|implemention|weighted_tree|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -104,7 +105,7 @@ from typing import List, Optional
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.list_node.template import ListNode
 from src.data_structure.sorted_list.template import SortedList
-from src.dp.tree_dp.template import ReRootDP
+from src.dp.tree_dp.template import ReRootDP, WeightedTree
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
@@ -2042,13 +2043,97 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1997/D
         tag: tree_dp|greedy
         """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, nums):
+                ans = [0] * self.n
+                stack = [0]
+                res = nums[0]
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        cur = inf
+                        while ind:
+                            j = self.edge_to[ind]
+                            cur = min(cur, ans[j])
+                            ind = self.edge_next[ind]
+                        if i == 0:
+                            res = max(res, nums[0] + cur)
+                        if cur == inf:
+                            ans[i] = nums[i]
+                        elif nums[i] >= cur:
+                            ans[i] = cur
+                        else:
+                            ans[i] = nums[i] + (cur - nums[i]) // 2
+                return res
+
         for _ in range(ac.read_int()):
             n = ac.read_int()
-            nums = ac.read_list_ints()
-            tree = UnWeightedTree(n)
+            arr = ac.read_list_ints()
+            tree = Graph(n)
             p = ac.read_list_ints_minus_one()
-            for i in range(n - 1):
-                tree.add_directed_edge(p[i], i + 1)
-            ans = tree.tree_dp(nums)
-            ac.st(ans)
+            for k in range(n - 1):
+                tree.add_directed_edge(p[k], k + 1)
+            final = tree.tree_dp(arr)
+            ac.st(final)
+        return
+
+    @staticmethod
+    def cf_1083a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1083/A
+        tag: tree_dp|greedy|implemention|weighted_tree|classical
+        """
+
+        class Graph(WeightedTree):
+            def tree_dp(self, nums):
+                ans = [0] * self.n
+                parent = [-1] * self.n
+                stack = [0]
+                res = max(nums)
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        a = b = 0
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                cur = ans[j] - self.edge_weight[ind]
+                                if cur > a:
+                                    a, b = cur, a
+                                elif cur > b:
+                                    b = cur
+                            ind = self.edge_next[ind]
+                        res = max(res, a + b + nums[i])
+                        ans[i] = a + nums[i]
+                return res
+
+        n = ac.read_int()
+        graph = Graph(n)
+        weights = ac.read_list_ints()
+        for _ in range(n - 1):
+            u, v, c = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(u, v, c + 1)
+        final = graph.tree_dp(weights)
+        ac.st(final)
         return
