@@ -38,6 +38,7 @@ P6341（https://www.luogu.com.cn/problem/P6341）line_scope|brute_force|right_tr
 1354C1（https://codeforces.com/problemset/problem/1354/C1）geometry
 1354C2（https://codeforces.com/problemset/problem/1354/C2）geometry
 1552C（https://codeforces.com/problemset/problem/1552/C）geometry
+598c（https://codeforces.com/problemset/problem/598/C）math|geometry|high_precision|angle_with_x_axis|angle_between_vectors
 
 ===================================AtCoder===================================
 ABC343E（https://atcoder.jp/contests/abc343/tasks/abc343_e）brute_force|brain_teaser|inclusion_exclusion|math|classical
@@ -483,7 +484,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def abc_226d(ac=FastIO()):
         """
@@ -562,8 +562,8 @@ class Solution:
         d -= 1
         w = c - a + 1
         h = d - b + 1
-        ww = 4 * ((w+3)//4)
-        hh = 4 * ((h+3)//4)
+        ww = 4 * ((w + 3) // 4)
+        hh = 4 * ((h + 3) // 4)
         grid = [[1, 2, 1, 0], [2, 1, 0, 1], [1, 2, 1, 0], [2, 1, 0, 1]]
         ans = 8 * (ww // 4) * (hh // 4) * 2
         lst = [3, 3, 1, 1]
@@ -693,28 +693,28 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[2])
-        color = [0]*n
-        parent = [-1]*n
-        area = [0]*n
+        color = [0] * n
+        parent = [-1] * n
+        area = [0] * n
         pre = []
         for i, (x, y, r) in enumerate(nums):
-            cur = r*r
+            cur = r * r
             for j in range(i):
                 xx, yy, rr = nums[j]
                 if (x - xx) ** 2 + (y - yy) ** 2 <= r * r:
                     if parent[j] == -1:
                         parent[j] = i
-                        cur -= rr*rr
-                    color[j] = 1-color[j]
+                        cur -= rr * rr
+                    color[j] = 1 - color[j]
             color[i] = 1
             area[i] = cur
-        ans = sum(area[i] for i in range(n) if color[i])*math.pi
+        ans = sum(area[i] for i in range(n) if color[i]) * math.pi
         ans = str(round(ans, 2))
         if "." not in ans:
             ans += ".00"
         else:
             while len(ans) - ans.index(".") < 3:
-                ans+="0"
+                ans += "0"
         ac.st(ans)
         return
 
@@ -757,4 +757,29 @@ class Solution:
                     ans += pre.get((aaa, bbb), 0)
                     pre[(aa, bb)] = pre.get((aa, bb), 0) + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_598c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/598/C
+        tag: math|geometry|high_precision|angle_with_x_axis|angle_between_vectors
+        """
+        gm = Geometry()
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        angle = [gm.angle_with_x_axis(x, y) for x, y in nums]
+        ind = [(angle[i], i) for i in range(n)]
+        ind.sort()
+        ind = [i for _, i in ind]
+        res = gm.angle_between_vector(nums[ind[0]], nums[ind[-1]])
+        ans = [ind[0], ind[n - 1]]
+        for i in range(1, n):
+            cur = gm.angle_between_vector(nums[ind[i - 1]], nums[ind[i]])
+            k1, k2 = cur
+            k3, k4 = res
+            if k1 * k4 > k2 * k3:
+                res = cur
+                ans = [ind[i - 1], ind[i]]
+        ac.lst([x + 1 for x in ans])
         return

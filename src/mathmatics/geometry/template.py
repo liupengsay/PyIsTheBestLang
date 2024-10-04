@@ -160,6 +160,36 @@ class Geometry:
             return []
         return max(t1[0], t2[0])
 
+    @staticmethod
+    def angle_with_x_axis(x, y):
+        if x == 0:
+            if y > 0:
+                return 0.5 * math.pi
+            if y < 0:
+                return 1.5 * math.pi
+        if y == 0:
+            if x > 0:
+                return 0
+            if x < 0:
+                return math.pi
+
+        d = (x ** 2 + y ** 2) ** 0.5
+        if y > 0:
+            return math.acos(x * 1.0 / d)
+        else:
+            return 2 * math.pi - math.acos(x * 1.0 / d)
+
+    @staticmethod
+    def angle_between_vector(va, vb):
+        x1, y1 = va
+        x2, y2 = vb
+        d1 = x1 ** 2 + y1 ** 2
+        d2 = x2 ** 2 + y2 ** 2
+        d3 = (x1 - x2) ** 2 + (y1 - y2) ** 2
+        if d1 + d2 - d3 > 0:
+            return [(d1 + d2 - d3) ** 2, d1 * d2]
+        else:
+            return [-(d1 + d2 - d3) ** 2, d1 * d2]
 
     @staticmethod
     def circumscribed_circle_of_triangle(x1, y1, x2, y2, x3, y3):
