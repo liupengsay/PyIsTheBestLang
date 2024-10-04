@@ -98,7 +98,6 @@ class FastIO:
         return pre
 
 
-
 class Solution:
     def __init__(self):
         return
