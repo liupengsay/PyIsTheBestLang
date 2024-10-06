@@ -19,6 +19,7 @@ Description：digital_dp|n_base|prime_factorization|factorization|linear_sieve|e
 1017（https://leetcode.cn/problems/convert-to-base-2/）negative_base|classical
 1073（https://leetcode.cn/problems/adding-two-negabinary-numbers/）negative_base|classical
 8041（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
+100436（https://leetcode.com/problems/sorted-gcd-pair-queries/）inclusion_exclusion|math|number_theory|classical
 
 =====================================LuoGu======================================
 P1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
@@ -148,6 +149,7 @@ import math
 from collections import Counter, deque
 from collections import defaultdict
 from functools import reduce, lru_cache
+from itertools import accumulate
 from operator import mul
 from sys import stdout
 from typing import List
@@ -157,6 +159,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.gcd_like.template import GcdLike
 from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
+from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -1985,3 +1988,26 @@ class Solution:
             ans = min(ans, dct[p] // x)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100436(nums: List[int], queries: List[int]) -> List[int]:
+        """
+        url: https://leetcode.com/problems/sorted-gcd-pair-queries/
+        tag: inclusion_exclusion|math|number_theory|classical
+        """
+        pf = PrimeFactor(5 * 10 ** 4 + 10)
+        ceil = max(nums)
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            for p in pf.all_factor[num]:
+                cnt[p] += 1
+        for i in range(ceil + 1):
+            cnt[i] = cnt[i] * (cnt[i] - 1) // 2
+        for i in range(ceil, 0, -1):
+            for j in range(i + i, ceil + 1, i):
+                cnt[i] -= cnt[j]
+        pre = list(accumulate(cnt))
+        ans = []
+        for i in queries:
+            ans.append(bisect.bisect_left(pre, i + 1))
+        return ans

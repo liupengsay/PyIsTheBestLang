@@ -4,6 +4,7 @@ from heapq import heappush, heappop
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import inf
 
+
 class WeightedGraph:
     def __init__(self, n):
         self.n = n
@@ -62,6 +63,62 @@ class WeightedGraph:
                     heappush(stack, dj * self.n + j)
                 i = self.edge_next[i]
         return
+
+
+class UnWeightedGraph:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.dis = [inf]
+        self.edge_id = 1
+        return
+
+    def add_directed_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v)
+        self.add_directed_edge(v, u)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def bfs(self, src=0, initial=0):
+        dis = [inf] * (self.n + 1)
+        dis[src] = initial
+        stack = [src]
+        while stack:
+            nex = []
+            for u in stack:
+                i = self.point_head[u]
+                while i:
+                    j = self.edge_to[i]
+                    dj = dis[u] + 1
+                    if dj < dis[j]:
+                        dis[j] = dj
+                        nex.append(j)
+                    i = self.edge_next[i]
+            stack = nex
+        return dis
 
 class LimitedWeightedGraph:
     def __init__(self, n):

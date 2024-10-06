@@ -127,7 +127,7 @@ class UnWeightedTree:
 
         return [ans[i] - self.depth[i] for i in range(self.n)]
 
-    # class Graph(WeightedTree):
+    # class Graph(UnWeightedTree):
     def tree_dp(self, nums):
         ans = [0] * self.n
         parent = [-1] * self.n

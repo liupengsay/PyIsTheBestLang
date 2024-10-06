@@ -357,7 +357,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "195"
+        num = "374"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
@@ -375,7 +375,7 @@ class TestGeneral(unittest.TestCase):
 
     @unittest.skip
     def test_arc_problem_arc(self):
-        num = "364"
+        num = "374"
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/standings")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/results")

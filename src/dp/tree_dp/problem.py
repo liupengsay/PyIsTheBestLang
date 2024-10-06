@@ -91,6 +91,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1101D（https://codeforces.com/problemset/problem/1101/D）tree_dp|prime_factor|classical|observation
 1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greedy
 1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greedy|implemention|weighted_tree|classical
+982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greedy|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -2136,4 +2137,49 @@ class Solution:
             graph.add_undirected_edge(u, v, c + 1)
         final = graph.tree_dp(weights)
         ac.st(final)
+        return
+
+    @staticmethod
+    def cf_982c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/982/C
+        tag: tree_dp|greedy|classical
+        """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, nums):
+                ans = [1] * self.n
+                parent = [-1] * self.n
+                stack = [0]
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                ans[i] += ans[j]
+                            ind = self.edge_next[ind]
+                res = sum(x % 2 == 0 for x in ans)
+                return res - 1
+
+        n = ac.read_int()
+        graph = Graph(n)
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(u, v)
+        if n % 2:
+            ac.st(-1)
+        else:
+            ac.st(graph.tree_dp([-1]))
         return

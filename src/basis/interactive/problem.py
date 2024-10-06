@@ -33,6 +33,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1207E（https://codeforces.com/problemset/problem/1207/E）interactive|construction|observation|brain_teaser|data_range|bit_operation
 1534D（https://codeforces.com/problemset/problem/1534/D）interactive|tree|construction|odd_even
 1407C（https://codeforces.com/problemset/problem/1407/C）interactive|observation
+1621C（https://codeforces.com/problemset/problem/1621/C）interactive|permutation_circle|observation|construction
+1451E2（https://codeforces.com/problemset/problem/1451/E2）interactive|bit_operation|data_range
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -456,7 +458,7 @@ class Solution:
         for i in range(1, n):
             nums[i] -= nums[i - 1]
         nums.sort()
-        ac.lst(["finish"] + [nums[k-1]])
+        ac.lst(["finish"] + [nums[k - 1]])
         return
 
     @staticmethod
@@ -471,13 +473,13 @@ class Solution:
         s = sum(nums)
         dp = [0] * (s // 2 + 1)
         dp[0] = 1
-        pre = [[] for _ in range(s//2+1)]
+        pre = [[] for _ in range(s // 2 + 1)]
         for i in range(n):
             num = nums[i]
             for x in range(s // 2, num - 1, -1):
                 if dp[x - num] and not dp[x]:
                     dp[x] = 1
-                    pre[x] = pre[x-num][:] + [i]
+                    pre[x] = pre[x - num][:] + [i]
 
         if s % 2 or not dp[s // 2] or n == 1:
             ac.st("First")
@@ -493,12 +495,12 @@ class Solution:
                 for j in range(n):
                     if nums[j] > 0:
                         index = j
-                        ac.st(j+1)
+                        ac.st(j + 1)
                         break
             return
 
         color = [0] * n
-        for c in pre[s//2]:
+        for c in pre[s // 2]:
             color[c] = 1
 
         ac.st("Second")
@@ -507,12 +509,73 @@ class Solution:
             i = ac.read_int()
             if i <= 0:
                 break
-            c = color[i-1]
+            c = color[i - 1]
             for j in range(n):
-                if color[j] == 1-c and nums[j] > 0 and j + 1 != i:
-                    x = min(nums[j], nums[i-1])
+                if color[j] == 1 - c and nums[j] > 0 and j + 1 != i:
+                    x = min(nums[j], nums[i - 1])
                     nums[j] -= x
-                    nums[i-1] -= x
-                    ac.st(j+1)
+                    nums[i - 1] -= x
+                    ac.st(j + 1)
                     break
+        return
+
+    @staticmethod
+    def cf_1621c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1621/C
+        tag: interactive|permutation_circle|observation|construction
+        """
+        ac.flush = True
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = [0] * n
+            for i in range(n):
+                if ans[i]:
+                    continue
+                ac.lst(["?", i + 1])
+                a = ac.read_int()
+                ac.lst(["?", i + 1])
+                b = ac.read_int()
+                ans[a - 1] = b
+                while b != a:
+                    ac.lst(["?", i + 1])
+                    c = ac.read_int()
+                    ans[b - 1] = c
+                    b = c
+            ac.lst(["!"] + ans)
+        return
+
+    @staticmethod
+    def cf_1451e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1451/E2
+        tag: interactive|bit_operation|data_range
+        """
+        ac.flush = True
+        n = ac.read_int()
+        nums = [0] * n
+        pre = [-1] * n
+        pre[0] = 0
+        lst = []
+        for i in range(1, n):
+            ac.lst(["XOR", 1, i + 1])
+            nums[i] = ac.read_int()
+            if pre[nums[i]] != -1:
+                lst = [pre[nums[i]], i]
+            pre[nums[i]] = i
+        if lst:
+            i, j = lst
+            ac.lst(["AND", i + 1, j + 1])
+            nums[0] = ac.read_int() ^ nums[i]
+        else:
+            i = pre[1]
+            j = pre[n - 2]
+            ac.lst(["AND", i + 1, 1])
+            x = ac.read_int()
+            ac.lst(["AND", j + 1, 1])
+            y = ac.read_int()
+            nums[0] = ((x >> 1) << 1) | (y & 1)
+        for i in range(1, n):
+            nums[i] ^= nums[0]
+        ac.lst(["!"] + nums)
         return

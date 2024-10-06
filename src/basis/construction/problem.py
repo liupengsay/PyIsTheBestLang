@@ -10,6 +10,7 @@ Description：greedy|sort|construction|specific_plan
 1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
 2573（https://leetcode.cn/problems/find-the-string-with-lcp/）lcp|construction|union_find
 100452（https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greedy|implemention|specific_plan|lexicographical_order
+100431（https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/）construction|unweighted_graph
 
 =====================================LuoGu======================================
 P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
@@ -136,6 +137,10 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1930C（https://codeforces.com/problemset/problem/1930/C）construction|observation
 1450D（https://codeforces.com/problemset/problem/1450/D）construction|induction|recursion
 1290B（https://codeforces.com/problemset/problem/1290/B）construction
+1901D（https://codeforces.com/problemset/problem/1901/D）construction
+1583D（https://codeforces.com/problemset/problem/1583/D）interactive|brain_teaser|classical
+1582D（https://codeforces.com/problemset/problem/1582/D）construction|data_range
+1438D（https://codeforces.com/problemset/problem/1438/D）construction|bit_operation|odd_even|observation
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -161,8 +166,10 @@ ABC362F（https://atcoder.jp/contests/abc362/tasks/abc362_f）construction|greed
 import math
 from collections import deque, Counter, defaultdict
 from heapq import heappush, heappop, heapify
+from itertools import permutations
 from typing import List
 
+from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO, inf
@@ -1175,3 +1182,90 @@ class Solution:
                 ans[n - 1] = "1"
             ac.st("".join(ans)[::-1])
         return
+
+    @staticmethod
+    def cf_1583d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1583/D
+        tag: interactive|brain_teaser|classical
+        """
+        ac.flush = True
+        n = ac.read_int()
+        ans = [0] * n
+        lst = [n - 1]
+        for k in range(2, n + 1):
+            cur = [1] * (n - 1) + [k]
+            ac.lst(["?"] + cur)
+            w = ac.read_int()
+            if w == 0:
+                break
+            lst.append(w - 1)
+        lst.reverse()
+        for i, x in enumerate(lst):
+            ans[x] = n - i
+
+        for k in range(2, ans[-1] + 1):
+            cur = [k] * n
+            for i in range(n):
+                if ans[i] != 0:
+                    cur[i] = n
+            cur[-1] = 1
+            ac.lst(["?"] + cur)
+            w = ac.read_int()
+            if w == 0:
+                break
+            ans[w - 1] = ans[-1] + 1 - k
+        ac.lst(["!"] + ans)
+        return
+
+    @staticmethod
+    def lc_100431(n: int, edges: List[List[int]]) -> List[List[int]]:
+        """
+        url: https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/
+        tag: construction|unweighted_graph
+        """
+        degree = [0] * n
+        graph = UnWeightedGraph(n)
+        for i, j in edges:
+            degree[i] += 1
+            degree[j] += 1
+            graph.add_undirected_edge(i, j)
+        if 1 in degree:
+            x = degree.index(1)
+            dis = graph.bfs(x, 0)
+            ans = [0] * n
+            for i in range(n):
+                ans[dis[i]] = i
+            return [ans]
+
+        degree3 = degree.count(3)
+        k = len(edges)
+        nodes = [i for i in range(n) if degree[i] == 2]
+        for m in range(1, n + 1):
+            if n % m == 0:
+                p = n // m
+                if 2 * m - 4 + 2 * p - 4 == degree3 and degree3 * 3 + 2 * 4 + (n - degree3 - 4) * 4 == 2 * k:
+                    for perm in permutations(nodes, 2):
+                        x, y = perm
+                        dis1 = graph.bfs(x, 0)
+                        dis2 = graph.bfs(y, 0)
+                        flag = 1
+                        lst = []
+                        for i in range(n):
+                            z1 = dis1[i]
+                            z2 = dis2[i]
+                            if (z1 + z2 - (m - 1)) % 2:
+                                flag = 0
+                                break
+                            y = (z1 + z2 - (m - 1)) // 2
+                            x = z1 - y
+                            if not 0 <= x < m and 0 <= y < p:
+                                flag = 0
+                                break
+                            lst.append((x, y))
+                        if flag:
+                            ans = [[0] * p for _ in range(m)]
+                            for i in range(n):
+                                ans[lst[i][0]][lst[i][1]] = i
+                            return ans
+        return []
