@@ -92,6 +92,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greedy
 1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greedy|implemention|weighted_tree|classical
 982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greedy|classical
+1856E1（https://codeforces.com/problemset/problem/1856/E1）tree_dp|greedy|down_to_up|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -2182,4 +2183,59 @@ class Solution:
             ac.st(-1)
         else:
             ac.st(graph.tree_dp([-1]))
+        return
+
+    @staticmethod
+    def cf_1856e1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1856/E1
+        tag: tree_dp|greedy|down_to_up|classical
+        """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, nums):
+                ans = [1] * self.n
+                parent = [-1] * self.n
+                stack = [0]
+                res = 0
+                dp = [0] * (n + 1)
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        lst = []
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                lst.append(ans[j])
+                            ind = self.edge_next[ind]
+                        s = sum(lst)
+                        for x in range(s + 1):
+                            dp[x] = 0
+                        dp[0] = 1
+                        for num in lst:
+                            for x in range(s, num - 1, -1):
+                                if dp[x - num]:
+                                    dp[x] = 1
+                        res += max(x * (s - x) for x in range(s + 1) if dp[x])
+                        ans[i] += s
+                return res
+
+        n = ac.read_int()
+        graph = Graph(n)
+        p = ac.read_list_ints_minus_one()
+        for u in range(1, n):
+            graph.add_undirected_edge(p[u - 1], u)
+        final = graph.tree_dp([-1])
+        ac.st(final)
         return

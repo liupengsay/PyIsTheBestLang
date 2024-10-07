@@ -102,6 +102,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1623C（https://codeforces.com/problemset/problem/1623/C）binary_search|reverse_order|greedy
 1610C（https://codeforces.com/problemset/problem/1610/C）binary_search|brain_teaser|monotonic_property
 1946C（https://codeforces.com/problemset/problem/1946/C）binary_search|point_head|tree_dp|greedy
+1168A（https://codeforces.com/problemset/problem/1168/A）binary_search|brain_teaser|greedy
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -2135,4 +2136,30 @@ class Solution:
 
             ans = BinarySearch().find_int_right(1, n, check)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1168a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1168/A
+        tag: binary_search|brain_teaser|greedy
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            pre = 0
+            for i in range(n):
+                if nums[i] == pre:
+                    continue
+                if nums[i] > pre:
+                    if m - nums[i] + pre > x:
+                        pre = nums[i]
+                else:
+                    if pre - nums[i] > x:
+                        return False
+            return True
+
+        ans = BinarySearch().find_int_left(0, sum(m - num for num in nums), check)
+        ac.st(ans)
         return

@@ -31,6 +31,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 2020E（https://codeforces.com/contest/2020/problem/E）expectation_dp|implemention|data_range
 1753F（https://codeforces.com/problemset/problem/1753/C）expectation_dp|comb|inv|prefix_sum
 518D（https://codeforces.com/contest/518/problem/D）bag_dp|expectation_dp|prob_dp
+453A（https://codeforces.com/problemset/problem/453/A）expectation_dp|prob_dp|inclusion_exclusion|float_fast_power
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -431,4 +432,18 @@ class Solution:
                 continue
             ans = pre[x] * n * (n - 1) // 2
             ac.st(ans % mod)
+        return
+
+    @staticmethod
+    def cf_453a(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/453/A
+        tag: expectation_dp|prob_dp|inclusion_exclusion|float_fast_power
+        """
+        m, n = ac.read_list_ints()
+        dp = [0] * (m + 1)
+        for x in range(1, m + 1):
+            dp[x] = pow(x / m, n)
+        ans = sum((dp[i] - dp[i - 1]) * i for i in range(1, m + 1))
+        ac.st(ans)
         return

@@ -141,6 +141,7 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1583D（https://codeforces.com/problemset/problem/1583/D）interactive|brain_teaser|classical
 1582D（https://codeforces.com/problemset/problem/1582/D）construction|data_range
 1438D（https://codeforces.com/problemset/problem/1438/D）construction|bit_operation|odd_even|observation
+1110E（https://codeforces.com/problemset/problem/1110/E）observation|construction|operation|brain_teaser
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

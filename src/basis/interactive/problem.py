@@ -35,6 +35,8 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1407C（https://codeforces.com/problemset/problem/1407/C）interactive|observation
 1621C（https://codeforces.com/problemset/problem/1621/C）interactive|permutation_circle|observation|construction
 1451E2（https://codeforces.com/problemset/problem/1451/E2）interactive|bit_operation|data_range
+1305D（https://codeforces.com/problemset/problem/1305/D）interactive|tree|implemention
+1634D（https://codeforces.com/problemset/problem/1634/D）interactive|brain_teaser
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -52,6 +54,7 @@ from math import inf
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAddPointGet
+from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
 
 
@@ -578,4 +581,38 @@ class Solution:
         for i in range(1, n):
             nums[i] ^= nums[0]
         ac.lst(["!"] + nums)
+        return
+
+    @staticmethod
+    def cf_1305d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1305/D
+        tag: interactive|tree|implemention
+        """
+        ac.flush = True
+        n = ac.read_int()
+        graph = UnWeightedTree(n)
+        degree = [0] * n
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j)
+            degree[i] += 1
+            degree[j] += 1
+        leaf = [i for i in range(n) if degree[i] == 1]
+        while len(leaf) > 1:
+            i, j = leaf.pop(), leaf.pop()
+            ac.lst(['?', i + 1, j + 1])
+            x = ac.read_int()
+            if x == i + 1 or x == j + 1:
+                ac.lst(["!", x])
+                return
+            for x in [i, j]:
+                ind = graph.point_head[x]
+                while ind:
+                    j = graph.edge_to[ind]
+                    degree[j] -= 1
+                    if degree[j] == 1:
+                        leaf.append(j)
+                    ind = graph.edge_next[ind]
+        ac.lst(["!", leaf[0] + 1])
         return
