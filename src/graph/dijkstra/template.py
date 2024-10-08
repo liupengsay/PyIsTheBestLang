@@ -65,6 +65,90 @@ class WeightedGraph:
         return
 
 
+class WeightedGraphForShortestPathMST:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_weight = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.dis = [inf]
+        self.edge_id = 1
+        return
+
+    def add_directed_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_weight.append(w)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v, w):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v, w)
+        self.add_directed_edge(v, u, w)
+        return
+
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        i = self.point_head[u]
+        ans = []
+        while i:
+            ans.append(i)
+            i = self.edge_next[i]
+        return
+
+    def dijkstra(self, src=0, initial=0):
+        self.dis = [inf] * (self.n + 1)
+        stack = [initial * self.n + src]
+        self.dis[src] = initial
+        while stack:
+            val = heappop(stack)
+            d, u = val // self.n, val % self.n
+            if self.dis[u] < d:
+                continue
+            i = self.point_head[u]
+            while i:
+                w = self.edge_weight[i]
+                j = self.edge_to[i]
+                dj = d + w
+                if dj < self.dis[j]:
+                    self.dis[j] = dj
+                    heappush(stack, dj * self.n + j)
+                i = self.edge_next[i]
+        return
+
+    def shortest_path_mst(self, root=0, ceil=0):
+        dis = [inf] * self.n
+        stack = [root]
+        dis[root] = 0
+        edge_ids = [-1] * self.n
+        weights = [inf] * self.n
+        while stack:
+            val = heappop(stack)
+            d, u = val // self.n, val % self.n
+            if dis[u] < d:
+                continue
+            ind = self.point_head[u]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = w + d
+                if dj < dis[j] or (dj == dis[j] and w < weights[j]):
+                    dis[j] = dj
+                    edge_ids[j] = (ind + 1) // 2
+                    weights[j] = w
+                    heappush(stack, dj * self.n + j)
+                ind = self.edge_next[ind]
+        dis = [dis[i] * self.n + i for i in range(self.n)]
+        dis.sort()
+        return [edge_ids[x % self.n] for x in dis[1:ceil + 1]]
+
+
 class UnWeightedGraph:
     def __init__(self, n):
         self.n = n
@@ -119,6 +203,7 @@ class UnWeightedGraph:
                     i = self.edge_next[i]
             stack = nex
         return dis
+
 
 class LimitedWeightedGraph:
     def __init__(self, n):

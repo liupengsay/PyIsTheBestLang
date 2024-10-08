@@ -244,6 +244,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 13C（https://codeforces.com/problemset/problem/13/C）greedy|brain_teaser|regret_heapq|classical
 1119E（https://codeforces.com/problemset/problem/1119/E）greedy
 1515D（https://codeforces.com/problemset/problem/1515/D）greedy|brain_teaser|classification_discussion
+1466D（https://codeforces.com/problemset/problem/1466/D）greedy|implemention
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort

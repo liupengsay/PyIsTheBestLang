@@ -146,6 +146,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1197D（https://codeforces.com/problemset/problem/1197/D）linear_dp|brain_teaser|prefix_sum
 372F（https://atcoder.jp/contests/abc372/tasks/abc372_f）linear_dp|implemention|deque|array_implemention
 1082E（https://codeforces.com/problemset/problem/1082/E）linear_dp|prefix_sum|brain_teaser|observation
+1994C（https://codeforces.com/problemset/problem/1994/C）linear_dp|two_pointers
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp

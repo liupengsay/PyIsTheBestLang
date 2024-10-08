@@ -102,6 +102,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 687B（https://codeforces.com/problemset/problem/687/B）math|mod|lcm|classical
 2020B（https://codeforces.com/contest/2020/problem/B）factor_cnt|number_theory|classical
 1114C（https://codeforces.com/problemset/problem/1114/C）get_prime_factor|num_factor|inclusion_exclusion|n_base
+2007C（https://codeforces.com/problemset/problem/2007/C）peishu_theorem|gcd_like|greedy|brain_teaser|implemention|math
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -2011,3 +2012,21 @@ class Solution:
         for i in queries:
             ans.append(bisect.bisect_left(pre, i + 1))
         return ans
+
+    @staticmethod
+    def cf_2007c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/2007/C
+        tag: peishu_theorem|gcd_like|greedy|brain_teaser|implemention|math
+        """
+        for _ in range(ac.read_int()):
+            n, a, b = ac.read_list_ints()
+            g = math.gcd(a, b)
+            nums = ac.read_list_ints()
+            nums = [x % g for x in nums]
+            nums.sort()
+            ans = nums[-1] - nums[0]
+            for i in range(1, n):
+                ans = min(ans, g + nums[i - 1] - nums[i])
+            ac.st(ans)
+        return

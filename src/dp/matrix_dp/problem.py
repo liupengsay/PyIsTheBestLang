@@ -149,6 +149,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1582F2（https://codeforces.com/problemset/problem/1582/F2）data_range|matrix_dp|implemention|limited_operation
 833B（https://codeforces.com/problemset/problem/833/B）matrix_dp|segment_tree|range_add|range_max
 10D（https://codeforces.com/problemset/problem/10/D）lis|lcs|matrix_dp|specific_plan|classical
+1864D（https://codeforces.com/problemset/problem/1864/D）matrix_prefix_sum|implemention|matrix_dp
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -3609,4 +3610,34 @@ class Solution:
         if ans:
             res.reverse()
             ac.lst([b[x % n] for x in res])
+        return
+
+    @staticmethod
+    def cf_1864d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1864/D
+        tag: matrix_prefix_sum|implemention|matrix_dp
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            left = [0] * 2 * n
+            right = [0] * 2 * n
+            ans = 0
+            up = [0] * n
+            for i in range(n):
+                for j in range(n):
+                    up[j] += left[i - j + n]
+                    up[j] += right[i + j]
+                    up[j] %= 2
+                s = ac.read_str()
+                for j in range(n):
+                    if up[j] != int(s[j]):
+                        up[j] += 1
+                        up[j] %= 2
+                        left[i - j + n] += 1
+                        right[i + j] += 1
+                        ans += 1
+                        left[i - j + n] %= 2
+                        right[i + j] %= 2
+            ac.st(ans)
         return

@@ -37,6 +37,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1451E2（https://codeforces.com/problemset/problem/1451/E2）interactive|bit_operation|data_range
 1305D（https://codeforces.com/problemset/problem/1305/D）interactive|tree|implemention
 1634D（https://codeforces.com/problemset/problem/1634/D）interactive|brain_teaser
+1521C（https://codeforces.com/problemset/problem/1521/C）interactive|observation|brain_teaser
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -615,4 +616,40 @@ class Solution:
                         leaf.append(j)
                     ind = graph.edge_next[ind]
         ac.lst(["!", leaf[0] + 1])
+        return
+
+    @staticmethod
+    def cf_1521c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1521/C
+        tag: interactive|observation|brain_teaser
+        """
+        ac.flush = True
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            ans = [-1] * n
+            for x in range(0, n, 2):
+                if x + 1 < n:
+                    ac.lst(["?", 2, x + 1, x + 2, 1])
+                    res = ac.read_int()
+                    if res == 1:
+                        one = x
+                        ans[x] = 1
+                        break
+                    elif res == 2:
+                        ac.lst(["?", 2, x + 2, x + 1, 1])
+                        res = ac.read_int()
+
+                        if res == 1:
+                            ans[x + 1] = 1
+                            one = x + 1
+                            break
+            else:
+                ans[n - 1] = 1
+                one = n - 1
+            for i in range(n):
+                if i != one:
+                    ac.lst(["?", 1, one + 1, i + 1, n - 1])
+                    ans[i] = ac.read_int()
+            ac.lst(["!"] + ans)
         return

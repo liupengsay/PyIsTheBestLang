@@ -65,6 +65,7 @@ P7158（https://www.luogu.com.cn/problem/P7158）comb
 1332E（https://codeforces.com/problemset/problem/1332/E）brute_force|comb|binomial_expansion|odd_even
 1207D（https://codeforces.com/problemset/problem/1207/D）inclusion_exclusion
 1288C（https://codeforces.com/problemset/problem/1288/C）comb|math
+1091D（https://codeforces.com/problemset/problem/1091/D）perm|math
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter

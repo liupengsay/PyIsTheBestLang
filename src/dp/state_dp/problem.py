@@ -52,6 +52,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|cl
 1102F（https://codeforces.com/contest/1102/problem/F）state_dp|classical|brute_force|fill_table|refresh_table
 453B（https://codeforces.com/problemset/problem/453/B）state_dp|specific_plan|math|number_theory
 16E（https://codeforces.com/problemset/problem/16/E）state_dp|prob_dp|refresh_table
+1316E（https://codeforces.com/problemset/problem/1316/E）state_dp|greedy|sort|brain_teaser|classical
 
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
@@ -1323,10 +1324,10 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        dp = [inf]*(1<<m)
-        pre_num = [[0 for _ in range(1<<m)] for _ in range(n+1)]
-        pre_state = [[0 for _ in range(1<<m)] for _ in range(n+1)]
-        nex_num = [[] for _ in range(1<<m)]
+        dp = [inf] * (1 << m)
+        pre_num = [[0 for _ in range(1 << m)] for _ in range(n + 1)]
+        pre_state = [[0 for _ in range(1 << m)] for _ in range(n + 1)]
+        nex_num = [[] for _ in range(1 << m)]
 
         for state in range(1 << m):
             for num in range(1, 59):
@@ -1336,14 +1337,14 @@ class Solution:
 
         dp[-1] = 0
         for i in range(n):
-            ndp = [inf]*(1<<m)
+            ndp = [inf] * (1 << m)
             for state in range(1 << m):
                 for num in nex_num[state]:
                     cur = dp[state] + abs(nums[i] - num)
                     s = states[num]
-                    if cur < ndp[state^s]:
+                    if cur < ndp[state ^ s]:
                         ndp[state ^ s] = cur
-                        pre_num[i+1][state^s] = num
+                        pre_num[i + 1][state ^ s] = num
                         pre_state[i + 1][state ^ s] = state
             dp = ndp[:]
         state = dp.index(min(dp))
@@ -1375,4 +1376,32 @@ class Solution:
                     dp[x] += dp[x ^ cur]
         ans = sum(dp)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1316e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1316/E
+        tag: state_dp|greedy|sort|brain_teaser|classical
+        """
+        n, p, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        nums = [num * n + i for i, num in enumerate(nums)]
+        nums.sort(reverse=True)
+        s = [ac.read_list_ints() for _ in range(n)]
+        dp = [-inf] * (1 << p)
+        dp[0] = 0
+        lst = []
+        for x in range(1 << p):
+            lst.append([j for j in range(p) if (x >> j) & 1])
+        cnt = [len(ls) for ls in lst]
+        for j, val in enumerate(nums):
+            num, i = val // n, val % n
+            for x in range((1 << p) - 1, -1, -1):
+                cur = cnt[x]
+                if j + 1 - cur <= k:
+                    dp[x] = max(dp[x], dp[x] + num)
+                for r in lst[x]:
+                    dp[x] = max(dp[x], dp[x ^ (1 << r)] + s[i][r])
+        ac.st(dp[-1])
         return

@@ -13,6 +13,7 @@ Description：sliding_window|monotonic
 1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
 1941E（https://codeforces.com/contest/1941/problem/E）monotonic_queue|dp
 1976D（https://codeforces.com/contest/1796/problem/D）monotonic_queue|brain_teaser|classical|prefix_min|array_implemention
+514D（https://codeforces.com/problemset/problem/514/D）monotonic_queue|two_pointers
 
 =====================================LuoGu======================================
 P2251（https://www.luogu.com.cn/problem/P2251）sliding_window_minimum
@@ -617,4 +618,67 @@ class Solution:
                 val[j2] = pre
                 ans = max(ans, pre - val[j1])
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_514d_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/514/D
+        tag: monotonic_queue|two_pointers
+        """
+        n, m, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = j = 0
+        res = []
+        stack = [deque() for _ in range(m)]
+        for i in range(n):
+            for x in range(m):
+                while stack[x] and stack[x][-1][1] < nums[i][x]:
+                    stack[x].pop()
+                stack[x].append((i, nums[i][x]))
+            while sum(st[0][1] for st in stack if st) > k:
+                for x in range(m):
+                    if j == stack[x][0][0]:
+                        stack[x].popleft()
+                j += 1
+            if i - j + 1 > ans:
+                ans = i - j + 1
+                res = [st[0][1] for st in stack]
+        if not res:
+            res = [0] * m
+        ac.lst(res)
+        return
+
+    @staticmethod
+    def cf_514d_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/514/D
+        tag: monotonic_queue|two_pointers
+        """
+        n, m, k = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        ans = j = 0
+        res = []
+        ind = [[0] * (n + 1) for _ in range(m)]
+        val = [[0] * (n + 1) for _ in range(m)]
+        j1 = [1] * m
+        j2 = [0] * m
+        for i in range(n):
+            for x in range(m):
+                while j2[x] >= j1[x] and val[x][j2[x]] < nums[i][x]:
+                    j2[x] -= 1
+                j2[x] += 1
+                ind[x][j2[x]] = i
+                val[x][j2[x]] = nums[i][x]
+            while j <= i and sum(val[x][j1[x]] for x in range(m)) > k:
+                for x in range(m):
+                    if ind[x][j1[x]] == j:
+                        j1[x] += 1
+                j += 1
+            if i - j + 1 > ans:
+                ans = i - j + 1
+                res = [val[x][j1[x]] for x in range(m)]
+        if not res:
+            res = [0] * m
+        ac.lst(res)
         return

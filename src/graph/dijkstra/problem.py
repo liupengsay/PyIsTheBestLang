@@ -1,6 +1,6 @@
 """
 Algorithm：dijkstra|strictly_second_shortest_path|longest_path|shortest_path_spanning_tree|two_params_dijkstra
-Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|undirected_smallest_circle
+Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|undirected_smallest_circle|shortest_path_mst
 
 ====================================LeetCode====================================
 42（https://leetcode.cn/problems/trapping-rain-water/）prefix_suffix
@@ -106,8 +106,9 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
-545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy
+545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greedy
 786B（https://codeforces.com/contest/786/problem/B）segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
+1076D（https://codeforces.com/problemset/problem/1076/D）weighted_graph|shortest_path_mst
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -141,7 +142,8 @@ from operator import add
 from typing import List
 
 from src.data_structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
-from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra, WeightedGraph, LimitedWeightedGraph
+from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra, WeightedGraph, LimitedWeightedGraph, \
+    WeightedGraphForShortestPathMST
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
 
@@ -2508,7 +2510,7 @@ class Solution:
     def cf_545e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/545/E
-        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy
+        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy|shortest_path_mst
         """
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -2585,4 +2587,21 @@ class Solution:
             if graph.dis[i] == inf:
                 graph.dis[i] = -1
         ac.lst(graph.dis[n:2 * n])
+        return
+
+    @staticmethod
+    def cf_1076d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1076/D
+        tag: weighted_graph|shortest_path_mst
+        """
+        n, m, k = ac.read_list_ints()
+        graph = WeightedGraphForShortestPathMST(n)
+        for i in range(m):
+            x, y, w = ac.read_list_ints_minus_one()
+            w += 1
+            graph.add_undirected_edge(x, y, w)
+        res = graph.shortest_path_mst(0, k)
+        ac.st(len(res))
+        ac.lst(res)
         return

@@ -93,6 +93,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greedy|implemention|weighted_tree|classical
 982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greedy|classical
 1856E1（https://codeforces.com/problemset/problem/1856/E1）tree_dp|greedy|down_to_up|classical
+1153D（https://codeforces.com/problemset/problem/1153/D）tree_dp|greedy|brain_teaser
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -2238,4 +2239,81 @@ class Solution:
             graph.add_undirected_edge(p[u - 1], u)
         final = graph.tree_dp([-1])
         ac.st(final)
+        return
+
+    @staticmethod
+    def cf_1153d_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1153/D
+        tag: tree_dp|greedy|brain_teaser
+        """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, nums):
+                ans = [1] * self.n
+                parent = [-1] * self.n
+                stack = [0]
+                leaf = 0
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        lst = []
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                cur = ans[j]
+                                lst.append(cur)
+                            ind = self.edge_next[ind]
+                        if lst:
+                            if nums[i] == 0:
+                                ans[i] = sum(lst)
+                            else:
+                                ans[i] = min(lst)
+                        else:
+                            leaf += 1
+                return leaf - ans[0] + 1
+
+        n = ac.read_int()
+        graph = Graph(n)
+        arr = ac.read_list_ints()
+        p = ac.read_list_ints_minus_one()
+        for u in range(1, n):
+            graph.add_undirected_edge(p[u - 1], u)
+        final = graph.tree_dp(arr)
+        ac.st(final)
+        return
+
+    @staticmethod
+    def cf_1153d_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1153/D
+        tag: tree_dp|greedy|brain_teaser
+        """
+
+        n = ac.read_int()
+        dp = [0] * n
+        arr = ac.read_list_ints()
+        p = ac.read_list_ints_minus_one()
+        ans = 0
+        for u in range(n - 1, 0, -1):
+            if dp[u] == 0:
+                dp[u] = 1
+                ans += 1
+            f = p[u - 1]
+            if arr[f] == 0:
+                dp[f] += dp[u]
+            else:
+                dp[f] = dp[u] if dp[f] == 0 else min(dp[f], dp[u])
+        ac.st(ans - dp[0] + 1)
         return

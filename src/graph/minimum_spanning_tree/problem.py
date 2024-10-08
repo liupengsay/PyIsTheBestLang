@@ -50,6 +50,7 @@ P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classica
 1245D（https://codeforces.com/problemset/problem/1245/D）prim|specific_plan|virtual_source|classical
 1513D（https://codeforces.com/problemset/problem/1513/D）bfs|gcd_like|mst
 888G（https://codeforces.com/contest/888/problem/G）heuristic_merge|get_minimum_xor|mst|classical
+587C（https://codeforces.com/problemset/problem/587/C）tree_multiplication_method|multiplication_method|classical
 
 ====================================AtCoder=====================================
 ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
@@ -76,7 +77,7 @@ from typing import List
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.trie_like.template import BinaryTrieXor
 from src.graph.minimum_spanning_tree.template import SecondMinimumSpanningTree, KruskalMinimumSpanningTree, \
-    SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree, ManhattanMST
+    SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree, ManhattanMST, TreeAncestorMinIds
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
 from src.utils.fast_io import FastIO
@@ -340,7 +341,7 @@ class Solution:
         tag: mst|lca|multiplication_method|strictly_second_mst|classical
         """
 
-        n, m = ac.read_list_ints()  #  TLE
+        n, m = ac.read_list_ints()  # TLE
         edges = []
         for _ in range(m):
             i, j, w = ac.read_list_ints()
@@ -1208,4 +1209,33 @@ class Solution:
                 for x in group[g]:
                     trie.add(nums[x], 1)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_587c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/587/C
+        tag: tree_multiplication_method|multiplication_method|classical
+        """
+        n, m, q = ac.read_list_ints()  # inf making tle !!
+        tree = TreeAncestorMinIds(n)
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            tree.add_undirected_edge(u, v)
+
+        ids = [n + 1] * 10 * n
+        ind = [0] * n
+        c = ac.read_list_ints_minus_one()
+        for i in range(m):
+            if ind[c[i]] < 10:
+                ids[c[i] * 10 + ind[c[i]]] = i + 1
+                ind[c[i]] += 1
+        tree.build_multiplication(ids)
+
+        for _ in range(q):
+            u, v, a = ac.read_list_ints_minus_one()
+            a += 1
+            ans = tree.get_min_ids_between_nodes(u, v)[:a]
+            ans = [x for x in ans if x < n + 1]
+            ac.lst([len(ans)] + ans)
         return

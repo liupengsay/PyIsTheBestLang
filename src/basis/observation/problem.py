@@ -20,6 +20,10 @@ Description：observation|property|data_range
 1332B（https://codeforces.com/problemset/problem/1332/B）observation|data_range|min_prime|data_range
 1583C（https://codeforces.com/problemset/problem/1583/C）observation
 1605C（https://codeforces.com/problemset/problem/1605/C）observation
+1634B（https://codeforces.com/problemset/problem/1634/B）observation|odd_even|data_range
+1687A（https://codeforces.com/problemset/problem/1687/A）observation|greedy
+1548A（https://codeforces.com/problemset/problem/1548/A）observation|brain_teaser|implemention
+1408D（https://codeforces.com/problemset/problem/1408/D）brute_force|liner_dp|greedy|brain_teaser|observation
 
 ====================================AtCoder=====================================
 
@@ -61,7 +65,6 @@ class Solution:
             pre += num
         ac.lst(ans)
         return
-
 
     @staticmethod
     def cf_1616c(ac=FastIO()):
@@ -117,4 +120,50 @@ class Solution:
             ans = [dct[pf.min_prime[x]] for x in nums]
             ac.st(len(dct))
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def main(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1408/D
+        tag: brute_force|liner_dp|greedy|brain_teaser|observation
+        """
+        n, m = ac.read_list_ints()
+        nums1 = [ac.read_list_ints() for _ in range(n)]
+        nums2 = [ac.read_list_ints() for _ in range(m)]
+        ceil = 10 ** 6 + 10
+        right = [0] * ceil
+        ans = 0
+        for a, b in nums1:
+            for c, d in nums2:
+                if d >= b:
+                    right[d - b] = max(right[d - b], c - a + 1)
+                    ans = max(ans, d - b + 1)
+        for i in range(ceil - 2, -1, -1):
+            right[i] = max(right[i], right[i + 1])
+            ans = min(ans, i + right[i])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1408d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1408/D
+        tag: brute_force|liner_dp|greedy|brain_teaser|observation
+        """
+        n, m = ac.read_list_ints()
+        nums1 = [ac.read_list_ints() for _ in range(n)]
+        nums2 = [ac.read_list_ints() for _ in range(m)]
+        ceil = 10 ** 6 + 10
+        right = [0] * ceil
+        ans = 0
+        for a, b in nums1:
+            for c, d in nums2:
+                if d >= b:
+                    right[d - b] = max(right[d - b], c - a + 1)
+                    ans = max(ans, d - b + 1)
+        for i in range(ceil - 2, -1, -1):
+            right[i] = max(right[i], right[i + 1])
+            ans = min(ans, i + right[i])
+        ac.st(ans)
         return

@@ -139,6 +139,130 @@ class PrimMinimumSpanningTree:
         return ans if ans < inf else -1
 
 
+class TreeAncestorMinIds:
+    def __init__(self, n):
+        self.n = n
+        self.point_head = [0] * (self.n + 1)
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        self.parent = [-1]
+        self.order = 0
+        self.start = [-1]
+        self.end = [-1]
+        self.parent = [-1]
+        self.depth = [0]
+        self.order_to_node = [-1]
+        self.cols = max(2, math.ceil(math.log2(self.n)))
+        self.min_ids = [self.n + 1] * self.n * self.cols * 10
+        self.father = [-1] * self.n * self.cols
+        self.ids = []
+        return
+
+    def add_directed_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v)
+        self.add_directed_edge(v, u)
+        return
+
+    def build_multiplication(self, ids):
+        self.ids = ids
+        self.parent = [-1] * self.n
+        self.depth = [0] * self.n
+        stack = [0]
+        while stack:
+            nex = []
+            for i in stack:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    # the self.order of son nodes can be assigned for lexicographical self.order
+                    if j != self.parent[i]:
+                        self.parent[j] = i
+                        self.depth[j] = self.depth[i] + 1
+                        nex.append(j)
+                    ind = self.edge_next[ind]
+            stack = nex
+
+        for i in range(self.n):
+            self.father[i * self.cols] = self.parent[i]
+            cur = ids[i * 10:i * 10 + 10]
+            if self.parent[i] != -1:
+                cur = self.update(cur, ids[self.parent[i] * 10:self.parent[i] * 10 + 10])
+            self.min_ids[(i * self.cols) * 10:(i * self.cols) * 10 + 10] = cur[:]
+        for j in range(1, self.cols):
+            for i in range(self.n):
+                father = self.father[i * self.cols + j - 1]
+                if father != -1:
+                    self.min_ids[(i * self.cols + j) * 10: (i * self.cols + j) * 10 + 10] = self.update(
+                        self.min_ids[(i * self.cols + j - 1) * 10: (i * self.cols + j - 1) * 10 + 10],
+                        self.min_ids[(father * self.cols + j - 1) * 10: (father * self.cols + j - 1) * 10 + 10])
+                    self.father[i * self.cols + j] = self.father[father * self.cols + j - 1]
+        return
+
+    def update(self, lst1, lst2):
+        lst = []
+
+        m, n = len(lst1), len(lst2)
+        i = j = 0
+        while i < m and j < n and len(lst) < 10:
+            if lst1[i] < lst2[j]:
+                if not lst or lst[-1] < lst1[i]:
+                    lst.append(lst1[i])
+                i += 1
+            else:
+                if not lst or lst[-1] < lst2[j]:
+                    lst.append(lst2[j])
+                j += 1
+        while i < m and len(lst) < 10:
+            if not lst or lst[-1] < lst1[i]:
+                lst.append(lst1[i])
+            i += 1
+        while j < n and len(lst) < 10:
+            if not lst or lst[-1] < lst2[j]:
+                lst.append(lst2[j])
+            j += 1
+        while len(lst) < 10:
+            lst.append(self.n + 1)
+        return lst[:10]
+
+    def get_min_ids_between_nodes(self, x: int, y: int):
+        if self.depth[x] < self.depth[y]:
+            x, y = y, x
+        ans = self.update(self.ids[x * 10:x * 10 + 10], self.ids[y * 10:y * 10 + 10])
+        while self.depth[x] > self.depth[y]:
+            d = self.depth[x] - self.depth[y]
+            ans = self.update(ans, self.min_ids[(x * self.cols + int(math.log2(d))) * 10:(x * self.cols + int(
+                math.log2(d))) * 10 + 10])
+            x = self.father[x * self.cols + int(math.log2(d))]
+
+        if x == y:
+            return ans
+
+        for k in range(int(math.log2(self.depth[x])), -1, -1):
+            if self.father[x * self.cols + k] != self.father[y * self.cols + k]:
+                ans = self.update(ans, self.min_ids[(x * self.cols + k) * 10:(x * self.cols + k) * 10 + 10])
+                ans = self.update(ans, self.min_ids[(y * self.cols + k) * 10:(y * self.cols + k) * 10 + 10])
+                x = self.father[x * self.cols + k]
+                y = self.father[y * self.cols + k]
+
+        ans = self.update(ans, self.min_ids[(x * self.cols) * 10:(x * self.cols) * 10 + 10])
+        ans = self.update(ans, self.min_ids[(y * self.cols) * 10:(y * self.cols) * 10 + 10])
+        return ans
+
+
 class SecondMinimumSpanningTree:
     """"get some info of strictly second minimum spanning tree"""
 

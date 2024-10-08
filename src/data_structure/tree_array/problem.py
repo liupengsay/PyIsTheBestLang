@@ -66,6 +66,7 @@ ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_a
 1788E（https://codeforces.com/problemset/problem/1788/E）linear_dp|tree_array|point_ascend|pre_max
 677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointers|partial_order|implemention|classical
 1667B（https://codeforces.com/problemset/problem/1667/B）tree_array|classical|prefix_sum
+597C（https://codeforces.com/problemset/problem/597/C）point_add|range_sum|bag_dp|classical
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -1749,4 +1750,22 @@ class Solution:
                 tree_ceil.point_ascend(ind[pre[i + 1]], ans - (i + 1))
                 dct[pre[i + 1] ^ ac.random_seed] = max(ans, dct.get(pre[i + 1] ^ ac.random_seed, -inf))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_597c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/597/C
+        tag: point_add|range_sum|bag_dp|classical
+        """
+        n, k = ac.read_list_ints()
+        nums = [ac.read_int() - 1 for _ in range(n)]
+        ans = [1] * n
+        for _ in range(k):
+            tree = PointAddRangeSum(n)
+            for x in nums:
+                res = tree.range_sum(0, x - 1) if x > 0 else 0
+                tree.point_add(x, ans[x])
+                ans[x] = res
+        ac.st(sum(ans))
         return

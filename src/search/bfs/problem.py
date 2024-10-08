@@ -106,6 +106,7 @@ P6909（https://www.luogu.com.cn/problem/P6909）01-bfs|preprocess|classical
 1093D（https://codeforces.com/problemset/problem/1093/D）bfs|color_method|classical
 1349C（https://codeforces.com/problemset/problem/1349/C）bfs|observation|implemention
 1214D（https://codeforces.com/problemset/problem/1214/D）bfs|greedy|classical
+1276B（https://codeforces.com/problemset/problem/1276/B）bfs|unweighted_graph|multiplication_method
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)
@@ -158,6 +159,7 @@ from collections import deque, defaultdict
 from heapq import heappush, heappop
 from typing import List
 
+from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 from src.utils.fast_io import inf
@@ -2972,4 +2974,43 @@ class Solution:
                     ac.st(int(grid[i][j]))
                 else:
                     ac.st(int(root[i][j]) ^ (p & 1))
+        return
+
+    @staticmethod
+    def cf_1276b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1276/B
+        tag: bfs|unweighted_graph|multiplication_method
+        """
+
+        class Graph(UnWeightedGraph):
+            def bfs(self, src=0, target=0):
+                dis = [inf] * (self.n + 1)
+                dis[src] = 0
+                stack = [src]
+                while stack:
+                    nex = []
+                    for u in stack:
+                        i = self.point_head[u]
+                        while i:
+                            j = self.edge_to[i]
+                            dj = dis[u] + 1
+                            if dj < dis[j]:
+                                dis[j] = dj
+                                if j != target:
+                                    nex.append(j)
+                            i = self.edge_next[i]
+                    stack = nex
+                return sum(x < inf for x in dis)
+
+        for _ in range(ac.read_int()):
+            n, m, a, b = ac.read_list_ints()
+            a -= 1
+            b -= 1
+            graph = Graph(n)
+            for _ in range(m):
+                u, v = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(u, v)
+            ans = (n - graph.bfs(a, b)) * (n - graph.bfs(b, a))
+            ac.st(ans)
         return
