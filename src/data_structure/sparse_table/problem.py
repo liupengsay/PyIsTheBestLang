@@ -1,5 +1,5 @@
 """
-Algorithm：sparse_table|multiplication_method|aggregation_property|sub_consequence
+Algorithm：sparse_table|multiplication_method|aggregation_property|sub_consequence|log_trick
 Description：static_range|range_query|range_max|range_min|range_gcd|range_and|range_or|range_lcm|sparse_table|binary_search
 
 ====================================LeetCode====================================

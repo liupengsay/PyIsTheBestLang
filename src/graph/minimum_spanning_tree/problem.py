@@ -76,8 +76,9 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.trie_like.template import BinaryTrieXor
-from src.graph.minimum_spanning_tree.template import SecondMinimumSpanningTree, KruskalMinimumSpanningTree, \
-    SecondMinimumSpanningTreeLight, PrimMinimumSpanningTree, ManhattanMST, TreeAncestorMinIds
+from src.graph.minimum_spanning_tree.template import KruskalMinimumSpanningTree, \
+    PrimMinimumSpanningTree, ManhattanMST, TreeAncestorMinIds, \
+    TreeMultiplicationMaxWeights, TreeMultiplicationMaxSecondWeights
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
 from src.utils.fast_io import FastIO
@@ -178,33 +179,39 @@ class Solution:
         url: https://codeforces.com/contest/1108/problem/F
         tag: mst|second_mst|multiplication_method|union_find
         """
-
         n, m = ac.read_list_ints()
-        edges = []
-        for _ in range(m):
-            i, j, w = ac.read_list_ints()
-            if i != j:
-                edges.append((i - 1, j - 1, w))
-
+        weights = []
+        fro = []
+        to = []
+        use = [0] * m
+        for x in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            weights.append(w * m + x)
+            fro.append(i)
+            to.append(j)
+        weights.sort()
         uf = UnionFind(n)
-        dct = [dict() for _ in range(n)]
+        graph = TreeMultiplicationMaxWeights(n)
         cost = 0
-        for i, j, w in sorted(edges, key=lambda it: it[2]):
+        for val in weights:
+            w, x = val // m, val % m
+            i, j = fro[x], to[x]
             if uf.union(i, j):
                 cost += w
-                dct[i][j] = dct[j][i] = w
+                use[x] = 1
+                graph.add_undirected_edge(i, j, w)
             if uf.part == 1:
                 break
-        del uf
-
-        tree = SecondMinimumSpanningTree(dct)
+        graph.build_multiplication()
         ans = 0
-        for i, j, w in edges:
-            if j in dct[i]:
-                continue
-            dis = tree.get_dist_weight_max_second(i, j)[0]  # key edge
-            if dis == w:
-                ans += 1
+        for val in weights:
+            w, x = val // m, val % m
+            if not use[x]:
+                i, j = fro[x], to[x]
+                dis = graph.get_max_weights_between_nodes(i, j)
+                if dis == w:
+                    ans += 1
         ac.st(ans)
         return
 
@@ -340,34 +347,38 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4180
         tag: mst|lca|multiplication_method|strictly_second_mst|classical
         """
-
         n, m = ac.read_list_ints()  # TLE
-        edges = []
-        for _ in range(m):
-            i, j, w = ac.read_list_ints()
-            if i != j:
-                edges.append([i - 1, j - 1, w])
-
-        edges.sort(key=lambda it: it[2])
+        weights = []
+        fro = []
+        to = []
+        for x in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            weights.append(w * m + x)
+            fro.append(i)
+            to.append(j)
+        weights.sort()
         uf = UnionFind(n)
-        dct = [dict() for _ in range(n)]
+        graph = TreeMultiplicationMaxSecondWeights(n)
         cost = 0
-        for i, j, w in edges:
+        for val in weights:
+            w, x = val // m, val % m
+            i, j = fro[x], to[x]
             if uf.union(i, j):
                 cost += w
-                dct[i][j] = dct[j][i] = w
+                graph.add_undirected_edge(i, j, w)
             if uf.part == 1:
                 break
-        tree = SecondMinimumSpanningTree(dct)
-        ans = inf
-        for i, j, w in edges:
-            if j in dct[i] and dct[i][j] == w:
-                continue
-            for dis in tree.get_dist_weight_max_second(i, j):
-                if -1 < dis < w:
-                    cur = cost - dis + w
-                    if cur < ans:
-                        ans = cur
+        graph.build_multiplication()
+        ans = 10 ** 14
+        for val in weights:
+            w, x = val // m, val % m
+            i, j = fro[x], to[x]
+            dis = graph.get_max_weights_between_nodes(i, j)
+            for weight in dis:
+                if -1 < weight < w:
+                    cur = cost - weight + w
+                    ans = min(cur, ans)
         ac.st(ans)
         return
 
@@ -377,30 +388,45 @@ class Solution:
         url: https://codeforces.com/problemset/problem/609/E
         tag: lca|greedy|mst|strictly_second_mst|necessary_edge
         """
-
+        """
+        url: https://codeforces.com/problemset/problem/609/E
+        tag: lca|greedy|mst|tree_multiplication|maximum_weight|second_mst|strictly_second_minimum_spanning_tree
+        """
         n, m = ac.read_list_ints()
-        edges = []
-        for _ in range(m):
-            i, j, w = ac.read_list_ints()
-            edges.append((w, i - 1, j - 1))
-
+        weights = []
+        fro = []
+        to = []
+        for x in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            weights.append(w * m + x)
+            fro.append(i)
+            to.append(j)
+        weights.sort()
         uf = UnionFind(n)
-        dct = [dict() for _ in range(n)]
+        graph = TreeMultiplicationMaxWeights(n)
         cost = 0
-        for w, i, j, in sorted(edges, key=lambda it: it[0]):
+        ans = [-1] * m
+        use = []
+        for val in weights:
+            w, x = val // m, val % m
+            i, j = fro[x], to[x]
             if uf.union(i, j):
                 cost += w
-                dct[i][j] = dct[j][i] = w
+                graph.add_undirected_edge(i, j, w)
+                use.append(x)
             if uf.part == 1:
                 break
-
-        tree = SecondMinimumSpanningTreeLight(dct)
-        for w, i, j in edges:
-            if j in dct[i] and dct[i][j] == w:
-                ac.st(cost)
-            else:
-                dis = tree.get_dist_weight_max_second(i, j)
-                ac.st(cost - dis + w)
+        graph.build_multiplication()
+        for x in use:
+            ans[x] = cost
+        for val in weights:
+            w, x = val // m, val % m
+            if ans[x] == -1:
+                i, j = fro[x], to[x]
+                dis = graph.get_max_weights_between_nodes(i, j)
+                ans[x] = cost - dis + w
+        ac.flatten(ans)
         return
 
     @staticmethod
@@ -836,10 +862,11 @@ class Solution:
                 for i, j, d in sorted(edge_list, key=lambda it: it[-1]):
                     if uf.union(i, j):
                         dct[i][j] = dct[j][i] = d
-                self.tree = SecondMinimumSpanningTreeLight(dct)
+                # self.tree = SecondMinimumSpanningTreeLight(dct)
+                self.tree = TreeMultiplicationMaxWeights(n)
 
             def query(self, p: int, q: int, limit: int) -> bool:
-                maximum = self.tree.get_dist_weight_max_second(p, q)
+                maximum = self.tree.get_max_weights_between_nodes(p, q)
                 return maximum < limit
 
         return DistanceLimitedPathsExist
@@ -1000,24 +1027,34 @@ class Solution:
         tag: online_query|data_range|offline_query|mst|maximum_weight|classical
         """
         n, m, q = ac.read_list_ints()
-        edges = [ac.read_list_ints() for _ in range(m)]
-        edges.sort(key=lambda it: it[-1])
+        weights = []
+        fro = []
+        to = []
+        for x in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            weights.append(w * m + x)
+            fro.append(i)
+            to.append(j)
+        weights.sort()
         uf = UnionFind(n)
-        dct = [dict() for _ in range(n)]
-        for a, b, c in edges:
-            a -= 1
-            b -= 1
-            if uf.union(a, b):
-                dct[a][b] = c
-                dct[b][a] = c
-        mst = SecondMinimumSpanningTreeLight(dct)
-        for _ in range(q):
-            u, v, w = ac.read_list_ints()
-            u -= 1
-            v -= 1
-            ceil = mst.get_dist_weight_max_second(u, v)
+        graph = TreeMultiplicationMaxWeights(n)
+        cost = 0
+        for val in weights:
+            w, x = val // m, val % m
+            i, j = fro[x], to[x]
+            if uf.union(i, j):
+                cost += w
+                graph.add_undirected_edge(i, j, w)
+            if uf.part == 1:
+                break
+        graph.build_multiplication()
 
-            if ceil > w:
+        for _ in range(q):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            dis = graph.get_max_weights_between_nodes(i, j)
+            if dis > w:
                 ac.yes()
             else:
                 ac.no()

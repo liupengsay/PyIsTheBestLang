@@ -94,6 +94,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greedy|classical
 1856E1（https://codeforces.com/problemset/problem/1856/E1）tree_dp|greedy|down_to_up|classical
 1153D（https://codeforces.com/problemset/problem/1153/D）tree_dp|greedy|brain_teaser
+274B（https://codeforces.com/problemset/problem/274/B）tree_dp|greedy|brain_teaser|classical
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -2316,4 +2317,57 @@ class Solution:
             else:
                 dp[f] = dp[u] if dp[f] == 0 else min(dp[f], dp[u])
         ac.st(ans - dp[0] + 1)
+        return
+
+    @staticmethod
+    def cf_274b(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/274/B
+        tag: tree_dp|greedy|brain_teaser|classical
+        """
+
+        class Graph(UnWeightedTree):
+            def tree_dp(self, nums):
+                f = [0] * self.n
+                g = [0] * self.n
+                parent = [-1] * self.n
+                stack = [0]
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                parent[j] = i
+                                stack.append(j)
+                            ind = self.edge_next[ind]
+                    else:
+                        i = ~i
+                        ind = self.point_head[i]
+                        ff = gg = 0
+                        while ind:
+                            j = self.edge_to[ind]
+                            if j != parent[i]:
+                                ff = max(ff, f[j])
+                                gg = max(gg, g[j])
+                            ind = self.edge_next[ind]
+                        k = nums[i] + ff - gg
+                        f[i] = ff
+                        g[i] = gg
+                        if k > 0:
+                            g[i] += k
+                        else:
+                            f[i] -= k
+                return f[0] + g[0]
+
+        n = ac.read_int()
+        graph = Graph(n)
+        for _ in range(n - 1):
+            u, v = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(u, v)
+        arr = ac.read_list_ints()
+        final = graph.tree_dp(arr)
+        ac.st(final)
         return

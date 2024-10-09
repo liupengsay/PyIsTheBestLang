@@ -104,6 +104,8 @@ P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_d
 163A（https://codeforces.com/problemset/problem/163/A）bag_dp|matrix_dp|classical
 1340B（https://codeforces.com/problemset/problem/1340/B）bag_dp|reverse_order|specific_plan
 2000E（https://codeforces.com/problemset/problem/2000/F）brute_force|greedy|bag_dp
+366C（https://codeforces.com/problemset/problem/366/C）bag_dp|data_range
+864E（https://codeforces.com/problemset/problem/864/E）bag_dp|specific_plan|greedy|observation|classical
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
@@ -1994,4 +1996,64 @@ class Solution:
                             break
                         dp[j] = min(dp[j], dp[i] + lst[j - i - 1])
             ac.st(dp[k])
+        return
+
+    @staticmethod
+    def cf_366c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/366/C
+        tag: bag_dp|data_range
+        """
+        n, k = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        low = (1 - 100 * k) * 100
+        high = (100 - k) * 100
+        dp = [-1] * (high - low + 1)
+        dp[0] = 0
+        for i in range(n):
+            c = a[i] - k * b[i]
+            if c >= 0:
+                for x in range(high, low - 1, -1):
+                    if dp[x - c] > -1 and low <= (x - c) <= high:
+                        dp[x] = max(dp[x], dp[x - c] + a[i])
+            else:
+                for x in range(low, high + 1):
+                    if dp[x - c] > -1 and low <= (x - c) <= high:
+                        dp[x] = max(dp[x], dp[x - c] + a[i])
+        ans = dp[0]
+        ac.st(ans if ans > 0 else -1)
+        return
+
+    @staticmethod
+    def cf_864e(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/864/E
+        tag: bag_dp|specific_plan|greedy|observation|classical
+        """
+        n = ac.read_int()
+        t = []
+        d = []
+        p = []
+        for i in range(n):
+            tt, dd, pp = ac.read_list_ints()
+            t.append(tt)
+            d.append(dd * n + i)
+            p.append(pp)
+        d.sort()
+        dp = [0] * 2001
+        plan = [[] for _ in range(2001)]
+        for val in d:
+            dd, i = val // n, val % n
+            tt, pp = t[i], p[i]
+            for x in range(dd - 1, tt - 1, -1):
+                if dp[x - tt] + pp > dp[x]:
+                    dp[x] = dp[x - tt] + pp
+                    plan[x] = plan[x - tt] + [i + 1]
+        ceil = max(dp)
+        i = dp.index(ceil)
+        ac.st(ceil)
+        ans = plan[i]
+        ac.st(len(ans))
+        ac.lst(ans)
         return
