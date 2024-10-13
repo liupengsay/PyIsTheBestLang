@@ -93,8 +93,8 @@ class TestGeneral(unittest.TestCase):
                 assert ans[1] == max(nums[ll:rr + 1])
                 floor = nums[ll]
                 ceil = nums[ll]
-                cover1 = -inf
-                cover2 = inf
+                cover1 = -math.inf
+                cover2 = math.inf
                 for x in range(ll + 1, rr + 1):
                     cover1 = max(cover1, nums[x] - floor)
                     cover2 = min(cover2, nums[x] - ceil)

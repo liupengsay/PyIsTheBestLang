@@ -173,7 +173,7 @@ from typing import List
 from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -384,7 +384,7 @@ class Solution:
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()
             mid = n // 2 + 1
-            if a + b > n * (n + 1) // 2 or ac.max(a, b) > (n // 2) * (mid + n) // 2:
+            if a + b > n * (n + 1) // 2 or max(a, b) > (n // 2) * (mid + n) // 2:
                 ac.st(-1)
                 continue
             s = n * (n + 1) // 2
@@ -398,7 +398,7 @@ class Solution:
                     if x:
                         rest = lst[aa] - i * (i + 1) // 2
                         y = math.ceil((rest * 2 / x - x + 1) / 2)
-                        y = ac.max(y, i + 1)
+                        y = max(y, i + 1)
 
                         if y + x - 1 <= n:
                             cur = i * (i + 1) // 2 + x * (y + y + x - 1) // 2
@@ -549,7 +549,7 @@ class Solution:
         while stack:
             x = stack.popleft()
             for y, i in edges[x]:
-                if visit[y] == inf:
+                if visit[y] == math.inf:
                     choose[i] = 1
                     stack.append(y)
                     visit[y] = visit[x] + 1

@@ -15,7 +15,7 @@ class GraphDiameter:
             nex = []
             for i in stack:
                 for j in dct[i]:
-                    if dis[j] == inf:
+                    if dis[j] == math.inf:
                         dis[j] = dis[i] + 1
                         nex.append(j)
             stack = nex[:]
@@ -27,7 +27,7 @@ class GraphDiameter:
             nex = []
             for i in stack:
                 for j in dct[i]:
-                    if dis[j] == inf:
+                    if dis[j] == math.inf:
                         dis[j] = dis[i] + 1
                         nex.append(j)
             stack = nex[:]
@@ -54,7 +54,7 @@ class TreeDiameter:
                     stack.append(j)
         return dis, parent
 
-    def get_diameter_info(self):
+    def get_diameter_math.info(self):
         """get tree diameter detail by weighted bfs twice"""
         dis, _ = self.get_bfs_dis(0)
         x = dis.index(max(dis))

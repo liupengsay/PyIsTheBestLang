@@ -107,7 +107,7 @@ from src.graph.union_find.template import UnionFind
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.number_theory.template import NumFactor
 from src.strings.kmp.template import KMP
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -326,7 +326,7 @@ class Solution:
                 if z[i] == n - i and pre >= z[i]:
                     ac.st(s[:z[i]])
                     break
-                pre = ac.max(pre, z[i])
+                pre = max(pre, z[i])
             else:
                 ac.st("not exist")
         return
@@ -363,7 +363,7 @@ class Solution:
                 ans.extend(list(word))
             else:
                 m = len(word)
-                k = ac.min(len(ans), m)
+                k = min(len(ans), m)
                 s = list(word[:k]) + ans[-k:]
                 z = kmp.z_function(s)
                 inter = 0
@@ -403,7 +403,7 @@ class Solution:
             if z[i] == n - i and pre >= z[i]:
                 ac.st(s[:z[i]])
                 break
-            pre = ac.max(pre, z[i])
+            pre = max(pre, z[i])
         else:
             ac.st("Just a legend")
         return
@@ -475,7 +475,7 @@ class Solution:
             for j in range(n - 1, -1, -1):
                 for x in range(k):
                     a, b = dp[i + 1][j][x], dp[i][j + 1][x]
-                    dp[i][j][x] = ac.max(a, b)
+                    dp[i][j][x] = max(a, b)
                     if s[i] == t[j] and nxt[x][s[i]] < k and dp[i + 1][j + 1][nxt[x][s[i]]] + 1 > dp[i][j][x]:
                         dp[i][j][x] = dp[i + 1][j + 1][nxt[x][s[i]]] + 1
         length = dp[0][0][0]
@@ -549,7 +549,7 @@ class Solution:
                     dp[i + 1] = dp[i + 1 - z_flip[j]] + 1
                     a, b = j - i - 2, j - i - 2 + z_flip[j] - 1
                     state[i + 1] = (m - 1 - b, m - 1 - a)
-        if dp[-1] == inf:
+        if dp[-1] == math.inf:
             ac.st(-1)
         else:
             ans = []
@@ -577,7 +577,7 @@ class Solution:
         nxt_s = KMP().kmp_automaton(s)
         nxt_t = KMP().kmp_automaton(t)
 
-        dp = [[-inf] * (k + 1) * (m + 1) for _ in range(2)]
+        dp = [[-math.inf] * (k + 1) * (m + 1) for _ in range(2)]
         dp[0][0] = 0
         for i in range(n):
             if chr(c[i] + ord("a")) == "*":
@@ -586,11 +586,11 @@ class Solution:
                 lst = [c[i]]
             for j in range(m + 1):
                 for x in range(k + 1):
-                    dp[(i & 1) ^ 1][j * (k + 1) + x] = -inf
+                    dp[(i & 1) ^ 1][j * (k + 1) + x] = -math.inf
             for j in range(m + 1):
                 for x in range(k + 1):
                     cur = dp[i & 1][j * (k + 1) + x]
-                    if cur == -inf:
+                    if cur == -math.inf:
                         continue
                     for w in lst:
                         tmp = cur
@@ -639,21 +639,21 @@ class Solution:
             if z[i] == n - i:
                 ind.append(n - i)
 
-        dp = [[-inf] * n for _ in range(2)]
+        dp = [[-math.inf] * n for _ in range(2)]
         pre = 0
         dp[pre][0] = 0
         for w in s:
             cur = 1 - pre
             for j in range(n):
-                dp[cur][j] = -inf
+                dp[cur][j] = -math.inf
             dp[cur][0] = max(dp[pre])
             for j in range(n):
                 if t[j] == w or w == "?":
                     if j == n - 1:
                         for x in ind:
-                            dp[cur][x] = ac.max(dp[cur][x], dp[pre][j] + 1)
+                            dp[cur][x] = max(dp[cur][x], dp[pre][j] + 1)
                     else:
-                        dp[cur][j + 1] = ac.max(dp[cur][j + 1], dp[pre][j])
+                        dp[cur][j + 1] = max(dp[cur][j + 1], dp[pre][j])
             pre = cur
         ac.st(max(dp[pre]))
         return
@@ -718,7 +718,7 @@ class Solution:
             diff = [0] * n
             for i in range(1, n):
                 if z[i]:
-                    x = ac.min(z[i], i)
+                    x = min(z[i], i)
                     diff[i] += 1
                     if i + x < n:
                         diff[i + x] -= 1
@@ -1185,7 +1185,7 @@ class Solution:
                 nex = tree.range_min(i + 1, i + s) + 1
                 tree.point_set(i, nex)
         ans = tree.range_min(0, 0)
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1206,7 +1206,7 @@ class Solution:
                 nex = tree.range_min(i + 1, i + s) + 1
                 tree.point_set(i, nex)
         ans = tree.range_min(0, 0)
-        ac.st(ans if ans < inf else "Fake")
+        ac.st(ans if ans < math.inf else "Fake")
         return
 
     @staticmethod

@@ -74,8 +74,8 @@ class RangeLongestRegularBrackets:
 class RangeAscendRangeMax:
     def __init__(self, n):
         self.n = n
-        self.cover = [-inf] * (4 * n)
-        self.lazy_tag = [-inf] * (4 * n)
+        self.cover = [-math.inf] * (4 * n)
+        self.lazy_tag = [-math.inf] * (4 * n)
 
     def _make_tag(self, i, val):
         self.cover[i] = max(self.cover[i], val)
@@ -87,12 +87,12 @@ class RangeAscendRangeMax:
         return
 
     def _push_down(self, i):
-        if self.lazy_tag[i] != -inf:
+        if self.lazy_tag[i] != -math.inf:
             self.cover[i << 1] = max(self.cover[i << 1], self.lazy_tag[i])
             self.cover[(i << 1) | 1] = max(self.cover[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i << 1] = max(self.lazy_tag[i << 1], self.lazy_tag[i])
             self.lazy_tag[(i << 1) | 1] = max(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
-            self.lazy_tag[i] = -inf
+            self.lazy_tag[i] = -math.inf
         return
 
     def build(self, nums):
@@ -151,7 +151,7 @@ class RangeAscendRangeMax:
     def range_max(self, left, right):
 
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
@@ -186,7 +186,7 @@ class RangeAscendRangeMax:
 
 
 class RangeAscendRangeMaxIndex:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.ceil = [-self.initial] * (4 * n)
@@ -549,7 +549,7 @@ class RangeAddRangePrePreSum:
     def range_min(self, left, right):
         # query the range min
         stack = [(0, self.n - 1, 1)]
-        lowest = inf
+        lowest = math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -577,7 +577,7 @@ class RangeAddRangePrePreSum:
     def range_max(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -638,10 +638,10 @@ class RangeAddRangePrePreSum:
 
     def range_sum_bisect_right_non_zero(self, left):
         if not self.range_sum(0, left):
-            return inf
+            return math.inf
 
         stack = [(0, self.n - 1, 1)]
-        res = inf
+        res = math.inf
         while stack:
             s, t, i = stack.pop()
             if s == t:
@@ -658,10 +658,10 @@ class RangeAddRangePrePreSum:
 
     def range_sum_bisect_left_non_zero(self, right):
         if not self.range_sum(right, self.n - 1):
-            return inf
+            return math.inf
 
         stack = [(0, self.n - 1, 1)]
-        res = inf
+        res = math.inf
         while stack:
             s, t, i = stack.pop()
             if s == t:
@@ -693,12 +693,12 @@ class RangeDescendRangeMin:
         return
 
     def _push_down(self, i):
-        if self.lazy_tag[i] != inf:
+        if self.lazy_tag[i] != math.inf:
             self.cover[i << 1] = min(self.cover[i << 1], self.lazy_tag[i])
             self.cover[(i << 1) | 1] = min(self.cover[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i << 1] = min(self.lazy_tag[i << 1], self.lazy_tag[i])
             self.lazy_tag[(i << 1) | 1] = min(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
-            self.lazy_tag[i] = inf
+            self.lazy_tag[i] = math.inf
         return
 
     def build(self, nums):
@@ -759,7 +759,7 @@ class RangeDescendRangeMin:
         # query the range min
 
         stack = [(0, self.n - 1, 1)]
-        lowest = inf
+        lowest = math.inf
         while stack:
             a, b, i = stack.pop()
             if left <= a and b <= right:
@@ -775,7 +775,7 @@ class RangeDescendRangeMin:
 
 
 class PointSetRangeMaxSubSumAlter:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.cover = [0] * (4 * self.n)
@@ -841,7 +841,7 @@ class PointSetRangeMaxSubSumAlter:
 
 
 class PointSetRangeMaxSubSumAlterSignal:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.cover = [0] * (4 * self.n)
@@ -875,7 +875,7 @@ class PointSetRangeMaxSubSumAlterSignal:
 
     def _make_tag(self, i, val):
         self.cover[i] = val
-        self.val[i] = (-val, -inf, -inf, val)
+        self.val[i] = (-val, -math.inf, -math.inf, val)
         return
 
     def _push_up(self, i):
@@ -1022,7 +1022,7 @@ class RangeAddRangeSumMinMax:
     def range_min(self, left, right):
         # query the range min
         stack = [(0, self.n - 1, 1)]
-        lowest = inf
+        lowest = math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1050,7 +1050,7 @@ class RangeAddRangeSumMinMax:
     def range_max(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1114,10 +1114,10 @@ class RangeAddRangeSumMinMax:
 
     def range_sum_bisect_right_non_zero(self, left):
         if not self.range_sum(0, left):
-            return inf
+            return math.inf
 
         stack = [(0, self.n - 1, 1)]
-        res = inf
+        res = math.inf
         while stack:
             s, t, i = stack.pop()
             if s == t:
@@ -1134,10 +1134,10 @@ class RangeAddRangeSumMinMax:
 
     def range_sum_bisect_left_non_zero(self, right):
         if not self.range_sum(right, self.n - 1):
-            return inf
+            return math.inf
 
         stack = [(0, self.n - 1, 1)]
-        res = inf
+        res = math.inf
         while stack:
             s, t, i = stack.pop()
             if s == t:
@@ -1156,7 +1156,7 @@ class RangeAddRangeSumMinMax:
 class RangeAddRangeMaxGainMinGain:
     def __init__(self, n):
         self.n = n
-        self.cover1 = [-inf] * (4 * self.n)  # max(post-pre)
+        self.cover1 = [-math.inf] * (4 * self.n)  # max(post-pre)
         self.cover2 = [math.inf] * (4 * self.n)  # min(post-pre)
         self.lazy_tag = [0] * (4 * self.n)  # lazy tag
         self.floor = [0] * (4 * self.n)  # range min
@@ -1237,7 +1237,7 @@ class RangeAddRangeMaxGainMinGain:
     def range_min(self, left, right):
         # query the range min
         stack = [(0, self.n - 1, 1)]
-        lowest = inf
+        lowest = math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1254,7 +1254,7 @@ class RangeAddRangeMaxGainMinGain:
     def range_max_gain_min_gain(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        ans = [math.inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+        ans = [math.inf, -math.inf, -math.inf, math.inf]  # floor, ceil, max_gain, min_gain
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -1495,7 +1495,7 @@ class RangeAddRangeWeightedSum:
 
 
 class RangeChminChmaxPointGet:
-    def __init__(self, n, low_initial=-inf, high_initial=inf):
+    def __init__(self, n, low_initial=-math.inf, high_initial=math.inf):
         self.n = n
         self.low_initial = low_initial
         self.high_initial = high_initial
@@ -1686,7 +1686,7 @@ class PointAddRangeSum1Sum2:
 
 class PointSetPreMinPostMin:
 
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.pre = [initial] * (4 * n)
@@ -1804,7 +1804,7 @@ class PointSetPreMinPostMin:
 
 class PointSetPreMaxPostMin:
 
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.pre = [-initial] * (4 * n)
@@ -2593,15 +2593,15 @@ class RangeAffineRangeSum:
 
 
 class RangeSetRangeSumMinMax:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
-        self.initial = inf
+        self.initial = math.inf
         self.cover = [0] * (4 * self.n)  # range sum
-        self.lazy_tag = [self.initial] * (4 * self.n)  # because range change can to be 0 the lazy tag must be inf
+        self.lazy_tag = [self.initial] * (4 * self.n)  # because range change can to be 0 the lazy tag must be math.inf
         self.floor = [self.initial] * (
-                4 * self.n)  # because range change can to be any integer the floor initial must be inf
+                4 * self.n)  # because range change can to be any integer the floor initial must be math.inf
         self.ceil = [-self.initial] * (
-                4 * self.n)  # because range change can to be any integer the ceil initial must be -inf
+                4 * self.n)  # because range change can to be any integer the ceil initial must be -math.inf
         return
 
     def _push_down(self, i, s, m, t):
@@ -2706,7 +2706,7 @@ class RangeSetRangeSumMinMax:
         # query the range min
 
         stack = [(0, self.n - 1, 1)]
-        lowest = inf
+        lowest = math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -2724,7 +2724,7 @@ class RangeSetRangeSumMinMax:
         # query the range max
 
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -3099,14 +3099,14 @@ class RangeSetReverseRangeSumLongestConSub:
 
 
 class RangeSetRangeSumMinMaxDynamic:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         # dynamic adding point segment tree in which n can be 1e9
         self.n = n
         self.initial = initial
         self.cover = defaultdict(int)  # range sum must be initial 0
-        self.lazy_tag = defaultdict(lambda: self.initial)  # lazy tag must be initial inf
-        self.floor = defaultdict(int)  # range min can be inf
-        self.ceil = defaultdict(int)  # range max can be -inf
+        self.lazy_tag = defaultdict(lambda: self.initial)  # lazy tag must be initial math.inf
+        self.floor = defaultdict(int)  # range min can be math.inf
+        self.ceil = defaultdict(int)  # range max can be -math.inf
         return
 
     def _push_down(self, i, s, m, t):
@@ -3178,7 +3178,7 @@ class RangeSetRangeSumMinMaxDynamic:
 
     def range_min(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        highest = inf
+        highest = math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -3195,7 +3195,7 @@ class RangeSetRangeSumMinMaxDynamic:
     def range_max(self, left, right):
 
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -3225,14 +3225,14 @@ class RangeSetRangeSumMinMaxDynamic:
 
 
 class RangeSetRangeSumMinMaxDynamicDct:
-    def __init__(self, n, m=4 * 10 ** 5, initial=inf):
+    def __init__(self, n, m=4 * 10 ** 5, initial=math.inf):
         # dynamic adding point segment tree in which n can be 1e9
         self.n = n
         self.initial = initial
         self.cover = [0] * m  # range sum must be initial 0
-        self.lazy_tag = [self.initial] * m  # lazy tag must be initial inf
-        self.floor = [0] * m  # range min can be inf
-        self.ceil = [0] * m  # range max can be -inf
+        self.lazy_tag = [self.initial] * m  # lazy tag must be initial math.inf
+        self.floor = [0] * m  # range min can be math.inf
+        self.ceil = [0] * m  # range max can be -math.inf
         self.dct = dict()
         self.ind = 1
         return
@@ -3322,7 +3322,7 @@ class RangeSetRangeSumMinMaxDynamicDct:
 
     def range_min(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        highest = inf
+        highest = math.inf
         while stack:
             s, t, i = stack.pop()
             self._produce(i)
@@ -3339,7 +3339,7 @@ class RangeSetRangeSumMinMaxDynamicDct:
 
     def range_max(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             self._produce(i)
@@ -3371,13 +3371,13 @@ class RangeSetRangeSumMinMaxDynamicDct:
 
 
 class RangeSetPreSumMaxDynamic:
-    def __init__(self, n, initial=-inf):
+    def __init__(self, n, initial=-math.inf):
         # dynamic adding point segment tree in which n can be 1e9
         self.n = n
         self.initial = initial
         self.pre_sum_max = defaultdict(int)
         self.sum = defaultdict(int)
-        self.lazy_tag = defaultdict(lambda: self.initial)  # lazy tag must be initial inf
+        self.lazy_tag = defaultdict(lambda: self.initial)  # lazy tag must be initial math.inf
         return
 
     def _push_down(self, i, s, m, t):
@@ -3472,13 +3472,13 @@ class RangeSetPreSumMaxDynamic:
 
 
 class RangeSetPreSumMaxDynamicDct:
-    def __init__(self, n, m=3 * 10 ** 6, initial=-inf):
+    def __init__(self, n, m=3 * 10 ** 6, initial=-math.inf):
         # dynamic adding point segment tree in which n can be 1e9
         self.n = n
         self.initial = initial
         self.pre_sum_max = [0] * m
         self.sum = [0] * m
-        self.lazy_tag = [0] * m  # lazy tag must be initial inf
+        self.lazy_tag = [0] * m  # lazy tag must be initial math.inf
         self.dct = dict()
         self.ind = 1
         return
@@ -3996,10 +3996,10 @@ class RangeSetRangeOr:
         return
 
     def _push_down(self, i):
-        if self.lazy_tag[i] != inf:
+        if self.lazy_tag[i] != math.inf:
             self._make_tag(self.lazy_tag[i], i << 1)
             self._make_tag(self.lazy_tag[i], (i << 1) | 1)
-            self.lazy_tag[i] = inf
+            self.lazy_tag[i] = math.inf
 
     def _push_up(self, i):
         self.cover[i] = self.cover[i << 1] | self.cover[(i << 1) | 1]
@@ -4363,13 +4363,13 @@ class PointSetRangeOr:
 
 
 class RangeSetPreSumMax:
-    def __init__(self, n, initial=-inf):
+    def __init__(self, n, initial=-math.inf):
         # dynamic adding point segment tree in which n can be 1e9
         self.n = n
         self.initial = initial
         self.pre_sum_max = [0] * 4 * n
         self.sum = [0] * 4 * n
-        self.lazy_tag = [initial] * 4 * n  # lazy tag must be initial inf
+        self.lazy_tag = [initial] * 4 * n  # lazy tag must be initial math.inf
         return
 
     def build(self, nums):
@@ -4756,7 +4756,7 @@ class PointSetRangeComposite:
 
 
 class RangeSetRangeMaxNonEmpConSubSum:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.cover = [-initial] * (4 * self.n)
@@ -5403,7 +5403,7 @@ class RangeAddRangeMaxIndex:
     def range_max(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -5419,7 +5419,7 @@ class RangeAddRangeMaxIndex:
 
     def range_max_index(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        highest = -inf
+        highest = -math.inf
         ind = -1
         while stack:
             s, t, i = stack.pop()
@@ -5907,7 +5907,7 @@ class RangeXorUpdateRangeXorQuery:
 
 class PointSetRangeMin:
 
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.cover = [initial] * (4 * n)
@@ -6093,7 +6093,7 @@ class RangeAddRangeMinCount:
 
     def range_min_count(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        res = inf
+        res = math.inf
         cnt = 0
         while stack:
             s, t, i = stack.pop()
@@ -6115,7 +6115,7 @@ class RangeAddRangeMinCount:
 
 class PointSetRangeMaxMinGap:
 
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.ceil = [-initial] * (4 * n)
@@ -6246,7 +6246,7 @@ class PointSetRangeMinCount:
 
     def range_min_count(self, left, right):
         stack = [(0, self.n - 1, 1)]
-        ans = (inf << self.m) | 1
+        ans = (math.inf << self.m) | 1
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -6303,7 +6303,7 @@ class PointSetRangeLongestSubSame:
         if self.suf[(i << 1) | 1] == t - m and self.lst[m] == self.lst[m + 1]:
             self.suf[i] += self.suf[i << 1]
 
-        a = -inf
+        a = -math.inf
         for b in [self.pref[i], self.suf[i], self.cover[i << 1], self.cover[(i << 1) | 1]]:
             a = a if a > b else b
         if self.lst[m] == self.lst[m + 1]:
@@ -6568,7 +6568,7 @@ class RangeDivideRangeSum:
 
 
 class PointSetRangeMaxSubSum:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.cover = [-initial] * (4 * self.n)

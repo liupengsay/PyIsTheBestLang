@@ -114,7 +114,7 @@ class Solution:
                 if i + 1 < n:
                     dp[i][i + 1] = nums[i] + nums[i + 1]
                 for j in range(i + 2, n):
-                    dp[i][j] = 0 if fun == max else inf
+                    dp[i][j] = 0 if fun == max else math.inf
                     for k in range(i, j):
                         cur = dp[i][k] + dp[k + 1][j] + pre[j + 1] - pre[i]
                         dp[i][j] = fun(dp[i][j], cur)
@@ -142,19 +142,19 @@ class Solution:
         nums = ac.read_list_ints()
         s = sum(nums)
 
-        pre = [-inf] * (n + 1)
+        pre = [-math.inf] * (n + 1)
         x = 0
         for i in range(n):
             x = x if x > 0 else 0
             x += nums[i]
-            pre[i + 1] = ac.max(pre[i], x)
+            pre[i + 1] = max(pre[i], x)
 
-        post = [-inf] * (n + 1)
+        post = [-math.inf] * (n + 1)
         x = 0
         for i in range(n - 1, -1, -1):
             x = x if x > 0 else 0
             x += nums[i]
-            post[i] = ac.max(post[i + 1], x)
+            post[i] = max(post[i + 1], x)
         ans = max(pre[i] + post[i + 1] for i in range(1, n))
         cnt = sum(num >= 0 for num in nums)
         if cnt <= 1:
@@ -166,16 +166,16 @@ class Solution:
         for i in range(n):
             x = x if x < 0 else 0
             x += nums[i]
-            pre[i + 1] = ac.min(pre[i], x)
+            pre[i + 1] = min(pre[i], x)
 
         post = [0] * (n + 1)
         x = 0
         for i in range(n - 1, -1, -1):
             x = x if x < 0 else 0
             x += nums[i]
-            post[i] = ac.min(post[i + 1], x)
+            post[i] = min(post[i + 1], x)
 
-        ans = ac.max(ans, s - min(pre[i] + post[i + 1] for i in range(1, n)))
+        ans = max(ans, s - min(pre[i] + post[i + 1] for i in range(1, n)))
         ac.st(ans)
         return
 
@@ -186,7 +186,7 @@ class Solution:
         tag: circular_array|brute_force|sub_array
         """
 
-        ans = -inf
+        ans = -math.inf
         pre = 0
         for num in nums:
             pre = pre if pre > 0 else 0
@@ -194,7 +194,7 @@ class Solution:
             if pre > ans:
                 ans = pre
 
-        low = inf
+        low = math.inf
         pre = 0
         for num in nums:
             pre = pre if pre < 0 else 0
@@ -235,23 +235,23 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        floor = inf
-        ceil = -inf
+        floor = math.inf
+        ceil = -math.inf
         for _ in range(n):
             nums.append(nums.pop(0))
             pre = [0] * (n + 1)
             for i in range(n):
                 pre[i + 1] = pre[i] + nums[i]
-            dp = [[[math.inf, -inf] for _ in range(m + 1)] for _ in range(n + 1)]
+            dp = [[[math.inf, -math.inf] for _ in range(m + 1)] for _ in range(n + 1)]
             dp[0][0] = [1, 1]
             for i in range(n):
                 for k in range(i + 1):
                     for j in range(1, m + 1):
                         cur = (pre[i + 1] - pre[k]) % 10
-                        if dp[k][j - 1][0] != inf:
+                        if dp[k][j - 1][0] != math.inf:
                             dp[i + 1][j][0] = min(dp[i + 1][j][0], dp[k][j - 1][0] * cur)
                             dp[i + 1][j][1] = max(dp[i + 1][j][1], dp[k][j - 1][0] * cur)
-                        if dp[k][j - 1][1] != -inf:
+                        if dp[k][j - 1][1] != -math.inf:
                             dp[i + 1][j][0] = min(dp[i + 1][j][0], dp[k][j - 1][1] * cur)
                             dp[i + 1][j][1] = max(dp[i + 1][j][1], dp[k][j - 1][1] * cur)
             floor = min(floor, dp[-1][-1][0])
@@ -289,10 +289,10 @@ class Solution:
                 cur = dict()
                 for x1, x2 in pre:
                     for y in nex[(x1, x2)]:
-                        cur[(x2, y)] = ac.max(cur.get((x2, y), 0), pre[(x1, x2)] + nums[i][y])
+                        cur[(x2, y)] = max(cur.get((x2, y), 0), pre[(x1, x2)] + nums[i][y])
                 pre = cur.copy()
             for x1, x2 in pre:
                 if (a < x2 and a < b) or (a > x2 and a > b):
-                    ans = ac.max(ans, pre[(x1, x2)])
+                    ans = max(ans, pre[(x1, x2)])
         ac.st(ans)
         return

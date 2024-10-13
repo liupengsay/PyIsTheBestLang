@@ -315,7 +315,7 @@ class Solution:
             nex = -1
             for j in rest:
                 dj = dis(nums[j][0], nums[j][1], x, y)
-                visit[j] = ac.min(visit[j], dct[i].get(j, inf))
+                visit[j] = min(visit[j], dct[i].get(j, math.inf))
                 if dj < visit[j]:
                     visit[j] = dj
                 if nex == -1 or visit[j] < visit[nex]:
@@ -567,7 +567,7 @@ class Solution:
 
         def dis(x1, y1, x2, y2):
             res = (x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)
-            return res if res >= c else inf
+            return res if res >= c else math.inf
 
         n, c = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -636,7 +636,7 @@ class Solution:
             i = nex
             rest.discard(i)
             d = visit[i]
-            ans = ac.max(ans, d)
+            ans = max(ans, d)
             nex = -1
             x, y = nums[i]
             for j in rest:
@@ -645,7 +645,7 @@ class Solution:
                     visit[j] = dj
                 if nex == -1 or visit[j] < visit[nex]:
                     nex = j
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -806,7 +806,7 @@ class Solution:
             return (k[aa] + k[bb]) * (abs(nums[aa][0] - nums[bb][0]) + abs(nums[aa][1] - nums[bb][1]))
 
         n = ac.read_int()
-        nums = [[math.inf, inf]] + [ac.read_list_ints() for _ in range(n)]
+        nums = [[math.inf, math.inf]] + [ac.read_list_ints() for _ in range(n)]
         cost = [math.inf] + ac.read_list_ints()
         k = [math.inf] + ac.read_list_ints()
 
@@ -831,7 +831,7 @@ class Solution:
                     nex = j
             if nex != -1:
                 edge.append((pre[nex], nex))
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
 
         lst = []
         for a, b in edge:
@@ -857,7 +857,7 @@ class Solution:
         class DistanceLimitedPathsExist:
             def __init__(self, n: int, edge_list: List[List[int]]):
                 uf = UnionFind(n + 1)
-                edge_list.extend([[n, i, inf] for i in range(n)])
+                edge_list.extend([[n, i, math.inf] for i in range(n)])
                 dct = [dict() for _ in range(n + 1)]
                 for i, j, d in sorted(edge_list, key=lambda it: it[-1]):
                     if uf.union(i, j):
@@ -910,7 +910,7 @@ class Solution:
         else:
             ac.no()
             return
-        ans = inf
+        ans = math.inf
         uf = UnionFind(n)
         for i in range(x + 1):
             uf.initialize()
@@ -1254,7 +1254,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/587/C
         tag: tree_multiplication_method|multiplication_method|classical
         """
-        n, m, q = ac.read_list_ints()  # inf making tle !!
+        n, m, q = ac.read_list_ints()  # math.inf making tle !!
         tree = TreeAncestorMinIds(n)
         for _ in range(n - 1):
             u, v = ac.read_list_ints_minus_one()

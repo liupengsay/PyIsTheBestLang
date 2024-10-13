@@ -358,7 +358,7 @@ class StringHashSingleBuild:
         return ans  # with length y - x + 1 important!!!
 
 class RangeSetRangeHashReverse:
-    def __init__(self, n, tag=inf) -> None:
+    def __init__(self, n, tag=math.inf) -> None:
         self.n = n
         self.tag = tag
         while True:

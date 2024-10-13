@@ -74,7 +74,7 @@ from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
     MatrixHash, MatrixHashReverse, StringHashSingle, StringHashSingleBuild
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -982,7 +982,7 @@ class Solution:
             tree2.point_set(num, num, 1)
             if num == 0 or num == n - 1:
                 continue
-            length = ac.min(num + 1, n - num)
+            length = min(num + 1, n - num)
             cur1 = [tree1.range_hash(num - length + 1, num), tree2.range_hash(num - length + 1, num)]
             cur2 = [tree1.range_hash_reverse(num, num + length - 1), tree2.range_hash_reverse(num, num + length - 1)]
             if cur1 != cur2:
@@ -1092,7 +1092,7 @@ class Solution:
                     if dp[j] + z < dp[i + 1]:
                         dp[i + 1] = dp[j] + z
 
-        return dp[-1] if dp[-1] < inf else -1
+        return dp[-1] if dp[-1] < math.inf else -1
 
     @staticmethod
     def ac_139(ac=FastIO()):

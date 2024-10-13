@@ -323,7 +323,7 @@ class NumTheory:
         m = len(primes)
         points = [0] * m
         for i in range(1, n):
-            nex = inf
+            nex = math.inf
             for j in range(m):
                 if primes[j] * dp[points[j]] < nex:
                     nex = primes[j] * dp[points[j]]

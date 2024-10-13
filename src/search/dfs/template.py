@@ -236,7 +236,7 @@ class DfsEulerOrder:
         return
 
     def build(self, dct, root):
-        """build dfs order and euler order and relative info"""
+        """build dfs order and euler order and relative math.info"""
         order = 0
         stack = [(root, -1)]
         while stack:

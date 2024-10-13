@@ -383,7 +383,7 @@ class Solution:
         url: https://leetcode.cn/problems/verify-preorder-sequence-in-binary-search-tree/
         tag: monotonic_stack|pre_order|classical
         """
-        pre_max = -inf
+        pre_max = -math.inf
         n = len(preorder)
         stack = []
         for i in range(n):
@@ -429,7 +429,7 @@ class Solution:
                     pre[i] += 1
                 else:
                     pre[i] = 0
-            ans = ac.max(ans, Rectangle().compute_area(pre))
+            ans = max(ans, Rectangle().compute_area(pre))
         ac.st(3 * ans)
         return
 
@@ -539,7 +539,7 @@ class Solution:
             if x == nums[i]:
                 continue
             j = bisect.bisect_left(dct[x], i)
-            ans = ac.max(ans, dct[x][j] - i + 1)
+            ans = max(ans, dct[x][j] - i + 1)
         ac.st(ans)
         return
 
@@ -769,9 +769,9 @@ class Solution:
         for i in range(n):
             if pre[i] + post[i] - nums[i] == ceil:
                 for j in range(i + 1, n):
-                    nums[j] = ac.min(nums[j], nums[j - 1])
+                    nums[j] = min(nums[j], nums[j - 1])
                 for j in range(i - 1, -1, -1):
-                    nums[j] = ac.min(nums[j], nums[j + 1])
+                    nums[j] = min(nums[j], nums[j + 1])
                 ac.lst(nums)
                 break
         return
@@ -791,10 +791,10 @@ class Solution:
                     while stack and nums[stack[-1]] - stack[-1] > nums[i] - i:
                         stack.pop()
                     if not stack:
-                        k = ac.min(i, nums[i] - 1)
+                        k = min(i, nums[i] - 1)
                         res[i] = k * (nums[i] - 1 + nums[i] - k) // 2
                     else:
-                        k = ac.min(i - stack[-1] - 1, nums[i] - 1)
+                        k = min(i - stack[-1] - 1, nums[i] - 1)
                         res[i] = k * (nums[i] - 1 + nums[i] - k) // 2 + nums[stack[-1]] + res[stack[-1]]
                     stack.append(i)
                 return res
@@ -879,9 +879,9 @@ class Solution:
         for i in range(n):
             if pre[i] + post[i] - nums[i] == ceil:
                 for j in range(i + 1, n):
-                    nums[j] = ac.min(nums[j], nums[j - 1])
+                    nums[j] = min(nums[j], nums[j - 1])
                 for j in range(i - 1, -1, -1):
-                    nums[j] = ac.min(nums[j], nums[j + 1])
+                    nums[j] = min(nums[j], nums[j + 1])
                 ac.lst(nums)
                 break
         return
@@ -920,7 +920,7 @@ class Solution:
                 while stack and nums[stack[-1]] - stack[-1] >= nums[i] - i:
                     stack.pop()
                 if not stack:
-                    k = ac.min(i + 1, nums[i])
+                    k = min(i + 1, nums[i])
                     res[i] = k
                 else:
                     k = res[stack[-1]] + i - stack[-1]

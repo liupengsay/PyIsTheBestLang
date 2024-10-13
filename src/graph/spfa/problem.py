@@ -63,7 +63,7 @@ class Solution:
             if ans:
                 ac.st("orz")
                 return
-            res = ac.max(res, max(dis))
+            res = max(res, max(dis))
         ac.st(res)
         return
 
@@ -86,7 +86,7 @@ class Solution:
         if ans2:
             ac.st("Forever love")
             return
-        ac.st(ac.min(dis1[n - 1], dis2[0]))
+        ac.st(min(dis1[n - 1], dis2[0]))
         return
 
     @staticmethod
@@ -280,7 +280,7 @@ class Solution:
                 dct[a].append((b, c))
 
         ans, dis, _ = SPFA().positive_circle_edge(dct, 0, 0)
-        ac.st("inf" if ans else dis[n - 1])
+        ac.st("math.inf" if ans else dis[n - 1])
         return
 
     @staticmethod
@@ -289,7 +289,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc137/tasks/abc137_e
         tag: spfa|positive_circle
         """
-        # inf = 1 << 64
+        # math.inf = 1 << 64
         n, m, p = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         rev = [[] for _ in range(n)]
@@ -311,10 +311,10 @@ class Solution:
             dct[i] = [(a, b) for a, b in dct[i] if visit[a]]
 
         res, dis, cnt = SPFA().positive_circle_edge(dct, 0, 0)
-        if res or dis[-1] == -inf:
+        if res or dis[-1] == -math.inf:
             ac.st(-1)
             return
-        ac.st(ac.max(dis[-1], 0))
+        ac.st(max(dis[-1], 0))
         return
 
     @staticmethod
@@ -391,7 +391,7 @@ class Solution:
             ans, dis, _ = SPFA().negative_circle_edge(edge, 1, 0)
             if ans:
                 ac.st(-1)
-            elif dis[n] == inf:
+            elif dis[n] == math.inf:
                 ac.st(-2)
             else:
                 ac.st(dis[n])
@@ -408,7 +408,7 @@ class Solution:
         for _ in range(m):
             u, v, w = ac.read_list_ints()
             if u != v:
-                dct[u][v] = ac.min(dct[u].get(v, inf), w)
+                dct[u][v] = min(dct[u].get(v, math.inf), w)
         dct = [[(x, d[x]) for x in d] for d in dct]
         for i in range(1, n + 1):
             dct[0].append([i, 0])
@@ -426,7 +426,7 @@ class Solution:
             ans = 0
             dis = dj.get_shortest_path(dct, i)
             for j in range(1, n + 1):
-                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < inf else j * ceil
+                ans += j * (dis[j] + h[j] - h[i]) if dis[j] < math.inf else j * ceil
             ac.st(ans)
         return
 
@@ -528,7 +528,7 @@ class Solution:
             y = int(y)
             dct[x].append((y, float(c)))
         n = len(dct)
-        dis = [-inf for _ in range(n)]
+        dis = [-math.inf for _ in range(n)]
         visit = [False] * n
         cnt = [0] * n
         queue = deque([s])
@@ -549,7 +549,7 @@ class Solution:
                         visit[v] = True
 
         ans = dis[t]
-        if ans == -inf:
+        if ans == -math.inf:
             ac.st("orz")
         else:
             ans = ac.round_5(ans * 10000) / 10000

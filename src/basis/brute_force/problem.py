@@ -230,7 +230,7 @@ class Solution:
         """
         for _ in range(ac.read_int()):
             a, b, c = ac.read_list_ints()
-            ans = inf
+            ans = math.inf
             res = []
             for x in range(1, 2 * a + 1):
                 for y in range(x, 2 * b + 1, x):
@@ -345,7 +345,7 @@ class Solution:
             while x * num <= ceil:
                 x += 1
                 for a in [x * num - 1]:
-                    ans = ac.max(ans, dp[ac.min(a, ceil)] % num)
+                    ans = max(ans, dp[min(a, ceil)] % num)
         ac.st(ans)
         return
 
@@ -420,7 +420,7 @@ class Solution:
         elif s == n:
             ac.st(n + 1)
         else:
-            ans = inf
+            ans = math.inf
             for x in range(1, n - s + 1):
                 if x * x > n - s:
                     break
@@ -433,7 +433,7 @@ class Solution:
                     b = y + 1
                     if check():
                         ans = b if ans > b else ans
-            ac.st(-1 if ans == inf else ans)
+            ac.st(-1 if ans == math.inf else ans)
         return
 
     @staticmethod
@@ -468,7 +468,7 @@ class Solution:
                 if pre >= 0:
                     ans2 += pre + 1
                     pre = -1
-        ac.st(ac.min(ans1, ans2))
+        ac.st(min(ans1, ans2))
         return
 
     @staticmethod
@@ -497,7 +497,7 @@ class Solution:
                     ans = cur
             return
 
-        ans = inf
+        ans = math.inf
         check1()
         check2()
         m, n = n, m
@@ -595,7 +595,7 @@ class Solution:
                 cur[i] = "*" + cur[i]
             res = [int(w) for w in ("".join(cur)).split("*")]
             cur = reduce(mul, res)
-            ans = ac.max(ans, cur)
+            ans = max(ans, cur)
         ac.st(ans)
         return
 
@@ -702,7 +702,7 @@ class Solution:
             for i in range(m):
                 while j < m and lst[j] - lst[i] <= n - 1:
                     j += 1
-                ans = ac.min(ans, n - (j - i))
+                ans = min(ans, n - (j - i))
         ac.st(ans)
         return
 
@@ -721,7 +721,7 @@ class Solution:
         pos = [ac.read_list_ints() for _ in range(n)]
         visit = [0] * n
         for j in range(m):
-            ceil = inf
+            ceil = math.inf
             ind = 0
             x1, y1 = pos[j]
             for i in range(n):
@@ -732,7 +732,7 @@ class Solution:
                 if cur < ceil:
                     ceil = cur
                     ind = i
-            if ceil < inf:
+            if ceil < math.inf:
                 visit[ind] = 1
         ans = [i + 1 for i in range(n) if not visit[i]]
         if not ans:
@@ -763,7 +763,7 @@ class Solution:
                 if nums1[ind][1] == 0:
                     ind += 1
                     continue
-                x = ac.min(nums1[ind][1], cow[i])
+                x = min(nums1[ind][1], cow[i])
                 cow[i] -= x
                 nums1[ind][1] -= x
                 cur += nums1[ind][0] * x
@@ -771,9 +771,9 @@ class Solution:
 
         ans = post[0]
         pre = 0
-        for i in range(ac.min(r, n)):
+        for i in range(min(r, n)):
             pre += nums2[i]
-            ans = ac.max(ans, pre + post[i + 1])
+            ans = max(ans, pre + post[i + 1])
         ac.st(ans)
         return
 
@@ -899,10 +899,10 @@ class Solution:
         if b * c > a * d:
             a, b, c, d = c, d, a, b
 
-        ans = inf
+        ans = math.inf
         for x in range(10 ** 5 + 1):
-            cur = x * d + b * ac.max(math.ceil((n - x * c) / a), 0)
-            ans = ac.min(ans, cur)
+            cur = x * d + b * max(math.ceil((n - x * c) / a), 0)
+            ans = min(ans, cur)
         ac.st(ans)
         return
 
@@ -959,7 +959,7 @@ class Solution:
         dct["B"] = s.count("B")
         dct["A"] = s.count("A")
         dct["T"] = s.count("T")
-        ans = inf
+        ans = math.inf
         for item in permutations("BAT", 3):
             t = ""
             for w in item:
@@ -972,13 +972,13 @@ class Solution:
             for w in item:
                 for p in item:
                     if w != p:
-                        x = ac.min(cnt[w + p], cnt[p + w])
+                        x = min(cnt[w + p], cnt[p + w])
                         cur += x
                         cnt[w + p] -= x
                         cnt[p + w] -= x
             rest = sum(cnt.values())
             cur += rest * 2 // 3
-            ans = ac.min(ans, cur)
+            ans = min(ans, cur)
         ac.st(ans)
         return
 
@@ -1114,7 +1114,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = sorted(ac.read_list_ints())
-        ans = inf
+        ans = math.inf
         for i in range(n):
             if i > m:
                 break
@@ -1123,7 +1123,7 @@ class Solution:
                 ac.st(0)
                 return
             cur = nums[-right - 1] - nums[i]
-            ans = ac.min(ans, cur)
+            ans = min(ans, cur)
 
         for i in range(n - 1, -1, -1):
             if n - i - 1 > m:
@@ -1133,7 +1133,7 @@ class Solution:
                 ac.st(0)
                 return
             cur = nums[i] - nums[left]
-            ans = ac.min(ans, cur)
+            ans = min(ans, cur)
         ac.st(ans)
         return
 
@@ -1359,7 +1359,7 @@ class Solution:
                 directed[i].add(j)
             else:
                 directed[j].add(i)
-        ans = inf
+        ans = math.inf
         for i in range(n):
             for j in directed[i]:
                 for k in directed[j]:
@@ -1367,7 +1367,7 @@ class Solution:
                         x = degree[i] + degree[j] + degree[k] - 6
                         if x < ans:
                             ans = x
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def lc_1878(grid: List[List[int]]) -> List[int]:
@@ -1548,9 +1548,9 @@ class Solution:
 
         def check():
             n = len(nums)
-            pos = [-inf, -1]
-            neg = [-inf, -1]
-            res = [-inf, (-1, -1)]
+            pos = [-math.inf, -1]
+            neg = [-math.inf, -1]
+            res = [-math.inf, (-1, -1)]
             for i in range(n):
                 x, y = nums[i]
                 if pos[0] - y + x > res[0]:
@@ -1579,9 +1579,9 @@ class Solution:
 
         def check():
             n = len(nums)
-            pos = [-inf, -1]
-            neg = [-inf, -1]
-            res = [-inf, (-1, -1)]
+            pos = [-math.inf, -1]
+            neg = [-math.inf, -1]
+            res = [-math.inf, (-1, -1)]
             for i in range(n):
                 x, y = nums[i]
                 if pos[0] - y + x > res[0]:
@@ -1594,7 +1594,7 @@ class Solution:
                     neg = [-y - x, i]
             return res
 
-        ans = inf
+        ans = math.inf
         nums = points[:]
         m = len(points)
         lst = check()[1][:]
@@ -1609,12 +1609,12 @@ class Solution:
         url: https://leetcode.cn/problems/minimize-manhattan-distances/
         tag: manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
         """
-        ceil_x1, ceil_x2 = -inf, -inf
-        floor_x1, floor_x2 = inf, inf
+        ceil_x1, ceil_x2 = -math.inf, -math.inf
+        floor_x1, floor_x2 = math.inf, math.inf
         ceil_ix, floor_ix = -1, -1
 
-        ceil_y1, ceil_y2 = -inf, -inf
-        floor_y1, floor_y2 = inf, inf
+        ceil_y1, ceil_y2 = -math.inf, -math.inf
+        floor_y1, floor_y2 = math.inf, math.inf
         ceil_iy, floor_iy = -1, -1
         for i, (x, y) in enumerate(points):
             x, y = x + y, x - y

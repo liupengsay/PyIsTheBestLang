@@ -86,14 +86,14 @@ class Solution:
                 dp[i][i + 1] = 2 if nums[i] != nums[i + 1] else 1
             for j in range(i + 2, n):
 
-                dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1]) + 1
+                dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1
                 if nums[i] == nums[i + 1]:
-                    dp[i][j] = ac.min(dp[i][j], 1 + dp[i + 2][j])
+                    dp[i][j] = min(dp[i][j], 1 + dp[i + 2][j])
 
                 for k in range(i + 2, j + 1):
-                    dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k + 1][j])
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j])
                     if nums[k] == nums[i]:
-                        dp[i][j] = ac.min(dp[i][j], dp[i + 1][k - 1] + dp[k + 1][j])
+                        dp[i][j] = min(dp[i][j], dp[i + 1][k - 1] + dp[k + 1][j])
 
         ac.st(dp[0][n - 1])
         return
@@ -278,15 +278,15 @@ class Solution:
             post = [0] * n
             for i in range(n - 1, -1, -1):
                 dp[i] = nums[i]
-                post[i] = ac.min(nums[i], post[i])
-                floor = ac.min(0, nums[i])
+                post[i] = min(nums[i], post[i])
+                floor = min(0, nums[i])
                 for j in range(i + 1, n):
                     s = pre[j + 1] - pre[i]
                     dp[j] = s
-                    dp[j] = ac.max(dp[j], s - post[j])
-                    dp[j] = ac.max(dp[j], s - floor)
-                    floor = ac.min(floor, dp[j])
-                    post[j] = ac.min(post[j], dp[j])
+                    dp[j] = max(dp[j], s - post[j])
+                    dp[j] = max(dp[j], s - floor)
+                    floor = min(floor, dp[j])
+                    post[j] = min(post[j], dp[j])
             ac.st(dp[n - 1])
         return
 
@@ -350,7 +350,7 @@ class Solution:
         for i in range(n - 1, -1, -1):
             dp[i][i] = nums[i]
             for j in range(i + 1, n):
-                dp[i][j] = ac.max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j],
+                dp[i][j] = max(nums[i] + pre[j + 1] - pre[i + 1] - dp[i + 1][j],
                                   nums[j] + pre[j] - pre[i] - dp[i][j - 1])
         a = dp[0][n - 1]
         ac.lst([a, pre[-1] - a])
@@ -371,7 +371,7 @@ class Solution:
             y = 1 - x
             dp[y][i] = nums[i]
             for j in range(i + 1, n):
-                dp[y][j] = ac.max(pre[j + 1] - pre[i + 1] - dp[x][j] + nums[i],
+                dp[y][j] = max(pre[j + 1] - pre[i + 1] - dp[x][j] + nums[i],
                                   pre[j] - pre[i] - dp[y][j - 1] + nums[j])
             x = y
         ac.st(dp[x][n - 1])
@@ -390,10 +390,10 @@ class Solution:
             dp[i][i] = 1
             for j in range(i + 1, n):
                 if s[i] == s[j]:
-                    dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1])
+                    dp[i][j] = min(dp[i + 1][j], dp[i][j - 1])
                 else:
                     for k in range(i, j):
-                        dp[i][j] = ac.min(dp[i][j], dp[i][k] + dp[k + 1][j])
+                        dp[i][j] = min(dp[i][j], dp[i][k] + dp[k + 1][j])
         ac.st(dp[0][n - 1])
         return
 
@@ -418,7 +418,7 @@ class Solution:
                 if nums[i] == nums[j]:
                     dp[i][j] = dp[i + 1][j - 1] + 1
                 else:
-                    dp[i][j] = ac.min(dp[i + 1][j], dp[i][j - 1]) + 1
+                    dp[i][j] = min(dp[i + 1][j], dp[i][j - 1]) + 1
         ac.st(dp[0][n - 1])
         return
 
@@ -566,9 +566,9 @@ class Solution:
                 for i, j in edges[d]:
                     y = parent[f(i, j)]
                     x = parent[f(j, i)]
-                    cur = ac.max(dp[f(i, y)], dp[f(j, x)])
+                    cur = max(dp[f(i, y)], dp[f(j, x)])
                     if s[i] == s[j]:
-                        cur = ac.max(dp[f(x, y)] + 2, cur)
+                        cur = max(dp[f(x, y)] + 2, cur)
                     dp[f(i, j)] = dp[f(j, i)] = cur
             ac.st(max(dp))
         return

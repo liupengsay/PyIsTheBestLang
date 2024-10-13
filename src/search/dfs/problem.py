@@ -560,7 +560,7 @@ class Solution:
 
         total = sub[0]
 
-        ans = inf
+        ans = math.inf
         for i in range(n - 1):
             x, y = edges[i]
             if parent[x] == y:
@@ -756,7 +756,7 @@ class Solution:
             low, high = start[u], end[u]
             cur = bisect.bisect_right(
                 dct[tree.depth[v]], high) - bisect.bisect_left(dct[tree.depth[v]], low)
-            ans.append(ac.max(cur - 1, 0))
+            ans.append(max(cur - 1, 0))
         ac.lst(ans)
         return
 
@@ -1272,8 +1272,8 @@ class Solution:
                     stack.pop()
             else:
                 i = ~i
-                s = inf
-                e = -inf
+                s = math.inf
+                e = -math.inf
                 for j in dct[i]:
                     if j != fa:
                         s = min(s, start[j])
@@ -1311,7 +1311,7 @@ class Solution:
                 visit[a] = visit[b] = 0
             return
 
-        ans = [-inf]
+        ans = [-math.inf]
         pre = [0]
         visit = [0] * 2 * n
         dfs(0)

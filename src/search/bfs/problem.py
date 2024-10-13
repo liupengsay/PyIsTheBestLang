@@ -180,7 +180,7 @@ class Solution:
             graph[x].append(y)
             graph[y].append(x)
 
-        ans = inf
+        ans = math.inf
         for i in range(n):
             dist = [math.inf] * n
             par = [-1] * n
@@ -191,14 +191,14 @@ class Solution:
                 for child in graph[x]:
                     if dist[x] > ans:
                         break
-                    if dist[child] == inf:
+                    if dist[child] == math.inf:
                         dist[child] = 1 + dist[x]
                         par[child] = x
                         q.append(child)
                     elif par[x] != child and par[child] != x:
                         cur = dist[x] + dist[child] + 1
                         ans = ans if ans < cur else cur
-        return ans if ans != inf else -1
+        return ans if ans != math.inf else -1
 
     @staticmethod
     def lc_2608_2(n: int, edges: List[List[int]]) -> int:
@@ -212,7 +212,7 @@ class Solution:
             graph[u].append(v)
             graph[v].append(u)
 
-        ans = inf
+        ans = math.inf
         for i in range(n):
             q = deque([(i, -1, 1)])
             visited = {(i, -1)}
@@ -229,7 +229,7 @@ class Solution:
                     if (v, u) not in visited:
                         visited.add((v, u))
                         q.append((v, u, dist + 1))
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def lc_2608_3(n: int, edges: List[List[int]]) -> int:
@@ -247,7 +247,7 @@ class Solution:
             dis = [-1] * n
             dis[start] = 0
             q = deque([(start, -1)])
-            res = inf
+            res = math.inf
             while q:
                 x, fa = q.popleft()
                 for y in g[x]:
@@ -259,7 +259,7 @@ class Solution:
             return res
 
         ans = min(bfs(i) for i in range(n))
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def lc_2608_4(n: int, edges: List[List[int]]) -> int:
@@ -273,7 +273,7 @@ class Solution:
             graph[x].add(y)
             graph[y].add(x)
 
-        ans = inf
+        ans = math.inf
         for x, y in edges:
             graph[x].discard(y)
             graph[y].discard(x)
@@ -285,13 +285,13 @@ class Solution:
                 for _ in range(m):
                     i = stack.popleft()
                     for j in graph[i]:
-                        if dis[j] == inf:
+                        if dis[j] == math.inf:
                             dis[j] = dis[i] + 1
                             stack.append(j)
             ans = ans if ans < dis[y] else dis[y]
             graph[x].add(y)
             graph[y].add(x)
-        return ans + 1 if ans < inf else -1
+        return ans + 1 if ans < math.inf else -1
 
     @staticmethod
     def cf_1272e(ac=FastIO()):
@@ -449,7 +449,7 @@ class Solution:
         group = uf.get_root_part()
         ans = 0
         for g in group:
-            cur = -inf
+            cur = -math.inf
             lst = group[g]
             edge = [[i - 1, j - 1] for i, j in edges if uf.find(i - 1) == uf.find(j - 1) == g]
             for i in lst:
@@ -468,7 +468,7 @@ class Solution:
                 if all(abs(visit[x] - visit[y]) == 1 for x, y in edge):
                     if deep > cur:
                         cur = deep
-            if cur == -inf:
+            if cur == -math.inf:
                 return -1
             ans += cur
         return ans
@@ -646,7 +646,7 @@ class Solution:
                     x = 0
                     for v in dct[u]:
                         if v != fa:
-                            x = ac.max(x, dct[u][v] + dis[v])
+                            x = max(x, dct[u][v] + dis[v])
                     dis[u] = x
             return dis
 
@@ -658,7 +658,7 @@ class Solution:
             res = 0
             while stack:
                 u, fa, dis = stack.pop()
-                res = ac.max(res, dis)
+                res = max(res, dis)
                 for v in dct[u]:
                     if v != fa and v not in diameter:
                         stack.append([v, u, dis + dct[u][v]])
@@ -670,7 +670,7 @@ class Solution:
             bfs_node(node)
 
         m = len(path)
-        ans = inf
+        ans = math.inf
         gap = 0
         j = 0
         q = deque()
@@ -687,7 +687,7 @@ class Solution:
                 q.append([diameter[path[j + 1]], j + 1])
                 j += 1
 
-            ans = ac.min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
+            ans = min(ans, max(dis2[path[i]], dis1[path[j]], q[0][0]))
         ac.st(ans)
         return
 
@@ -747,12 +747,12 @@ class Solution:
                     grid[i][j] = 0
                     stack.append([i, j])
                 else:
-                    grid[i][j] = inf
+                    grid[i][j] = math.inf
         while stack:
             nex = []
             for i, j in stack:
                 for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                    if 0 <= x < m and 0 <= y < n and grid[x][y] == inf:
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == math.inf:
                         nex.append([x, y])
                         grid[x][y] = grid[i][j] + 1
             stack = nex[:]
@@ -783,7 +783,7 @@ class Solution:
             visit = [math.inf] * ((m + 1) * (n + 1))
             visit[0] = 0
             stack = deque([0])
-            while stack and visit[-1] == inf:
+            while stack and visit[-1] == math.inf:
                 i = stack.popleft()
                 d = visit[i]
                 for j in dct[i]:
@@ -794,7 +794,7 @@ class Solution:
                             stack.append(j)
                         else:
                             stack.appendleft(j)
-            ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
+            ac.st(visit[-1] if visit[-1] < math.inf else "NO SOLUTION")
         return
 
     @staticmethod
@@ -835,14 +835,14 @@ class Solution:
                 dis_ghost[i][j] = 0
             pre = 0
 
-            ans = inf
-            while ans == inf and stack_girl and stack_boy:
+            ans = math.inf
+            while ans == math.inf and stack_girl and stack_boy:
                 pre += 1
                 for _ in range(2):
                     nex_ghost = []
                     for i, j in stack_ghost:
                         for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                            if 0 <= x < m and 0 <= y < n and dis_ghost[x][y] == inf:
+                            if 0 <= x < m and 0 <= y < n and dis_ghost[x][y] == math.inf:
                                 dis_ghost[x][y] = pre
                                 nex_ghost.append([x, y])
                     stack_ghost = nex_ghost[:]
@@ -850,30 +850,30 @@ class Solution:
                 for _ in range(3):
                     nex_boy = []
                     for i, j in stack_boy:
-                        if dis_ghost[i][j] == inf:
+                        if dis_ghost[i][j] == math.inf:
                             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                                if 0 <= x < m and 0 <= y < n and dis_boy[x][y] == inf and grid[x][y] != "X" and \
-                                        dis_ghost[x][y] == inf:
+                                if 0 <= x < m and 0 <= y < n and dis_boy[x][y] == math.inf and grid[x][y] != "X" and \
+                                        dis_ghost[x][y] == math.inf:
                                     dis_boy[x][y] = pre
                                     nex_boy.append([x, y])
-                                    if dis_girl[x][y] < inf:
+                                    if dis_girl[x][y] < math.inf:
                                         ans = pre
                     stack_boy = nex_boy[:]
 
                 for _ in range(1):
                     nex = []
                     for i, j in stack_girl:
-                        if dis_ghost[i][j] == inf:
+                        if dis_ghost[i][j] == math.inf:
                             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                                if 0 <= x < m and 0 <= y < n and dis_girl[x][y] == inf and grid[x][y] != "X" and \
-                                        dis_ghost[x][y] == inf:
+                                if 0 <= x < m and 0 <= y < n and dis_girl[x][y] == math.inf and grid[x][y] != "X" and \
+                                        dis_ghost[x][y] == math.inf:
                                     dis_girl[x][y] = pre
-                                    if dis_boy[x][y] < inf:
+                                    if dis_boy[x][y] < math.inf:
                                         ans = pre
                                     nex.append([x, y])
                     stack_girl = nex[:]
 
-            ac.st(ans if ans < inf else -1)
+            ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1047,7 +1047,7 @@ class Solution:
             while stack and ans == -1:
                 d, i, j = stack.popleft()
                 for a, b in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                    if 0 <= a < m and 0 <= b < n and grid[a][b] != "X" and visit[a][b] == inf:
+                    if 0 <= a < m and 0 <= b < n and grid[a][b] != "X" and visit[a][b] == math.inf:
                         visit[a][b] = d + 1
                         stack.append([d + 1, a, b])
                         if (a, b) in seen:
@@ -1072,7 +1072,7 @@ class Solution:
             ans = -1
             while stack and ans == -1:
                 i, j, d, total = stack.popleft()
-                pre = visit[i][j][d] if d != -1 else inf
+                pre = visit[i][j][d] if d != -1 else math.inf
                 for dd in range(4):
                     x, y = i + ind[dd][0], j + ind[dd][1]
                     if 0 <= x < m and 0 <= y < n and grid[x][y] == 1 and (dd == d or pre >= t):
@@ -1122,10 +1122,10 @@ class Solution:
         while stack:
             i = stack.popleft()
             for j in dct[i]:
-                if all(reach[k] for k in dct[j]) and visit[j] == inf:
+                if all(reach[k] for k in dct[j]) and visit[j] == math.inf:
                     visit[j] = visit[i] + 1
                     stack.append(j)
-        ac.st(visit[t] if visit[t] < inf else -1)
+        ac.st(visit[t] if visit[t] < math.inf else -1)
         return
 
     @staticmethod
@@ -1361,7 +1361,7 @@ class Solution:
                             if (a, b) in pos:
                                 for (c, d) in pos[(a, b)]:
                                     cur_state ^= (1 << ind[(c, d)])
-                            if visit[a][b][cur_state] == inf:
+                            if visit[a][b][cur_state] == math.inf:
                                 stack.append([a, b, cur_state])
                                 visit[a][b][cur_state] = visit[i][j][state] + 1
                     else:
@@ -1370,7 +1370,7 @@ class Solution:
                             if (a, b) in pos:
                                 for (c, d) in pos[(a, b)]:
                                     cur_state ^= (1 << ind[(c, d)])
-                            if visit[a][b][cur_state] == inf:
+                            if visit[a][b][cur_state] == math.inf:
                                 stack.append([a, b, cur_state])
                                 visit[a][b][cur_state] = visit[i][j][state] + 1
         ac.st(min(visit[tt[0]][tt[1]]))
@@ -1392,7 +1392,7 @@ class Solution:
             visit = [[math.inf] * n for _ in range(m)]
             stack = deque([[x1, y1]])
             visit[x1][y1] = 0
-            while stack and visit[x2][y2] == inf:
+            while stack and visit[x2][y2] == math.inf:
                 x, y = stack.popleft()
                 w = grid[x][y]
                 d = visit[x][y]
@@ -1429,7 +1429,7 @@ class Solution:
         visit = [math.inf] * ((m + 1) * (n + 1))
         visit[0] = 0
         stack = deque([[0, 0]])
-        while stack and visit[-1] == inf:
+        while stack and visit[-1] == math.inf:
             i, d = stack.popleft()
             if visit[i] < d:
                 continue
@@ -1441,7 +1441,7 @@ class Solution:
                         stack.append([j, dd])
                     else:
                         stack.appendleft([j, dd])
-        ac.st(visit[-1] if visit[-1] < inf else "NO SOLUTION")
+        ac.st(visit[-1] if visit[-1] < math.inf else "NO SOLUTION")
         return
 
     @staticmethod
@@ -1481,7 +1481,7 @@ class Solution:
         ans = 0
         for x in range(1 << k):
             if visit[0][x]:
-                ans = ac.max(ans, cnt[x])
+                ans = max(ans, cnt[x])
         ac.st(ans)
         return
 
@@ -1498,7 +1498,7 @@ class Solution:
             dct[(x, z)] = i
         visit = [math.inf] * n
         stack = deque([[0, 0, -1]])
-        ans = inf
+        ans = math.inf
         while stack:
             i, j, ind = stack.popleft()
             d = 0 if ind == -1 else visit[ind]
@@ -1510,7 +1510,7 @@ class Solution:
                     if (i + a, j + b) in dct and visit[dct[(i + a, j + b)]] > d + 1:
                         visit[dct[(i + a, j + b)]] = d + 1
                         stack.append([i + a, j + b, dct[(i + a, j + b)]])
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1535,10 +1535,10 @@ class Solution:
                 elif w == 4:
                     wood.append([i, j])
 
-        visit = [[[math.inf, inf] for _ in range(n)] for _ in range(m)]
+        visit = [[[math.inf, math.inf] for _ in range(n)] for _ in range(m)]
         stack = deque([pos_2 + [0]])
         visit[pos_2[0]][pos_2[1]][0] = 0
-        ans = inf
+        ans = math.inf
         while stack:
             i, j, state = stack.popleft()
             d = visit[i][j][state]
@@ -1559,7 +1559,7 @@ class Solution:
                             visit[a][b][cur] = d + 1
                             stack.append([a, b, cur])
 
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1611,13 +1611,13 @@ class Solution:
                 for j in range(n):
                     dis[i][j] += cur[i][j]
 
-        ans = inf
+        ans = math.inf
         for i in range(m):
             for j in range(n):
                 if grid[i][j] == ".":
-                    ans = ac.min(ans, dis[i][j] - 2)
+                    ans = min(ans, dis[i][j] - 2)
                 else:
-                    ans = ac.min(ans, dis[i][j])
+                    ans = min(ans, dis[i][j])
         ac.st(ans)
         return
 
@@ -1728,14 +1728,14 @@ class Solution:
         dis2 = bfs(m - 1, n - 1)
         ans = dis1[m - 1][n - 1]
         if pos:
-            pre = defaultdict(lambda: inf)
+            pre = defaultdict(lambda: math.inf)
             for i, j in pos:
-                pre[grid[i][j]] = ac.min(pre[grid[i][j]], dis1[i][j])
+                pre[grid[i][j]] = min(pre[grid[i][j]], dis1[i][j])
             floor = min(pre.values())
             for i, j in pos:
-                cur = ac.min(pre[grid[i][j]], floor + 1) + dis2[i][j] + 1
-                ans = ac.min(ans, cur)
-        ac.st(ans if ans < inf else -1)
+                cur = min(pre[grid[i][j]], floor + 1) + dis2[i][j] + 1
+                ans = min(ans, cur)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -2158,11 +2158,11 @@ class Solution:
         visit1 = check()
         grid = list(range(1, m * n + 1))
         visit2 = check()
-        ans = inf
+        ans = math.inf
         for k in visit1:
             if k in visit2:
-                ans = ac.min(ans, visit1[k] + visit2[k])
-        ac.st(ans if ans < inf else -1)
+                ans = min(ans, visit1[k] + visit2[k])
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -2253,7 +2253,7 @@ class Solution:
                     ac.st((dis[m - 1] - 2) // 2)
                     return
                 for j in dct[i]:
-                    if dis[j] == inf:
+                    if dis[j] == math.inf:
                         dis[j] = dis[i] + 1
                         nex.append(j)
             stack = nex
@@ -2329,7 +2329,7 @@ class Solution:
                 while stack:
                     x = stack.pop()
                     for y, w in dct[x]:
-                        if dis[y] != inf and dis[y] != dis[x] + w:
+                        if dis[y] != math.inf and dis[y] != dis[x] + w:
                             circle = 1
                         dis[y] = dis[x] + w
                         if not visit[y]:
@@ -2339,15 +2339,15 @@ class Solution:
                             dis[y] = dis[x] + w
                 if circle:
                     for x in lst:
-                        dis[x] = inf
+                        dis[x] = math.inf
                 for x in lst:
                     visit[x] = lst[0] + 1
         for _ in range(q):
             x, y = ac.read_list_ints_minus_one()
             if visit[x] != visit[y]:
                 ac.st("nan")
-            elif dis[x] == inf:
-                ac.st("inf")
+            elif dis[x] == math.inf:
+                ac.st("math.inf")
             else:
                 ac.st(dis[y] - dis[x])
         return
@@ -2376,13 +2376,13 @@ class Solution:
                     while 0 <= px + dx < n and 0 <= py + dy < n and grid[px + dx][py + dy] != "#" and visit[px + dx][
                         py + dy] >= d:
                         px, py = px + dx, py + dy
-                        if visit[px][py] == inf:
+                        if visit[px][py] == math.inf:
                             visit[px][py] = d
                             nex.append((px, py))
 
             stack = nex
         ans = visit[tx][ty]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -2417,7 +2417,7 @@ class Solution:
                     if 0 <= px < n and 0 <= py < n:
                         uf1.union_right(cx * n + cy, root)
                         if grid[px][py] != '#':
-                            if visit[px][py] == inf:
+                            if visit[px][py] == math.inf:
                                 nex.append((px, py))
                                 visit[px][py] = visit[x][y] + 1
                             cx, cy = px, py
@@ -2437,7 +2437,7 @@ class Solution:
                     if 0 <= px < n and 0 <= py < n:
                         uf2.union_right(cx * n + cy, root)
                         if grid[px][py] != '#':
-                            if visit[px][py] == inf:
+                            if visit[px][py] == math.inf:
                                 nex.append((px, py))
                                 visit[px][py] = visit[x][y] + 1
                             cx, cy = px, py
@@ -2458,7 +2458,7 @@ class Solution:
                     if 0 <= px < n and 0 <= py < n:
                         uf3.union_right(cx * n + cy, root)
                         if grid[px][py] != '#':
-                            if visit[px][py] == inf:
+                            if visit[px][py] == math.inf:
                                 nex.append((px, py))
                                 visit[px][py] = visit[x][y] + 1
                             cx, cy = px, py
@@ -2479,7 +2479,7 @@ class Solution:
                     if 0 <= px < n and 0 <= py < n:
                         uf4.union_right(cx * n + cy, root)
                         if grid[px][py] != '#':
-                            if visit[px][py] == inf:
+                            if visit[px][py] == math.inf:
                                 nex.append((px, py))
                                 visit[px][py] = visit[x][y] + 1
                             cx, cy = px, py
@@ -2489,7 +2489,7 @@ class Solution:
                         break
 
             stack = nex
-        ac.st(visit[tx][ty] if visit[tx][ty] < inf else -1)
+        ac.st(visit[tx][ty] if visit[tx][ty] < math.inf else -1)
         return
 
     @staticmethod
@@ -2517,7 +2517,7 @@ class Solution:
                 d = dis[i][s]
                 for j in dct[i]:
                     dj = d + 1
-                    if dis[j][s ^ (1 << j)] == inf:
+                    if dis[j][s ^ (1 << j)] == math.inf:
                         dis[j][s ^ (1 << j)] = dj
                         nex.append((s ^ (1 << j), j))
             stack = nex
@@ -2548,7 +2548,7 @@ class Solution:
         for y in dct_y:
             dct_y[y] = sorted(set(dct_y[y]))
 
-        dis = defaultdict(lambda: inf)
+        dis = defaultdict(lambda: math.inf)
         dis[(sx, sy)] = 0
         stack = [(0, sx, sy)]
 
@@ -2595,7 +2595,7 @@ class Solution:
                         heappush(stack, (dj, i, jj))
 
         ans = dis[(gx, gy)]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -2650,14 +2650,14 @@ class Solution:
             nex = []
             for i in stack:
                 for j, y in dct[i]:
-                    if dis[j] == inf:
+                    if dis[j] == math.inf:
                         dis[j] = dis[i] + 1
                         parent[j] = i
                         index[j] = y
                         nex.append(j)
             stack = nex
 
-        if dis[-1] == inf:
+        if dis[-1] == math.inf:
             path = set()
         else:
             path = []
@@ -2666,7 +2666,7 @@ class Solution:
                 path.append(index[node])
                 node = parent[node]
             path = set(path)
-        res = dis[-1] if dis[-1] < inf else -1
+        res = dis[-1] if dis[-1] < math.inf else -1
         for x in range(m):
             if x not in path:
                 ac.st(res)
@@ -2678,11 +2678,11 @@ class Solution:
                 nex = []
                 for i in stack:
                     for j, y in dct[i]:
-                        if y != x and dis[j] == inf:
+                        if y != x and dis[j] == math.inf:
                             dis[j] = dis[i] + 1
                             nex.append(j)
                 stack = nex
-            ac.st(dis[-1] if dis[-1] < inf else -1)
+            ac.st(dis[-1] if dis[-1] < math.inf else -1)
         return
 
     @staticmethod
@@ -2910,7 +2910,7 @@ class Solution:
         dis = [math.inf] * n
         for c in range(k):
             for i in range(n):
-                dis[i] = inf
+                dis[i] = math.inf
             stack = start[c][:]
             for i in stack:
                 dis[i] = 0
@@ -2918,7 +2918,7 @@ class Solution:
                 nex = []
                 for i in stack:
                     for j in dct[i]:
-                        if dis[j] == inf:
+                        if dis[j] == math.inf:
                             dis[j] = dis[i] + 1
                             nex.append(j)
                 stack = nex
@@ -3001,7 +3001,7 @@ class Solution:
                                     nex.append(j)
                             i = self.edge_next[i]
                     stack = nex
-                return sum(x < inf for x in dis)
+                return sum(x < math.inf for x in dis)
 
         for _ in range(ac.read_int()):
             n, m, a, b = ac.read_list_ints()

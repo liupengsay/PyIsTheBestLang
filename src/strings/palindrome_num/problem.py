@@ -16,7 +16,7 @@ P1609（https://www.luogu.com.cn/problem/P1609）brute_force
 
 """
 import bisect
-from cmath import inf
+from cmath import math.inf
 from collections import defaultdict
 from itertools import accumulate
 from typing import List
@@ -53,7 +53,7 @@ class Solution:
         pre = list(accumulate(lst, initial=0))
         n = len(lst)
         jj = bisect.bisect_left(nums, lst[n // 2])
-        ans = inf
+        ans = math.inf
         for j in [jj - 1, jj]:
             if j >= 0:
                 i = bisect.bisect_left(lst, nums[j])

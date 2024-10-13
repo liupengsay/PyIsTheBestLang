@@ -166,7 +166,7 @@ class TreeAncestorPool:
         return
 
     def get_final_ancestor(self, node: int, v: int) -> int:
-        # query the final inflow of water into the pool with Multiplication method
+        # query the final math.inflow of water into the pool with Multiplication method
         for i in range(self.cols - 1, -1, -1):
             if v > self.weight[node][i]:
                 v -= self.weight[node][i]
@@ -415,7 +415,7 @@ class HeavyChain:
         return
 
     def build_weight(self, root) -> None:
-        # get the info of heavy children of the tree
+        # get the math.info of heavy children of the tree
         stack = [root]
         while stack:
             i = stack.pop()
@@ -436,7 +436,7 @@ class HeavyChain:
         return
 
     def build_dfs(self, root) -> None:
-        # get the info of dfs order
+        # get the math.info of dfs order
         stack = [(root, root)]
         order = 0
         while stack:

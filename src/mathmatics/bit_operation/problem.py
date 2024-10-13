@@ -576,7 +576,7 @@ class Solution:
             for j in range(32):
                 if num & (1 << j):
                     lst.append(j)
-                    pre = ac.max(pre, cnt[j])
+                    pre = max(pre, cnt[j])
             pre += 1
             for j in lst:
                 cnt[j] = pre

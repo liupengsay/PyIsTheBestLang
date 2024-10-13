@@ -100,6 +100,7 @@ ABC253G（https://atcoder.jp/contests/abc253/tasks/abc253_g）inclusion_exclusio
 ABC218C（https://atcoder.jp/contests/abc218/tasks/abc218_c）implemention|matrix_rotate
 ABC359C（https://atcoder.jp/contests/abc359/tasks/abc359_c）implemention
 ABC203E（https://atcoder.jp/contests/abc203/tasks/abc203_e）implemention
+ABC375C（https://atcoder.jp/contests/abc375/tasks/abc375_c）implemention|matrix_rotate
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
@@ -224,45 +225,45 @@ class Solution:
         """
         n, t, q = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        pre = [-inf] * n
-        right = -inf
-        sta = -inf
+        pre = [-math.inf] * n
+        right = -math.inf
+        sta = -math.inf
         for i in range(n):
             a, r = nums[i]
             if r == 1:
                 right = a
-                sta = -inf
+                sta = -math.inf
             else:
-                if right != -inf:
+                if right != -math.inf:
                     sta = (right + a) // 2
                     pre[i] = sta
-                    right = -inf
-                elif sta != -inf:
+                    right = -math.inf
+                elif sta != -math.inf:
                     pre[i] = sta
 
         post = [math.inf] * n
-        left = inf
-        sta = inf
+        left = math.inf
+        sta = math.inf
         for i in range(n - 1, -1, -1):
             a, r = nums[i]
             if r == 2:
                 left = a
-                sta = inf
+                sta = math.inf
             else:
-                if left != inf:
+                if left != math.inf:
                     sta = (left + a) // 2
                     post[i] = sta
-                    left = inf
-                elif sta != inf:
+                    left = math.inf
+                elif sta != math.inf:
                     post[i] = sta
 
         for _ in range(q):
             i = ac.read_int() - 1
             a, r = nums[i]
             if r == 1:
-                ac.st(ac.min(a + t, post[i]))
+                ac.st(min(a + t, post[i]))
             else:
-                ac.st(ac.max(a - t, pre[i]))
+                ac.st(max(a - t, pre[i]))
         return
 
     @staticmethod
@@ -307,7 +308,7 @@ class Solution:
             if num - ans <= pre + k <= num + ans:
                 pre += k
             elif pre + k > num + ans:
-                pre = ac.max(pre, num + ans)
+                pre = max(pre, num + ans)
             else:
                 gap = (num - ans - pre - k) / 2.0
                 pre = num - ans - gap

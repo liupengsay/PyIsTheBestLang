@@ -244,7 +244,7 @@ class PersistentUnionFind:
             return True
         return False
 
-    def find(self, x, tm=inf):
+    def find(self, x, tm=math.inf):
         while not (x == self.root[x] or self.version[x] >= tm):
             x = self.root[x]
         return x

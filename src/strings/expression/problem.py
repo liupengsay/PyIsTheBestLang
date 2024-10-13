@@ -4,7 +4,7 @@ Algorithm：stack
 Description：xxx
 
 ====================================LeetCode====================================
-1597（https://leetcode.cn/problems/build-binary-expression-tree-from-infix-expression/）
+1597（https://leetcode.cn/problems/build-binary-expression-tree-from-math.infix-expression/）
 
 =====================================LuoGu======================================
 P1175（https://www.luogu.com.cn/problem/P1175）

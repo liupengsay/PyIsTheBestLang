@@ -405,7 +405,7 @@ class Solution:
             x2, y2 = points[i]
             x3, y3 = points[i + 1]
             tot += gm.compute_triangle_area_double(x1, y1, x2, y2, x3, y3)
-        ans2 = inf
+        ans2 = math.inf
         j = pre = 0
         for i in range(len(points) - 2):
             x1, y1 = points[i]

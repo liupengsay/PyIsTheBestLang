@@ -167,8 +167,8 @@ class TestGeneral(unittest.TestCase):
             return a + b * c
 
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -inf, add_only, add, 0)
-        tree_min = LazySegmentTreeZKW(high, min, inf, add_only, add, 0)
+        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, add, 0)
+        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, add, 0)
         tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, add, 0)
         tree_max.build(nums)
         tree_min.build(nums)
@@ -216,9 +216,9 @@ class TestGeneral(unittest.TestCase):
             return tag1
 
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -inf, add_only, merge_tag, inf)
-        tree_min = LazySegmentTreeZKW(high, min, inf, add_only, merge_tag, inf)
-        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, merge_tag, inf)
+        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, merge_tag, math.inf)
+        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, merge_tag, math.inf)
+        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, merge_tag, math.inf)
         tree_max.build(nums)
         tree_min.build(nums)
         tree_sum.build(nums)

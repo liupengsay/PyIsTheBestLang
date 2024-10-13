@@ -200,7 +200,7 @@ class Solution:
         n = len(quality)
         ind = list(range(n))
         ind.sort(key=lambda it: wage[it] / quality[it])
-        ans = inf
+        ans = math.inf
         pre = 0
         stack = []
         for i in ind:
@@ -257,7 +257,7 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        pre = [-inf] * (3 * n + 1)
+        pre = [-math.inf] * (3 * n + 1)
         stack = []
         s = 0
         for i in range(3 * n):
@@ -268,7 +268,7 @@ class Solution:
             if i >= n - 1:
                 pre[i] = s
 
-        post = [-inf] * (3 * n + 1)
+        post = [-math.inf] * (3 * n + 1)
         stack = []
         s = 0
         for i in range(3 * n - 1, -1, -1):
@@ -318,13 +318,13 @@ class Solution:
         pre = []
         post = []
         pre_sum = [0]
-        pre_ceil = [-inf]
+        pre_ceil = [-math.inf]
         for _ in range(ac.read_int()):
             lst = ac.read_list_strs()
             if lst[0] == "I":
                 pre.append(int(lst[1]))
                 pre_sum.append(pre_sum[-1] + int(lst[1]))
-                pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
+                pre_ceil.append(max(pre_ceil[-1], pre_sum[-1]))
             elif lst[0] == "D":
                 if pre:
                     pre.pop()
@@ -340,7 +340,7 @@ class Solution:
                     x = post.pop()
                     pre.append(x)
                     pre_sum.append(pre_sum[-1] + x)
-                    pre_ceil.append(ac.max(pre_ceil[-1], pre_sum[-1]))
+                    pre_ceil.append(max(pre_ceil[-1], pre_sum[-1]))
             else:
                 ac.st(pre_ceil[int(lst[1])])
         return
@@ -352,7 +352,7 @@ class Solution:
         tag: catalan_number|stack|implemention
         """
         n = ac.read_int()
-        m = ac.min(5, n)
+        m = min(5, n)
 
         pre = list(range(1, n + 1))
 

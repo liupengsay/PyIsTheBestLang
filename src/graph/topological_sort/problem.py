@@ -472,7 +472,7 @@ class Solution:
         ans = [0] * n
         for i in range(n):
             if degree[i] > 1:
-                p1 = inf
+                p1 = math.inf
                 w1 = 0
                 for j, w, p in dct[i]:
                     if degree[j] > 1 and p < p1:
@@ -525,7 +525,7 @@ class Solution:
         ans = [0] * (n + 1)
         for u in range(1, n + 1):
             if degree[u] > 1:
-                p1 = inf
+                p1 = math.inf
                 w1 = 0
                 i = graph.point_head[u]
                 while i:
@@ -750,7 +750,7 @@ class Solution:
         while stack:
             i = stack.pop()
             for j in dct[i]:
-                if dis[j] == inf:
+                if dis[j] == math.inf:
                     stack.append(j)
                     dis[j] = dis[i] + 1
                     ancestor[j] = ancestor[i]
@@ -762,7 +762,7 @@ class Solution:
                 continue
             dis_x = dis[x]
             xy = abs(ind[ancestor[x]] - ind[ancestor[y]])
-            dis_y = dis[y] + ac.min(xy, len(ind) - xy)
+            dis_y = dis[y] + min(xy, len(ind) - xy)
             if dis_x < dis_y:
                 ac.st("Survive")
             else:
@@ -921,7 +921,7 @@ class Solution:
                 if trees[i].right.val in ind:
                     degree[ind[trees[i].right.val]] += 1
 
-        stack = [(i, -inf, inf) for i in range(n) if not degree[i]]
+        stack = [(i, -math.inf, math.inf) for i in range(n) if not degree[i]]
         if len(stack) != 1 or any(x > 1 for x in degree):
             return None
         ans = trees[stack[0][0]]
@@ -990,7 +990,7 @@ class Solution:
                         nex.append(j)
             stack = nex[:]
         if any(d > 0 for d in degree):
-            ac.st("infinity")
+            ac.st("math.infinity")
             return
         ans = max(x // 4 for x in pre)
         ac.st(ans if ans else "none")

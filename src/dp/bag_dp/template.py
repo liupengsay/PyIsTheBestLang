@@ -101,7 +101,7 @@ class BagDP:
                     if pre[i - x] + cost < cur[i]:
                         cur[i] = pre[i - x] + cost
             pre = cur[:]
-        if pre[n] < inf:
+        if pre[n] < math.inf:
             return pre[n]
         return -1
 
@@ -123,7 +123,7 @@ class BagDP:
     def one_dimension_limited_use_dct(nums):
         # One dimensional finite backpack
         # using a dictionary for transfer records with negative numbers
-        pre = defaultdict(lambda: -inf)
+        pre = defaultdict(lambda: -math.inf)
         # can also use [0]*2*s where s is the sum(abs(x) for x in nums)
         pre[0] = 0
         for s, f in nums:

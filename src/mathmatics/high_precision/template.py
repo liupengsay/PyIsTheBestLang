@@ -36,7 +36,7 @@ class HighPrecision:
 
     @staticmethod
     def fraction_to_decimal(numerator: int, denominator: int) -> str:
-        """Convert fractions to rational numbers or infinitely recurring decimals"""
+        """Convert fractions to rational numbers or math.infinitely recurring decimals"""
         if numerator % denominator == 0:
             return str(numerator // denominator) + ".0"
         ans = []
@@ -71,7 +71,7 @@ class HighPrecision:
             mz = math.gcd(mu, zi)
             return [zi // mz, mu // mz]
 
-        # Converting rational numbers or infinite recurring decimals to fractions
+        # Converting rational numbers or math.infinite recurring decimals to fractions
         if "." in st:
             lst = st.split(".")
             integer = [int(lst[0]), 1] if lst[0] else [0, 1]

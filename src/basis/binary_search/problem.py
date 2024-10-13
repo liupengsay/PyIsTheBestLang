@@ -187,7 +187,7 @@ class Solution:
         low = 0
         high = max(ls[0] for ls in nums)
         mid = BinarySearch().find_int_right(low, high, check)
-        ans = ac.min(abs(s - compute(mid)), abs(s - compute(mid + 1)))
+        ans = min(abs(s - compute(mid)), abs(s - compute(mid + 1)))
         ac.st(ans)
         return
 
@@ -202,7 +202,7 @@ class Solution:
         def check(num):
             res = 0
             for x in range(1, m + 1):
-                res += ac.min(n, num // x)
+                res += min(n, num // x)
             return res >= k
 
         if m > n:
@@ -266,18 +266,18 @@ class Solution:
             for i in range(x):
                 pre1[i + 1] = pre1[i] + a1[i]
 
-            ans = inf
+            ans = math.inf
             pre = 0
             j = bisect.bisect_left(pre1, m - pre)
             if j <= x:
-                ans = ac.min(ans, j)
+                ans = min(ans, j)
 
             for i in range(y):
                 cnt = i + 1
                 pre += a2[i]
                 j = bisect.bisect_left(pre1, m - pre)
                 if j <= x:
-                    ans = ac.min(ans, j + cnt * 2)
+                    ans = min(ans, j + cnt * 2)
             ac.st(ans)
         return
 
@@ -342,7 +342,7 @@ class Solution:
                         cnt_1 += s[j] == "1"
                         j += 1
                     if cnt <= x:
-                        ceil_1 = ac.max(ceil_1, cnt_1)
+                        ceil_1 = max(ceil_1, cnt_1)
                     if s[i] == "0":
                         cnt -= 1
                     else:
@@ -363,7 +363,7 @@ class Solution:
 
             n, c = ac.read_list_ints()
             cost = ac.read_list_ints()
-            lst = [[ac.min(x, n + 1 - x) + cost[x - 1], x + cost[x - 1]]
+            lst = [[min(x, n + 1 - x) + cost[x - 1], x + cost[x - 1]]
                    for x in range(1, n + 1)]
 
             lst.sort(key=lambda it: it[0])
@@ -377,7 +377,7 @@ class Solution:
                     cur = bisect.bisect_right(pre, c - lst[i][1] + lst[i][0]) - 1
                 else:
                     cur = bisect.bisect_right(pre, c - lst[i][1])
-                ans = ac.max(ans, cur)
+                ans = max(ans, cur)
             ac.st(ans)
         return
 
@@ -390,7 +390,7 @@ class Solution:
         packages.sort()
         pre = list(accumulate(packages, initial=0))
         n = len(packages)
-        ans = inf
+        ans = math.inf
         mod = 10 ** 9 + 7
         for box in boxes:
             box.sort()
@@ -407,7 +407,7 @@ class Solution:
                 i = j + 1
             if cur < ans:
                 ans = cur
-        return ans % mod if ans < inf else -1
+        return ans % mod if ans < math.inf else -1
 
     @staticmethod
     def lc_2141(n: int, batteries: List[int]) -> int:
@@ -583,7 +583,7 @@ class Solution:
                 res = 0
                 for s, e, d in nums:
                     if s <= pos:
-                        res += (ac.min(pos, e) - s) // d + 1
+                        res += (min(pos, e) - s) // d + 1
                 return res % 2 == 1
 
             def compute(pos):
@@ -903,7 +903,7 @@ class Solution:
             ans = 0
             for i in range(n):
                 j = i // x
-                ans += ac.max(0, nums[i] - j)
+                ans += max(0, nums[i] - j)
             return ans >= m
 
         ac.st(BinarySearch().find_int_left(1, n, check))
@@ -1100,7 +1100,7 @@ class Solution:
         for i in range(n):
             while j < n and check(i, j) <= b:
                 j += 1
-            ans = ac.max(ans, j - i)
+            ans = max(ans, j - i)
         ac.st(ans)
         return
 
@@ -1119,13 +1119,13 @@ class Solution:
                 need = num * x - y
                 if need <= 0:
                     continue
-                cur = inf
+                cur = math.inf
                 for i in range(need + 1):
                     rest = need - i * sm
                     if rest > 0:
-                        cur = ac.min(cur, i * pm + math.ceil(rest / sv) * pv)
+                        cur = min(cur, i * pm + math.ceil(rest / sv) * pv)
                     else:
-                        cur = ac.min(cur, i * pm)
+                        cur = min(cur, i * pm)
                         break
                 cost += cur
                 if cost > m:
@@ -1483,7 +1483,7 @@ class Solution:
         nums.sort()
 
         def compute(r):
-            pre = -inf
+            pre = -math.inf
             res = []
             for num in nums:
                 if num > pre:
@@ -1548,7 +1548,7 @@ class Solution:
             lst = []
             for t, z, y in nums:
                 k1, k2 = divmod(tt, z * t + y)
-                lst.append(k1 * z + ac.min(k2 // t, z))
+                lst.append(k1 * z + min(k2 // t, z))
             return lst
 
         def check(tt):
@@ -1558,7 +1558,7 @@ class Solution:
         ans = compute(res)
         more = sum(ans) - m
         for i in range(n):
-            x = ac.min(ans[i], more)
+            x = min(ans[i], more)
             ans[i] -= x
             more -= x
         ac.st(res)
@@ -1582,22 +1582,22 @@ class Solution:
         def check(x):
 
             tmp = cnt[:]
-            cur = [set() for _ in range(ac.min(k + 1, x + 1))]
+            cur = [set() for _ in range(min(k + 1, x + 1))]
             pre = set()
-            for dd in range(ac.min(k, x), -1, -1):
+            for dd in range(min(k, x), -1, -1):
                 for tt in dct[dd]:
                     if tt not in pre:
                         pre.add(tt)
                         cur[dd].add(tt)
             pre = 0
-            for dd in range(1, ac.min(k + 1, x + 1)):
+            for dd in range(1, min(k + 1, x + 1)):
                 pre += 1
                 for tt in cur[dd]:
-                    buy = ac.min(pre, tmp[tt])
+                    buy = min(pre, tmp[tt])
                     pre -= buy
                     tmp[tt] -= buy
             rest = sum(tmp) * 2
-            day = ac.min(k, x)
+            day = min(k, x)
             if pre < rest:
                 day += rest - pre
             return day <= x
@@ -1700,7 +1700,7 @@ class Solution:
         tag: binary_search|brute_force
         """
         n = ac.read_int()
-        ans = inf
+        ans = math.inf
 
         def check(b):
             return a * a * a + a * a * b + a * b * b + b * b * b >= n
@@ -1763,14 +1763,14 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
         pre_min = [math.inf] * (n + 1)
-        pre_max = [-inf] * (n + 1)
+        pre_max = [-math.inf] * (n + 1)
         for i in range(n):
             _, y = nums[i]
             pre_min[i + 1] = min(pre_min[i], y)
             pre_max[i + 1] = max(pre_max[i], y)
 
         post_min = [math.inf] * (n + 1)
-        post_max = [-inf] * (n + 1)
+        post_max = [-math.inf] * (n + 1)
         for i in range(n - 1, -1, -1):
             _, y = nums[i]
             post_min[i] = min(post_min[i + 1], y)

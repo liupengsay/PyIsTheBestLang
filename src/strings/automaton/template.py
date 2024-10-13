@@ -9,7 +9,7 @@ class Node:
         self.son = {}
         self.fail = self.last = None
         self.len = 0
-        self.val = inf
+        self.val = math.inf
 
 
 class AhoCorasick:

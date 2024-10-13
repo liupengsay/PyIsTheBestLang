@@ -47,7 +47,7 @@ class SPFA:
         """
         # Finding the longest path distance with negative weight and the number of path edges
         n = len(dct)
-        dis = [-inf] * n
+        dis = [-math.inf] * n
         # flag of node in stack or not
         visit = [False] * n
         # the number of edges by the shortest path

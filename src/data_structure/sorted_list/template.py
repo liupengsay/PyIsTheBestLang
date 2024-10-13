@@ -262,3 +262,32 @@ class TopKSum:
                 self.top_k_sum += self.lst[self.k - 1]
         return
 
+
+class TopKSumSpecial:
+    def __init__(self, k, bit):
+        self.k = k
+        self.bit = bit
+        self.mask = (1 << bit) - 1
+        self.lst = SortedList()
+        self.top_k_sum = 0
+        return
+
+    def add(self, num):
+        self.lst.add(num)
+        ind = self.lst.bisect_left(num)
+        if ind <= self.k - 1:
+            self.top_k_sum += ((-num) >> self.bit) * ((-num) & self.mask)
+            if len(self.lst) >= self.k + 1:
+                num = self.lst[self.k]
+                self.top_k_sum -= ((-num) >> self.bit) * ((-num) & self.mask)
+        return
+
+    def discard(self, num):
+        ind = self.lst.bisect_left(num)
+        self.lst.discard(num)
+        if ind <= self.k - 1:
+            self.top_k_sum -= ((-num) >> self.bit) * ((-num) & self.mask)
+            if len(self.lst) >= self.k:
+                num = self.lst[self.k - 1]
+                self.top_k_sum += ((-num) >> self.bit) * ((-num) & self.mask)
+        return

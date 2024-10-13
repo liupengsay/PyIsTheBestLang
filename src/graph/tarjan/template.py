@@ -1,4 +1,4 @@
-
+import math
 
 
 class Tarjan:
@@ -168,7 +168,7 @@ class Tarjan:
 
         # new graph after edcc
         edcc_id = len(edcc_node_id)
-        node_edcc_id = [-1]*n
+        node_edcc_id = [-1] * n
         for i, ls in enumerate(edcc_node_id):
             for x in ls:
                 node_edcc_id[x] = i

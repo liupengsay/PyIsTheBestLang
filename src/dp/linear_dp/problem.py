@@ -325,27 +325,27 @@ class Solution:
             if i == n:
                 dct[(i, single, double, pre)] = 0
                 yield
-            res = inf
+            res = math.inf
             if nums[i] != 0:
                 v = nums[i] % 2
                 yield dfs(i + 1, single, double, v)
                 cur = dct[(i + 1, single, double, v)]
                 if pre != -1 and pre != v:
                     cur += 1
-                res = ac.min(res, cur)
+                res = min(res, cur)
             else:
                 if single:
                     yield dfs(i + 1, single - 1, double, 1)
                     cur = dct[(i + 1, single - 1, double, 1)]
                     if pre != -1 and pre != 1:
                         cur += 1
-                    res = ac.min(res, cur)
+                    res = min(res, cur)
                 if double:
                     yield dfs(i + 1, single, double - 1, 0)
                     cur = dct[(i + 1, single, double - 1, 0)]
                     if pre != -1 and pre != 0:
                         cur += 1
-                    res = ac.min(res, cur)
+                    res = min(res, cur)
             dct[(i, single, double, pre)] = res
             yield
 
@@ -421,7 +421,7 @@ class Solution:
         dp[0] = [0] * (b + 1)
         for i in range(a):
             for j in range(b):
-                dp[i + 1][j + 1] = ac.min(dp[i + 1][j], dp[i][j] + abs(busy[i] - free[j]))
+                dp[i + 1][j + 1] = min(dp[i + 1][j], dp[i][j] + abs(busy[i] - free[j]))
         ac.st(dp[-1][-1])
         return
 
@@ -502,7 +502,7 @@ class Solution:
                 dp[i] = dp[i + 1] + 1
             else:
                 for end in dct[i]:
-                    dp[i] = ac.max(dp[i], dp[end])
+                    dp[i] = max(dp[i], dp[end])
         ac.st(dp[1])
         return
 
@@ -514,20 +514,20 @@ class Solution:
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-        pre = defaultdict(lambda: inf)
+        pre = defaultdict(lambda: math.inf)
         pre[0] = 0
         for i in range(n):
             a, b = nums[i]
-            cur = defaultdict(lambda: inf)
+            cur = defaultdict(lambda: math.inf)
             for p in pre:
-                cur[p + a - b] = ac.min(cur[p + a - b], pre[p])
-                cur[p + b - a] = ac.min(cur[p + b - a], pre[p] + 1)
+                cur[p + a - b] = min(cur[p + a - b], pre[p])
+                cur[p + b - a] = min(cur[p + b - a], pre[p] + 1)
             pre = cur.copy()
         x = min(abs(v) for v in pre.keys())
-        ans = inf
+        ans = math.inf
         for v in pre:
             if abs(v) == x:
-                ans = ac.min(ans, pre[v])
+                ans = min(ans, pre[v])
         ac.st(ans)
         return
 
@@ -596,9 +596,9 @@ class Solution:
         dp = [math.inf] * (n + 1)
         dp[0] = 0
         dp[1] = nums[0]
-        dp[2] = ac.max(nums[0], nums[1])
+        dp[2] = max(nums[0], nums[1])
         for i in range(2, n):
-            dp[i + 1] = ac.min(dp[i] + nums[0] + nums[i],
+            dp[i + 1] = min(dp[i] + nums[0] + nums[i],
                                dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
         ac.st(dp[-1])
         return
@@ -618,7 +618,7 @@ class Solution:
             x, y = nums[i]
             dp[i + 1] = dp[i]
             j = bisect.bisect_right(pre, x - 1) - 1
-            dp[i + 1] = ac.max(dp[i + 1], dp[j + 1] + y - x + 1)
+            dp[i + 1] = max(dp[i + 1], dp[j + 1] + y - x + 1)
             pre.append(y)
         ac.st(dp[-1])
         return
@@ -728,8 +728,8 @@ class Solution:
                     if ind[i] < m and sentence[j] == words[i][ind[i]]:
                         ind[i] += 1
                     if ind[i] == m:
-                        cur = ac.min(cur, x - j + 1 - m)
-                dp[x + 1] = ac.min(dp[x + 1], dp[j] + cur)
+                        cur = min(cur, x - j + 1 - m)
+                dp[x + 1] = min(dp[x + 1], dp[j] + cur)
         ac.st(dp[-1])
         return
 
@@ -747,7 +747,7 @@ class Solution:
         for i in range(n):
             a, b = nums[i]
             j = bisect.bisect_right(pre, a)
-            dp[i + 1] = ac.max(dp[i], dp[j] + b - a)
+            dp[i + 1] = max(dp[i], dp[j] + b - a)
             pre.append(b)
         ac.st(dp[-1])
         return
@@ -808,7 +808,7 @@ class Solution:
                     skip = i - x - 1
                     if j - skip < 0:
                         break
-                    dp[i][j] = ac.min(dp[i][j], dp[x][j - skip] + dis[x][i])
+                    dp[i][j] = min(dp[i][j], dp[x][j - skip] + dis[x][i])
         ac.st(dp[-1][-1])
         return
 
@@ -820,18 +820,18 @@ class Solution:
         """
         ac.read_int()
         nums = ac.read_list_ints()
-        pre = [math.inf, inf, inf]
+        pre = [math.inf, math.inf, math.inf]
         pre[nums[0]] = 0
         for num in nums[1:]:
-            cur = [math.inf, inf, inf]
+            cur = [math.inf, math.inf, math.inf]
             for x in [-1, 0, 1]:
                 for k in range(3):
                     y = num + k * x
                     if x <= y and -1 <= y <= 1:
-                        cur[y] = ac.min(cur[y], pre[x] + k)
+                        cur[y] = min(cur[y], pre[x] + k)
             pre = cur[:]
         ans = min(pre)
-        ac.st(ans if ans < inf else "BRAK")
+        ac.st(ans if ans < math.inf else "BRAK")
         return
 
     @staticmethod
@@ -844,7 +844,7 @@ class Solution:
         pre[words[0][0] + words[0][-1]] = len(words[0])
 
         for a in words[1:]:
-            cur = defaultdict(lambda: inf)
+            cur = defaultdict(lambda: math.inf)
             for b in pre:
 
                 if a[-1] == b[0]:
@@ -878,15 +878,15 @@ class Solution:
         pre = 0
         for x in range(100):
             y = abs(x - nums[0])
-            dp[pre][x] = ac.min(y * y, (100 - y) * (100 - y))
+            dp[pre][x] = min(y * y, (100 - y) * (100 - y))
         for i in range(1, n):
             cur = 1 - pre
             for j in range(100):
                 y = abs(j - nums[i])
-                res = inf
-                a = ac.min(y * y, (100 - y) * (100 - y))
+                res = math.inf
+                a = min(y * y, (100 - y) * (100 - y))
                 for k in range(j):
-                    res = ac.min(res, a + dp[pre][k])
+                    res = min(res, a + dp[pre][k])
                 dp[cur][j] = res
             pre = cur
         ac.st(min(dp[pre]))
@@ -909,7 +909,7 @@ class Solution:
                 nums[i] = -1
             ind[x] = i
             if i:
-                nums[i] = ac.max(nums[i], nums[i - 1])
+                nums[i] = max(nums[i], nums[i - 1])
         for _ in range(q):
             left, right = ac.read_list_ints_minus_one()
             ac.st("Yes" if nums[right] < left else "No")
@@ -929,10 +929,10 @@ class Solution:
             cur = defaultdict(int)
             for p1, p2 in pre:
                 st = p1 + w
-                cur[(st[-2:], p2)] = ac.max(cur[(st[-2:], p2)], pre[(p1, p2)] + len(set(st)))
+                cur[(st[-2:], p2)] = max(cur[(st[-2:], p2)], pre[(p1, p2)] + len(set(st)))
 
                 st = p2 + w
-                cur[(p1, st[-2:])] = ac.max(cur[(p1, st[-2:])], pre[(p1, p2)] + len(set(st)))
+                cur[(p1, st[-2:])] = max(cur[(p1, st[-2:])], pre[(p1, p2)] + len(set(st)))
             pre = cur
         ac.st(max(pre.values()))
         return
@@ -951,7 +951,7 @@ class Solution:
             w = h = 0
             for j in range(i, -1, -1):
                 w += nums[j][1]
-                h = ac.max(h, nums[j][0])
+                h = max(h, nums[j][0])
                 if w > length:
                     break
                 if dp[j] + h < dp[i + 1]:
@@ -972,7 +972,7 @@ class Solution:
             cur = dp[-1] + 1
             x = 1
             while x * 2 + 5 <= m:
-                cur = ac.max(dp[-x * 2 - 5] * (x + 1), cur)
+                cur = max(dp[-x * 2 - 5] * (x + 1), cur)
                 x += 1
             dp.append(cur)
         ac.st(len(dp) - 1)
@@ -1004,7 +1004,7 @@ class Solution:
                 stack.popleft()
             cur = pre + seed + k
             if stack:
-                cur = ac.min(cur, stack[0][1] + i * d + seed + k)
+                cur = min(cur, stack[0][1] + i * d + seed + k)
 
             while stack and stack[-1][1] >= cur - i * d - d:
                 stack.pop()
@@ -1021,7 +1021,7 @@ class Solution:
         """
         n = ac.read_int()
         ind = {w: i for i, w in enumerate("HSP")}
-        dp = [[[0, -inf], [0, -inf], [0, -inf]] for _ in range(2)]
+        dp = [[[0, -math.inf], [0, -math.inf], [0, -math.inf]] for _ in range(2)]
         pre = 0
         for _ in range(n):
             cur = 1 - pre
@@ -1111,9 +1111,9 @@ class Solution:
                     ans += abs(y)
                 else:
                     if x > 0:
-                        ans += ac.max(0, y - x)
+                        ans += max(0, y - x)
                     else:
-                        ans += ac.max(0, x - y)
+                        ans += max(0, x - y)
         ac.st(ans)
         return
 
@@ -1134,7 +1134,7 @@ class Solution:
                     dis = a - x + b - y - 1
                     for r in range(k + 1):
                         if r + dis <= k:
-                            dp[i][r + dis] = ac.max(dp[i][r + dis], dp[j][r] + dis + 1)
+                            dp[i][r + dis] = max(dp[i][r + dis], dp[j][r] + dis + 1)
                         else:
                             break
         ac.st(max(max(d) for d in dp))
@@ -1148,17 +1148,17 @@ class Solution:
         """
         ac.read_int()
         nums = ac.read_list_ints()
-        ans = -inf
-        pre = [-inf, -inf]
+        ans = -math.inf
+        pre = [-math.inf, -math.inf]
         for num in nums:
             cur = pre[:]
             for i in range(2):
                 j = (i + num) % 2
-                cur[j] = ac.max(cur[j], pre[i] + num)
+                cur[j] = max(cur[j], pre[i] + num)
                 j = num % 2
-                cur[j] = ac.max(cur[j], num)
+                cur[j] = max(cur[j], num)
             pre = cur[:]
-            ans = ac.max(ans, pre[1])
+            ans = max(ans, pre[1])
         ac.st(ans)
         return
 
@@ -1173,7 +1173,7 @@ class Solution:
         for i in range(n):
             x = obstacles[i]
             if x:
-                dp[x - 1] = inf
+                dp[x - 1] = math.inf
             low = min(dp)
             for j in range(3):
                 if j != x - 1:
@@ -1329,7 +1329,7 @@ class Solution:
         def cost(k):
             return pre[k // 2] + pre[(k + 1) // 2]
 
-        dp = [-inf] * (n + 1)
+        dp = [-math.inf] * (n + 1)
         dp[0] = 0
         for i in range(1, n + 1):
             for j in range(i):
@@ -1364,7 +1364,7 @@ class Solution:
             dp = ndp
         for x in range(1, m + 1):
             ans = min(dp[0][x], dp[1][x])
-            ac.st(ans if ans < inf else -1)
+            ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1560,7 +1560,7 @@ class Solution:
             for i in range(n):
                 cur = [math.inf] * (k + 1)
                 cnt = 0
-                val = inf
+                val = math.inf
                 for x in range(k + 1):
                     cur[x] = dp[-1][x] + nums[i]
                 for j in range(i, max(-1, i - 11), -1):
@@ -1620,9 +1620,9 @@ class Solution:
         c = ac.read_list_ints_minus_one()
         for _ in range(q):
             a, b = ac.read_list_ints()
-            dp = [-inf] * n
-            c1, ceil1 = 0, -inf
-            c2, ceil2 = 0, -inf
+            dp = [-math.inf] * n
+            c1, ceil1 = 0, -math.inf
+            c2, ceil2 = 0, -math.inf
             ans = 0
             for i, x in enumerate(c):
                 cur = dp[x]
@@ -1768,7 +1768,7 @@ class Solution:
         """
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()
-        dp = [0, -inf, -inf]
+        dp = [0, -math.inf, -math.inf]
         ans = 0
         for num in nums:
             ndp = [0, 0, 0]
@@ -1813,12 +1813,12 @@ class Solution:
         """
         r, n = ac.read_list_ints()  # TLE
         nums = [ac.read_list_ints() for _ in range(n)]
-        dp = [-inf] * (n + 1)
+        dp = [-math.inf] * (n + 1)
         pre = [0] * (n + 1)
         dp[0] = 0
         for i in range(n):
             t, x, y = nums[i]
-            cur = -inf
+            cur = -math.inf
             if x + y - 2 <= t:
                 cur = 1
             for j in range(i - 1, max(i - 2 * r, 0) - 1, -1):
@@ -1889,13 +1889,13 @@ class Solution:
 
             if cur and cur[-1] - cur[0] + 1 != len(cur):
                 continue
-            if cur and dp[cur[0]] < inf:
+            if cur and dp[cur[0]] < math.inf:
                 a, b = cur[0], cur[-1]
                 pre = dp[a]
                 for i in range(a, b + 1):
                     dp[i + 1] = min(dp[i + 1], pre + 1)
 
-        if dp[-1] < inf:
+        if dp[-1] < math.inf:
             ac.st(1)
             ac.st(dp[-1])
         else:
@@ -1938,7 +1938,7 @@ class Solution:
         tag: linear_dp|greedy|custom_sort|classical
         """
         n, k = ac.read_list_ints()
-        dp = [-inf] * (k + 1)
+        dp = [-math.inf] * (k + 1)
         dp[0] = 1
         nums = [ac.read_list_ints() for _ in range(n)]
 
@@ -1963,7 +1963,7 @@ class Solution:
         """
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
-        dp = [-inf] * m
+        dp = [-math.inf] * m
         ans = 0
         for i in range(n):
             for j in range(m):

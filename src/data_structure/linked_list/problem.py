@@ -173,7 +173,7 @@ class Solution:
             y = nex[j]
             lst = []
             while y <= j + x and 0 <= y < n:
-                if dis[i][y] == inf:
+                if dis[i][y] == math.inf:
                     dis[i][y] = d + 1
                     if i == m - 1 and y == n - 1:
                         return d + 1
@@ -187,7 +187,7 @@ class Solution:
             y = nex[i]
             lst = []
             while y <= i + x and 0 <= y < m:
-                if dis[y][j] == inf:
+                if dis[y][j] == math.inf:
                     dis[y][j] = d + 1
                     if y == m - 1 and j == n - 1:
                         return d + 1
@@ -198,7 +198,7 @@ class Solution:
                 nex[w] = y
 
         ans = dis[-1][-1]
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
@@ -223,7 +223,7 @@ class Solution:
             uf = row[i]
             p = uf.find(j)
             while p <= x + j and p <= n - 1:
-                if dis[i][p] == inf:
+                if dis[i][p] == math.inf:
                     dis[i][p] = d + 1
                     stack.append([i, p])
                     if i == m - 1 and p == n - 1:
@@ -234,7 +234,7 @@ class Solution:
             uf = col[j]
             p = uf.find(i)
             while p <= x + i and p <= m - 1:
-                if dis[p][j] == inf:
+                if dis[p][j] == math.inf:
                     dis[p][j] = d + 1
                     stack.append([p, j])
                     if p == m - 1 and j == n - 1:
@@ -242,7 +242,7 @@ class Solution:
                 uf.union(p, p + 1)
                 p = uf.find(p)
         ans = dis[-1][-1]
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def ac_136(ac=FastIO()):
@@ -415,7 +415,7 @@ class Solution:
             y = nex[j]
             lst = []
             while y <= j + k and 0 <= y < n and grid[i][y] == ".":
-                if dis[i][y] == inf:
+                if dis[i][y] == math.inf:
                     dis[i][y] = d + 1
                     stack.append([i, y])
                 lst.append(y)
@@ -429,7 +429,7 @@ class Solution:
             y = pre[j]
             lst = []
             while j - y <= k and 0 <= y < n and grid[i][y] == ".":
-                if dis[i][y] == inf:
+                if dis[i][y] == math.inf:
                     dis[i][y] = d + 1
                     stack.append([i, y])
                 lst.append(y)
@@ -443,7 +443,7 @@ class Solution:
             y = nex[i]
             lst = []
             while y <= i + k and 0 <= y < m and grid[y][j] == ".":
-                if dis[y][j] == inf:
+                if dis[y][j] == math.inf:
                     dis[y][j] = d + 1
                     stack.append([y, j])
                 lst.append(y)
@@ -457,7 +457,7 @@ class Solution:
             y = pre[i]
             lst = []
             while i - y <= k and 0 <= y < m and grid[y][j] == ".":
-                if dis[y][j] == inf:
+                if dis[y][j] == math.inf:
                     dis[y][j] = d + 1
                     stack.append([y, j])
                 lst.append(y)
@@ -467,7 +467,7 @@ class Solution:
                 nex[w] = nex[i]
 
         ans = dis[x2][y2]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod

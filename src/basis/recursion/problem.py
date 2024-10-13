@@ -271,7 +271,7 @@ class Solution:
                     j += 1
                 ans += yield dfs(cur[i: j])
                 i = j
-            yield ac.min(ans, m)
+            yield min(ans, m)
 
         ac.st(dfs(nums))
         return

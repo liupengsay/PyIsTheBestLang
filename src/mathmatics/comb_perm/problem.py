@@ -586,7 +586,7 @@ class Solution:
             dp[i][i] = dp[i][i - 1] + int(dp[i][i] == 0)
 
         for n, m in nums:
-            ac.st(dp[n][ac.min(m, n)])
+            ac.st(dp[n][min(m, n)])
         return
 
     @staticmethod

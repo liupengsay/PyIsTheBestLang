@@ -259,7 +259,7 @@ class RangeAddRangeSum:
         return a - b
 
 class PointAscendPreMax:
-    def __init__(self, n, initial=-inf):
+    def __init__(self, n, initial=-math.inf):
         self.n = n
         self.initial = initial
         self.t = [initial] * (n + 1)
@@ -286,7 +286,7 @@ class PointAscendPreMax:
         return
 
 class PointAscendPreMaxIndex:
-    def __init__(self, n, initial=-inf):
+    def __init__(self, n, initial=-math.inf):
         self.n = n
         self.initial = initial
         self.t = [initial] * (n + 1)
@@ -320,7 +320,7 @@ class PointAscendPreMaxIndex:
 
 
 class PointAscendPostMax:
-    def __init__(self, n, initial=-inf):
+    def __init__(self, n, initial=-math.inf):
         self.n = n
         self.initial = initial
         self.t = [initial] * (n + 1)
@@ -350,7 +350,7 @@ class PointAscendPostMax:
 
 
 class PointAscendRangeMax:
-    def __init__(self, n: int, initial=-inf) -> None:
+    def __init__(self, n: int, initial=-math.inf) -> None:
         self.n = n
         self.initial = initial
         self.a = [self.initial] * (n + 1)
@@ -385,7 +385,7 @@ class PointAscendRangeMax:
 
 
 class PointDescendPreMin:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.t = [self.initial] * (n + 1)
@@ -418,7 +418,7 @@ class PointDescendPreMin:
 
 
 class PointDescendPostMin:
-    def __init__(self, n, initial=inf):
+    def __init__(self, n, initial=math.inf):
         self.n = n
         self.initial = initial
         self.t = [self.initial] * (n + 1)
@@ -453,7 +453,7 @@ class PointDescendPostMin:
 
 
 class PointDescendRangeMin:
-    def __init__(self, n: int, initial=inf) -> None:
+    def __init__(self, n: int, initial=math.inf) -> None:
         self.n = n
         self.initial = initial
         self.a = [self.initial] * (n + 1)
@@ -547,7 +547,7 @@ class PointChangeMaxMin2D:
         self.n = n
         self.a = [[0] * (n + 1) for _ in range(m + 1)]
         self.tree_ceil = [[0] * (n + 1) for _ in range(m + 1)]  # point keep ascend
-        self.tree_floor = [[float('inf')] * (n + 1) for _ in range(m + 1)]  # point keep descend
+        self.tree_floor = [[float('math.inf')] * (n + 1) for _ in range(m + 1)]  # point keep descend
         return
 
     @staticmethod
@@ -569,7 +569,7 @@ class PointChangeMaxMin2D:
 
     def find_max(self, x1, y1, x2, y2):
         assert 1 <= x1 <= x2 <= self.m and 1 <= y1 <= y2 <= self.n
-        max_val = inf
+        max_val = math.inf
         i1, i2 = x1, x2
         while i2 >= i1:
             if i2 - self._lowest_bit(i2) >= i1 - 1:

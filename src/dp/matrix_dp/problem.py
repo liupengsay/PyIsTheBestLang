@@ -172,6 +172,7 @@ ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|
 ABC212E（https://atcoder.jp/contests/abc212/tasks/abc212_e）graph|matrix_dp|inclusion_exclusion|classical
 ABC207E（https://atcoder.jp/contests/abc207/tasks/abc207_e）matrix_dp|prefix_sum
 ABC362E（https://atcoder.jp/contests/abc362/tasks/abc362_e）matrix_dp
+ABC375E（https://atcoder.jp/contests/abc375/tasks/abc375_e）matrix_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -396,7 +397,7 @@ class Solution:
                         dp[i][j] = 1
                     else:
                         c = fun(grid[i][j])
-                        dp[i][j] = ac.min(dp[i - 1][j], dp[i][j - 1]) + c
+                        dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + c
                     f[i][j] = (i - 1) * n + j if dp[i - 1][j] < dp[i][j - 1] else i * n + j - 1
             cnt = dp[-1][-1]
             path = ""
@@ -456,11 +457,11 @@ class Solution:
                 for k in range(b, -1, -1):
                     res = 0
                     if i < r and j < g:
-                        res = ac.max(res, dp[idx(i + 1, j + 1, k)] + rr[i] * gg[j])
+                        res = max(res, dp[idx(i + 1, j + 1, k)] + rr[i] * gg[j])
                     if i < r and k < b:
-                        res = ac.max(res, dp[idx(i + 1, j, k + 1)] + rr[i] * bb[k])
+                        res = max(res, dp[idx(i + 1, j, k + 1)] + rr[i] * bb[k])
                     if j < g and k < b:
-                        res = ac.max(res, dp[idx(i, j + 1, k + 1)] + bb[k] * gg[j])
+                        res = max(res, dp[idx(i, j + 1, k + 1)] + bb[k] * gg[j])
                     dp[idx(i, j, k)] = res
 
         ac.st(dp[0])
@@ -516,7 +517,7 @@ class Solution:
         dp[0][0] = 0
         for i in range(m):
             for j in range(n + 1):
-                if dp[i][j] < inf:
+                if dp[i][j] < math.inf:
                     dp[i + 1][j] = min(dp[i + 1][j], dp[i][j])
                     cost = 0
                     for k in range(1, factory[i][1] + 1):
@@ -586,21 +587,21 @@ class Solution:
         """
         n, k = ac.read_list_ints()
 
-        pre = [-inf] * (k + 1) * n
-        cur = [-inf] * (k + 1) * n
+        pre = [-math.inf] * (k + 1) * n
+        cur = [-math.inf] * (k + 1) * n
         pre[0] = 0
         for i in range(1, n + 1):
             lst = ac.read_list_ints()
             for j in range(i):
                 for p in range(k + 1):
                     if j and p:
-                        a = ac.max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
-                        b = ac.max(pre[j * (k + 1) + p - 1], pre[(j - 1) * (k + 1) + p - 1]) + lst[j] * 3
-                        cur[j * (k + 1) + p] = ac.max(a, b)
+                        a = max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
+                        b = max(pre[j * (k + 1) + p - 1], pre[(j - 1) * (k + 1) + p - 1]) + lst[j] * 3
+                        cur[j * (k + 1) + p] = max(a, b)
                     elif j:
-                        cur[j * (k + 1) + p] = ac.max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
+                        cur[j * (k + 1) + p] = max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
                     elif p:
-                        cur[j * (k + 1) + p] = ac.max(pre[j * (k + 1) + p] + lst[j],
+                        cur[j * (k + 1) + p] = max(pre[j * (k + 1) + p] + lst[j],
                                                       pre[j * (k + 1) + p - 1] + lst[j] * 3)
                     else:
                         cur[j * (k + 1) + p] = pre[j * (k + 1) + p] + lst[j]
@@ -638,7 +639,7 @@ class Solution:
                     for a, b in [[x1 - 1, y1], [x1, y1 - 1]]:
                         for c, d in [[x2 - 1, y2], [x2, y2 - 1]]:
                             if 0 <= a < n and 0 <= b < n and 0 <= c < n and 0 <= d < n:
-                                val = ac.max(val, pre[(b, d)])
+                                val = max(val, pre[(b, d)])
                     val += grid[x1][y1] + grid[x2][y2]
                     if x1 == x2:
                         val -= grid[x1][y1]
@@ -671,10 +672,10 @@ class Solution:
                     for a, b in [[x1 - 1, y1], [x1, y1 - 1]]:
                         for c, d in [[x2 - 1, y2], [x2, y2 - 1]]:
                             if 0 <= a < m and 0 <= b < n and 0 <= c < m and 0 <= d < n:
-                                val = ac.max(val, pre[(b, d)])
+                                val = max(val, pre[(b, d)])
                     val += grid[x1][y1] + grid[x2][y2]
                     if y1 == y2 and i < m + n - 2:
-                        val = -inf
+                        val = -math.inf
                     cur[(y1, y2)] = val
             pre = cur
         ac.st(list(pre.values())[0])
@@ -741,12 +742,12 @@ class Solution:
             return i1 * (m + 1) + j1
 
         nums = [ac.read_int() for _ in range(n)]
-        dp = [-inf] * (m + 1) * (n + 1)
+        dp = [-math.inf] * (m + 1) * (n + 1)
         dp[0] = 0
         for i in range(n):
             dp[idx(i + 1, 0)] = dp[idx(i, 0)]
-            for j in range(1, ac.min(i + 2, m + 1)):
-                dp[idx(i + 1, 0)] = ac.max(dp[idx(i + 1, 0)], dp[idx(i + 1 - j, j)])
+            for j in range(1, min(i + 2, m + 1)):
+                dp[idx(i + 1, 0)] = max(dp[idx(i + 1, 0)], dp[idx(i + 1 - j, j)])
             for j in range(1, m + 1):
                 dp[idx(i + 1, j)] = dp[idx(i, j - 1)] + nums[i]
         ac.st(dp[idx(n, 0)])
@@ -766,7 +767,7 @@ class Solution:
         def idx(ii, jj):
             return ii * (n + 1) + jj
 
-        dp = [-inf] * (n + 1) * (m + 1)
+        dp = [-math.inf] * (n + 1) * (m + 1)
         for j in range(n + 1):
             dp[j] = 0
         pre = [-1] * (n + 1) * (m + 1)
@@ -815,7 +816,7 @@ class Solution:
         def idy(ii, jj, kk, pp):
             return ii * n * m * n + jj * m * n + kk * n + pp
 
-        dp = [(-inf, -inf)] * m * n * m * n
+        dp = [(-math.inf, -math.inf)] * m * n * m * n
 
         s = pre[-1]
         for xa in range(m - 1, -1, -1):
@@ -830,13 +831,13 @@ class Solution:
                         for xx in range(xa, xb):
                             nex1 = dp[idy(xa, ya, xx, yb)][:]
                             nex2 = dp[idy(xx + 1, ya, xb, yb)][:]
-                            nex = (nex1[0] + nex2[0], ac.min(nex1[1], nex2[1]))
+                            nex = (nex1[0] + nex2[0], min(nex1[1], nex2[1]))
                             if nex > res:
                                 res = nex[:]
                         for yy in range(ya, yb):
                             nex1 = dp[idy(xa, ya, xb, yy)][:]
                             nex2 = dp[idy(xa, yy + 1, xb, yb)][:]
-                            nex = (nex1[0] + nex2[0], ac.min(nex1[1], nex2[1]))
+                            nex = (nex1[0] + nex2[0], min(nex1[1], nex2[1]))
                             if nex > res:
                                 res = nex[:]
                         dp[idy(xa, ya, xb, yb)] = res
@@ -862,14 +863,14 @@ class Solution:
         # def dfs(i, j, x, y, w):
         #     if w == 1:
         #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
-        #     res = inf
+        #     res = math.inf
         #     for a in range(i, x):
         #         for up in range(1, w):
-        #             res = ac.min(res, dfs(i, j, a, y, up)+dfs(a+1, j, x, y, w-up))
+        #             res = min(res, dfs(i, j, a, y, up)+dfs(a+1, j, x, y, w-up))
         #
         #     for b in range(j, y):
         #         for up in range(1, w):
-        #             res = ac.min(res, dfs(i, j, x, b, up) + dfs(i, b+1, x, y, w - up))
+        #             res = min(res, dfs(i, j, x, b, up) + dfs(i, b+1, x, y, w - up))
         #     return res
         # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
         # ac.st("%.2f" % ans)
@@ -884,13 +885,13 @@ class Solution:
                                 res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j] - avg) ** 2
                                 dp[i][j][x][y][w] = res
                                 continue
-                            res = inf
+                            res = math.inf
                             for a in range(i, x):
                                 for up in range(1, w):
-                                    res = ac.min(res, dp[i][j][a][y][up] + dp[a + 1][j][x][y][w - up])
+                                    res = min(res, dp[i][j][a][y][up] + dp[a + 1][j][x][y][w - up])
                             for b in range(j, y):
                                 for up in range(1, w):
-                                    res = ac.min(res, dp[i][j][x][b][up] + dp[i][b + 1][x][y][w - up])
+                                    res = min(res, dp[i][j][x][b][up] + dp[i][b + 1][x][y][w - up])
                             dp[i][j][x][y][w] = res
         ans = (dp[0][0][m - 1][n - 1][k] / k) ** 0.5
         ac.st("%.2f" % ans)
@@ -914,13 +915,13 @@ class Solution:
         # def dfs(i, j, x, y, w):
         #     if w == 1:
         #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j])**2
-        #     res = inf
+        #     res = math.inf
         #     for a in range(i, x):
-        #         res = ac.min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
-        #         res = ac.min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
+        #         res = min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
+        #         res = min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
         #     for b in range(j, y):
-        #         res = ac.min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
-        #         res = ac.min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
+        #         res = min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
+        #         res = min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
         #     return res
         # ans = dfs(0, 0, m-1, n-1, k)
         # ac.st(ans)
@@ -935,13 +936,13 @@ class Solution:
                                 res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]) ** 2
                                 dp[i][j][x][y][w] = res
                                 continue
-                            res = inf
+                            res = math.inf
                             for a in range(i, x):
-                                res = ac.min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
-                                res = ac.min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
+                                res = min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
+                                res = min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
                             for b in range(j, y):
-                                res = ac.min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
-                                res = ac.min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
+                                res = min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
+                                res = min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
                             dp[i][j][x][y][w] = res
         ans = dp[0][0][m - 1][n - 1][k]
         ac.st(ans)
@@ -966,13 +967,13 @@ class Solution:
         # def dfs(i, j, x, y, w):
         #     if w == 1:
         #         return (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j]-avg)**2
-        #     res = inf
+        #     res = math.inf
         #     for a in range(i, x):
-        #         res = ac.min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
-        #         res = ac.min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
+        #         res = min(res, dfs(i, j, a, y, 1)+dfs(a+1, j, x, y, w-1))
+        #         res = min(res, dfs(i, j, a, y, w-1) + dfs(a + 1, j, x, y, 1))
         #     for b in range(j, y):
-        #         res = ac.min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
-        #         res = ac.min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
+        #         res = min(res, dfs(i, j, x, b, 1) + dfs(i, b+1, x, y, w - 1))
+        #         res = min(res, dfs(i, j, x, b, w-1) + dfs(i, b + 1, x, y, 1))
         #     return res
         # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
         # ac.st("%.3f" % ans)
@@ -987,13 +988,13 @@ class Solution:
                                 res = (pre[x + 1][y + 1] - pre[x + 1][j] - pre[i][y + 1] + pre[i][j] - avg) ** 2
                                 dp[i][j][x][y][w] = res
                                 continue
-                            res = inf
+                            res = math.inf
                             for a in range(i, x):
-                                res = ac.min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
-                                res = ac.min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
+                                res = min(res, dp[i][j][a][y][1] + dp[a + 1][j][x][y][w - 1])
+                                res = min(res, dp[i][j][a][y][w - 1] + dp[a + 1][j][x][y][1])
                             for b in range(j, y):
-                                res = ac.min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
-                                res = ac.min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
+                                res = min(res, dp[i][j][x][b][1] + dp[i][b + 1][x][y][w - 1])
+                                res = min(res, dp[i][j][x][b][w - 1] + dp[i][b + 1][x][y][1])
                             dp[i][j][x][y][w] = res
         ans = (dp[0][0][m - 1][n - 1][k] / k) ** 0.5
         ac.st("%.3f" % ans)
@@ -1025,7 +1026,7 @@ class Solution:
             for i in range(m):
                 for j in range(n):
                     # 只能往左或者往上挖
-                    dp[i + 1][j + 1] = ac.max(dp[i][j + 1] + grid_west[i][j + 1], dp[i + 1][j] + grid_north[i + 1][j])
+                    dp[i + 1][j + 1] = max(dp[i][j + 1] + grid_west[i][j + 1], dp[i + 1][j] + grid_north[i + 1][j])
             ac.st(dp[-1][-1])
         return
 
@@ -1044,7 +1045,7 @@ class Solution:
         for i in range(n):
             cur = 1 - pre
             dp[cur][0] = 1
-            for j in range(1, ac.min(i + 1, k + 1)):
+            for j in range(1, min(i + 1, k + 1)):
                 dp[cur][j] = (dp[pre][j] * (j + 1) + dp[pre][j - 1] * (i - j + 1)) % mod
             pre = cur
         ac.st(dp[pre][-1])
@@ -1124,9 +1125,9 @@ class Solution:
         #         return 0
         #     res = dfs(i + 1, j, pre)
         #     if pre + nums[i] <= t:
-        #         res = ac.max(res, dfs(i + 1, j, pre + nums[i]) + 1)
+        #         res = max(res, dfs(i + 1, j, pre + nums[i]) + 1)
         #     if nums[i] <= t and j + 1 < m:
-        #         res = ac.max(res, dfs(i + 1, j + 1, nums[i]) + 1)
+        #         res = max(res, dfs(i + 1, j + 1, nums[i]) + 1)
         #     return res
         #
         # ans = dfs(0, 0, 0)
@@ -1138,9 +1139,9 @@ class Solution:
                 for k in range(t, -1, -1):
                     res = dp[i + 1][j][k]
                     if k + nums[i] <= t:
-                        res = ac.max(res, dp[i + 1][j][k + nums[i]] + 1)
+                        res = max(res, dp[i + 1][j][k + nums[i]] + 1)
                     if nums[i] <= t and j + 1 < m:
-                        res = ac.max(res, dp[i + 1][j + 1][nums[i]] + 1)
+                        res = max(res, dp[i + 1][j + 1][nums[i]] + 1)
                     dp[i][j][k] = res
         ac.st(dp[0][0][0])
         return
@@ -1162,7 +1163,7 @@ class Solution:
         # @lru_cache(None)
         # def dfs(i, j, state):
         #     if i == n:
-        #         return 0 if j == m-1 and state else inf
+        #         return 0 if j == m-1 and state else math.inf
         #     if not state:
         #         return abs(a[i]-b[j])+dfs(i+1, j, 1)
         #
@@ -1177,9 +1178,9 @@ class Solution:
         dp[pre][0] = 0
         for i in range(n):
             cur = 1 - pre
-            dp[cur][0] = inf
+            dp[cur][0] = math.inf
             for j in range(m):
-                dp[cur][j + 1] = ac.min(dp[pre][j] + abs(a[i] - b[j]), dp[pre][j + 1] + abs(a[i] - b[j]))
+                dp[cur][j + 1] = min(dp[pre][j] + abs(a[i] - b[j]), dp[pre][j + 1] + abs(a[i] - b[j]))
             pre = cur
         ac.st(dp[pre][-1])
         return
@@ -1310,7 +1311,7 @@ class Solution:
                     break
                 cur = nums[i]
                 for k in range(i - 1, -1, -1):
-                    dp[i][j] = ac.max(dp[k][j - 1] + cur, dp[i][j])
+                    dp[i][j] = max(dp[k][j - 1] + cur, dp[i][j])
                     cur ^= nums[k]
         ac.st(dp[-1][-1])
         return
@@ -1324,7 +1325,7 @@ class Solution:
 
         n, w, s = ac.read_list_ints()
         nums = ac.read_list_ints()  # TLE
-        dp = [[-inf] * w for _ in range(2)]
+        dp = [[-math.inf] * w for _ in range(2)]
         pre = 0
         dp[pre][0] = nums[0]
         for i in range(1, n):
@@ -1427,7 +1428,7 @@ class Solution:
             cur = 1 - pre
             lst = ac.accumulate(dp[pre])
             for j in range(n + 1):
-                low = ac.max(0, j - s[i])
+                low = max(0, j - s[i])
                 dp[cur][j] = lst[j + 1] - lst[low]
                 dp[cur][j] %= mod
             ans += dp[cur][n]
@@ -1461,9 +1462,9 @@ class Solution:
                 for j in range(k, -1, -1):
                     cur = dp[i][j]
                     if i >= x:
-                        cur = ac.max(cur, dp[i - x][j] + a)
+                        cur = max(cur, dp[i - x][j] + a)
                         if j >= 1:
-                            cur = ac.max(cur, dp[i - x][j - 1] + 2 * a)
+                            cur = max(cur, dp[i - x][j - 1] + 2 * a)
                     dp[i][j] = cur
         ac.st(dp[m][k])
         return
@@ -1507,7 +1508,7 @@ class Solution:
                     y_mid = y1 + m - 1
                     sub = [[x1, y1, x_mid, y_mid], [x1, y_mid + 1, x_mid, y2],
                            [x_mid + 1, y1, x2, y_mid], [x_mid + 1, y_mid + 1, x2, y2]]
-                    res = [0, inf]
+                    res = [0, math.inf]
                     for item in states:
                         cost = 0
                         for i in range(4):
@@ -1629,7 +1630,7 @@ class Solution:
                 dp[i][j] = val1 + 1 if val1 < val2 else val2 + 1
                 row[i].point_descend(j + 1, dp[i][j])
                 col[j].point_descend(i + 1, dp[i][j])
-        return dp[0][0] if dp[0][0] < inf else -1
+        return dp[0][0] if dp[0][0] < math.inf else -1
 
     @staticmethod
     def lc_2617_2(grid: List[List[int]]) -> int:
@@ -1653,12 +1654,12 @@ class Solution:
                     heapq.heappop(row[i])
                 while col[j] and col[j][0][1] < i:
                     heapq.heappop(col[j])
-                val = inf if not row[i] else row[i][0][0]
+                val = math.inf if not row[i] else row[i][0][0]
                 val = val if not col[j] or col[j][0][0] > val else col[j][0][0]
                 dp[i][j] = val + 1
                 heapq.heappush(row[i], [val + 1, grid[i][j] + j])
                 heapq.heappush(col[j], [val + 1, grid[i][j] + i])
-        return dp[-1][-1] if dp[-1][-1] < inf else -1
+        return dp[-1][-1] if dp[-1][-1] < math.inf else -1
 
     @staticmethod
     def lc_2617_3(grid: List[List[int]]) -> int:
@@ -1687,7 +1688,7 @@ class Solution:
                 lst.append(row[i][lst[-1]])
             last = lst[-1]
             for x in lst[1:-1]:
-                if dp[i][x] == inf:
+                if dp[i][x] == math.inf:
                     dp[i][x] = d + 1
                     stack.append([i, x])
                 row[i][x] = last
@@ -1699,7 +1700,7 @@ class Solution:
                 lst.append(col[j][lst[-1]])
             last = lst[-1]
             for x in lst[1:-1]:
-                if dp[x][j] == inf:
+                if dp[x][j] == math.inf:
                     dp[x][j] = d + 1
                     stack.append([x, j])
                 col[j][x] = last
@@ -1729,7 +1730,7 @@ class Solution:
         change = [[[-1, -1] for _ in range(b + 1)] for _ in range(n + 1)]
         for i in range(n):
             j = -1
-            for j in range(i, ac.max(-1, i - 5), -1):
+            for j in range(i, max(-1, i - 5), -1):
                 val = int(s[j:i + 1])
                 for x in range(b + 1 - val):
                     if dp[j][x] + 1 < dp[i + 1][x + val]:
@@ -1785,7 +1786,7 @@ class Solution:
         n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
         # dp[i][j]表示选第i个元素，且选了j个元素的最大和
-        dp = [[-inf] * (x + 1) for _ in range(n + 1)]
+        dp = [[-math.inf] * (x + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         stack = [deque() for _ in range(x + 1)]
         stack[0].append((0, 0))
@@ -1800,7 +1801,7 @@ class Solution:
                 stack[j].append((i, dp[i][j]))
 
         ans = max(dp[i][x] for i in range(n - k + 1, n + 1))
-        ac.st(ans if ans > -inf else -1)
+        ac.st(ans if ans > -math.inf else -1)
         return
 
     @staticmethod
@@ -1961,7 +1962,7 @@ class Solution:
         for i in range(n - 1, -1, -1):
             dp[i][i] = 1
             for j in range(i + 1, n):
-                dp[i][j] = ac.max(dp[i + 1][j], dp[i][j - 1])
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
                 if s[i] == s[j] and dp[i + 1][j - 1] + 2 > dp[i][j]:
                     dp[i][j] = dp[i + 1][j - 1] + 2
         ac.st(n - dp[0][n - 1])
@@ -2056,7 +2057,7 @@ class Solution:
         """
         # classicalmatrix_dp
         n, m, k = ac.read_list_ints()
-        dp = [[-inf] * (k + 1) for _ in range(n + 1)]
+        dp = [[-math.inf] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)
@@ -2120,7 +2121,7 @@ class Solution:
                     dp[t ^ 1][j] = dp[t][j - 1] + 1
                     cnt[t ^ 1][j] += cnt[t][j - 1]
                 else:
-                    dp[t ^ 1][j] = ac.max(dp[t][j], dp[t ^ 1][j - 1])
+                    dp[t ^ 1][j] = max(dp[t][j], dp[t ^ 1][j - 1])
                 # 注意个数去重
                 if dp[t ^ 1][j] == dp[t ^ 1][j - 1]:
                     cnt[t ^ 1][j] += cnt[t ^ 1][j - 1]
@@ -2148,8 +2149,8 @@ class Solution:
         def dfs(i, j):
             if i == m - 1 and j == n - 1:
                 return [grid[i][j], grid[i][j]]
-            low = inf
-            high = -inf
+            low = math.inf
+            high = -math.inf
             x = grid[i][j]
             for a, b in [[i + 1, j], [i, j + 1]]:
                 if a < m and j < n:
@@ -2255,13 +2256,13 @@ class Solution:
         for i in range(1, m):
             left = [0] * n
             for j in range(n):
-                a = -inf if not j else left[j - 1]
+                a = -math.inf if not j else left[j - 1]
                 b = pre[j] + j
                 left[j] = a if a > b else b
 
             right = [0] * n
             for j in range(n - 1, -1, -1):
-                a = -inf if j == n - 1 else right[j + 1]
+                a = -math.inf if j == n - 1 else right[j + 1]
                 b = pre[j] - j
                 right[j] = a if a > b else b
 
@@ -2433,7 +2434,7 @@ class Solution:
                         cur += 1 + lst[x]
                         x += 1
                 if cnt > 1:
-                    ans = ac.min(ans, cur)
+                    ans = min(ans, cur)
         ac.st(ans)
         return
 
@@ -2556,7 +2557,7 @@ class Solution:
                     dp[i + 1][j] -= dp[pre[i]][j - 1]
         ans = 0
         for j in range(n, -1, -1):
-            x = ac.min(k, dp[n][j])
+            x = min(k, dp[n][j])
             ans += x * (n - j)
             k -= x
         ac.st(ans if not k else -1)
@@ -2635,14 +2636,14 @@ class Solution:
                             if dp[get(i, j, p, q)]:
                                 dp[get(i + 1, j, nex_a[p][x], q + 1)] = 1
                                 dp[get(i + 1, nex_b[j][x], p, q)] = 1
-            ans = inf
+            ans = math.inf
             qq = -1
             for i in range(1, n):
                 if dp[get(n, 0, 0, i)]:
                     if abs(n - 2 * i) < ans:
                         ans = abs(n - 2 * i)
                         qq = i
-            if ans == inf:
+            if ans == math.inf:
                 ac.st(-1)
                 continue
 
@@ -2953,7 +2954,7 @@ class Solution:
         """
         m, n, k = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        ans = inf
+        ans = math.inf
         nums = []
         for g in grid:
             nums.extend(g)
@@ -2965,9 +2966,9 @@ class Solution:
                 for j in range(n):
                     for x in range(k + 1):
                         if x and grid[i][j] >= num:
-                            ndp[j][x] = min(ndp[j][x], ndp[j - 1][x - 1] if j else inf, dp[j][x - 1]) + grid[i][j]
+                            ndp[j][x] = min(ndp[j][x], ndp[j - 1][x - 1] if j else math.inf, dp[j][x - 1]) + grid[i][j]
                         if grid[i][j] <= num:
-                            ndp[j][x] = min(ndp[j][x], min(ndp[j - 1][x] if j else inf, dp[j][x]))
+                            ndp[j][x] = min(ndp[j][x], min(ndp[j - 1][x] if j else math.inf, dp[j][x]))
                 dp = [ls[:] for ls in ndp]
             ans = min(ans, dp[-1][k])
         ac.st(ans)
@@ -3201,7 +3202,7 @@ class Solution:
                         cur[x * n + y + 1] = min(cur[x * n + y + 1], pre[x * n + y] + col[x * n + y])
             pre = cur[:]
         for i in range(m):
-            ans = [pre[i * n + j] * 2 if pre[i * n + j] < inf else -1 for j in range(n)]
+            ans = [pre[i * n + j] * 2 if pre[i * n + j] < math.inf else -1 for j in range(n)]
             ac.lst(ans)
         return
 
@@ -3240,7 +3241,7 @@ class Solution:
                 dis = d[i] - d[j]
                 for x in range(0, min(i, kk + 1) - skip):
                     dp[i][x + skip] = min(dp[i][x + skip], dp[j][x] + a[j] * dis)
-        ans = inf
+        ans = math.inf
         for i in range(n):
             for j in range(kk + 1):
                 if j + n - i - 1 <= kk:
@@ -3529,7 +3530,7 @@ class Solution:
                     if i * j == p:
                         dp[i][j][p] = 0
 
-                    res = inf
+                    res = math.inf
                     for x in range(1, i):
                         for k1 in range(max(0, p - (i - x) * j), min(p, x * j) + 1):
                             cur = dp[x][j][k1] + dp[i - x][j][p - k1] + j * j

@@ -99,7 +99,7 @@ class Range:
         """select the maximum disjoint intervals"""
         lst.sort(key=lambda x: x[1])
         ans = 0
-        end = -inf
+        end = -math.inf
         for a, b in lst:
             if a >= end:
                 ans += 1

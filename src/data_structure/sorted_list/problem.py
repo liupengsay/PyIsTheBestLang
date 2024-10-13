@@ -18,7 +18,7 @@ Description：range_query|binary_search
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
 3013（https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query）
-
+100441（https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/）sorted_list|top_k_sum|bit_operation
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
@@ -75,10 +75,11 @@ ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）partial_order|sort
 """
 import bisect
 from bisect import insort_left, bisect_left
+from collections import Counter
 from typing import List
 
 from src.basis.various_sort.template import VariousSort
-from src.data_structure.sorted_list.template import SortedList, TopKSum
+from src.data_structure.sorted_list.template import SortedList, TopKSum, TopKSumSpecial
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 
@@ -103,7 +104,7 @@ class Solution:
         lst = SortedList()
         for i in range(n):
             lst.add(ind[nums[i]])
-            ans = ac.max(ans, i + 1 - lst.bisect_right(i + 1))
+            ans = max(ans, i + 1 - lst.bisect_right(i + 1))
         ac.st(ans)
         return
 
@@ -262,10 +263,10 @@ class Solution:
                 ans += x
             else:
                 i = lst.bisect_left(x)
-                cur = inf
+                cur = math.inf
                 for j in [i - 1, i]:
                     if 0 <= j < len(lst):
-                        cur = ac.min(cur, abs(lst[j] - x))
+                        cur = min(cur, abs(lst[j] - x))
                 ans += cur
             lst.add(x)
         ac.st(ans)
@@ -436,7 +437,7 @@ class Solution:
         tag: sorted_list|top_k_sum
         """
         n = len(nums)
-        ans = inf
+        ans = math.inf
         lst = TopKSum(k - 2)
         j = 2
         for i in range(1, n):
@@ -748,3 +749,36 @@ class Solution:
             ans += (i + 1) * cur
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100442(nums: List[int], k: int, x: int) -> List[int]:
+        """
+        url: https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
+        tag: top_k_sum|bit_operation
+        """
+        ans = []
+        bit = 32
+        lst = TopKSumSpecial(x, bit)
+        n = len(nums)
+        cnt = Counter()
+        for i in range(n):
+            num = nums[i]
+            c = cnt[num]
+            if c:
+                lst.discard(-((c << bit) | num))
+            cnt[num] += 1
+            c = cnt[num]
+            if c:
+                lst.add(-((c << bit) | num))
+
+            if i >= k - 1:
+                ans.append(lst.top_k_sum)
+                num = nums[i - k + 1]
+                c = cnt[num]
+                lst.discard(-((c << bit) | num))
+                cnt[num] -= 1
+                c = cnt[num]
+                if c:
+                    lst.add(-((c << bit) | num))
+
+        return ans

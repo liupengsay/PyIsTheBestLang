@@ -83,7 +83,7 @@ class Solution:
         """
 
         n, k = ac.read_list_ints()
-        low = ac.max(1, n - 12)
+        low = max(1, n - 12)
         high = n
 
         if math.factorial(high - low + 1) < k:

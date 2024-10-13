@@ -1,6 +1,6 @@
 """
 Algorithm：bag_dp|group_bag_dp|linear_bag_dp|matrix_bag_dp|limited_bag_dp|fill_table(from past)|refresh_table(update future)|lazy_bag_like|inclusion_exclusion
-Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
+Description：bag_dp|bin_split|finite|math.infinite|tree_bag_dp
 
 ====================================LeetCode====================================
 140（https://leetcode.cn/problems/word-break-ii/）bag_dp|specific_plan
@@ -9,7 +9,7 @@ Description：bag_dp|bin_split|finite|infinite|tree_bag_dp
 2585（https://leetcode.cn/problems/number-of-ways-to-earn-points/）bag_dp
 2189（https://leetcode.cn/problems/number-of-ways-to-build-house-of-cards/）bag_dp
 254（https://leetcode.cn/problems/factor-combinations/）bag_dp|mul
-377（https://leetcode.cn/problems/factor-combinations/）infinite|no_order|bag_dp
+377（https://leetcode.cn/problems/factor-combinations/）math.infinite|no_order|bag_dp
 1449（https://leetcode.cn/problems/form-largest-integer-with-digits-that-add-up-to-target/）bag_dp
 1049（https://leetcode.cn/problems/last-stone-weight-ii/）bag_dp
 2742（https://leetcode.cn/problems/painting-the-walls/description/）bag_dp
@@ -27,10 +27,10 @@ P1799（https://www.luogu.com.cn/problem/P1799）matrix_bag_dp
 P1566（https://www.luogu.com.cn/problem/P1566）counter|limited|bag_dp
 P1794（https://www.luogu.com.cn/problem/P1794）matrix_bag_dp
 P1806（https://www.luogu.com.cn/problem/P1806）bag_dp|counter
-P1853（https://www.luogu.com.cn/problem/P1853）bag_dp|infinite
+P1853（https://www.luogu.com.cn/problem/P1853）bag_dp|math.infinite
 P1874（https://www.luogu.com.cn/problem/P1874）brute_force|bag_dp
 P1977（https://www.luogu.com.cn/problem/P1977）group_bag_dp|finite
-P1586（https://www.luogu.com.cn/problem/P1586）group_bag_dp|infinite
+P1586（https://www.luogu.com.cn/problem/P1586）group_bag_dp|math.infinite
 P1566（https://www.luogu.com.cn/problem/P1566）bag_dp|counter
 P1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
 P1504（https://www.luogu.com.cn/problem/P1504）bag_dp|finite
@@ -38,26 +38,26 @@ P2066（https://www.luogu.com.cn/problem/P2066）group_bag_dp|finite
 P2340（https://www.luogu.com.cn/problem/P2340）bag_dp
 P2370（https://www.luogu.com.cn/problem/P2370）mst|sort|greedy|bag_dp
 P2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
-P2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|infinite
-P1474（https://www.luogu.com.cn/problem/P1474）bag_dp|infinite|counter
+P2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|math.infinite
+P1474（https://www.luogu.com.cn/problem/P1474）bag_dp|math.infinite|counter
 P1466（https://www.luogu.com.cn/problem/P1466）bag_dp|finite|和counter
 P1455（https://www.luogu.com.cn/problem/P1455）union_find|bag_dp|finite|
 P1230（https://www.luogu.com.cn/problem/P1230）sort|bag_dp|finite|
 P1077（https://www.luogu.com.cn/problem/P1077）bag_dp|finite|counter
-P2725（https://www.luogu.com.cn/problem/P2725）bag_dp|infinite|counter
-P2918（https://www.luogu.com.cn/problem/P2918）bag_dp|infinite|
-P3027（https://www.luogu.com.cn/problem/P3027）bag_dp|infinite
+P2725（https://www.luogu.com.cn/problem/P2725）bag_dp|math.infinite|counter
+P2918（https://www.luogu.com.cn/problem/P2918）bag_dp|math.infinite|
+P3027（https://www.luogu.com.cn/problem/P3027）bag_dp|math.infinite
 P3030（https://www.luogu.com.cn/problem/P3030）brute_force|group_bag_dp|finite|bag_dp
 P3040（https://www.luogu.com.cn/problem/P3040）matrix_bag_dp
 P4817（https://www.luogu.com.cn/problem/P4817）bag_dp|finite
 P5087（https://www.luogu.com.cn/problem/P5087）matrix_bag_dp
-P6205（https://www.luogu.com.cn/problem/P6205）bag_dp|infinite
+P6205（https://www.luogu.com.cn/problem/P6205）bag_dp|math.infinite
 P6389（https://www.luogu.com.cn/problem/P6389）bag_dp|finite
 P6567（https://www.luogu.com.cn/problem/P6567）finite|bag_dp|bin_split|classical
 P6771（https://www.luogu.com.cn/problem/P6771）sort|bag_dp|finite|bin_split
-P2842（https://www.luogu.com.cn/problem/P2842）bag_dp|infinite
-P2840（https://www.luogu.com.cn/problem/P2840）bag_dp|infinite
-P2834（https://www.luogu.com.cn/problem/P2834）bag_dp|infinite
+P2842（https://www.luogu.com.cn/problem/P2842）bag_dp|math.infinite
+P2840（https://www.luogu.com.cn/problem/P2840）bag_dp|math.infinite
+P2834（https://www.luogu.com.cn/problem/P2834）bag_dp|math.infinite
 P1064（https://www.luogu.com.cn/problem/P1064）bag_dp|finite|brute_force|classification_discussion|group_bag_dp
 P1156（https://www.luogu.com.cn/problem/P1156）bag_dp|finite
 P1273（https://www.luogu.com.cn/problem/P1273）tree|graph|group_bag_dp
@@ -66,24 +66,24 @@ P1441（https://www.luogu.com.cn/problem/P1441）brute_force|bag_dp
 P1537（https://www.luogu.com.cn/problem/P1537）bin_split|bag_dp
 P1541（https://www.luogu.com.cn/problem/P1541）brute_force|matrix_dp|fill_table
 P1759（https://www.luogu.com.cn/problem/P1759）matrix_bag_dp|lexicographical_order|specific_plan
-P1833（https://www.luogu.com.cn/problem/P1833）infinite|bag_dp|monotonic_queue|matrix_bag_dp
+P1833（https://www.luogu.com.cn/problem/P1833）math.infinite|bag_dp|monotonic_queue|matrix_bag_dp
 P2014（https://www.luogu.com.cn/problem/P2014）dag|tree_bag_dp
 P2079（https://www.luogu.com.cn/problem/P2079）rolling_hash|bag_dp
 P2170（https://www.luogu.com.cn/problem/P2170）union_find|bag_dp|finite|bin_split
 P2214（https://www.luogu.com.cn/problem/P2214）bag_dp|greedy
 P2306（https://www.luogu.com.cn/problem/P2306）data_range|counter|finite|bin_split
 P2320（https://www.luogu.com.cn/problem/P2320）bin_split|greedy|reverse_thinking
-P2737（https://www.luogu.com.cn/problem/P2737）infinite|bag_dp
+P2737（https://www.luogu.com.cn/problem/P2737）math.infinite|bag_dp
 P2760（https://www.luogu.com.cn/problem/P2760）monotonic_queue|matrix_bag_dp
 P2854（https://www.luogu.com.cn/problem/P2854）bag_dp|group_bag_dp|finite
-P2938（https://www.luogu.com.cn/problem/P2938）infinite|group_bag_dp
+P2938（https://www.luogu.com.cn/problem/P2938）math.infinite|group_bag_dp
 P2979（https://www.luogu.com.cn/problem/P2979）bag_dp|group_bag_dp|finite
 P3010（https://www.luogu.com.cn/problem/P3010）bag_dp|heapq
 P3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specific_plan|monotonic_queue
-P3983（https://www.luogu.com.cn/problem/P3983）infinite|bag_dp
+P3983（https://www.luogu.com.cn/problem/P3983）math.infinite|bag_dp
 P5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classical
-P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|infinite|brute_force|counter
-P5662（https://www.luogu.com.cn/problem/P5662）infinite|bag_dp|greedy
+P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|math.infinite|brute_force|counter
+P5662（https://www.luogu.com.cn/problem/P5662）math.infinite|bag_dp|greedy
 P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 P1489（https://www.luogu.com.cn/problem/P1489）bag_dp|brute_force
 P1651（https://www.luogu.com.cn/problem/P1651）linear_dp|brain_teaser|classical
@@ -95,7 +95,7 @@ P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_d
 543A（https://codeforces.com/problemset/problem/543/A）matrix_bag_dp
 148E（https://codeforces.com/problemset/problem/148/E）bag_dp|finite|brute_force
 1433F（https://codeforces.com/problemset/problem/1433/F）bag_dp|finite|brute_force
-1657D（https://codeforces.com/contest/1657/problem/D）infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
+1657D（https://codeforces.com/contest/1657/problem/D）math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
 1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greedy|specific_plan|classical
 1862F（https://codeforces.com/contest/1862/problem/F）bag_dp|brute_force
 1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
@@ -127,7 +127,7 @@ ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greed
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
 6（https://www.acwing.com/problem/content/description/6/）monotonic_queue|matrix_bag_dp
-7（https://www.acwing.com/problem/content/7/）bag_dp|finite|infinite|matrix_bag_dp
+7（https://www.acwing.com/problem/content/7/）bag_dp|finite|math.infinite|matrix_bag_dp
 8（https://www.acwing.com/problem/content/8/）matrix_bag_dp|finite
 9（https://www.acwing.com/problem/content/9/）bag_dp|group_bag_dp|finite
 10（https://www.acwing.com/problem/content/10/）tree_bag_dp
@@ -161,26 +161,26 @@ class Solution:
         tag: bag_dp|finite|brute_force
         """
         m, n, k = ac.read_list_ints()
-        pre = [-inf] * k
+        pre = [-math.inf] * k
         pre[0] = 0
         x = n // 2
         for _ in range(m):
             nums = ac.read_list_ints()
-            dp = [[-inf] * k for _ in range(x + 1)]
+            dp = [[-math.inf] * k for _ in range(x + 1)]
             dp[0][0] = 0
             for num in nums:
                 nex = [ls[:] for ls in dp]
                 for i in range(x):
                     for j in range(k):
                         d = (j + num) % k
-                        nex[i + 1][d] = ac.max(dp[i][j] + num, nex[i + 1][d])
+                        nex[i + 1][d] = max(dp[i][j] + num, nex[i + 1][d])
                 dp = [ls[:] for ls in nex]
             tmp = [max(dp[i][j] for i in range(x + 1)) for j in range(k)]
 
             cur = pre[:]
             for i in range(k):
                 for j in range(k):
-                    cur[(i + j) % k] = ac.max(cur[(i + j) % k], pre[i] + tmp[j])
+                    cur[(i + j) % k] = max(cur[(i + j) % k], pre[i] + tmp[j])
             pre = cur[:]
 
         ac.st(pre[0])
@@ -286,7 +286,7 @@ class Solution:
             if pre >= n - i:
                 return 0
             if i == n:
-                return inf
+                return math.inf
             res = dfs(i + 1, pre - 1)
             cur = dfs(i + 1, pre + time[i]) + cost[i]
             if cur < res:
@@ -357,19 +357,19 @@ class Solution:
     def cf_1657d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1657/problem/D
-        tag: infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
+        tag: math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
         """
         n, c = ac.read_list_ints()
         dp = [0] * (c + 1)
         for _ in range(n):
             cc, dd, hh = ac.read_list_ints()
-            dp[cc] = ac.max(dp[cc], dd * hh)
+            dp[cc] = max(dp[cc], dd * hh)
 
         for i in range(1, c + 1):
-            dp[i] = ac.max(dp[i], dp[i - 1])
+            dp[i] = max(dp[i], dp[i - 1])
             x = dp[i]
             for y in range(i * 2, c + 1, i):
-                dp[y] = ac.max(dp[y], x * (y // i))
+                dp[y] = max(dp[y], x * (y // i))
 
         ans = []
         for _ in range(ac.read_int()):
@@ -409,7 +409,7 @@ class Solution:
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         nums.sort(reverse=True)
-        dp = [-inf] * (n + 1)
+        dp = [-math.inf] * (n + 1)
         dp[0] = 0
         for num in nums:
             val = score[num - 1]
@@ -605,7 +605,7 @@ class Solution:
                     gain = sum(v * p for v, p in lst)
                     cost = sum(v for v, _ in lst)
                     for xx in range(n, cost - 1, -1):
-                        dp[cur][xx] = ac.max(
+                        dp[cur][xx] = max(
                             dp[cur][xx], dp[pre][xx - cost] + gain)
                 pre = cur
         ac.st(dp[pre][-1])
@@ -622,7 +622,7 @@ class Solution:
         dct = [ac.read_list_ints() for _ in range(m)]
         dct.sort(key=lambda it: it[0])
 
-        dp = [-inf] * (n + 1)  # dp[height]=life
+        dp = [-math.inf] * (n + 1)  # dp[height]=life
         dp[0] = 10
         for t, f, h in dct:
             if dp[0] < t:
@@ -634,7 +634,7 @@ class Solution:
                         ac.st(t)
                         return
                     if i + h <= n:
-                        dp[i + h] = ac.max(dp[i + h], dp[i])
+                        dp[i + h] = max(dp[i + h], dp[i])
                     dp[i] += f
         ac.st(dp[0])
         return
@@ -676,8 +676,8 @@ class Solution:
                             if k2 >= len(sub[j]):
                                 break
                             if len(cur) < k1 + k2 + 1:
-                                cur.extend([-inf] * (k1 + k2 + 1 - len(cur)))
-                            cur[k1 + k2] = ac.max(cur[k1 + k2], sub[j][k2] + sub[i][k1] - cost)
+                                cur.extend([-math.inf] * (k1 + k2 + 1 - len(cur)))
+                            cur[k1 + k2] = max(cur[k1 + k2], sub[j][k2] + sub[i][k1] - cost)
                     sub[j] = []
                     sub[i] = cur[:]
         for x in range(m, -1, -1):
@@ -723,7 +723,7 @@ class Solution:
                     c = s - a - b
                     if b + c > a > 0 and a + c > b > 0 and a + b > c > 0:
                         cur = check()
-                        ans = ac.max(ans, cur)
+                        ans = max(ans, cur)
         if ans == -1:
             ac.st(ans)
         else:
@@ -748,7 +748,7 @@ class Solution:
                     if dp[i - num]:
                         dp[i] = 1
             cur = sum(dp) - 1
-            ans = ac.max(ans, cur)
+            ans = max(ans, cur)
         ac.st(ans)
         return
 
@@ -813,17 +813,17 @@ class Solution:
                         if i + 2 * j + 3 * k + 4 * p <= n - 1:
                             pre = 0
                             if i:
-                                pre = ac.max(pre, dp[idx(i - 1, j, k, p)])
+                                pre = max(pre, dp[idx(i - 1, j, k, p)])
                             if j:
-                                pre = ac.max(pre, dp[idx(i, j - 1, k, p)])
+                                pre = max(pre, dp[idx(i, j - 1, k, p)])
                             if k:
-                                pre = ac.max(pre, dp[idx(i, j, k - 1, p)])
+                                pre = max(pre, dp[idx(i, j, k - 1, p)])
                             if p:
-                                pre = ac.max(pre, dp[idx(i, j, k, p - 1)])
-                            dp[idx(i, j, k, p)] = ac.max(dp[idx(i, j, k, p)],
+                                pre = max(pre, dp[idx(i, j, k, p - 1)])
+                            dp[idx(i, j, k, p)] = max(dp[idx(i, j, k, p)],
                                                          pre + nums[i + 2 * j + 3 * k + 4 * p])
                         if i + 2 * j + 3 * k + 4 * p == n - 1:
-                            ans = ac.max(ans, dp[idx(i, j, k, p)])
+                            ans = max(ans, dp[idx(i, j, k, p)])
         ac.st(ans)
         return
 
@@ -882,13 +882,13 @@ class Solution:
             ac.st(0)
             return
         nums = ac.read_list_ints()
-        dp = [[-inf] * (n + 1) for _ in range(n)]
+        dp = [[-math.inf] * (n + 1) for _ in range(n)]
         dp[0][0] = 0
         dp[0][1] = 1 if nums[0] == 1 else 0
         for i in range(1, n):
             dp[i][0] = 0
             for j in range(1, i + 2):
-                dp[i][j] = ac.max(dp[i - 1][j], dp[i - 1][j - 1] + int(nums[i] == j))
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - 1] + int(nums[i] == j))
         ac.st(max(dp[n - 1]))
         return
 
@@ -896,7 +896,7 @@ class Solution:
     def lg_p1833(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1833
-        tag: infinite|bag_dp|monotonic_queue|matrix_bag_dp|classical
+        tag: math.infinite|bag_dp|monotonic_queue|matrix_bag_dp|classical
         """
 
         def check(st):
@@ -910,7 +910,7 @@ class Solution:
             tt, cc, p = ac.read_list_ints()
             if not p:
                 for i in range(tt, t + 1):
-                    dp[i] = ac.max(dp[i], dp[i - tt] + cc)
+                    dp[i] = max(dp[i], dp[i - tt] + cc)
             else:
                 v, w, s = tt, cc, p
                 for r in range(v):
@@ -955,7 +955,7 @@ class Solution:
                         cur = dp[i][:]
                         for x in range(m + 2):
                             for y in range(m + 2 - x):
-                                cur[x + y] = ac.max(cur[x + y], dp[i][x] + dp[j][y])
+                                cur[x + y] = max(cur[x + y], dp[i][x] + dp[j][y])
                         dp[i] = cur[:]
         ac.st(dp[0][m + 1])
         return
@@ -967,7 +967,7 @@ class Solution:
         tag: rolling_hash|bag_dp|classical
         """
         n, v = ac.read_list_ints()
-        dp = [defaultdict(lambda: defaultdict(lambda: -inf)), defaultdict(lambda: defaultdict(lambda: -inf))]
+        dp = [defaultdict(lambda: defaultdict(lambda: -math.inf)), defaultdict(lambda: defaultdict(lambda: -math.inf))]
         pre = 0
         dp[pre][0][0] = 0
         for i in range(n):
@@ -976,14 +976,14 @@ class Solution:
             for c1 in dp[pre]:
                 for x1 in dp[pre][c1]:
                     if c1 + c <= v:
-                        dp[cur][c1 + c][x1 + x] = ac.max(dp[cur][c1 + c][x1 + x], dp[pre][c1][x1] + y)
-                    dp[cur][c1][x1] = ac.max(dp[cur][c1][x1], dp[pre][c1][x1])
+                        dp[cur][c1 + c][x1 + x] = max(dp[cur][c1 + c][x1 + x], dp[pre][c1][x1] + y)
+                    dp[cur][c1][x1] = max(dp[cur][c1][x1], dp[pre][c1][x1])
             pre = cur
-        ans = -inf
+        ans = -math.inf
         for c1 in dp[pre]:
             for x1 in dp[pre][c1]:
                 if x1 >= 0:
-                    ans = ac.max(ans, dp[pre][c1][x1])
+                    ans = max(ans, dp[pre][c1][x1])
         ac.st(ans)
         return
 
@@ -1004,7 +1004,7 @@ class Solution:
         lst = list(dct.values())
         del uf
 
-        target = ac.min(2 * m, n)
+        target = min(2 * m, n)
         dp = [0] * (target + 1)
         dp[0] = 1
         cnt = Counter(lst)
@@ -1042,9 +1042,9 @@ class Solution:
         dp[0] = 0
         for num in nums:
             for i in range(num, ceil + 1):
-                dp[i] = ac.min(dp[i - num] + 1, dp[i])
+                dp[i] = min(dp[i - num] + 1, dp[i])
         ans = sum(dp[x] for x in voice)
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1063,7 +1063,7 @@ class Solution:
             for b in cnt[a]:
                 for x in BagDP().bin_split_1(cnt[a][b]):
                     for i in range(m, x * a - 1, -1):
-                        dp[i] = ac.max(dp[i], dp[i - x * a] + x * b)
+                        dp[i] = max(dp[i], dp[i - x * a] + x * b)
         ans = max(dp)
         if ans >= k:
             ac.yes()
@@ -1091,7 +1091,7 @@ class Solution:
     def lg_p2737(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2737
-        tag: infinite|bag_dp
+        tag: math.infinite|bag_dp
         """
         n = ac.read_int()
         ceil = 256 ** 2 + 1
@@ -1116,7 +1116,7 @@ class Solution:
         tag: monotonic_queue|matrix_bag_dp|classical
         """
         m, n, p, t = ac.read_list_ints()
-        rest = ac.min(p, t - 1)
+        rest = min(p, t - 1)
         dp = [0] * (rest + 1)
         grid = [ac.read_list_ints() for _ in range(m)]
         mat = [ac.read_list_ints() for _ in range(m)]
@@ -1143,26 +1143,26 @@ class Solution:
         tag: bag_dp|group_bag_dp|finite
         """
         length, n, b = ac.read_list_ints()
-        dp = [[-inf] * (b + 1) for _ in range(length + 1)]
+        dp = [[-math.inf] * (b + 1) for _ in range(length + 1)]
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
         for x, w, f, c in nums:
             if x == 0:
                 if c <= b:
-                    dp[x + w][c] = ac.max(dp[x + w][c], f)
+                    dp[x + w][c] = max(dp[x + w][c], f)
             else:
                 for i in range(b + 1):
                     if i + c <= b and x + w <= length:
-                        dp[x + w][i + c] = ac.max(dp[x + w][i + c], dp[x][i] + f)
+                        dp[x + w][i + c] = max(dp[x + w][i + c], dp[x][i] + f)
         ans = max(dp[length])
-        ac.st(ans if ans > -inf else -1)
+        ac.st(ans if ans > -math.inf else -1)
         return
 
     @staticmethod
     def lg_p2938(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2938
-        tag: infinite|group_bag_dp
+        tag: math.infinite|group_bag_dp
         """
         s, d, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(s)]
@@ -1172,7 +1172,7 @@ class Solution:
                 a, b = nums[j][i - 1], nums[j][i]
                 if b > a:
                     for p in range(a, m + 1):
-                        dp[p] = ac.max(dp[p], dp[p - a] + b)
+                        dp[p] = max(dp[p], dp[p - a] + b)
             m = max(m - i + dp[i] for i in range(m + 1))
         ac.st(m)
         return
@@ -1196,7 +1196,7 @@ class Solution:
         for v, h in nums:
             if h >= k:
                 for i in range(t, h - 1, -1):
-                    ans = ac.max(ans, dp1[(i - h) * 5 // 4] + v)
+                    ans = max(ans, dp1[(i - h) * 5 // 4] + v)
         ac.st(ans)
         return
 
@@ -1297,20 +1297,20 @@ class Solution:
     def lg_p3983(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3983
-        tag: infinite|bag_dp
+        tag: math.infinite|bag_dp
         """
         n = ac.read_int()
         m = 10
         a = [0] + ac.read_list_ints()
         for i in range(1, m + 1):
             for j in range(i + 1):
-                a[i] = ac.max(a[i], a[j] + a[i - j])
+                a[i] = max(a[i], a[j] + a[i - j])
 
         cost = [0] + [1, 3, 5, 7, 9, 10, 11, 14, 15, 17]
         dp = [0] * (n + 1)
         for i in range(1, m + 1):
             for j in range(i, n + 1):
-                dp[j] = ac.max(dp[j], dp[j - i] + a[i] - cost[i])
+                dp[j] = max(dp[j], dp[j - i] + a[i] - cost[i])
         ac.st(dp[-1])
         return
 
@@ -1330,7 +1330,7 @@ class Solution:
                 for ind, w in enumerate(lst):
                     if j <= w * 2:
                         break
-                    dp[j] = ac.max(dp[j], dp[j - 2 * w - 1] + (ind + 1) * (i + 1))
+                    dp[j] = max(dp[j], dp[j - 2 * w - 1] + (ind + 1) * (i + 1))
         ac.st(dp[-1])
         return
 
@@ -1338,7 +1338,7 @@ class Solution:
     def lg_p5365(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5365
-        tag: bag_dp|infinite|brute_force|counter
+        tag: bag_dp|math.infinite|brute_force|counter
         """
         n, m = ac.read_list_ints()
         kk = ac.read_list_ints()
@@ -1352,7 +1352,7 @@ class Solution:
                 for p in range(1, k + 1):
                     if x < p * c:
                         break
-                    dp[x] = ac.max(dp[x], dp[x - p * c] * p)
+                    dp[x] = max(dp[x], dp[x - p * c] * p)
         for i in range(s + 1):
             if dp[i] >= m:
                 ac.st(i)
@@ -1363,7 +1363,7 @@ class Solution:
     def lg_p5662(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5662
-        tag: infinite|bag_dp|greedy
+        tag: math.infinite|bag_dp|greedy
         """
         t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
@@ -1373,7 +1373,7 @@ class Solution:
                 b, a = grid[i][j], grid[i - 1][j]
                 if b > a:
                     for x in range(a, m + 1):
-                        dp[x] = ac.max(dp[x], dp[x - a] + b)
+                        dp[x] = max(dp[x], dp[x - a] + b)
             m = max(m - i + dp[i] for i in range(m + 1))
         ac.st(m)
         return
@@ -1394,7 +1394,7 @@ class Solution:
         for i in ind:
             aa, bb, cc = a[i], b[i], c[i]
             for j in range(t, cc - 1, -1):
-                dp[j] = ac.max(dp[j], dp[j - cc] + aa - j * bb)
+                dp[j] = max(dp[j], dp[j - cc] + aa - j * bb)
         ac.st(max(dp))
         return
 
@@ -1425,7 +1425,7 @@ class Solution:
         cnt5 = [check5(num) for num in nums]
 
         s5 = sum(cnt5)
-        dp = [[-inf] * (s5 + 1) for _ in range(k + 1)]
+        dp = [[-math.inf] * (s5 + 1) for _ in range(k + 1)]
         dp[0][0] = 0
         for i in range(n):
             a2 = cnt2[i]
@@ -1437,7 +1437,7 @@ class Solution:
                         dp[j][p] = y
         ans = 0
         for a5 in range(s5 + 1):
-            cur = ac.min(dp[k][a5], a5)
+            cur = min(dp[k][a5], a5)
             if cur > ans:
                 ans = cur
         ac.st(ans)
@@ -1525,7 +1525,7 @@ class Solution:
     def lc_377(nums: List[int], target: int) -> int:
         """
         url: https://leetcode.cn/problems/factor-combinations/
-        tag: infinite|no_order|bag_dp
+        tag: math.infinite|no_order|bag_dp
         """
         dp = [0] * (target + 1)
         dp[0] = 1
@@ -1615,7 +1615,7 @@ class Solution:
                     if yy + 1 < 301:
                         dp[xx][yy] = min(dp[xx][yy], dp[xx][yy + 1])
         ans = dp[x][y]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1655,7 +1655,7 @@ class Solution:
             m, x = ac.read_list_ints()
             nums = [ac.read_list_ints() for _ in range(m)]
             tot = sum(h for _, h in nums)
-            dp = [-inf] * (tot + 1)
+            dp = [-math.inf] * (tot + 1)
             dp[0] = 0
             for i in range(m):
                 c, h = nums[i]
@@ -1685,7 +1685,7 @@ class Solution:
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
         tot5 *= n
-        dp = [-inf] * tot5 * (k + 1)
+        dp = [-math.inf] * tot5 * (k + 1)
         dp[0] = 0
         pre5 = 0
         for i, num in enumerate(nums):
@@ -1823,7 +1823,7 @@ class Solution:
                     else:
                         dp[j + 1][num] = min(dp[j + 1][num], dp[j][x] + 1)
         ans = min(dp[k][i] for i in range(120))
-        if ans < inf:
+        if ans < math.inf:
             ac.st(ans)
         else:
             ac.st("You can't do it.")

@@ -22,7 +22,7 @@ class ManhattanMST:
             mid = dict()
             for xx, yy, i in pos:
                 val = tree.pre_min(dct[yy - xx] + 1)
-                if val < inf:
+                if val < math.inf:
                     edges.append((val + yy + xx, i, mid[val]))
                 tree.point_descend(dct[yy - xx] + 1, -yy - xx)
                 mid[-yy - xx] = i
@@ -87,7 +87,7 @@ class KruskalMinimumSpanningTree:
             # Point priority with Dijkstra
             dct = [dict() for _ in range(self.n)]
             for i, j, w in self.edges:
-                c = dct[i].get(j, inf)
+                c = dct[i].get(j, math.inf)
                 c = c if c < w else w
                 dct[i][j] = dct[j][i] = c
             dis = [math.inf] * self.n
@@ -136,7 +136,7 @@ class PrimMinimumSpanningTree:
                     visit[j] = dj
                 if nex == -1 or visit[j] < visit[nex]:
                     nex = j
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
 
 class TreeAncestorMinIds:

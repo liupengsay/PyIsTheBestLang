@@ -366,7 +366,7 @@ class Solution:
         initial = [0] + [math.inf] * (n - 1)
         res = MatrixFastPowerMin().matrix_pow(grid, ll)
         ans = [max(res[i][0], initial[0]) for i in range(n)]
-        ans = [x if x < inf else -1 for x in ans]
+        ans = [x if x < math.inf else -1 for x in ans]
         ac.lst(ans)
         return
 

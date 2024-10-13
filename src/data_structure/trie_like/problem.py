@@ -269,7 +269,7 @@ class Solution:
         trie = StringTrieSearch(sum(len(x) for x in words), n)
         ans = 0
         for i in range(n):
-            ans = ac.max(ans, trie.add_cnt([ord(w) - ord("a") for w in words[i]], i + 1))
+            ans = max(ans, trie.add_cnt([ord(w) - ord("a") for w in words[i]], i + 1))
         ac.st(ans)
         return
 
@@ -289,7 +289,7 @@ class Solution:
         stack = [(0, 0)]
         while stack:
             i, v = stack.pop()
-            ans = ac.max(ans, trie.get_maximum_xor(v))
+            ans = max(ans, trie.get_maximum_xor(v))
             trie.add(v)
             for j, w in dct[i]:
                 stack.append((j, w ^ v))
@@ -383,7 +383,7 @@ class Solution:
         ans = 0
         trie = BinaryTrieXor((1 << 31) - 1, n)
         for num in ac.read_list_ints():
-            ans = ac.max(ans, trie.get_maximum_xor(num))
+            ans = max(ans, trie.get_maximum_xor(num))
             trie.add(num)
         ac.st(ans)
         return
@@ -425,7 +425,7 @@ class Solution:
         stack = [(0, -1, 0)]
         while stack:
             i, fa, v = stack.pop()
-            ans = ac.max(ans, trie.get_maximum_xor(v))
+            ans = max(ans, trie.get_maximum_xor(v))
             trie.add(v)
             for j, w in dct[i]:
                 if j != fa:
@@ -617,14 +617,14 @@ class Solution:
 
         cost = [0] * (length + 1)
         for i in range(length - 1, -1, -1):
-            cost[i] = cost[i + 1] + ac.min(n - cnt[i], cnt[i])
+            cost[i] = cost[i + 1] + min(n - cnt[i], cnt[i])
 
         trie = StringTrieSearch(m * length, m, 2)
         for i in range(m):
             word = ac.read_str()
             trie.add_bin([ord(w) - ord("a") for w in word], i + 1)
 
-        ans = inf
+        ans = math.inf
         stack = [(0, 0, 0)]
         while stack:
             x, cur, p = stack.pop()
@@ -635,13 +635,13 @@ class Solution:
             if one:
                 stack.append((x + 1, one, p + n - cnt[x]))
             else:
-                ans = ac.min(ans, p + n - cnt[x] + cost[x + 1])
+                ans = min(ans, p + n - cnt[x] + cost[x + 1])
 
             zero = trie.son_and_ind[cur * trie.string_state] >> trie.cnt_bit
             if zero:
                 stack.append((x + 1, zero, p + cnt[x]))
             else:
-                ans = ac.min(ans, p + cnt[x] + cost[x + 1])
+                ans = min(ans, p + cnt[x] + cost[x + 1])
         ac.st(ans)
         return
 
@@ -806,12 +806,12 @@ class Solution:
         for i in range(n):
             pre ^= nums[i]
             trie.add(pre)
-            ans = ac.max(ans, pre)
+            ans = max(ans, pre)
 
         pre = 0
         for i in range(n - 1, -1, -1):
             pre ^= nums[i]
-            ans = ac.max(ans, trie.get_maximum_xor(pre))
+            ans = max(ans, trie.get_maximum_xor(pre))
         ac.st(ans)
         return
 
@@ -1112,7 +1112,7 @@ class Solution:
                     cur = path[v] ^ x
                     if dis[v] % 2:
                         cur ^= tot
-                    ans = -inf
+                    ans = -math.inf
                     if dis[v] % 2:
                         odd_trie.remove(path[v], 1)
                     ans = max(ans, odd_trie.get_maximum_xor(cur ^ tot))

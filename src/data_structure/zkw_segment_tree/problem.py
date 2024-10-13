@@ -57,7 +57,7 @@ class Solution:
                     val = sum(pre[x][j] * nums[i][j] for j in range(k))
                     tree[x].point_set(i, val)
             else:
-                ans = -inf
+                ans = -math.inf
                 ll, rr = [w - 1 for w in lst[1:]]
                 for i in range(m):
                     cur = tree[i].range_max_min_gap(ll, rr)

@@ -88,7 +88,7 @@ from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.sparse_table.template import SparseTable
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.strings.suffix_array.template import SuffixArray
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -687,7 +687,7 @@ class Solution:
         for i in range(1, m + n + 1):
             if (sa[i - 1] < m < sa[i] or sa[i - 1] > m > sa[i]) and height[i] > ans:
                 ans = height[i]
-                ind = ac.min(sa[i - 1], sa[i])
+                ind = min(sa[i - 1], sa[i])
         ac.st(s[ind:ind + ans])
         return
 
@@ -704,15 +704,15 @@ class Solution:
         nums = nums1 + [26] + nums2
         sa, rk, height = SuffixArray().build(nums, 27)
         height.append(0)
-        ans = inf
+        ans = math.inf
         for i in range(1, m + n + 1):
             if not height[i]:
                 continue
             if sa[i - 1] < m < sa[i] or sa[i - 1] > m > sa[i]:
-                a = ac.max(height[i - 1], height[i + 1])
+                a = max(height[i - 1], height[i + 1])
                 if a + 1 <= height[i] and a + 1 < ans:
                     ans = a + 1
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1210,8 +1210,8 @@ class Solution:
             i1, j1 = a
             i2, j2 = b
             x = lcp(i1, i2)
-            x = ac.min(x, j1 - i1 + 1)
-            x = ac.min(x, j2 - i2 + 1)
+            x = min(x, j1 - i1 + 1)
+            x = min(x, j2 - i2 + 1)
             if x == j1 - i1 + 1:
                 if x == j2 - i2 + 1:
                     return -1 if i1 < i2 else 1
@@ -1247,7 +1247,7 @@ class Solution:
         for _ in range(ac.read_int()):
             i1, j1, i2, j2 = ac.read_list_ints_minus_one()
             x = lcp(i1, i2)
-            x = ac.min(x, j1 - i1 + 1)
+            x = min(x, j1 - i1 + 1)
             if j1 - i1 + 1 == j2 - i2 + 1 == x:
                 ac.yes()
             else:
@@ -1509,8 +1509,8 @@ class Solution:
                 i1, j1 = a
                 i2, j2 = b
                 x = lcp(i1, i2)
-                x = ac.min(x, j1 - i1 + 1)
-                x = ac.min(x, j2 - i2 + 1)
+                x = min(x, j1 - i1 + 1)
+                x = min(x, j2 - i2 + 1)
                 if x == j1 - i1 + 1:
                     if x == j2 - i2 + 1:
                         return -1 if i1 < i2 else 1

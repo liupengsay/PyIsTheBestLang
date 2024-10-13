@@ -48,7 +48,7 @@ from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetP
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
     UnionFindGetLCA, TreeAncestorMaxSub
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -363,7 +363,7 @@ class Solution:
         while stack:
             i = stack.pop()
             for j, w in dct[i]:
-                if dis[j] == inf:
+                if dis[j] == math.inf:
                     dis[j] = dis[i] + w
                     stack.append(j)
                     parent[j] = i
@@ -538,13 +538,13 @@ class Solution:
                             cnt[i] = 0
                         for x in lst:
                             cnt[nums[x]] += 1
-                        ans = pre = inf
+                        ans = pre = math.inf
                         for i in range(1001):
                             if cnt[i] >= 2:
                                 ans = 0
                                 break
                             if cnt[i]:
-                                if pre < inf:
+                                if pre < math.inf:
                                     ans = min(ans, pre ^ i)
                                 pre = i
                         ac.st(ans)
@@ -689,7 +689,7 @@ class Solution:
             a, b, v = ac.read_list_ints()
             a -= 1
             b -= 1
-            ans = [math.inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+            ans = [math.inf, -math.inf, -math.inf, math.inf]  # floor, ceil, max_gain, min_gain
             path, _ = heavy.query_chain(a, b)
             for x, y in path:
                 if x <= y:

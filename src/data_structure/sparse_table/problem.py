@@ -110,7 +110,7 @@ class Solution:
         for i, num in enumerate(nums):
             dct[num].append(i)
         st_gcd = SparseTable(nums, math.gcd)
-        st_min = SparseTable(nums, ac.min)
+        st_min = SparseTable(nums, min)
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints_minus_one()
             num1 = st_gcd.query(x, y)
@@ -286,7 +286,7 @@ class Solution:
             cur = dict()
             num = nums[i]
             for x in post:
-                y = cur.get(x | num, inf)
+                y = cur.get(x | num, math.inf)
                 cur[x | num] = y if y < post[x] else post[x]
             cur[num] = i
             post = cur
@@ -307,7 +307,7 @@ class Solution:
         for i in range(n - 1, -1, -1):
             right = post[i + 1]
             for p, _ in pf.prime_factor[nums[i]]:
-                right = ac.min(ind[p], right)
+                right = min(ind[p], right)
                 ind[p] = i
             post[i] = right
 
@@ -433,8 +433,8 @@ class Solution:
         stack = []
         for i in range(n):
             if i + l - 1 < n:
-                j = st_ind.query(i + l, ac.min(i + r, n))
-                stack.append((pre[i] - pre[j], i, j, i + l, ac.min(i + r, n)))
+                j = st_ind.query(i + l, min(i + r, n))
+                stack.append((pre[i] - pre[j], i, j, i + l, min(i + r, n)))
             else:
                 break
 
@@ -514,20 +514,20 @@ class Solution:
         @lru_cache(None)
         def dfs(i, pre, a):
             if i == n:
-                return nums[-1] if pre == and_values[-1] and a == m else inf
+                return nums[-1] if pre == and_values[-1] and a == m else math.inf
             if a > m:
-                return inf
+                return math.inf
             if pre == -1:
                 res = dfs(i + 1, nums[i], a + 1)
                 return res
-            res = inf
+            res = math.inf
             if pre == and_values[a - 1]:
                 res = dfs(i + 1, nums[i], a + 1) + nums[i - 1]
             res = min(res, dfs(i + 1, nums[i] & pre, a))
             return res
 
         ans = dfs(0, -1, 0)
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def abc_212f(ac=FastIO()):
@@ -645,7 +645,7 @@ class Solution:
         """
         n = len(nums)
         st = SparseTable(nums, and_)
-        ans = inf
+        ans = math.inf
         initial = (1 << 32) - 1
         for i in range(n):
             j, val = st.bisect_right(i, k, initial)
@@ -682,11 +682,11 @@ class Solution:
                 cur = dict()
                 num = nums[i % n]
                 for p in pre:
-                    cur[p | num] = min(cur.get(p | num, inf), pre[p] + 1)
-                cur[num] = min(cur.get(num, inf), 1)
+                    cur[p | num] = min(cur.get(p | num, math.inf), pre[p] + 1)
+                cur[num] = min(cur.get(num, math.inf), 1)
                 pre = cur
                 for p in pre:
-                    tmp = val.get(p, inf)
+                    tmp = val.get(p, math.inf)
                     ind = check(pre[p], (i - pre[p] + 1) % n)
                     if ind < tmp:
                         val[p] = ind

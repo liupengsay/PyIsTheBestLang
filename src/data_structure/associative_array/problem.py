@@ -52,7 +52,7 @@ class Solution:
             while cur < n:
                 ans += 1
                 other = cur
-                x = ac.min(n - cur, other)
+                x = min(n - cur, other)
                 ans += x
                 cur += x
                 other -= x

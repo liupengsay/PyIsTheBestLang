@@ -387,4 +387,4 @@ class Solution:
                     if f[i] > tmp:
                         f[i] = tmp
                 cur = cur.last
-        return f[-1] if f[-1] < inf else -1
+        return f[-1] if f[-1] < math.inf else -1

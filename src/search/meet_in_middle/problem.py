@@ -107,7 +107,7 @@ class Solution:
 
         def find(left, right):
             a, b = len(left), len(right)
-            res = inf
+            res = math.inf
             i = 0
             j = b - 1
             while i < a and j >= 0:
@@ -124,7 +124,7 @@ class Solution:
         n = len(nums) // 2
         pre = check(nums[:n])
         post = check(nums[n:])
-        ans = inf
+        ans = math.inf
         target = sum(nums) / 2
         for k in range(n + 1):
             ans = min(ans, 2 * find(sorted(list(pre[k])), sorted(list(post[n - k]))))

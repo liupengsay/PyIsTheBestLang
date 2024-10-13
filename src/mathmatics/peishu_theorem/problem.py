@@ -82,7 +82,7 @@ class Solution:
         n = ac.read_int()
         ll = ac.read_list_ints()
         cc = ac.read_list_ints()
-        pre = defaultdict(lambda: inf)
+        pre = defaultdict(lambda: math.inf)
         for i in range(n):
             cur = pre.copy()
             for p in pre:
@@ -90,5 +90,5 @@ class Solution:
                 cur[g] = min(cur[g], pre[p] + cc[i])
             cur[ll[i]] = min(cur[ll[i]], cc[i])
             pre = cur
-        ac.st(pre[1] if pre[1] < inf else -1)
+        ac.st(pre[1] if pre[1] < math.inf else -1)
         return

@@ -310,7 +310,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -394,7 +394,7 @@ class Solution:
             x, y = ac.read_list_ints()
             z1 = a // x + int(a % x > 0)
             z2 = b // y + int(b % y > 0)
-            z = ac.max(z1, z2)
+            z = max(z1, z2)
             a = z * x
             b = z * y
         ac.st(a + b)
@@ -479,10 +479,10 @@ class Solution:
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0] + it[1])
-        ans = -inf
+        ans = -math.inf
         pre = 0
         for w, s in nums:
-            ans = ac.max(ans, pre - s)
+            ans = max(ans, pre - s)
             pre += w
         ac.st(ans)
         return
@@ -568,7 +568,7 @@ class Solution:
         ans = 0
         pre = a
         for a, b in lst:
-            ans = ac.max(ans, pre // b)
+            ans = max(ans, pre // b)
             pre *= a
         ac.st(ans)
         return
@@ -826,7 +826,7 @@ class Solution:
                 b += nums2[j] - 1
                 j += 1
                 light_b += 1
-            ans = ac.max(ans, ac.min(a - light_b, b - light_a))
+            ans = max(ans, min(a - light_b, b - light_a))
         ac.st("%.4f" % ans)
         return
 
@@ -930,7 +930,7 @@ class Solution:
         a.extend(b)
         del b
         a.sort()
-        x = ac.max(0, a[n])
+        x = max(0, a[n])
         ac.st(sum(abs(x - num) for num in a))
         return
 
@@ -1020,7 +1020,7 @@ class Solution:
         for i in range(m // 2 - 1, 0, -1):
             left = dp[i * 2] + nums[i * 2 - 2]
             right = dp[i * 2 + 1] + nums[i * 2 - 1]
-            x = ac.max(left, right)
+            x = max(left, right)
             dp[i] = x
             ans += x * 2 - left - right
         ac.st(ans)
@@ -1096,14 +1096,14 @@ class Solution:
         post = [0] * (n + 1)
         ceil = 0
         for i in range(n - 1, -1, -1):
-            ceil = ac.max(dis2[ind[i]], ceil)
+            ceil = max(dis2[ind[i]], ceil)
             post[i] = ceil
 
         # brute_force前缀
         ans = post[0]
         pre = 0
         for i in range(n):
-            pre = ac.max(pre, dis1[ind[i]])
+            pre = max(pre, dis1[ind[i]])
             if pre + post[i + 1] < ans:
                 ans = pre + post[i + 1]
         ac.st(ans)
@@ -1554,8 +1554,8 @@ class Solution:
         url: https://codeforces.com/contest/1144/problem/G
         tag: linear_dp|greedy|classical|construction|brain_teaser
         """
-        ascend = -inf
-        descend = inf
+        ascend = -math.inf
+        descend = math.inf
         n = ac.read_int()
         nums = ac.read_list_ints()
         ans = [0] * n
@@ -1878,7 +1878,7 @@ class Solution:
         post = 0
         nums = [[1, 0]] + [ac.read_list_ints() for _ in range(n)]
         nums.reverse()
-        ans = -inf
+        ans = -math.inf
         for t, y in nums:
             if t == 1:
                 while len(not_use) > k:
@@ -1973,7 +1973,7 @@ class Solution:
             a = ac.read_list_ints()
             b = ac.read_list_ints()
             tot = sum(abs(a[i] - b[i]) for i in range(n))
-            ans = inf
+            ans = math.inf
             target = b[-1]
             for i in range(n):
                 num = a[i]
@@ -2124,13 +2124,13 @@ class Solution:
         for i in range(n):
             pre[i + 1] = pre[i] ^ nums[i]
 
-        ans = inf
+        ans = math.inf
         for i in range(n):
             for j in range(i + 1, n):
                 for k in range(i, j):
                     if pre[k + 1] ^ pre[i] > pre[j + 1] ^ pre[k + 1]:
                         ans = min(ans, j - i - 1)
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod

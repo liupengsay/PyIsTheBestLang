@@ -345,8 +345,8 @@ class Solution:
         tree = RangeDescendRangeMin(n)
         for i in range(n):
             if s[i] == "1":
-                left = ac.max(0, i - k)
-                right = ac.min(n - 1, i + k)
+                left = max(0, i - k)
+                right = min(n - 1, i + k)
                 pre = tree.range_min(left - 1, i - 1) if left else 0
                 cur = pre + i + 1
                 tree.range_descend(i, right, cur)
@@ -404,7 +404,7 @@ class Solution:
             for _ in range(ac.read_int()):
                 ll, rr = ac.read_list_ints_minus_one()
                 lst = tree.range_kth_smallest(ll, rr)
-                ans = inf
+                ans = math.inf
                 m = len(lst)
                 for i in range(m):
                     x = lst[i]
@@ -414,7 +414,7 @@ class Solution:
                         y = lst[j]
                         if x > ans:
                             break
-                        ans = ac.min(ans, x | y)
+                        ans = min(ans, x | y)
                 ac.st(ans)
         return
 
@@ -548,7 +548,7 @@ class Solution:
                     nums[i] = k
             elif lst[0] == 2:
                 x, y, k = lst[1:]
-                tree.range_set_add(x - 1, y - 1, (-inf, k))
+                tree.range_set_add(x - 1, y - 1, (-math.inf, k))
                 for i in range(x - 1, y):
                     nums[i] += k
             else:
@@ -593,7 +593,7 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 a, b = lst[1:]
-                a, b = ac.min(a, b), ac.max(a, b)
+                a, b = min(a, b), max(a, b)
                 ans = segment.range_max_non_emp_con_sub_sum(a - 1, b - 1)
                 ac.st(ans)
             else:
@@ -663,8 +663,8 @@ class Solution:
                 a, w = lst[1:]
                 tree.range_xor_update(0, n - 1, w)
                 arr[ind[a]] ^= w
-        ans = inf
-        res = -inf
+        ans = math.inf
+        res = -math.inf
         nums = tree.get()
         for i in range(n):
             val = arr[i] ^ nums[i]
@@ -872,13 +872,13 @@ class Solution:
                     ceil = max(ceil, pre)
                     low, high = i - 3 * pre, i - pre - 1
                     if high >= 0:
-                        tree.range_set(ac.max(0, low), high, 1)
+                        tree.range_set(max(0, low), high, 1)
                 pre = 0
         if pre:
             ceil = max(ceil, pre)
             low, high = n - 3 * pre, n - pre - 1
             if high >= 0:
-                tree.range_set(ac.max(0, low), high, 1)
+                tree.range_set(max(0, low), high, 1)
 
         ans = tree.range_sum(0, n - 1)
         pre = 0
@@ -889,15 +889,15 @@ class Solution:
             else:
                 if pre == ceil:
                     low, high = i - 4 * pre, i - 3 * pre - 1
-                    low = ac.max(low, 0)
+                    low = max(low, 0)
                     if low <= high:
-                        res = ac.max(res, high - low + 1 - tree.range_sum(low, high))
+                        res = max(res, high - low + 1 - tree.range_sum(low, high))
                 pre = 0
         if pre == ceil:
             low, high = n - 4 * pre, n - 3 * pre - 1
-            low = ac.max(low, 0)
+            low = max(low, 0)
             if low <= high:
-                res = ac.max(res, high - low + 1 - tree.range_sum(low, high))
+                res = max(res, high - low + 1 - tree.range_sum(low, high))
         ac.st(ans + res)
         return
 
@@ -934,7 +934,7 @@ class Solution:
             res = []
             for x in range(k):
                 val = tree.range_min(x, x)
-                if val == inf:
+                if val == math.inf:
                     continue
                 if not res or res[-1][2] != val:
                     res.append([nodes[x], nodes[x], val])
@@ -997,14 +997,14 @@ class Solution:
             tree.range_descend(ind[s[i]], ind[s[i]], c[i])
             post[i] = tree.range_min(ind[s[i]] + 1, m - 1)
 
-        ans = inf
+        ans = math.inf
         tree = RangeDescendRangeMin(m)
         for i in range(n):
             if 1 <= i <= n - 2:
                 cur = c[i] + tree.range_min(0, ind[s[i]] - 1) + post[i]
-                ans = ac.min(ans, cur)
+                ans = min(ans, cur)
             tree.range_descend(ind[s[i]], ind[s[i]], c[i])
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1025,7 +1025,7 @@ class Solution:
         for a, b in intervals:
             tree.range_descend(ind[a], ind[b], b - a + 1)
         ans = [tree.range_min(ind[num], ind[num]) for num in queries]
-        return [x if x != inf else -1 for x in ans]
+        return [x if x != math.inf else -1 for x in ans]
 
     @staticmethod
     def lc_1340(nums: List[int], d: int) -> int:
@@ -1106,7 +1106,7 @@ class Solution:
                 else:
                     ans1 = tree.range_min(ll, n - 1)
                     ans2 = tree.range_min(0, r)
-                    ac.st(ac.min(ans1, ans2))
+                    ac.st(min(ans1, ans2))
             else:
                 ll, r, d = lst
                 if ll <= r:
@@ -1320,7 +1320,7 @@ class Solution:
         tag: segment_tree|point_set|range_min
         """
         n, q = ac.read_list_ints()
-        tree = PointSetRangeMin(n, inf)
+        tree = PointSetRangeMin(n, math.inf)
         tree.build(ac.read_list_ints())
         for _ in range(q):
             op, x, y = ac.read_list_ints()
@@ -1362,11 +1362,11 @@ class Solution:
         nums = ac.read_list_ints()
         tree.build(nums)
         ans = tree.cover[1]
-        ac.st(ac.max(ans, 0))
+        ac.st(max(ans, 0))
         for _ in range(q):
             x, y = ac.read_list_ints()
             ans = tree.point_set_range_max_sub_sum(x, y)
-            ac.st(ac.max(ans, 0))
+            ac.st(max(ans, 0))
         return
 
     @staticmethod
@@ -1683,7 +1683,7 @@ class Solution:
         tag: segment_tree|bisect_left|brute_force|classical|range_min|point_set
         """
         n, q = ac.read_list_ints()
-        tree = PointSetRangeMin(n, inf)
+        tree = PointSetRangeMin(n, math.inf)
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 1:
@@ -1697,7 +1697,7 @@ class Solution:
                     if x == -1:
                         break
                     ll = x
-                    tree.point_set(ll, inf)
+                    tree.point_set(ll, math.inf)
                     ans += 1
                 ac.st(ans)
         return
@@ -1832,7 +1832,7 @@ class Solution:
         for _ in range(q):
             ll, rr, v = ac.read_list_ints()
             tree.range_set(ll, rr - 1, v)
-            ans = ac.max(tree.cover[1], 0)
+            ans = max(tree.cover[1], 0)
             ac.st(ans)
         return
 
@@ -2084,7 +2084,7 @@ class Solution:
         url: https://codeforces.com/contest/52/problem/C
         tag: segment_tree|circular_array|range_add|range_min
         """
-        n = ac.read_int()  # inf = 1 << 64
+        n = ac.read_int()  # math.inf = 1 << 64
         tree = RangeAddRangeSumMinMax(n)
         tree.build(ac.read_list_ints())
         tot = 0
@@ -2092,10 +2092,10 @@ class Solution:
             lst = ac.read_list_ints()
             if len(lst) == 2:
                 x, y = lst
-                ans = inf
+                ans = math.inf
                 for a, b in [(x, y)] if x <= y else [(x, n - 1), (0, y)]:
                     cur = tree.range_min(a, b)
-                    ans = ac.min(ans, cur)
+                    ans = min(ans, cur)
                 ac.st(ans + tot)
             else:
                 x, y, v = lst
@@ -2160,7 +2160,7 @@ class Solution:
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 a, b = lst[1:]
-                a, b = ac.min(a, b), ac.max(a, b)
+                a, b = min(a, b), max(a, b)
                 ans = segment.range_max_non_emp_con_sub_sum(a - 1, b - 1)
                 ac.st(ans)
             else:
@@ -2507,18 +2507,18 @@ class Solution:
         ans = 0
         for s in range(w):
             for t in pos[s]:
-                low = ac.max(t, d)
-                high = ac.min(m, t + d)
+                low = max(t, d)
+                high = min(m, t + d)
                 tree.range_add(low, high, 1)
         for s in range(m + 1 - w):
             for t in pos[s + w]:
-                low = ac.max(t, d)
-                high = ac.min(m, t + d)
+                low = max(t, d)
+                high = min(m, t + d)
                 tree.range_add(low, high, 1)
-            ans = ac.max(ans, tree.ceil[1])
+            ans = max(ans, tree.ceil[1])
             for t in pos[s]:
-                low = ac.max(t, d)
-                high = ac.min(m, t + d)
+                low = max(t, d)
+                high = min(m, t + d)
                 tree.range_add(low, high, -1)
         ac.st(ans)
         return
@@ -2795,7 +2795,7 @@ class Solution:
         tag: segment_tree|range_set|range_pre_max_sum|dynamic
         """
         n = ac.read_int()
-        tree = RangeSetPreSumMaxDynamic(n, -inf)
+        tree = RangeSetPreSumMaxDynamic(n, -math.inf)
         while True:
             lst = ac.read_list_strs()
             if lst[0] == "I":
@@ -2946,10 +2946,10 @@ class Solution:
                     else:
                         x = tree.range_sum_bisect_right_non_zero(ind[ll])
 
-                        if x < inf:
+                        if x < math.inf:
                             ans[j] = min(ans[j], ll - nodes[x])
                         x = tree.range_sum_bisect_left_non_zero(ind[rr])
-                        if x < inf:
+                        if x < math.inf:
                             ans[j] = min(ans[j], nodes[x] - rr)
 
                 for j, ll, rr in color[i]:
@@ -3130,7 +3130,7 @@ class Solution:
         tree = RangeAddRangeSumMinMax(d + 1)
         tree.build(x)
 
-        dis = [(inf, 0) for _ in range(n)]
+        dis = [(math.inf, 0) for _ in range(n)]
         for i in nums:
             dis[i] = (0, 0)
         stack = [(0, 0, i) for i in nums]
@@ -3156,7 +3156,7 @@ class Solution:
                             dis[j] = (dj, nex_pre)
                             heappush(stack, (dj, nex_pre, j))
         for d in dis:
-            if d[0] < inf:
+            if d[0] < math.inf:
                 ac.st(d[0])
             else:
                 ac.st(-1)
@@ -3714,7 +3714,7 @@ class Solution:
 
         for _ in range(ac.read_int()):  # TLE
             n = ac.read_int() + 2
-            nums = [-inf] + ac.read_list_ints() + [math.inf]
+            nums = [-math.inf] + ac.read_list_ints() + [math.inf]
 
             tree = PointSetPreMaxPostMin(n)
             tree.build(nums)
@@ -3983,7 +3983,7 @@ class Solution:
             nums.append(w * m * m + ll * m + rr)
         nums.sort()
         j = 0
-        ans = inf
+        ans = math.inf
         for i in range(n):
             while j < n and tree.range_min(0, m - 2) == 0:
                 val = nums[j]
@@ -4053,7 +4053,7 @@ class Solution:
                 tree1.range_add(0, post[num][0], -1)
                 for i in post[num]:
                     tree_max.point_set(i, -1)
-                    tree_min.point_set(i, inf)
+                    tree_min.point_set(i, math.inf)
             ac.st(len(ans) - 1)
             ac.lst([nums[x] for x in ans[1:]])
         return
@@ -4167,7 +4167,7 @@ class Solution:
                     dct[j + 2 * n].append((v + n, w + 1))
         dis = Dijkstra().get_shortest_path(dct, s + 3 * n)
         for i in range(n, 2 * n):
-            if dis[i] == inf:
+            if dis[i] == math.inf:
                 dis[i] = -1
         ac.lst(dis[n:2 * n])
         return
@@ -4181,7 +4181,7 @@ class Solution:
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         tree = PointSetPreMinPostMin(n + 1)
-        ans = inf
+        ans = math.inf
         cnt = [0] * (n + 1)
         for i in range(m):
             cnt[nums[i]] += 1

@@ -119,7 +119,7 @@ class Solution:
         dp = [math.inf] * (1 << n)
         dp[0] = 0
         for i in range(1 << n):
-            if dp[i] == inf:
+            if dp[i] == math.inf:
                 continue
             not_seen = {nums[j]: j for j in range(n) if not i & (1 << j)}
             mask = sum(1 << x for x in not_seen.values())
@@ -128,7 +128,7 @@ class Solution:
                 if sub in group:
                     dp[i | sub] = min(dp[i | sub], dp[i] + group[sub])
                 sub = (sub - 1) & mask
-        return dp[-1] if dp[-1] < inf else -1
+        return dp[-1] if dp[-1] < math.inf else -1
 
     @staticmethod
     def lc_1723(jobs: List[int], k: int) -> int:
@@ -247,11 +247,11 @@ class Solution:
             while mask:
                 j = ind[mask & (-mask)]
                 cur = max(dp[i ^ (1 << j)][k] + edge[k][j] for k in range(n) if i & (1 << k)) + nums[j]
-                res = ac.max(res, cur)
+                res = max(res, cur)
                 mask &= (mask - 1)
                 dp[i][j] = cur
             if bin(i).count("1") == m:
-                ans = ac.max(ans, res)
+                ans = max(ans, res)
         ac.st(ans)
         return
 
@@ -278,7 +278,7 @@ class Solution:
 
         for i in range(1 << n):
             for j in range(n):
-                if dp[i][j] < inf and i & (1 << j):
+                if dp[i][j] < math.inf and i & (1 << j):
                     for k in range(n):
                         if not i & (1 << k):
                             dp[i ^ (1 << k)][k] = min(dp[i ^ (1 << k)][k], dp[i][j] + dis[j][k])
@@ -391,7 +391,7 @@ class Solution:
         dp = [0] * (1 << m)
         for state in range(1, 1 << m):
             gain = m - state.bit_count() + 1
-            res = inf
+            res = math.inf
             for i in range(m):
                 if state & (1 << i):
                     cur = (power[i] + gain - 1) // gain + dp[state ^ (1 << i)]
@@ -413,7 +413,7 @@ class Solution:
             if not state:
                 return 0
             gain = m - bin(state).count("1") + 1
-            res = inf
+            res = math.inf
             for i in range(m):
                 if state & (1 << i):
                     cur = math.ceil(power[i] / gain) + dfs(state ^ (1 << i))
@@ -523,11 +523,11 @@ class Solution:
                 if not i:
                     dp[i][pre] = 0
                     continue
-                res = inf
+                res = math.inf
                 for j in range(n):
                     if i & (1 << j):
                         cur = dp[i ^ (1 << j)][j] + grid[pre][j]
-                        res = ac.min(res, cur)
+                        res = min(res, cur)
                 dp[i][pre] = res
         ans = dp[(1 << n) - 2][0]
         ac.st("%.2f" % ans)
@@ -645,15 +645,15 @@ class Solution:
         grid = [ac.read_list_ints() for _ in range(n)]
         dp = [math.inf] * (1 << n)
         dp[-1] = 0
-        ans = inf
+        ans = math.inf
         for i in range((1 << n) - 1, -1, -1):
             lst = [j for j in range(n) if (1 << j) & i]
             if len(lst) <= k:
-                ans = ac.min(ans, dp[i])
+                ans = min(ans, dp[i])
                 continue
             for j in lst:
                 c = min(grid[j][k] for k in lst if k != j)
-                dp[i ^ (1 << j)] = ac.min(dp[i ^ (1 << j)], dp[i] + c)
+                dp[i ^ (1 << j)] = min(dp[i ^ (1 << j)], dp[i] + c)
         ac.st(ans)
         return
 
@@ -673,7 +673,7 @@ class Solution:
             for j in range(1 << m):
                 if dp[j | cur] > dp[j] + 1:
                     dp[j | cur] = dp[j] + 1
-        ac.st(dp[-1] if dp[-1] < inf else -1)
+        ac.st(dp[-1] if dp[-1] < math.inf else -1)
         return
 
     @staticmethod
@@ -830,7 +830,7 @@ class Solution:
         def dfs(state, rest):
             if not state:
                 return 0
-            res = inf
+            res = math.inf
             for i in range(n):
                 if state & (1 << i):
                     if rest >= tasks[i]:
@@ -900,7 +900,7 @@ class Solution:
             pre[group[i]] = [i, -1]  # use, from
 
         for i in range(1 << n):
-            if dp[i] == inf:
+            if dp[i] == math.inf:
                 continue
 
             for j in range(n):
@@ -974,17 +974,17 @@ class Solution:
         ans = 0
         for i in range(m):
             dp = [[0] * (1 << m) for _ in range(m)]
-            dp[i][1 << i] = inf
+            dp[i][1 << i] = math.inf
             for s in range(1, 1 << m):
                 tmp_s = [y for y in range(m) if not s & (1 << y)]
                 for x in range(m):
                     if dp[x][s]:
                         for y in tmp_s:
-                            dp[y][s | (1 << y)] = ac.max(dp[y][s | (1 << y)], ac.min(dp[x][s], cost[x][y]))
+                            dp[y][s | (1 << y)] = max(dp[y][s | (1 << y)], min(dp[x][s], cost[x][y]))
             for x in range(m):
                 cur = dp[x][-1]
                 if n > 1:
-                    cur = ac.min(cur, end[x][i])
+                    cur = min(cur, end[x][i])
                 if cur > ans:
                     ans = cur
         ac.st(ans)
@@ -1004,7 +1004,7 @@ class Solution:
         for k in range(n):
             for i in range(n):
                 for j in range(n):
-                    if dis[i][k] < inf and dis[k][j] < inf:
+                    if dis[i][k] < math.inf and dis[k][j] < math.inf:
                         dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
         m = 1 << n
         dp = [math.inf] * m * n
@@ -1013,14 +1013,14 @@ class Solution:
             dp[i * m + (1 << i)] = 0
         for s in range(1 << n):
             for j in range(n):
-                if dp[j * m + s] == inf or not (s >> j) & 1:
+                if dp[j * m + s] == math.inf or not (s >> j) & 1:
                     continue
                 for k in range(n):
-                    if dis[j][k] == inf or (s >> k) & 1:
+                    if dis[j][k] == math.inf or (s >> k) & 1:
                         continue
                     dp[k * m + (s | (1 << k))] = min(dp[k * m + (s | (1 << k))], dp[j * m + s] + dis[j][k])
         ans = min(dp[i * m + m - 1] for i in range(n))
-        ac.st(ans if ans < inf else "No")
+        ac.st(ans if ans < math.inf else "No")
         return
 
     @staticmethod
@@ -1055,7 +1055,7 @@ class Solution:
                 nex = []
                 for x, y in stack:
                     for a, b in [(x - 1, y), (x + 1, y), (x, y - 1), (x, y + 1)]:
-                        if 0 <= a < m and 0 <= b < n and grid[a][b] != "#" and visit[a][b] == inf:
+                        if 0 <= a < m and 0 <= b < n and grid[a][b] != "#" and visit[a][b] == math.inf:
                             visit[a][b] = visit[x][y] + 1
                             nex.append((a, b))
                 stack = nex[:]
@@ -1106,7 +1106,7 @@ class Solution:
         tot = ((1 << n) - 1) ^ 1
         dp[0][tot] = 0
         target = (1 << (n - m)) - 1
-        ans = inf
+        ans = math.inf
         for state in range((1 << n) - 1, -1, -1):
             pre = []
             post = []
@@ -1136,7 +1136,7 @@ class Solution:
         dp = [math.inf] * (1 << n)
         dp[0] = 0
         for state in range(1, 1 << n):
-            res = inf
+            res = math.inf
             lst = [j for j in range(n) if state & (1 << j)]
             m = len(lst)
             for rk, j in enumerate(lst):
@@ -1252,7 +1252,7 @@ class Solution:
             for pre in zero(state):
                 if pre >= n:
                     break
-                cur_cost = inf
+                cur_cost = math.inf
                 cur_tp = ()
                 for i in one(state):
                     if i >= n:
@@ -1389,7 +1389,7 @@ class Solution:
         nums = [num * n + i for i, num in enumerate(nums)]
         nums.sort(reverse=True)
         s = [ac.read_list_ints() for _ in range(n)]
-        dp = [-inf] * (1 << p)
+        dp = [-math.inf] * (1 << p)
         dp[0] = 0
         lst = []
         for x in range(1 << p):

@@ -295,7 +295,7 @@ class ClosetPair:
             return smallest
 
         def check(point_set):
-            min_dis = inf
+            min_dis = math.inf
             if len(point_set) <= 3:
                 n = len(point_set)
                 for i in range(n):
@@ -323,7 +323,7 @@ class ClosetPair:
         points.sort(key=lambda p: [p[0], [1]])
         lst1 = SortedList()
         lst2 = SortedList()
-        ans = inf
+        ans = math.inf
         ss = ans ** 0.5
         n = len(points)
         for i in range(n):
@@ -335,7 +335,7 @@ class ClosetPair:
                 a, b = lst1.pop()
                 lst2.discard((b, a))
 
-            ind = lst2.bisect_left((y - ss, -inf))
+            ind = lst2.bisect_left((y - ss, -math.inf))
             while ind < len(lst2) and abs(y - lst2[ind][0]) <= ss:
                 res = dis([x, y], lst2[ind][::-1])
                 ans = ans if ans < res else res
@@ -370,7 +370,7 @@ class ClosetPair:
         random.shuffle(nums2)
 
         dct = dict()
-        ans = inf
+        ans = math.inf
         for i in range(n):
             cur = dis(nums1[i], nums2[0])
             ans = cur if ans > cur else ans

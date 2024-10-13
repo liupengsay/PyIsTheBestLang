@@ -125,7 +125,7 @@ class Solution:
                     parent[j] = i
                     cnt = diff[j]
                     c1, c2 = cost[i][j]
-                    ans += ac.min(cnt * c1, c2)
+                    ans += min(cnt * c1, c2)
         ac.st(ans)
         return
 

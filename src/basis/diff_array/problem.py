@@ -201,7 +201,7 @@ class Solution:
             grid.append(total[i * n: (i + 1) * n])
         del total
 
-        ans = float("-inf")
+        ans = float("-math.inf")
         for i in range(n):
             lst = [0] * n
             for j in range(i, n):
@@ -209,8 +209,8 @@ class Solution:
                 floor = pre = 0
                 for num in lst:
                     pre += num
-                    ans = ac.max(ans, pre - floor)
-                    floor = ac.min(floor, pre)
+                    ans = max(ans, pre - floor)
+                    floor = min(floor, pre)
         ac.st(ans)
         return
 
@@ -643,8 +643,8 @@ class Solution:
                 x = 0
                 for j in range(n):
                     x += pre[j]
-                    ans = ac.max(ans, x - floor)
-                    floor = ac.min(floor, x)
+                    ans = max(ans, x - floor)
+                    floor = min(floor, x)
         ac.st(ans)
         return
 
@@ -717,13 +717,13 @@ class Solution:
             pre += nums[i]
             nums[i] = pre
             if i:
-                nums[i] = ac.max(nums[i], nums[i - 1])
+                nums[i] = max(nums[i], nums[i - 1])
 
         final = nums[0]
         pre = nums[0] * 2
         for i in range(1, n):
-            final = ac.max(final, pre)
-            pre = ac.max(pre, pre + nums[i])
+            final = max(final, pre)
+            pre = max(pre, pre + nums[i])
         pos = 1 if final > 0 else -1
         ac.st(pos * (abs(final) % p))
         return
@@ -801,7 +801,7 @@ class Solution:
         ans = diff[axis[0]] * axis[0]
         for i in range(1, m):
             diff[axis[i]] += diff[axis[i - 1]]
-            ans = ac.max(ans, diff[axis[i]] * axis[i])
+            ans = max(ans, diff[axis[i]] * axis[i])
         ac.st(ans)
         return
 
@@ -918,7 +918,7 @@ class Solution:
         m = len(axis)
         for i in range(1, m):
             diff[axis[i]] += diff[axis[i - 1]]
-            ans = ac.max(ans, diff[axis[i]])
+            ans = max(ans, diff[axis[i]])
         ac.st(ans)
         return
 
@@ -1106,15 +1106,15 @@ class Solution:
         b.sort()
         pre = [0] * (n + 2)
         for i in range(n):
-            pre[i + 1] = ac.max(pre[i], a[i] - b[i])
+            pre[i + 1] = max(pre[i], a[i] - b[i])
 
         post = [0] * (n + 2)
         for i in range(n - 1, -1, -1):
-            post[i] = ac.max(post[i + 1], a[i + 1] - b[i])
+            post[i] = max(post[i + 1], a[i + 1] - b[i])
 
         ans = dict()
         for i in range(n + 1):
-            ans[a[i]] = ac.max(pre[i], post[i])
+            ans[a[i]] = max(pre[i], post[i])
         ac.lst([ans[x] for x in aa])
         return
 
@@ -1126,7 +1126,7 @@ class Solution:
         """
         n, k = ac.read_list_ints()
         s = ac.read_str()
-        ans = inf
+        ans = math.inf
         ind1 = [i for i in range(n) if s[i] == "J"]
         ind2 = [i for i in range(n) if s[i] == "O"]
         ind3 = [i for i in range(n) if s[i] == "I"]
@@ -1145,7 +1145,7 @@ class Solution:
                 cur = ind3[right + k - 1] - ind1[left - k + 1] + 1 - 3 * k
                 if cur < ans:
                     ans = cur
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1175,8 +1175,8 @@ class Solution:
         ceil = 0
         for x, y in ice:
             t = y - x + 1
-            ceil = ac.max(ceil, t)
-            low = ac.max(0, x - 2 * t)
+            ceil = max(ceil, t)
+            low = max(0, x - 2 * t)
             if low <= x - 1:
                 diff[low] += 1
                 diff[x] -= 1
@@ -1188,7 +1188,7 @@ class Solution:
         for x, y in ice:
             t = y - x + 1
             if x - 2 * t - 1 >= 0 and t == ceil:
-                another = ac.max(another, diff[x - 2 * t] - diff[ac.max(x - 3 * t, 0)])
+                another = max(another, diff[x - 2 * t] - diff[max(x - 3 * t, 0)])
         ac.st(ans + another)
         return
 
@@ -1290,7 +1290,7 @@ class Solution:
         if a > b:
             a, b = b, a
         pre = PreFixSumMatrix(grid)
-        ans = inf
+        ans = math.inf
         for i in range(m):
             for k in range(i, m):
                 lst = [0]
@@ -1299,15 +1299,15 @@ class Solution:
                     cur = pre.query(i, 0, k, j)
                     lst.append(cur)
                     while ind_a + 1 < j + 1 and cur - lst[ind_a] >= a:
-                        ans = ac.min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
+                        ans = min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
                         ind_a += 1
 
                     while ind_b + 1 < j + 1 and cur - lst[ind_b] <= b:
-                        ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                        ans = min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
                         ind_b += 1
 
-                    ans = ac.min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
-                    ans = ac.min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
+                    ans = min(ans, abs(cur - lst[ind_a] - a) + abs(cur - lst[ind_a] - b))
+                    ans = min(ans, abs(cur - lst[ind_b] - a) + abs(cur - lst[ind_b] - b))
                     if ans == b - a:
                         ac.st(ans)
                         return
@@ -1331,11 +1331,11 @@ class Solution:
             point[a - 1] = 1
             point[b] = 1
         ans = 0
-        pre = inf
+        pre = math.inf
         for i in range(1, m + 2):
             diff[i] += diff[i - 1]
             if point[i]:
-                ans = ac.max(ans, diff[i] * (i - pre))
+                ans = max(ans, diff[i] * (i - pre))
                 pre = i + 1
         ac.st(ans)
         return
@@ -1845,7 +1845,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         matrix = [ac.read_list_ints() for _ in range(n)]
-        ans = -inf
+        ans = -math.inf
         for _ in range(4):
             n = len(matrix)
             for i in range(n // 2):
@@ -1854,7 +1854,7 @@ class Solution:
                     matrix[i][j], matrix[n - j - 1][i], matrix[n - i - 1][n - j - 1], matrix[j][n - i - 1] = a, b, c, d
 
             pre = PreFixSumMatrix(matrix)
-            left = [-inf] * (n + 1) * (n + 1)
+            left = [-math.inf] * (n + 1) * (n + 1)
             for i in range(n):
                 for j in range(n):
                     if i - m + 1 >= 0 and j - m + 1 >= 0:
@@ -1865,7 +1865,7 @@ class Solution:
                         left[(i + 1) * (n + 1) + j + 1] = max(left[i * (n + 1) + j + 1], left[(i + 1) * (n + 1) + j],
                                                               left[i * (n + 1) + j])
 
-            right = [-inf] * (n + 1) * (n + 1)
+            right = [-math.inf] * (n + 1) * (n + 1)
             for i in range(n):
                 for j in range(n - 1, -1, -1):
                     if i - m + 1 >= 0 and j + m - 1 < n:
@@ -1876,12 +1876,12 @@ class Solution:
                         right[(i + 1) * (n + 1) + j] = max(right[(i + 1) * (n + 1) + j + 1], right[i * (n + 1) + j],
                                                            right[i * (n + 1) + j + 1])
 
-            down = [-inf] * (n + 1)
+            down = [-math.inf] * (n + 1)
             for i in range(n - 1, -1, -1):
                 if i + m - 1 < n:
                     down[i] = max(down[i + 1], max(pre.query(i, j, i + m - 1, j + m - 1) for j in range(n - m + 1)))
 
-            up = [-inf] * (n + 1)
+            up = [-math.inf] * (n + 1)
             for i in range(n):
                 if i - m + 1 >= 0:
                     up[i + 1] = max(up[i], max(pre.query(i - m + 1, j, i, j + m - 1) for j in range(n - m + 1)))
@@ -2127,7 +2127,7 @@ class Solution:
         """
         m, n, c = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        ans = inf
+        ans = math.inf
         pre = [[math.inf] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
@@ -2253,7 +2253,7 @@ class Solution:
             for j in range(i + 1):
                 cur += grid[i][j]
                 left_up[i + 1][j + 1] = left_up[i][j] + cur
-        ans = -inf
+        ans = -math.inf
         for x in range(k, 2 * k + 1):
             cnt = x * (x + 1) // 2
             for i in range(x - 1, n):

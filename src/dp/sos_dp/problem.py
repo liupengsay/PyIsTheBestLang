@@ -50,7 +50,7 @@ class Solution:
         for i in range(1 << 20):
             for j in range(20):
                 if not i & (1 << j):
-                    dp[i | (1 << j)] = ac.max(dp[i | (1 << j)], dp[i])
+                    dp[i | (1 << j)] = max(dp[i | (1 << j)], dp[i])
 
         ans = 1
         tot = (1 << 20) - 1
@@ -60,7 +60,7 @@ class Solution:
                 if cur & (1 << lst[j]):
                     break
                 cur |= 1 << lst[j]
-                ans = ac.max(ans, j - i + 1 + dp[tot ^ cur])
+                ans = max(ans, j - i + 1 + dp[tot ^ cur])
         ac.st(ans)
         return
 

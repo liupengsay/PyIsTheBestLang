@@ -19,7 +19,7 @@ class TestGeneral(unittest.TestCase):
                 if len(nums) >= 2:
                     c = len(nums)
                     assert [minimum_xor.lst[i] for i in range(c)] == sorted(nums)
-                    floor = inf
+                    floor = math.inf
                     for a in range(c):
                         for b in range(a + 1, c):
                             cur = nums[a] ^ nums[b]

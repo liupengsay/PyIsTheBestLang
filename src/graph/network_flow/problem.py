@@ -39,7 +39,7 @@ from collections import defaultdict
 from typing import List
 
 from src.graph.network_flow.template import DinicMaxflowMinCut, DinicMaxflowMinCost
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -131,8 +131,8 @@ class Solution:
             flow.add_edge(s, n + 1 + i * 2 + 1 + 1, c1)
             flow.add_edge(n + 1 + i * 2 + 2 + 1, t, c2)
             for j in nums[3:]:
-                flow.add_edge(n + 1 + i * 2 + 1 + 1, j + 1, inf)
-                flow.add_edge(j + 1, n + 1 + i * 2 + 2 + 1, inf)
+                flow.add_edge(n + 1 + i * 2 + 1 + 1, j + 1, math.inf)
+                flow.add_edge(j + 1, n + 1 + i * 2 + 2 + 1, math.inf)
         ac.st(ans - flow.max_flow_min_cut(s, t))
         return
 
@@ -187,8 +187,8 @@ class Solution:
             flow.add_edge(i * 2 - 1, i * 2, 1)
         for _ in range(m):
             x, y = ac.read_list_ints()
-            flow.add_edge(x * 2, y * 2 - 1, inf)
-            flow.add_edge(y * 2, x * 2 - 1, inf)
+            flow.add_edge(x * 2, y * 2 - 1, math.inf)
+            flow.add_edge(y * 2, x * 2 - 1, math.inf)
         ans = flow.max_flow_min_cut(2 * s, 2 * t - 1)
         ac.st(ans)
         return
@@ -207,7 +207,7 @@ class Solution:
             ans += nums[0]
             flow.add_edge(1, i + 1, nums[0])
             for j in nums[1:]:
-                flow.add_edge(i + 1, m + 1 + j, inf)
+                flow.add_edge(i + 1, m + 1 + j, math.inf)
         cost = ac.read_list_ints()
         for j in range(1, n + 1):
             flow.add_edge(m + j + 1, m + n + 2, cost[j - 1])
@@ -248,15 +248,15 @@ class Solution:
             a, b, s, t, c = queries[i - 1]
             flow.add_edge(2 * i - 1, 2 * i, 1, -c)
             if tt[0][a] <= s:
-                flow.add_edge(source, 2 * i - 1, inf, f[0][a])
+                flow.add_edge(source, 2 * i - 1, math.inf, f[0][a])
             if t + tt[b][0] <= end:
-                flow.add_edge(2 * i, target, inf, f[b][0])
+                flow.add_edge(2 * i, target, math.inf, f[b][0])
         for i in range(1, m + 1):
             a1, b1, s1, t1, c1 = queries[i - 1]
             for j in range(1, m + 1):
                 a2, b2, s2, t2, c2 = queries[j - 1]
                 if t1 + tt[b1][a2] <= s2:
-                    flow.add_edge(2 * i, 2 * j - 1, inf, f[b1][a2])
+                    flow.add_edge(2 * i, 2 * j - 1, math.inf, f[b1][a2])
         _, min_cost = flow.max_flow_min_cost(original, target)
         ac.st(-min_cost)
         return
@@ -274,7 +274,7 @@ class Solution:
             if a == 1 and b == n:
                 flow.add_edge(a * 2, b * 2 - 1, 1, c)
             else:
-                flow.add_edge(a * 2, b * 2 - 1, inf, c)
+                flow.add_edge(a * 2, b * 2 - 1, math.inf, c)
         for i in range(2, n):
             flow.add_edge(i * 2 - 1, i * 2, 1, 0)
         ac.lst(flow.max_flow_min_cost(2, 2 * n - 1))
@@ -463,14 +463,14 @@ class Solution:
         t = n
         edges = [ac.read_list_ints() for _ in range(m)]
         c = ac.read_list_ints()
-        c[0] = c[-1] = inf
+        c[0] = c[-1] = math.inf
 
         flow = DinicMaxflowMinCut(n * 2)
         for i in range(1, n + 1):
             flow.add_edge(i * 2 - 1, i * 2, c[i - 1])
         for x, y in edges:
-            flow.add_edge(x * 2, y * 2 - 1, inf)
-            flow.add_edge(y * 2, x * 2 - 1, inf)
+            flow.add_edge(x * 2, y * 2 - 1, math.inf)
+            flow.add_edge(y * 2, x * 2 - 1, math.inf)
         min_cut = flow.max_flow_min_cut(2 * s, 2 * t - 1)
         ac.st(min_cut)
         ans = [i for i in range(2, n) if flow.depth[i * 2 - 1] != -1 and flow.depth[i * 2] == -1]

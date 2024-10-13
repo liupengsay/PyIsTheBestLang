@@ -375,7 +375,7 @@ class Solution:
         ac.read_int()
         m1, m2 = ac.read_list_ints()
         lst = NumFactor().get_prime_factor(m1)
-        ans = inf
+        ans = math.inf
         for num in ac.read_list_ints():
             res = 0
             for p, c in lst:
@@ -386,10 +386,10 @@ class Solution:
                 while tmp % p == 0:
                     tmp //= p
                     x += 1
-                res = ac.max(res, math.ceil(c * m2 / x))
+                res = max(res, math.ceil(c * m2 / x))
             else:
-                ans = ac.min(ans, res)
-        ac.st(ans if ans < inf else -1)
+                ans = min(ans, res)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -904,10 +904,10 @@ class Solution:
         for x in lst_ab:
             y = (a + b) // x
             while i < ma and lst_a[i] <= x:
-                pre = ac.min(pre, a // lst_a[i])
+                pre = min(pre, a // lst_a[i])
                 i += 1
             while j < mb and lst_b[j] <= x:
-                pre = ac.min(pre, b // lst_b[j])
+                pre = min(pre, b // lst_b[j])
                 j += 1
             if pre <= y and 2 * (x + y) < ans:
                 ans = 2 * (x + y)
@@ -1699,7 +1699,7 @@ class Solution:
                     nums.append(0)
         if not nums:
             nums = [0]
-        ans = inf
+        ans = math.inf
         cur = 0
         lst = nums[:]
         n = len(lst)
@@ -1730,7 +1730,7 @@ class Solution:
                     lst[i + 1] = 1 - lst[i + 1]
         if sum(lst) == 0:
             ans = min(ans, cur)
-        ac.st(ans if ans < inf else "No")
+        ac.st(ans if ans < math.inf else "No")
         return
 
     @staticmethod
@@ -1863,7 +1863,7 @@ class Solution:
             pre = arr[0]
             ans = pre
             while True:
-                cur = inf
+                cur = math.inf
                 nex = -1
                 for i in range(m):
                     if not use[i] and math.gcd(pre, arr[i]) < cur:

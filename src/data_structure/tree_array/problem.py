@@ -280,7 +280,7 @@ class Solution:
         tmp = [nums[i] - i for i in range(n)]
         ind = sorted(list(set(tmp)))
         dct = {x: i for i, x in enumerate(ind)}
-        tree = PointAscendRangeMax(n, -inf)
+        tree = PointAscendRangeMax(n, -math.inf)
         for j in range(n):
             num = nums[j]
             i = dct[num - j]
@@ -811,10 +811,10 @@ class Solution:
             post[i] = tree.pre_min(m - dct[s[i]])
             tree.point_descend(m - dct[s[i]] + 1, c[i])
 
-        ans = inf
+        ans = math.inf
         if n >= 3:
             ans = min(pre[i] + post[i] + c[i] for i in range(1, n - 1))
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -1260,7 +1260,7 @@ class Solution:
 
         tree = PointAscendPreMax(n)
         for i in range(n):
-            tree.point_ascend(i + 1, ind.get(b[i], inf) + 1)
+            tree.point_ascend(i + 1, ind.get(b[i], math.inf) + 1)
         for _ in range(ac.read_int()):
             x, y = ac.read_list_ints()
             if pre_a[x - 1] == pre_b[y - 1] and tree.pre_max(y) <= x:
@@ -1363,12 +1363,12 @@ class Solution:
         tag: point_ascend|range_max|pre_max|classical
         """
         n, c = ac.read_list_ints()
-        tree_ceil = PointAscendPreMax(n, -inf)
+        tree_ceil = PointAscendPreMax(n, -math.inf)
         tree_ceil.point_ascend(1, c)
-        ceil = [-inf] * (n + 1)
+        ceil = [-math.inf] * (n + 1)
         ceil[1] = c
 
-        tree_floor = PointAscendPreMax(n, -inf)
+        tree_floor = PointAscendPreMax(n, -math.inf)
         tree_floor.point_ascend(n, -c)
 
         ans = 0
@@ -1409,8 +1409,8 @@ class Solution:
                     tree_cnt.point_add(i + 1, -1)
                     cur.remove(x)
                     loc = tree_cnt.range_sum(1, i + 1)
-                    left = -inf
-                    right = inf
+                    left = -math.inf
+                    right = math.inf
                     if loc:
                         left = nodes[tree_cnt.bisect_right(loc - 1)]
                     if loc < len(cur):
@@ -1425,8 +1425,8 @@ class Solution:
                     cur.add(x)
                     tree_cnt.point_add(i + 1, 1)
                     loc = tree_cnt.range_sum(1, i + 1)
-                    left = -inf
-                    right = inf
+                    left = -math.inf
+                    right = math.inf
                     if loc > 1:
                         left = nodes[tree_cnt.bisect_right(loc - 2)]
                     if loc < len(cur):
@@ -1738,17 +1738,17 @@ class Solution:
             dct = dict()
             dct[0 ^ ac.random_seed] = 0
             for i in range(n):
-                ans = dct.get(pre[i + 1] ^ ac.random_seed, -inf)
+                ans = dct.get(pre[i + 1] ^ ac.random_seed, -math.inf)
                 # < pre[i+1]
-                cur = tree_ceil.pre_max(ind[pre[i + 1]] - 1) if ind[pre[i + 1]] >= 1 else -inf
+                cur = tree_ceil.pre_max(ind[pre[i + 1]] - 1) if ind[pre[i + 1]] >= 1 else -math.inf
                 ans = max(ans, cur + i + 1)
                 # > pre[i+1]
-                cur = tree_floor.pre_max(m - 1 - ind[pre[i + 1]] - 1) if m - 1 - ind[pre[i + 1]] >= 1 else -inf
+                cur = tree_floor.pre_max(m - 1 - ind[pre[i + 1]] - 1) if m - 1 - ind[pre[i + 1]] >= 1 else -math.inf
                 ans = max(ans, cur - i - 1)
                 # update
                 tree_floor.point_ascend(m - 1 - ind[pre[i + 1]], ans + (i + 1))
                 tree_ceil.point_ascend(ind[pre[i + 1]], ans - (i + 1))
-                dct[pre[i + 1] ^ ac.random_seed] = max(ans, dct.get(pre[i + 1] ^ ac.random_seed, -inf))
+                dct[pre[i + 1] ^ ac.random_seed] = max(ans, dct.get(pre[i + 1] ^ ac.random_seed, -math.inf))
             ac.st(ans)
         return
 

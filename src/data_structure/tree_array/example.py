@@ -64,10 +64,10 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_point_ascend_pre_max(self):
-        for initial in [-inf, 0]:
+        for initial in [-math.inf, 0]:
             for _ in range(10):
                 n = random.randint(10, 1000)
-                low = -1000 if initial == -inf else 0
+                low = -1000 if initial == -math.inf else 0
                 high = 10000
                 tree_array = PointAscendPreMax(n, initial)
                 nums = [initial] * n
@@ -80,10 +80,10 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_point_ascend_range_max(self):
-        for initial in [-inf, 0]:
+        for initial in [-math.inf, 0]:
             for _ in range(10):
                 n = random.randint(10, 1000)
-                low = -1000 if initial == -inf else 0
+                low = -1000 if initial == -math.inf else 0
                 high = 10000
                 tree_array = PointAscendRangeMax(n, initial)
                 nums = [initial] * n

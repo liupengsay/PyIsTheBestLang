@@ -33,7 +33,7 @@ P8794（https://www.luogu.com.cn/problem/P8794）binary_search|floyd
 
 ====================================AtCoder=====================================
 ABC051D（https://atcoder.jp/contests/abc051/tasks/abc051_d）floyd|shortest_path|necessary_edge|classical
-ARC083B（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
+ABC074D（https://atcoder.jp/contests/abc074/tasks/arc083_b）shortest_path_spanning_tree|floyd|dynamic_graph
 ABC143E（https://atcoder.jp/contests/abc143/tasks/abc143_e）floyd|build_graph|shortest_path|several_floyd
 ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
 ABC243E（https://atcoder.jp/contests/abc243/tasks/abc243_e）get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
@@ -45,16 +45,16 @@ ABC375F（https://atcoder.jp/contests/abc375/tasks/abc375_f）floyd|add_undirect
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
 
 """
+import math
+import random
 from collections import defaultdict
 from heapq import heappop, heappush
 from itertools import permutations
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.graph.dijkstra.template import Dijkstra
-from src.graph.floyd.template import Floyd, WeightedGraphForFloyd
+from src.graph.floyd.template import WeightedGraphForFloyd
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -91,10 +91,10 @@ class Solution:
 
         for k in range(n):
             for i in range(n):
-                if dis[i * n + k] == inf:
+                if dis[i * n + k] == math.inf:
                     continue
                 for j in range(n):
-                    dis[i * n + j] = ac.min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
+                    dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
         ac.st(dis[n - 1])
         return
 
@@ -115,12 +115,12 @@ class Solution:
             cur = 0
             for i in node:
                 for j in node:
-                    dp[i][x] = ac.min(dp[i][x], dp[i][j] + dp[j][x])
-                    dp[x][i] = ac.min(dp[x][i], dp[x][j] + dp[j][i])
+                    dp[i][x] = min(dp[i][x], dp[i][j] + dp[j][x])
+                    dp[x][i] = min(dp[x][i], dp[x][j] + dp[j][i])
 
             for i in node:
                 for j in node:
-                    dp[i][j] = ac.min(dp[i][j], dp[i][x] + dp[x][j])
+                    dp[i][j] = min(dp[i][j], dp[i][x] + dp[x][j])
                     cur += dp[i][j]
             ans.append(cur)
 
@@ -135,23 +135,20 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
-        dis = [math.inf] * n * n
+        inf = 10 ** 10
+        graph = WeightedGraphForFloyd(n, inf)
         for i in range(m):
-            a, b, c = ac.read_list_ints()
-            dis[a * n + b] = dis[b * n + a] = c
-        for i in range(n):
-            dis[i * n + i] = 0
+            i, j, w = ac.read_list_ints()
+            graph.add_undirected_edge_initial(i, j, w)
 
         k = 0
         for _ in range(ac.read_int()):
             x, y, t = ac.read_list_ints()
             while k < n and repair[k] <= t:
-                for a in range(n):
-                    for b in range(a + 1, n):
-                        dis[a * n + b] = dis[b * n + a] = ac.min(dis[a * n + k] + dis[k * n + b], dis[b * n + a])
+                graph.update_point_undirected(k)
                 k += 1
-            if dis[x * n + y] < inf and x < k and y < k:
-                ac.st(dis[x * n + y])
+            if graph.dis[x * n + y] < inf and x < k and y < k:
+                ac.st(graph.dis[x * n + y])
             else:
                 ac.st(-1)
         return
@@ -164,27 +161,19 @@ class Solution:
         """
         n = ac.read_int() + 1
         m = ac.read_int()
-        dp = [[-inf] * (n + 1) for _ in range(n + 1)]
+        inf = 10 ** 6
+        graph = WeightedGraphForFloyd(n, inf)
         for _ in range(m):
-            i, j, k = ac.read_list_ints()
-            dp[i][j] = k
-        for i in range(n + 1):
-            dp[i][i] = 0
-        for k in range(1, n + 1):
-            for i in range(1, n + 1):
-                if dp[i][k] == -inf:
-                    continue
-                for j in range(1, n + 1):
-                    if dp[i][j] < dp[i][k] + dp[k][j]:
-                        dp[i][j] = dp[i][k] + dp[k][j]
+            i, j, k = ac.read_list_ints_minus_one()
+            if i == j:
+                continue
+            graph.add_directed_edge_initial(i, j, -k - 1)
+        graph.initialize_directed()
 
-        length = dp[1][n]
-        path = []
-        for i in range(1, n + 1):
-            if dp[1][i] + dp[i][n] == dp[1][n]:
-                path.append(i)
-        ac.st(length)
-        ac.lst(path)
+        ans = -graph.dis[n - 1]
+        path = graph.get_nodes_between_src_and_dst(0, n - 1)
+        ac.st(ans)
+        ac.lst([x + 1 for x in path])
         return
 
     @staticmethod
@@ -194,24 +183,17 @@ class Solution:
         tag: floyd|shortest_path|specific_plan|classical
         """
         n, m = ac.read_list_ints()
-        dp = [math.inf] * n * n
+        inf = 10 ** 4
+        graph = WeightedGraphForFloyd(n, inf)
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
-            dp[i * n + j] = dp[j * n + i] = 1
-        for i in range(n):
-            dp[i * n + i] = 0
-
-        for k in range(n):
-            for i in range(n):
-                if dp[i * n + k] == inf:
-                    continue
-                for j in range(i + 1, n):
-                    dp[j * n + i] = dp[i * n + j] = ac.min(dp[i * n + j], dp[i * n + k] + dp[k * n + j])
+            graph.add_undirected_edge_initial(i, j, 1)
+        graph.initialize_undirected()
 
         for _ in range(ac.read_int()):
-            u, v = ac.read_list_ints_minus_one()
-            dis = dp[u * n + v]
-            ac.lst([x + 1 for x in range(n) if dp[u * n + x] + dp[x * n + v] == dis])
+            i, j = ac.read_list_ints_minus_one()
+            path = graph.get_nodes_between_src_and_dst(i, j)
+            ac.lst([x + 1 for x in path])
         return
 
     @staticmethod
@@ -221,159 +203,110 @@ class Solution:
         tag: transitive_closure|floyd
         """
         n = ac.read_int()
+        inf = 10 ** 5
+        graph = WeightedGraphForFloyd(n, inf)
         dp = []
         for _ in range(n):
             dp.extend(ac.read_list_ints())
-        for k in range(n):
-            for i in range(n):
-                if not dp[i * n + k]:
-                    continue
-                for j in range(n):
-                    if dp[i * n + k] and dp[k * n + j]:
-                        dp[i * n + j] = 1
-        for i in range(n):
-            ac.lst([dp[i * n + j] for j in range(n)])
-        return
-
-    @staticmethod
-    def abc_51d_1(ac=FastIO()):
-        """
-        url: https://atcoder.jp/contests/abc051/tasks/abc051_d
-        tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
-        """
-        n, m = ac.read_list_ints()
-        dp = [math.inf] * n * n
-        for i in range(n):
-            dp[i * n + i] = 0
-
-        edges = [ac.read_list_ints() for _ in range(m)]
-        for i, j, w in edges:
-            i -= 1
-            j -= 1
-            dp[i * n + j] = dp[j * n + i] = w
-
-        for k in range(n):
-            for i in range(n):
-                for j in range(i + 1, n):
-                    a, b = dp[i * n + j], dp[i * n + k] + dp[k * n + j]
-                    dp[i * n + j] = dp[j * n + i] = a if a < b else b
-        ans = 0
-        for i, j, w in edges:
-            i -= 1
-            j -= 1
-            if dp[i * n + j] < w:
-                ans += 1
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def abc_51d_2(ac=FastIO()):
-        """
-        url: https://atcoder.jp/contests/abc051/tasks/abc051_d
-        tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
-        """
-        n, m = ac.read_list_ints()
-        edges = [ac.read_list_ints() for _ in range(m)]
-        dct = [[] for _ in range(n)]
-        for i, j, w in edges:
-            i -= 1
-            j -= 1
-            dct[i].append([j, w])
-            dct[j].append([i, w])
-        dis = []
-        for i in range(n):
-            dis.append(Dijkstra().get_shortest_path(dct, i))
-        ans = 0
-        for i, j, w in edges:
-            i -= 1
-            j -= 1
-            if dis[i][j] < w:
-                ans += 1
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def abc_74d(ac=FastIO()):
-        # shortest_path生成图，Floyd维护最小生成图
-        n = ac.read_int()
-        grid = [ac.read_list_ints() for _ in range(n)]
         for i in range(n):
             for j in range(n):
-                if grid[i][j] != grid[j][i]:
+                if dp[i * n + j]:
+                    graph.add_directed_edge_initial(i, j, 1)
+        for i in range(n):
+            graph.dis[i * n + i] = inf
+
+        graph.initialize_directed()
+        for i in range(n):
+            ac.lst([int(graph.dis[i * n + j] < inf) for j in range(n)])
+        return
+
+    @staticmethod
+    def abc_051d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc051/tasks/abc051_d
+        tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
+        """
+        n, m = ac.read_list_ints()
+        inf = 10 ** 7
+        graph = WeightedGraphForFloyd(n, inf)
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        for i, j, w in edges:
+            graph.add_undirected_edge_initial(i, j, w + 1)
+        graph.initialize_undirected()
+        ans = sum(graph.dis[i * n + j] < w + 1 for i, j, w in edges)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_074d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc074/tasks/arc083_b
+        tag: shortest_path_spanning_tree|floyd|dynamic_graph
+        """
+        n = ac.read_int()
+        grid = []
+        for _ in range(n):
+            grid.extend(ac.read_list_ints())
+
+        vals = []
+        for i in range(n):
+            if grid[i * n + i]:
+                ac.st(-1)
+                return
+            for j in range(i + 1, n):
+                if grid[i * n + j] != grid[j * n + i]:
                     ac.st(-1)
                     return
-            if grid[i][i]:
-                ac.st(-1)
-                return
+                vals.append(grid[i * n + j] * n * n + i * n + j)
 
-        edges = []
-        for i in range(n):
-            for j in range(i + 1, n):
-                edges.append([i, j, grid[i][j]])
-        edges.sort(key=lambda it: it[2])
+        vals.sort()
+        inf = 10 ** 15
+        graph = WeightedGraphForFloyd(n, inf)
         ans = 0
-        dis = [[math.inf] * n for _ in range(n)]
-        for i in range(n):
-            dis[i][i] = 0
-        # 逐渐更新最短距离
-        for i, j, w in edges:
-            if dis[i][j] < grid[i][j]:
+        for val in vals:
+            w, num = val // n // n, val % (n * n)
+            i, j = num // n, num % n
+            if graph.dis[i * n + j] < w:
                 ac.st(-1)
                 return
-            if dis[i][j] == w:
+            if graph.dis[i * n + j] == w:
                 continue
             ans += w
-            for x in range(n):
-                for y in range(x + 1, n):
-                    a, b = dis[x][y], dis[x][i] + w + dis[j][y]
-                    a = a if a < b else b
-                    b = dis[x][j] + w + dis[i][y]
-                    a = a if a < b else b
-                    dis[x][y] = dis[y][x] = a
+            graph.add_undirected_edge(i, j, w)
         ac.st(ans)
         return
 
     @staticmethod
     def abc_143e(ac=FastIO()):
-        # Floydbuild_graph|shortest_path，两种shortest_path，建两次图
+        """
+        url: https://atcoder.jp/contests/abc143/tasks/abc143_e
+        tag: floyd|build_graph|shortest_path|several_floyd
+        """
         n, m, ll = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        dis = [[math.inf] * n for _ in range(n)]
-        for i in range(n):
-            dis[i][i] = 0
+
+        inf = 10 ** 15
+        graph = WeightedGraphForFloyd(n, inf)
         for _ in range(m):
-            x, y, z = ac.read_list_ints()
-            x -= 1
-            y -= 1
-            dct[x].append([y, z])
-            dct[y].append([x, z])
-            a, b = dis[x][y], z
-            dis[x][y] = dis[y][x] = a if a < b else b
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            graph.add_undirected_edge_initial(i, j, w)
 
-        for k in range(n):
-            for i in range(n):
-                for j in range(i + 1, n):
-                    cur = dis[i][k] + dis[k][j]
-                    if cur < dis[i][j]:
-                        dis[i][j] = dis[j][i] = cur
-
-        dp = [[math.inf] * n for _ in range(n)]
+        graph.initialize_undirected()
         for i in range(n):
-            dp[i][i] = 0
             for j in range(i + 1, n):
-                if dis[i][j] <= ll:
-                    dp[i][j] = dp[j][i] = 0
+                graph.dis[i * n + j] = 0 if graph.dis[j * n + i] <= ll else inf
 
         for k in range(n):
-            for i in range(n):
-                for j in range(i + 1, n):
-                    cur = dp[i][k] + dp[k][j] + 1
-                    if cur < dp[i][j]:
-                        dp[i][j] = dp[j][i] = cur
+            for i in range(graph.n):
+                if graph.dis[i * graph.n + k] == graph.inf:
+                    continue
+                for j in range(i + 1, graph.n):
+                    cur = graph.dis[i * graph.n + k] + graph.dis[k * graph.n + j] + 1
+                    graph.dis[i * graph.n + j] = graph.dis[j * graph.n + i] = min(graph.dis[i * graph.n + j], cur)
 
         for _ in range(ac.read_int()):
-            x, y = ac.read_list_ints_minus_one()
-            ans = dp[x][y]
+            i, j = ac.read_list_ints_minus_one()
+            ans = graph.dis[i * n + j]
             ac.st(ans if ans < inf else -1)
         return
 
@@ -410,51 +343,11 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p1613(ac=FastIO()):
-        """
-        url: https://www.luogu.com.cn/problem/P1613
-        tag: floyd|several_floyd|shortest_path
-        """
-        # 建立新图Floydshortest_path
-        n, m = ac.read_list_ints()
-
-        # 表示节点i与j之间距离为2^k的路径是否存在
-        dp = [[[0] * 32 for _ in range(n)] for _ in range(n)]
-        for _ in range(m):
-            u, v = ac.read_list_ints_minus_one()
-            dp[u][v][0] = 1
-
-        # 结合倍增思想Floyd建新图
-        for x in range(1, 32):
-            for k in range(n):
-                for i in range(n):
-                    for j in range(n):
-                        if dp[i][k][x - 1] and dp[k][j][x - 1]:
-                            dp[i][j][x] = 1
-
-        dis = [[math.inf] * n for _ in range(n)]
-        for i in range(n):
-            for j in range(n):
-                for x in range(32):
-                    if dp[i][j][x]:
-                        dis[i][j] = 1
-                        break
-
-        # Floyd新图shortest_path
-        for k in range(n):
-            for i in range(n):
-                for j in range(n):
-                    dis[i][j] = ac.min(dis[i][j], dis[i][k] + dis[k][j])
-        ac.st(dis[0][n - 1])
-        return
-
-    @staticmethod
     def lg_p8312(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8312
         tag: limited_floyd|shortest_path|several_floyd
         """
-        # 最多k条边的shortest_path跑k遍Floyd
         n, m = ac.read_list_ints()
         dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
@@ -463,23 +356,23 @@ class Solution:
         for _ in range(m):
             a, b, c = ac.read_list_ints_minus_one()
             c += 1
-            dis[a][b] = ac.min(dis[a][b], c)
+            dis[a][b] = min(dis[a][b], c)
 
         dct = [d[:] for d in dis]
         k, q = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(q)]
-        k = ac.min(k, n)
+        k = min(k, n)
         for _ in range(k - 1):
             cur = [d[:] for d in dis]
             for p in range(n):
                 for i in range(n):
                     for j in range(n):
-                        cur[i][j] = ac.min(cur[i][j], dis[i][p] + dct[p][j])
+                        cur[i][j] = min(cur[i][j], dis[i][p] + dct[p][j])
             dis = [d[:] for d in cur]
 
         for c, d in nums:
             res = dis[c][d]
-            ac.st(res if res < inf else -1)
+            ac.st(res if res < math.inf else -1)
         return
 
     @staticmethod
@@ -488,10 +381,8 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8794
         tag: binary_search|floyd
         """
-        # binary_search|Floyd
 
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:
-            # 模板: Dijkstra求shortest_path，变成负数求可以求最长路（还是正权值）
             len(mat)
             dis = [math.inf] * n
             stack = [[0, src]]
@@ -533,7 +424,7 @@ class Solution:
             cur = [[0] * n for _ in range(n)]
             for a in range(n):
                 for b in range(n):
-                    cur[a][b] = ac.max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
+                    cur[a][b] = max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
             dis = 0
             for y in range(n):
                 dis += sum(get_dijkstra_result_mat(cur, y))
@@ -546,12 +437,11 @@ class Solution:
             cur = [[0] * n for _ in range(n)]
             for a in range(n):
                 for b in range(n):
-                    cur[a][b] = ac.max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
-            # Floyd全源shortest_path
+                    cur[a][b] = max(lower[a][b], grid[a][b] - cnt[a] - cnt[b])
             for k in range(n):
                 for a in range(n):
                     for b in range(a + 1, n):
-                        cur[a][b] = cur[b][a] = ac.min(cur[a][b], cur[a][k] + cur[k][b])
+                        cur[a][b] = cur[b][a] = min(cur[a][b], cur[a][k] + cur[k][b])
             return sum(sum(c) for c in cur) <= q
 
         low = 1
@@ -563,34 +453,27 @@ class Solution:
 
     @staticmethod
     def lc_2642():
+        """
+        url: https://leetcode.cn/problems/design-graph-with-shortest-path-calculator/
+        tag: floyd|dynamic_graph|shortest_path
+        """
 
         class Graph:
+
             def __init__(self, n: int, edges: List[List[int]]):
-                d = [[math.inf] * n for _ in range(n)]
-                for i in range(n):
-                    d[i][i] = 0
-                for x, y, w in edges:
-                    d[x][y] = w  # initial
-                for k in range(n):
-                    for i in range(n):
-                        for j in range(n):
-                            d[i][j] = min(d[i][j], d[i][k] + d[k][j])
-                self.d = d
+                self.graph = WeightedGraphForFloyd(n, 10 ** 15)
+                for i, j, w in edges:
+                    self.graph.add_directed_edge_initial(i, j, w)
+                self.graph.initialize_directed()
 
-            def add_edge(self, e: List[int]) -> None:
-                d = self.d
-                n = len(d)
-                x, y, w = e
-                if w >= d[x][y]:
-                    return
-                for i in range(n):
-                    for j in range(n):
-                        # add another edge
-                        d[i][j] = min(d[i][j], d[i][x] + w + d[y][j])
+            def add_edge(self, edge: List[int]) -> None:
+                i, j, w = edge
+                if w < self.graph.dis[i * self.graph.n + j]:
+                    self.graph.add_directed_edge(i, j, w)
 
-            def shortest_path(self, start: int, end: int) -> int:
-                ans = self.d[start][end]
-                return ans if ans < inf else -1
+            def shortest_path(self, node1: int, node2: int) -> int:
+                ans = self.graph.dis[node1 * self.graph.n + node2]
+                return ans if ans < self.graph.inf else -1
 
         return Graph
 
@@ -604,7 +487,8 @@ class Solution:
         a = ac.read_list_ints()
         s = [ac.read_str() for _ in range(n)]
 
-        dis = [math.inf] * n * n
+        inf = 10 ** 18
+        dis = [inf] * n * n
         gain = [0] * n * n
         for i in range(n):
             dis[i * n + i] = 0
@@ -618,6 +502,8 @@ class Solution:
 
         for k in range(n):
             for i in range(n):
+                if dis[i * n + k] == inf:
+                    continue
                 for j in range(n):
                     cur = dis[i * n + k] + dis[k * n + j]
                     g = gain[i * n + k] + gain[k * n + j] - a[k]
@@ -634,42 +520,19 @@ class Solution:
         return
 
     @staticmethod
-    def abc_243e_1(ac=FastIO()):
+    def abc_243e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc243/tasks/abc243_e
         tag: get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
         """
         n, m = ac.read_list_ints()
-        edges = []
-        dct = [[] for _ in range(n)]
-        for _ in range(m):
-            x, y, w = ac.read_list_ints_minus_one()
-            edges.append((x, y, w + 1))
-            dct[x].append((y, w + 1))
-            dct[y].append((x, w + 1))
-        dis = []
-        cnt = []
-        for i in range(n):
-            cur_cnt, cur_dis = Dijkstra().get_cnt_of_shortest_path(dct, i)
-            dis.append(cur_dis)
-            cnt.append(cur_cnt)
-        ans = sum(cnt[x][y] > 1 or dis[x][y] < w for x, y, w in edges)
-        ac.st(ans)
-        return
-
-    @staticmethod
-    def abc_243e_2(ac=FastIO()):
-        """
-        url: https://atcoder.jp/contests/abc243/tasks/abc243_e
-        tag: get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
-        """
-        n, m = ac.read_list_ints()
-        edges = []
-        for _ in range(m):
-            x, y, w = ac.read_list_ints_minus_one()
-            edges.append((x, y, w + 1))
-        cnt, dis = Floyd().get_cnt_of_shortest_path(edges, n)
-        ans = sum(cnt[x][y] > 1 or dis[x][y] < w for x, y, w in edges)
+        graph = WeightedGraphForFloyd(n)
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        for i, j, w in edges:
+            graph.add_undirected_edge_initial(i, j, w + 1)
+        mod = random.getrandbits(32)
+        graph.get_cnt_of_shortest_path_undirected(mod)
+        ans = sum(graph.cnt[i * n + j] > 1 or graph.dis[i * n + j] < w + 1 for i, j, w in edges)
         ac.st(ans)
         return
 
@@ -688,13 +551,13 @@ class Solution:
             c += 1
             dp[i][j] = c
         ans = 0
-        tot = sum(sum(x if x < inf else 0 for x in dp[i]) for i in range(n))
+        tot = sum(sum(x if x < math.inf else 0 for x in dp[i]) for i in range(n))
         for i in range(n):
             for a in range(n):
-                if dp[a][i] < inf:
+                if dp[a][i] < math.inf:
                     for b in range(n):
                         if dp[a][i] + dp[i][b] < dp[a][b]:
-                            if dp[a][b] < inf:
+                            if dp[a][b] < math.inf:
                                 tot -= dp[a][b]
                             dp[a][b] = dp[a][i] + dp[i][b]
                             tot += dp[a][b]
@@ -732,19 +595,19 @@ class Solution:
                 i, j = dct[x][0], dct[x][1]
                 dis[i * n + j] = dis[j * n + i] = 1
                 edge[i * n + j] = edge[j * n + i] = 1
-        ans = inf
+        ans = math.inf
         for k in range(n):
             for i in range(n):
-                if dis[i * n + k] == inf:
+                if dis[i * n + k] == math.inf:
                     continue
                 for j in range(i + 1, n):
                     ans = min(ans, dis[i * n + j] + edge[i * n + k] + edge[k * n + j])  # classical
             for i in range(n):
-                if dis[i * n + k] == inf:
+                if dis[i * n + k] == math.inf:
                     continue
                 for j in range(i + 1, n):
                     dis[j * n + i] = dis[i * n + j] = min(dis[i * n + j], dis[i * n + k] + dis[k * n + j])
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -754,38 +617,30 @@ class Solution:
         tag: floyd|permutation|brute_force
         """
         n, m = ac.read_list_ints()
-        dp = [[math.inf] * n for _ in range(n)]
-        for i in range(n):
-            dp[i][i] = 0
-        edges = []
-        for _ in range(m):
-            i, j, t = ac.read_list_ints_minus_one()
-            t += 1
-            dp[i][j] = dp[j][i] = min(dp[i][j], t)
-            edges.append((i, j, t))
-
-        for k in range(n):
-            for i in range(n):
-                for j in range(i, n):
-                    dp[i][j] = dp[j][i] = min(dp[i][j], dp[i][k] + dp[k][j])
+        inf = 10 ** 18
+        graph = WeightedGraphForFloyd(n, inf)
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        for i, j, w in edges:
+            graph.add_undirected_edge_initial(i, j, w + 1)
+        graph.initialize_undirected()
 
         for _ in range(ac.read_int()):
             k = ac.read_int()
             lst = ac.read_list_ints_minus_one()
             ans = inf
-            cost = sum(edges[x][-1] for x in lst)
+            cost = sum(edges[x][-1] + 1 for x in lst)
 
             for item in permutations(lst, k):
+
                 pre = defaultdict(lambda: inf)
                 pre[0] = cost
                 for x in item:
                     cur = defaultdict(lambda: inf)
                     for p in pre:
-                        cur[edges[x][0]] = min(cur[edges[x][0]], pre[p] + dp[p][edges[x][1]])
-                        cur[edges[x][1]] = min(cur[edges[x][1]], pre[p] + dp[p][edges[x][0]])
+                        cur[edges[x][0]] = min(cur[edges[x][0]], pre[p] + graph.dis[p * graph.n + edges[x][1]])
+                        cur[edges[x][1]] = min(cur[edges[x][1]], pre[p] + graph.dis[p * graph.n + edges[x][0]])
                     pre = cur
-
-                ans = min(ans, min(pre[p] + dp[p][-1] for p in pre))
+                ans = min(ans, min(pre[p] + graph.dis[p * graph.n + graph.n - 1] for p in pre))
             ac.st(ans)
         return
 
@@ -796,8 +651,8 @@ class Solution:
         tag: floyd|add_undirected_edge
         """
         n, m, q = ac.read_list_ints()
-        inf = 2 * 10 ** 15
-        graph = WeightedGraphForFloyd(n, inf)
+        math.inf = 2 * 10 ** 15
+        graph = WeightedGraphForFloyd(n, math.inf)
         edges = [ac.read_list_ints_minus_one() for _ in range(m)]
         visit = [1] * m
         queries = [ac.read_list_ints_minus_one() for _ in range(q)]
@@ -825,5 +680,5 @@ class Solution:
                 res.append(graph.dis[i * n + j])
         res.reverse()
         for x in res:
-            ac.st(x if x < inf else -1)
+            ac.st(x if x < math.inf else -1)
         return

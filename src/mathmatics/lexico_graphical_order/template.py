@@ -167,7 +167,7 @@ class Permutation:
     @staticmethod
     def prev_permutation(nums):
         n = len(nums)
-        post = inf
+        post = math.inf
         for i in range(n - 1, -1, -1):
             if nums[i] > post:
                 ind = -1

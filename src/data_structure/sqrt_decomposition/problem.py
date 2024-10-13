@@ -53,7 +53,7 @@ from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.search.dfs.template import UnWeightedTree
-from src.utils.fast_io import FastIO, inf
+from src.utils.fast_io import FastIO, math.inf
 
 
 class Solution:
@@ -408,7 +408,7 @@ class Solution:
         """
         n, q = ac.read_list_ints()
         nums = ac.read_list_ints()
-        size = ac.min(n - 1, 10 ** 7 // n)  # 100
+        size = min(n - 1, 10 ** 7 // n)  # 100
         pre = [[]]
         for p in range(1, size + 1):
             lst = [0] * p
@@ -445,7 +445,7 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        size = ac.min(n, 100)
+        size = min(n, 100)
         q = ac.read_int()
         queries = [ac.read_list_ints() for _ in range(q)]
         ind = [[] for _ in range(size + 1)]
@@ -459,13 +459,13 @@ class Solution:
             if ind[k]:
                 cur[0] = 0
                 for i in range(n):
-                    cur[i + 1] = cur[ac.max(0, i - k + 1)] + nums[i]
+                    cur[i + 1] = cur[max(0, i - k + 1)] + nums[i]
                 for x in ind[k]:
                     t, k = queries[x]
                     xx = (n - t) // k + 1
                     s = t - 1
                     end = s + (xx - 1) * k
-                    ans[x] = cur[end + 1] - cur[ac.max(s - k + 1, 0)]
+                    ans[x] = cur[end + 1] - cur[max(s - k + 1, 0)]
         for i in range(q):
             t, k = queries[i]
             if k > size:
@@ -491,7 +491,7 @@ class Solution:
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
             nums = ac.read_list_ints()
-            size = ac.min(n, 150)
+            size = min(n, 150)
             queries = [ac.read_list_ints() for _ in range(q)]
             ind = [[] for _ in range(size + 1)]
             for i in range(q):
@@ -505,15 +505,15 @@ class Solution:
                     pre = [0] * (n + 1)
                     for i in range(n):
                         r = ind_to_rk(i, k)
-                        cur[i + 1] = cur[ac.max(i - k + 1, 0)] + nums[i] * r
-                        pre[i + 1] = pre[ac.max(i - k + 1, 0)] + nums[i]
+                        cur[i + 1] = cur[max(i - k + 1, 0)] + nums[i] * r
+                        pre[i + 1] = pre[max(i - k + 1, 0)] + nums[i]
                     for x in ind[k]:
                         s, k, c = queries[x]
                         s -= 1
                         e = s + (c - 1) * k
                         length = c * k
-                        res = cur[e + 1] - cur[ac.max(e + 1 - length, 0)]
-                        res -= (s // k) * (pre[e + 1] - pre[ac.max(e + 1 - length, 0)])
+                        res = cur[e + 1] - cur[max(e + 1 - length, 0)]
+                        res -= (s // k) * (pre[e + 1] - pre[max(e + 1 - length, 0)])
                         ans[x] = res
                     del cur
 
@@ -588,7 +588,7 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 dct[grid[i][j]].append(i * n + j)
-        pre = defaultdict(lambda: inf)
+        pre = defaultdict(lambda: math.inf)
         for x in dct[1]:
             i, j = x // n, x % n
             if i == j == 0:
@@ -600,12 +600,12 @@ class Solution:
             m1 = len(dct[y - 1])
             m2 = len(dct[y])
             if m1 * m2 < m * n:
-                cur = defaultdict(lambda: inf)
+                cur = defaultdict(lambda: math.inf)
                 for x in pre:
                     i1, j1 = x // n, x % n
                     for yy in dct[y]:
                         i2, j2 = yy // n, yy % n
-                        cur[yy] = ac.min(cur[yy], pre[x] + abs(i2 - i1) + abs(j2 - j1))
+                        cur[yy] = min(cur[yy], pre[x] + abs(i2 - i1) + abs(j2 - j1))
             else:
                 for i in range(m * n):
                     dis[i] = m * n + 1
@@ -623,7 +623,7 @@ class Solution:
                             if 0 <= a < m and 0 <= b < n and dis[a * n + b] > d + 1:
                                 dis[a * n + b] = d + 1
                                 nodes[d + 1].append(a * n + b)
-                cur = defaultdict(lambda: inf)
+                cur = defaultdict(lambda: math.inf)
                 for x in dct[y]:
                     cur[x] = dis[x]
             pre = cur
@@ -650,7 +650,7 @@ class Solution:
             if k <= size:
                 dp = [0] * (n + 1)
                 for i in range(n - 1, -1, -1):
-                    dp[i] = dp[ac.min(n, i + nums[i] + k)] + 1
+                    dp[i] = dp[min(n, i + nums[i] + k)] + 1
                 for i in dct[k]:
                     ans[i] = dp[queries[i][0] - 1]
             else:

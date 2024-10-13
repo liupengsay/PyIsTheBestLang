@@ -67,7 +67,7 @@ class Solution:
         n, low, high = ac.read_list_ints()
         n += 1
         nums = ac.read_list_ints()
-        dp = [-inf] * n
+        dp = [-math.inf] * n
         dp[0] = nums[0]
         j = 0
         stack = deque()
@@ -193,7 +193,7 @@ class Solution:
         ans = ceil[k - 1][k - 1] - floor[k - 1][k - 1]
         for i in range(k - 1, m):
             for j in range(k - 1, n):
-                ans = ac.min(ans, ceil[i][j] - floor[i][j])
+                ans = min(ans, ceil[i][j] - floor[i][j])
         ac.st(ans)
         return
 
@@ -277,9 +277,9 @@ class Solution:
         ans1 = []
         ans2 = []
         for i in range(1, m + 1):
-            a = nums1[0] + delta if nums1 else -inf
-            b = nums2[0] + delta if nums2 else -inf
-            c = nums3[0] + delta if nums3 else -inf
+            a = nums1[0] + delta if nums1 else -math.inf
+            b = nums2[0] + delta if nums2 else -math.inf
+            c = nums3[0] + delta if nums3 else -math.inf
             if a >= b and a >= c:
                 x = a
                 nums1.popleft()
@@ -304,9 +304,9 @@ class Solution:
 
         ind = 0
         while nums1 or nums2 or nums3:
-            a = nums1[0] + delta if nums1 else -inf
-            b = nums2[0] + delta if nums2 else -inf
-            c = nums3[0] + delta if nums3 else -inf
+            a = nums1[0] + delta if nums1 else -math.inf
+            b = nums2[0] + delta if nums2 else -math.inf
+            c = nums3[0] + delta if nums3 else -math.inf
             if a >= b and a >= c:
                 x = a
                 nums1.popleft()
@@ -343,7 +343,7 @@ class Solution:
                 ac.st("No Solution")
                 return
             while dis:
-                x = ac.min(dis / d2, stack[0][1])
+                x = min(dis / d2, stack[0][1])
                 ans += x * stack[0][0]
                 dis -= x * d2
                 stack[0][1] -= x
@@ -377,7 +377,7 @@ class Solution:
                 stack.pop()
             stack.append([i, pre])
             if stack:
-                ans = ac.max(ans, pre - stack[0][1])
+                ans = max(ans, pre - stack[0][1])
         ac.st(ans)
         return
 
@@ -423,10 +423,10 @@ class Solution:
         n += 1
 
         def check(g):
-            dp = [-inf] * n
+            dp = [-math.inf] * n
             stack = deque()
             dp[0] = score[0]
-            floor = ac.max(1, d - g)
+            floor = max(1, d - g)
             ceil = d + g
             j = 0
             for i in range(1, n):
@@ -464,7 +464,7 @@ class Solution:
             f.append(a)
             s.append(b)
 
-        ans = inf
+        ans = math.inf
         stack = deque([])
         j = pre = 0
         for i in range(n):
@@ -477,7 +477,7 @@ class Solution:
                 stack.append([j, s[j]])
                 j += 1
             if pre >= m:
-                ans = ac.min(ans, stack[0][1])
+                ans = min(ans, stack[0][1])
             pre -= f[i]
         ac.st(ans)
         return

@@ -50,8 +50,8 @@ class Solution:
         """
         n = ac.read_int()
         ind = {"L": [-1, 0], "R": [1, 0], "U": [0, 1], "D": [0, -1]}
-        dct_x = defaultdict(lambda: [math.inf, -inf])
-        dct_y = defaultdict(lambda: [math.inf, -inf])
+        dct_x = defaultdict(lambda: [math.inf, -math.inf])
+        dct_y = defaultdict(lambda: [math.inf, -math.inf])
         for _ in range(n):
             x, y, d = ac.read_list_strs()
             x = int(x)
@@ -69,13 +69,13 @@ class Solution:
 
         lst_x = []
         for d in ind:
-            if dct_x[d][0] < inf:
+            if dct_x[d][0] < math.inf:
                 for x in dct_x[d]:
                     lst_x.append([x, ind[d][0]])
 
         lst_y = []
         for d in ind:
-            if dct_y[d][0] < inf:
+            if dct_y[d][0] < math.inf:
                 for y in dct_y[d]:
                     lst_y.append([y, ind[d][1]])
 
@@ -172,10 +172,10 @@ class Solution:
 
         point = int(TernarySearch().find_floor_point_float(check, floor, ceil, 1))
 
-        ans = inf
+        ans = math.inf
         for x in [-1, 0, 1]:
             if floor <= point + x <= ceil:
-                ans = ac.min(ans, check(point + x))
+                ans = min(ans, check(point + x))
         ac.st(ans)
         return
 
@@ -199,10 +199,10 @@ class Solution:
             else:
                 n = len(nums)
                 x = TernarySearch().find_ceil_point_int(check, 0, n - 1)
-                ans = -inf
+                ans = -math.inf
                 for y in [x - 1, x, x + 1, x + 2]:
                     if 0 <= y <= n - 1:
-                        ans = ac.max(ans, check(y))
+                        ans = max(ans, check(y))
                 ac.st(ans)
         return
 
@@ -313,7 +313,7 @@ class Solution:
 
         def check(x):
             if x < 0:
-                return inf
+                return math.inf
             return x * b + a / (1 + x) ** 0.5
 
         y = TernarySearch().find_floor_point_int(check, 0, a)
@@ -450,9 +450,9 @@ class Solution:
         pre_b = ac.accumulate([b[0] for b in bb])
         pre_c = ac.accumulate([c[0] for c in cc])
 
-        aa.append((inf, 0))
-        bb.append((inf, 0))
-        dd.append((inf, 0))
+        aa.append((math.inf, 0))
+        bb.append((math.inf, 0))
+        dd.append((math.inf, 0))
 
         lst = []
         for xx in range(0, min(m, mc) + 1):
@@ -551,8 +551,8 @@ class Solution:
         nums = ac.read_list_ints()
 
         def check(x):
-            high = -inf
-            low = inf
+            high = -math.inf
+            low = math.inf
             pre_high = pre_low = 0
             for num in nums:
                 pre_high += num - x

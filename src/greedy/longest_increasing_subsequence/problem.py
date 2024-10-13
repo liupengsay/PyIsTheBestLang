@@ -226,7 +226,7 @@ class Solution:
         dp = []
         for i in range(n):
             j = bisect.bisect_left(dp, nums[i])
-            ans = ac.max(ans, j + post[i])
+            ans = max(ans, j + post[i])
             j = bisect.bisect_left(dp, nums[i] - x)
             if 0 <= j < len(dp):
                 dp[j] = nums[i] - x
@@ -249,7 +249,7 @@ class Solution:
         ans = []
         x = 1
         while len(ans) < n:
-            rest = ac.min(n - len(ans), k)
+            rest = min(n - len(ans), k)
             for y in range(x + rest - 1, x - 1, -1):
                 ans.append(y)
             x = x + rest
@@ -344,10 +344,10 @@ class Solution:
         for num in nums:
             if num == 1:
                 s1 += 1
-                s121 = ac.max(s12 + 1, s121 + 1)
+                s121 = max(s12 + 1, s121 + 1)
             else:
-                s12 = ac.max(s1 + 1, s12 + 1)
-                s1212 = ac.max(s121 + 1, s1212 + 1)
+                s12 = max(s1 + 1, s12 + 1)
+                s1212 = max(s121 + 1, s1212 + 1)
         ac.st(max(s1212, s1, s12, s121))
         return
 
@@ -685,7 +685,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         post = [(0, 0) for _ in range(n + 1)]
-        post[n] = (0, inf)
+        post[n] = (0, math.inf)
         dp = []
         for x in range(n - 1, -1, -1):
             num = -nums[x]
@@ -701,7 +701,7 @@ class Solution:
                 post[x] = (cur, -num)
 
         ans = post[0][0]
-        pre = (0, inf)
+        pre = (0, math.inf)
         dp = []
         for x, num in enumerate(nums):
             i = bisect.bisect_left(dp, num)

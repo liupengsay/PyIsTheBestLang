@@ -204,18 +204,18 @@ class Solution:
 
         @lru_cache(None)
         def dfs(tup):
-            cur = sum(-inf < x < inf for x in tup)
+            cur = sum(-math.inf < x < math.inf for x in tup)
             if cur == 0:
                 return 0
-            res = -inf
-            flag = -inf if cur % 2 else inf
+            res = -math.inf
+            flag = -math.inf if cur % 2 else math.inf
             for i in range(3):
                 for j in range(3):
-                    if -inf < tup[i * 3 + j] < inf:
+                    if -math.inf < tup[i * 3 + j] < math.inf:
                         nex = list(tup)
                         nex[i * 3 + j] = flag
                         if any(all(nex[a * 3 + b] == flag for a, b in ls) for ls in ind):
-                            return inf
+                            return math.inf
                         res = max(res, tup[i * 3 + j] - dfs(tuple(nex)))
             return res
 
@@ -236,7 +236,7 @@ class Solution:
         def dfs(num):
             if num == 0:
                 return 0
-            res = inf
+            res = math.inf
             for i in range(n - 1, -1, -1):
                 if num >= nums[i]:
                     cur = num // nums[i] + dfs(num % nums[i])

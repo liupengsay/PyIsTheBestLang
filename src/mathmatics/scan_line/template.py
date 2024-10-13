@@ -20,7 +20,7 @@ class ScanLine:
 
         # 初始化结果与前序高度
         res = [[0, 0]]
-        stack = [[0, float('inf')]]
+        stack = [[0, float('math.inf')]]
         for left, height, right in events:
             # 超出管辖范围的先出队
             while left >= stack[0][1]:

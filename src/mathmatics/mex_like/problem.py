@@ -122,8 +122,8 @@ class Solution:
                 else:
                     b = pre_max
 
-                pre_min = ac.min(pre_min, x)
-                pre_max = ac.max(pre_max, x)
+                pre_min = min(pre_min, x)
+                pre_max = max(pre_max, x)
 
                 move1 = n - a
                 move1 %= n

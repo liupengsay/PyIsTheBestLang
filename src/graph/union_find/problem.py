@@ -541,14 +541,14 @@ class Solution:
                 fast[i] = max(dist[i][j] for j in part[p])
             group[p] = max(fast[i] for i in part[p])
 
-        ans = inf
+        ans = math.inf
         for i in range(n):
             for j in range(n):
                 if not uf.is_connected(i, j):
                     cur = dis(nums[i][0], nums[i][1], nums[j][0], nums[j][1]) + fast[i] + fast[j]
-                    cur = ac.max(cur, group[uf.find(i)])
-                    cur = ac.max(cur, group[uf.find(j)])
-                    ans = ac.min(ans, cur)
+                    cur = max(cur, group[uf.find(i)])
+                    cur = max(cur, group[uf.find(j)])
+                    ans = min(ans, cur)
         ac.st("%.6f" % ans)
         return
 
@@ -766,7 +766,7 @@ class Solution:
                 continue
             cost1 = s + (m - 2) * y
             cost2 = s - y + x + (m - 2) * x + (x + y) * 2
-            ans += ac.min(cost1, cost2)
+            ans += min(cost1, cost2)
         ac.st(ans)
         return
 
@@ -860,9 +860,9 @@ class Solution:
                 if uf.is_connected(n - 1, i):
                     pre_1 = i
                 if pre_0 != -1:
-                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], i - pre_0)
+                    dis_0[uf.find(i)] = min(dis_0[uf.find(i)], i - pre_0)
                 if pre_1 != -1:
-                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], i - pre_1)
+                    dis_1[uf.find(i)] = min(dis_1[uf.find(i)], i - pre_1)
 
             pre_0 = pre_1 = -1
             for i in range(n - 1, -1, -1):
@@ -871,9 +871,9 @@ class Solution:
                 if uf.is_connected(n - 1, i):
                     pre_1 = i
                 if pre_0 != -1:
-                    dis_0[uf.find(i)] = ac.min(dis_0[uf.find(i)], pre_0 - i)
+                    dis_0[uf.find(i)] = min(dis_0[uf.find(i)], pre_0 - i)
                 if pre_1 != -1:
-                    dis_1[uf.find(i)] = ac.min(dis_1[uf.find(i)], pre_1 - i)
+                    dis_1[uf.find(i)] = min(dis_1[uf.find(i)], pre_1 - i)
             ans = min(dis_0[i] * dis_0[i] + dis_1[i] * dis_1[i] for i in range(n))
             ac.st(ans)
         return
@@ -1466,7 +1466,7 @@ class Solution:
                     root = uf.find(root)
                     if root == n:
                         break
-                    c = ac.min(a[root] - water[root], x)
+                    c = min(a[root] - water[root], x)
                     x -= c
                     water[root] += c
                     if water[root] == a[root]:
@@ -2039,7 +2039,7 @@ class Solution:
                     break
                 if visit[uf.find(i)] or visit[uf.find(i + n)]:
                     continue
-                cur = ac.max(sum(x < n for x in group[uf.find(i)]), sum(x < n for x in group[uf.find(i + n)]))
+                cur = max(sum(x < n for x in group[uf.find(i)]), sum(x < n for x in group[uf.find(i + n)]))
                 ans += cur
                 visit[uf.find(i)] = visit[uf.find(i + n)] = 1
             else:
@@ -2260,7 +2260,7 @@ class Solution:
                 nex = []
                 for i in stack:
                     for j in dct[i]:
-                        if dis[j] == inf:
+                        if dis[j] == math.inf:
                             nex.append(j)
                             dis[j] = dis[i] + 1
                 stack = nex[:]

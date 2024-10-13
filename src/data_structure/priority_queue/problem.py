@@ -241,7 +241,7 @@ class Solution:
             for _ in range(k):
                 val, d = heapq.heappop(stack)
                 cur += val
-                dep = ac.max(dep, d)
+                dep = max(dep, d)
             ans += cur
             heapq.heappush(stack, [cur, dep + 1])
         ac.st(ans)
@@ -332,13 +332,13 @@ class Solution:
                 pre = now[-1]
                 if stack:
                     level, reach, need, idx = heapq.heappop(stack)
-                    now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+                    now = [idx, reach, need, -level, max(pre, reach) + need]
                 else:
                     now = []
 
             if not now and stack:
                 level, reach, need, idx = heapq.heappop(stack)
-                now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+                now = [idx, reach, need, -level, max(pre, reach) + need]
 
             if now and now[3] >= lst[-1]:
                 idx, reach, need, level = lst
@@ -347,16 +347,16 @@ class Solution:
                 idx, reach, need, level, end = now
                 heapq.heappush(stack, (-level, reach, end - lst[1], idx))
                 idx, reach, need, level = lst
-                now = [idx, reach, need, level, ac.max(pre, reach) + need]
+                now = [idx, reach, need, level, max(pre, reach) + need]
             else:
                 idx, reach, need, level = lst
-                now = [idx, reach, need, level, ac.max(pre, reach) + need]
+                now = [idx, reach, need, level, max(pre, reach) + need]
 
         while stack:
             ans.append([now[0], now[-1]])
             pre = now[-1]
             level, reach, need, idx = heapq.heappop(stack)
-            now = [idx, reach, need, -level, ac.max(pre, reach) + need]
+            now = [idx, reach, need, -level, max(pre, reach) + need]
         ans.append([now[0], now[-1]])
         for a in ans:
             ac.lst(a)
@@ -386,7 +386,7 @@ class Solution:
                 tm += 5
                 if val - d[j] > 0:
                     heapq.heappush(stack, [-val + d[j], j])
-            ans = ac.max(ans, cur)
+            ans = max(ans, cur)
         ac.st(ans)
         return
 

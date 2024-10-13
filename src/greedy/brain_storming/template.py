@@ -7,7 +7,7 @@ class BrainStorming:
 
     @staticmethod
     def minimal_coin_need(n, m, nums):
-        # there are n selectable and infinite coins
+        # there are n selectable and math.infinite coins
         # and the minimum number of coins required to form all combinations of 1-m
         nums += [m + 1]
         nums.sort()

@@ -21,7 +21,7 @@ class TestGeneral(unittest.TestCase):
                 uf.union(x, y)
             assert uf.part == 1 and len(edges) == n - 1
 
-            ans1 = inf
+            ans1 = math.inf
             for i in range(n - 1):
                 uf = UnionFind(n)
                 for j in range(n - 1):
@@ -43,7 +43,7 @@ class TestGeneral(unittest.TestCase):
                             dct[ind[x]].append((ind[y], w))
                             dct[ind[y]].append((ind[x], w))
                     dia = TreeDiameter(dct)
-                    cur.append(dia.get_diameter_info()[-1])
+                    cur.append(dia.get_diameter_math.info()[-1])
                 ans1 = min(ans1, max(cur) - min(cur))
 
             dct = [[] for _ in range(n)]
@@ -79,13 +79,13 @@ class TestGeneral(unittest.TestCase):
                     d = max(d, a + b)
                     dia[x] = d
 
-            ans2 = inf
+            ans2 = math.inf
             stack = [(0, -1, 0, 0)]
             while stack:
                 x, fa, pre, pre_dia = stack.pop()
                 a, b, c = sub[x]
                 #print("x, a, b, c, pre, pre_dia", x, a, b, c, pre, pre_dia)
-                aa = bb = -inf
+                aa = bb = -math.inf
                 for y, _ in dct[x]:
                     if y != fa:
                         dd = dia[y]

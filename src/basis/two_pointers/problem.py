@@ -63,7 +63,7 @@ import math
 from collections import Counter, defaultdict
 from functools import reduce
 from itertools import accumulate
-from math import gcd, inf
+from math import gcd, math.inf
 from operator import add
 from typing import List
 
@@ -97,10 +97,10 @@ class Solution:
         ans = i = j = 0
         while i < n and j < n:
             if nums1[i] < nums2[j]:
-                ans = ac.max(ans, nums1[i] - i - j - 2)
+                ans = max(ans, nums1[i] - i - j - 2)
                 i += 1
             else:
-                ans = ac.max(ans, nums2[j] - i - j - 2)
+                ans = max(ans, nums2[j] - i - j - 2)
                 j += 1
         ac.st("%.4f" % ans)
         return
@@ -180,7 +180,7 @@ class Solution:
         tag: sliding_window
         """
         n = len(nums)
-        swa = SlidingWindowAggregation(-inf, max)
+        swa = SlidingWindowAggregation(-math.inf, max)
         ans = []
         for i in range(n):
             swa.append(nums[i])
@@ -271,7 +271,7 @@ class Solution:
             return len(nums) - nums.count(1)
 
         swa = SlidingWindowAggregation(0, gcd)
-        res, n = inf, len(nums)
+        res, n = math.inf, len(nums)
         for i in range(n):
             swa.append(nums[i])
             while swa and swa.query() == 1:
@@ -424,8 +424,8 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         flag = 0
         ans = [-1]
-        not_like = inf
-        power = -inf
+        not_like = math.inf
+        power = -math.inf
         cur_cnt = defaultdict(int)
         cur_power = cur_not_like = j = 0
         for i in range(n):
@@ -490,7 +490,7 @@ class Solution:
         n = ac.read_int()
         s = ac.read_str()
         a, b = ac.read_list_ints()
-        ans = inf
+        ans = math.inf
         j = 0
         ind = dict()
         ind["U"] = [0, 1]
@@ -517,7 +517,7 @@ class Solution:
                 ans = j - i
             pre[0] -= ind[s[i]][0]
             pre[1] -= ind[s[i]][1]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -540,12 +540,12 @@ class Solution:
                 cur[nums[j]] = cur.get(nums[j], 0) + 1
                 if k > 1:
                     if cur[nums[j]] == 1:
-                        tot += ac.min(cnt[nums[j]], k)
+                        tot += min(cnt[nums[j]], k)
                         color += 1
                     elif cur[nums[j]] % k == 1:
                         color += 1
                         x = cur[nums[j]] // k
-                        tot += ac.min(k, cnt[nums[j]] - x * k)
+                        tot += min(k, cnt[nums[j]] - x * k)
                 else:
                     tot += 1
                     color += 1
@@ -557,7 +557,7 @@ class Solution:
                 if cur[nums[i]] % k == 0:
                     x = cur[nums[i]] // k
                     color -= 1
-                    tot -= ac.min(k, cnt[nums[i]] - x * k)
+                    tot -= min(k, cnt[nums[i]] - x * k)
             else:
                 cur[nums[i]] -= 1
 

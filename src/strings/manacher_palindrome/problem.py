@@ -145,7 +145,7 @@ class Solution:
                 cur *= nums[x] * nums[y]
                 x -= 1
                 y += 1
-            ans = ac.max(ans, cur)
+            ans = max(ans, cur)
 
             if i + 1 < n:
                 cur = 0
@@ -160,7 +160,7 @@ class Solution:
                     cur *= nums[x] * nums[y]
                     x -= 1
                     y += 1
-                ans = ac.max(ans, cur)
+                ans = max(ans, cur)
         ac.st(ans % mod)
         return
 
@@ -317,7 +317,7 @@ class Solution:
         mod = 19930726
         for i in range(n, 0, -1):
             if i % 2:
-                x = ac.min(cnt[i], k)
+                x = min(cnt[i], k)
                 ans *= pow(i, x, mod)
                 ans %= mod
                 k -= x

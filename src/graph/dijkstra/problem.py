@@ -131,11 +131,13 @@ ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_o
 3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
 3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greedy
 4196（https://www.acwing.com/problem/content/4199/）shortest_path
+385（https://www.acwing.com/problem/content/description/385/）dijkstra_for_cnt_of_strictly_second_shortest_path
 
 ================================LibraryChecker====================================
 Shortest Path（https://judge.yosupo.jp/problem/shortest_path）shortest_path|specific_plan
 
 """
+import math
 import random
 from collections import defaultdict, deque, Counter
 from heapq import heappush, heappop, heapify
@@ -144,10 +146,9 @@ from operator import add
 from typing import List
 
 from src.data_structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
-from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra, WeightedGraph, LimitedWeightedGraph, \
+from src.graph.dijkstra.template import UnDirectedShortestCycle, LimitedWeightedGraph, \
     WeightedGraphForShortestPathMST, WeightedGraphForDijkstra
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -161,12 +162,12 @@ class Solution:
         tag: dijkstra|brute_force|dfs
         """
         n, m = ac.read_list_ints()
-        dct = [defaultdict(lambda: inf) for _ in range(n)]
+        dct = [defaultdict(lambda: math.inf) for _ in range(n)]
         edges = []
         for _ in range(m):
             i, j, w = ac.read_list_ints()
-            dct[i - 1][j - 1] = ac.min(dct[i - 1][j - 1], w)
-            dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
+            dct[i - 1][j - 1] = min(dct[i - 1][j - 1], w)
+            dct[j - 1][i - 1] = min(dct[j - 1][i - 1], w)
         for i in range(n):
             for j in dct[i]:
                 if j > i:
@@ -182,11 +183,11 @@ class Solution:
         tag: dijkstra|brute_force|dfs
         """
         n, m = ac.read_list_ints()
-        dct = [defaultdict(lambda: inf) for _ in range(n)]
+        dct = [defaultdict(lambda: math.inf) for _ in range(n)]
         for _ in range(m):
             i, j, w = ac.read_list_ints()
-            dct[i - 1][j - 1] = ac.min(dct[i - 1][j - 1], w)
-            dct[j - 1][i - 1] = ac.min(dct[j - 1][i - 1], w)
+            dct[i - 1][j - 1] = min(dct[i - 1][j - 1], w)
+            dct[j - 1][i - 1] = min(dct[j - 1][i - 1], w)
         ans = UnDirectedShortestCycle().find_shortest_cycle_with_node(n, dct)
         ac.st(ans if ans != -1 else "No solution.")
         return
@@ -205,22 +206,22 @@ class Solution:
             prices = sorted(ac.read_list_ints())
             prices = list(accumulate(prices, add, initial=0))
 
-            dct = [[] for _ in range(n)]
+            inf = m + 1
+            graph = WeightedGraphForDijkstra(n, inf)
             for _ in range(m):
-                u, v = ac.read_list_ints_minus_one()
-                dct[u].append(v)
-                dct[v].append(u)
+                i, j = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(i, j, 1)
 
-            dis_a = Dijkstra().get_shortest_path_by_bfs(dct, a)
-            dis_b = Dijkstra().get_shortest_path_by_bfs(dct, b)
-            dis_c = Dijkstra().get_shortest_path_by_bfs(dct, c)
-            ans = inf
+            dis_a = graph.bfs_for_shortest_path(a)
+            dis_b = graph.bfs_for_shortest_path(b)
+            dis_c = graph.bfs_for_shortest_path(c)
+            ans = math.inf
             for x in range(n):
                 up = dis_b[x]
                 down = dis_a[x] + dis_c[x]
                 if up + down <= m:
                     cur = prices[up] + prices[up + down]
-                    ans = ac.min(ans, cur)
+                    ans = min(ans, cur)
             ac.st(ans)
         return
 
@@ -235,14 +236,40 @@ class Solution:
             ac.read_str()
             n, m = ac.read_list_ints()
             s, t = ac.read_list_ints_minus_one()
-            dct = [[] for _ in range(n)]
+            inf = 10 ** 9
+            graph = WeightedGraphForDijkstra(n, inf)
             for _ in range(m):
-                x, y = ac.read_list_ints_minus_one()
-                dct[x].append(y)
-                dct[y].append(x)
+                i, j = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(i, j, 1)
 
-            _, cnt = Dijkstra().get_cnt_of_second_shortest_path_by_bfs(dct, s, mod)
-            ac.st((cnt[t * 2] + cnt[t * 2 + 1]) % mod)
+            dis, cnt = graph.bfs_for_cnt_of_strictly_second_shortest_path(s, 0, mod)
+            ans = cnt[t * 2]
+            if dis[t * 2 + 1] == dis[t * 2] + 1:
+                ans += cnt[t * 2 + 1]
+                ans %= mod
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def ac_385(ac=FastIO()):
+        """
+        url: https://www.acwing.com/problem/content/description/385/
+        tag: dijkstra_for_cnt_of_strictly_second_shortest_path
+        """
+
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            inf = 10 ** 18
+            graph = WeightedGraphForDijkstra(n, inf)
+            for _ in range(m):
+                i, j, w = ac.read_list_ints_minus_one()
+                graph.add_directed_edge(i, j, w + 1)
+            s, t = ac.read_list_ints_minus_one()
+            dis, cnt = graph.dijkstra_for_cnt_of_strictly_second_shortest_path(s)
+            ans = cnt[t * 2]
+            if dis[t * 2 + 1] == dis[t * 2] + 1:
+                ans += cnt[t * 2 + 1]
+            ac.st(ans)
         return
 
     @staticmethod
@@ -309,12 +336,13 @@ class Solution:
         tag: back_trace|dijkstra|shortest_path|prune|data_range
         """
         n = len(values)
-        dct = [[] for _ in range(n)]
-        for i, j, t in edges:
-            dct[i].append([j, t])
-            dct[j].append([i, t])
-        dis = Dijkstra().get_shortest_path(dct, 0)
+        inf = math.inf
+        graph = WeightedGraphForDijkstra(n, inf)
 
+        for i, j, c in edges:
+            graph.add_undirected_edge(i, j, c)
+
+        dis = graph.dijkstra_for_shortest_path(0)
         stack = [[0, 0, {0}]]
         ans = 0
         visit = {tuple(sorted({0}) + [0]): 0}
@@ -324,12 +352,16 @@ class Solution:
                 cur = sum(values[j] for j in nodes)
                 if cur > ans:
                     ans = cur
-            for y, w in dct[x]:
+            ind = graph.point_head[x]
+            while ind:
+                y = graph.edge_to[ind]
+                w = graph.edge_weight[ind]
                 if t + w + dis[y] <= max_time:
                     state = tuple(sorted(nodes.union({y})) + [y])
-                    if visit.get(state, inf) > t + w:
+                    if visit.get(state, math.inf) > t + w:
                         visit[state] = t + w
                         heappush(stack, [t + w, y, nodes.union({y})])
+                ind = graph.edge_next[ind]
         return ans
 
     @staticmethod
@@ -366,12 +398,13 @@ class Solution:
         url: https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/
         tag: dijkstra
         """
-        dct = [[] for _ in range(n)]
-        for i, j, c in edges:
-            dct[i].append([j, c + 1])
-            dct[j].append([i, c + 1])
+        inf = math.inf
+        graph = WeightedGraphForDijkstra(n, inf)
 
-        dis = Dijkstra().get_shortest_path(dct, 0)
+        for i, j, c in edges:
+            graph.add_undirected_edge(i, j, c + 1)
+
+        dis = graph.dijkstra_for_shortest_path(0)
 
         ans = sum(dis[i] <= max_moves for i in range(n))
         for i, j, c in edges:
@@ -401,7 +434,7 @@ class Solution:
         tag: limited_shortest_path|classical|dijkstra_like
         """
         m, n = len(grid), len(grid[0])
-        visit = defaultdict(lambda: float("inf"))
+        visit = defaultdict(lambda: float("math.inf"))
 
         stack = [[0, 0, 0, 0]]
         while stack:
@@ -448,7 +481,7 @@ class Solution:
                 bj = bd - dct[i][j]
                 if bj >= visit[j]:
                     visit[j] = bj
-                    heappush(stack, (ac.max(dis, cost[j]), j, bj))
+                    heappush(stack, (max(dis, cost[j]), j, bj))
         ac.st("AFK")
         return
 
@@ -493,16 +526,15 @@ class Solution:
         tag: shortest_path|several_dijkstra|reverse_thinking
         """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        rev = [[] for _ in range(n)]
+        inf = 10 ** 18
+        graph1 = WeightedGraphForDijkstra(n, inf)
+        graph2 = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            u, v, w = ac.read_list_ints()
-            u -= 1
-            v -= 1
-            dct[u].append([v, w])
-            rev[v].append([u, w])
-        dis1 = Dijkstra().get_dijkstra_result_sorted_list(dct, 0)
-        dis2 = Dijkstra().get_dijkstra_result_sorted_list(rev, 0)
+            i, j, w = ac.read_list_ints_minus_one()
+            graph1.add_directed_edge(i, j, w + 1)
+            graph2.add_directed_edge(j, i, w + 1)
+        dis1 = graph1.dijkstra_for_shortest_path(0)
+        dis2 = graph2.dijkstra_for_shortest_path(0)
         ans = sum(dis1[i] + dis2[i] for i in range(n))
         ac.st(ans)
         return
@@ -514,16 +546,13 @@ class Solution:
         tag: strictly_second_shortest_path
         """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            u, v, w = ac.read_list_ints()
-            u -= 1
-            v -= 1
-            dct[u].append((v, w))
-            dct[v].append((u, w))
-
-        dis = Dijkstra().get_second_shortest_path(dct, 0)
-        ac.st(dis[n - 1][1])
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, w + 1)
+        ans = graph.dijkstra_for_strictly_second_shortest_path(0)[(n - 1) * 2 + 1]
+        ac.st(ans)
         return
 
     @staticmethod
@@ -533,13 +562,12 @@ class Solution:
         tag: dag|longest_path|dag_dp|topological_sort
         """
         n, m = ac.read_list_ints()
-        edge = [[] for _ in range(n)]
+        inf = math.inf
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            u, v, w = ac.read_list_ints()
-            u -= 1
-            v -= 1
-            edge[u].append((v, w))
-        dis = Dijkstra().get_longest_path(edge, 0)
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_directed_edge(i, j, w + 1)
+        dis = graph.dijkstra_for_longest_path(0)
         ac.st(dis[-1] if dis[-1] > -inf else -1)
         return
 
@@ -568,7 +596,7 @@ class Solution:
         while stack:
             i, j = stack.popleft()
             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
-                if 0 <= x < m and 0 <= y < n and maze[x][y] != "#" and bfs[x][y] == inf:
+                if 0 <= x < m and 0 <= y < n and maze[x][y] != "#" and bfs[x][y] == math.inf:
                     bfs[x][y] = bfs[i][j] + 1
                     stack.append([x, y])
 
@@ -576,7 +604,7 @@ class Solution:
         dis = [[math.inf] * n for _ in range(n)]
         for i in range(m):
             for j in range(n):
-                if bfs[i][j] < inf:
+                if bfs[i][j] < math.inf:
                     dis[i][j] = 0
                     if maze[i][j] == ".":
                         if maze[m - 1 - i][j] != "#":
@@ -600,7 +628,7 @@ class Solution:
                         visit[x][y] = dj
                         heappush(stack, [dj, x, y])
         x, y = end
-        return visit[x][y] if visit[x][y] < inf else -1
+        return visit[x][y] if visit[x][y] < math.inf else -1
 
     @staticmethod
     def lg_p2622(ac=FastIO()):
@@ -630,7 +658,7 @@ class Solution:
                     visit[cur] = d + 1
                     heappush(stack, [d + 1, cur])
         ans = visit[0]
-        ac.st(ans if ans < inf else -1)
+        ac.st(ans if ans < math.inf else -1)
         return
 
     @staticmethod
@@ -661,13 +689,13 @@ class Solution:
             if floor[i] < d:
                 continue
             for j in dct[i]:
-                dj = ac.min(d, nums[j])
+                dj = min(d, nums[j])
                 if dj < floor[j]:
                     floor[j] = dj
                     heappush(stack, (dj, j))
 
         # 后面最大值
-        ceil = [-inf] * n
+        ceil = [-math.inf] * n
         ceil[n - 1] = nums[n - 1]
         stack = [[-nums[n - 1], n - 1]]
         while stack:
@@ -675,7 +703,7 @@ class Solution:
             if ceil[i] < d:
                 continue
             for j in rev[i]:
-                dj = ac.max(-d, nums[j])
+                dj = max(-d, nums[j])
                 if dj > ceil[j]:
                     ceil[j] = dj
                     heappush(stack, [-dj, j])
@@ -739,9 +767,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1354
         tag: build_graph|dijkstra|shortest_path
         """
-
-        # build_graph|求shortest_path
-
         def dis(x1, y1, x2, y2):
             return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
@@ -749,7 +774,7 @@ class Solution:
         nodes = [[0, 5], [10, 5]]
         line = []
         for _ in range(n):
-            x, a1, a2, b1, b2 = ac.read_list_ints()
+            x, a1, a2, b1, b2 = [float(x) for x in ac.read_list_strs()]
             nodes.append([x, a1])
             nodes.append([x, a2])
             nodes.append([x, b1])
@@ -758,15 +783,16 @@ class Solution:
 
         def check():
             for xx, aa1, aa2, bb1, bb2 in line:
-                if left <= x <= right:
-                    if not (aa1 <= k * xx + bb <= aa2) and not (bb1 <= k * xx + bb <= bb2):
+                if left <= xx <= right:
+                    if not (aa1<=k*xx+bb<=aa2) and not (bb1<=k*xx+bb<=bb2):
                         return False
             return True
 
         start = 0
         end = 1
         m = len(nodes)
-        dct = [dict() for _ in range(m)]
+        inf = math.inf
+        graph = WeightedGraphForDijkstra(m, inf)
         for i in range(m):
             for j in range(i + 1, m):
                 a, b = nodes[i]
@@ -778,8 +804,8 @@ class Solution:
                 left, right = min(a, c), max(a, c)
                 if check():
                     x = dis(a, b, c, d)
-                    dct[i][j] = dct[j][i] = x
-        ans = Dijkstra().get_shortest_path(dct, start)[end]
+                    graph.add_undirected_edge(i, j, x)
+        ans = graph.dijkstra_for_shortest_path_float(start)[end]
         ac.st("%.2f" % ans)
         return
 
@@ -789,13 +815,20 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1608
         tag: dijkstra|undirected|directed|number_of_shortest_path
         """
-        # Dijkstra有向与无向、带权与不带权的shortest_path数量（shortest_pathcounter）
         n, m = ac.read_list_ints()
+        inf = 10 ** 9
         dct = [dict() for _ in range(n)]
         for _ in range(m):
-            i, j, w = ac.read_list_ints()
-            dct[i - 1][j - 1] = ac.min(dct[i - 1].get(j - 1, inf), w)
-        cnt, dis = Dijkstra().get_cnt_of_shortest_path(dct, 0)
+            i, j, w = ac.read_list_ints_minus_one()
+            dct[i][j] = min(dct[i].get(j, inf), w+1)
+
+        graph = WeightedGraphForDijkstra(n, inf)
+        for i in range(n):
+            for j, w in dct[i].items():
+                graph.add_directed_edge(i, j, w)
+            dct[i] = None
+        del dct
+        dis, cnt = graph.dijkstra_for_cnt_of_shortest_path(0)
         if dis[-1] == inf:
             ac.st("No answer")
         else:
@@ -810,15 +843,15 @@ class Solution:
         """
         n, p, c = ac.read_list_ints()
         cnt = Counter([ac.read_int() - 1 for _ in range(n)])
-        dct = [[] for _ in range(p)]
+        inf = 10 ** 9
+        graph = WeightedGraphForDijkstra(p, inf)
         for _ in range(c):
             i, j, w = ac.read_list_ints_minus_one()
-            dct[i].append((j, w + 1))
-            dct[j].append((i, w + 1))
+            graph.add_undirected_edge(i, j, w + 1)
 
         total = [0] * p
         for i in cnt:
-            dis = Dijkstra().get_shortest_path(dct, i)
+            dis = graph.dijkstra_for_shortest_path(i)
             for j in range(p):
                 total[j] += dis[j] * cnt[i]
         ac.st(min(total))
@@ -830,24 +863,18 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2047
         tag: node_shortest_path_count|dijkstra|shortest_path|floyd|classical
         """
-        # Dijkstra经过每个点的所有shortest_path条数占比
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
+        inf = 10 ** 9
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            a, b, c = ac.read_list_ints()
-            a -= 1
-            b -= 1
-            dct[a][b] = dct[b][a] = c
-
-        # shortest_path距离与条数
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, w + 1)
         dis = []
         cnt = []
         for i in range(n):
-            cc, dd = Dijkstra().get_cnt_of_shortest_path(dct, i)
+            dd, cc = graph.dijkstra_for_cnt_of_shortest_path(i)
             dis.append(dd)
             cnt.append(cc)
-
-        # brute_force起点与终点作为shortest_path的边的参与次数
         for i in range(n):
             ans = 0
             for j in range(n):
@@ -864,23 +891,22 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2176
         tag: brute_force|shortest_path
         """
-        # brute_forceshortest_path上的边修改后，重新shortest_path
         n, m = ac.read_list_ints()
-        dct = [dict() for _ in range(n)]
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
             i, j, w = ac.read_list_ints_minus_one()
-            dct[i][j] = dct[j][i] = w + 1
-        path, dis = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
+            graph.add_undirected_edge(i, j, w + 1)
+        path, dis = graph.dijkstra_for_shortest_path_from_src_to_dst(0, n - 1)
 
-        # brute_force边重新shortest_path
         ans = 0
-        k = len(path)
-        for a in range(k - 1):
-            i, j = path[a], path[a + 1]
-            dct[i][j] = dct[j][i] = dct[j][i] * 2
-            _, cur = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
-            ans = ac.max(ans, cur - dis)
-            dct[i][j] = dct[j][i] = dct[j][i] // 2
+        for x in range(m):
+            graph.edge_weight[x * 2 + 1] *= 2
+            graph.edge_weight[x * 2 + 2] *= 2
+            _, cur = graph.dijkstra_for_shortest_path_from_src_to_dst(0, n - 1)
+            ans = max(ans, cur - dis)
+            graph.edge_weight[x * 2 + 1] //= 2
+            graph.edge_weight[x * 2 + 2] //= 2
         ac.st(ans)
         return
 
@@ -898,7 +924,7 @@ class Solution:
         loss = [ac.read_list_floats() for _ in range(n)]
 
         # 丢失率与时延
-        dis = [[math.inf, inf] for _ in range(n)]
+        dis = [[math.inf, math.inf] for _ in range(n)]
         stack = [[0, 0, src]]
         dis[src] = [0, 0]
         # shortest_path
@@ -933,8 +959,8 @@ class Solution:
             u, v, w = ac.read_list_ints()
             u -= 1
             v -= 1
-            dct[u][v] = ac.min(dct[u].get(v, inf), w)
-            dct[v][u] = ac.min(dct[v].get(u, inf), w)
+            dct[u][v] = min(dct[u].get(v, math.inf), w)
+            dct[v][u] = min(dct[v].get(u, math.inf), w)
 
         # shortest_path模板
         dis = [math.inf] * n
@@ -947,10 +973,10 @@ class Solution:
             if i == n - 1:
                 break
             for j in dct[i]:
-                dj = d + dct[i][j] + ac.max(ceil, dct[i][j])
+                dj = d + dct[i][j] + max(ceil, dct[i][j])
                 if dj < dis[j]:
                     dis[j] = dj
-                    heappush(stack, [dj, d + dct[i][j], ac.max(ceil, dct[i][j]), j])
+                    heappush(stack, [dj, d + dct[i][j], max(ceil, dct[i][j]), j])
         ac.st(dis[n - 1])
         return
 
@@ -969,7 +995,7 @@ class Solution:
             x1, y1 = nums[x]
             x2, y2 = nums[y]
             res = ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
-            return res if res <= m else inf
+            return res if res <= m else math.inf
 
         n, w = ac.read_list_ints()
         m = ac.read_float()
@@ -995,7 +1021,7 @@ class Solution:
                 if dj < visit[j]:
                     visit[j] = dj
                     heappush(stack, (dj, j))
-        ac.st(int(visit[-1] * 1000) if visit[-1] < inf else -1)
+        ac.st(int(visit[-1] * 1000) if visit[-1] < math.inf else -1)
         return
 
     @staticmethod
@@ -1140,7 +1166,7 @@ class Solution:
             dct[x][y] = s
             dct[y][x] = s
 
-        dis = [[math.inf, -inf] for _ in range(n)]
+        dis = [[math.inf, -math.inf] for _ in range(n)]
         stack = [[0, 0, 0]]
         dis[0] = [0, 0]
 
@@ -1174,7 +1200,7 @@ class Solution:
 
         stack = [[0, 0, grid[0][0], 0, 0]]
         final = -1
-        visit = defaultdict(lambda: inf)
+        visit = defaultdict(lambda: math.inf)
         while stack:
             cost, magic, color, i, j = heappop(stack)
             if visit[(i, j, color)] <= cost:
@@ -1204,41 +1230,40 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4880
         tag: brute_force|dijkstra|shortest_path
         """
-        # brute_force终点 Dijkstrashortest_path
-        lst = []
+        lst = []  # RE
         while True:
             cur = ac.read_list_ints()
             if not cur:
                 break
             lst.extend(cur)
-        lst = deque(lst)
-        n, m, b, e = lst.popleft(), lst.popleft(), lst.popleft(), lst.popleft()
+        lst.reverse()
+        n, m, b, e = lst.pop(), lst.pop(), lst.pop(), lst.pop()
         b -= 1
         e -= 1
-        dct = [dict() for _ in range(n)]
+        inf = 10 ** 15
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            x, y, z = lst.popleft(), lst.popleft(), lst.popleft()
+            x, y, z = lst.pop(), lst.pop(), lst.pop()
             x -= 1
             y -= 1
-            dct[x][y] = dct[y][x] = z
+            graph.add_undirected_edge(x, y, z)
 
-        dis = Dijkstra().get_shortest_path(dct, b)
+        dis = graph.dijkstra_for_shortest_path(b)
 
-        t = lst.popleft()
+        t = lst.pop()
         if not t:
             ac.st(dis[e])
             return
 
-        # brute_force被抓住的点
-        nums = [[0, e + 1]] + [[lst.popleft(), lst.popleft()] for _ in range(t)]
+        nums = [[0, e + 1]] + [[lst.pop(), lst.pop()] for _ in range(t)]
         nums.sort()
         for i in range(t):
             pos = nums[i][1] - 1
             tt = nums[i + 1][0]
             if dis[pos] < tt:
-                ac.st(ac.max(dis[pos], nums[i][0]))
+                ac.st(max(dis[pos], nums[i][0]))
                 return
-        ac.st(ac.max(dis[nums[-1][1]], nums[-1][0]))
+        ac.st(max(dis[nums[-1][1]], nums[-1][0]))
         return
 
     @staticmethod
@@ -1247,24 +1272,48 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4943
         tag: brute_force|several_dijkstra|shortest_path
         """
-        # brute_force路径跑四遍shortest_path
+        class Graph(WeightedGraphForDijkstra):
+            def dijkstra_for_shortest_path_with_limit_and_target(self, src, initial, limit, target):
+                dis = [self.inf] * self.n
+                stack = [initial * self.n + src]
+                dis[src] = initial
+                while stack:
+                    val = heappop(stack)
+                    d, i = val // self.n, val % self.n
+                    if i in target:
+                        target.discard(i)
+                    if dis[i] < d:
+                        continue
+                    ind = self.point_head[i]
+                    while ind:
+                        w = self.edge_weight[ind]
+                        j = self.edge_to[ind]
+                        if j not in limit:
+                            dj = d + w
+                            if dj < dis[j]:
+                                dis[j] = dj
+                                heappush(stack, dj * self.n + j)
+                        ind = self.edge_next[ind]
+                return dis
+
         n, m, k = ac.read_list_ints()
         if k:
             visit = set(ac.read_list_ints_minus_one())
         else:
             visit = set()
-        dct = [dict() for _ in range(n)]
+        inf = 10 ** 15
+        graph = Graph(n, inf)
         for _ in range(m):
             a, b, c = ac.read_list_ints_minus_one()
-            dct[a][b] = dct[b][a] = ac.min(dct[a].get(a, inf), c + 1)
+            graph.add_undirected_edge(a, b, c + 1)
         x, y = ac.read_list_ints_minus_one()
 
-        dis1 = Dijkstra().get_dijkstra_result_limit(dct, 0, visit, {0, x, y})
-        dis11 = Dijkstra().get_dijkstra_result_limit(dct, x, visit, {0, x, y})
-        dis2 = Dijkstra().get_dijkstra_result_limit(dct, 0, set(), {0, x, y})
-        dis22 = Dijkstra().get_dijkstra_result_limit(dct, x, set(), {0, x, y})
+        dis1 = graph.dijkstra_for_shortest_path_with_limit_and_target(0, 0, visit, {0, x, y})
+        dis11 = graph.dijkstra_for_shortest_path_with_limit_and_target(x, 0, visit, {0, x, y})
+        dis2 = graph.dijkstra_for_shortest_path_with_limit_and_target(0, 0, set(), {0, x, y})
+        dis22 = graph.dijkstra_for_shortest_path_with_limit_and_target(x, 0, set(), {0, x, y})
 
-        ans = min(ac.max(dis1[x], dis2[y]), ac.max(dis1[y], dis2[x]),
+        ans = min(max(dis1[x], dis2[y]), max(dis1[y], dis2[x]),
                   dis1[x] + dis11[y], dis1[y] + dis11[y],
                   dis2[x] + dis22[y], dis2[y] + dis22[y])
         ac.st(ans)
@@ -1327,7 +1376,7 @@ class Solution:
                 for j in edge[i]:
                     if j != fa:
                         nums[i] += nums[j]
-                ans = ac.max(ans, nums[i] * (dis[i] - t))
+                ans = max(ans, nums[i] * (dis[i] - t))
         ac.st(ans)
         return
 
@@ -1337,23 +1386,20 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5663
         tag: shortest_odd_path|shortest_even_path
         """
-        #  01 bfs 最短的奇数与偶数距离
         n, m, q = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = math.inf
+        graph = WeightedGraphForDijkstra(n, inf)
         for i in range(m):
-            x, y = ac.read_list_ints_minus_one()
-            dct[x].append(y)
-            dct[y].append(x)
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, 1)
 
-        dis = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
+        dis = graph.bfs_for_shortest_path_with_odd_and_even(0)
         for _ in range(q):
             x, y = ac.read_list_ints()
             x -= 1
-            # 只要同odd_even的最短距离小于等于 y 就有解
-            if dis[x][y % 2] > y:
+            if dis[x * 2 + y % 2] > y:
                 ac.no()
             else:
-                # 差距可在两个节点之间反复横跳
                 ac.yes()
         return
 
@@ -1363,29 +1409,26 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5683
         tag: several_dijkstra|shortest_path|brute_force
         """
-        # several_dijkstra|shortest_pathbrute_force中间节点到三者之间的距离
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = m + 1
+        graph = WeightedGraphForDijkstra(n, inf)
         nums = []
         while len(nums) < 2 * m:
             nums.extend(ac.read_list_ints_minus_one())
         for i in range(0, 2 * m, 2):
             x, y = nums[i], nums[i + 1]
-            dct[x].append(y)
-            dct[y].append(x)
-        # 出发与时间约束
+            graph.add_undirected_edge(x, y, 1)
         s1, t1, s2, t2 = ac.read_list_ints()
         s1 -= 1
         s2 -= 1
-        dis0 = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
-        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, s1, inf)
-        dis2 = Dijkstra().get_shortest_path_by_bfs(dct, s2, inf)
+        dis0 = graph.dijkstra_for_shortest_path(0)
+        dis1 = graph.dijkstra_for_shortest_path(s1)
+        dis2 = graph.dijkstra_for_shortest_path(s2)
         ans = inf
         for i in range(n):
             cur = dis0[i] + dis1[i] + dis2[i]
-            # 注意时间限制
             if dis1[i] + dis0[i] <= t1 and dis2[i] + dis0[i] <= t2:
-                ans = ac.min(ans, cur)
+                ans = min(ans, cur)
         ac.st(-1 if ans == inf else m - ans)
         return
 
@@ -1404,17 +1447,17 @@ class Solution:
             dct[j - 1].append([i - 1, c, f])
 
         dis = [math.inf] * n
-        stack = [[0, 0, 0, inf]]
+        stack = [[0, 0, 0, math.inf]]
         dis[0] = 0
         while stack:
             d, i, cost, flow = heappop(stack)
             if dis[i] < d:
                 continue
             for j, c, f in dct[i]:
-                dj = -ac.min(flow, f) / (cost + c)
+                dj = -min(flow, f) / (cost + c)
                 if dj < dis[j]:
                     dis[j] = dj
-                    heappush(stack, [dj, j, cost + c, ac.min(flow, f)])
+                    heappush(stack, [dj, j, cost + c, min(flow, f)])
         ac.st(int(-dis[-1] * 10 ** 6))
         return
 
@@ -1445,7 +1488,7 @@ class Solution:
             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
                 if 0 <= x < m and 0 <= y < n:
                     # 每条路径边权最大值当中的最小值
-                    dj = ac.max(grid[x][y], d)
+                    dj = max(grid[x][y], d)
                     if dj < visit[x][y]:
                         visit[x][y] = dj
                         heappush(stack, [dj, x, y])
@@ -1584,10 +1627,8 @@ class Solution:
     def lc_2699(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
-        tag: dijkstra|shortest_path|greedy
+        tag: dijkstra|shortest_path|greedy|brain_teaser
         """
-        # Dijkstrashortest_pathgreedy应用
-
         dct = [[] for _ in range(n)]
         m = len(edges)
         book = [0] * m
@@ -1646,16 +1687,14 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6512
         tag: shortest_path
         """
-        # shortest_path|DP
         n, m, k = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
             i, j, w = ac.read_list_ints_minus_one()
-            dct[i].append([j, w + 1])
-            dct[j].append([i, w + 1])
-        dis = []
-        for i in range(n):
-            dis.append(Dijkstra().get_shortest_path(dct, i))
+            graph.add_undirected_edge(i, j, w + 1)
+        dis = [graph.dijkstra_for_shortest_path(i) for i in range(n)]
+
         dp = [-inf] * (k + 1)
         dp[0] = 0
         pos = [[0, 0]] + [ac.read_list_ints() for _ in range(k)]
@@ -1714,7 +1753,7 @@ class Solution:
             dct[j - 1][i - 1] = w
         mod = 10 ** 9 + 7
         # reverse_order|shortest_path搜寻
-        dis = [float('inf')] * n
+        dis = [float('math.inf')] * n
         cnt = [0] * n
         cnt[n - 1] = 1
         dis[n - 1] = 0
@@ -1770,7 +1809,7 @@ class Solution:
                     a, b = dp[i][t], dp[j][t - w] + passing_fees[i]
                     dp[i][t] = a if a < b else b
         ans = min(dp[-1])
-        return ans if ans < inf else -1
+        return ans if ans < math.inf else -1
 
     @staticmethod
     def lc_1976(n: int, roads: List[List[int]]) -> int:
@@ -1778,36 +1817,36 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-ways-to-arrive-at-destination/
         tag: dijkstra|number_of_shortest_path|classical
         """
-        # Dijkstrashortest_pathcounter模板题
         mod = 10 ** 9 + 7
-        dct = [dict() for _ in range(n)]
-        for i, j, t in roads:
-            dct[i][j] = dct[j][i] = t
-        return Dijkstra().get_cnt_of_shortest_path(dct, 0)[0][n - 1] % mod
+        inf = 10 ** 15
+        graph = WeightedGraphForDijkstra(n, inf)
+        for i, j, w in roads:
+            graph.add_undirected_edge(i, j, w)
+        _, cnt = graph.dijkstra_for_cnt_of_shortest_path(0, 0, mod)
+        return cnt[n - 1]
 
     @staticmethod
     def abc_142f(ac=FastIO()):
-        # 子图寻找，转换为有向图的最小环问题（可bfs优化）
+        """
+        url: https://atcoder.jp/contests/abc142/tasks/abc142_f
+        tag: directed|directed_smallest_circle
+        """
         n, m = ac.read_list_ints()
-        dct = [set() for _ in range(n)]
-        edges = []
-        for _ in range(m):
-            x, y = ac.read_list_ints_minus_one()
-            dct[x].add((y, 1))
-            edges.append([x, y])
+        inf = m + 1
+        graph = WeightedGraphForDijkstra(n, inf)
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        for i, j in edges:
+            graph.add_directed_edge(i, j, 1)
 
-        # brute_force边
         ans = inf
         res = []
-        for x, y in edges:
-            dct[x].discard((y, 1))
-
-            # dijkstra寻找最小环信息
-            path, dis = Dijkstra().get_shortest_path_from_src_to_dst([list(e) for e in dct], y, x)
+        for x, (i, j) in enumerate(edges):
+            graph.edge_weight[x + 1] = inf
+            path, dis = graph.bfs_for_shortest_path_from_src_to_dst(j, i)
             if dis < ans:
                 ans = dis
                 res = path[:]
-            dct[x].add((y, 1))
+            graph.edge_weight[x + 1] = 1
         if ans == inf:
             ac.st(-1)
             return
@@ -1881,16 +1920,16 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3775/
         tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
         """
-        # 建立反图并Dijkstrashortest_pathcountergreedyimplemention
         n, m = ac.read_list_ints()
-        rev = [[] for _ in range(n)]
+        inf = m + 1
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
-            rev[v].append([u, 1])
+            graph.add_directed_edge(v, u, 1)
 
         k = ac.read_int()
         p = ac.read_list_ints_minus_one()
-        cnt, dis = Dijkstra().get_cnt_of_shortest_path(rev, p[-1])
+        dis, cnt = graph.bfs_for_cnt_of_shortest_path(p[-1], 0)
 
         floor = 0
         for i in range(k - 1):
@@ -1908,7 +1947,6 @@ class Solution:
             else:
                 ceil += 1
         ac.lst([floor, ceil])
-
         return
 
     @staticmethod
@@ -1917,30 +1955,23 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3800/
         tag: shortest_path|brute_force|sort|greedy
         """
-        # shortest_pathbrute_force增边sortinggreedy
         n, m, k = ac.read_list_ints()
-        nums = ac.read_list_ints_minus_one()
-        dct = [[] for _ in range(n)]
+        color = ac.read_list_ints_minus_one()
+        inf = m + 1
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            x, y = ac.read_list_ints_minus_one()
-            dct[x].append(y)
-            dct[y].append(x)
-        dis0 = Dijkstra().get_shortest_path_by_bfs(dct, 0)
-        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, n - 1)
-        nums.sort(key=lambda it: dis0[it] - dis1[it])
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, 1)
 
-        ans = -1
-        pre = -inf
-        d = dis0[-1]
-        for i in range(k):
-            cur = pre + 1 + dis1[nums[i]]
-            if cur > ans:
-                ans = cur
-            if dis0[nums[i]] > pre:
-                pre = dis0[nums[i]]
-
-        if ans > d:
-            ans = d
+        dis1 = graph.bfs_for_shortest_path(0)
+        dis2 = graph.bfs_for_shortest_path(n - 1)
+        color = [(dis1[i] - dis2[i]) * n + i for i in color]
+        color.sort()
+        ans = -inf
+        post = -inf
+        for i in range(k - 1, -1, -1):
+            ans = max(ans, min(dis1[n - 1], post + dis1[color[i] % n] + 1))
+            post = max(post, dis2[color[i] % n])
         ac.st(ans)
         return
 
@@ -1950,20 +1981,16 @@ class Solution:
         url: https://www.acwing.com/problem/content/4199/
         tag: shortest_path
         """
-        # shortest_path长度与返回任意一条shortest_path
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 15
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            i, j, w = ac.read_list_ints()
-            i -= 1
-            j -= 1
-            dct[i].append([j, w])
-            dct[j].append([i, w])
-        path, ans = Dijkstra().get_shortest_path_from_src_to_dst(dct, 0, n - 1)
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, w + 1)
+        path, ans = graph.dijkstra_for_shortest_path_from_src_to_dst(0, n - 1)
         if ans == inf:
             ac.st(-1)
         else:
-            path.reverse()
             ac.lst([x + 1 for x in path])
         return
 
@@ -1994,7 +2021,7 @@ class Solution:
                 if vis[i] <= k:
                     continue
                 vis[i] = k
-                ss = ac.min(k, s[i])
+                ss = min(k, s[i])
                 for j, w in dct[i]:
                     dj = d + ss * w
                     if ss < vis[j]:
@@ -2085,18 +2112,18 @@ class Solution:
         tag: shortest_path|brute_force|bfs|classical
         """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n + 1)]
+        inf = m + 1
+        graph = WeightedGraphForDijkstra(n + 1, inf)
         for _ in range(m):
             i, j = ac.read_list_ints()
-            dct[i].append(j)
-            dct[j].append(i)
+            graph.add_undirected_edge(i, j, 1)
 
-        dis_1 = Dijkstra().get_shortest_path_by_bfs(dct, 1, inf)
-        dis_n = Dijkstra().get_shortest_path_by_bfs(dct, n, inf)
+        dis1 = graph.bfs_for_shortest_path(1)
+        dis2 = graph.bfs_for_shortest_path(n)
         ans = []
 
         for i in range(1, n + 1):
-            cur = min(dis_1[n], min(dis_1[0], dis_1[i]) + min(dis_n[0], dis_n[i]))
+            cur = min(dis1[n], min(dis1[0], dis1[i]) + min(dis2[0], dis2[i]))
             ans.append(cur if cur < inf else -1)
         ac.lst(ans)
         return
@@ -2126,7 +2153,7 @@ class Solution:
                 if dj < dis[j] and disappear[j] > dj:
                     dis[j] = dj
                     heappush(stack, (dj, j))
-        return [x if x < inf else -1 for x in dis]
+        return [x if x < math.inf else -1 for x in dis]
 
     @staticmethod
     def abc_252e(ac=FastIO()):
@@ -2205,7 +2232,7 @@ class Solution:
                     fa2[j] = color
                     heappush(stack, (dj, j, color))
         ans = [dis2[i] if fa1[i] == a[i] else dis1[i] for i in range(n)]
-        ans = [x if x < inf else -1 for x in ans]
+        ans = [x if x < math.inf else -1 for x in ans]
         ac.lst(ans)
         return
 
@@ -2217,18 +2244,13 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         h = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
-            if h[u] >= h[v]:
-                dct[u].append((v, 0))
-            else:
-                dct[u].append((v, h[v] - h[u]))
-            if h[v] >= h[u]:
-                dct[v].append((u, 0))
-            else:
-                dct[v].append((u, h[u] - h[v]))
-        dis = Dijkstra().get_shortest_path(dct, 0)
+            graph.add_directed_edge(u, v, max(h[v] - h[u], 0))
+            graph.add_directed_edge(v, u, max(h[u] - h[v], 0))
+        dis = graph.dijkstra_for_shortest_path(0)
         ans = max(h[0] - h[i] - dis[i] for i in range(n))
         ac.st(ans)
         return
@@ -2258,7 +2280,7 @@ class Solution:
                 use[s] = 1
                 dis[s] = y
 
-        stack = [dis[i] * n + i for i in range(n) if dis[i] < inf] + [0]
+        stack = [dis[i] * n + i for i in range(n) if dis[i] < math.inf] + [0]
         heapify(stack)
         while stack:
             x = heappop(stack)
@@ -2284,20 +2306,21 @@ class Solution:
         """
         n, m, k = ac.read_list_ints()
         color = ac.read_list_ints_minus_one()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 6
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
+            graph.add_undirected_edge(i, j, 1)
 
-        dis1 = Dijkstra().get_shortest_path_by_bfs(dct, 0, inf)
-        dis2 = Dijkstra().get_shortest_path_by_bfs(dct, n - 1, inf)
-        color.sort(key=lambda it: dis1[it] - dis2[it])
+        dis1 = graph.bfs_for_shortest_path(0)
+        dis2 = graph.bfs_for_shortest_path(n - 1)
+        color = [(dis1[i] - dis2[i]) * n + i for i in color]
+        color.sort()
         ans = -inf
         post = -inf
         for i in range(k - 1, -1, -1):
-            ans = max(ans, min(dis1[n - 1], post + dis1[color[i]] + 1))
-            post = max(post, dis2[color[i]])
+            ans = max(ans, min(dis1[n - 1], post + dis1[color[i] % n] + 1))
+            post = max(post, dis2[color[i] % n])
         ac.st(ans)
         return
 
@@ -2357,7 +2380,7 @@ class Solution:
                 dct[y].discard(x)
                 for i in range(n):
                     parent[i] = -1
-                    dis[i] = inf
+                    dis[i] = math.inf
 
                 stack = [x]
                 dis[x] = 0
@@ -2365,12 +2388,12 @@ class Solution:
                     nex = []
                     for i in stack:
                         for j in dct[i]:
-                            if dis[j] == inf:
+                            if dis[j] == math.inf:
                                 dis[j] = dis[i] + 1
                                 parent[j] = i
                                 nex.append(j)
                     stack = nex[:]
-                if dis[y] < inf:
+                if dis[y] < math.inf:
                     lst = [y]
                     while lst[-1] != x:
                         lst.append(parent[lst[-1]])
@@ -2460,13 +2483,12 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         lst = [0] + ac.read_list_ints_minus_one()
-        dct = [[] for _ in range(n)]
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(n, inf)
         for _ in range(m):
-            i, j, x = ac.read_list_ints_minus_one()
-            x += 1
-            dct[i].append((j, x))
-            dct[j].append((i, x))
-        dis = [Dijkstra().get_shortest_path(dct, x) for x in lst]
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, w + 1)
+        dis = [graph.dijkstra_for_shortest_path(x, 0) for x in lst]
         ans = inf
         for item in permutations(range(1, 6), 5):
             cur = [0] + list(item)
@@ -2505,7 +2527,7 @@ class Solution:
                 if dd < dis[j]:
                     dis[j] = dd
                     heappush(stack, (dd, j))
-        ac.st(dis[-1] if dis[-1] < inf else -1)
+        ac.st(dis[-1] if dis[-1] < math.inf else -1)
         return
 
     @staticmethod
@@ -2586,7 +2608,7 @@ class Solution:
 
         graph.dijkstra(s + 3 * n)
         for i in range(n, 2 * n):
-            if graph.dis[i] == inf:
+            if graph.dis[i] == math.inf:
                 graph.dis[i] = -1
         ac.lst(graph.dis[n:2 * n])
         return

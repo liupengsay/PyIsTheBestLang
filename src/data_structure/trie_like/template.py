@@ -97,7 +97,7 @@ class BinaryTrieXor:
     def get_maximum_xor(self, x: int) -> int:
         """get maximum result for constant x ^ element in array"""
         if self.son_and_cnt[0] & self.mask == 0:
-            return -inf
+            return -math.inf
         res = 0
         cur = 0
         for k in range(self.max_bit, -1, -1):
@@ -113,7 +113,7 @@ class BinaryTrieXor:
     def get_minimum_xor(self, x: int) -> int:
         """get minimum result for constant x ^ element in array"""
         if self.son_and_cnt[0] & self.mask == 0:
-            return inf
+            return math.inf
         res = 0
         cur = 0
         for k in range(self.max_bit, -1, -1):
@@ -130,7 +130,7 @@ class BinaryTrieXor:
         """get kth maximum result for constant x ^ element in array"""
         assert rk >= 1
         if self.son_and_cnt[0] & self.mask < rk:
-            return -inf
+            return -math.inf
         res = 0
         cur = 0
         for k in range(self.max_bit, -1, -1):

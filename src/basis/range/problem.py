@@ -337,7 +337,7 @@ class Solution:
             nums.append([x - y, x + y])
         nums.sort(key=lambda it: [it[0], -it[1]])
         ans = 0
-        pre = -inf
+        pre = -math.inf
         for a, b in nums:
             if b > pre:
                 ans += 1
@@ -393,7 +393,7 @@ class Solution:
         for i in range(n):
             if nums[i]:
                 a, b = i - r + 1, i + r - 1
-                a = ac.max(a, 0)
+                a = max(a, 0)
                 lst.append([a, b])
         ans = Range().minimum_range_cover(0, n - 1, lst, False)
         ac.st(ans)
@@ -427,7 +427,7 @@ class Solution:
             else:
                 low = (x, y - 1)
             if x == 1:
-                high = (1, inf)
+                high = (1, math.inf)
             else:
                 high = (x - 1, y)
             line.append([low, high])

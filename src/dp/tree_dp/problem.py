@@ -305,7 +305,7 @@ class Solution:
                 cur = 2 * a[i] - 1
                 for j in edge[i]:
                     if j != fa:
-                        cur += ac.max(sub[j], 0)
+                        cur += max(sub[j], 0)
                 sub[i] = cur
 
         ans = [0] * n
@@ -319,8 +319,8 @@ class Solution:
                         nex = sub[i] - sub[j] + d
                     else:
                         nex = sub[i] + d
-                    nex = ac.max(nex, 2 * a[i] - 1)
-                    stack.append((j, i, ac.max(0, nex)))
+                    nex = max(nex, 2 * a[i] - 1)
+                    stack.append((j, i, max(0, nex)))
         ac.lst(ans)
         return
 
@@ -331,7 +331,7 @@ class Solution:
         tag: reroot_dp|dfs|down_to_up|up_to_down
         """
         n, m, d = ac.read_list_ints()
-        sub = [-inf] * n
+        sub = [-math.inf] * n
         evil = [0] * n
         for i in ac.read_list_ints_minus_one():
             sub[i] = 0
@@ -352,19 +352,19 @@ class Solution:
                         stack.append((j, i))
             else:
                 i = ~i
-                cur = -inf
+                cur = -math.inf
                 for j in edge[i]:
                     if j != fa:
-                        cur = ac.max(cur, sub[j] + 1)
-                sub[i] = ac.max(sub[i], cur)
+                        cur = max(cur, sub[j] + 1)
+                sub[i] = max(sub[i], cur)
 
-        stack = [(0, -1, -inf)]
+        stack = [(0, -1, -math.inf)]
         while stack:
             i, fa, up = stack.pop()
-            sub[i] = ac.max(sub[i], up)
+            sub[i] = max(sub[i], up)
             if evil[i]:
-                up = ac.max(0, up)
-            a = b = -inf
+                up = max(0, up)
+            a = b = -math.inf
             for j in edge[i]:
                 if j != fa:
                     if sub[j] > a:
@@ -374,9 +374,9 @@ class Solution:
             for j in edge[i]:
                 if j != fa:
                     if sub[j] == a:
-                        stack.append((j, i, ac.max(b + 2, up + 1)))
+                        stack.append((j, i, max(b + 2, up + 1)))
                     else:
-                        stack.append((j, i, ac.max(a + 2, up + 1)))
+                        stack.append((j, i, max(a + 2, up + 1)))
         ac.st(sum(x <= d for x in sub))
         return
 
@@ -408,10 +408,10 @@ class Solution:
         def dfs(node):
             # 不装被监控，装被监控，不装不被监控
             if not node:
-                return [0, inf, 0]
+                return [0, math.inf, 0]
             left = dfs(node.left)
             right = dfs(node.right)
-            res = [math.inf, inf, inf]
+            res = [math.inf, math.inf, math.inf]
             res[0] = min(left[1] + min(right[0], right[1]), right[1] + min(left[0], left[1]))
             res[1] = 1 + min(left) + min(right)
             res[2] = left[0] + right[0]
@@ -655,12 +655,12 @@ class Solution:
 
             dis = ReRootDP().get_tree_distance_max(dct)
 
-            ans = -inf
+            ans = -math.inf
             stack = [[0, 0, -1]]
             while stack:
                 i, d, fa = stack.pop()
                 cur = dis[i] * k - d
-                ans = ac.max(ans, cur)
+                ans = max(ans, cur)
                 for j in dct[i]:
                     if j != fa:
                         stack.append([j, d + c, i])
@@ -703,7 +703,7 @@ class Solution:
                         a, b = dp[j]
                         x += a
                         y += b
-                dp[i] = [y, ac.max(x, y)]
+                dp[i] = [y, max(x, y)]
         ac.st(max(dp[root]))
         return
 
@@ -734,9 +734,9 @@ class Solution:
                 if len(dct[i]) > 1:
                     a, b = [x for x in dct[i] if x != fa]
                     for j in range(1, q + 1):
-                        cur = ac.max(dp[a][j - 1] + dct[i][a], dp[b][j - 1] + dct[i][b])
+                        cur = max(dp[a][j - 1] + dct[i][a], dp[b][j - 1] + dct[i][b])
                         for k in range(j - 1):
-                            cur = ac.max(cur, dp[a][k] + dp[b][j - k - 2] + dct[i][a] + dct[i][b])
+                            cur = max(cur, dp[a][k] + dp[b][j - k - 2] + dct[i][a] + dct[i][b])
                         dp[i][j] = cur
         ac.st(dp[0][q])
         return
@@ -772,7 +772,7 @@ class Solution:
                         cur = dp[i][:]
                         for x in range(1, m + 2):
                             for y in range(m + 2 - x):
-                                cur[x + y] = ac.max(cur[x + y], dp[i][x] + dp[j][y])
+                                cur[x + y] = max(cur[x + y], dp[i][x] + dp[j][y])
                         dp[i] = cur[:]
         ac.st(dp[0][m + 1])
         return
@@ -844,7 +844,7 @@ class Solution:
                         a, b = num, a
                     elif num > b:
                         b = num
-                ceil = ac.max(ceil, a * b)
+                ceil = max(ceil, a * b)
 
         ac.lst([ceil, ans])
         return
@@ -937,9 +937,9 @@ class Solution:
                 res = 0
                 for j in dct[i]:
                     if j != fa:
-                        res += ac.min(dct[i][j], sub[j])
+                        res += min(dct[i][j], sub[j])
                 sub[i] = res
-        ac.st(sub[root] if sub[root] < inf else 0)
+        ac.st(sub[root] if sub[root] < math.inf else 0)
         return
 
     @staticmethod
@@ -973,7 +973,7 @@ class Solution:
                 for j in dct[i]:
                     if j != fa:
                         # 记录子树最小的两个值
-                        a = b = inf
+                        a = b = math.inf
                         for c in sub[j][1:]:
                             if c < a:
                                 a, b = c, a
@@ -1046,7 +1046,7 @@ class Solution:
             while stack:
                 i = stack.pop()
                 for j in dct[i]:
-                    if cur[j] == inf:
+                    if cur[j] == math.inf:
                         cur[j] = cur[i] + 1
                         stack.append(j)
             dis.append(cur[:])
@@ -1398,12 +1398,12 @@ class Solution:
                     d = max(d, a + b)
                     dia[x] = d
 
-            ans = inf
+            ans = math.inf
             stack = [(0, -1, 0, 0)]
             while stack:
                 x, fa, pre, pre_dia = stack.pop()
                 a, b, c = sub[x]
-                aa = bb = -inf
+                aa = bb = -math.inf
                 for y, _ in dct[x]:
                     if y != fa:
                         dd = dia[y]
@@ -1540,7 +1540,7 @@ class Solution:
             i, fa, pre = stack.pop()
 
             ans[i] = max(pre, sub[i])
-            aa = bb = -inf
+            aa = bb = -math.inf
             for j, w in dct[i]:
                 if j != fa:
                     cur = max(sub[j], d[j]) + w
@@ -1663,7 +1663,7 @@ class Solution:
                             a, b = dp[j]
                             x += a
                             y += b
-                    dp[i] = (y, ac.max(x, y))
+                    dp[i] = (y, max(x, y))
                     ans[i] = y + 1 if degree[i] == 1 else y
 
             stack = [(0, -1, 0, 0)]
@@ -1985,7 +1985,7 @@ class Solution:
                         dp[x][i] = (i + 1) * nums[x]
                     for y in dct[x]:
                         if y != fa:
-                            aa = bb = inf
+                            aa = bb = math.inf
                             for j in range(21):
                                 cur = dp[y][j]
                                 if cur < aa:
@@ -2065,14 +2065,14 @@ class Solution:
                     else:
                         i = ~i
                         ind = self.point_head[i]
-                        cur = inf
+                        cur = math.inf
                         while ind:
                             j = self.edge_to[ind]
                             cur = min(cur, ans[j])
                             ind = self.edge_next[ind]
                         if i == 0:
                             res = max(res, nums[0] + cur)
-                        if cur == inf:
+                        if cur == math.inf:
                             ans[i] = nums[i]
                         elif nums[i] >= cur:
                             ans[i] = cur

@@ -48,7 +48,7 @@ class DinicMaxflowMinCut:
                 i = self.edge_next[i]
         return self.depth[t] != -1
 
-    def _dfs(self, s, t, ff=inf):
+    def _dfs(self, s, t, ff=math.inf):
         stack = [(s, ff, 0)]
         ind = 1
         max_flow = [0]
@@ -213,7 +213,7 @@ class DinicMaxflowMinCost:
 
     def _dijkstra(self, s, t):
         for i in range(1, self.n + 1):
-            self.dis[i] = inf
+            self.dis[i] = math.inf
             self.vis[i] = 0
         self.dis[s] = 0
         q = [(0, s)]
@@ -233,7 +233,7 @@ class DinicMaxflowMinCost:
                     if not self.vis[v]:
                         heapq.heappush(q, (self.dis[v], v))
                 i = self.edge_next[i]
-        return self.dis[t] < inf
+        return self.dis[t] < math.inf
 
     def max_flow_min_cost(self, s, t):
         self._spfa(s)
@@ -241,7 +241,7 @@ class DinicMaxflowMinCost:
             for i in range(1, self.n + 1):
                 self.h[i] += self.dis[i]
 
-            cur_flow = inf
+            cur_flow = math.inf
             v = t
             while v != s:
                 i = self.pre_edge[v]

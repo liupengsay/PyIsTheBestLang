@@ -164,7 +164,7 @@ class Solution:
             f[x] = f[x // pf.min_prime[x]] - 1 + pf.min_prime[x]
 
         for i in range(1, n + 1):
-            f[i] = ac.max(f[i - 1], f[i])
+            f[i] = max(f[i - 1], f[i])
         for num in nums:
             ac.st(f[num])
         return
@@ -301,7 +301,7 @@ class Solution:
                     dp[i + 1] = dp[ind[p]] + 1
                 if dp[i] + 1 < dp[i + 1]:
                     dp[i + 1] = dp[i] + 1
-        return dp[-1] if dp[-1] < inf else -1
+        return dp[-1] if dp[-1] < math.inf else -1
 
     @staticmethod
     def lc_8041(nums: List[int]) -> int:
@@ -334,7 +334,7 @@ class Solution:
                     dp[i + 1] = dp[ind[p]] + 1
                 if dp[i] + 1 < dp[i + 1]:
                     dp[i + 1] = dp[i] + 1
-        return dp[-1] if dp[-1] < inf else -1
+        return dp[-1] if dp[-1] < math.inf else -1
 
     @staticmethod
     def cf_1176d(ac=FastIO()):
@@ -608,7 +608,7 @@ class Solution:
 
         # 前缀最大值处理
         for i in range(1, n + 1):
-            f[i] = ac.max(f[i - 1], f[i])
+            f[i] = max(f[i - 1], f[i])
         for _ in range(ac.read_int()):
             ac.st(f[ac.read_int()])
         return
