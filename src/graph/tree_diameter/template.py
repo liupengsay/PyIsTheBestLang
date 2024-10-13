@@ -1,4 +1,4 @@
-
+import math
 
 
 class GraphDiameter:
@@ -54,7 +54,7 @@ class TreeDiameter:
                     stack.append(j)
         return dis, parent
 
-    def get_diameter_math.info(self):
+    def get_diameter_info(self):
         """get tree diameter detail by weighted bfs twice"""
         dis, _ = self.get_bfs_dis(0)
         x = dis.index(max(dis))
