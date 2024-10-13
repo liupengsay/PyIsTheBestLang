@@ -63,7 +63,7 @@ import bisect
 import random
 from collections import deque, Counter
 from itertools import accumulate
-from math import inf
+
 from typing import List
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax

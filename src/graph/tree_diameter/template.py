@@ -1,5 +1,5 @@
 
-from src.utils.fast_io import inf
+
 
 class GraphDiameter:
     def __init__(self):
@@ -8,7 +8,7 @@ class GraphDiameter:
     @staticmethod
     def get_diameter(dct, root=0):
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [root]
         dis[root] = 0
         while stack:
@@ -20,7 +20,7 @@ class GraphDiameter:
                         nex.append(j)
             stack = nex[:]
         root = dis.index(max(dis))
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [root]
         dis[root] = 0
         while stack:
@@ -41,7 +41,7 @@ class TreeDiameter:
         return
 
     def get_bfs_dis(self, root):
-        dis = [inf] * self.n
+        dis = [math.inf] * self.n
         stack = [root]
         dis[root] = 0
         parent = [-1] * self.n

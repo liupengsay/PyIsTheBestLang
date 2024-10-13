@@ -24,6 +24,7 @@ ABC266E（https://atcoder.jp/contests/abc266/tasks/abc266_e）expectation_dp|bra
 ABC263E（https://atcoder.jp/contests/abc263/tasks/abc263_e）expectation_dp|reverse_order|math|brain_teaser|classical
 ABC243F（https://atcoder.jp/contests/abc243/tasks/abc243_f）matrix_dp|prob_dp|brain_teaser|comb|math
 ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implemention|math
+ABC194D（https://atcoder.jp/contests/abc194/tasks/abc194_d）prob_dp
 
 ===================================CodeForces===================================
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp

@@ -5,7 +5,7 @@ from typing import List
 
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
-from src.utils.fast_io import inf
+
 
 
 class RangeLongestRegularBrackets:
@@ -680,8 +680,8 @@ class RangeAddRangePrePreSum:
 class RangeDescendRangeMin:
     def __init__(self, n):
         self.n = n
-        self.cover = [inf] * (4 * n)
-        self.lazy_tag = [inf] * (4 * n)
+        self.cover = [math.inf] * (4 * n)
+        self.lazy_tag = [math.inf] * (4 * n)
 
     def _make_tag(self, i, val):
         self.cover[i] = min(self.cover[i], val)
@@ -1157,7 +1157,7 @@ class RangeAddRangeMaxGainMinGain:
     def __init__(self, n):
         self.n = n
         self.cover1 = [-inf] * (4 * self.n)  # max(post-pre)
-        self.cover2 = [inf] * (4 * self.n)  # min(post-pre)
+        self.cover2 = [math.inf] * (4 * self.n)  # min(post-pre)
         self.lazy_tag = [0] * (4 * self.n)  # lazy tag
         self.floor = [0] * (4 * self.n)  # range min
         self.ceil = [0] * (4 * self.n)  # range max
@@ -1254,7 +1254,7 @@ class RangeAddRangeMaxGainMinGain:
     def range_max_gain_min_gain(self, left, right):
         # query the rang max
         stack = [(0, self.n - 1, 1)]
-        ans = [inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+        ans = [math.inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -3986,7 +3986,7 @@ class RangeRevereRangeAlter:
 class RangeSetRangeOr:
     def __init__(self, n):
         self.n = n
-        self.lazy_tag = [inf] * (4 * self.n)
+        self.lazy_tag = [math.inf] * (4 * self.n)
         self.cover = [0] * (4 * self.n)
         return
 

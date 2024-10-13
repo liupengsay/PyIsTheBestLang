@@ -19,7 +19,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 """
 from src.data_structure.segment_tree.template import PointSetRangeMaxMinGap
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

@@ -152,7 +152,7 @@ from src.mathmatics.high_precision.template import FloatToFrac
 from src.mathmatics.number_theory.template import NumFactor
 from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -1762,14 +1762,14 @@ class Solution:
 
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort()
-        pre_min = [inf] * (n + 1)
+        pre_min = [math.inf] * (n + 1)
         pre_max = [-inf] * (n + 1)
         for i in range(n):
             _, y = nums[i]
             pre_min[i + 1] = min(pre_min[i], y)
             pre_max[i + 1] = max(pre_max[i], y)
 
-        post_min = [inf] * (n + 1)
+        post_min = [math.inf] * (n + 1)
         post_max = [-inf] * (n + 1)
         for i in range(n - 1, -1, -1):
             _, y = nums[i]

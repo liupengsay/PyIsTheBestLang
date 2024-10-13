@@ -147,7 +147,7 @@ from src.dp.bag_dp.template import BagDP
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -1038,7 +1038,7 @@ class Solution:
             ac.st(-1)
             return
 
-        dp = [inf] * (ceil + 1)
+        dp = [math.inf] * (ceil + 1)
         dp[0] = 0
         for num in nums:
             for i in range(num, ceil + 1):
@@ -1240,7 +1240,7 @@ class Solution:
         b = ac.read_list_ints()
         c = ac.read_list_ints()
         k = ac.read_int()
-        dp = [inf] * (k + 1)
+        dp = [math.inf] * (k + 1)
         dp[0] = 0
         state = [[] for _ in range(k + 1)]
         for j in range(n):
@@ -1268,7 +1268,7 @@ class Solution:
         vv = ac.read_list_ints()
         ss = ac.read_list_ints()
         m = ac.read_int()
-        dp = [inf] * (m + 1)
+        dp = [math.inf] * (m + 1)
         dp[0] = 0
         pre = [[0] * (m + 1) for _ in range(n)]
         for j in range(n):
@@ -1602,7 +1602,7 @@ class Solution:
         x, y = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 
-        dp = [[inf] * (300 + 1) for _ in range(301)]
+        dp = [[math.inf] * (300 + 1) for _ in range(301)]
         dp[0][0] = 0
         for a, b in nums:
             for xx in range(300, a - 1, -1):
@@ -1811,7 +1811,7 @@ class Solution:
         n, k = ac.read_list_ints()  # TLE
         nums = ac.read_list_ints()
         nums = [x for x in nums if x <= 119]
-        dp = [[inf] * 120 for _ in range(k + 1)]
+        dp = [[math.inf] * 120 for _ in range(k + 1)]
         dp[0][0] = 1
         n = len(nums)
         for i in range(n):
@@ -1978,7 +1978,7 @@ class Solution:
             if sum(sum(ls) for ls in nums) < k:
                 ac.st(-1)
                 continue
-            dp = [inf] * (k + 1)
+            dp = [math.inf] * (k + 1)
             dp[0] = 0
             for a, b in nums:
                 lst = []

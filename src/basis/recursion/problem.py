@@ -532,7 +532,7 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()  # MLE
-        dp = [inf] * n * n
+        dp = [math.inf] * n * n
 
         sub = [[] for _ in range(n * n)]
         stack = [n - 1]

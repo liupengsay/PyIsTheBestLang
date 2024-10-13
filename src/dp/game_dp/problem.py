@@ -35,7 +35,7 @@ ABC201D（https://atcoder.jp/contests/abc201/tasks/abc201_d）game_dp|classical
 """
 from functools import lru_cache
 from functools import reduce
-from math import inf
+
 from operator import xor
 
 from src.dp.game_dp.template import DateTime

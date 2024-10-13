@@ -117,6 +117,7 @@ ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）union_find|union_f
 ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range_add|range_mul_sum
 ABC360F（https://atcoder.jp/contests/abc360/tasks/abc360_f）range_add|scan_line|range_max|range_max_bisect_left
 ABC369G（https://atcoder.jp/contests/abc369/tasks/abc369_g）dfs_order|range_add|range_max|implemention
+ABC194E（https://atcoder.jp/contests/abc194/tasks/abc194_e）point_set|pre_min|post_min|bisect_right
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -199,7 +200,7 @@ from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import AllFactorCnt, PrimeFactor
 from src.search.dfs.template import DFS
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -990,7 +991,7 @@ class Solution:
         c = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(s + c + [0] + [10 ** 9 + 1]))))}
         m = len(ind)
-        post = [inf] * n
+        post = [math.inf] * n
         tree = RangeDescendRangeMin(m)
         for i in range(n - 1, -1, -1):
             tree.range_descend(ind[s[i]], ind[s[i]], c[i])
@@ -2923,7 +2924,7 @@ class Solution:
                 nodes.add(rr)
             nodes = sorted(nodes)
             ind = {num: i for i, num in enumerate(nodes)}
-            ans = [inf] * n
+            ans = [math.inf] * n
             m = len(nodes)
             diff = [0] * m
             for i in range(n):
@@ -3713,7 +3714,7 @@ class Solution:
 
         for _ in range(ac.read_int()):  # TLE
             n = ac.read_int() + 2
-            nums = [-inf] + ac.read_list_ints() + [inf]
+            nums = [-inf] + ac.read_list_ints() + [math.inf]
 
             tree = PointSetPreMaxPostMin(n)
             tree.build(nums)
@@ -4171,3 +4172,52 @@ class Solution:
         ac.lst(dis[n:2 * n])
         return
 
+    @staticmethod
+    def abc_194e_1(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc194/tasks/abc194_e
+        tag: point_set|pre_min|post_min|bisect_right
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointSetPreMinPostMin(n + 1)
+        ans = inf
+        cnt = [0] * (n + 1)
+        for i in range(m):
+            cnt[nums[i]] += 1
+        tree.build(cnt)
+        for i in range(n - m + 1):
+            cur = tree.bisect_right_pre_min(1)
+            ans = min(ans, cur)
+            if i + m < n:
+                cnt[nums[i + m]] += 1
+                tree.point_set(nums[i + m], cnt[nums[i + m]])
+            cnt[nums[i]] -= 1
+            tree.point_set(nums[i], cnt[nums[i]])
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_194e_2(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc194/tasks/abc194_e
+        tag: point_set|pre_min|post_min|bisect_right
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        cnt = [0] * (n + 1)
+        for i in range(m):
+            cnt[nums[i]] += 1
+        ans = n
+        for i in range(n + 1):
+            if not cnt[i]:
+                ans = i
+                break
+        for i in range(n - m + 1):
+            cnt[nums[i]] -= 1
+            if i + m < n:
+                cnt[nums[i + m]] += 1
+            if i + m < n and not cnt[nums[i]]:
+                ans = min(ans, nums[i])
+        ac.st(ans)
+        return

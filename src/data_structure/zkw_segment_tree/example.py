@@ -1,6 +1,6 @@
 import random
 import unittest
-from math import inf
+
 from operator import add
 
 from src.data_structure.segment_tree.template import PointSetRangeSum, RangeAddPointGet, RangeAddRangeSumMinMax

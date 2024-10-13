@@ -70,7 +70,7 @@ from typing import List
 from src.data_structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch, \
     BinaryTrieXorLimited
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

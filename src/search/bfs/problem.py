@@ -162,7 +162,7 @@ from typing import List
 from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -182,7 +182,7 @@ class Solution:
 
         ans = inf
         for i in range(n):
-            dist = [inf] * n
+            dist = [math.inf] * n
             par = [-1] * n
             dist[i] = 0
             q = deque([i])
@@ -277,7 +277,7 @@ class Solution:
         for x, y in edges:
             graph[x].discard(y)
             graph[y].discard(x)
-            dis = [inf] * n
+            dis = [math.inf] * n
             dis[x] = 0
             stack = deque([x])
             while stack:
@@ -780,7 +780,7 @@ class Solution:
                     else:
                         dct[x2][x3] = dct[x3][x2] = 1
                         dct[x1][x4] = dct[x4][x1] = 0
-            visit = [inf] * ((m + 1) * (n + 1))
+            visit = [math.inf] * ((m + 1) * (n + 1))
             visit[0] = 0
             stack = deque([0])
             while stack and visit[-1] == inf:
@@ -819,17 +819,17 @@ class Solution:
                     elif w == "Z":
                         ghost.append([i, j])
 
-            dis_boy = [[inf] * n for _ in range(m)]
+            dis_boy = [[math.inf] * n for _ in range(m)]
             stack_boy = [boy]
             for i, j in stack_boy:
                 dis_boy[i][j] = 0
 
-            dis_girl = [[inf] * n for _ in range(m)]
+            dis_girl = [[math.inf] * n for _ in range(m)]
             stack_girl = [girl]
             for i, j in stack_girl:
                 dis_girl[i][j] = 0
 
-            dis_ghost = [[inf] * n for _ in range(m)]
+            dis_ghost = [[math.inf] * n for _ in range(m)]
             stack_ghost = ghost[:]
             for i, j in stack_ghost:
                 dis_ghost[i][j] = 0
@@ -1040,7 +1040,7 @@ class Solution:
                 ac.st(0)
                 continue
 
-            visit = [[inf] * n for _ in range(m)]
+            visit = [[math.inf] * n for _ in range(m)]
             stack = deque([[0, start[0], start[1]]])
             ans = -1
             visit[start[0]][start[1]] = 0
@@ -1116,7 +1116,7 @@ class Solution:
             ac.st(-1)
             return
 
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[s] = 0
         stack = deque([s])
         while stack:
@@ -1170,7 +1170,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
-        visit = [[[inf] * 4 for _ in range(n)] for _ in range(m)]
+        visit = [[[math.inf] * 4 for _ in range(n)] for _ in range(m)]
         res = []
         for i in range(m):
             for j in range(n):
@@ -1337,7 +1337,7 @@ class Solution:
             pos[(a, b)].append((c, d))
         k = len(ind)
 
-        visit = [[[inf] * (1 << k) for _ in range(n)] for _ in range(m)]
+        visit = [[[math.inf] * (1 << k) for _ in range(n)] for _ in range(m)]
         ss = [-1, -1]
         tt = [-1, -1]
         for i in range(m):
@@ -1389,7 +1389,7 @@ class Solution:
             m, n = lst
             grid = [ac.read_str() for _ in range(m)]
             x1, y1, x2, y2 = ac.read_list_ints()
-            visit = [[inf] * n for _ in range(m)]
+            visit = [[math.inf] * n for _ in range(m)]
             stack = deque([[x1, y1]])
             visit[x1][y1] = 0
             while stack and visit[x2][y2] == inf:
@@ -1426,7 +1426,7 @@ class Solution:
                 else:
                     dct[x2][x3] = dct[x3][x2] = 1
                     dct[x1][x4] = dct[x4][x1] = 0
-        visit = [inf] * ((m + 1) * (n + 1))
+        visit = [math.inf] * ((m + 1) * (n + 1))
         visit[0] = 0
         stack = deque([[0, 0]])
         while stack and visit[-1] == inf:
@@ -1496,7 +1496,7 @@ class Solution:
         for i in range(n):
             x, z = ac.read_list_ints()
             dct[(x, z)] = i
-        visit = [inf] * n
+        visit = [math.inf] * n
         stack = deque([[0, 0, -1]])
         ans = inf
         while stack:
@@ -1535,7 +1535,7 @@ class Solution:
                 elif w == 4:
                     wood.append([i, j])
 
-        visit = [[[inf, inf] for _ in range(n)] for _ in range(m)]
+        visit = [[[math.inf, inf] for _ in range(n)] for _ in range(m)]
         stack = deque([pos_2 + [0]])
         visit[pos_2[0]][pos_2[1]][0] = 0
         ans = inf
@@ -1592,7 +1592,7 @@ class Solution:
         dis = [[0] * n for _ in range(m)]
         for c in range(3):
             stack = deque(dct[c])
-            cur = [[inf] * n for _ in range(m)]
+            cur = [[math.inf] * n for _ in range(m)]
             for i, j in stack:
                 cur[i][j] = 0
             while stack:
@@ -1713,7 +1713,7 @@ class Solution:
 
         def bfs(s1, s2):
             stack = deque()
-            dis = [[inf] * n for _ in range(m)]
+            dis = [[math.inf] * n for _ in range(m)]
             dis[s1][s2] = 0
             stack.append([0, s1, s2])
             while stack:
@@ -2071,7 +2071,7 @@ class Solution:
             dct[x].append(y)
             dct[y].append(x)
         n = len(dct)
-        dis = [inf for _ in range(n)]
+        dis = [math.inf for _ in range(n)]
         cnt = [0] * n
         queue = deque([0])
         dis[0] = 0
@@ -2243,7 +2243,7 @@ class Solution:
             for x in lst:
                 dct[x].append(m + i)
                 dct[m + i].append(x)
-        dis = [inf] * (m + n)
+        dis = [math.inf] * (m + n)
         dis[0] = 0
         stack = [0]
         while stack:
@@ -2312,7 +2312,7 @@ class Solution:
         """
         n, m, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]
-        dis = [inf] * n
+        dis = [math.inf] * n
         for _ in range(m):
             a, b, c = ac.read_list_ints_minus_one()
             c += 1
@@ -2363,7 +2363,7 @@ class Solution:
         tx, ty = ac.read_list_ints_minus_one()
 
         grid = [ac.read_str() for _ in range(n)]
-        visit = [[inf] * n for _ in range(n)]
+        visit = [[math.inf] * n for _ in range(n)]
         ind = [[-1, 1], [-1, -1], [1, 1], [1, -1]]
         visit[sx][sy] = 0
         stack = [(sx, sy)]
@@ -2394,7 +2394,7 @@ class Solution:
         n = ac.read_int()
         sx, sy = ac.read_list_ints_minus_one()
         tx, ty = ac.read_list_ints_minus_one()
-        visit = [[inf] * n for _ in range(n)]
+        visit = [[math.inf] * n for _ in range(n)]
         grid = [ac.read_str() for _ in range(n)]
         stack = [(sx, sy)]
         visit[sx][sy] = 0
@@ -2504,7 +2504,7 @@ class Solution:
             i, j = ac.read_list_ints()
             dct[i - 1].append(j - 1)
             dct[j - 1].append(i - 1)
-        dis = [[inf] * (1 << n) for _ in range(n)]
+        dis = [[math.inf] * (1 << n) for _ in range(n)]
         for i in range(n):
             dis[i][0] = 0
         stack = []
@@ -2641,7 +2641,7 @@ class Solution:
             i, j = ac.read_list_ints_minus_one()
             dct[i].append((j, x))
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         dis[0] = 0
         stack = [0]
         parent = [-1]*n
@@ -2671,7 +2671,7 @@ class Solution:
             if x not in path:
                 ac.st(res)
                 continue
-            dis = [inf] * n
+            dis = [math.inf] * n
             dis[0] = 0
             stack = [0]
             while stack:
@@ -2907,7 +2907,7 @@ class Solution:
             start[a[i]].append(i)
 
         res = [[] for _ in range(n)]
-        dis = [inf] * n
+        dis = [math.inf] * n
         for c in range(k):
             for i in range(n):
                 dis[i] = inf
@@ -2985,7 +2985,7 @@ class Solution:
 
         class Graph(UnWeightedGraph):
             def bfs(self, src=0, target=0):
-                dis = [inf] * (self.n + 1)
+                dis = [math.inf] * (self.n + 1)
                 dis[src] = 0
                 stack = [src]
                 while stack:

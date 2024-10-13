@@ -6,7 +6,7 @@ from itertools import accumulate
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
     PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum
-from src.utils.fast_io import inf
+
 
 
 class TestGeneral(unittest.TestCase):
@@ -98,7 +98,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_point_descend_pre_min(self):
-        for initial in [inf, 10000]:
+        for initial in [math.inf, 10000]:
             for _ in range(10):
                 n = random.randint(10, 1000)
                 low = -10000
@@ -114,7 +114,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_point_descend_range_min(self):
-        for initial in [inf, 10000]:
+        for initial in [math.inf, 10000]:
             for _ in range(10):
                 n = random.randint(10, 1000)
                 low = -10000

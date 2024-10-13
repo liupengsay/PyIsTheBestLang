@@ -113,7 +113,7 @@ from src.dp.tree_dp.template import ReRootDP, WeightedTree
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.search.dfs.template import UnWeightedTree
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -411,7 +411,7 @@ class Solution:
                 return [0, inf, 0]
             left = dfs(node.left)
             right = dfs(node.right)
-            res = [inf, inf, inf]
+            res = [math.inf, inf, inf]
             res[0] = min(left[1] + min(right[0], right[1]), right[1] + min(left[0], left[1]))
             res[1] = 1 + min(left) + min(right)
             res[2] = left[0] + right[0]
@@ -922,7 +922,7 @@ class Solution:
             c += 1
             dct[i][j] = dct[j][i] = c
         stack = [[root, -1]]
-        sub = [inf] * n
+        sub = [math.inf] * n
         while stack:
             i, fa = stack.pop()
             if i >= 0:
@@ -951,7 +951,7 @@ class Solution:
         # tree_dp| greedy标权值使得整棵树总价值最小
         n = ac.read_int()
         ceil = int(math.log2(n)) + 1
-        sub = [[inf] * (ceil + 1) for _ in range(n)]
+        sub = [[math.inf] * (ceil + 1) for _ in range(n)]
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
@@ -1040,7 +1040,7 @@ class Solution:
 
         dis = []
         for i in range(n):
-            cur = [inf] * n
+            cur = [math.inf] * n
             cur[i] = 0
             stack = deque([i])
             while stack:

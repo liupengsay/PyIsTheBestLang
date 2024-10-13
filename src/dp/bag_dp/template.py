@@ -1,7 +1,7 @@
 import math
 from collections import defaultdict
 
-from src.utils.fast_io import inf
+
 
 
 class BagDP:
@@ -91,7 +91,7 @@ class BagDP:
     @staticmethod
     def group_bag_limited(n, d, nums):
         # group backpack
-        pre = [inf] * (n + 1)
+        pre = [math.inf] * (n + 1)
         pre[0] = 0
         for r, z in nums:
             cur = pre[:]  # The key is that we need group backpacks here

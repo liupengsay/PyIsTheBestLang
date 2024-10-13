@@ -5,6 +5,7 @@ Description：
 ====================================LeetCode====================================
 2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
+3164（https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/）brute_force|euler_series
 
 =====================================LuoGu======================================
 P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
@@ -23,6 +24,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 1470B（https://codeforces.com/problemset/problem/1470/B）prime_factor|observation
 1826C（https://codeforces.com/problemset/problem/1826/C）math|observation|brain_teaser|construction
 1242A（https://codeforces.com/problemset/problem/1242/A）guess_table|brute_force
+27E（https://codeforces.com/contest/27/problem/E）linear_dp|brute_force|euler_series|data_range
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -44,7 +46,7 @@ from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -286,7 +288,7 @@ class Solution:
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         for i, num in enumerate(nums):
             while num > 1:
@@ -319,7 +321,7 @@ class Solution:
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         for i, num in enumerate(nums):
             while num > 1:
@@ -1042,4 +1044,26 @@ class Solution:
             ac.st(prime[0])
         else:
             ac.st(1)
+        return
+
+    @staticmethod
+    def cf_27e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/27/problem/E
+        tag: linear_dp|brute_force|euler_series|data_range
+        """
+        primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53]
+        n = ac.read_int()
+        ceil = 10 ** 18
+        dp = [ceil] * (n + 1)
+        dp[1] = 1
+        for p in primes:
+            for i in range(n // 2, 0, -1):
+                x = p
+                c = 2
+                while i * c <= n and dp[i] * x <= ceil:
+                    dp[i * c] = min(dp[i * c], dp[i] * x)
+                    c += 1
+                    x *= p
+        ac.st(dp[n])
         return

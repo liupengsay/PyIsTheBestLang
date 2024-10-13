@@ -1112,7 +1112,7 @@ class Solution:
         del nex_dct
         n = len(new_dct)
         root = 0
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(root, -1)]
         dis[root] = 0
         while stack:
@@ -1122,7 +1122,7 @@ class Solution:
                     dis[j] = dis[i] + 1
                     stack.append((j, i))
         root = dis.index(max(dis))
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(root, -1)]
         dis[root] = 0
         while stack:

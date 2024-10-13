@@ -29,7 +29,7 @@ ABC362G（https://atcoder.jp/contests/abc362/tasks/abc362_g）ac_automan|classic
 import bisect
 from collections import Counter
 from itertools import permutations
-from math import inf
+
 from typing import List
 
 from src.strings.automaton.template import AcAutomaton, AhoCorasick
@@ -374,7 +374,7 @@ class Solution:
         for word, cost in zip(words, costs):
             ac.insert(word, cost)
         ac.set_fail()
-        f = [0] + [inf] * len(target)
+        f = [0] + [math.inf] * len(target)
         x = ac.root
         for i, c in enumerate(target, 1):
             while x and c not in x.son:

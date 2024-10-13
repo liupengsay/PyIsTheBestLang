@@ -1,6 +1,6 @@
 from collections import deque
 
-from src.utils.fast_io import inf
+
 
 
 class SPFA:
@@ -14,7 +14,7 @@ class SPFA:
         """
         # Finding the shortest path distance with negative weight and the number of path edges
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         # flag of node in stack or not
         visit = [False] * n
         # the number of edges by the shortest path
@@ -77,7 +77,7 @@ class SPFA:
     def negative_circle_mul(dct, src=0, initial=0):
         """Determine if there is a ring with a product greater than 1"""
         n = len(dct)
-        dis = [inf for _ in range(n)]
+        dis = [math.inf for _ in range(n)]
         visit = [False] * n
         cnt = [0] * n
         queue = deque([src])

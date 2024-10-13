@@ -1,4 +1,4 @@
-from src.utils.fast_io import inf
+
 
 class BinaryTrieXorDict:
     def __init__(self, bit_length):
@@ -181,7 +181,7 @@ class BinaryTrieXorLimited:
         self.cnt_bit = num_cnt.bit_length()
         self.node_cnt = (self.max_bit + 1) * num_cnt * binary_state
         self.son_and_cnt = [0] * (self.node_cnt + 1)
-        self.floor = [inf] * (self.node_cnt + 1)
+        self.floor = [math.inf] * (self.node_cnt + 1)
         self.ind = 1
         self.mask = (1 << self.cnt_bit) - 1
 

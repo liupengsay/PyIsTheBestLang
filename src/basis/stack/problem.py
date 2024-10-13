@@ -53,7 +53,7 @@ from itertools import permutations
 from typing import List
 
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -222,7 +222,7 @@ class Solution:
         """
         n = ac.read_int()
         s = ac.read_str()
-        post = [inf] * (n + 1)
+        post = [math.inf] * (n + 1)
         post[-1] = 0
         x = 0
         for i in range(n - 1, -1, -1):

@@ -78,7 +78,7 @@ from src.basis.tree_node.template import TreeNode
 from src.graph.network_flow.template import UndirectedGraph
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -729,7 +729,7 @@ class Solution:
                 if degree[j] == 1:
                     stack.append(j)
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [i for i in range(n) if degree[i] >= 2]
         path = [stack[0]]
         degree[stack[0]] = 0

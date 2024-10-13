@@ -83,6 +83,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1990D（https://codeforces.com/problemset/problem/1990/D）implemention
 1346C（https://codeforces.com/problemset/problem/1463/C）implemention
 1151C（https://codeforces.com/problemset/problem/1151/C）inclusion_exclusion
+1990C（https://codeforces.com/problemset/problem/1990/C）implemention
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -113,7 +114,7 @@ from heapq import heappop, heappush
 from src.basis.binary_search.template import BinarySearch
 from src.basis.implemention.template import SpiralMatrix
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -239,7 +240,7 @@ class Solution:
                 elif sta != -inf:
                     pre[i] = sta
 
-        post = [inf] * n
+        post = [math.inf] * n
         left = inf
         sta = inf
         for i in range(n - 1, -1, -1):

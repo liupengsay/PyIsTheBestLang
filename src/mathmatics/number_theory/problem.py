@@ -162,7 +162,7 @@ from src.mathmatics.gcd_like.template import GcdLike
 from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

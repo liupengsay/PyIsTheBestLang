@@ -141,7 +141,7 @@ from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix, PreFixSumCube
 from src.graph.union_find.template import UnionFindGeneral
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -473,7 +473,7 @@ class Solution:
         """
         n = ac.read_int()
         lst = [int(ac.read_str() == "F") for _ in range(n)]
-        ans = [inf, 0]
+        ans = [math.inf, 0]
         for k in range(1, n + 1):
             diff = [0] * n
             m = 0
@@ -1926,7 +1926,7 @@ class Solution:
                 if floor <= ceil:
                     lst.append([floor, ceil, ww])
 
-            nodes = [inf]
+            nodes = [math.inf]
             for ls in lst:
                 nodes.extend(ls[:-1])
             nodes = sorted(set(nodes))
@@ -2128,14 +2128,14 @@ class Solution:
         m, n, c = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         ans = inf
-        pre = [[inf] * (n + 1) for _ in range(m + 1)]
+        pre = [[math.inf] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n):
                 p = min(pre[i + 1][j], pre[i][j + 1])
                 ans = min(ans, p + c * i + c * j + grid[i][j])
                 pre[i + 1][j + 1] = min(p, grid[i][j] - c * i - c * j)
 
-        pre = [[inf] * (n + 1) for _ in range(m + 1)]
+        pre = [[math.inf] * (n + 1) for _ in range(m + 1)]
         for i in range(m):
             for j in range(n - 1, -1, -1):
                 p = min(pre[i][j], pre[i + 1][j + 1])

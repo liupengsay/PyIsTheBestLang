@@ -1,7 +1,7 @@
 import heapq
 from collections import deque
 
-from src.utils.fast_io import inf
+
 
 
 class DinicMaxflowMinCut:
@@ -169,8 +169,8 @@ class DinicMaxflowMinCost:
         self.edge_cost = [0] * 2
         self.edge_to = [0] * 2
         self.edge_next = [0] * 2
-        self.h = [inf] * (self.n + 1)
-        self.dis = [inf] * (self.n + 1)
+        self.h = [math.inf] * (self.n + 1)
+        self.dis = [math.inf] * (self.n + 1)
         self.max_flow = 0
         self.min_cost = 0
         self.edge_id = 2

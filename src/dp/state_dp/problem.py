@@ -86,7 +86,7 @@ from typing import List
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -104,7 +104,7 @@ class Solution:
             return -1
         group = dict()
         ceil = [0] * (1 << n)
-        floor = [inf] * (1 << n)
+        floor = [math.inf] * (1 << n)
         ind = {1 << i: i for i in range(n)}
         m = n // k
         for i in range(1, 1 << n):
@@ -116,7 +116,7 @@ class Solution:
                 if len(set(lst)) == m:
                     group[i] = ceil[i] - floor[i]
 
-        dp = [inf] * (1 << n)
+        dp = [math.inf] * (1 << n)
         dp[0] = 0
         for i in range(1 << n):
             if dp[i] == inf:
@@ -263,7 +263,7 @@ class Solution:
         """
         # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_dp
         n = len(graph)
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             for j in graph[i]:
                 dis[i][j] = dis[j][i] = 1
@@ -272,7 +272,7 @@ class Solution:
                 for j in range(n):
                     dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
 
-        dp = [[inf] * n for _ in range(1 << n)]
+        dp = [[math.inf] * n for _ in range(1 << n)]
         for i in range(n):
             dp[1 << i][i] = 0
 
@@ -517,7 +517,7 @@ class Solution:
                 grid[i][j] = cur
                 grid[j][i] = cur
 
-        dp = [[inf] * n for _ in range(1 << n)]
+        dp = [[math.inf] * n for _ in range(1 << n)]
         for i in range((1 << n) - 1):
             for pre in range(n):
                 if not i:
@@ -586,7 +586,7 @@ class Solution:
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
-        f = [inf] * (1 << n)  # 当前状态下的分组
+        f = [math.inf] * (1 << n)  # 当前状态下的分组
         f[0] = 1
         g = [0] * (1 << n)  # 当前状态下最后一组占用的重量
         for i in range(1, 1 << n):
@@ -643,7 +643,7 @@ class Solution:
 
         n, k = ac.read_list_ints()  # TLE
         grid = [ac.read_list_ints() for _ in range(n)]
-        dp = [inf] * (1 << n)
+        dp = [math.inf] * (1 << n)
         dp[-1] = 0
         ans = inf
         for i in range((1 << n) - 1, -1, -1):
@@ -665,7 +665,7 @@ class Solution:
         """
         # state_dp 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
-        dp = [inf] * (1 << m)
+        dp = [math.inf] * (1 << m)
         dp[0] = 0
         for i in range(n):
             nums = ac.read_list_ints_minus_one()
@@ -806,7 +806,7 @@ class Solution:
             if cost <= session:
                 valid[mask] = True
 
-        f = [inf] * (1 << n)
+        f = [math.inf] * (1 << n)
         f[0] = 0
         for mask in range(1, 1 << n):
             subset = mask
@@ -893,7 +893,7 @@ class Solution:
             group[i] |= (1 << j)
             group[j] |= (1 << i)
 
-        dp = [inf] * (1 << n)
+        dp = [math.inf] * (1 << n)
         pre = [[-1, -1] for _ in range(1 << n)]
         for i in range(n):
             dp[group[i]] = 1
@@ -962,8 +962,8 @@ class Solution:
             ac.st(ans)
             return
 
-        cost = [[inf] * m for _ in range(m)]
-        end = [[inf] * m for _ in range(m)]
+        cost = [[math.inf] * m for _ in range(m)]
+        end = [[math.inf] * m for _ in range(m)]
         for i in range(m):
             for j in range(i + 1, m):
                 cost[i][j] = cost[j][i] = min(abs(grid[i][x] - grid[j][x]) for x in range(n))
@@ -997,7 +997,7 @@ class Solution:
         tag: floyd|shortest_path|state_dp|fill_table|refresh_table|classical
         """
         n, m = ac.read_list_ints()
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for _ in range(m):
             u, v, w = ac.read_list_ints()
             dis[u - 1][v - 1] = w
@@ -1007,7 +1007,7 @@ class Solution:
                     if dis[i][k] < inf and dis[k][j] < inf:
                         dis[i][j] = min(dis[i][j], dis[i][k] + dis[k][j])
         m = 1 << n
-        dp = [inf] * m * n
+        dp = [math.inf] * m * n
 
         for i in range(n):
             dp[i * m + (1 << i)] = 0
@@ -1045,10 +1045,10 @@ class Solution:
                     candy.append((i, j))
         lst = start + candy + end
         k = len(lst)
-        dct = [[inf] * k for _ in range(k)]
+        dct = [[math.inf] * k for _ in range(k)]
         for i in range(k):
             x, y = lst[i]
-            visit = [[inf] * n for _ in range(m)]
+            visit = [[math.inf] * n for _ in range(m)]
             visit[x][y] = 0
             stack = [(x, y)]
             while stack:
@@ -1065,7 +1065,7 @@ class Solution:
                     dct[i][j] = visit[a][b]
 
         target = (1 << k) - 1
-        dp = [[inf] * (1 << k) for _ in range(k)]
+        dp = [[math.inf] * (1 << k) for _ in range(k)]
         dp[0][target ^ (1 << 0)] = 0
         ans = -1
         for state in range(target - 1, -1, -1):
@@ -1097,12 +1097,12 @@ class Solution:
                 x2, y2 = nums[j]
                 dis[i][j] = dis[j][i] = ((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) ** 0.5
 
-        s = [inf] * (1 << n)
+        s = [math.inf] * (1 << n)
         for i in range(1 << n):
             c = sum(not i & (1 << j) for j in range(n - m, n))
             s[i] = 1 << c
 
-        dp = [[inf] * (1 << n) for _ in range(n)]
+        dp = [[math.inf] * (1 << n) for _ in range(n)]
         tot = ((1 << n) - 1) ^ 1
         dp[0][tot] = 0
         target = (1 << (n - m)) - 1
@@ -1133,7 +1133,7 @@ class Solution:
         n, x, y = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
-        dp = [inf] * (1 << n)
+        dp = [math.inf] * (1 << n)
         dp[0] = 0
         for state in range(1, 1 << n):
             res = inf
@@ -1324,7 +1324,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        dp = [inf] * (1 << m)
+        dp = [math.inf] * (1 << m)
         pre_num = [[0 for _ in range(1 << m)] for _ in range(n + 1)]
         pre_state = [[0 for _ in range(1 << m)] for _ in range(n + 1)]
         nex_num = [[] for _ in range(1 << m)]
@@ -1337,7 +1337,7 @@ class Solution:
 
         dp[-1] = 0
         for i in range(n):
-            ndp = [inf] * (1 << m)
+            ndp = [math.inf] * (1 << m)
             for state in range(1 << m):
                 for num in nex_num[state]:
                     cur = dp[state] + abs(nums[i] - num)

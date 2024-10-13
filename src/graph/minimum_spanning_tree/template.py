@@ -4,7 +4,7 @@ from heapq import heappop, heappush
 
 from src.data_structure.tree_array.template import PointDescendPreMin
 from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import inf
+
 
 
 class ManhattanMST:
@@ -90,7 +90,7 @@ class KruskalMinimumSpanningTree:
                 c = dct[i].get(j, inf)
                 c = c if c < w else w
                 dct[i][j] = dct[j][i] = c
-            dis = [inf] * self.n
+            dis = [math.inf] * self.n
             dis[0] = 0
             visit = [0] * self.n
             stack = [(0, 0)]
@@ -120,7 +120,7 @@ class PrimMinimumSpanningTree:
         n = len(nums)
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         while rest:
             i = nex

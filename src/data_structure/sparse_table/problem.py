@@ -63,7 +63,7 @@ from typing import List
 from src.data_structure.sparse_table.template import SparseTable, SparseTableIndex
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

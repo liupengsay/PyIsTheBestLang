@@ -1,4 +1,4 @@
-from src.utils.fast_io import inf
+
 
 
 class MatrixDP:
@@ -19,7 +19,7 @@ class MatrixDP:
     @staticmethod
     def min_distance(word1: str, word2: str):
         m, n = len(word1), len(word2)
-        dp = [[inf] * (n + 1) for _ in range(m + 1)]
+        dp = [[math.inf] * (n + 1) for _ in range(m + 1)]
         # edit distance
         for i in range(m + 1):
             dp[i][n] = m - i

@@ -62,6 +62,7 @@ P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|bra
 1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
 1882D（https://codeforces.com/problemset/problem/1882/D）dfs_order|diff_array|contribution_method|greedy
 1009F（https://codeforces.com/problemset/problem/1009/F）heuristic_merge|classical
+27E（https://codeforces.com/problemset/problem/27/E）prime_factor|brute_force|factor_dp
 
 ====================================AtCoder=====================================
 ABC133F（https://atcoder.jp/contests/abc133/tasks/abc133_f）euler_order|online_tree_dis|binary_search|prefix_sum
@@ -97,7 +98,7 @@ from src.graph.tree_lca.template import TreeAncestor, OfflineLCA
 from src.graph.union_find.template import UnionFind
 from src.search.dfs.template import DFS, DfsEulerOrder, UnWeightedTree
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

@@ -544,7 +544,7 @@ class Solution:
             edges[y].append((x, i))
         stack = deque([0])
         choose = [0] * m
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[0] = 1
         while stack:
             x = stack.popleft()

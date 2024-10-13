@@ -29,6 +29,7 @@ ABC235F（https://atcoder.jp/contests/abc235/tasks/abc235_f）digital_dp|classic
 
 ===================================CodeForces===================================
 628D（https://codeforces.com/problemset/problem/628/D）digital_dp
+55D（https://codeforces.com/contest/55/problem/D）digital_dp|memorized|classical
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -132,7 +133,7 @@ class Solution:
         return DigitalDP().count_digit_dp(n, 1)
 
     @staticmethod
-    def lc_2719(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
+    def lc_2719_1(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
         """
         url: https://leetcode.cn/problems/count-of-integers/
         tag: digital_dp|inclusion_exclusion
@@ -169,7 +170,43 @@ class Solution:
         return (check(int(num2)) - check(int(num1) - 1)) % mod
 
     @staticmethod
-    def lc_2801(low: str, high: str) -> int:
+    def lc_2719_2(num1: str, num2: str, min_sum: int, max_sum: int) -> int:
+        """
+        url: https://leetcode.cn/problems/count-of-integers/
+        tag: digital_dp|inclusion_exclusion
+        """
+        mod = 10 ** 9 + 7
+
+        def dfs(i, down, up, pre, is_num):
+            if i < 0:
+                return 1 if is_num and min_sum <= pre <= max_sum else 0
+            if not down and not up and dp[i][pre][is_num] > -1:
+                return dp[i][pre][is_num]
+
+            res = 0
+            if pre + 9 * (i + 1) >= min_sum:
+                floor = int(low[i]) if down else (0 if is_num else 1)
+                ceil = int(high[i]) if up else 9
+                for x in range(floor, ceil + 1):
+                    if pre + x <= max_sum:
+                        res += dfs(i - 1, down and x == floor, up and x == ceil, pre + x, 1 if x > 0 or is_num else -1)
+                        res %= mod
+                    else:
+                        break
+
+            if not down and not up:
+                dp[i][pre][is_num] = res
+            return res
+
+        high = num2[::-1]
+        low = num1[::-1]
+        low += (len(high) - len(low)) * "0"
+        dp = [[[-1] * 2 for _ in range(max_sum + 1)] for _ in range(len(high))]
+        ans = dfs(len(high) - 1, True, True, 0, 0)
+        return ans
+
+    @staticmethod
+    def lc_2801_1(low: str, high: str) -> int:
         """
         url: https://leetcode.cn/problems/count-stepping-numbers-in-range/
         tag: digital_dp|inclusion_exclusion
@@ -199,7 +236,44 @@ class Solution:
         return (check(int(high)) - check(int(low) - 1)) % mod
 
     @staticmethod
-    def lc_2827(low: int, high: int, k: int) -> int:
+    def lc_2801_2(low: str, high: str) -> int:
+        """
+        url: https://leetcode.cn/problems/count-stepping-numbers-in-range/
+        tag: digital_dp|inclusion_exclusion
+        """
+        dp = [[[-1] * 2 for _ in range(11)] for _ in range(101)]
+        mod = 10 ** 9 + 7
+
+        def dfs(i, down, up, pre, is_num):
+            if i < 0:
+                return is_num
+            if not down and not up and dp[i][pre][is_num] > -1:
+                return dp[i][pre][is_num]
+            res = 0
+
+            floor = int(low[i]) if down else (0 if is_num else 1)
+            ceil = int(high[i]) if up else 9
+            if is_num:
+                for x in [pre - 1, pre + 1]:
+                    if floor <= x <= ceil:
+                        res += dfs(i - 1, down and x == floor, up and x == ceil, x, is_num)
+                        res %= mod
+            else:
+                for x in range(floor, ceil + 1):
+                    res += dfs(i - 1, down and x == floor, up and x == ceil, x, int(x > 0))
+                    res %= mod
+            if not down and not up:
+                dp[i][pre][is_num] = res
+            return res
+
+        high = high[::-1]
+        low = low[::-1]
+        low += (len(high) - len(low)) * "0"
+        ans = dfs(len(high) - 1, True, True, -1, 0)
+        return ans
+
+    @staticmethod
+    def lc_2827_1(low: int, high: int, k: int) -> int:
         """
         url: https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/
         tag: digital_dp|inclusion_exclusion
@@ -226,6 +300,40 @@ class Solution:
             return dfs(0, True, 0, 0, 0)
 
         return check(high) - check(low - 1)
+
+    @staticmethod
+    def lc_2827_2(low: int, high: int, k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/
+        tag: digital_dp|inclusion_exclusion
+        """
+        dp = [[[[[-1] * 2 for _ in range(21)] for _ in range(21)] for _ in range(25)] for _ in range(11)]
+
+        def dfs(i, down, up, odd, rest, is_num):
+            if i < 0:
+                return 1 if is_num and not odd and not rest else 0
+
+            if not down and not up and dp[i][odd][k][rest][is_num] > -1:
+                return dp[i][odd][k][rest][is_num]
+
+            res = 0
+            floor = int(low[i]) if down else (0 if is_num else 1)
+            ceil = int(high[i]) if up else 9
+            for x in range(floor, ceil + 1):
+                cur_is_num = 1 if x > 0 or is_num else 0
+                res += dfs(i - 1, down and x == floor, up and x == ceil,
+                           0 if not cur_is_num else odd + 1 if x % 2 == 0 else odd - 1,
+                           (rest * 10 + x) % k, cur_is_num)
+
+            if not down and not up:
+                dp[i][odd][k][rest][is_num] = res
+            return res
+
+        high = str(high)[::-1]
+        low = str(low)[::-1]
+        low += (len(high) - len(low)) * "0"
+        ans = dfs(len(high) - 1, True, True, 0, 0, 0)
+        return ans
 
     @staticmethod
     def lg_p1836(ac=FastIO()):

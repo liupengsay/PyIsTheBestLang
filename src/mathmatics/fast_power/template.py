@@ -1,4 +1,4 @@
-from math import inf
+
 
 
 class FastPower:
@@ -92,7 +92,7 @@ class MatrixFastPowerMin:
 
     def matrix_pow(self, base, p):
         n = len(base)
-        ans = [[inf] * n for _ in range(n)]
+        ans = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             ans[i][i] = 0
         while p:

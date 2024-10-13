@@ -1072,7 +1072,7 @@ class Solution:
             dis.append(Dijkstra().get_shortest_path(dct, x))
 
         n = len(source)
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
 
         exist = defaultdict(list)
         for s in original:

@@ -39,7 +39,8 @@ ABC286E（https://atcoder.jp/contests/abc286/tasks/abc286_e）floyd|classical
 ABC243E（https://atcoder.jp/contests/abc243/tasks/abc243_e）get_cnt_of_shortest_path|undirected|dijkstra|floyd|classical
 ABC208D（https://atcoder.jp/contests/abc208/tasks/abc208_d）floyd|shortest_path|classical
 ABC369E（https://atcoder.jp/contests/abc369/tasks/abc369_e）floyd|permutation|brute_force
-
+ABC375F（https://atcoder.jp/contests/abc375/tasks/abc375_f）floyd|add_undirected_edge
+        
 =====================================AcWing=====================================
 4872（https://www.acwing.com/problem/content/submission/4875/）floyd|reverse_thinking|shortest_path|reverse_graph
 
@@ -51,9 +52,9 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.graph.dijkstra.template import Dijkstra
-from src.graph.floyd.template import Floyd
+from src.graph.floyd.template import Floyd, WeightedGraphForFloyd
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -70,7 +71,7 @@ class Solution:
 
         pre = [0] * n * n
         cur = [0] * n * n
-        dis = [inf] * n * n
+        dis = [math.inf] * n * n
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
             pre[u * n + v] = dis[u * n + v] = 1
@@ -134,7 +135,7 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         repair = ac.read_list_ints()
-        dis = [inf] * n * n
+        dis = [math.inf] * n * n
         for i in range(m):
             a, b, c = ac.read_list_ints()
             dis[a * n + b] = dis[b * n + a] = c
@@ -193,7 +194,7 @@ class Solution:
         tag: floyd|shortest_path|specific_plan|classical
         """
         n, m = ac.read_list_ints()
-        dp = [inf] * n * n
+        dp = [math.inf] * n * n
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
             dp[i * n + j] = dp[j * n + i] = 1
@@ -241,7 +242,7 @@ class Solution:
         tag: floyd|shortest_path|necessary_edge|classical|reverse_thinking
         """
         n, m = ac.read_list_ints()
-        dp = [inf] * n * n
+        dp = [math.inf] * n * n
         for i in range(n):
             dp[i * n + i] = 0
 
@@ -311,7 +312,7 @@ class Solution:
                 edges.append([i, j, grid[i][j]])
         edges.sort(key=lambda it: it[2])
         ans = 0
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
         # 逐渐更新最短距离
@@ -337,7 +338,7 @@ class Solution:
         # Floydbuild_graph|shortest_path，两种shortest_path，建两次图
         n, m, ll = ac.read_list_ints()
         dct = [[] for _ in range(n)]
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
         for _ in range(m):
@@ -356,7 +357,7 @@ class Solution:
                     if cur < dis[i][j]:
                         dis[i][j] = dis[j][i] = cur
 
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
             for j in range(i + 1, n):
@@ -431,7 +432,7 @@ class Solution:
                         if dp[i][k][x - 1] and dp[k][j][x - 1]:
                             dp[i][j][x] = 1
 
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             for j in range(n):
                 for x in range(32):
@@ -455,7 +456,7 @@ class Solution:
         """
         # 最多k条边的shortest_path跑k遍Floyd
         n, m = ac.read_list_ints()
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dis[i][i] = 0
 
@@ -492,7 +493,7 @@ class Solution:
         def get_dijkstra_result_mat(mat: List[List[int]], src: int) -> List[float]:
             # 模板: Dijkstra求shortest_path，变成负数求可以求最长路（还是正权值）
             len(mat)
-            dis = [inf] * n
+            dis = [math.inf] * n
             stack = [[0, src]]
             dis[src] = 0
             visit = set(list(range(n)))
@@ -565,7 +566,7 @@ class Solution:
 
         class Graph:
             def __init__(self, n: int, edges: List[List[int]]):
-                d = [[inf] * n for _ in range(n)]
+                d = [[math.inf] * n for _ in range(n)]
                 for i in range(n):
                     d[i][i] = 0
                 for x, y, w in edges:
@@ -603,7 +604,7 @@ class Solution:
         a = ac.read_list_ints()
         s = [ac.read_str() for _ in range(n)]
 
-        dis = [inf] * n * n
+        dis = [math.inf] * n * n
         gain = [0] * n * n
         for i in range(n):
             dis[i * n + i] = 0
@@ -679,7 +680,7 @@ class Solution:
         tag: floyd|shortest_path|classical
         """
         n, m = ac.read_list_ints()
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
         for _ in range(m):
@@ -724,8 +725,8 @@ class Solution:
             return
 
         assert n <= 200
-        edge = [inf] * n * n
-        dis = [inf] * n * n
+        edge = [math.inf] * n * n
+        dis = [math.inf] * n * n
         for x in range(64):
             if len(dct[x]) == 2:
                 i, j = dct[x][0], dct[x][1]
@@ -753,7 +754,7 @@ class Solution:
         tag: floyd|permutation|brute_force
         """
         n, m = ac.read_list_ints()
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         for i in range(n):
             dp[i][i] = 0
         edges = []
@@ -786,4 +787,43 @@ class Solution:
 
                 ans = min(ans, min(pre[p] + dp[p][-1] for p in pre))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_375f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc375/tasks/abc375_f
+        tag: floyd|add_undirected_edge
+        """
+        n, m, q = ac.read_list_ints()
+        inf = 2 * 10 ** 15
+        graph = WeightedGraphForFloyd(n, inf)
+        edges = [ac.read_list_ints_minus_one() for _ in range(m)]
+        visit = [1] * m
+        queries = [ac.read_list_ints_minus_one() for _ in range(q)]
+        for lst in queries:
+            if lst[0] == 0:
+                visit[lst[1]] = 0
+
+        for x in range(m):
+            if visit[x]:
+                i, j, w = edges[x]
+                w += 1
+                graph.add_undirected_edge_initial(i, j, w)
+        graph.initialize_undirected()
+
+        res = []
+        for x in range(q - 1, -1, -1):
+            lst = queries[x]
+            if lst[0] == 0:
+                ind = lst[1]
+                i, j, w = edges[ind]
+                w += 1
+                graph.add_undirected_edge(i, j, w)
+            else:
+                i, j = lst[1], lst[2]
+                res.append(graph.dis[i * n + j])
+        res.reverse()
+        for x in res:
+            ac.st(x if x < inf else -1)
         return

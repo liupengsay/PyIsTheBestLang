@@ -16,6 +16,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
 1929（https://leetcode.cn/problems/distribute-candies-among-children-ii）comb|inclusion_exclusion|partition_method
 100305（https://leetcode.cn/problems/find-the-n-th-value-after-k-seconds/）yanghui_triangle
+3317（https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/）comb|inclusion_exclusion|brute_force
 
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
@@ -1361,3 +1362,28 @@ class Solution:
         ans = cb.comb(m + n, m) - cb.comb(m + n, m + k + 1)
         ac.st(ans % mod)
         return
+
+    @staticmethod
+    def lc_3317(n: int, x: int, y: int) -> int:
+        """
+        url: https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/
+        tag: comb|inclusion_exclusion|brute_force
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(1000, mod)
+        ans = 0
+        cnt = [pow(xx, n, mod) for xx in range(1, x + 1)]
+        for i in range(1, x + 1):
+            pre = 0
+            for j in range(1, i):
+                pre += cb.comb(i, j) * cnt[j - 1]
+            cnt[i - 1] -= pre
+            cnt[i - 1] %= mod
+
+        pp = 1
+        for xx in range(1, min(x, n) + 1):
+            pp = pp * y % mod
+            cur = cb.comb(x, xx) * cnt[xx - 1] * pp % mod
+            ans += cur % mod
+            ans %= mod
+        return ans

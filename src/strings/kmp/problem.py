@@ -531,7 +531,7 @@ class Solution:
         s = ac.read_str()
         t = ac.read_str()
         m, n = len(s), len(t)
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         state = [() for _ in range(n + 1)]
         for i in range(n):

@@ -2,7 +2,7 @@ import math
 import random
 from collections import Counter
 
-from src.utils.fast_io import inf
+
 
 
 class NumBase:

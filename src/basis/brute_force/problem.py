@@ -215,7 +215,7 @@ from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

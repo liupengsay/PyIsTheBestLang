@@ -2,7 +2,7 @@ import random
 import unittest
 
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
-from src.utils.fast_io import inf
+
 
 
 class TestGeneral(unittest.TestCase):

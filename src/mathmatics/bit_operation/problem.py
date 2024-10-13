@@ -29,6 +29,7 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
 3145（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range|classical|inclusion_exclusion|counter
 233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
+3315（https://leetcode.com/problems/construct-the-minimum-bitwise-array-ii/）construction|guess_table|bit_operation
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
@@ -119,7 +120,7 @@ from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -272,7 +273,7 @@ class Solution:
         tag: xor_property|data_range|brute_force|hard
         """
         m = max(len(bin(num)) - 2 for num in nums)
-        pre = [inf] * (1 << m)
+        pre = [math.inf] * (1 << m)
         pre[0] = 0
         for i in range(k):
             lst = nums[i::k]

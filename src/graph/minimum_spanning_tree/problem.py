@@ -82,7 +82,7 @@ from src.graph.minimum_spanning_tree.template import KruskalMinimumSpanningTree,
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -304,7 +304,7 @@ class Solution:
 
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         while rest:
             i = nex
@@ -443,7 +443,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         while rest:
             i = nex
@@ -630,7 +630,7 @@ class Solution:
         nums = [ac.read_list_ints() for _ in range(n)]
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         while rest:
             i = nex
@@ -806,13 +806,13 @@ class Solution:
             return (k[aa] + k[bb]) * (abs(nums[aa][0] - nums[bb][0]) + abs(nums[aa][1] - nums[bb][1]))
 
         n = ac.read_int()
-        nums = [[inf, inf]] + [ac.read_list_ints() for _ in range(n)]
-        cost = [inf] + ac.read_list_ints()
-        k = [inf] + ac.read_list_ints()
+        nums = [[math.inf, inf]] + [ac.read_list_ints() for _ in range(n)]
+        cost = [math.inf] + ac.read_list_ints()
+        k = [math.inf] + ac.read_list_ints()
 
         ans = nex = 0
         rest = set(list(range(n + 1)))
-        visit = [inf] * (n + 1)
+        visit = [math.inf] * (n + 1)
         visit[nex] = 0
         pre = [-1] * (n + 1)
         edge = []
@@ -1185,7 +1185,7 @@ class Solution:
         n = len(nums)
         ans = nex = 0
         rest = set(list(range(1, n)))
-        visit = [inf] * n
+        visit = [math.inf] * n
         visit[nex] = 0
         parent = [-1] * n
         while rest:
@@ -1236,7 +1236,7 @@ class Solution:
             for g in group:
                 for x in group[g]:
                     trie.remove(nums[x], 1)
-                res = [inf, 0, 1]
+                res = [math.inf, 0, 1]
                 for x in group[g]:
                     y = trie.get_minimum_xor(nums[x])
                     if y < res[0]:

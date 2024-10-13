@@ -84,7 +84,7 @@ from src.basis.diff_array.template import PreFixSumMatrix
 from src.data_structure.monotonic_stack.template import Rectangle
 from src.data_structure.sparse_table.template import SparseTable
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -814,7 +814,7 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/
         tag: monotonic_stack|interval_dp|classical
         """
-        stack = [inf]
+        stack = [math.inf]
         res = 0
         for num in arr:
             while stack and stack[-1] <= num:

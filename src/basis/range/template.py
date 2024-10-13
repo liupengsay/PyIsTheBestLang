@@ -1,5 +1,5 @@
 
-from src.utils.fast_io import inf
+
 
 
 class Range:

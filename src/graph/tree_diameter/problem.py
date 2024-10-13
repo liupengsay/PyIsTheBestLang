@@ -80,7 +80,7 @@ class Solution:
             dct[j].append((i, k))
 
         x = 0
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [x]
         dis[x] = 0
         parent = [-1] * n
@@ -93,7 +93,7 @@ class Solution:
                     stack.append(j)
         x = dis.index(max(dis))
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [x]
         dis[x] = 0
         parent = [-1] * n

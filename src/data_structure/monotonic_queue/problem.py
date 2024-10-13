@@ -51,7 +51,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.monotonic_queue.template import PriorityQueue
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -527,7 +527,7 @@ class Solution:
             pre = ac.accumulate(nums)
 
             def check(x):
-                dp = [inf] * (n + 1)
+                dp = [math.inf] * (n + 1)
                 dp[0] = 0
                 stack = deque([0])
                 for i in range(n):
@@ -562,9 +562,9 @@ class Solution:
         for i in range(2, n + 1):
             pre[i] = pre[i - 1] + dis(lst[i - 1][0], lst[i - 1][1], lst[i][0], lst[i][1])
 
-        dis0 = [inf] + [dis(sx, sy, x, y) for x, y in lst[1:]]
+        dis0 = [math.inf] + [dis(sx, sy, x, y) for x, y in lst[1:]]
         stack = deque([0])
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         for i in range(1, n + 1):
             while stack and i - stack[0] > k:

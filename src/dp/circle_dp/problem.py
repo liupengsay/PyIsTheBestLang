@@ -22,7 +22,7 @@ ABC251E（https://atcoder.jp/contests/abc251/tasks/abc251_e）circular_array|lin
 
 """
 from collections import defaultdict
-from math import inf
+
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
@@ -41,14 +41,14 @@ class Solution:
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
-        dp = [inf] * n
+        dp = [math.inf] * n
         dp[0] = nums[-1]
         dp[1] = dp[0] + nums[0]
         for i in range(2, n):
             dp[i] = min(dp[i - 1], dp[i - 2]) + nums[i - 1]
         ans1 = min(dp[n - 2], dp[n - 3] + nums[n - 2])
 
-        dp = [inf] * n
+        dp = [math.inf] * n
         dp[0] = nums[0]
         dp[1] = nums[0]
         for i in range(2, n):
@@ -242,7 +242,7 @@ class Solution:
             pre = [0] * (n + 1)
             for i in range(n):
                 pre[i + 1] = pre[i] + nums[i]
-            dp = [[[inf, -inf] for _ in range(m + 1)] for _ in range(n + 1)]
+            dp = [[[math.inf, -inf] for _ in range(m + 1)] for _ in range(n + 1)]
             dp[0][0] = [1, 1]
             for i in range(n):
                 for k in range(i + 1):

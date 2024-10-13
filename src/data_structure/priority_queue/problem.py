@@ -58,7 +58,7 @@ from src.data_structure.priority_queue.template import MedianFinder, HeapqMedian
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -190,7 +190,7 @@ class Solution:
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
 
-        diff = [inf] + [nums[i + 1] - nums[i] for i in range(n - 1)] + [inf]
+        diff = [math.inf] + [nums[i + 1] - nums[i] for i in range(n - 1)] + [math.inf]
         stack = [[diff[i], i] for i in range(1, n)]
         heapq.heapify(stack)
         pre = [i - 1 for i in range(n + 1)]

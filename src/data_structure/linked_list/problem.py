@@ -39,7 +39,7 @@ from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -156,7 +156,7 @@ class Solution:
         tag: bfs|double_linked_list|classical|reverse_order|reverse_thinking|tree_array|segment_tree|flatten
         """
         m, n = len(grid), len(grid[0])
-        dis = [[inf] * n for _ in range(m)]
+        dis = [[math.inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
         col_nex = [list(range(1, m + 1)) for _ in range(n)]
         stack = deque([[0, 0]])
@@ -207,7 +207,7 @@ class Solution:
         tag: bfs|double_linked_list|classical|reverse_order|reverse_thinking|tree_array|segment_tree|flatten
         """
         m, n = len(grid), len(grid[0])
-        dis = [[inf] * n for _ in range(m)]
+        dis = [[math.inf] * n for _ in range(m)]
         row = [UnionFind(n + 1) for _ in range(m)]
         col = [UnionFind(m + 1) for _ in range(n)]
         stack = deque([[0, 0]])
@@ -399,7 +399,7 @@ class Solution:
         grid = [ac.read_str() for _ in range(m)]
         x1, y1, x2, y2 = ac.read_list_ints_minus_one()
 
-        dis = [[inf] * n for _ in range(m)]
+        dis = [[math.inf] * n for _ in range(m)]
         row_nex = [list(range(1, n + 1)) for _ in range(m)]
         row_pre = [list(range(-1, n - 1)) for _ in range(m)]
         col_nex = [list(range(1, m + 1)) for _ in range(n)]
@@ -557,7 +557,7 @@ class Solution:
             n = ac.read_int()
             n += 1
             a = [0] + ac.read_list_ints()
-            d = [inf] + ac.read_list_ints()
+            d = [math.inf] + ac.read_list_ints()
             pre = list(range(-1, n - 1))
             post = list(range(1, n + 1))
             pre[0] = post[n - 1] = 0

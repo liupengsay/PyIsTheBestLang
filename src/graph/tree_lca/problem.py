@@ -73,7 +73,7 @@ class Solution:
         for i in range(n):
             edge[n - parent[i]].append(n - i)
 
-        weight = [x for _, x in nums] + [inf]
+        weight = [x for _, x in nums] + [math.inf]
         tree = TreeAncestorPool(edge, weight[::-1])
 
         for _ in range(q):
@@ -355,7 +355,7 @@ class Solution:
             dct[i].append((j, w))
             dct[j].append((i, w))
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         dis[0] = 0
         parent = [-1] * n
         parent[0] = 0
@@ -689,7 +689,7 @@ class Solution:
             a, b, v = ac.read_list_ints()
             a -= 1
             b -= 1
-            ans = [inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+            ans = [math.inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
             path, _ = heavy.query_chain(a, b)
             for x, y in path:
                 if x <= y:

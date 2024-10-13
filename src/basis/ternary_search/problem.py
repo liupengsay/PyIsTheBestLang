@@ -35,7 +35,7 @@ from typing import List
 
 from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -50,8 +50,8 @@ class Solution:
         """
         n = ac.read_int()
         ind = {"L": [-1, 0], "R": [1, 0], "U": [0, 1], "D": [0, -1]}
-        dct_x = defaultdict(lambda: [inf, -inf])
-        dct_y = defaultdict(lambda: [inf, -inf])
+        dct_x = defaultdict(lambda: [math.inf, -inf])
+        dct_y = defaultdict(lambda: [math.inf, -inf])
         for _ in range(n):
             x, y, d = ac.read_list_strs()
             x = int(x)

@@ -1,7 +1,7 @@
 import math
 import random
 
-from src.utils.fast_io import inf
+
 
 
 class MatrixHashReverse:

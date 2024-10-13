@@ -47,7 +47,7 @@ ABC199F（https://atcoder.jp/contests/abc199/tasks/abc199_f）expectation|matrix
 
 """
 import math
-from math import inf
+
 
 from src.mathmatics.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten, MatrixFastPowerMin
 from src.strings.kmp.template import KMP
@@ -359,11 +359,11 @@ class Solution:
         tag: matrix_fast_power|matrix_fast_power_min|brain_teaser|classical
         """
         n, t, ll = ac.read_list_ints()
-        grid = [[inf] * n for _ in range(n)]
+        grid = [[math.inf] * n for _ in range(n)]
         for i in range(1, t + 1):
             u, v = ac.read_list_ints_minus_one()
             grid[v][u] = i
-        initial = [0] + [inf] * (n - 1)
+        initial = [0] + [math.inf] * (n - 1)
         res = MatrixFastPowerMin().matrix_pow(grid, ll)
         ans = [max(res[i][0], initial[0]) for i in range(n)]
         ans = [x if x < inf else -1 for x in ans]

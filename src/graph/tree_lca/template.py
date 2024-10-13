@@ -2,7 +2,7 @@ import math
 from collections import deque
 from typing import List
 
-from src.utils.fast_io import inf
+
 
 
 class UnionFindGetLCA:
@@ -151,7 +151,7 @@ class TreeAncestorPool:
         # Set the number of layers based on the node size
         self.cols = max(2, math.ceil(math.log2(n)))
         self.dp = [[-1] * self.cols for _ in range(n)]
-        self.weight = [[inf] * self.cols for _ in range(n)]
+        self.weight = [[math.inf] * self.cols for _ in range(n)]
         for i in range(n):
             # the amount of water accumulated during weight maintenance
             self.dp[i][0] = self.parent[i]

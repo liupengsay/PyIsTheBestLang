@@ -123,6 +123,7 @@ ABC245G（https://atcoder.jp/contests/abc245/tasks/abc245_g）shortest_path|seco
 ABC237E（https://atcoder.jp/contests/abc237/tasks/abc237_e）dijkstra|negative_weight|graph_mapping|brain_teaser|classical
 ABC211D（https://atcoder.jp/contests/abc211/tasks/abc211_d）dijkstra|get_cnt_of_shortest_path
 ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_path|classical|observation
+ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_of_shortest_path|key_edge_in_shortest_path
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -135,6 +136,7 @@ ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_
 Shortest Path（https://judge.yosupo.jp/problem/shortest_path）shortest_path|specific_plan
 
 """
+import random
 from collections import defaultdict, deque, Counter
 from heapq import heappush, heappop, heapify
 from itertools import accumulate, permutations
@@ -143,9 +145,9 @@ from typing import List
 
 from src.data_structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
 from src.graph.dijkstra.template import UnDirectedShortestCycle, Dijkstra, WeightedGraph, LimitedWeightedGraph, \
-    WeightedGraphForShortestPathMST
+    WeightedGraphForShortestPathMST, WeightedGraphForDijkstra
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -254,7 +256,7 @@ class Solution:
             dct[u].append((v, p))
 
         stack = [(0, 0, src)]
-        dis = [inf] * n
+        dis = [math.inf] * n
         while stack:
             cost, cnt, i = heappop(stack)
             if dis[i] <= cnt or cnt >= k + 2:
@@ -279,7 +281,7 @@ class Solution:
             dct[j - 1].append(i - 1)
 
         src = 0
-        dis = [[inf] * 2 for _ in range(n)]
+        dis = [[math.inf] * 2 for _ in range(n)]
         dis[src][0] = 0
         stack = [(0, src)]
         while stack:
@@ -342,7 +344,7 @@ class Solution:
             dct[v].append([u, p])
 
         stack = [(0, 0, 0)]
-        dis = [inf] * n
+        dis = [math.inf] * n
         while stack:
             cost, cnt, i = heappop(stack)
             if dis[i] <= cnt:
@@ -466,7 +468,7 @@ class Solution:
 
         n = len(dct)
         stack = [(0, 0, s)]
-        dis = [inf] * n * (k + 1)
+        dis = [math.inf] * n * (k + 1)
         dis[s * (k + 1)] = 0
         while stack:
             cost, cnt, i = heappop(stack)
@@ -560,7 +562,7 @@ class Solution:
                     end = [i, j]
 
         # 反向到达终点距离
-        bfs = [[inf] * n for _ in range(m)]
+        bfs = [[math.inf] * n for _ in range(m)]
         bfs[end[0]][end[1]] = 0
         stack = deque([end])
         while stack:
@@ -571,7 +573,7 @@ class Solution:
                     stack.append([x, y])
 
         # 魔法卷轴更新正向距离
-        dis = [[inf] * n for _ in range(n)]
+        dis = [[math.inf] * n for _ in range(n)]
         for i in range(m):
             for j in range(n):
                 if bfs[i][j] < inf:
@@ -583,7 +585,7 @@ class Solution:
                             dis[i][j] = max(dis[i][j], bfs[i][n - 1 - j])
 
         # dijkstrashortest_path径边权最小的最大值
-        visit = [[inf] * n for _ in range(n)]
+        visit = [[math.inf] * n for _ in range(n)]
         stack = [[dis[start[0]][start[1]], start[0], start[1]]]
         visit[start[0]][start[1]] = dis[start[0]][start[1]]
         while stack:
@@ -610,7 +612,7 @@ class Solution:
         n = ac.read_int()
         m = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(m)]
-        visit = [inf] * (1 << n)
+        visit = [math.inf] * (1 << n)
         visit[(1 << n) - 1] = 0
         stack = [[0, (1 << n) - 1]]
         while stack:
@@ -651,7 +653,7 @@ class Solution:
                 rev[x].append(y)
 
         # 前面最小值
-        floor = [inf] * n
+        floor = [math.inf] * n
         stack = [[nums[0], 0]]
         floor[0] = nums[0]
         while stack:
@@ -704,7 +706,7 @@ class Solution:
                 if w == "F":
                     end = [i, j]
 
-        dis = [[[inf] * 4 for _ in range(n)] for _ in range(m)]
+        dis = [[[math.inf] * 4 for _ in range(n)] for _ in range(m)]
         dis[start[0]][start[1]][d] = 0
         stack = [[0, start[0], start[1], d]]
         while stack:
@@ -896,7 +898,7 @@ class Solution:
         loss = [ac.read_list_floats() for _ in range(n)]
 
         # 丢失率与时延
-        dis = [[inf, inf] for _ in range(n)]
+        dis = [[math.inf, inf] for _ in range(n)]
         stack = [[0, 0, src]]
         dis[src] = [0, 0]
         # shortest_path
@@ -935,7 +937,7 @@ class Solution:
             dct[v][u] = ac.min(dct[v].get(u, inf), w)
 
         # shortest_path模板
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [[0, 0, 0, 0]]
         dis[0] = 0
         while stack:
@@ -979,7 +981,7 @@ class Solution:
             dct[j].add(i)
 
         n = len(dct)
-        visit = [inf] * n
+        visit = [math.inf] * n
         stack = [[0, 0]]
         visit[0] = 0
         while stack:
@@ -1014,7 +1016,7 @@ class Solution:
             dct[j].append([ind, i])
 
         # 第一遍shortest_path最小情况下的距离
-        dis0 = [inf] * n
+        dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
@@ -1030,7 +1032,7 @@ class Solution:
             return []
 
         # 第二遍shortest_path
-        dis1 = [inf] * n
+        dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
@@ -1075,7 +1077,7 @@ class Solution:
             dct[j].append([ind, i])
 
         # 第一遍shortest_path最小情况下的距离
-        dis0 = [inf] * n
+        dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
@@ -1092,7 +1094,7 @@ class Solution:
             return
 
         # 第二遍shortest_path
-        dis1 = [inf] * n
+        dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
@@ -1138,7 +1140,7 @@ class Solution:
             dct[x][y] = s
             dct[y][x] = s
 
-        dis = [[inf, -inf] for _ in range(n)]
+        dis = [[math.inf, -inf] for _ in range(n)]
         stack = [[0, 0, 0]]
         dis[0] = [0, 0]
 
@@ -1285,7 +1287,7 @@ class Solution:
         for i in range(n):
             dct[i].sort()
         # 先跑一遍shortest_path
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
@@ -1401,7 +1403,7 @@ class Solution:
             dct[i - 1].append([j - 1, c, f])
             dct[j - 1].append([i - 1, c, f])
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [[0, 0, 0, inf]]
         dis[0] = 0
         while stack:
@@ -1425,7 +1427,7 @@ class Solution:
         # 接雨水 Dijkstra 
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        visit = [[inf] * n for _ in range(n)]
+        visit = [[math.inf] * n for _ in range(n)]
         stack = []
         for i in [0, m - 1]:
             for j in range(n):
@@ -1500,7 +1502,7 @@ class Solution:
             dct[u].append([v, w])
             dct[v].append([u, w])
 
-        visit = [[inf] * (k + 1) for _ in range(n)]
+        visit = [[math.inf] * (k + 1) for _ in range(n)]
         stack = [[0, 0, s]]
         visit[s][0] = 0
         while stack:
@@ -1531,7 +1533,7 @@ class Solution:
             dct[v].append([u, w])
 
         n = len(dct)
-        cnt = [inf] * n
+        cnt = [math.inf] * n
         stack = [[0, 0, s]]
         while stack:
             dis, c, i = heappop(stack)
@@ -1559,7 +1561,7 @@ class Solution:
         if grid[0][1] > 1 and grid[1][0] > 1:
             return -1
 
-        dis = [[inf] * n for _ in range(m)]
+        dis = [[math.inf] * n for _ in range(m)]
         dis[0][0] = 0
         stack = [[0, 0, 0]]
 
@@ -1598,7 +1600,7 @@ class Solution:
             dct[j].append([ind, i])
 
         # 第一遍shortest_path最小情况下的距离
-        dis0 = [inf] * n
+        dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
         while stack:
@@ -1614,7 +1616,7 @@ class Solution:
             return []
 
         # 第二遍shortest_path
-        dis1 = [inf] * n
+        dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
         while stack:
@@ -1684,7 +1686,7 @@ class Solution:
         for i in range(n):
             dct[i].append([i + n, price[i] / 2])
 
-        dis = [inf] * 2 * n
+        dis = [math.inf] * 2 * n
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
@@ -1757,7 +1759,7 @@ class Solution:
         """
         # Dijkstralimited_shortest_path，也可根据无后效性类似Floyd的动态规划求解
         n = len(passing_fees)
-        dp = [[inf] * (max_time + 1) for _ in range(n)]
+        dp = [[math.inf] * (max_time + 1) for _ in range(n)]
         dp[0][0] = passing_fees[0]
         for t in range(max_time + 1):
             for i, j, w in edges:
@@ -1834,7 +1836,7 @@ class Solution:
             dct[i].sort()
 
         # 先跑一遍shortest_path
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [[0, 0]]
         dis[0] = 0
         while stack:
@@ -1982,7 +1984,7 @@ class Solution:
 
             n = len(dct)
             stack = [(0, 0, s[0])]
-            vis = [inf] * n
+            vis = [math.inf] * n
 
             while stack:
                 d, i, k = heappop(stack)
@@ -2111,7 +2113,7 @@ class Solution:
             dct[j].append((i, t))
         initial = 0
         src = 0
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(initial, src)]
         dis[src] = initial
 
@@ -2139,7 +2141,7 @@ class Solution:
             dct[x].append((y, w + 1, ind))
             dct[y].append((x, w + 1, ind))
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(0, 0)]
         dis[0] = 0
         father = [-1] * n
@@ -2170,10 +2172,10 @@ class Solution:
             i, j, w = ac.read_list_ints_minus_one()
             dct[i].append((j, w + 1))
             dct[j].append((i, w + 1))
-        dis1 = [inf] * n
-        dis2 = [inf] * n
-        fa1 = [inf] * n
-        fa2 = [inf] * n
+        dis1 = [math.inf] * n
+        dis2 = [math.inf] * n
+        fa1 = [math.inf] * n
+        fa2 = [math.inf] * n
 
         stack = []
         for i in b:
@@ -2246,7 +2248,7 @@ class Solution:
             dct[x].append((y, w))
             dct[y].append((x, w))
 
-        dis = [inf] * n
+        dis = [math.inf] * n
         use = [0] * n
         dis[0] = 0
         for i in range(k):
@@ -2316,7 +2318,7 @@ class Solution:
             dct[0].append((i + 1, a[i]))
 
         n += 1
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(0, 0)]
 
         while stack:
@@ -2349,7 +2351,7 @@ class Solution:
                 degree[j] += 1
 
             parent = [-1] * n
-            dis = [inf] * n
+            dis = [math.inf] * n
             for x, y in edges:
                 dct[x].discard(y)
                 dct[y].discard(x)
@@ -2410,8 +2412,8 @@ class Solution:
             dct[v - 1].append((u - 1, w))
 
         n = len(dct)
-        dis = [inf] * n * 4
-        ans = [inf] * n
+        dis = [math.inf] * n * 4
+        ans = [math.inf] * n
         stack = [(0, 0)]
         dis[0] = ans[0] = 0
 
@@ -2489,7 +2491,7 @@ class Solution:
             dct[b].append((a, c, d))
 
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(0, 0)]
         dis[0] = 0
 
@@ -2522,11 +2524,11 @@ class Solution:
             weight.append(w + 1)
 
         root = ac.read_int() - 1
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [root]
         dis[root] = 0
         father = [-1] * n
-        weights = [inf] * n
+        weights = [math.inf] * n
         while stack:
             val = heappop(stack)
             d, i = val // n, val % n
@@ -2604,4 +2606,34 @@ class Solution:
         res = graph.shortest_path_mst(0, k)
         ac.st(len(res))
         ac.lst(res)
+        return
+
+    @staticmethod
+    def abc_375g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc375/tasks/abc375_g
+        tag: dijkstra_for_cnt_of_shortest_path|key_edge_in_shortest_path
+        """
+        n, m = ac.read_list_ints()
+        graph = WeightedGraphForDijkstra(n, 2 * 10 ** 14)
+        for ind in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            w += 1
+            graph.add_undirected_edge(i, j, w)
+        assert graph.edge_id == 2 * m + 1
+
+        mod = random.getrandbits(32)
+        dis1, cnt1 = graph.dijkstra_for_cnt_of_shortest_path(0, 0, mod)
+        dis2, cnt2 = graph.dijkstra_for_cnt_of_shortest_path(n - 1, 0, mod)
+
+        for ind in range(m):
+            i, j, w = graph.edge_from[ind * 2 + 1], graph.edge_to[ind * 2 + 1], graph.edge_weight[ind * 2 + 1]
+            if dis1[i] + w + dis2[j] == dis1[-1] and cnt1[i] * cnt2[j] % mod == cnt1[-1]:
+                ac.yes()
+                continue
+            i, j = j, i
+            if dis1[i] + w + dis2[j] == dis1[-1] and cnt1[i] * cnt2[j] % mod == cnt1[-1]:
+                ac.yes()
+                continue
+            ac.no()
         return

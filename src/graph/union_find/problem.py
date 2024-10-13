@@ -174,7 +174,7 @@ from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -534,7 +534,7 @@ class Solution:
             dist.append(Dijkstra().get_shortest_path(dct, i))
 
         part = uf.get_root_part()
-        fast = [inf] * n
+        fast = [math.inf] * n
         group = dict()
         for p in part:
             for i in part[p]:
@@ -2253,7 +2253,7 @@ class Solution:
                 for r in roots:
                     group[r] = set()
             b, e = ac.read_list_ints_minus_one()
-            dis = [inf] * (n + m)
+            dis = [math.inf] * (n + m)
             dis[b] = 0
             stack = [b]
             while stack:

@@ -36,7 +36,7 @@ from itertools import combinations
 from typing import List
 
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

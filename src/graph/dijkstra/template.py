@@ -1,19 +1,20 @@
+import math
 from collections import defaultdict, deque
 from heapq import heappush, heappop
 
 from src.data_structure.sorted_list.template import SortedList
-from src.utils.fast_io import inf
 
 
 class WeightedGraph:
-    def __init__(self, n):
+    def __init__(self, n, inf=math.inf):
         self.n = n
+        self.inf=inf
         self.point_head = [0] * (self.n + 1)
         self.edge_weight = [0]
         self.edge_from = [0]
         self.edge_to = [0]
         self.edge_next = [0]
-        self.dis = [inf]
+        self.dis = [self.inf]
         self.edge_id = 1
         return
 
@@ -45,7 +46,7 @@ class WeightedGraph:
         return
 
     def dijkstra(self, src=0, initial=0):
-        self.dis = [inf] * (self.n + 1)
+        self.dis = [math.inf] * (self.n + 1)
         stack = [initial * self.n + src]
         self.dis[src] = initial
         while stack:
@@ -72,7 +73,7 @@ class WeightedGraphForShortestPathMST:
         self.edge_weight = [0]
         self.edge_to = [0]
         self.edge_next = [0]
-        self.dis = [inf]
+        self.dis = [math.inf]
         self.edge_id = 1
         return
 
@@ -103,7 +104,7 @@ class WeightedGraphForShortestPathMST:
         return
 
     def dijkstra(self, src=0, initial=0):
-        self.dis = [inf] * (self.n + 1)
+        self.dis = [math.inf] * (self.n + 1)
         stack = [initial * self.n + src]
         self.dis[src] = initial
         while stack:
@@ -123,11 +124,11 @@ class WeightedGraphForShortestPathMST:
         return
 
     def shortest_path_mst(self, root=0, ceil=0):
-        dis = [inf] * self.n
+        dis = [math.inf] * self.n
         stack = [root]
         dis[root] = 0
         edge_ids = [-1] * self.n
-        weights = [inf] * self.n
+        weights = [math.inf] * self.n
         while stack:
             val = heappop(stack)
             d, u = val // self.n, val % self.n
@@ -150,13 +151,14 @@ class WeightedGraphForShortestPathMST:
 
 
 class UnWeightedGraph:
-    def __init__(self, n):
+    def __init__(self, n, inf=math.inf):
         self.n = n
+        self.inf = inf
         self.point_head = [0] * (self.n + 1)
         self.edge_from = [0]
         self.edge_to = [0]
         self.edge_next = [0]
-        self.dis = [inf]
+        self.dis = [self.inf]
         self.edge_id = 1
         return
 
@@ -187,7 +189,7 @@ class UnWeightedGraph:
         return
 
     def bfs(self, src=0, initial=0):
-        dis = [inf] * (self.n + 1)
+        dis = [math.inf] * (self.n + 1)
         dis[src] = initial
         stack = [src]
         while stack:
@@ -214,7 +216,7 @@ class LimitedWeightedGraph:
         self.edge_from = [0]
         self.edge_to = [0]
         self.edge_next = [0]
-        self.time = [inf]
+        self.time = [math.inf]
         self.edge_id = 1
         return
 
@@ -297,7 +299,7 @@ class Dijkstra:
         """template of shortest path by dijkstra"""
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [initial * n + src]
         dis[src] = initial
 
@@ -319,7 +321,7 @@ class Dijkstra:
         """template of shortest path by dijkstra"""
         #  which can to changed to be the longest path problem by opposite number
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(-initial, src)]
         dis[src] = -initial
 
@@ -338,7 +340,7 @@ class Dijkstra:
     def get_dijkstra_result_sorted_list(dct, src: int):
 
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         dis[src] = 0
         lst = SortedList([(0, src)])
         while lst:
@@ -358,7 +360,7 @@ class Dijkstra:
     def get_cnt_of_shortest_path(dct, src: int):
         """number of shortest path"""
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(0, src)]
         dis[src] = 0
         cnt = [0] * n
@@ -382,7 +384,7 @@ class Dijkstra:
     @staticmethod
     def get_dijkstra_result_limit(dct, src: int, limit, target):
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
 
         dis[src] = 0 if src not in limit else inf
         stack = [(dis[src], src)]
@@ -403,7 +405,7 @@ class Dijkstra:
     @staticmethod
     def get_shortest_path_from_src_to_dst(dct, src: int, dst: int):
         n = len(dct)
-        dis = [inf] * n
+        dis = [math.inf] * n
         stack = [(0, src)]
         dis[src] = 0
         father = [-1] * n
@@ -450,7 +452,7 @@ class Dijkstra:
     def get_second_shortest_path(dct, src):
         """template of strictly second shorter path"""
         n = len(dct)
-        dis = [[inf] * 2 for _ in range(n)]
+        dis = [[math.inf] * 2 for _ in range(n)]
         dis[src][0] = 0
         stack = [(0, src)]
         while stack:
@@ -471,7 +473,7 @@ class Dijkstra:
     def get_cnt_of_second_shortest_path(dct, src, mod=-1):
         """number of strictly second shorter path"""
         n = len(dct)
-        dis = [[inf] * 2 for _ in range(n)]
+        dis = [[math.inf] * 2 for _ in range(n)]
         dis[src][0] = 0
         stack = [(0, src, 0)]
         cnt = [[0] * 2 for _ in range(n)]
@@ -505,7 +507,7 @@ class Dijkstra:
     def get_cnt_of_second_shortest_path_by_bfs(dct, src, mod=-1):
         """number of strictly second shorter path by bfs"""
         n = len(dct)
-        dis = [inf] * 2 * n
+        dis = [math.inf] * 2 * n
         dis[src * 2] = 0
         stack = [(0, src, 0)]
         cnt = [0] * 2 * n
@@ -552,7 +554,7 @@ class Dijkstra:
     def get_shortest_by_bfs_inf_odd(dct, src):
         """shortest odd path and even path"""
         n = len(dct)
-        dis = [[inf, inf] for _ in range(n)]
+        dis = [[math.inf, inf] for _ in range(n)]
         stack = deque([[src, 0]])
         dis[0][0] = 0
         while stack:
@@ -565,6 +567,195 @@ class Dijkstra:
         return dis
 
 
+class WeightedGraphForDijkstra:
+    def __init__(self, n, inf=math.inf):
+        self.n = n
+        self.point_head = [0] * self.n
+        self.edge_weight = [0]
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        self.inf = inf
+        return
+
+    def add_directed_edge(self, i, j, w):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.edge_weight.append(w)
+        self.edge_from.append(i)
+        self.edge_to.append(j)
+        self.edge_next.append(self.point_head[i])
+        self.point_head[i] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, i, j, w):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.add_directed_edge(i, j, w)
+        self.add_directed_edge(j, i, w)
+        return
+
+    def get_edge_ids(self, i):
+        assert 0 <= i < self.n
+        ind = self.point_head[i]
+        ans = []
+        while ind:
+            ans.append(ind)
+            ind = self.edge_next[ind]
+        return
+
+    def dijkstra_for_shortest_path(self, src=0, initial=0):
+        dis = [self.inf] * self.n
+        stack = [initial * self.n + src]
+        dis[src] = initial
+        while stack:
+            val = heappop(stack)
+            d, i = val // self.n, val % self.n
+            if dis[i] < d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj < dis[j]:
+                    dis[j] = dj
+                    heappush(stack, dj * self.n + j)
+                ind = self.edge_next[ind]
+        return dis
+
+    def dijkstra_for_longest_path(self, src=0, initial=0):
+        dis = [-self.inf] * self.n
+        stack = [-initial * self.n - src]
+        dis[src] = initial
+        while stack:
+            val = -heappop(stack)
+            d, i = val // self.n, val % self.n
+            if dis[i] > d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj > dis[j]:
+                    dis[j] = dj
+                    heappush(stack, -dj * self.n - j)
+                ind = self.edge_next[ind]
+        return dis
+
+    def dijkstra_for_cnt_of_shortest_path(self, src=0, initial=0, mod=-1):
+        """number of shortest path"""
+        assert 0 <= src < self.n
+        dis = [self.inf] * self.n
+        cnt = [0] * self.n
+        dis[src] = initial
+        cnt[src] = 1
+        stack = [initial * self.n + src]
+        while stack:
+            val = heappop(stack)
+            d, i = val // self.n, val % self.n
+            if dis[i] < d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj < dis[j]:
+                    dis[j] = dj
+                    cnt[j] = cnt[i]
+                    heappush(stack, dj * self.n + j)
+                elif dj == dis[j]:
+                    cnt[j] += cnt[i]
+                    if mod != -1:
+                        cnt[j] %= mod
+                ind = self.edge_next[ind]
+        return dis, cnt
+
+    def dijkstra_for_strictly_second_shortest_path(self, src=0, initial=0):
+        dis = [self.inf] * self.n * 2
+        stack = [initial * self.n + src]
+        dis[src * 2] = initial
+        while stack:
+            val = heappop(stack)
+            d, i = val // self.n, val % self.n
+            if dis[i * 2 + 1] < d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj < dis[j * 2]:
+                    dis[j * 2 + 1] = dis[j * 2]
+                    dis[j * 2] = dj
+                    heappush(stack, dj * self.n + j)
+                elif dis[j * 2] < dj < dis[j * 2 + 1]:  # if not_strictly changed to (dj < dis[j*2+1])
+                    dis[j * 2 + 1] = dj
+                    heappush(stack, dj * self.n + j)
+                ind = self.edge_next[ind]
+        return dis
+
+    def dijkstra_for_cnt_of_strictly_second_shortest_path(self, src=0, initial=0, mod=-1):
+        dis = [self.inf] * self.n * 2
+        stack = [initial * self.n + src]
+        dis[src * 2] = initial
+        cnt = [0] * self.n * 2
+        cnt[src * 2] = 1
+        while stack:
+            val = heappop(stack)
+            d, i = val // self.n, val % self.n
+            i, state = i // 2, i % 2
+            if dis[i * 2 + 1] < d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj < dis[j * 2]:
+                    dis[j * 2 + 1] = dis[j * 2]
+                    dis[j * 2] = dj
+                    cnt[j * 2] = cnt[i * 2 + state]
+                    heappush(stack, dj * self.n + j)
+                elif dj == dis[j * 2]:
+                    cnt[j * 2] += cnt[i]
+                elif dis[j * 2] < dj < dis[j * 2 + 1]:  # if not_strictly changed to (dj < dis[j*2+1])
+                    dis[j * 2 + 1] = dj
+                    heappush(stack, dj * self.n + j)
+                ind = self.edge_next[ind]
+        return dis
+
+    def dijkstra_for_shortest_path_from_src_to_dst(self, src, dst):
+        dis = [self.inf] * self.n
+        stack = [0 * self.n + src]
+        dis[src] = 0
+        parent = [-1] * self.n
+        while stack:
+            val = heappop(stack)
+            d, i = val // self.n, val % self.n
+            if dis[i] < d:
+                continue
+            ind = self.point_head[i]
+            while ind:
+                w = self.edge_weight[ind]
+                j = self.edge_to[ind]
+                dj = d + w
+                if dj < dis[j]:
+                    dis[j] = dj
+                    parent[j] = ind
+                    heappush(stack, dj * self.n + j)
+                ind = self.edge_next[ind]
+        path = [dst]
+        while parent[path[-1]] != -1:
+            path.append(parent[path[-1]])
+        path.reverse()
+        return path, dis[dst]
+
+
 class UnDirectedShortestCycle:
     def __init__(self):
         return
@@ -574,7 +765,7 @@ class UnDirectedShortestCycle:
         # brute force by point
         ans = inf
         for i in range(n):
-            dist = [inf] * n
+            dist = [math.inf] * n
             par = [-1] * n
             dist[i] = 0
             stack = [(0, i)]
@@ -601,7 +792,7 @@ class UnDirectedShortestCycle:
             dct[x].pop(y)
             dct[y].pop(x)
 
-            dis = [inf] * n
+            dis = [math.inf] * n
             stack = [(0, x)]
             dis[x] = 0
 

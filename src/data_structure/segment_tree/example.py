@@ -1,7 +1,7 @@
 import random
 import unittest
 from functools import reduce
-from math import inf
+
 from operator import or_, xor
 
 from src.data_structure.segment_tree.template import RangeAscendRangeMax, \

@@ -43,6 +43,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
 100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
 3098（https://leetcode.cn/problems/find-the-sum-of-subsequence-powers）matrix_dp
+3316（https://leetcode.com/problems/find-maximum-removals-from-source-string）matrix_dp
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -198,7 +199,7 @@ from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -381,7 +382,7 @@ class Solution:
             return res
 
         def check(fun):
-            dp = [[inf] * n for _ in range(n)]
+            dp = [[math.inf] * n for _ in range(n)]
             dp[0][0] = fun(grid[0][0])
             f = [[-1] * n for _ in range(n)]
             for j in range(1, n):
@@ -511,7 +512,7 @@ class Solution:
         robot.sort()
         factory.sort()
         m, n = len(factory), len(robot)
-        dp = [[inf] * (n + 1) for _ in range(m + 1)]
+        dp = [[math.inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for i in range(m):
             for j in range(n + 1):
@@ -718,7 +719,7 @@ class Solution:
         m, n = len(s), len(t)
 
         pre = [j * k for j in range(n + 1)]
-        cur = [inf] * (n + 1)
+        cur = [math.inf] * (n + 1)
         for i in range(m):
             cur[0] = pre[0] + k
             for j in range(n):
@@ -873,7 +874,7 @@ class Solution:
         # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
         # ac.st("%.2f" % ans)
 
-        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        dp = [[[[[math.inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
         for i in range(m - 1, -1, -1):
             for j in range(m - 1, -1, -1):
                 for x in range(i, m):
@@ -924,7 +925,7 @@ class Solution:
         # ans = dfs(0, 0, m-1, n-1, k)
         # ac.st(ans)
 
-        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        dp = [[[[[math.inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
         for i in range(m - 1, -1, -1):
             for j in range(m - 1, -1, -1):
                 for x in range(i, m):
@@ -976,7 +977,7 @@ class Solution:
         # ans = (dfs(0, 0, m-1, n-1, k)/k)**0.5
         # ac.st("%.3f" % ans)
 
-        dp = [[[[[inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
+        dp = [[[[[math.inf] * (k + 1) for _ in range(n)] for _ in range(m)] for _ in range(n)] for _ in range(m)]
         for i in range(m - 1, -1, -1):
             for j in range(m - 1, -1, -1):
                 for x in range(i, m):
@@ -1171,7 +1172,7 @@ class Solution:
         #     return res
         # ac.st(dfs(0, 0, 0))
 
-        dp = [[inf for _ in range(m + 1)] for _ in range(2)]
+        dp = [[math.inf for _ in range(m + 1)] for _ in range(2)]
         pre = 0
         dp[pre][0] = 0
         for i in range(n):
@@ -1235,7 +1236,7 @@ class Solution:
         # matrix_dp| 并具体转移specific_plan
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
-        dp = [[inf] * (n + 1) for _ in range(m + 1)]
+        dp = [[math.inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         pre = [[[0, 0] for _ in range(n + 1)] for _ in range(m + 1)]
         for i in range(m):
@@ -1610,7 +1611,7 @@ class Solution:
         """
         # reverse_order|matrix_dp| 并tree_array|记录更新前缀最小值
         m, n = len(grid), len(grid[0])
-        dp = [[inf] * n for _ in range(m)]
+        dp = [[math.inf] * n for _ in range(m)]
         dp[-1][-1] = 1
         row = [PointDescendPreMin(n) for _ in range(m)]
         col = [PointDescendPreMin(m) for _ in range(n)]
@@ -1638,7 +1639,7 @@ class Solution:
         """
         # matrix_dp| priority_queue或者monotonic_queue
         m, n = len(grid), len(grid[0])
-        dp = [[inf] * n for _ in range(m)]
+        dp = [[math.inf] * n for _ in range(m)]
         dp[0][0] = 1
         row = [[] for _ in range(m)]
         col = [[] for _ in range(n)]
@@ -1669,7 +1670,7 @@ class Solution:
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
         col = [list(range(1, m + 1)) for _ in range(n)]
-        dp = [[inf] * n for _ in range(m)]
+        dp = [[math.inf] * n for _ in range(m)]
         dp[0][0] = 1
         stack = deque([[0, 0]])
         while stack:
@@ -1717,7 +1718,7 @@ class Solution:
         b = int(s[1])
         s = s[0]
         n = len(s)
-        dp = [[inf] * (b + 1) for _ in range(n + 1)]
+        dp = [[math.inf] * (b + 1) for _ in range(n + 1)]
         dp[0][0] = -1
         pre = [0] * n
         ind = 0
@@ -2869,7 +2870,7 @@ class Solution:
         tag: matrix_dp|high_precision|bag_dp
         """
         n = len(dist)
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         s = speed
         for d in dist:
@@ -2957,10 +2958,10 @@ class Solution:
         for g in grid:
             nums.extend(g)
         for num in nums:
-            dp = [[inf] * (k + 1) for _ in range(n)]
+            dp = [[math.inf] * (k + 1) for _ in range(n)]
             dp[0][0] = 0
             for i in range(m):
-                ndp = [[inf] * (k + 1) for _ in range(n)]
+                ndp = [[math.inf] * (k + 1) for _ in range(n)]
                 for j in range(n):
                     for x in range(k + 1):
                         if x and grid[i][j] >= num:
@@ -3013,14 +3014,14 @@ class Solution:
             b = ac.read_list_ints()
             pre_a = 0
             pre_b = 0
-            dp = [inf] * (k + 1)
+            dp = [math.inf] * (k + 1)
             dp[0] = 0
-            low_a = [inf] * (k + 1)
+            low_a = [math.inf] * (k + 1)
             low_a[0] = 0
-            low_b = [inf] * (k + 1)
+            low_b = [math.inf] * (k + 1)
             low_b[0] = 0
             for i in range(n):
-                ndp = [inf] * (k + 1)
+                ndp = [math.inf] * (k + 1)
                 pre_a += a[i]
                 pre_b += b[i]
                 for x in range(1, k + 1):
@@ -3128,9 +3129,9 @@ class Solution:
             nums = [ac.read_list_ints() for _ in range(n)]
             nums.sort(key=lambda it: it[1])
 
-            pre = [inf for _ in range(n + 1)]
+            pre = [math.inf for _ in range(n + 1)]
             pre[0] = 0
-            dp = [inf] * (n + 1)
+            dp = [math.inf] * (n + 1)
             dp[0] = [0] * (n + 1)
             ans = 0
             for i in range(n):
@@ -3187,7 +3188,7 @@ class Solution:
             return
         pre = [0] * m * n
         for _ in range(k // 2):
-            cur = [inf] * m * n
+            cur = [math.inf] * m * n
             for x in range(m):
                 for y in range(n):
                     if x:
@@ -3231,7 +3232,7 @@ class Solution:
         n, ll, kk = ac.read_list_ints()
         d = ac.read_list_ints()
         a = ac.read_list_ints()
-        dp = [[inf] * (kk + 1) for _ in range(n)]
+        dp = [[math.inf] * (kk + 1) for _ in range(n)]
         dp[0][0] = 0
         for i in range(1, n):
             for j in range(i):
@@ -3286,7 +3287,7 @@ class Solution:
         log = [math.log(p) for p in prime_numbers]
         n = ac.read_int()
         pf = PrimeFactor(n)
-        dp = [[inf] * (n + 1) for _ in range(21)]
+        dp = [[math.inf] * (n + 1) for _ in range(21)]
         dp[0][1] = 0
         pre = [[[] for _ in range(n + 1)] for _ in range(21)]
         for i in range(1, 21):
@@ -3517,7 +3518,7 @@ class Solution:
 
         m = n = 30
         k = 50
-        dp = [[[inf] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
+        dp = [[[math.inf] * (k + 1) for _ in range(n + 1)] for _ in range(m + 1)]
         for i in range(m + 1):
             for j in range(n + 1):
                 for p in range(k + 1):

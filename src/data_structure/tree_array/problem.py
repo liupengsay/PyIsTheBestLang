@@ -86,7 +86,7 @@ from src.data_structure.tree_array.template import PointAddRangeSum, PointDescen
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.search.dfs.template import DfsEulerOrder
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -257,7 +257,7 @@ class Solution:
         tag: tree_array|prefix_minimum
         """
         n, m = len(grid), len(grid[0])
-        dp = [[inf] * m for _ in range(n)]
+        dp = [[math.inf] * m for _ in range(n)]
         r, c = [PointDescendPreMin(m) for _ in range(n)], [PointDescendPreMin(n) for _ in range(m)]
         dp[n - 1][m - 1] = 1
         for i in range(n - 1, -1, -1):
@@ -799,13 +799,13 @@ class Solution:
         dct = {num: i + 1 for i, num in enumerate(nodes)}
         m = len(nodes)
 
-        pre = [inf] * n
+        pre = [math.inf] * n
         tree = PointDescendPreMin(m)
         for i in range(n):
             pre[i] = tree.pre_min(dct[s[i]] - 1)
             tree.point_descend(dct[s[i]], c[i])
 
-        post = [inf] * n
+        post = [math.inf] * n
         tree = PointDescendPreMin(m)
         for i in range(n - 1, -1, -1):
             post[i] = tree.pre_min(m - dct[s[i]])
@@ -1147,7 +1147,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        ans = [inf] * n
+        ans = [math.inf] * n
         tree1 = PointDescendPreMin(n)
         tree2 = PointDescendPreMin(n)
         for i in range(n):
@@ -1540,7 +1540,7 @@ class Solution:
             for j in range(n):
                 dct[grid[i][j]].append(i * n + j)
         dct[1].sort()
-        dis = [inf] * m * n
+        dis = [math.inf] * m * n
         for x in dct[1]:
             i, j = x // n, x % n
             dis[i * n + j] = i + j

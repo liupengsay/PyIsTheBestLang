@@ -61,7 +61,7 @@ from typing import List
 from src.basis.range.template import Range
 from src.data_structure.sorted_list.template import SortedList
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:

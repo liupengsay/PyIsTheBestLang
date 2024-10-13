@@ -194,7 +194,7 @@ from src.basis.binary_search.template import BinarySearch
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 
 class Solution:
@@ -417,7 +417,7 @@ class Solution:
             ac.st(0)
             return
         a, b = len(busy), len(free)
-        dp = [[inf] * (b + 1) for _ in range(a + 1)]
+        dp = [[math.inf] * (b + 1) for _ in range(a + 1)]
         dp[0] = [0] * (b + 1)
         for i in range(a):
             for j in range(b):
@@ -433,7 +433,7 @@ class Solution:
         """
         nums.sort()
         m = 2 * n
-        dp = [[inf] * (n + 1) for _ in range(m + 1)]
+        dp = [[math.inf] * (n + 1) for _ in range(m + 1)]
         dp[0][0] = 0
         for i in range(m):
             dp[i + 1][0] = 0
@@ -469,13 +469,13 @@ class Solution:
         tag: liner_dp|classical|hanoi_tower
         """
         n = 12
-        dp3 = [inf] * (n + 1)
+        dp3 = [math.inf] * (n + 1)
         dp3[0] = 0
         dp3[1] = 1
         for i in range(2, n + 1):
             dp3[i] = 2 * dp3[i - 1] + 1
 
-        dp4 = [inf] * (n + 1)
+        dp4 = [math.inf] * (n + 1)
         dp4[0] = 0
         dp4[1] = 1
         for i in range(2, n + 1):
@@ -593,7 +593,7 @@ class Solution:
             ac.st(nums[0])
             return
         nums.sort()
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         dp[1] = nums[0]
         dp[2] = ac.max(nums[0], nums[1])
@@ -717,7 +717,7 @@ class Solution:
         sentence = ac.read_str()
         words = [ac.read_str()[::-1] for _ in range(w)]
 
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         for x in range(n):
             ind = [0] * w
@@ -799,7 +799,7 @@ class Solution:
                 x2, y2 = nums[j]
                 dis[i][j] = abs(x1 - x2) + abs(y1 - y2)
 
-        dp = [[inf] * (k + 1) for _ in range(n)]
+        dp = [[math.inf] * (k + 1) for _ in range(n)]
         dp[0][0] = 0
         for i in range(1, n):
             dp[i][0] = dp[i - 1][0] + dis[i - 1][i]
@@ -820,10 +820,10 @@ class Solution:
         """
         ac.read_int()
         nums = ac.read_list_ints()
-        pre = [inf, inf, inf]
+        pre = [math.inf, inf, inf]
         pre[nums[0]] = 0
         for num in nums[1:]:
-            cur = [inf, inf, inf]
+            cur = [math.inf, inf, inf]
             for x in [-1, 0, 1]:
                 for k in range(3):
                     y = num + k * x
@@ -874,7 +874,7 @@ class Solution:
             nums.append((nums[-1] * 6807 + 2831) % 201701)
         nums = [num % 100 for num in nums]
 
-        dp = [[inf] * 100 for _ in range(2)]
+        dp = [[math.inf] * 100 for _ in range(2)]
         pre = 0
         for x in range(100):
             y = abs(x - nums[0])
@@ -945,7 +945,7 @@ class Solution:
         """
         n, length = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         for i in range(n):
             w = h = 0
@@ -1283,7 +1283,7 @@ class Solution:
             x, y = ac.read_list_ints()
             if x <= k and cost[x] < y:
                 cost[x] = y
-        dp = [inf] * (k + 1)
+        dp = [math.inf] * (k + 1)
         dp[k] = 0
         for i in range(k - 1, -1, -1):
             dp[i] = dp[i + 1] + nums[i]
@@ -1346,10 +1346,10 @@ class Solution:
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
 
-        dp = [[inf] * (m + 1) for _ in range(2)]
+        dp = [[math.inf] * (m + 1) for _ in range(2)]
         dp[0][0] = 0
         for num in nums:
-            ndp = [[inf] * (m + 1) for _ in range(2)]
+            ndp = [[math.inf] * (m + 1) for _ in range(2)]
             for pre in range(2):
                 for s in range(m + 1):
                     if pre:
@@ -1555,10 +1555,10 @@ class Solution:
             n, k = ac.read_list_ints()
             nums = ac.read_list_ints()
 
-            dp = deque([[inf] * (k + 1) for _ in range(20)])
+            dp = deque([[math.inf] * (k + 1) for _ in range(20)])
             dp[-1][0] = 0
             for i in range(n):
-                cur = [inf] * (k + 1)
+                cur = [math.inf] * (k + 1)
                 cnt = 0
                 val = inf
                 for x in range(k + 1):
@@ -1738,7 +1738,7 @@ class Solution:
         b = ac.read_list_ints()
         c = ac.read_list_ints()
         ceil = 10 ** 6
-        gain = [inf] * (ceil + 1)
+        gain = [math.inf] * (ceil + 1)
         ans = 0
         for i in range(n):
             gain[a[i]] = min(gain[a[i]], a[i] - b[i])
@@ -1865,7 +1865,7 @@ class Solution:
         """
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        dp = [inf] * (n + 1)
+        dp = [math.inf] * (n + 1)
         dp[0] = 0
         cover = [0] * n
         for j in range(n):

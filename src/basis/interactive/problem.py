@@ -38,6 +38,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1305D（https://codeforces.com/problemset/problem/1305/D）interactive|tree|implemention
 1634D（https://codeforces.com/problemset/problem/1634/D）interactive|brain_teaser
 1521C（https://codeforces.com/problemset/problem/1521/C）interactive|observation|brain_teaser
+1780D（https://codeforces.com/problemset/problem/1780/D）interactive|bit_operation|classical
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser
@@ -51,7 +52,7 @@ import bisect
 import random
 import sys
 from collections import deque
-from math import inf
+
 
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.segment_tree.template import RangeAddPointGet
@@ -409,7 +410,7 @@ class Solution:
                 else:
                     break
 
-        dis = [inf] * m
+        dis = [math.inf] * m
         stack = [lll]
         parent = [[] for _ in range(m)]
         dis[lll] = 0
@@ -652,4 +653,26 @@ class Solution:
                     ac.lst(["?", 1, one + 1, i + 1, n - 1])
                     ans[i] = ac.read_int()
             ac.lst(["!"] + ans)
+        return
+
+    @staticmethod
+    def cf_1780d(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1780/D
+        tag: interactive|bit_operation|classical
+        """
+        ac.flush = True
+        for _ in range(ac.read_int()):
+            m = ac.read_int()
+            ans = i = 0
+            while True:
+                ac.lst(["-", 1 << i])
+                n = ac.read_int()
+                for _ in range(n - m + 1):
+                    i += 1
+                ans += 1 << i
+                if n == i:
+                    break
+                m = n
+            ac.lst(["!", ans])
         return

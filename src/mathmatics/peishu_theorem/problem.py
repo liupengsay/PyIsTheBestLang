@@ -16,7 +16,7 @@ P8646（https://www.luogu.com.cn/problem/P8646）peishu_theorem|bag_dp
 """
 import math
 from collections import defaultdict
-from math import inf
+
 from typing import List
 
 from src.mathmatics.peishu_theorem.template import PeiShuTheorem

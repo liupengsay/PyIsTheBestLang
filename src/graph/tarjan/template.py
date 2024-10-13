@@ -1,4 +1,4 @@
-from src.utils.fast_io import inf
+
 
 
 class Tarjan:
@@ -10,7 +10,7 @@ class Tarjan:
         assert all(i not in edge[i] for i in range(n))
         assert all(len(set(edge[i])) == len(edge[i]) for i in range(n))
         dfs_id = 0
-        order, low = [inf] * n, [inf] * n
+        order, low = [math.inf] * n, [math.inf] * n
         visit = [0] * n
         out = []
         in_stack = [0] * n
@@ -75,7 +75,7 @@ class Tarjan:
     def get_pdcc(n: int, edge):
 
         dfs_id = 0
-        order, low = [inf] * n, [inf] * n
+        order, low = [math.inf] * n, [math.inf] * n
         visit = [False] * n
         out = []
         parent = [-1] * n
@@ -186,7 +186,7 @@ class Tarjan:
 
     @staticmethod
     def get_cut(n: int, edge):
-        order, low = [inf] * n, [inf] * n
+        order, low = [math.inf] * n, [math.inf] * n
         visit = [0] * n
         cutting_point = set()
         cutting_edge = []

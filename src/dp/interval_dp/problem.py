@@ -56,7 +56,7 @@ from typing import List
 
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.utils.fast_io import FastIO
-from src.utils.fast_io import inf
+
 
 MOD = 10 ** 9 + 7
 
@@ -74,7 +74,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
 
-        dp = [[inf] * n for _ in range(n + 1)]
+        dp = [[math.inf] * n for _ in range(n + 1)]
         for i in range(n):
             for j in range(i):
                 dp[i][j] = 0
@@ -104,7 +104,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/1509/C
         tag: interval_dp
         """
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 0
             for j in range(i + 1, n):
@@ -299,7 +299,7 @@ class Solution:
         n = ac.read_int()
         nums = ac.read_list_ints()
         pre = ac.accumulate(nums)
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         mid = [[-1] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 0
@@ -385,7 +385,7 @@ class Solution:
         """
         s = ac.read_str()
         n = len(s)
-        dp = [[inf] * n for _ in range(n)]
+        dp = [[math.inf] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
             dp[i][i] = 1
             for j in range(i + 1, n):

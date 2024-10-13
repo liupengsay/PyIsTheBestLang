@@ -67,7 +67,7 @@ ABC197D（https://atcoder.jp/contests/abc197/tasks/abc197_d）geometry
 import math
 from collections import defaultdict, Counter
 from itertools import accumulate, pairwise
-from math import inf
+
 from typing import List
 
 from src.graph.union_find.template import UnionFind
