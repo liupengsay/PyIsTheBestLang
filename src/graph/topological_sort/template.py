@@ -1,3 +1,95 @@
+import math
+
+
+
+class GraphForTopologicalSort:
+    def __init__(self, n, inf=math.inf):
+        self.n = n
+        self.inf = inf
+        self.point_head = [0] * self.n
+        self.degree = [0] * self.n
+        self.edge_weight = [0]
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        return
+
+    def add_directed_edge(self, i, j, w):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.edge_weight.append(w)
+        self.edge_from.append(i)
+        self.edge_to.append(j)
+        self.edge_next.append(self.point_head[i])
+        self.point_head[i] = self.edge_id
+        self.degree[j] += 1
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, i, j, w):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.add_directed_edge(i, j, w)
+        self.add_directed_edge(j, i, w)
+        return
+
+    def topological_sort_for_dag_dp(self, weights):
+        ans = [0] * self.n
+        stack = [i for i in range(self.n) if not self.degree[i]]
+        for i in stack:
+            ans[i] = weights[i]
+        while stack:
+            nex = []
+            for i in stack:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    self.degree[j] -= 1
+                    ans[j] = max(ans[j], ans[i] + weights[j])
+                    if not self.degree[j]:
+                        nex.append(j)
+                    ind = self.edge_next[ind]
+            stack = nex
+        return ans
+
+    def topological_sort_for_dag_dp_with_edge_weight(self, weights):
+        ans = [0] * self.n
+        stack = [i for i in range(self.n) if not self.degree[i]]
+        for i in stack:
+            ans[i] = weights[i]
+        while stack:
+            nex = []
+            for i in stack:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    self.degree[j] -= 1
+                    ans[j] = max(ans[j], ans[i] + weights[j] + self.edge_weight[ind])
+                    if not self.degree[j]:
+                        nex.append(j)
+                    ind = self.edge_next[ind]
+            stack = nex
+        return ans
+
+    def topological_order(self):
+        ans = []
+        stack = [i for i in range(self.n) if not self.degree[i]]
+        while stack:
+            ans.extend(stack)
+            nex = []
+            for i in stack:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    self.degree[j] -= 1
+                    if not self.degree[j]:
+                        nex.append(j)
+                    ind = self.edge_next[ind]
+            stack = nex
+        return ans
+
+
 class TopologicalSort:
     def __init__(self):
         return

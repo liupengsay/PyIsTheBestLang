@@ -1,75 +1,201 @@
 import math
 
 
-class Tarjan:
-    def __init__(self):
+class DirectedGraphForTarjanScc:
+    def __init__(self, n, inf=math.inf):
+        self.n = n
+        self.inf = inf
+        self.point_head = [0] * self.n
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.node_scc_id = [0]
+        self.edge_id = 1
+        self.scc_id = 0
+        self.original_edge = set()
         return
 
-    @staticmethod
-    def get_scc(n: int, edge):
-        assert all(i not in edge[i] for i in range(n))
-        assert all(len(set(edge[i])) == len(edge[i]) for i in range(n))
+    def initialize_graph(self):
+        self.point_head = [0] * self.n
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
+        self.original_edge = set()
+        return
+
+    def add_directed_original_edge(self, i, j):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.original_edge.add(i * self.n + j)
+        return
+
+    def add_directed_edge(self, i, j):
+        assert 0 <= i < self.n
+        assert 0 <= j < self.n
+        self.edge_from.append(i)
+        self.edge_to.append(j)
+        self.edge_next.append(self.point_head[i])
+        self.point_head[i] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def build_scc(self):
+        for val in self.original_edge:
+            i, j = val // self.n, val % self.n
+            if i != j:
+                self.add_directed_edge(i, j)
         dfs_id = 0
-        order, low = [math.inf] * n, [math.inf] * n
-        visit = [0] * n
+        order = [self.inf] * self.n
+        low = [self.inf] * self.n
+        visit = [0] * self.n
         out = []
-        in_stack = [0] * n
-        scc_id = 0
-        # nodes list of every scc_id part
-        scc_node_id = []
-        # index if original node and value is scc_id part
-        node_scc_id = [-1] * n
-        parent = [-1] * n
-        for node in range(n):
+        in_stack = [0] * self.n
+        self.node_scc_id = [-1] * self.n
+        parent = [-1] * self.n
+        point_head = self.point_head[:]
+        for node in range(self.n):
             if not visit[node]:
-                stack = [[node, 0]]
+                stack = [node]
                 while stack:
-                    cur, ind = stack[-1]
+                    cur = stack[-1]
+                    ind = point_head[cur]
                     if not visit[cur]:
                         visit[cur] = 1
                         order[cur] = low[cur] = dfs_id
                         dfs_id += 1
                         out.append(cur)
                         in_stack[cur] = 1
-                    if ind == len(edge[cur]):
+                    if not ind:
                         stack.pop()
                         if order[cur] == low[cur]:
                             while out:
                                 top = out.pop()
                                 in_stack[top] = 0
-                                while len(scc_node_id) < scc_id + 1:
-                                    scc_node_id.append(set())
-                                scc_node_id[scc_id].add(top)
-                                node_scc_id[top] = scc_id
+                                self.node_scc_id[top] = self.scc_id
                                 if top == cur:
                                     break
-                            scc_id += 1
+                            self.scc_id += 1
 
                         cur, nex = parent[cur], cur
                         if cur != -1:
-                            low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+                            low[cur] = min(low[cur], low[nex])
                     else:
-                        nex = edge[cur][ind]
-                        stack[-1][-1] += 1
+                        nex = self.edge_to[ind]
+                        point_head[cur] = self.edge_next[ind]
                         if not visit[nex]:
                             parent[nex] = cur
-                            stack.append([nex, 0])
+                            stack.append(nex)
                         elif in_stack[nex]:
-                            low[cur] = low[cur] if low[cur] < order[nex] else order[nex]
+                            low[cur] = min(low[cur], order[nex])
+        # topological_order is [self.scc_id-1,self.scc_id-2,...,0]
+        return
 
-        # new graph after scc
-        new_dct = [set() for _ in range(scc_id)]
-        for i in range(n):
-            for j in edge[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
+    def get_scc_edge_degree(self):
+        scc_edge = set()
+        for i in range(self.n):
+            ind = self.point_head[i]
+            while ind:
+                j = self.edge_to[ind]
+                a, b = self.node_scc_id[i], self.node_scc_id[j]
                 if a != b:
-                    new_dct[a].add(b)
-        new_degree = [0] * scc_id
-        for i in range(scc_id):
-            for j in new_dct[i]:
-                new_degree[j] += 1
-        assert len(scc_node_id) == scc_id
-        return scc_id, scc_node_id, node_scc_id
+                    scc_edge.add(a * self.scc_id + b)
+                ind = self.edge_next[ind]
+        scc_degree = [0] * self.scc_id
+        for val in scc_edge:
+            scc_degree[val % self.scc_id] += 1
+        return scc_edge, scc_degree
+
+    def get_scc_node_id(self):
+        scc_node_id = [[] for _ in range(self.scc_id)]
+        for i in range(self.n):
+            scc_node_id[self.node_scc_id[i]].append(i)
+        return scc_node_id
+
+    def build_scc_node_id(self):
+        self.initialize_graph()
+        for i in range(self.n):
+            self.add_directed_edge(self.node_scc_id[i], i)
+        return
+
+    def get_scc_group_with_id(self, idx):
+        ind = self.point_head[idx]
+        lst = []
+        while ind:
+            lst.append(self.edge_to[ind])
+            ind = self.edge_next[ind]
+        return lst
+
+
+class Tarjan:
+    def __init__(self):
+        return
+
+    # @staticmethod
+    # def get_scc(n: int, edge):
+    #     assert all(i not in edge[i] for i in range(n))
+    #     assert all(len(set(edge[i])) == len(edge[i]) for i in range(n))
+    #     dfs_id = 0
+    #     order, low = [math.inf] * n, [math.inf] * n
+    #     visit = [0] * n
+    #     out = []
+    #     in_stack = [0] * n
+    #     scc_id = 0
+    #     # nodes list of every scc_id part
+    #     scc_node_id = []
+    #     # index if original node and value is scc_id part
+    #     node_scc_id = [-1] * n
+    #     parent = [-1] * n
+    #     for node in range(n):
+    #         if not visit[node]:
+    #             stack = [[node, 0]]
+    #             while stack:
+    #                 cur, ind = stack[-1]
+    #                 if not visit[cur]:
+    #                     visit[cur] = 1
+    #                     order[cur] = low[cur] = dfs_id
+    #                     dfs_id += 1
+    #                     out.append(cur)
+    #                     in_stack[cur] = 1
+    #                 if ind == len(edge[cur]):
+    #                     stack.pop()
+    #                     if order[cur] == low[cur]:
+    #                         while out:
+    #                             top = out.pop()
+    #                             in_stack[top] = 0
+    #                             while len(scc_node_id) < scc_id + 1:
+    #                                 scc_node_id.append(set())
+    #                             scc_node_id[scc_id].add(top)
+    #                             node_scc_id[top] = scc_id
+    #                             if top == cur:
+    #                                 break
+    #                         scc_id += 1
+    #
+    #                     cur, nex = parent[cur], cur
+    #                     if cur != -1:
+    #                         low[cur] = low[cur] if low[cur] < low[nex] else low[nex]
+    #                 else:
+    #                     nex = edge[cur][ind]
+    #                     stack[-1][-1] += 1
+    #                     if not visit[nex]:
+    #                         parent[nex] = cur
+    #                         stack.append([nex, 0])
+    #                     elif in_stack[nex]:
+    #                         low[cur] = low[cur] if low[cur] < order[nex] else order[nex]
+    #
+    #     # new graph after scc
+    #     new_dct = [set() for _ in range(scc_id)]
+    #     for i in range(n):
+    #         for j in edge[i]:
+    #             a, b = node_scc_id[i], node_scc_id[j]
+    #             if a != b:
+    #                 new_dct[a].add(b)
+    #     new_degree = [0] * scc_id
+    #     for i in range(scc_id):
+    #         for j in new_dct[i]:
+    #             new_degree[j] += 1
+    #     assert len(scc_node_id) == scc_id
+    #     return scc_id, scc_node_id, node_scc_id
 
     @staticmethod
     def get_pdcc(n: int, edge):

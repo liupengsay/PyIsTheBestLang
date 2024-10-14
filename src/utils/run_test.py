@@ -1,9 +1,8 @@
 import os
 import random
 import time
-
-import webbrowser
 import unittest
+import webbrowser
 from collections import defaultdict, Counter
 
 
@@ -205,7 +204,9 @@ class TestGeneral(unittest.TestCase):
                 lines = file.readlines()
             for line in lines:
                 if "tag: " in line:
-                    tot.extend(line.split("tag: ")[1].replace("\n", "").replace("\t", "").replace(" ", "").replace("\t", "").split("|"))
+                    tot.extend(line.split("tag: ")[1].replace("\n", "").replace("\t", "").replace(" ", "").replace("\t",
+                                                                                                                   "").split(
+                        "|"))
             return
 
         def process_directory(directory):
@@ -229,7 +230,6 @@ class TestGeneral(unittest.TestCase):
         with open(os.path.join(grandparent_path, "data/TagStat.md"), "w", encoding="utf-8", errors="ignore") as f:
             f.writelines("\n".join(tot))
         return
-
 
     def test_run_template_class(self):
 
@@ -342,14 +342,16 @@ class TestGeneral(unittest.TestCase):
         webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
         for i in range(8):
-            url = f"https://codeforces.com/contest/{num}/problem/" + chr(i+ord("A"))
+            url = f"https://codeforces.com/contest/{num}/problem/" + chr(i + ord("A"))
             time.sleep(0.5)
             webbrowser.open(url)
         return
 
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
-        for x in range(1400, 2200, 100):
+        difficulty = list(range(1400, 2200, 100))
+        i = 1
+        for x in difficulty[i:i + 1]:
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-"
             webbrowser.open(url)
             time.sleep(0.5)
@@ -357,18 +359,18 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "375"
+        num = "193"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/submissions/me")
         for i in range(7):
             time.sleep(0.5)
-            url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i+ord("a"))
+            url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i + ord("a"))
             webbrowser.open(url)
         print("=================")
         for i in range(7):
-            w = chr(i+ord("a"))
+            w = chr(i + ord("a"))
             url = f"https://atcoder.jp/contests/abc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
             print(url)
         return
@@ -381,11 +383,11 @@ class TestGeneral(unittest.TestCase):
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/results")
         webbrowser.open(f"https://atcoder.jp/contests/arc{num}/submissions/me")
         for i in range(8):
-            url = f"https://atcoder.jp/contests/arc{num}/tasks/arc{num}_" + chr(i+ord("a"))
+            url = f"https://atcoder.jp/contests/arc{num}/tasks/arc{num}_" + chr(i + ord("a"))
             webbrowser.open(url)
         print("=================")
         for i in range(8):
-            w = chr(i+ord("a"))
+            w = chr(i + ord("a"))
             url = f"https://atcoder.jp/contests/arc{num}/submissions?{w}.Task=abc{num}_{w}&{w}.LanguageName=Python&{w}.Status=AC&{w}.User="
             print(url)
         return
