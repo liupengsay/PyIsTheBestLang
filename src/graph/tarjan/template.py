@@ -2,9 +2,8 @@ import math
 
 
 class DirectedGraphForTarjanScc:
-    def __init__(self, n, inf=math.inf):
+    def __init__(self, n):
         self.n = n
-        self.inf = inf
         self.point_head = [0] * self.n
         self.edge_from = [0]
         self.edge_to = [0]
@@ -46,8 +45,8 @@ class DirectedGraphForTarjanScc:
             if i != j:
                 self.add_directed_edge(i, j)
         dfs_id = 0
-        order = [self.inf] * self.n
-        low = [self.inf] * self.n
+        order = [self.n] * self.n
+        low = [self.n] * self.n
         visit = [0] * self.n
         out = []
         in_stack = [0] * self.n
@@ -105,6 +104,23 @@ class DirectedGraphForTarjanScc:
         for val in scc_edge:
             scc_degree[val % self.scc_id] += 1
         return scc_edge, scc_degree
+
+    def get_scc_edge_degree_reverse(self):
+        scc_edge = set()
+        scc_cnt = [0] * self.scc_id
+        for i in range(self.n):
+            ind = self.point_head[i]
+            while ind:
+                j = self.edge_to[ind]
+                a, b = self.node_scc_id[i], self.node_scc_id[j]
+                if a != b:
+                    scc_edge.add(b * self.scc_id + a)
+                ind = self.edge_next[ind]
+            scc_cnt[self.node_scc_id[i]] += 1
+        scc_degree = [0] * self.scc_id
+        for val in scc_edge:
+            scc_degree[val % self.scc_id] += 1
+        return scc_edge, scc_degree, scc_cnt
 
     def get_scc_node_id(self):
         scc_node_id = [[] for _ in range(self.scc_id)]

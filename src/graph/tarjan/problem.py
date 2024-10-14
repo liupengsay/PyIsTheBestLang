@@ -58,6 +58,7 @@ ABC357E（https://atcoder.jp/contests/abc357/tasks/abc357_e）scc|build_graph|re
 3 Two-Edge-Connected Components（https://judge.yosupo.jp/problem/two_edge_connected_components）edcc
 
 """
+import math
 from collections import Counter
 from typing import List
 
@@ -532,16 +533,17 @@ class Solution:
         tag: scc
         """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        graph = DirectedGraphForTarjanScc(n)
         for _ in range(m):
             a, b, t = ac.read_list_ints_minus_one()
-            dct[a].append(b)
+            graph.add_directed_original_edge(a, b)
             if t == 1:
-                dct[b].append(a)
-        _, scc_node_id, _ = Tarjan().get_scc(n, dct)
+                graph.add_directed_original_edge(b, a)
+        graph.build_scc()
+        scc_node_id = graph.get_scc_node_id()
         ans = []
         for g in scc_node_id:
-            lst = sorted(list(scc_node_id[g]))
+            lst = sorted(g)
             if len(lst) > len(ans) or (len(lst) == len(ans) and ans > lst):
                 ans = lst[:]
         ac.st(len(ans))
@@ -555,21 +557,16 @@ class Solution:
         tag: scc|shrink_point
         """
         n, m = ac.read_list_ints()
-        dct = [set() for _ in range(n)]
+        inf = m + 1
+        graph = DirectedGraphForTarjanScc(n)
         for _ in range(m):
-            i, j = ac.read_list_ints_minus_one()
-            if i != j:
-                dct[i].add(j)
-        scc_id, _, node_scc_id = Tarjan().get_scc(n, [list(e) for e in dct])
-
-        in_degree = [0] * scc_id
-        for i in range(n):
-            a = node_scc_id[i]
-            for j in dct[i]:
-                b = node_scc_id[j]
-                if a != b:
-                    in_degree[b] = 1
-        ac.st(sum(x == 0 for x in in_degree))
+            a, b = ac.read_list_ints_minus_one()
+            if a >= 0:  # invalid data
+                graph.add_directed_original_edge(a, b)
+        graph.build_scc()
+        _, scc_degree = graph.get_scc_edge_degree()
+        ans = sum(x == 0 for x in scc_degree)
+        ac.st(ans)
         return
 
     @staticmethod
@@ -579,24 +576,14 @@ class Solution:
         tag: scc|shrink_point
         """
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        graph = DirectedGraphForTarjanScc(n)
         for _ in range(m):
-            a, b = ac.read_list_ints()
-            if a != b:
-                dct[a - 1].append(b - 1)
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, dct)
-
-        degree = [0] * scc_id
-        for i in range(n):
-            for j in dct[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    degree[a] += 1
-        degree = [i for i in range(scc_id) if not degree[i]]
-        if len(degree) > 1:
-            ac.st(0)
-        else:
-            ac.st(len(scc_node_id[degree[0]]))
+            a, b = ac.read_list_ints_minus_one()
+            graph.add_directed_original_edge(a, b)
+        graph.build_scc()
+        _, scc_degree, scc_cnt = graph.get_scc_edge_degree_reverse()
+        ans = sum(x == 0 for x in scc_degree)
+        ac.st(0 if ans > 1 else scc_cnt[scc_degree.index(0)])
         return
 
     @staticmethod
@@ -606,15 +593,13 @@ class Solution:
         tag: scc|shrink_point
         """
         n = ac.read_int()
-        edge = [ac.read_list_ints_minus_one()[:-1] for _ in range(n)]
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, edge)
-        degree = [0] * scc_id
+        graph = DirectedGraphForTarjanScc(n)
         for i in range(n):
-            for j in edge[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    degree[b] = 1
-        ac.st(sum(d == 0 for d in degree))
+            for j in ac.read_list_ints_minus_one()[:-1]:
+                graph.add_directed_original_edge(i, j)
+        graph.build_scc()
+        _, scc_degree = graph.get_scc_edge_degree()
+        ac.st(sum(d == 0 for d in scc_degree))
         return
 
     @staticmethod
