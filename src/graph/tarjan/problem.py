@@ -471,12 +471,12 @@ class Solution:
             i, j = ac.read_list_ints_minus_one()
             graph.add_directed_original_edge(i, j)
         graph.build_scc()
-        graph.build_scc_node_id()
+        graph.build_new_graph_from_scc_id_to_original_node()
         ans = 1
         cost = 0
         mod = 10 ** 9 + 7
         for g in range(graph.scc_id):
-            cnt = Counter([nums[i] for i in graph.get_scc_group_with_id(g)])
+            cnt = Counter([nums[i] for i in graph.get_original_out_node(g)])
             x = min(cnt)
             cost += x
             ans *= cnt[x]

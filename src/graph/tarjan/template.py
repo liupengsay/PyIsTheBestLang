@@ -128,14 +128,20 @@ class DirectedGraphForTarjanScc:
             scc_node_id[self.node_scc_id[i]].append(i)
         return scc_node_id
 
-    def build_scc_node_id(self):
+    def get_scc_cnt(self):
+        scc_cnt = [0] * self.scc_id
+        for i in range(self.n):
+            scc_cnt[self.node_scc_id[i]] += 1
+        return scc_cnt
+
+    def build_new_graph_from_scc_id_to_original_node(self):
         self.initialize_graph()
         for i in range(self.n):
             self.add_directed_edge(self.node_scc_id[i], i)
         return
 
-    def get_scc_group_with_id(self, idx):
-        ind = self.point_head[idx]
+    def get_original_out_node(self, i):
+        ind = self.point_head[i]
         lst = []
         while ind:
             lst.append(self.edge_to[ind])
