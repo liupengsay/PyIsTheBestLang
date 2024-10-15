@@ -740,16 +740,14 @@ class Solution:
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
-            p = ac.read_list_ints()
-            dct = [[] for _ in range(n)]
+            p = ac.read_list_ints_minus_one()
+            graph = DirectedGraphForTarjanScc(n)
             for i in range(n):
-                dct[i].append(p[i] - 1)
-            _, group, _ = Tarjan().get_scc(n, dct)
-            ans = [0] * n
-            for g in group:
-                x = len(group[g])
-                for i in group[g]:
-                    ans[i] = x
+                graph.add_directed_original_edge(i, p[i])
+
+            graph.build_scc()
+            scc_cnt = graph.get_scc_cnt()
+            ans = [scc_cnt[graph.node_scc_id[i]] for i in range(n)]
             ac.lst(ans)
         return
 
@@ -759,43 +757,59 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3816/
         tag: scc|topological_sort|dag_dp
         """
+        class Graph(DirectedGraphForTarjanScc):
+            def get_scc_dag_dp(self):
+                scc_edge = set()
+                scc_weight = [0] * self.scc_id * 26
+                for i in range(self.n):
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        a, b = self.node_scc_id[i], self.node_scc_id[j]
+                        if a != b:
+                            scc_edge.add(a * self.scc_id + b)
+                        ind = self.edge_next[ind]
+                    scc_weight[self.node_scc_id[i] * 26 + lst[i]] += 1
+                self.initialize_graph()
+                for val in scc_edge:
+                    self.add_directed_edge(val // self.scc_id, val % self.scc_id)
+                scc_degree = [0] * self.scc_id
+                for val in scc_edge:
+                    scc_degree[val % self.scc_id] += 1
+                res = max(scc_weight)
+                stack = [i for i in range(self.scc_id) if not scc_degree[i]]
+                scc_pre = [0] * self.scc_id * 26
+                while stack:
+                    nex = []
+                    for i in stack:
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            scc_degree[j] -= 1
+                            for w in range(26):
+                                scc_pre[j * 26 + w] = max(scc_pre[i * 26 + w] + scc_weight[i * 26 + w],
+                                                          scc_pre[j * 26 + w])
+                                res = max(res, scc_pre[j * 26 + w] + scc_weight[j * 26 + w])
+                            if not scc_degree[j]:
+                                nex.append(j)
+                            ind = self.edge_next[ind]
+                    stack = nex
+                return res
+
         n, m = ac.read_list_ints()
-        s = ac.read_str()
-        dct = [set() for _ in range(n)]
+        graph = Graph(n)
+        lst = [ord(w) - ord("a") for w in ac.read_str()]
         for _ in range(m):
-            a, b = ac.read_list_ints_minus_one()
-            if a == b:
+            u, v = ac.read_list_ints_minus_one()
+            if u == v:
                 ac.st(-1)
                 return
-            dct[a].add(b)
-        scc_id, _, _ = Tarjan().get_scc(n, [list(e) for e in dct])
-        if scc_id != n:
+            graph.add_directed_original_edge(u, v)
+        graph.build_scc()
+        if graph.scc_id != n:
             ac.st(-1)
             return
-
-        cur = [[0] * 26 for _ in range(n)]
-        degree = [0] * n
-        for i in range(n):
-            for j in dct[i]:
-                degree[j] += 1
-        stack = [i for i in range(n) if not degree[i]]
-        ans = 0
-        while stack:
-            nex = []
-            for i in stack:
-                cur[i][ord(s[i]) - ord("a")] += 1
-                x = max(cur[i])
-                if x > ans:
-                    ans = x
-                for j in dct[i]:
-                    for w in range(26):
-                        y = cur[i][w]
-                        if y > cur[j][w]:
-                            cur[j][w] = y
-                    degree[j] -= 1
-                    if not degree[j]:
-                        nex.append(j)
-            stack = nex[:]
+        ans = graph.get_scc_dag_dp()
         ac.st(ans)
         return
 
@@ -806,13 +820,12 @@ class Solution:
         tag: largest_circle|scc|topological_sort|scc
         """
         n = len(edges)
-        dct = [[] for _ in range(n)]
+        graph = DirectedGraphForTarjanScc(n)
         for i in range(n):
             if edges[i] != -1:
-                dct[i].append(edges[i])
-
-        _, scc_node_id, _ = Tarjan().get_scc(n, dct)
-        ans = max(len(ls) for ls in scc_node_id)
+                graph.add_directed_edge(i, edges[i])
+        graph.build_scc()
+        ans = max(graph.get_scc_cnt())
         return ans if ans > 1 else -1
 
     @staticmethod
@@ -865,34 +878,50 @@ class Solution:
         url: https://atcoder.jp/contests/abc245/tasks/abc245_f
         tag: scc|reverse_graph|implemention|bfs|classical
         """
+        class Graph(DirectedGraphForTarjanScc):
+            def get_scc_dag_dp(self):
+                scc_edge = set()
+                scc_cnt = [0] * self.scc_id
+                for i in range(self.n):
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        a, b = self.node_scc_id[i], self.node_scc_id[j]
+                        if a != b:
+                            scc_edge.add(b * self.scc_id + a)
+                        ind = self.edge_next[ind]
+                    scc_cnt[self.node_scc_id[i]] += 1
+                self.initialize_graph()
+                for val in scc_edge:
+                    self.add_directed_edge(val // self.scc_id, val % self.scc_id)
+                scc_degree = [0] * self.scc_id
+                for val in scc_edge:
+                    scc_degree[val % self.scc_id] += 1
+                stack = [i for i in range(self.scc_id) if scc_cnt[i] > 1]
+                visit = [0] * self.scc_id
+                for i in stack:
+                    visit[i] = scc_cnt[i]
+                while stack:
+                    nex = []
+                    for i in stack:
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            if not visit[j]:
+                                nex.append(j)
+                                visit[j] = scc_cnt[j]
+                            ind = self.edge_next[ind]
+                    stack = nex
+                return sum(visit)
+
         n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
-        degree = [0] * n
-        rev = [[] for _ in range(n)]
+        graph = Graph(n)
         for _ in range(m):
-            i, j = ac.read_list_ints_minus_one()
-            degree[j] += 1
-            dct[i].append(j)
-            rev[j].append(i)
-
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, dct)
-        stack = []
-        for ls in scc_node_id:
-            if len(ls) > 1:
-                stack.extend(ls)
-
-        visit = [0] * n
-        for i in stack:
-            visit[i] = 1
-        while stack:
-            nex = []
-            for i in stack:
-                for j in rev[i]:
-                    if not visit[j]:
-                        visit[j] = 1
-                        nex.append(j)
-            stack = nex
-        ac.st(sum(x > 0 for x in visit))
+            u, v = ac.read_list_ints_minus_one()
+            graph.add_directed_original_edge(u, v)
+        graph.build_scc()
+        ans = graph.get_scc_dag_dp()
+        ac.st(ans)
         return
 
     @staticmethod
@@ -902,37 +931,12 @@ class Solution:
         tag: scc|build_graph|reverse_graph
         """
         n = ac.read_int()
-        aa = ac.read_list_ints_minus_one()
-        edge = [[x] if x != i else [] for i, x in enumerate(aa)]
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, edge)
-        new_dct = [set() for _ in range(scc_id)]
+        nums = ac.read_list_ints_minus_one()
+        graph = DirectedGraphForTarjanScc(n)
         for i in range(n):
-            for j in edge[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    new_dct[b].add(a)
-        new_degree = [0] * scc_id
-        for i in range(scc_id):
-            for j in new_dct[i]:
-                new_degree[j] += 1
-        stack = [i for i in range(scc_id) if not new_degree[i]]
-        ans = 0
-        scc_cnt = [0] * scc_id
-        cur_cnt = [0] * scc_id
-        for i in range(scc_id):
-            scc_cnt[i] = len(scc_node_id[i])
-            cur_cnt[i] = scc_cnt[i]
-            ans += scc_cnt[i] * scc_cnt[i]
-        while stack:
-            nex = []
-            for i in stack:
-                for j in new_dct[i]:
-                    new_degree[j] -= 1
-                    ans += scc_cnt[i] * cur_cnt[j]
-                    scc_cnt[j] += scc_cnt[i]
-                    if not new_degree[j]:
-                        nex.append(j)
-            stack = nex[:]
+            graph.add_directed_original_edge(i, nums[i])
+        graph.build_scc()
+        ans = graph.get_scc_dag_dp()
         ac.st(ans)
         return
 

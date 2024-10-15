@@ -122,6 +122,44 @@ class DirectedGraphForTarjanScc:
             scc_degree[val % self.scc_id] += 1
         return scc_edge, scc_degree, scc_cnt
 
+    def get_scc_dag_dp(self):
+        scc_edge = set()
+        scc_cnt = [0] * self.scc_id
+        for i in range(self.n):
+            ind = self.point_head[i]
+            while ind:
+                j = self.edge_to[ind]
+                a, b = self.node_scc_id[i], self.node_scc_id[j]
+                if a != b:
+                    scc_edge.add(a * self.scc_id + b)
+                ind = self.edge_next[ind]
+            scc_cnt[self.node_scc_id[i]] += 1
+        self.initialize_graph()
+        for val in scc_edge:
+            self.add_directed_edge(val // self.scc_id, val % self.scc_id)
+        scc_degree = [0] * self.scc_id
+        for val in scc_edge:
+            scc_degree[val % self.scc_id] += 1
+        stack = [i for i in range(self.scc_id) if not scc_degree[i]]
+        cur_cnt = scc_cnt[:]
+        ans = 0
+        while stack:
+            nex = []
+            for i in stack:
+                ans += cur_cnt[i] * cur_cnt[i]
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
+                    scc_degree[j] -= 1
+                    ans += scc_cnt[i] * cur_cnt[j]
+                    scc_cnt[j] += scc_cnt[i]
+                    if not scc_degree[j]:
+                        nex.append(j)
+
+                    ind = self.edge_next[ind]
+            stack = nex
+        return ans
+
     def get_scc_node_id(self):
         scc_node_id = [[] for _ in range(self.scc_id)]
         for i in range(self.n):
