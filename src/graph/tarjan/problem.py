@@ -608,45 +608,55 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7033
         tag: scc|dag|tree_dp|reverse_graph
         """
+        class Graph(DirectedGraphForTarjanScc):
+            def get_scc_dag_dp(self):
+                scc_edge = set()
+                scc_cnt = [0] * self.scc_id
+                for i in range(self.n):
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        a, b = self.node_scc_id[i], self.node_scc_id[j]
+                        if a != b:
+                            scc_edge.add(b * self.scc_id + a)
+                        ind = self.edge_next[ind]
+                    scc_cnt[self.node_scc_id[i]] += 1
+                self.initialize_graph()
+                for val in scc_edge:
+                    self.add_directed_edge(val // self.scc_id, val % self.scc_id)
+                scc_degree = [0] * self.scc_id
+                for val in scc_edge:
+                    scc_degree[val % self.scc_id] += 1
+                ans_group = [0] * graph.scc_id
+                stack = [i for i in range(graph.scc_id) if not scc_degree[i]]
+                while stack:
+                    i = stack.pop()
+                    ans_group[i] += scc_cnt[i] - 1
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        ans_group[j] += ans_group[i] + 1
+                        stack.append(j)
+                        ind = self.edge_next[ind]
+                ans = [ans_group[graph.node_scc_id[i]] for i in range(self.n)]
+                return ans
+
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
-        ind = list(range(n))
-        dct = [[] for _ in range(n)]
-        degree = [0] * n
+        graph = Graph(n)
+        lst = [nums[i][0] * n + i for i in range(n)]
+        lst.sort(reverse=True)
+        for i in range(1, n):
+            graph.add_directed_original_edge(lst[i - 1] % n, lst[i] % n)
+        lst = [nums[i][1] * n + i for i in range(n)]
+        lst.sort(reverse=True)
+        for i in range(1, n):
+            graph.add_directed_original_edge(lst[i - 1] % n, lst[i] % n)
 
-        ind.sort(key=lambda it: -nums[it][0])
-        for i in range(n - 1):
-            x, y = ind[i], ind[i + 1]
-            degree[y] += 1
-            dct[x].append(y)
-
-        ind.sort(key=lambda it: -nums[it][1])
-        for i in range(n - 1):
-            x, y = ind[i], ind[i + 1]
-            degree[y] += 1
-            dct[x].append(y)
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, [list(set(e)) for e in dct])
-        new_dct = [set() for _ in range(scc_id)]
-        for i in range(n):
-            for j in dct[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    new_dct[b].add(a)
-        new_degree = [0] * scc_id
-        for i in range(scc_id):
-            for j in new_dct[i]:
-                new_degree[j] += 1
-
-        ans_group = [0] * scc_id
-        stack = [i for i in range(scc_id) if not new_degree[i]]
-        while stack:
-            i = stack.pop()
-            ans_group[i] += len(scc_node_id[i]) - 1
-            for j in new_dct[i]:
-                ans_group[j] += ans_group[i] + 1
-                stack.append(j)
-        for i in range(n):
-            ac.st(ans_group[node_scc_id[i]])
+        graph.build_scc()
+        final = graph.get_scc_dag_dp()
+        for x in final:
+            ac.st(x)
         return
 
     @staticmethod
@@ -655,39 +665,50 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7965
         tag: scc|dag|tree_dp
         """
+        class Graph(DirectedGraphForTarjanScc):
+            def get_scc_dag_dp(self):
+                scc_edge = set()
+                scc_cnt = [0] * self.scc_id
+                for i in range(self.n):
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        a, b = self.node_scc_id[i], self.node_scc_id[j]
+                        if a != b:
+                            scc_edge.add(b * self.scc_id + a)
+                        ind = self.edge_next[ind]
+                    scc_cnt[self.node_scc_id[i]] += 1
+                self.initialize_graph()
+                for val in scc_edge:
+                    self.add_directed_edge(val // self.scc_id, val % self.scc_id)
+                scc_degree = [0] * self.scc_id
+                for val in scc_edge:
+                    scc_degree[val % self.scc_id] += 1
+
+                stack = [i for i in range(graph.scc_id) if not scc_degree[i]]
+                while stack:
+                    i = stack.pop()
+                    ind = self.point_head[i]
+                    while ind:
+                        j = self.edge_to[ind]
+                        stack.append(j)
+                        depth[j] = depth[i] + 1
+                        ancestor[j] = ancestor[i]
+                return
+
         n, m, q = ac.read_list_ints()
-        dct = [set() for _ in range(n)]
+        graph = Graph(n)
         for _ in range(m):
             lst = ac.read_list_ints_minus_one()
-            for i in range(n):
-                if lst[i] != i:
-                    dct[i].add(lst[i])
-        dct = [list(e) for e in dct]
-        scc_id, scc_node_id, node_scc_id = Tarjan().get_scc(n, dct)
-
-        new_dct = [set() for _ in range(scc_id)]
-        for i in range(n):
-            for j in dct[i]:
-                a, b = node_scc_id[i], node_scc_id[j]
-                if a != b:
-                    new_dct[a].add(b)
-        degree = [0] * scc_id
-        for i in range(scc_id):
-            for j in new_dct[i]:
-                degree[j] += 1
-        depth = [0] * n
+            for x in range(n):
+                graph.add_directed_original_edge(x, lst[x])
+        graph.build_scc()
         ancestor = list(range(n))
-        stack = [i for i in range(scc_id) if not degree[i]]
-        while stack:
-            i = stack.pop()
-            for j in new_dct[i]:
-                stack.append(j)
-                depth[j] = depth[i] + 1
-                ancestor[j] = ancestor[i]
-
+        depth = [0] * n
+        graph.get_scc_dag_dp()
         for _ in range(q):
-            a, b = ac.read_list_ints_minus_one()
-            x, y = node_scc_id[a], node_scc_id[b]
+            u, v = ac.read_list_ints_minus_one()
+            x, y = graph.node_scc_id[u], graph.node_scc_id[v]
             ac.st("DA" if ancestor[x] == ancestor[y] and depth[x] <= depth[y] else "NE")
         return
 

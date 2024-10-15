@@ -87,7 +87,7 @@ class DirectedGraphForTarjanScc:
                             stack.append(nex)
                         elif in_stack[nex]:
                             low[cur] = min(low[cur], order[nex])
-        # topological_order is [self.scc_id-1,self.scc_id-2,...,0]
+        # topological_order is [self.scc_id-1,self.scc_id-2,...,0] ?
         return
 
     def get_scc_edge_degree(self):
