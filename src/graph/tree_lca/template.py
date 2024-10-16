@@ -3,8 +3,6 @@ from collections import deque
 from typing import List
 
 
-
-
 class UnionFindGetLCA:
     def __init__(self, parent, root=0):
         n = len(parent)
@@ -291,13 +289,11 @@ class TreeCentroid:
         return centroids, pre_cent, subtree_size
 
 
-
 class TreeAncestorMaxSubNode:
     def __init__(self, x):
         self.val = self.pref = self.suf = max(x, 0)
         self.sm = x
         pass
-
 
 
 class TreeAncestorMaxSub:
@@ -399,10 +395,15 @@ class TreeAncestorMaxSub:
         ans = self.merge(a, self.reverse(b))
         return ans.val
 
+
 class HeavyChain:
-    def __init__(self, dct, root=0) -> None:
-        self.n = len(dct)
-        self.dct = dct
+    def __init__(self, n) -> None:
+        self.n = n
+        self.point_head = [0] * self.n
+        self.edge_from = [0]
+        self.edge_to = [0]
+        self.edge_next = [0]
+        self.edge_id = 1
         self.parent = [-1] * self.n  # father of node
         self.cnt_son = [1] * self.n  # number of subtree nodes
         self.weight_son = [-1] * self.n  # heavy son
@@ -410,6 +411,26 @@ class HeavyChain:
         self.dfn = [0] * self.n  # index is original node and value is its dfs order
         self.rev_dfn = [0] * self.n  # index is dfs order and value is its original node
         self.depth = [0] * self.n  # depth of node
+        return
+
+    def add_directed_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.edge_from.append(u)
+        self.edge_to.append(v)
+        self.edge_next.append(self.point_head[u])
+        self.point_head[u] = self.edge_id
+        self.edge_id += 1
+        return
+
+    def add_undirected_edge(self, u, v):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        self.add_directed_edge(u, v)
+        self.add_directed_edge(v, u)
+        return
+
+    def initial(self, root):
         self.build_weight(root)
         self.build_dfs(root)
         return
@@ -421,18 +442,24 @@ class HeavyChain:
             i = stack.pop()
             if i >= 0:
                 stack.append(~i)
-                for j in self.dct[i]:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
                     if j != self.parent[i]:
                         stack.append(j)
                         self.parent[j] = i
                         self.depth[j] = self.depth[i] + 1
+                    ind = self.edge_next[ind]
             else:
                 i = ~i
-                for j in self.dct[i]:
+                ind = self.point_head[i]
+                while ind:
+                    j = self.edge_to[ind]
                     if j != self.parent[i]:
                         self.cnt_son[i] += self.cnt_son[j]
                         if self.weight_son[i] == -1 or self.cnt_son[j] > self.cnt_son[self.weight_son[i]]:
                             self.weight_son[i] = j
+                    ind = self.edge_next[ind]
         return
 
     def build_dfs(self, root) -> None:
@@ -447,9 +474,12 @@ class HeavyChain:
             order += 1
             # visit heavy children first, then visit light children
             w = self.weight_son[i]
-            for j in self.dct[i]:
+            ind = self.point_head[i]
+            while ind:
+                j = self.edge_to[ind]
                 if j != self.parent[i] and j != w:
                     stack.append((j, j))
+                ind = self.edge_next[ind]
             if w != -1:
                 stack.append((w, tp))
         return
@@ -460,14 +490,14 @@ class HeavyChain:
         post = []
         while self.top[x] != self.top[y]:
             if self.depth[self.top[x]] > self.depth[self.top[y]]:
-                pre.append([self.dfn[x], self.dfn[self.top[x]]])
+                pre.append((self.dfn[x], self.dfn[self.top[x]]))
                 x = self.parent[self.top[x]]
             else:
-                post.append([self.dfn[self.top[y]], self.dfn[y]])
+                post.append((self.dfn[self.top[y]], self.dfn[y]))
                 y = self.parent[self.top[y]]
 
         a, b = self.dfn[x], self.dfn[y]
-        pre.append([a, b])
+        pre.append((a, b))
         lca = a if a < b else b
         pre += post[::-1]
         return pre, lca
