@@ -32,7 +32,7 @@ from typing import List
 
 from src.graph.tree_diameter.template import TreeDiameter, GraphDiameter
 from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

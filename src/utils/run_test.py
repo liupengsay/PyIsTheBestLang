@@ -60,7 +60,6 @@ class TestGeneral(unittest.TestCase):
         print(f"total time cost：{drop_dup}")
         return
 
-    @unittest.skip
     def test_run_example(self):
 
         def run_example(path):
@@ -79,7 +78,6 @@ class TestGeneral(unittest.TestCase):
         run_example(os.path.join(grandparent_path, "src"))
         return
 
-    @unittest.skip
     def test_run_template_or_problem(self):
 
         def run_template_or_problem(path):
@@ -98,7 +96,6 @@ class TestGeneral(unittest.TestCase):
         run_template_or_problem(os.path.join(grandparent_path, "src"))
         return
 
-    @unittest.skip
     def test_run_problem(self):
 
         def process_file(file_path):

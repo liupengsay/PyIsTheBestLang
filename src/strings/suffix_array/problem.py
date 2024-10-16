@@ -88,7 +88,7 @@ from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.sparse_table.template import SparseTable
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.strings.suffix_array.template import SuffixArray
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

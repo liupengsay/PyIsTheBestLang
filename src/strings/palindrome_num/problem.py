@@ -16,7 +16,7 @@ P1609（https://www.luogu.com.cn/problem/P1609）brute_force
 
 """
 import bisect
-from cmath import math.inf
+import math
 from collections import defaultdict
 from itertools import accumulate
 from typing import List

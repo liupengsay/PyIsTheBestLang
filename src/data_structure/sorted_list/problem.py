@@ -77,13 +77,11 @@ import bisect
 from bisect import insort_left, bisect_left
 from collections import Counter
 from typing import List
-
+import math
 from src.basis.various_sort.template import VariousSort
 from src.data_structure.sorted_list.template import SortedList, TopKSum, TopKSumSpecial
-from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 
-from tests.codeforces.problem_a import LocalSortedList
 
 
 class Solution:
@@ -681,7 +679,7 @@ class Solution:
         tag: sorted_list|trick
         """
         n = ac.read_int()
-        lst = LocalSortedList()
+        lst = SortedList()
         part = 2 * 10 ** 5 + 10
         for _ in range(n):
             cur = ac.read_list_strs()
@@ -738,7 +736,7 @@ class Solution:
             queries.append(rr * k * k + ll * k + i)
         queries.sort()
         ans = j = 0
-        lst = LocalSortedList()
+        lst = SortedList()
         for val in queries:
             i = val % k
             left, right = (val // k) % k, val // k // k

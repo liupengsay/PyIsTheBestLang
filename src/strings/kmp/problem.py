@@ -107,7 +107,7 @@ from src.graph.union_find.template import UnionFind
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.number_theory.template import NumFactor
 from src.strings.kmp.template import KMP
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

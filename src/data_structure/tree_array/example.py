@@ -6,7 +6,7 @@ from itertools import accumulate
 from src.data_structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
     PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum
-
+import math
 
 
 class TestGeneral(unittest.TestCase):
@@ -76,7 +76,7 @@ class TestGeneral(unittest.TestCase):
                     i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] > x else x
                     tree_array.point_ascend(i + 1, x)
-                    assert list(accumulate(nums, max)) == [tree_array.pre_max(i + 1) for i in range(n)]
+                    assert list(accumulate(nums, max)) == [tree_array.pre_max(i) for i in range(n)]
         return
 
     def test_point_ascend_range_max(self):
@@ -110,7 +110,7 @@ class TestGeneral(unittest.TestCase):
                     i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] < x else x
                     tree_array.point_descend(i + 1, x)
-                    assert list(accumulate(nums, min)) == [tree_array.pre_min(i + 1) for i in range(n)]
+                    assert list(accumulate(nums, min)) == [tree_array.pre_min(i) for i in range(n)]
         return
 
     def test_point_descend_range_min(self):

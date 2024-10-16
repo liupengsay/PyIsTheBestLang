@@ -6245,9 +6245,9 @@ class PointSetRangeMinCount:
             self._push_up(i)
         return
 
-    def range_min_count(self, left, right):
+    def range_min_count(self, left, right, ceil=1<<32):
         stack = [(0, self.n - 1, 1)]
-        ans = (math.inf << self.m) | 1
+        ans = (ceil << self.m) | 1
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:

@@ -171,7 +171,7 @@ from heapq import heappush, heappop, heapify
 from itertools import permutations
 from typing import List
 
-from src.graph.dijkstra.template import UnWeightedGraph
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
 from src.utils.fast_io import FastIO
@@ -1227,14 +1227,14 @@ class Solution:
         tag: construction|unweighted_graph
         """
         degree = [0] * n
-        graph = UnWeightedGraph(n)
+        graph = WeightedGraphForDijkstra(n)
         for i, j in edges:
             degree[i] += 1
             degree[j] += 1
-            graph.add_undirected_edge(i, j)
+            graph.add_undirected_edge(i, j, 1)
         if 1 in degree:
             x = degree.index(1)
-            dis = graph.bfs(x, 0)
+            dis = graph.bfs_for_shortest_path(x, 0)
             ans = [0] * n
             for i in range(n):
                 ans[dis[i]] = i
@@ -1249,8 +1249,8 @@ class Solution:
                 if 2 * m - 4 + 2 * p - 4 == degree3 and degree3 * 3 + 2 * 4 + (n - degree3 - 4) * 4 == 2 * k:
                     for perm in permutations(nodes, 2):
                         x, y = perm
-                        dis1 = graph.bfs(x, 0)
-                        dis2 = graph.bfs(y, 0)
+                        dis1 = graph.bfs_for_shortest_path(x, 0)
+                        dis2 = graph.bfs_for_shortest_path(y, 0)
                         flag = 1
                         lst = []
                         for i in range(n):

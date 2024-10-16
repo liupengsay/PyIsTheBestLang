@@ -30,13 +30,12 @@ ABC216G（https://atcoder.jp/contests/abc216/tasks/abc216_g）differential_const
 ====================================LeetCode====================================
 differential_constraint（https://oi-wiki.org/graph/diff-constraints/）
 """
+import math
 from collections import deque
 from typing import List
 
-from src.graph.dijkstra.template import Dijkstra
 from src.graph.spfa.template import SPFA
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -503,7 +502,7 @@ class Solution:
             a, b, c = ac.read_list_ints()
             if a > b:
                 a, b = b, a
-            edge[a - 1].append((b, b-a+1-c))
+            edge[a - 1].append((b, b - a + 1 - c))
 
         for i in range(1, n + 1):
             edge[i - 1].append((i, 1))

@@ -24,7 +24,7 @@ class TestGeneral(unittest.TestCase):
                 n = random.randint(1, 10000)
                 cur = copy.deepcopy(mat)
                 for _ in range(1, n):
-                    cur = mfp.matrix_mul(cur, mat, mod)
+                    cur = mfp._matrix_mul(cur, mat, mod)
                 assert cur == mfp.matrix_pow(mat, n, mod) == mfp.matrix_pow(mat, n, mod)
 
             ba = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]

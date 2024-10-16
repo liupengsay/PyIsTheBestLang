@@ -1,4 +1,4 @@
-
+import math
 
 
 class PointXorRangeXor:
@@ -258,6 +258,7 @@ class RangeAddRangeSum:
         b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
         return a - b
 
+
 class PointAscendPreMax:
     def __init__(self, n, initial=-math.inf):
         self.n = n
@@ -284,6 +285,7 @@ class PointAscendPreMax:
             self.t[i] = self.t[i] if self.t[i] > mx else mx
             i += self._lowest_bit(i)
         return
+
 
 class PointAscendPreMaxIndex:
     def __init__(self, n, initial=-math.inf):

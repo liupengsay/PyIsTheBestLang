@@ -39,7 +39,7 @@ from collections import defaultdict
 from typing import List
 
 from src.graph.network_flow.template import DinicMaxflowMinCut, DinicMaxflowMinCost
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

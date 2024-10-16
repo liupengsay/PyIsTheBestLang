@@ -63,7 +63,7 @@ import math
 from collections import Counter, defaultdict
 from functools import reduce
 from itertools import accumulate
-from math import gcd, math.inf
+from math import gcd
 from operator import add
 from typing import List
 

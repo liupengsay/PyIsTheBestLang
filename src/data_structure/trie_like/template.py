@@ -1,5 +1,5 @@
 
-
+import math
 class BinaryTrieXorDict:
     def __init__(self, bit_length):
         self.dct = dict()

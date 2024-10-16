@@ -120,6 +120,7 @@ ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|gree
 ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointers|binary_search|sort|brain_teaser
 ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 ABC198C（https://atcoder.jp/contests/abc198/tasks/abc198_c）binary_search|corner_case
+ABC192D（https://atcoder.jp/contests/abc192/tasks/abc192_d）binary_search|n_base|corner_case
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -4579,6 +4580,7 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1582D（https://codeforces.com/problemset/problem/1582/D）construction|data_range
 1438D（https://codeforces.com/problemset/problem/1438/D）construction|bit_operation|odd_even|observation
 1110E（https://codeforces.com/problemset/problem/1110/E）observation|construction|operation|brain_teaser
+1329B（https://codeforces.com/problemset/problem/1329/B）construction|linear_dp|bit_operation
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -4610,7 +4612,7 @@ from typing import List
 from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:
@@ -33421,6 +33423,7 @@ ABC212E（https://atcoder.jp/contests/abc212/tasks/abc212_e）graph|matrix_dp|in
 ABC207E（https://atcoder.jp/contests/abc207/tasks/abc207_e）matrix_dp|prefix_sum
 ABC362E（https://atcoder.jp/contests/abc362/tasks/abc362_e）matrix_dp
 ABC375E（https://atcoder.jp/contests/abc375/tasks/abc375_e）matrix_dp
+ABC192F（https://atcoder.jp/contests/abc192/tasks/abc192_f）matrix_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -42007,6 +42010,7 @@ ABC237E（https://atcoder.jp/contests/abc237/tasks/abc237_e）dijkstra|negative_
 ABC211D（https://atcoder.jp/contests/abc211/tasks/abc211_d）dijkstra|get_cnt_of_shortest_path
 ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_path|classical|observation
 ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_of_shortest_path|key_edge_in_shortest_path
+ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -50956,12 +50960,12 @@ ABC202E（https://atcoder.jp/contests/abc202/tasks/abc202_e）heuristic_merge|of
 
 """
 from typing import List
-
+import math
 from src.data_structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet, RangeAddRangeMaxGainMinGain
 from src.data_structure.tree_array.template import RangeAddRangeSum
 from src.graph.tree_lca.template import OfflineLCA, TreeAncestor, TreeCentroid, HeavyChain, TreeAncestorPool, \
     UnionFindGetLCA, TreeAncestorMaxSub
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:
@@ -51125,15 +51129,15 @@ class Solution:
         """
         n, m, r = ac.read_list_ints()
         r -= 1
-        dct = [[] for _ in range(n)]
+        graph = HeavyChain(n)
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct, r)
+            graph.add_undirected_edge(i, j)
+        graph.initial(r)
         for _ in range(m):
             x, y = ac.read_list_ints_minus_one()
-            ac.st(heavy.query_lca(x, y) + 1)
+            ans = graph.query_lca(x, y) + 1
+            ac.st(ans)
         return
 
     @staticmethod
@@ -51214,19 +51218,18 @@ class Solution:
         r -= 1
         tree = RangeAddRangeSum(n)
         nums = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        graph = HeavyChain(n)
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct, r)
-        tree.build([nums[i] for i in heavy.rev_dfn])
+            graph.add_undirected_edge(i, j)
+        graph.initial(r)
+        tree.build([nums[i] for i in graph.rev_dfn])
 
         for _ in range(m):
             lst = ac.read_list_ints()
             if lst[0] == 1:
                 x, y, z = lst[1:]
-                path, _ = heavy.query_chain(x - 1, y - 1)
+                path, _ = graph.query_chain(x - 1, y - 1)
                 for a, b in path:
                     if a > b:
                         a, b = b, a
@@ -51234,7 +51237,7 @@ class Solution:
             elif lst[0] == 2:
                 x, y = lst[1:]
                 ans = 0
-                path, _ = heavy.query_chain(x - 1, y - 1)
+                path, _ = graph.query_chain(x - 1, y - 1)
                 for a, b in path:
                     if a > b:
                         a, b = b, a
@@ -51244,11 +51247,11 @@ class Solution:
             elif lst[0] == 3:
                 x, z = lst[1:]
                 x -= 1
-                a, b = heavy.dfn[x], heavy.cnt_son[x]
+                a, b = graph.dfn[x], graph.cnt_son[x]
                 tree.range_add(a + 1, a + b, z)
             else:
                 x = lst[1] - 1
-                a, b = heavy.dfn[x], heavy.cnt_son[x]
+                a, b = graph.dfn[x], graph.cnt_son[x]
                 ans = tree.range_sum(a + 1, a + b) % p
                 ac.st(ans)
         return
@@ -51360,27 +51363,22 @@ class Solution:
         """
         n = ac.read_int()
         tree = PointSetRangeSum(n)
-
         edges = [ac.read_list_ints() for _ in range(n - 1)]
-        dct = [[] for _ in range(n)]
+        graph = HeavyChain(n)
         for x in range(n - 1):
-            i, j, w = edges[x]
-            i -= 1
-            j -= 1
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct, 0)
-
+            i, j, _ = edges[x]
+            graph.add_undirected_edge(i - 1, j - 1)
+        graph.initial(0)
         val = [0] * n
         for i, j, w in edges:
             i -= 1
             j -= 1
-            if heavy.dfn[i] < heavy.dfn[j]:
+            if graph.dfn[i] < graph.dfn[j]:
                 val[j] = w
             else:
                 val[i] = w
 
-        nums = [val[i] for i in heavy.rev_dfn]
+        nums = [val[i] for i in graph.rev_dfn]
         tree.build(nums)
 
         for _ in range(ac.read_int()):
@@ -51391,19 +51389,19 @@ class Solution:
                 i, j, _ = edges[x]
                 i -= 1
                 j -= 1
-                if heavy.dfn[i] < heavy.dfn[j]:
-                    tree.point_set(heavy.dfn[j], w)
-                    nums[heavy.dfn[j]] = w
+                if graph.dfn[i] < graph.dfn[j]:
+                    tree.point_set(graph.dfn[j], w)
+                    nums[graph.dfn[j]] = w
                 else:
-                    tree.point_set(heavy.dfn[i], w)
-                    nums[heavy.dfn[i]] = w
+                    tree.point_set(graph.dfn[i], w)
+                    nums[graph.dfn[i]] = w
 
             else:
                 x, y = lst[1:]
                 y -= 1
                 x -= 1
                 ans = 0
-                lst, lca = heavy.query_chain(x, y)
+                lst, lca = graph.query_chain(x, y)
                 for a, b in lst:
                     if a <= b:
                         ans += tree.range_sum(a, b)
@@ -51492,29 +51490,28 @@ class Solution:
         tag: heavy_chain|range_set|point_get|classical|implemention
         """
         n = ac.read_int()
-        dct = [[] for _ in range(n)]
+        graph = HeavyChain(n)
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct, 0)
+            graph.add_undirected_edge(i, j)
+        graph.initial(0)
         tree = RangeSetPointGet(n, -1)
         tree.build([0] * n)
         for _ in range(ac.read_int()):
             op, v = ac.read_list_ints_minus_one()
             if op == 0:
-                start = heavy.dfn[v]
-                end = start + heavy.cnt_son[v] - 1
+                start = graph.dfn[v]
+                end = start + graph.cnt_son[v] - 1
                 tree.range_set(start, end, 1)
             elif op == 1:
                 x, y = v, 0
-                path, _ = heavy.query_chain(x, y)
+                path, _ = graph.query_chain(x, y)
                 for a, b in path:
                     if a > b:
                         a, b = b, a
                     tree.range_set(a, b, 0)
             else:
-                ans = tree.point_get(heavy.dfn[v])  # important!!!
+                ans = tree.point_get(graph.dfn[v])  # important!!!
                 ac.st(ans)
         return
 
@@ -51586,24 +51583,24 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3976
         tag: range_add|range_max_gain|range_min_gain
         """
+        inf = 10 ** 18
         n = ac.read_int()
         nums = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        graph = HeavyChain(n)
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        heavy = HeavyChain(dct)
-        nums = [nums[i] for i in heavy.rev_dfn]
-        tree = RangeAddRangeMaxGainMinGain(n)
+            graph.add_undirected_edge(i, j)
+        graph.initial(0)
+        nums = [nums[i] for i in graph.rev_dfn]
+        tree = RangeAddRangeMaxGainMinGain(n, inf)
         tree.build(nums)
 
         for _ in range(ac.read_int()):
             a, b, v = ac.read_list_ints()
             a -= 1
             b -= 1
-            ans = [math.inf, -math.inf, -math.inf, math.inf]  # floor, ceil, max_gain, min_gain
-            path, _ = heavy.query_chain(a, b)
+            ans = [inf, -inf, -inf, inf]  # floor, ceil, max_gain, min_gain
+            path, _ = graph.query_chain(a, b)
             for x, y in path:
                 if x <= y:
                     floor, ceil, max_gain, min_gain = tree.range_max_gain_min_gain(x, y)

@@ -9,7 +9,7 @@ from src.data_structure.zkw_segment_tree.template import (
     PointSetAddRangeSum as PointSetRangeSumZKW,
     RangeAddPointGet as RangeAddPointGetZKW,
     LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength)
-
+import math
 
 class TestGeneral(unittest.TestCase):
 
@@ -166,10 +166,13 @@ class TestGeneral(unittest.TestCase):
         def add_with_length(a, b, c):
             return a + b * c
 
+        def num_to_cover(x):
+            return x
+
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, add, 0)
-        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, add, 0)
-        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, add, 0)
+        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, add, 0, num_to_cover)
+        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, add, 0, num_to_cover)
+        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, add, 0, num_to_cover)
         tree_max.build(nums)
         tree_min.build(nums)
         tree_sum.build(nums)
@@ -215,10 +218,13 @@ class TestGeneral(unittest.TestCase):
         def merge_tag(tag1, tag2):
             return tag1
 
+        def num_to_cover(x):
+            return x
+
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, merge_tag, math.inf)
-        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, merge_tag, math.inf)
-        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, merge_tag, math.inf)
+        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, merge_tag, math.inf, num_to_cover)
+        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, merge_tag, math.inf, num_to_cover)
+        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, merge_tag, math.inf, num_to_cover)
         tree_max.build(nums)
         tree_min.build(nums)
         tree_sum.build(nums)

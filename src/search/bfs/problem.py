@@ -155,14 +155,14 @@ ABC197F（https://atcoder.jp/contests/abc197/tasks/abc197_f）bfs|classical
 
 """
 import bisect
+import math
 from collections import deque, defaultdict
 from heapq import heappush, heappop
 from typing import List
 
-from src.graph.dijkstra.template import UnWeightedGraph
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -2644,8 +2644,8 @@ class Solution:
         dis = [math.inf] * n
         dis[0] = 0
         stack = [0]
-        parent = [-1]*n
-        index = [-1]*n
+        parent = [-1] * n
+        index = [-1] * n
         while stack:
             nex = []
             for i in stack:
@@ -2661,7 +2661,7 @@ class Solution:
             path = set()
         else:
             path = []
-            node = n-1
+            node = n - 1
             while node != 0:
                 path.append(index[node])
                 node = parent[node]
@@ -2781,7 +2781,7 @@ class Solution:
 
         stack = deque([(r, c, x, y)])
         visit = [-1] * n * m
-        visit[r*n+c] = 0
+        visit[r * n + c] = 0
         while stack:
             a, b, xx, yy = stack.pop()
             for i, j in [(a + 1, b), (a - 1, b), (a, b - 1), (a, b + 1)]:
@@ -2794,8 +2794,8 @@ class Solution:
                             dij[1] -= 1
                     if dij[0] < 0 or dij[1] < 0:
                         continue
-                    if visit[i*n+j] < dij[0]:
-                        visit[i*n+j] = dij[0]
+                    if visit[i * n + j] < dij[0]:
+                        visit[i * n + j] = dij[0]
                         if dij[0] == xx:
                             stack.appendleft((i, j, dij[0], dij[1]))
                         else:
@@ -2983,7 +2983,7 @@ class Solution:
         tag: bfs|unweighted_graph|multiplication_method
         """
 
-        class Graph(UnWeightedGraph):
+        class Graph(WeightedGraphForDijkstra):
             def bfs(self, src=0, target=0):
                 dis = [math.inf] * (self.n + 1)
                 dis[src] = 0

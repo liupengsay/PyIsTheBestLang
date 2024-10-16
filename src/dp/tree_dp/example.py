@@ -1,7 +1,7 @@
 import random
 import unittest
 
-
+import math
 from src.graph.tree_diameter.template import TreeDiameter
 from src.graph.union_find.template import UnionFind
 

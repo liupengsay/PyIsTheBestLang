@@ -53,7 +53,7 @@ from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.search.dfs.template import UnWeightedTree
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

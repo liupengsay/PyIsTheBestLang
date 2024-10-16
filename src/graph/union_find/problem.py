@@ -168,7 +168,6 @@ from typing import List, Optional
 from src.basis.tree_node.template import TreeNode
 from src.data_structure.segment_tree.template import RangeDivideRangeSum
 from src.data_structure.sorted_list.template import SortedList
-from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd, UnionFindGeneral
 from src.mathmatics.comb_perm.template import Combinatorics
 from src.mathmatics.number_theory.template import PrimeSieve

@@ -2576,10 +2576,10 @@ class Solution:
         url: https://codeforces.com/contest/786/problem/B
         tag: segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
         """
-
         n, q, s = ac.read_list_ints()
         s -= 1
-        graph = WeightedGraph(4 * n)
+        inf = 10 ** 18
+        graph = WeightedGraphForDijkstra(4 * n, inf)
         tree = SegmentTreeOptBuildGraphZKW(n)
         for i in range(1, n):
             graph.add_directed_edge(i, i << 1, 0)
@@ -2590,7 +2590,6 @@ class Solution:
         for i in range(n):
             graph.add_directed_edge(i + 3 * n, i + n, 0)
             graph.add_directed_edge(i + n, i + 3 * n, 0)
-
         for _ in range(q):
             lst = ac.read_list_ints()
             if lst[0] == 1:
@@ -2606,12 +2605,11 @@ class Solution:
                 lst = tree.range_opt(ll, rr)
                 for j in lst:
                     graph.add_directed_edge(j + 2 * n, v + n, w + 1)
-
-        graph.dijkstra(s + 3 * n)
+        dis = graph.dijkstra_for_shortest_path(s + 3 * n, 0)
         for i in range(n, 2 * n):
-            if graph.dis[i] == math.inf:
-                graph.dis[i] = -1
-        ac.lst(graph.dis[n:2 * n])
+            if dis[i] == inf:
+                dis[i] = -1
+        ac.lst(dis[n:2 * n])
         return
 
     @staticmethod

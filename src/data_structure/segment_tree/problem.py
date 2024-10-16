@@ -190,17 +190,15 @@ from src.data_structure.segment_tree.template import RangeAscendRangeMax, RangeD
     RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
     PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
-    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr, SegmentTreeOptBuildGraphZKW
+    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr
 from src.data_structure.sorted_list.template import SortedList
 from src.data_structure.tree_array.template import PointAddRangeSum, PointXorRangeXor
 from src.data_structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
-from src.graph.dijkstra.template import Dijkstra
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import AllFactorCnt, PrimeFactor
 from src.search.dfs.template import DFS
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -4129,47 +4127,6 @@ class Solution:
                 tree.range_add(start[i], end[i], -pre)
             ans += ceil * 2
             ac.st(ans)
-        return
-
-    @staticmethod
-    def cf_786b(ac=FastIO()):
-        """
-        url: https://codeforces.com/contest/786/problem/B
-        tag: segment_tree_opt_build_graph|dijkstra|classical
-        """
-
-        n, q, s = ac.read_list_ints()
-        s -= 1  # TLE
-        dct = [[] for _ in range(4 * n)]
-        tree = SegmentTreeOptBuildGraphZKW(n)
-        for i in range(1, n):
-            dct[i].append((i << 1, 0))
-            dct[i].append(((i << 1) | 1, 0))
-            dct[(i << 1) + 2 * n].append((i + 2 * n, 0))
-            dct[((i << 1) | 1) + 2 * n].append((i + 2 * n, 0))
-        for i in range(n):
-            dct[i + 3 * n].append((i + n, 0))
-            dct[i + n].append((i + 3 * n, 0))
-        for _ in range(q):
-            lst = ac.read_list_ints()
-            if lst[0] == 1:
-                v, u, w = [x - 1 for x in lst[1:]]
-                dct[v + n].append((u + n, w + 1))
-            elif lst[0] == 2:
-                v, ll, rr, w = [x - 1 for x in lst[1:]]
-                lst = tree.range_opt(ll, rr)
-                for j in lst:
-                    dct[v + 3 * n].append((j, w + 1))
-            else:
-                v, ll, rr, w = [x - 1 for x in lst[1:]]
-                lst = tree.range_opt(ll, rr)
-                for j in lst:
-                    dct[j + 2 * n].append((v + n, w + 1))
-        dis = Dijkstra().get_shortest_path(dct, s + 3 * n)
-        for i in range(n, 2 * n):
-            if dis[i] == math.inf:
-                dis[i] = -1
-        ac.lst(dis[n:2 * n])
         return
 
     @staticmethod

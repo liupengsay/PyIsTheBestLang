@@ -1,8 +1,8 @@
+import math
 import random
 import unittest
 
 from src.mathmatics.bit_operation.template import BitOperation, MinimumPairXor
-
 
 
 class TestGeneral(unittest.TestCase):

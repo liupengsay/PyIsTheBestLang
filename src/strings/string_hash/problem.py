@@ -69,12 +69,11 @@ from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.graph.dijkstra.template import Dijkstra
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
     MatrixHash, MatrixHashReverse, StringHashSingle, StringHashSingleBuild
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:
@@ -1600,15 +1599,15 @@ class Solution:
         url: https://atcoder.jp/contests/abc367/tasks/abc367_f
         tag: random_seed|random_hash
         """
-        n, q=  ac.read_list_ints()
+        n, q = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
-        seed = [random.getrandbits(64) for _ in range(2*10**5+1)]
+        seed = [random.getrandbits(64) for _ in range(2 * 10 ** 5 + 1)]
         pre_a = ac.accumulate([seed[x] for x in a])
         pre_b = ac.accumulate([seed[x] for x in b])
         for _ in range(q):
             l1, r1, l2, r2 = ac.read_list_ints_minus_one()
-            if pre_a[r1+1]-pre_a[l1] == pre_b[r2+1]-pre_b[l2] and r1-l1==r2-l2:
+            if pre_a[r1 + 1] - pre_a[l1] == pre_b[r2 + 1] - pre_b[l2] and r1 - l1 == r2 - l2:
                 ac.yes()
             else:
                 ac.no()

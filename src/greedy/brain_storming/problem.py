@@ -310,7 +310,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.data_structure.sorted_list.template import SortedList
 from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

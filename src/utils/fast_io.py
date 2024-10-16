@@ -1,7 +1,7 @@
 import random
 from sys import stdin, stdout
 from types import GeneratorType
-
+import math
 RANDOM = random.randint(0, 10 ** 9 + 7)
 math.inf = 1 << 64
 SEED = 2024
