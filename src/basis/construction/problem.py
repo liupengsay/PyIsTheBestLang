@@ -142,6 +142,7 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1582D（https://codeforces.com/problemset/problem/1582/D）construction|data_range
 1438D（https://codeforces.com/problemset/problem/1438/D）construction|bit_operation|odd_even|observation
 1110E（https://codeforces.com/problemset/problem/1110/E）observation|construction|operation|brain_teaser
+1329B（https://codeforces.com/problemset/problem/1329/B）construction|linear_dp|bit_operation
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
@@ -173,7 +174,7 @@ from typing import List
 from src.graph.dijkstra.template import UnWeightedGraph
 from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO, math.inf
+from src.utils.fast_io import FastIO
 
 
 class Solution:

@@ -289,6 +289,32 @@ class TestGeneral(unittest.TestCase):
             f.writelines("".join(tot))
         return
 
+    def test_run_problem_demo(self):
+
+        def process_file(file_path):
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
+                lines = file.readlines()
+            tot.extend(lines)
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    if file == "problem.py":
+                        file_path = os.path.join(root, file)
+                        process_file(file_path)
+            return
+
+        # get all the problem.py and shuffle the list
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        tot = []
+        process_directory(os.path.join(grandparent_path, "src"))
+        with open(os.path.join(grandparent_path, "data/PbDemo.md"), "w", encoding="utf-8", errors="ignore") as f:
+            f.writelines("".join(tot))
+        return
+
     @unittest.skip
     def test_drop_dup_problem(self):
 
@@ -376,7 +402,7 @@ class TestGeneral(unittest.TestCase):
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
         difficulty = list(range(1400, 2200, 100))
-        i = 2
+        i = 3
         for x in difficulty[i:i + 1]:
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-"
             webbrowser.open(url)
@@ -385,7 +411,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "193"
+        num = "192"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

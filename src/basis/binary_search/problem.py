@@ -120,6 +120,7 @@ ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|gree
 ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointers|binary_search|sort|brain_teaser
 ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 ABC198C（https://atcoder.jp/contests/abc198/tasks/abc198_c）binary_search|corner_case
+ABC192D（https://atcoder.jp/contests/abc192/tasks/abc192_d）binary_search|n_base|corner_case
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search

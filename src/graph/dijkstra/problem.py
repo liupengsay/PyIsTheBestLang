@@ -124,6 +124,7 @@ ABC237E（https://atcoder.jp/contests/abc237/tasks/abc237_e）dijkstra|negative_
 ABC211D（https://atcoder.jp/contests/abc211/tasks/abc211_d）dijkstra|get_cnt_of_shortest_path
 ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_path|classical|observation
 ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_of_shortest_path|key_edge_in_shortest_path
+ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
