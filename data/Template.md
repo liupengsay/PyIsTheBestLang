@@ -206,11 +206,17 @@
 
 # PointSetMergeRangeMode	1
 
+# SegmentTreeOptBuildGraph	1
+
+# SegmentTreeOptBuildGraphZKW	1
+
 # PointSetRangeGcd	1
 
 # SortedList	1
 
 # TopKSum	1
+
+# TopKSumSpecial	1
 
 # SparseTable	1
 
@@ -270,6 +276,12 @@
 
 # MatrixDP	1
 
+# WeightedTree	1
+
+# Graph(WeightedTree)	1
+
+# ReadGraph	1
+
 # ReRootDP	1
 
 # BinarySearchTree	1
@@ -278,7 +290,11 @@
 
 # Hungarian	1
 
-# Dijkstra	1
+# WeightedGraphForShortestPathMST	1
+
+# LimitedWeightedGraph	1
+
+# WeightedGraphForDijkstra	1
 
 # UnDirectedShortestCycle	1
 
@@ -286,7 +302,7 @@
 
 # UnDirectedEulerPath	1
 
-# Floyd	1
+# WeightedGraphForFloyd	1
 
 # ManhattanMST	1
 
@@ -294,13 +310,17 @@
 
 # PrimMinimumSpanningTree	1
 
-# SecondMinimumSpanningTree	1
+# TreeAncestorMinIds	1
 
-# SecondMinimumSpanningTreeLight	1
+# TreeMultiplicationMaxSecondWeights	1
+
+# TreeMultiplicationMaxWeights	1
 
 # DinicMaxflowMinCut	1
 
 # UndirectedGraph	1
+
+# DirectedGraph	1
 
 # DinicMaxflowMinCost	1
 
@@ -308,7 +328,11 @@
 
 # SPFA	1
 
+# DirectedGraphForTarjanScc	1
+
 # Tarjan	1
+
+# GraphForTopologicalSort	1
 
 # TopologicalSort	1
 
@@ -419,6 +443,10 @@
 # PrimeFactor	1
 
 # ScanLine	1
+
+# UnWeightedTree	1
+
+# Graph(UnWeightedTree)	1
 
 # DFS	1
 

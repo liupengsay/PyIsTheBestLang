@@ -263,6 +263,32 @@ class TestGeneral(unittest.TestCase):
             f.writelines("\n".join(tot))
         return
 
+    def test_run_template_demo(self):
+
+        def process_file(file_path):
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as file:
+                lines = file.readlines()
+            tot.extend(lines)
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    if file == "template.py":
+                        file_path = os.path.join(root, file)
+                        process_file(file_path)
+            return
+
+        # get all the problem.py and shuffle the list
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
+        tot = []
+        process_directory(os.path.join(grandparent_path, "src"))
+        with open(os.path.join(grandparent_path, "data/PyDemo.md"), "w", encoding="utf-8", errors="ignore") as f:
+            f.writelines("".join(tot))
+        return
+
     @unittest.skip
     def test_drop_dup_problem(self):
 
