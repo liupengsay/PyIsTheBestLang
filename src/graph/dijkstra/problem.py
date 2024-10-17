@@ -125,6 +125,7 @@ ABC211D（https://atcoder.jp/contests/abc211/tasks/abc211_d）dijkstra|get_cnt_o
 ABC204E（https://atcoder.jp/contests/abc204/tasks/abc204_e）dijkstra|shortest_path|classical|observation
 ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_of_shortest_path|key_edge_in_shortest_path
 ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra|classical
+ABC191E（https://atcoder.jp/contests/abc191/tasks/abc191_e）dijkstra_for_strictly_second_shortest_path|classical
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2657,4 +2658,22 @@ class Solution:
                 ac.yes()
                 continue
             ac.no()
+        return
+
+    @staticmethod
+    def abc_191e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc191/tasks/abc191_e
+        tag: dijkstra_for_strictly_second_shortest_path|classical
+        """
+        n, m = ac.read_list_ints()
+        inf = 10 ** 12
+        graph = WeightedGraphForDijkstra(n, inf)
+        for _ in range(m):
+            i, j, w = ac.read_list_ints_minus_one()
+            graph.add_directed_edge(i, j, w + 1)
+        for i in range(n):
+            dis = graph.dijkstra_for_strictly_second_shortest_path(i, 0)
+            ans = dis[i * 2 + 1]
+            ac.st(ans if ans < inf else -1)
         return
