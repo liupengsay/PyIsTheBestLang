@@ -103,6 +103,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 2020B（https://codeforces.com/contest/2020/problem/B）factor_cnt|number_theory|classical
 1114C（https://codeforces.com/problemset/problem/1114/C）get_prime_factor|num_factor|inclusion_exclusion|n_base
 2007C（https://codeforces.com/problemset/problem/2007/C）peishu_theorem|gcd_like|greedy|brain_teaser|implemention|math
+1010C（https://codeforces.com/problemset/problem/1010/C）peishu_theorem
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -2029,4 +2030,18 @@ class Solution:
             for i in range(1, n):
                 ans = min(ans, g + nums[i - 1] - nums[i])
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1010c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1010/C
+        tag: peishu_theorem
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        g = math.gcd(k, reduce(math.gcd, nums))
+        c = k // g
+        ac.st(c)
+        ac.lst([g * x for x in range(c)])
         return

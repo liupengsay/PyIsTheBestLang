@@ -44,6 +44,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
 3098（https://leetcode.cn/problems/find-the-sum-of-subsequence-powers）matrix_dp
 3316（https://leetcode.com/problems/find-maximum-removals-from-source-string）matrix_dp
+3193（https://leetcode.cn/problems/count-the-number-of-inversions）matrix_dp|prefix_opt
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
