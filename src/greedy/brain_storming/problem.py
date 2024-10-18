@@ -247,6 +247,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 1466D（https://codeforces.com/problemset/problem/1466/D）greedy|implemention
 1282B2（https://codeforces.com/problemset/problem/1282/B2）greedy|linear_dp
 2004D（https://codeforces.com/problemset/problem/2004/D）observation|data_range|brain_teaser|brute_force
+468B（https://codeforces.com/problemset/problem/468/B）greedy|sort
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
