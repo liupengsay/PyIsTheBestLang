@@ -127,6 +127,7 @@ ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|
 ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_method|math
 ABC361F（https://atcoder.jp/contests/abc361/tasks/abc361_f）inclusion_exclusion|math
 ABC206E（https://atcoder.jp/contests/abc206/tasks/abc206_e）inclusion_exclusion|math|contribution_method|brute_force
+ABC190D（https://atcoder.jp/contests/abc190/tasks/abc190_d）num_factor|brute_force
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -163,7 +164,6 @@ from src.mathmatics.gcd_like.template import GcdLike
 from src.mathmatics.number_theory.template import EulerPhi, NumFactor, PrimeSieve, NumTheory, PrimeJudge, NumBase
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -2044,4 +2044,20 @@ class Solution:
         c = k // g
         ac.st(c)
         ac.lst([g * x for x in range(c)])
+        return
+
+    @staticmethod
+    def abc_190d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc190/tasks/abc190_d
+        tag: num_factor|brute_force
+        """
+        n = ac.read_int()
+        factor = NumFactor().get_all_factor(2 * n)
+        ans = 0
+        for t in factor:
+            y = 2 * n // t
+            if (y + 1 - t) % 2 == 0:
+                ans += 1
+        ac.st(ans)
         return

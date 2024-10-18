@@ -68,6 +68,7 @@ ABC215E（https://atcoder.jp/contests/abc215/tasks/abc215_e）state_dp
 ABC199E（https://atcoder.jp/contests/abc199/tasks/abc199_e）state_dp
 ABC199D（https://atcoder.jp/contests/abc199/tasks/abc199_d）state_dp
 ABC195F（https://atcoder.jp/contests/abc195/tasks/abc195_f）state_dp|data_range|classical|brain_teaser|prime_factor
+ABC190E（https://atcoder.jp/contests/abc190/tasks/abc190_e）bfs|state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -83,10 +84,10 @@ from itertools import combinations, accumulate
 from operator import or_
 from typing import List
 
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -1404,4 +1405,34 @@ class Solution:
                 for r in lst[x]:
                     dp[x] = max(dp[x], dp[x ^ (1 << r)] + s[i][r])
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def abc_190e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc190/tasks/abc190_e
+        tag: bfs|state_dp|classical
+        """
+        n, m = ac.read_list_ints()
+        inf = 10 ** 10
+        graph = WeightedGraphForDijkstra(n, inf)
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, 1)
+        k = ac.read_int()
+        target = ac.read_list_ints_minus_one()
+        dis = [graph.bfs_for_shortest_path(i) for i in target]
+        dp = [[inf] * k for _ in range(1 << k)]
+        for j in range(k):
+            dp[(1 << j)][j] = 1
+        for s in range(1 << k):
+            pre = [j for j in range(k) if (s >> j) & 1]
+            post = [j for j in range(k) if not (s >> j) & 1]
+            for x in pre:
+                if dp[s][x] == inf:
+                    continue
+                for y in post:
+                    dp[s | (1 << y)][y] = min(dp[s | (1 << y)][y], dp[s][x] + dis[x][target[y]])
+        ans = min(dp[(1 << k) - 1])
+        ac.st(ans if ans < inf else -1)
         return

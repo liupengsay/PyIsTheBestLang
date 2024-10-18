@@ -29,6 +29,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
 ABC268F（https://atcoder.jp/contests/abc268/tasks/abc268_f）custom_sort|classical
 ABC225F（https://atcoder.jp/contests/abc225/tasks/abc225_f）linear_dp|cmp_to_key|custom_sort|brain_teaser|reverse_order
+ABC190F（https://atcoder.jp/contests/abc190/tasks/abc190_f）reverse_pair|various_sort|classical
 
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）custom_sort
@@ -353,4 +354,21 @@ class Solution:
 
         ans = "".join(words)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_190f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc190/tasks/abc190_f
+        tag: reverse_pair|various_sort|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ans = VariousSort().range_merge_to_disjoint_sort_inverse_pair(nums[:])
+        ac.st(ans)
+        for i in range(n - 1):
+            x = nums[i]
+            ans -= x
+            ans += n - x - 1
+            ac.st(ans)
         return
