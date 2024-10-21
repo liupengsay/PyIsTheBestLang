@@ -17,6 +17,7 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 2851（https://leetcode.cn/problems/string-transformation/）string_hash|kmp|matrix_dp|matrix_fast_power
 2977（https://leetcode.cn/problems/minimum-cost-to-convert-string-ii/）string_hash|dp|dijkstra|trie
 100208（https://leetcode.com/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/）string_hash|brute_force
+3327（https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/）dfs_order|manacher|palindrome|string_hash_single|classical
 
 =====================================LuoGu======================================
 P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
@@ -71,6 +72,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.mathmatics.fast_power.template import MatrixFastPower
 from src.mathmatics.prime_factor.template import PrimeFactor
+from src.search.dfs.template import UnWeightedTree
 from src.strings.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
     MatrixHash, MatrixHashReverse, StringHashSingle, StringHashSingleBuild
 from src.utils.fast_io import FastIO
@@ -1612,3 +1614,21 @@ class Solution:
             else:
                 ac.no()
         return
+
+    @staticmethod
+    def lc_3327(parent: List[int], s: str) -> List[bool]:
+        """
+        url: https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/
+        tag: dfs_order|manacher|palindrome|string_hash_single|classical
+        """
+        n = len(parent)
+        graph = UnWeightedTree(n)
+        for i in range(n - 1, 0, -1):
+            graph.add_directed_edge(parent[i], i)
+        graph.dfs_order(0)
+        lst = [ord(s[i]) - ord("a") for i in graph.order_to_node]
+        sh = StringHashSingle(lst + lst[::-1])
+        ans = []
+        for i in range(n):
+            ans.append(sh.query(graph.start[i], graph.end[i]) == sh.query(n + n - 1 - graph.end[i], n + n - 1 - graph.start[i]))
+        return ans

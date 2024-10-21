@@ -17,6 +17,7 @@ Description：back_trace|brute_force|dfs_order|up_to_down|down_to_up|heuristic_m
 2056（https://leetcode.cn/problems/number-of-valid-move-combinations-on-chessboard/description/）back_trace|brute_force
 2458（https://leetcode.cn/problems/height-of-binary-tree-after-subtree-removal-queries）dfs_order|classical
 2858（https://leetcode.cn/problems/minimum-edge-reversals-so-every-node-is-reachable/）reroot_dp|dfs|dfs_order|diff_array
+3327（https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/）dfs_order|manacher|palindrome|classical
 
 =====================================LuoGu======================================
 P2383（https://www.luogu.com.cn/problem/P2383）dfs|back_trace
@@ -97,8 +98,8 @@ from src.data_structure.tree_array.template import PointAddRangeSum
 from src.graph.tree_lca.template import TreeAncestor, OfflineLCA
 from src.graph.union_find.template import UnionFind
 from src.search.dfs.template import DFS, DfsEulerOrder, UnWeightedTree
+from src.strings.manacher_palindrome.template import ManacherPlindrome
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -1669,3 +1670,26 @@ class Solution:
         ans = graph.heuristic_merge()
         ac.flatten(ans)
         return
+
+    @staticmethod
+    def lc_3327(parent: List[int], s: str) -> List[bool]:
+        """
+        url: https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/
+        tag: dfs_order|manacher|palindrome|classical
+        """
+        n = len(parent)
+        graph = UnWeightedTree(n)
+        for i in range(n - 1, 0, -1):
+            graph.add_directed_edge(parent[i], i)
+        graph.dfs_order(0)
+        ss = [s[i] for i in graph.order_to_node]
+        t = "#" + "#".join(list(ss)) + "#"
+        arm = ManacherPlindrome().manacher(t)
+        ans = []
+        for i in range(n):
+            a, b = graph.start[i], graph.end[i]
+            a = 2 * a + 1
+            b = 2 * b + 1
+            mid = a + (b - a) // 2
+            ans.append(mid - arm[mid] + 1 <= a)
+        return ans

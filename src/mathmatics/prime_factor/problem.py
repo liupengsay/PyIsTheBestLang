@@ -6,6 +6,7 @@ Description：
 2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
 3164（https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/）brute_force|euler_series
+3326（https://leetcode.cn/problems/minimum-division-operations-to-make-array-non-decreasing/）greedy|min_prime|reverse_order|classical
 
 =====================================LuoGu======================================
 P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
@@ -46,7 +47,6 @@ from src.graph.union_find.template import UnionFind
 from src.mathmatics.number_theory.template import PrimeSieve
 from src.mathmatics.prime_factor.template import PrimeFactor
 from src.utils.fast_io import FastIO
-
 
 
 class Solution:
@@ -886,7 +886,7 @@ class Solution:
                 return 0
             return p[prime_factor_cnt[(x // g + d) // c]]
 
-        p = [1<< x for x in range(32)]
+        p = [1 << x for x in range(32)]
         res = []
         for _ in range(ac.read_int()):
             c, d, x = ac.read_list_ints()
@@ -969,9 +969,9 @@ class Solution:
         tag: prime_factor|observation
         """
         n = 10 ** 6
-        lst = [[] for _ in range(n+1)]
+        lst = [[] for _ in range(n + 1)]
 
-        min_prime = [0]*(n+1)
+        min_prime = [0] * (n + 1)
         for i in range(2, n + 1):
             if not min_prime[i]:
                 min_prime[i] = i
@@ -1067,3 +1067,21 @@ class Solution:
                     x *= p
         ac.st(dp[n])
         return
+
+    @staticmethod
+    def lc_3326(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-division-operations-to-make-array-non-decreasing/
+        tag: greedy|min_prime|reverse_order|classical
+        """
+        pf = PrimeFactor(10 ** 6)
+        ans = 0
+        n = len(nums)
+        for i in range(n - 2, -1, -1):
+            while nums[i] > nums[i + 1]:
+                x = nums[i] // pf.min_prime[nums[i]]
+                nums[i] //= x
+                ans += 1
+                if x == 1:
+                    return -1
+        return ans
