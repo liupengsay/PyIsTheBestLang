@@ -2373,7 +2373,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def cf_369c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/369/problem/C
         tag: tree_dp|greedy|classical
