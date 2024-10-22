@@ -203,14 +203,23 @@ class WeightedGraphForDijkstra:
         self.add_directed_edge(j, i, w)
         return
 
-    def get_edge_ids(self, i):
-        assert 0 <= i < self.n
-        ind = self.point_head[i]
-        ans = []
+    def get_edge_ids(self, u):
+        assert 0 <= u < self.n
+        ind = self.point_head[u]
+        edge_ids = []
         while ind:
-            ans.append(ind)
+            edge_ids.append(ind)
             ind = self.edge_next[ind]
-        return
+        return edge_ids
+
+    def get_to_nodes(self, u):
+        assert 0 <= u < self.n
+        ind = self.point_head[u]
+        to_nodes = []
+        while ind:
+            to_nodes.append(self.edge_to[ind])
+            ind = self.edge_next[ind]
+        return to_nodes
 
     def dijkstra_for_shortest_path(self, src=0, initial=0):
         dis = [self.inf] * self.n

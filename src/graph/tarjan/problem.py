@@ -63,7 +63,7 @@ from collections import Counter
 from typing import List
 
 from src.graph.tarjan.template import Tarjan, DirectedGraphForTarjanScc
-from src.graph.topological_sort.template import GraphForTopologicalSort
+from src.graph.topological_sort.template import WeightedGraphForTopologicalSort
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 
@@ -89,11 +89,28 @@ class Solution:
         for i in range(n):
             scc_weights[graph.node_scc_id[i]] += weights[i]
 
-        graph_topo = GraphForTopologicalSort(graph.scc_id)
+        class Graph(WeightedGraphForTopologicalSort):
+            def dag_dp(self):
+                dp = [0] * self.n
+                stack = [u for u in range(self.n) if not self.degree[u]]
+                for u in stack:
+                    dp[u] = scc_weights[u]
+                while stack:
+                    nex = []
+                    for u in stack:
+                        for v in self.get_to_nodes(u):
+                            self.degree[v] -= 1
+                            dp[v] = max(dp[v], dp[u] + scc_weights[v])
+                            if not self.degree[v]:
+                                nex.append(v)
+                    stack = nex
+                return dp
+
+        graph_topo = Graph(graph.scc_id)
         for val in graph.get_scc_edge_degree()[0]:
-            i, j = val // graph.scc_id, val % graph.scc_id
-            graph_topo.add_directed_edge(i, j)
-        ans = graph_topo.topological_sort_for_dag_dp(scc_weights)
+            x, y = val // graph.scc_id, val % graph.scc_id
+            graph_topo.add_directed_edge(x, y, 1)
+        ans = graph_topo.dag_dp()
         ac.st(max(ans))
         return
 
@@ -518,7 +535,7 @@ class Solution:
 
         # reverse_graph
         s = ac.read_int() - 1
-        graph_topo = GraphForTopologicalSort(graph.scc_id)
+        graph_topo = WeightedGraphForTopologicalSort(graph.scc_id)
         for a, b, c, d in edges:
             if graph.node_scc_id[a] != graph.node_scc_id[b]:
                 graph_topo.add_directed_edge(graph.node_scc_id[b], graph.node_scc_id[a], c)
@@ -608,6 +625,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7033
         tag: scc|dag|tree_dp|reverse_graph
         """
+
         class Graph(DirectedGraphForTarjanScc):
             def get_scc_dag_dp(self):
                 scc_edge = set()
@@ -665,6 +683,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7965
         tag: scc|dag|tree_dp
         """
+
         class Graph(DirectedGraphForTarjanScc):
             def get_scc_dag_dp(self):
                 scc_edge = set()
@@ -778,6 +797,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3816/
         tag: scc|topological_sort|dag_dp
         """
+
         class Graph(DirectedGraphForTarjanScc):
             def get_scc_dag_dp(self):
                 scc_edge = set()
@@ -899,6 +919,7 @@ class Solution:
         url: https://atcoder.jp/contests/abc245/tasks/abc245_f
         tag: scc|reverse_graph|implemention|bfs|classical
         """
+
         class Graph(DirectedGraphForTarjanScc):
             def get_scc_dag_dp(self):
                 scc_edge = set()

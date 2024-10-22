@@ -1,8 +1,7 @@
 import math
 
 
-
-class GraphForTopologicalSort:
+class WeightedGraphForTopologicalSort:
     def __init__(self, n, inf=math.inf):
         self.n = n
         self.inf = inf
@@ -34,24 +33,41 @@ class GraphForTopologicalSort:
         self.add_directed_edge(j, i, w)
         return
 
-    def topological_sort_for_dag_dp(self, weights):
-        ans = [0] * self.n
-        stack = [i for i in range(self.n) if not self.degree[i]]
-        for i in stack:
-            ans[i] = weights[i]
+    def get_to_nodes(self, u):
+        assert 0 <= u < self.n
+        ind = self.point_head[u]
+        to_nodes = []
+        while ind:
+            to_nodes.append(self.edge_to[ind])
+            ind = self.edge_next[ind]
+        return to_nodes
+
+    def get_to_nodes_weights(self, u):
+        assert 0 <= u < self.n
+        ind = self.point_head[u]
+        to_nodes = []
+        while ind:
+            to_nodes.append((self.edge_to[ind], self.edge_weight[ind]))
+            ind = self.edge_next[ind]
+        return to_nodes
+
+    # class Graph(WeightedGraphForTopologicalSort):
+    def dag_dp(self):
+        dp = [0] * self.n
+        stack = [u for u in range(self.n) if not self.degree[u]]
+        res = -10 ** 9
+        post = dp[:]
         while stack:
             nex = []
-            for i in stack:
-                ind = self.point_head[i]
-                while ind:
-                    j = self.edge_to[ind]
-                    self.degree[j] -= 1
-                    ans[j] = max(ans[j], ans[i] + weights[j])
-                    if not self.degree[j]:
-                        nex.append(j)
-                    ind = self.edge_next[ind]
+            for u in stack:
+                for v in self.get_to_nodes(u):
+                    self.degree[v] -= 1
+                    res = max(res, post[u] - dp[v])
+                    post[v] = max(post[v], post[u])
+                    if not self.degree[v]:
+                        nex.append(v)
             stack = nex
-        return ans
+        return res
 
     def topological_sort_for_dag_dp_with_edge_weight(self, weights):
         ans = [0] * self.n

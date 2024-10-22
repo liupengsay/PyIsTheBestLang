@@ -35,6 +35,7 @@ P8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circl
 P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
 P1983（https://www.luogu.com.cn/problem/P1983）topological_sort
 P2921（https://www.luogu.com.cn/problem/P2921）circle_based_tree|topological_sort|classical
+P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sort|dag_dp|expectation_dp
 
 ===================================CodeForces===================================
 1454E（https://codeforces.com/contest/1454/problem/E）circle_based_tree|counter|brute_force|inclusion_exclusion
@@ -56,7 +57,7 @@ ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|t
 ABC296E（https://atcoder.jp/contests/abc296/tasks/abc296_e）topological_sort|directed_graph
 ABC256E（https://atcoder.jp/contests/abc256/tasks/abc256_e）topological_sort|greedy|circle_based_tree|classical
 ABC223D（https://atcoder.jp/contests/abc223/tasks/abc223_d）topological_sort
-
+ABC188E（https://atcoder.jp/contests/abc188/tasks/abc188_e）topologic_sort|dag_dp
 
 =====================================AcWing=====================================
 3696（https://www.acwing.com/problem/content/description/3699/）topological_order|dag|construction
@@ -76,13 +77,44 @@ from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.graph.network_flow.template import UndirectedGraph
+from src.graph.topological_sort.template import WeightedGraphForTopologicalSort
 from src.graph.union_find.template import UnionFind
 from src.utils.fast_io import FastIO
 
 
-
 class Solution:
     def __init__(self):
+        return
+
+    @staticmethod
+    def lg_p4316(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P4316
+        tag: reverse_graph|topological_sort|dag_dp|expectation_dp
+        """
+
+        class Graph(WeightedGraphForTopologicalSort):
+            def dag_dp(self):
+                dp = [0] * self.n
+                stack = [self.n - 1]
+                cnt = self.degree[:]
+                while stack:
+                    u = stack.pop()
+                    for v, weight in self.get_to_nodes_weights(u):
+                        dp[v] += dp[u] + weight
+                        self.degree[v] -= 1
+                        if not self.degree[v]:
+                            dp[v] /= cnt[v]
+                            stack.append(v)
+                return "%.2f" % (dp[0])
+
+        n, m = ac.read_list_ints()
+        graph = Graph(n)
+        for _ in range(m):
+            a, b, w = ac.read_list_ints_minus_one()
+            graph.add_directed_edge(b, a, w + 1)
+        ans = graph.dag_dp()
+        ac.st(ans)
         return
 
     @staticmethod
@@ -550,7 +582,6 @@ class Solution:
             ac.st(a)
         return
 
-
     @staticmethod
     def lg_p6255(ac=FastIO()):
         """
@@ -602,7 +633,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6417
         tag: directed_circle_based_tree|greedy|topological_sort|brain_teaser|classical
         """
-        n = ac.read_int() # MLE
+        n = ac.read_int()  # MLE
         dct = [ac.read_int() - 1 for _ in range(n)]
         degree = [0] * n
         for i in range(n):
@@ -1235,4 +1266,41 @@ class Solution:
                         stack = nex
                     ans[1] += len(cur)
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_188e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc188/tasks/abc188_e
+        tag: topologic_sort|dag_dp
+        """
+
+        class Graph(WeightedGraphForTopologicalSort):
+            def dag_dp(self):
+                stack = [i for i in range(self.n) if not self.degree[i]]
+                res = -10 ** 9
+                post = dp[:]
+                while stack:
+                    nex = []
+                    for i in stack:
+                        ind = self.point_head[i]
+                        while ind:
+                            j = self.edge_to[ind]
+                            self.degree[j] -= 1
+                            res = max(res, post[i] - dp[j])
+                            post[j] = max(post[j], post[i])
+                            if not self.degree[j]:
+                                nex.append(j)
+                            ind = self.edge_next[ind]
+                    stack = nex
+                return res
+
+        n, m = ac.read_list_ints()
+        dp = ac.read_list_ints()
+        graph = Graph(n)
+        for _ in range(m):
+            u, v = ac.read_list_ints_minus_one()
+            graph.add_directed_edge(v, u, 1)
+        ans = graph.dag_dp()
+        ac.st(ans)
         return

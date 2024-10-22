@@ -36,8 +36,10 @@ P5551（https://www.luogu.com.cn/problem/P5551）recursion
 
 ===================================AtCoder===================================
 ABC350F（https://atcoder.jp/contests/abc350/tasks/abc350_f）implemention|divide_and_conquer|recursion|classical
+ABC188F（https://atcoder.jp/contests/abc188/tasks/abc188_f）linear_dp|recursion|divide_and_conquer|implemention|greedy|reverse_thinking
 
 """
+import math
 from functools import lru_cache
 from itertools import combinations
 from typing import Optional, List
@@ -500,7 +502,7 @@ class Solution:
         nums = ac.read_list_ints()
 
         def dfs(i, j):
-            cur = j-i+1
+            cur = j - i + 1
             low = i
             for k in range(i, j + 1):
                 if nums[k] < nums[low]:
@@ -569,5 +571,27 @@ class Solution:
                     dp[val] += dp[y]
                 dp[val] = min(dp[val], j - i + 1)
         ans = dp[n - 1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_188f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc188/tasks/abc188_f
+        tag: linear_dp|recursion|divide_and_conquer|implemention|greedy|reverse_thinking
+        """
+        x, y = ac.read_list_ints()
+
+        @lru_cache(None)
+        def dfs(num):
+            if num <= x:
+                return x - num
+            if num - 1 == x:
+                return 1
+            if num % 2 == 0:
+                return min(dfs(num // 2) + 1, abs(x - num))
+            return min(min(dfs((num + 1) // 2), dfs((num - 1) // 2)) + 2, abs(x - num))
+
+        ans = dfs(y)
         ac.st(ans)
         return

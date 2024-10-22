@@ -120,6 +120,7 @@ ABC221D（https://atcoder.jp/contests/abc221/tasks/abc221_d）discretization_dif
 ABC210D（https://atcoder.jp/contests/abc210/tasks/abc210_d）prefix_max|matrix_prefix|classical
 ABC360D（https://atcoder.jp/contests/abc360/tasks/abc360_d）diff_array|implemention|contribution_method
 ABC366D（https://atcoder.jp/contests/abc366/tasks/abc366_d）prefix_sum_cube|md_prefix_sum
+ABC188D（https://atcoder.jp/contests/abc188/tasks/abc188_d）discretization_diff_array
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
