@@ -399,7 +399,7 @@ class TestGeneral(unittest.TestCase):
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
         difficulty = list(range(1400, 2200, 100))
-        i = 1
+        i = 2
         for x in difficulty[i:i + 1]:
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-"
             webbrowser.open(url)
@@ -408,7 +408,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "376"
+        num = "189"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

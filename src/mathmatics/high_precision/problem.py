@@ -31,7 +31,7 @@ P1298（https://www.luogu.com.cn/problem/P1298）high_precision|frac_to_float|br
 
 ====================================AtCoder=====================================
 ABC148E（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
-
+ABC189D（https://atcoder.jp/contests/abc189/tasks/abc189_b）high_precision|division_to_multiplication
 
 ====================================AtCoder=====================================
 1（https://judge.yosupo.jp/problem/many_aplusb）big_number|high_precision|plus
@@ -226,4 +226,3 @@ class Solution:
             if dp[n - 1][j] + cost[-1] <= hours:
                 return j
         return -1
-

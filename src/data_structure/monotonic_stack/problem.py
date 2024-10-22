@@ -68,6 +68,7 @@ ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|li
 ABC311G（https://atcoder.jp/contests/abc311/tasks/abc311_g）brute_force|prefix_sum|monotonic_stack|classical
 ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack|greedy|implemention|classical
 ABC359E（https://atcoder.jp/contests/abc359/tasks/abc359_e）monotonic_stack|implemention|classical
+ABC189C（https://atcoder.jp/contests/abc189/tasks/abc189_c）monotonic_stack|contribution_method|action_scope|classical
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix

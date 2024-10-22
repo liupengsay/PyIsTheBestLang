@@ -56,6 +56,7 @@ ABC354D（https://atcoder.jp/contests/abc354/tasks/abc354_d）brute_force|inclus
 ABC361C（https://atcoder.jp/contests/abc361/tasks/abc361_c）geometry
 ABC362B（https://atcoder.jp/contests/abc362/tasks/abc362_b）geometry|linear_scope|classical|vertical_triangular
 ABC197D（https://atcoder.jp/contests/abc197/tasks/abc197_d）geometry
+ABC189E（https://atcoder.jp/contests/abc189/tasks/abc189_e）geometry|implemention
 
 =====================================AcWing=====================================
 119（https://www.acwing.com/problem/content/121/）closet_pair|divide_and_conquer|hash|block_plane|sorted_list|classical

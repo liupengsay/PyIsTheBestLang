@@ -26,6 +26,7 @@ ABC243F（https://atcoder.jp/contests/abc243/tasks/abc243_f）matrix_dp|prob_dp|
 ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implemention|math
 ABC194D（https://atcoder.jp/contests/abc194/tasks/abc194_d）prob_dp
 ABC193D（https://atcoder.jp/contests/abc193/tasks/abc193_d）prob|math
+ABC189F（https://atcoder.jp/contests/abc189/tasks/abc189_f）expectation_dp|high_precision|math|reverse_order|suffix_sum_opt|classical
 
 ===================================CodeForces===================================
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
@@ -449,4 +450,32 @@ class Solution:
             dp[x] = pow(x / m, n)
         ans = sum((dp[i] - dp[i - 1]) * i for i in range(1, m + 1))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_189f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc189/tasks/abc189_f
+        tag: expectation_dp|high_precision|math|reverse_order|suffix_sum_opt|classical
+        """
+        n, m, k = ac.read_list_ints()
+        dpa = [0] * n
+        dpb = [0] * n
+        for i in ac.read_list_ints():
+            dpa[i] = 1
+        post = [0, 0]
+        for i in range(n - 1, -1, -1):
+            if not dpa[i]:
+                dpa[i] = post[0] / m
+                dpb[i] = post[1] / m + 1
+            post[0] += dpa[i]
+            post[1] += dpb[i]
+            if i + m < n:
+                post[0] -= dpa[i + m]
+                post[1] -= dpb[i + m]
+        if abs(1 - dpa[0]) > 1e-6:
+            ans = dpb[0] / (1 - dpa[0])
+            ac.st(ans)
+        else:
+            ac.st(-1)
         return
