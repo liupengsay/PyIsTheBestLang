@@ -32,6 +32,7 @@ P1298（https://www.luogu.com.cn/problem/P1298）high_precision|frac_to_float|br
 ====================================AtCoder=====================================
 ABC148E（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
 ABC189D（https://atcoder.jp/contests/abc189/tasks/abc189_b）high_precision|division_to_multiplication
+ABC191D（https://atcoder.jp/contests/abc191/tasks/abc191_d）high_precision|division_to_multiplication|brute_force
 
 ====================================AtCoder=====================================
 1（https://judge.yosupo.jp/problem/many_aplusb）big_number|high_precision|plus
@@ -226,3 +227,38 @@ class Solution:
             if dp[n - 1][j] + cost[-1] <= hours:
                 return j
         return -1
+
+    @staticmethod
+    def abc_191d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc191/tasks/abc191_d
+        tag: high_precision|division_to_multiplication|brute_force
+        """
+        m = 10000
+
+        def check(s):
+            if "." not in s:
+                return int(s) * m
+            while len(s) - s.index(".") - 1 < 4:
+                s += "0"
+            return int(s.replace(".", ""))
+
+        x, y, r = [check(x) for x in ac.read_list_strs()]
+        ans = 0
+        low_x = (x - r) // m
+        high_x = (x + r) // m
+        for x0 in range(low_x, high_x + 1):
+            ceil = r * r - (x - x0 * m) * (x - x0 * m)
+            if ceil < 0:
+                continue
+            low = math.ceil(y - math.sqrt(ceil))
+            high = math.floor(y + math.sqrt(ceil))
+            low = low // m - 10
+            high = high // m + 10
+            while (low * m - y) * (low * m - y) + (x - x0 * m) * (x - x0 * m) > r * r and low <= high:
+                low += 1
+            while (high * m - y) * (high * m - y) + (x - x0 * m) * (x - x0 * m) > r * r and high >= low:
+                high -= 1
+            ans += high - low + 1
+        ac.st(ans)
+        return
