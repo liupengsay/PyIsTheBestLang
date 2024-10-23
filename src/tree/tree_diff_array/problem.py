@@ -24,7 +24,7 @@ ABC309E（https://atcoder.jp/contests/abc309/tasks/abc309_e）tree_diff_array|df
 from typing import List
 
 from src.tree.tree_diff_array.template import TreeDiffArray
-from src.tree.tree_lca.template import OfflineLCA, TreeAncestor
+from src.tree.tree_lca.template import OfflineLCA
 from src.util.fast_io import FastIO
 
 
@@ -236,21 +236,42 @@ class Solution:
         url: https://codeforces.com/problemset/problem/191/C
         tag: tree_diff_array|tree_lca|implemention
         """
+        class Graph(WeightedTree):
+            def diff_array_with_edge(self):
+                # differential summation from bottom to top
+                stack = [self.root]
+                while stack:
+                    u = stack.pop()
+                    if u >= 0:
+                        stack.append(~u)
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                stack.append(v)
+                    else:
+                        u = ~u
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                diff[u] += diff[v]
+                return
+
         n = ac.read_int()
-        dct = [[] for _ in range(n)]
+        graph = Graph(n)
         edges = []
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
             edges.append((i, j))
-            dct[i].append(j)
-            dct[j].append(i)
-        k = ac.read_int()
-        queries = []
-        tree = TreeAncestor(dct, 0)
-        for _ in range(k):
-            u, v = ac.read_list_ints_minus_one()
-            queries.append((u, v, tree.get_lca(u, v)))
-        diff, parent = TreeDiffArray.bfs_iteration_edge(dct, queries, 0)
-        ans = [diff[u] if parent[u] == v else diff[v] for u, v in edges]
+            graph.add_undirected_edge(i, j)
+        graph.lca_build_with_multiplication()
+        diff = [0] * n
+        for _ in range(ac.read_int()):
+            i, j = ac.read_list_ints_minus_one()
+            lca = graph.lca_get_lca_between_nodes(i, j)
+            # update the edge on the path u to ancestor and v to ancestor
+            diff[i] += 1
+            diff[j] += 1
+            # make the down node represent the edge count
+            diff[lca] -= 2
+        graph.diff_array_with_edge()
+        ans = [diff[i] if graph.parent[i] == j else diff[j] for i, j in edges]
         ac.lst(ans)
         return

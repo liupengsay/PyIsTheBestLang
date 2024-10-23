@@ -40,6 +40,7 @@ ABC219G（https://atcoder.jp/contests/abc219/tasks/abc219_g）sqrt_decomposition
 
 """
 import bisect
+import math
 from collections import defaultdict, Counter
 from itertools import accumulate
 from operator import xor
@@ -49,7 +50,6 @@ from src.structure.segment_tree.template import PointSetMergeRangeMode, PointSet
     PointSetRandomRangeMode
 from src.structure.sqrt_decomposition.template import BlockSize
 from src.structure.tree_array.template import PointAddRangeSum
-from src.tree.tree_lca.template import TreeAncestor
 from src.math.prime_factor.template import PrimeFactor
 from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
@@ -1182,14 +1182,13 @@ class Solution:
         url: https://codeforces.com/contest/342/problem/E
         tag: block_size|sqt_decomposition|tree_lca|classical
         """
-        n, m = ac.read_list_ints()
-        dct = [[] for _ in range(n)]
+        n, m = ac.read_list_ints()  # TLE
+        graph = WeightedTree(n)
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-        tree = TreeAncestor(dct)
-        dis = tree.depth[:]
+            graph.add_undirected_edge(i, j)
+        graph.lca_build_with_multiplication()
+        dis = graph.depth[:]
         block_size = 100
         lst = []
         for i in range(m):
@@ -1202,7 +1201,7 @@ class Solution:
                     while lst:
                         nex = []
                         for x in lst:
-                            for y in dct[x]:
+                            for y in graph.get_to_nodes(x):
                                 if dis[y] > dis[x] + 1:
                                     dis[y] = dis[x] + 1
                                     nex.append(y)
@@ -1210,7 +1209,7 @@ class Solution:
             else:
                 ans = dis[x]
                 for y in lst:
-                    ans = min(ans, tree.get_dist(y, x))
+                    ans = min(ans, graph.lca_get_lca_and_dist_between_nodes(y, x)[1])
                 ac.st(ans)
         return
 

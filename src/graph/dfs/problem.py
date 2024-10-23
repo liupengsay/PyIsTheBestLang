@@ -86,6 +86,7 @@ ABC196D（https://atcoder.jp/contests/abc196/tasks/abc196_d）dfs|state_compress
 """
 
 import bisect
+import math
 from bisect import bisect_right, bisect_left
 from collections import defaultdict
 from itertools import accumulate, permutations
@@ -93,12 +94,13 @@ from typing import List, Optional
 
 from src.basis.diff_array.template import PreFixSumMatrix
 from src.basis.tree_node.template import TreeNode
+from src.graph.dfs.template import DFS, DfsEulerOrder
+from src.graph.union_find.template import UnionFind
+from src.string.manacher_palindrome.template import ManacherPlindrome
 from src.structure.segment_tree.template import RangeAddPointGet
 from src.structure.tree_array.template import PointAddRangeSum
-from src.tree.tree_lca.template import TreeAncestor, OfflineLCA
-from src.graph.union_find.template import UnionFind
-from src.graph.dfs.template import DFS, DfsEulerOrder, WeightedTree
-from src.string.manacher_palindrome.template import ManacherPlindrome
+from src.tree.tree_dp.template import WeightedTree
+from src.tree.tree_lca.template import OfflineLCA
 from src.util.fast_io import FastIO
 
 
@@ -732,31 +734,26 @@ class Solution:
         n = ac.read_int()
         parent = ac.read_list_ints()
 
-        edge = [[] for _ in range(n + 1)]
+        graph = WeightedTree(n + 1)
         for i in range(n):
-            edge[parent[i]].append(i + 1)
-            edge[i + 1].append(parent[i])
-        del parent
-
-        tree = TreeAncestor(edge)
-        start, end = DFS().gen_bfs_order_iteration(edge)
+            graph.add_directed_edge(parent[i], i + 1)
+        graph.dfs_order()
+        graph.lca_build_with_multiplication()
 
         dct = [[] for _ in range(n + 1)]
         for i in range(n + 1):
-            dct[tree.depth[i]].append(start[i])
-        for i in range(n + 1):
-            dct[i].sort()
+            dct[graph.depth[graph.order_to_node[i]]].append(i)
 
         ans = []
         for _ in range(ac.read_int()):
             v, p = ac.read_list_ints()
-            if tree.depth[v] - 1 < p:
+            if graph.depth[v] - 1 < p:
                 ans.append(0)
                 continue
-            u = tree.get_kth_ancestor(v, p)
-            low, high = start[u], end[u]
-            cur = bisect.bisect_right(
-                dct[tree.depth[v]], high) - bisect.bisect_left(dct[tree.depth[v]], low)
+            u = graph.lca_get_kth_ancestor(v, p)
+            low, high = graph.start[u], graph.end[u]
+            cur = bisect.bisect_right(dct[graph.depth[v]], high)
+            cur -= bisect.bisect_left(dct[graph.depth[v]], low)
             ans.append(max(cur - 1, 0))
         ac.lst(ans)
         return

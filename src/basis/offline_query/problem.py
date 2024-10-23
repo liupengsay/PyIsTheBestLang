@@ -20,7 +20,6 @@ from typing import List
 
 from src.structure.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
-from test.leetcode.template import max
 
 
 class Solution:

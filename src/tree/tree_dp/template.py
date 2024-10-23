@@ -23,7 +23,7 @@ class WeightedTree:
         self.ancestor = [-1]
         return
 
-    def add_directed_edge(self, u, v, w):
+    def add_directed_edge(self, u, v, w=1):
         assert 0 <= u < self.n
         assert 0 <= v < self.n
         self.edge_weight.append(w)
@@ -345,3 +345,22 @@ class WeightedTree:
                     up.append(nex + weights[u])
                     stack.append(v)
         return ans
+
+    # class Graph(WeightedTree):
+    def diff_array_with_edge(self):
+        # differential summation from bottom to top
+        stack = [self.root]
+        diff = [0] * self.n
+        while stack:
+            u = stack.pop()
+            if u >= 0:
+                stack.append(~u)
+                for v in self.get_to_nodes(u):
+                    if v != self.parent[u]:
+                        stack.append(v)
+            else:
+                u = ~u
+                for v in self.get_to_nodes(u):
+                    if v != self.parent[u]:
+                        diff[u] += diff[v]
+        return

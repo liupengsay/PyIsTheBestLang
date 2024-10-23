@@ -100,13 +100,13 @@ from functools import lru_cache
 from itertools import permutations
 from typing import List
 
-from src.structure.segment_tree.template import PointSetRangeMin
-from src.structure.sorted_list.template import SortedList
-from src.tree.tree_lca.template import TreeAncestor
 from src.graph.union_find.template import UnionFind
 from src.math.fast_power.template import MatrixFastPower
 from src.math.number_theory.template import NumFactor
 from src.string.kmp.template import KMP
+from src.structure.segment_tree.template import PointSetRangeMin
+from src.structure.sorted_list.template import SortedList
+from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 
 
@@ -797,16 +797,17 @@ class Solution:
         n = len(lst)
         pi = [0] + KMP().prefix_function(lst)
 
-        edges = [[] for _ in range(n + 1)]
+        graph = WeightedTree(n + 1)
         for i in range(1, n + 1):
             if pi[i]:
-                edges[pi[i]].append(i)
+                graph.add_directed_edge(pi[i], i)
             else:
-                edges[0].append(i)
-        tree = TreeAncestor(edges, 0)
+                graph.add_directed_edge(0, i)
+        graph.lca_build_with_multiplication()
         for _ in range(ac.read_int()):
             p, q = ac.read_list_ints()
-            ac.st(tree.get_lca(pi[p], pi[q]))
+            ans = graph.lca_get_lca_between_nodes(pi[p], pi[q])
+            ac.st(ans)
         return
 
     @staticmethod
@@ -1332,14 +1333,14 @@ class Solution:
         nex = -1
         for i, num in enumerate(post):
             if right < i:
-                if nex < i-1:
+                if nex < i - 1:
                     return -1
                 ans += 1
                 nex = max(nex, i + num - 1)
                 right = nex
             else:
                 nex = max(nex, i + num - 1)
-        return ans if right >= m-1 else -1
+        return ans if right >= m - 1 else -1
 
     @staticmethod
     def lc_100433(s: str, pattern: str) -> int:
