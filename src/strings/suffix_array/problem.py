@@ -77,7 +77,7 @@ ABC272F（https://atcoder.jp/contests/abc272/tasks/abc272_f）suffix_array|sa|tr
 
 1（https://www.codechef.com/problems/CABABAA）sparse_table|suffix_array|monotonic_stack
 """
-
+import math
 from collections import deque
 from functools import cmp_to_key
 from typing import List

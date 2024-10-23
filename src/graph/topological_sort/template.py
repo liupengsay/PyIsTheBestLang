@@ -105,6 +105,47 @@ class WeightedGraphForTopologicalSort:
             stack = nex
         return ans
 
+    # class Graph(WeightedGraphForTopologicalSort):
+    def topological_sort_directed(self):
+        ans = []
+        stack = [u for u in range(self.n) if not self.degree[u]]
+        while stack:
+            ans.extend(stack)
+            nex = []
+            for u in stack:
+                for v in self.get_to_nodes(u):
+                    self.degree[v] -= 1
+                    if not self.degree[v]:
+                        nex.append(v)
+            stack = nex
+        return ans
+
+    # class Graph(WeightedGraphForTopologicalSort):
+    def topological_sort_undirected(self):
+        stack = [u for u in range(self.n) if self.degree[u] == 1]
+        father = [-1] * self.n
+        while stack:
+            nex = []
+            for u in stack:
+                for v in self.get_to_nodes(u):
+                    self.degree[v] -= 1
+                    if self.degree[v] == 1:
+                        nex.append(v)
+            stack = nex
+        circle = [u for u in range(self.n) if self.degree[u] >= 2]
+        for u in circle:
+            father[u] = u
+        stack = circle[:]
+        while stack:
+            nex = []
+            for u in stack:
+                for v in self.get_to_nodes(u):
+                    if father[v] == -1:
+                        father[v] = father[u]
+                        nex.append(v)
+            stack = nex[:]
+        return
+
 
 class TopologicalSort:
     def __init__(self):

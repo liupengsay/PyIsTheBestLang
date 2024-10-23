@@ -123,36 +123,30 @@ class Solution:
         urL: https://atcoder.jp/contests/abc266/tasks/abc266_f
         tag: undirected_circle_based_tree|classical|connected
         """
+        class Graph(WeightedGraphForTopologicalSort):
+            def topological_sort_undirected(self):
+                stack = [u for u in range(self.n) if self.degree[u] == 1]
+                while stack:
+                    nex = []
+                    for u in stack:
+                        for v in self.get_to_nodes(u):
+                            self.degree[v] -= 1
+                            uf.union(u, v)
+                            if self.degree[v] == 1:
+                                nex.append(v)
+                    stack = nex
+                return
+
         n = ac.read_int()
-        edge = [[] for _ in range(n)]
         uf = UnionFind(n)
-
-        degree = [0] * n
+        graph = Graph(n)
         for _ in range(n):
-            u, v = ac.read_list_ints_minus_one()
-            edge[u].append(v)
-            edge[v].append(u)
-            degree[u] += 1
-            degree[v] += 1
-
-        que = deque()
-        for i in range(n):
-            if degree[i] == 1:
-                que.append(i)
-        while que:
-            now = que.popleft()
-            nex = edge[now][0]
-            degree[now] -= 1
-            degree[nex] -= 1
-            edge[nex].remove(now)
-            uf.union(now, nex)
-            if degree[nex] == 1:
-                que.append(nex)
-
-        q = ac.read_int()
-        for _ in range(q):
-            x, y = ac.read_list_ints_minus_one()
-            if uf.is_connected(x, y):
+            i, j = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(i, j, 1)
+        graph.topological_sort_undirected()
+        for _ in range(ac.read_int()):
+            i, j = ac.read_list_ints_minus_one()
+            if uf.is_connected(i, j):
                 ac.yes()
             else:
                 ac.no()
@@ -164,43 +158,44 @@ class Solution:
         url: https://atcoder.jp/contests/abc266/tasks/abc266_f
         tag: topological|sort|circle_based_tree|classical
         """
+        class Graph(WeightedGraphForTopologicalSort):
+            def topological_sort_undirected(self):
+                stack = [u for u in range(self.n) if self.degree[u] == 1]
+                while stack:
+                    nex = []
+                    for u in stack:
+                        for v in self.get_to_nodes(u):
+                            self.degree[v] -= 1
+                            if self.degree[v] == 1:
+                                nex.append(v)
+                    stack = nex
+                circle = [u for u in range(n) if self.degree[u] >= 2]
+                for u in circle:
+                    father[u] = u
+                stack = circle[:]
+                while stack:
+                    nex = []
+                    for u in stack:
+                        for v in self.get_to_nodes(u):
+                            if father[v] == -1:
+                                father[v] = father[u]
+                                nex.append(v)
+                    stack = nex[:]
+                return
+
         n = ac.read_int()
-        dct = [[] for _ in range(n)]
-        degree = [0] * n
+        graph = Graph(n)
+        father = [-1] * n
         for _ in range(n):
             i, j = ac.read_list_ints_minus_one()
-            dct[i].append(j)
-            dct[j].append(i)
-            degree[i] += 1
-            degree[j] += 1
-        stack = [i for i in range(n) if degree[i] == 1]
-        while stack:
-            nex = []
-            for i in stack:
-                for j in dct[i]:
-                    degree[j] -= 1
-                    if degree[j] == 1:
-                        nex.append(j)
-            stack = nex[:]
-        circle = [i for i in range(n) if degree[i] >= 2]
-        father = [-1] * n
-        for i in circle:
-            father[i] = i
-        stack = circle[:]
-        while stack:
-            nex = []
-            for i in stack:
-                for j in dct[i]:
-                    if father[j] == -1:
-                        father[j] = father[i]
-                        nex.append(j)
-            stack = nex[:]
+            graph.add_undirected_edge(i, j, 1)
+        graph.topological_sort_undirected()
         for _ in range(ac.read_int()):
-            x, y = ac.read_list_ints_minus_one()
-            if father[x] != father[y]:
-                ac.no()
-            else:
+            i, j = ac.read_list_ints_minus_one()
+            if father[i] == father[j]:
                 ac.yes()
+            else:
+                ac.no()
         return
 
     @staticmethod
