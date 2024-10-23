@@ -54,8 +54,8 @@ from functools import lru_cache
 from itertools import accumulate
 from typing import List
 
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO
+from src.math.comb_perm.template import Combinatorics
+from src.util.fast_io import FastIO
 
 
 MOD = 10 ** 9 + 7

@@ -17,8 +17,8 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 2638（https://leetcode.cn/problems/count-the-number-of-k-free-subsets/）liner_dp|counter
 2597（https://leetcode.cn/problems/the-number-of-beautiful-subsets/）liner_dp|hash
 2713（https://leetcode.cn/problems/maximum-strictly-increasing-cells-in-a-matrix/）data_range|liner_dp
-1526（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）linear_dp|greedy
-1553（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teaser|greedy|memory_search|liner_dp
+1526（https://leetcode.cn/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/）linear_dp|greed
+1553（https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/）brain_teaser|greed|memory_search|liner_dp
 1872（https://leetcode.cn/problems/stone-game-viii/）prefix_sum|reverse_order|linear_dp
 1770（https://leetcode.cn/problems/maximum-score-from-performing-multiplication-operations/）liner_dp
 823（https://leetcode.cn/problems/binary-trees-with-factors/description/）liner_dp|counter
@@ -38,7 +38,7 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 3041（https://leetcode.com/contest/biweekly-contest-124/problems/maximize-consecutive-elements-in-an-array-after-modification/）linear_dp
 
 =====================================LuoGu======================================
-P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
+P1970（https://www.luogu.com.cn/problem/P1970）greed|liner_dp
 P1564（https://www.luogu.com.cn/problem/P1564）liner_dp
 P1481（https://www.luogu.com.cn/problem/P1481）liner_dp
 P2029（https://www.luogu.com.cn/problem/P2029）liner_dp
@@ -56,7 +56,7 @@ P2904（https://www.luogu.com.cn/problem/P2904）prefix_sum|preprocess|liner_dp
 P3062（https://www.luogu.com.cn/problem/P3062）liner_dp|brute_force
 P3842（https://www.luogu.com.cn/problem/P3842）liner_dp|implemention
 P3903（https://www.luogu.com.cn/problem/P3903）liner_dp|brute_force
-P5414（https://www.luogu.com.cn/problem/P5414）greedy|liner_dp
+P5414（https://www.luogu.com.cn/problem/P5414）greed|liner_dp
 P6191（https://www.luogu.com.cn/problem/P6191）liner_dp|brute_force|counter
 P6208（https://www.luogu.com.cn/problem/P6208）liner_dp|implemention
 P7404（https://www.luogu.com.cn/problem/P7404）linear_dp|brute_force
@@ -70,7 +70,7 @@ P1280（https://www.luogu.com.cn/problem/P1280）reverse_order|linear_dp
 P1282（https://www.luogu.com.cn/problem/P1282）classical|liner_dp|hash
 P1356（https://www.luogu.com.cn/problem/P1356）classical|mod|linear_dp
 P1385（https://www.luogu.com.cn/problem/P1385）liner_dp|prefix_sum|brain_teaser|lexicographical_order
-P1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp|greedy
+P1809（https://www.luogu.com.cn/problem/P1809）brain_teaser|liner_dp|greed
 P1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search
 P1978（https://www.luogu.com.cn/problem/P1978）liner_dp|mul|inclusion_exclusion
 P2432（https://www.luogu.com.cn/problem/P2432）liner_dp|pointer
@@ -108,29 +108,29 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1221D（https://codeforces.com/problemset/problem/1221/D）liner_dp
 731E（https://codeforces.com/contest/731/problem/E）prefix_sum|reverse_order|liner_dp
 1913D（https://codeforces.com/contest/1913/problem/D）monotonic_stack|linear_dp|prefix_sum
-1703G（https://codeforces.com/contest/1703/problem/G）greedy|linear_dp|data_range|limit_operation
+1703G（https://codeforces.com/contest/1703/problem/G）greed|linear_dp|data_range|limit_operation
 1829H（https://codeforces.com/contest/1829/problem/H）counter|linear_dp|classical|bit_operation|data_range
 977F（https://codeforces.com/contest/977/problem/F）linear_dp|specific_plan
-988F（https://codeforces.com/contest/988/problem/F）linear_dp|brute_force|classical|greedy
+988F（https://codeforces.com/contest/988/problem/F）linear_dp|brute_force|classical|greed
 988D（https://codeforces.com/contest/988/problem/D）linear_dp|brute_force
 999F（https://codeforces.com/contest/999/problem/F）linear_dp|brute_force
-1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greedy|sorting
+1066F（https://codeforces.com/contest/1066/problem/F）linear_dp|brute_force|greed|sorting
 1066D（https://codeforces.com/contest/1066/problem/D）linear_dp|two_pointers
 1108D（https://codeforces.com/contest/1108/problem/D）linear_dp|specific_plan
-1154F（https://codeforces.com/contest/1154/problem/F）linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
-1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greedy|implemention
-1249E（https://codeforces.com/contest/1249/problem/E）linear_dp|classical|greedy
-1256E（https://codeforces.com/contest/1256/problem/E）linear_dp|greedy|brain_teaser
-1353E（https://codeforces.com/contest/1353/problem/E）linear_dp|greedy|brute_force
+1154F（https://codeforces.com/contest/1154/problem/F）linear_dp|reverse_thinking|brute_force|greed|implemention|data_range
+1176F（https://codeforces.com/contest/1176/problem/F）linear_dp|greed|implemention
+1249E（https://codeforces.com/contest/1249/problem/E）linear_dp|classical|greed
+1256E（https://codeforces.com/contest/1256/problem/E）linear_dp|greed|brain_teaser
+1353E（https://codeforces.com/contest/1353/problem/E）linear_dp|greed|brute_force
 1472F（https://codeforces.com/contest/1472/problem/F）linear_dp|classical
 1624E（https://codeforces.com/contest/1624/problem/E）linear_dp|brute_force
 1969C（https://codeforces.com/contest/1969/problem/C）linear_dp|data_range|implemention
 264C（https://codeforces.com/contest/264/problem/C）linear_dp|classical|maximum_second
-1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greedy
+1894C2（https://codeforces.com/contest/1984/problem/C2）linear_dp|implemention|greed
 1984F（https://codeforces.com/contest/1984/problem/F）brute_force|brain_teaser|linear_dp
-1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greedy
+1312E（https://codeforces.com/contest/1312/problem/E）linear_dp|implemention|greed
 1982C（https://codeforces.com/contest/1982/problem/C）linear_dp|two_pointers
-1989D（https://codeforces.com/contest/1989/problem/D）greedy|linear_dp|implemention
+1989D（https://codeforces.com/contest/1989/problem/D）greed|linear_dp|implemention
 1155D（https://codeforces.com/problemset/problem/1155/D）linear_dp|classical|max_con_sub_sum
 319C（https://codeforces.com/problemset/problem/319/C）slope_dp|linear_dp|monotonic_queue
 1427C（https://codeforces.com/problemset/problem/1427/C）linear_dp|data_range|observation
@@ -173,7 +173,7 @@ ABC224E（https://atcoder.jp/contests/abc224/tasks/abc224_f）linear_dp|contribu
 ABC222D（https://atcoder.jp/contests/abc222/tasks/abc222_d）prefix|linear_dp
 ABC214F（https://atcoder.jp/contests/abc214/tasks/abc214_f）prefix|linear_dp
 ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
-ABC366F（https://atcoder.jp/contests/abc366/tasks/abc366_f）linear_dp|greedy|custom_sort|classical
+ABC366F（https://atcoder.jp/contests/abc366/tasks/abc366_f）linear_dp|greed|custom_sort|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -191,9 +191,9 @@ from functools import lru_cache, cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.mathmatics.number_theory.template import PrimeSieve
-from src.utils.fast_io import FastIO
+from src.math.comb_perm.template import Combinatorics
+from src.math.number_theory.template import PrimeSieve
+from src.util.fast_io import FastIO
 
 
 
@@ -585,7 +585,7 @@ class Solution:
     def lg_p1809(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1809
-        tag: brain_teaser|liner_dp|greedy|specific_plan
+        tag: brain_teaser|liner_dp|greed|specific_plan
         """
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
@@ -1220,7 +1220,7 @@ class Solution:
     def lc_1553(n: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-days-to-eat-n-oranges/
-        tag: brain_teaser|greedy|memory_search|liner_dp
+        tag: brain_teaser|greed|memory_search|liner_dp
         """
 
         @lru_cache(None)
@@ -1271,7 +1271,7 @@ class Solution:
     def cf_1154f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1154/problem/F
-        tag: linear_dp|reverse_thinking|brute_force|greedy|implemention|data_range
+        tag: linear_dp|reverse_thinking|brute_force|greed|implemention|data_range
         """
         n, m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1658,7 +1658,7 @@ class Solution:
     def cf_1984c2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1984/problem/C2
-        tag: linear_dp|implemention|greedy
+        tag: linear_dp|implemention|greed
         """
 
         mod = 998244353
@@ -1731,7 +1731,7 @@ class Solution:
     def cf_1989d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1989/problem/D
-        tag: greedy|linear_dp|implemention
+        tag: greed|linear_dp|implemention
         """
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1935,7 +1935,7 @@ class Solution:
     def abc_366f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc366/tasks/abc366_f
-        tag: linear_dp|greedy|custom_sort|classical
+        tag: linear_dp|greed|custom_sort|classical
         """
         n, k = ac.read_list_ints()
         dp = [-math.inf] * (k + 1)

@@ -28,7 +28,7 @@ from typing import List
 
 from src.graph.bipartite_matching.template import BipartiteMatching
 from src.graph.network_flow.template import DinicMaxflowMinCut
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

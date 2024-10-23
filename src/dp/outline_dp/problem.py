@@ -22,7 +22,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 from collections import defaultdict
 from typing import List
 
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

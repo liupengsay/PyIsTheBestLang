@@ -6,7 +6,7 @@ Description：undirected_topological_sort|directed_topological_sort|directed_cir
 ====================================LeetCode====================================
 360（https://leetcode.cn/problems/longest-cycle-in-a-graph/）topological_sort|directed_circle_based_tree|longest_circle
 2392（https://leetcode.cn/problems/build-a-matrix-with-conditions/）build_graph|union_find|topological_sort
-2371（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）build_graph|topological_sort|greedy
+2371（https://leetcode.cn/problems/minimize-maximum-value-in-a-grid/）build_graph|topological_sort|greed
 2127（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|dag|directed_circle_based_tree|classification_discussion
 127（https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/）topological_sort|directed_circle_based_tree|
 269（https://leetcode.cn/problems/alien-dictionary/）lexicographical_order|build_graph|topological_sort
@@ -29,7 +29,7 @@ P3243（https://www.luogu.com.cn/problem/P3243）reverse_graph|topological_sort|
 P5536（https://www.luogu.com.cn/problem/P5536）undirected_topological_sort
 P6037（https://www.luogu.com.cn/problem/P6037）undirected_circle_based_tree|union_find|topological_sort|implemention
 P6255（https://www.luogu.com.cn/problem/P6255）union_find|topological_sort|circle_judge
-P6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|greedy|topological_sort
+P6417（https://www.luogu.com.cn/problem/P6417）directed_circle_based_tree|greed|topological_sort
 P6560（https://www.luogu.com.cn/problem/P6560）reverse_graph|topological_sort|game_dp
 P8655（https://www.luogu.com.cn/problem/P8655）topological_sort|directed_circle_based_tree
 P8943（https://www.luogu.com.cn/problem/P8943）undirected_circle_based_tree|game_dp
@@ -39,15 +39,15 @@ P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sort|
 
 ===================================CodeForces===================================
 1454E（https://codeforces.com/contest/1454/problem/E）circle_based_tree|counter|brute_force|inclusion_exclusion
-1907G（https://codeforces.com/contest/1907/problem/G）directed_circle_based_tree|greedy|implemention|topological_sort
-1914F（https://codeforces.com/contest/1914/problem/F）topological_sort|greedy
+1907G（https://codeforces.com/contest/1907/problem/G）directed_circle_based_tree|greed|implemention|topological_sort
+1914F（https://codeforces.com/contest/1914/problem/F）topological_sort|greed
 1829F（https://codeforces.com/contest/1829/problem/F）reverse_thinking|degree|undirected_graph
 1873H（https://codeforces.com/contest/1873/problem/H）circle_based_tree|topological_sort
-1029E（https://codeforces.com/contest/1029/problem/E）greedy|implemention|rooted_tree|depth|degree
-1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greedy
+1029E（https://codeforces.com/contest/1029/problem/E）greed|implemention|rooted_tree|depth|degree
+1872F（https://codeforces.com/contest/1872/problem/F）topological_sort|greed
 1388D（https://codeforces.com/problemset/problem/1388/D）topological_sort|dag_dp|heuristic_merge|classical
 919D（https://codeforces.com/problemset/problem/919/D）topological_sort|dag_dp|classical
-1335F（https://codeforces.com/problemset/problem/1335/F）circle_based_tree|implemention|observation|greedy
+1335F（https://codeforces.com/problemset/problem/1335/F）circle_based_tree|implemention|observation|greed
 1027D（https://codeforces.com/problemset/problem/1027/D）topological_sort|classical|circle_based_tree
 1867D（https://codeforces.com/problemset/problem/1867/D）topological_sort|classical|circle_based_tree
 
@@ -55,7 +55,7 @@ P4316（https://www.luogu.com.cn/problem/P4316）reverse_graph|topological_sort|
 ABC266F（https://atcoder.jp/contests/abc266/tasks/abc266_f）undirected_circle_based_tree
 ABC303E（https://atcoder.jp/contests/abc303/tasks/abc303_e）undirected_graph|topological_sort
 ABC296E（https://atcoder.jp/contests/abc296/tasks/abc296_e）topological_sort|directed_graph
-ABC256E（https://atcoder.jp/contests/abc256/tasks/abc256_e）topological_sort|greedy|circle_based_tree|classical
+ABC256E（https://atcoder.jp/contests/abc256/tasks/abc256_e）topological_sort|greed|circle_based_tree|classical
 ABC223D（https://atcoder.jp/contests/abc223/tasks/abc223_d）topological_sort
 ABC188E（https://atcoder.jp/contests/abc188/tasks/abc188_e）topologic_sort|dag_dp
 
@@ -79,7 +79,7 @@ from src.basis.tree_node.template import TreeNode
 from src.graph.network_flow.template import UndirectedGraph
 from src.graph.topological_sort.template import WeightedGraphForTopologicalSort
 from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -626,7 +626,7 @@ class Solution:
     def lg_p6417(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6417
-        tag: directed_circle_based_tree|greedy|topological_sort|brain_teaser|classical
+        tag: directed_circle_based_tree|greed|topological_sort|brain_teaser|classical
         """
         n = ac.read_int()  # MLE
         dct = [ac.read_int() - 1 for _ in range(n)]
@@ -1107,7 +1107,7 @@ class Solution:
     def abc_256e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc256/tasks/abc256_e
-        tag: topological_sort|greedy|circle_based_tree|classical
+        tag: topological_sort|greed|circle_based_tree|classical
         """
         n = ac.read_int()
         x = ac.read_list_ints_minus_one()
@@ -1196,7 +1196,7 @@ class Solution:
     def cf_1335f(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1335/F
-        tag: circle_based_tree|implemention|observation|greedy
+        tag: circle_based_tree|implemention|observation|greed
         """
         move = dict()
         move["U"] = (-1, 0)

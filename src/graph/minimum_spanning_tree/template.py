@@ -2,7 +2,7 @@ import math
 from collections import deque
 from heapq import heappop, heappush
 
-from src.data_structure.tree_array.template import PointDescendPreMin
+from src.structure.tree_array.template import PointDescendPreMin
 from src.graph.union_find.template import UnionFind
 
 
@@ -76,7 +76,7 @@ class KruskalMinimumSpanningTree:
         if method == "kruskal":
             # Edge priority
             self.edges.sort(key=lambda item: item[2])
-            # greedy selection of edges based on weight for connected merging
+            # greed selection of edges based on weight for connected merging
             uf = UnionFind(self.n)
             for x, y, z in self.edges:
                 if uf.union(x, y):

@@ -1,23 +1,23 @@
 """
 
 Algorithm：construction
-Description：greedy|sort|construction|specific_plan
+Description：greed|sort|construction|specific_plan
 
 ====================================LeetCode====================================
 280（https://leetcode.cn/problems/wiggle-sort/）construction|sort|odd_even
-2663（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）greedy|construction|palindrome_substring|lexicographical_order
+2663（https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/）greed|construction|palindrome_substring|lexicographical_order
 1982（https://leetcode.cn/problems/find-array-given-subset-sums/）construction
-1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
+1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greed|brain_teaser
 2573（https://leetcode.cn/problems/find-the-string-with-lcp/）lcp|construction|union_find
-100452（https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greedy|implemention|specific_plan|lexicographical_order
+100452（https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greed|implemention|specific_plan|lexicographical_order
 100431（https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/）construction|unweighted_graph
 
 =====================================LuoGu======================================
-P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
+P8846（https://www.luogu.com.cn/problem/P8846）greed|construction
 P2902（https://www.luogu.com.cn/problem/P2902）construction
 P5823（https://www.luogu.com.cn/problem/P5823）construction
-P7383（https://www.luogu.com.cn/problem/P7383）greedy|construction
-P7947（https://www.luogu.com.cn/problem/P7947）greedy|construction|product_n_sum_k|prime_factorization
+P7383（https://www.luogu.com.cn/problem/P7383）greed|construction
+P7947（https://www.luogu.com.cn/problem/P7947）greed|construction|product_n_sum_k|prime_factorization
 P9101（https://www.luogu.com.cn/problem/P9101）construction|directed_graph|no_circe
 P8976（https://www.luogu.com.cn/problem/P8976）brute_force|construction
 P8910（https://www.luogu.com.cn/problem/P8910）permutation_circle|construction
@@ -29,12 +29,12 @@ P7567（https://www.luogu.com.cn/problem/P7567）construction|classical|guess_ta
 P8683（https://www.luogu.com.cn/problem/P8683）construction
 
 ===================================CodeForces===================================
-1396A（https://codeforces.com/problemset/problem/1396/A）greedy|construction
+1396A（https://codeforces.com/problemset/problem/1396/A）greed|construction
 1133F2（https://codeforces.com/contest/1133/problem/F2）mst|construction|union_find
 1118C（https://codeforces.com/contest/1118/problem/C）construction|matrix_rotate|implemention
-1118E（https://codeforces.com/problemset/problem/1118/E）implemention|greedy|construction
-960C（https://codeforces.com/problemset/problem/960/C）greedy|construction
-1793B（https://codeforces.com/contest/1793/problem/B）brain_teaser|greedy|construction
+1118E（https://codeforces.com/problemset/problem/1118/E）implemention|greed|construction
+960C（https://codeforces.com/problemset/problem/960/C）greed|construction
+1793B（https://codeforces.com/contest/1793/problem/B）brain_teaser|greed|construction
 1375D（https://codeforces.com/problemset/problem/1375/D）mex|construction|sorting
 1348D（https://codeforces.com/problemset/problem/1348/D）bin|construction
 1554D（https://codeforces.com/problemset/problem/1554/D）construction|floor
@@ -45,20 +45,20 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1822D（https://codeforces.com/contest/1822/problem/D）construction|prefix_sum|mod|permutation
 1509D（https://codeforces.com/contest/1509/problem/D）lcs|shortest_common_hypersequence|construction|data_range|O(n)|pigeonhole_principle
 1473C（https://codeforces.com/contest/1473/problem/C）brain_teaser|s1s2..sn..s2s1
-1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greedy|implemention
+1469D（https://codeforces.com/contest/1469/problem/D）square|ceil|greed|implemention
 1478B（https://codeforces.com/contest/1478/problem/B）brute_force|bag_dp|construction
 1682B（https://codeforces.com/contest/1682/problem/B）bitwise_and|construction|permutation_circle
-1823D（https://codeforces.com/contest/1823/problem/D）greedy|construction|palindrome
+1823D（https://codeforces.com/contest/1823/problem/D）greed|construction|palindrome
 1352G（https://codeforces.com/contest/1352/problem/G）construction|odd_even
 1352F（https://codeforces.com/contest/1352/problem/G）construction
 1003E（https://codeforces.com/contest/1003/problem/E）construction|tree_diameter|classical
 1005F（https://codeforces.com/contest/1005/problem/F）construction|shortest_path_spanning_tree|classical|dfs|specific_plan
-1092E（https://codeforces.com/contest/1092/problem/E）construction|tree_diameter|classical|greedy
-1141G（https://codeforces.com/problemset/problem/1141/G）construction|dfs|color_method|greedy|classical
+1092E（https://codeforces.com/contest/1092/problem/E）construction|tree_diameter|classical|greed
+1141G（https://codeforces.com/problemset/problem/1141/G）construction|dfs|color_method|greed|classical
 1144F（https://codeforces.com/contest/1144/problem/F）construction|color_method|classical|bipartite
-1157E（https://codeforces.com/contest/1157/problem/E）construction|greedy|sorted_list
-1157D（https://codeforces.com/contest/1157/problem/D）construction|greedy
-1196E（https://codeforces.com/contest/1196/problem/E）construction|greedy
+1157E（https://codeforces.com/contest/1157/problem/E）construction|greed|sorted_list
+1157D（https://codeforces.com/contest/1157/problem/D）construction|greed
+1196E（https://codeforces.com/contest/1196/problem/E）construction|greed
 1213E（https://codeforces.com/contest/1213/problem/E）construction|brute_force
 1294F（https://codeforces.com/contest/1294/problem/F）classical|tree_diameter|construction
 1311E（https://codeforces.com/contest/1311/problem/E）construction|2-tree
@@ -125,12 +125,12 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 739A（https://codeforces.com/problemset/problem/739/A）construction|observation|mex_like
 582A（https://codeforces.com/problemset/problem/582/A）construction|gcd_like
 707C（https://codeforces.com/problemset/problem/707/C）construction|math
-1856C（https://codeforces.com/problemset/problem/1856/C）construction|brute_force|greedy
+1856C（https://codeforces.com/problemset/problem/1856/C）construction|brute_force|greed
 1882C（https://codeforces.com/problemset/problem/1882/C）observation|suffix|brute_force|construction
 1567C（https://codeforces.com/problemset/problem/1567/C）observation|construction
 743C（https://codeforces.com/problemset/problem/743/C）construction|math
 1303C（https://codeforces.com/problemset/problem/1303/C）construction|bfs|euler_path
-1718A2（https://codeforces.com/problemset/problem/1718/A2）bit_operation|brain_teaser|construction|greedy
+1718A2（https://codeforces.com/problemset/problem/1718/A2）bit_operation|brain_teaser|construction|greed
 1439A2（https://codeforces.com/problemset/problem/1439/A2）construction|implemention
 1202D（https://codeforces.com/problemset/problem/1202/D）construction|binary_search
 1355D（https://codeforces.com/problemset/problem/1355/D）construction
@@ -143,23 +143,23 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1438D（https://codeforces.com/problemset/problem/1438/D）construction|bit_operation|odd_even|observation
 1110E（https://codeforces.com/problemset/problem/1110/E）observation|construction|operation|brain_teaser
 1329B（https://codeforces.com/problemset/problem/1329/B）construction|linear_dp|bit_operation
-1174D（https://codeforces.com/problemset/problem/1174/D）construction|bit_operation|greedy|prefix_xor
+1174D（https://codeforces.com/problemset/problem/1174/D）construction|bit_operation|greed|prefix_xor
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction
-ARC086B（https://atcoder.jp/contests/abc081/tasks/arc086_b）greedy|construction|classification_discussion
+ARC086B（https://atcoder.jp/contests/abc081/tasks/arc086_b）greed|construction|classification_discussion
 ARC093B（https://atcoder.jp/contests/abc092/tasks/arc093_b）brain_teaser|construction
 ABC126F（https://atcoder.jp/contests/abc126/tasks/abc126_f）brain_teaser|construction|xor_property
 ABC109D（https://atcoder.jp/contests/abc109/tasks/abc109_d）odd_even|construction
-ABC345F（https://atcoder.jp/contests/abc345/tasks/abc345_f）construction|union_find|greedy|implemention
+ABC345F（https://atcoder.jp/contests/abc345/tasks/abc345_f）construction|union_find|greed|implemention
 ABC299E（https://atcoder.jp/contests/abc299/tasks/abc299_e）construction|bfs
 ABC251F（https://atcoder.jp/contests/abc251/tasks/abc251_f）construction|dfs|bfs|classical
 ABC251D（https://atcoder.jp/contests/abc251/tasks/abc251_d）construction|brute_force|brain_teaser
-ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|construction|greedy|brain_teaser|union_find
+ABC239F（https://atcoder.jp/contests/abc239/tasks/abc239_f）implemention|construction|greed|brain_teaser|union_find
 ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|construction|mst|brain_teaser|classical
 ABC231D（https://atcoder.jp/contests/abc231/tasks/abc231_d）union_find|construction
 ABC225C（https://atcoder.jp/contests/abc225/tasks/abc225_c）construction
-ABC362F（https://atcoder.jp/contests/abc362/tasks/abc362_f）construction|greedy|observation
+ABC362F（https://atcoder.jp/contests/abc362/tasks/abc362_f）construction|greed|observation
 
 ====================================AtCoder=====================================
 1（https://www.codechef.com/problems/ENVPILE）bfs|construction|classical
@@ -174,8 +174,8 @@ from typing import List
 
 from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.graph.union_find.template import UnionFind
-from src.mathmatics.number_theory.template import NumFactor
-from src.utils.fast_io import FastIO
+from src.math.number_theory.template import NumFactor
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -314,7 +314,7 @@ class Solution:
     def lc_2663(s: str, k: int) -> str:
         """
         url: https://leetcode.cn/problems/lexicographically-smallest-beautiful-string/
-        tag: greedy|construction|palindrome_substring|lexicographical_order|reverse_order|brute_force
+        tag: greed|construction|palindrome_substring|lexicographical_order|reverse_order|brute_force
         """
         n = len(s)
         for i in range(n - 1, -1, -1):
@@ -335,7 +335,7 @@ class Solution:
     def lg_p7947(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7947
-        tag: greedy|construction|product_n_sum_k|prime_factorization|brain_teaser
+        tag: greed|construction|product_n_sum_k|prime_factorization|brain_teaser
         """
         n, k = ac.read_list_ints()
         ans = []
@@ -477,7 +477,7 @@ class Solution:
     def cf_1823d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1823/problem/D
-        tag: greedy|construction|palindrome
+        tag: greed|construction|palindrome
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -582,7 +582,7 @@ class Solution:
     def cf_1141g(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1141/G
-        tag: construction|dfs|color_method|greedy|classical
+        tag: construction|dfs|color_method|greed|classical
         """
         n, k = ac.read_list_ints()
         edges = [[] for _ in range(n)]
@@ -686,7 +686,7 @@ class Solution:
     def abc_239f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc239/tasks/abc239_f
-        tag: implemention|construction|greedy|brain_teaser|union_find
+        tag: implemention|construction|greed|brain_teaser|union_find
         """
         n, m = ac.read_list_ints()
         degree = ac.read_list_ints()
@@ -989,7 +989,7 @@ class Solution:
     def abc_362f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc362/tasks/abc362_f
-        tag: construction|greedy|observation
+        tag: construction|greed|observation
         """
         n = ac.read_int()
         dct = [[] for _ in range(n)]
@@ -1130,7 +1130,7 @@ class Solution:
     def cf1718a2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1718/A2
-        tag: bit_operation|brain_teaser|construction|greedy
+        tag: bit_operation|brain_teaser|construction|greed
         """
         ac.get_random_seed()
         for _ in range(ac.read_int()):

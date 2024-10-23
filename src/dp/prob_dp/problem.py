@@ -35,7 +35,7 @@ ABC189F（https://atcoder.jp/contests/abc189/tasks/abc189_f）expectation_dp|hig
 1753F（https://codeforces.com/problemset/problem/1753/C）expectation_dp|comb|inv|prefix_sum
 518D（https://codeforces.com/contest/518/problem/D）bag_dp|expectation_dp|prob_dp
 453A（https://codeforces.com/problemset/problem/453/A）expectation_dp|prob_dp|inclusion_exclusion|float_fast_power
-442B（https://codeforces.com/problemset/problem/442/B）prob_dp|math|greedy
+442B（https://codeforces.com/problemset/problem/442/B）prob_dp|math|greed
 
 =====================================AcWing=====================================
 5058（https://www.acwing.com/problem/content/description/5061/）prob_dp
@@ -45,8 +45,8 @@ ABC189F（https://atcoder.jp/contests/abc189/tasks/abc189_f）expectation_dp|hig
 import math
 from collections import deque
 
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO
+from src.math.comb_perm.template import Combinatorics
+from src.util.fast_io import FastIO
 
 
 class Solution:

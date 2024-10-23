@@ -8,45 +8,45 @@ Description：monotonicity is necessary for solution like these, which always wo
 154（https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array-ii/）binary_search|rotated_array|sort|duplicate_nums
 162（https://leetcode.cn/problems/find-peak-element/）binary_search|peak_index
 2179（https://leetcode.cn/problems/count-good-triplets-in-an-array/）binary_search|sorted_list
-2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
+2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greed|binary_search|implemention
 2102（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）binary_search|sorted_list
 2563（https://leetcode.cn/problems/count-the-number-of-fair-pairs/）binary_search|sorted_list
-2604（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）binary_search|greedy|pointer
+2604（https://leetcode.cn/problems/minimum-time-to-eat-all-grains/）binary_search|greed|pointer
 1201（https://leetcode.cn/problems/ugly-number-iii/）binary_search|counter|inclusion_exclusion
 1739（https://leetcode.cn/problems/building-boxes/）math|binary_search
-1889（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）sort|prefix_sum|greedy|binary_search
-2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greedy
+1889（https://leetcode.cn/problems/minimum-space-wasted-from-packaging/）sort|prefix_sum|greed|binary_search
+2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）binary_search|greed
 2594（https://leetcode.cn/problems/minimum-time-to-repair-cars/）binary_search
 2517（https://leetcode.cn/problems/maximum-tastiness-of-candy-basket/）binary_search
 1482（https://leetcode.cn/problems/minimum-number-of-days-to-make-m-bouquets/）binary_search
-2528（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greedy
+2528（https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/）binary_search|prefix_sum|diff_array|greed
 2560（https://leetcode.cn/problems/house-robber-iv/）binary_search|dp
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
-100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
+100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greed|median_greedy|brute_force
 100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
 3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointers|classical
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search
-P1570（https://www.luogu.com.cn/problem/P1570）math|greedy|binary_search
-P1843（https://www.luogu.com.cn/problem/P1843）greedy|binary_search
+P1570（https://www.luogu.com.cn/problem/P1570）math|greed|binary_search
+P1843（https://www.luogu.com.cn/problem/P1843）greed|binary_search
 P2309（https://www.luogu.com.cn/problem/P2309）prefix_sum|sorted_list|binary_search|counter|sub_consequence_sum
 P2390（https://www.luogu.com.cn/problem/P2390）brute_force|binary_search|two_pointers
 P2759（https://www.luogu.com.cn/problem/P2759）math|binary_search
 P1404（https://www.luogu.com.cn/problem/P1404）math|prefix_sum|binary_search
 P1592（https://www.luogu.com.cn/problem/P1592）binary_search|inclusion_exclusion|kth_coprime_of_n
-P2855（https://www.luogu.com.cn/problem/P2855）greedy|binary_search
+P2855（https://www.luogu.com.cn/problem/P2855）greed|binary_search
 P2884（https://www.luogu.com.cn/problem/P2884）binary_search
-P2985（https://www.luogu.com.cn/problem/P2985）greedy|binary_search|implemention
+P2985（https://www.luogu.com.cn/problem/P2985）greed|binary_search|implemention
 P3184（https://www.luogu.com.cn/problem/P3184）binary_search|counter
-P3611（https://www.luogu.com.cn/problem/P3611）binary_search|greedy|heapq|implemention
+P3611（https://www.luogu.com.cn/problem/P3611）binary_search|greed|heapq|implemention
 P3743（https://www.luogu.com.cn/problem/P3743）binary_search
 P4058（https://www.luogu.com.cn/problem/P4058）binary_search
 P4670（https://www.luogu.com.cn/problem/P4670）sort|binary_search|counter
-P5119（https://www.luogu.com.cn/problem/P5119）greedy|binary_search
+P5119（https://www.luogu.com.cn/problem/P5119）greed|binary_search
 P5250（https://www.luogu.com.cn/problem/P5250）sorted_list
-P6174（https://www.luogu.com.cn/problem/P6174）greedy|binary_search
-P6281（https://www.luogu.com.cn/problem/P6281）greedy|binary_search
+P6174（https://www.luogu.com.cn/problem/P6174）greed|binary_search
+P6281（https://www.luogu.com.cn/problem/P6281）greed|binary_search
 P6423（https://www.luogu.com.cn/problem/P6423）binary_search
 P7177（https://www.luogu.com.cn/problem/P7177）binary_search|tree|dfs|implemention
 P1314（https://www.luogu.com.cn/problem/P1314）binary_search|sum_nearest_subsequence
@@ -59,64 +59,64 @@ P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_gra
 P1542（https://www.luogu.com.cn/problem/P1542）binary_search|fraction|high_precision
 P2237（https://www.luogu.com.cn/problem/P2237）brain_teaser|sort|binary_search
 P2810（https://www.luogu.com.cn/problem/P2810）binary_search|brute_force
-P3718（https://www.luogu.com.cn/problem/P3718）binary_search|greedy
-P3853（https://www.luogu.com.cn/problem/P3853）binary_search|greedy
+P3718（https://www.luogu.com.cn/problem/P3718）binary_search|greed
+P3853（https://www.luogu.com.cn/problem/P3853）binary_search|greed
 P4343（https://www.luogu.com.cn/problem/P4343）bound|binary_search|implemention
-P5844（https://www.luogu.com.cn/problem/P5844）median|greedy|prefix_sum|binary_search
+P5844（https://www.luogu.com.cn/problem/P5844）median|greed|prefix_sum|binary_search
 P5878（https://www.luogu.com.cn/problem/P5878）binary_search|brute_force
 P6058（https://www.luogu.com.cn/problem/P6058）dfs_order|offline_lca|binary_search
 P6069（https://www.luogu.com.cn/problem/P6069）math|binary_search
 P6733（https://www.luogu.com.cn/problem/P6733）binary_search|sorted_list
-P8161（https://www.luogu.com.cn/problem/P8161）greedy|binary_search
+P8161（https://www.luogu.com.cn/problem/P8161）greed|binary_search
 P8198（https://www.luogu.com.cn/problem/P8198）binary_search|pointer
-P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greedy|implemention
-P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implemention
+P9050（https://www.luogu.com.cn/problem/P9050）binary_search|data_range|greed|implemention
+P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greed|implemention
 
 ===================================CodeForces===================================
-1251D（https://codeforces.com/problemset/problem/1251/D）greedy|median|binary_search
-830A（https://codeforces.com/problemset/problem/830/A）greedy|point_coverage|binary_search
-847E（https://codeforces.com/problemset/problem/847/E）greedy|binary_search|pointer
-732D（https://codeforces.com/problemset/problem/732/D）greedy|binary_search|pointer
+1251D（https://codeforces.com/problemset/problem/1251/D）greed|median|binary_search
+830A（https://codeforces.com/problemset/problem/830/A）greed|point_coverage|binary_search
+847E（https://codeforces.com/problemset/problem/847/E）greed|binary_search|pointer
+732D（https://codeforces.com/problemset/problem/732/D）greed|binary_search|pointer
 778A（https://codeforces.com/problemset/problem/778/A）binary_search|pointer
-913C（https://codeforces.com/problemset/problem/913/C）dp|binary_search|greedy|implemention
-1791G2（https://codeforces.com/problemset/problem/1791/G2）greedy|sort|prefix_sum|brute_force|binary_search
+913C（https://codeforces.com/problemset/problem/913/C）dp|binary_search|greed|implemention
+1791G2（https://codeforces.com/problemset/problem/1791/G2）greed|sort|prefix_sum|brute_force|binary_search
 448D（https://codeforces.com/problemset/problem/448/D）binary_search|kth_max_of_n_mul_m_table
-1475D（https://codeforces.com/problemset/problem/1475/D）greedy|sort|prefix_sum|brute_force|binary_search
-1370D（https://codeforces.com/problemset/problem/1370/D）binary_search|greedy|check
+1475D（https://codeforces.com/problemset/problem/1475/D）greed|sort|prefix_sum|brute_force|binary_search
+1370D（https://codeforces.com/problemset/problem/1370/D）binary_search|greed|check
 1486D（https://codeforces.com/problemset/problem/1486/D）binary_search|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum
-1118D2（https://codeforces.com/problemset/problem/1118/D2）greedy|binary_search
+1118D2（https://codeforces.com/problemset/problem/1118/D2）greed|binary_search
 883I（https://codeforces.com/problemset/problem/883/I）binary_search|two_pointers|dp
-1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greedy|two_pointers|check
-1251D（https://codeforces.com/contest/1251/problem/D）greedy|binary_search
-1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greedy|classical|binary_search
+1680C（https://codeforces.com/contest/1680/problem/C）binary_search|greed|two_pointers|check
+1251D（https://codeforces.com/contest/1251/problem/D）greed|binary_search
+1165F2（https://codeforces.com/contest/1165/problem/F2）reverse_order|greed|classical|binary_search
 1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
-1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
+1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greed|sorted_list
 1843E（https://codeforces.com/problemset/problem/1843/E）binary_search|query_order|classical
 1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_masks
 1393C（https://codeforces.com/problemset/problem/1393/C）binary_search|implemention|stack|classical|math
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
-1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
+1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greed
 1679D（https://codeforces.com/problemset/problem/1679/D）binary_search|graph|longest_path
 1244E（https://codeforces.com/problemset/problem/1244/E）binary_search|observation|two_pointers
-1998C（https://codeforces.com/problemset/problem/1998/C）binary_search|observation|greedy
-1623C（https://codeforces.com/problemset/problem/1623/C）binary_search|reverse_order|greedy
+1998C（https://codeforces.com/problemset/problem/1998/C）binary_search|observation|greed
+1623C（https://codeforces.com/problemset/problem/1623/C）binary_search|reverse_order|greed
 1610C（https://codeforces.com/problemset/problem/1610/C）binary_search|brain_teaser|monotonic_property
-1946C（https://codeforces.com/problemset/problem/1946/C）binary_search|point_head|tree_dp|greedy
-1168A（https://codeforces.com/problemset/problem/1168/A）binary_search|brain_teaser|greedy
+1946C（https://codeforces.com/problemset/problem/1946/C）binary_search|point_head|tree_dp|greed
+1168A（https://codeforces.com/problemset/problem/1168/A）binary_search|brain_teaser|greed
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
-ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greedy
+ARC075B（https://atcoder.jp/contests/abc063/tasks/arc075_b）binary_search|greed
 ABC341D（https://atcoder.jp/contests/abc341/tasks/abc341_d）binary_search|math|classical
 ABC324F（https://atcoder.jp/contests/abc324/tasks/abc324_f）binary_search|dag_dp|find_float_right|classical
 ABC305D（https://atcoder.jp/contests/abc305/tasks/abc305_d）binary_search|prefix_sum
 ABC294F（https://atcoder.jp/contests/abc294/tasks/abc294_f）binary_search|classical|brain_teaser
-ABC346F（https://atcoder.jp/contests/abc346/tasks/abc346_f）binary_search|brute_force|greedy|implemention|pointer|circular_array
+ABC346F（https://atcoder.jp/contests/abc346/tasks/abc346_f）binary_search|brute_force|greed|implemention|pointer|circular_array
 ABC270E（https://atcoder.jp/contests/abc270/tasks/abc270_e）binary_search|implemention
 ABC257D（https://atcoder.jp/contests/abc257/tasks/abc257_d）binary_search|bfs|brute_force
 ABC246D（https://atcoder.jp/contests/abc246/tasks/abc246_d）binary_search|brute_force
-ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greedy|binary_search|classical
-ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greedy|implemention
+ABC236E（https://atcoder.jp/contests/abc236/tasks/abc236_e）median|average|dp|greed|binary_search|classical
+ABC216E（https://atcoder.jp/contests/abc216/tasks/abc216_e）binary_search|greed|implemention
 ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointers|binary_search|sort|brain_teaser
 ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 ABC198C（https://atcoder.jp/contests/abc198/tasks/abc198_c）binary_search|corner_case
@@ -148,11 +148,11 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import PreFixSumMatrix
-from src.data_structure.sorted_list.template import SortedList
-from src.mathmatics.high_precision.template import FloatToFrac
-from src.mathmatics.number_theory.template import NumFactor
-from src.search.dfs.template import UnWeightedTree
-from src.utils.fast_io import FastIO
+from src.structure.sorted_list.template import SortedList
+from src.math.high_precision.template import FloatToFrac
+from src.math.number_theory.template import NumFactor
+from src.tree.tree_dp.template import WeightedTree
+from src.util.fast_io import FastIO
 
 
 
@@ -217,7 +217,7 @@ class Solution:
     def cf_1370d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1370/D
-        tag: binary_search|greedy|check|odd_even
+        tag: binary_search|greed|check|odd_even
         """
         n, k = map(int, input().split())
         nums = list(map(int, input().split()))
@@ -247,7 +247,7 @@ class Solution:
     def cf_1475d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1475/D
-        tag: greedy|sort|prefix_sum|brute_force|binary_search
+        tag: greed|sort|prefix_sum|brute_force|binary_search
         """
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -327,7 +327,7 @@ class Solution:
     def cf_1680c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1680/problem/C
-        tag: binary_search|greedy|two_pointers|check|classical
+        tag: binary_search|greed|two_pointers|check|classical
         """
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -358,7 +358,7 @@ class Solution:
     def cf_1791g2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1791/G2
-        tag: greedy|sort|prefix_sum|brute_force|binary_search|can_not_to_be_two_pointers
+        tag: greed|sort|prefix_sum|brute_force|binary_search|can_not_to_be_two_pointers
         """
         for _ in range(ac.read_int()):
 
@@ -386,7 +386,7 @@ class Solution:
     def lc_1889(packages: List[int], boxes: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-space-wasted-from-packaging/
-        tag: sort|prefix_sum|greedy|binary_search
+        tag: sort|prefix_sum|greed|binary_search
         """
         packages.sort()
         pre = list(accumulate(packages, initial=0))
@@ -414,7 +414,7 @@ class Solution:
     def lc_2141(n: int, batteries: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-running-time-of-n-computers/
-        tag: greedy|binary_search|implemention|classical
+        tag: greed|binary_search|implemention|classical
         """
         batteries.sort(reverse=True)
         rest = sum(batteries[n:])
@@ -432,7 +432,7 @@ class Solution:
     def lc_2528(stations: List[int], r: int, k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximize-the-minimum-powered-city/description/
-        tag: binary_search|prefix_sum|diff_array|greedy|classical
+        tag: binary_search|prefix_sum|diff_array|greed|classical
         """
         n = len(stations)
         nums = [0] * n
@@ -513,7 +513,7 @@ class Solution:
     def cf_1486d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1486/D
-        tag: binary_search|index|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum|classical|median|greedy
+        tag: binary_search|index|hash|prefix_sum|maximum_length_of_sub_consequence_with_pos_sum|classical|median|greed
         """
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -651,7 +651,7 @@ class Solution:
     def arc_075b(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc063/tasks/arc075_b
-        tag: binary_search|greedy
+        tag: binary_search|greed
         """
         n, a, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -890,7 +890,7 @@ class Solution:
     def cf_1118d2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1118/D2
-        tag: greedy|binary_search
+        tag: greed|binary_search
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -990,7 +990,7 @@ class Solution:
     def lg_p3718(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3718
-        tag: binary_search|greedy|classical
+        tag: binary_search|greed|classical
         """
         n, k = ac.read_list_ints()
         s = ac.read_str()
@@ -1029,7 +1029,7 @@ class Solution:
     def lg_p3853(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3853
-        tag: binary_search|greedy
+        tag: binary_search|greed
         """
         length, n, k = ac.read_list_ints()
         lst = ac.read_list_ints()
@@ -1276,7 +1276,7 @@ class Solution:
     def lc_2604(hens: List[int], grains: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-time-to-eat-all-grains/
-        tag: binary_search|greedy|pointer
+        tag: binary_search|greed|pointer
         """
         hens.sort()
         grains.sort()
@@ -1307,7 +1307,7 @@ class Solution:
     def lc_100123(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/
-        tag: binary_search|greedy|median_greedy|brute_force
+        tag: binary_search|greed|median_greedy|brute_force
         """
         n = len(nums)
         nums.sort()
@@ -1330,7 +1330,7 @@ class Solution:
     def lg_p8161(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8161
-        tag: greedy|binary_search|classical
+        tag: greed|binary_search|classical
         """
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1387,7 +1387,7 @@ class Solution:
     def lg_p9050(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P9050
-        tag: binary_search|data_range|greedy|implemention|classical
+        tag: binary_search|data_range|greed|implemention|classical
         """
         n = ac.read_int()
         if n == 1:
@@ -1570,7 +1570,7 @@ class Solution:
     def cf_1165f2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1165/problem/F2
-        tag: reverse_order|greedy|classical|binary_search
+        tag: reverse_order|greed|classical|binary_search
         """
         n, m = ac.read_list_ints()
         cnt = [0] + ac.read_list_ints()
@@ -1611,7 +1611,7 @@ class Solution:
     def cf_1883g2(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1883/problem/G2
-        tag: binary_search|greedy|sorted_list
+        tag: binary_search|greed|sorted_list
         """
         for _ in range(ac.read_int()):
             n, m = ac.read_list_ints()
@@ -1720,7 +1720,7 @@ class Solution:
     def abc_236e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc236/tasks/abc236_e
-        tag: median|average|dp|greedy|binary_search|classical
+        tag: median|average|dp|greed|binary_search|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -1951,7 +1951,7 @@ class Solution:
     def cf_1379c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1379/problem/C
-        tag: observation|prefix_sum|binary_search|brute_force|greedy
+        tag: observation|prefix_sum|binary_search|brute_force|greed
         """
         q = ac.read_int()
         for i in range(q):
@@ -2091,10 +2091,10 @@ class Solution:
     def cf_1946c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1946/C
-        tag: binary_search|point_head|tree_dp|greedy
+        tag: binary_search|point_head|tree_dp|greed
         """
 
-        class Graph(UnWeightedTree):
+        class Graph(WeightedTree):
             def tree_dp(self, x):
                 sub = [0] * self.n
                 parent = [0] * self.n
@@ -2143,7 +2143,7 @@ class Solution:
     def cf_1168a(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1168/A
-        tag: binary_search|brain_teaser|greedy
+        tag: binary_search|brain_teaser|greed
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()

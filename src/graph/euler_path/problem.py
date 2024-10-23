@@ -40,8 +40,8 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.graph.euler_path.template import DirectedEulerPath, UnDirectedEulerPath
 from src.graph.union_find.template import UnionFind
-from src.mathmatics.number_theory.template import PrimeSieve
-from src.utils.fast_io import FastIO
+from src.math.number_theory.template import PrimeSieve
+from src.util.fast_io import FastIO
 
 
 class Solution:

@@ -10,11 +10,11 @@ P3382（https://www.luogu.com.cn/problem/P3382）ternary_search|ceil
 P1883（https://www.luogu.com.cn/problem/P1883）ternary_search|floor
 
 ===================================CodeForces===================================
-939E（https://codeforces.com/problemset/problem/939/E）greedy|two_pointers|ternary_search|ceil
+939E（https://codeforces.com/problemset/problem/939/E）greed|two_pointers|ternary_search|ceil
 439D（https://codeforces.com/problemset/problem/439/D）ternary_search
 1730B（https://codeforces.com/contest/1730/problem/B）ternary_search
-1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greedy
-1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greedy
+1355E（https://codeforces.com/problemset/problem/1355/E）ternary_search|classical|greed
+1389D（https://codeforces.com/problemset/problem/1389/D）ternary_search|brute_force|implemention|greed
 1374E2（https://codeforces.com/problemset/problem/1374/E2）ternary_search|two_pointers|brute_force|classical
 1999G2（https://codeforces.com/problemset/problem/1999/G2）ternary_search|interactive|classical
 578C（https://codeforces.com/problemset/problem/578/C）ternary_search|linear_dp|prefix_sum|classical
@@ -34,7 +34,7 @@ from decimal import Decimal
 from typing import List
 
 from src.basis.ternary_search.template import TernarySearch, TriPartPackTriPart
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 
@@ -183,7 +183,7 @@ class Solution:
     def cf_939e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/939/E
-        tag: greedy|two_pointers|ternary_search|ceil
+        tag: greed|two_pointers|ternary_search|ceil
         """
         nums = []
         pre = [0]
@@ -355,7 +355,7 @@ class Solution:
     def cf_1355e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1355/E
-        tag: ternary_search|classical|greedy
+        tag: ternary_search|classical|greed
         """
         n, a, r, m = ac.read_list_ints()
         h = ac.read_list_ints()
@@ -381,7 +381,7 @@ class Solution:
     def cf_1389d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1389/D
-        tag: ternary_search|brute_force|implemention|greedy
+        tag: ternary_search|brute_force|implemention|greed
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()

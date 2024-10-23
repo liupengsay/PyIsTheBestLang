@@ -13,7 +13,7 @@ Description：sliding_window|two_pointers|center_extension_method
 6293（https://leetcode.cn/problems/count-the-number-of-good-subarrays/）two_pointers|counter
 16（https://leetcode.cn/problems/3sum-closest/）tree_pointers
 15（https://leetcode.cn/problems/3sum/）two_pointers
-2422（https://leetcode.cn/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）opposite_direction|two_pointers|greedy
+2422（https://leetcode.cn/problems/range_merge_to_disjoint-operations-to-turn-array-into-a-palindrome/）opposite_direction|two_pointers|greed
 2524（https://leetcode.cn/problems/maximum-frequency-score-of-a-subarray/）sliding_window|mod|power
 239（https://leetcode.cn/problems/sliding-window-maximum/）sliding_window
 2447（https://leetcode.cn/problems/number-of-subarrays-with-gcd-equal-to-k/）sliding_window|gcd
@@ -25,7 +25,7 @@ Description：sliding_window|two_pointers|center_extension_method
 2516（https://leetcode.cn/problems/take-k-of-each-character-from-left-and-right/）reverse_thinking|inclusion_exclusion|two_pointers
 1537（https://leetcode.cn/problems/get-the-maximum-score/description/）two_pointers|liner_dp|topological_sorting
 1712（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
-948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greedy
+948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greed
 2953（https://leetcode.cn/problems/count-complete-substrings/）two_pointers|brute_force
 100424（https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/）two_pointers|brute_force
 
@@ -33,10 +33,10 @@ Description：sliding_window|two_pointers|center_extension_method
 P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
 P3353（https://www.luogu.com.cn/problem/P3353）sliding_window|two_pointers
 P3662（https://www.luogu.com.cn/problem/P3662）sliding_window|sub_consequence_sum
-P4995（https://www.luogu.com.cn/problem/P4995）sort|greedy|two_pointers|implemention
-P2207（https://www.luogu.com.cn/problem/P2207）greedy|same_direction|two_pointers
+P4995（https://www.luogu.com.cn/problem/P4995）sort|greed|two_pointers|implemention
+P2207（https://www.luogu.com.cn/problem/P2207）greed|same_direction|two_pointers
 P7542（https://www.luogu.com.cn/problem/P7542）bucket_counter|two_pointers
-P4653（https://www.luogu.com.cn/problem/P4653）greedy|sort|two_pointers
+P4653（https://www.luogu.com.cn/problem/P4653）greed|sort|two_pointers
 P3029（https://www.luogu.com.cn/problem/P3029）two_pointers
 P5583（https://www.luogu.com.cn/problem/P5583）two_pointers
 P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|counter
@@ -45,14 +45,14 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 ===================================CodeForces===================================
 1328D（https://codeforces.com/problemset/problem/1328/D）circular_array|sliding_window|odd_even
 1333C（https://codeforces.com/problemset/problem/1333/C）two_pointers|prefix_sum
-1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointers|implemention|reverse_array|greedy
+1381A2（https://codeforces.com/problemset/problem/1381/A2）two_pointers|implemention|reverse_array|greed
 1611F（https://codeforces.com/contest/1611/problem/F）two_pointers|classical
 1413C（https://codeforces.com/problemset/problem/1413/C）two_pointers
 1494C（https://codeforces.com/problemset/problem/1494/C）two_pointers|three_pointers|brute_force|observation
 
 ====================================AtCoder=====================================
 ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
-ABC337F（https://atcoder.jp/contests/abc337/tasks/abc337_f）two_pointers|implemention|greedy
+ABC337F（https://atcoder.jp/contests/abc337/tasks/abc337_f）two_pointers|implemention|greed
 ABC353C（https://atcoder.jp/contests/abc353/tasks/abc353_c）two_pointers|brute_force
 
 =====================================AcWing=====================================
@@ -68,7 +68,7 @@ from operator import add
 from typing import List
 
 from src.basis.two_pointers.template import SlidingWindowAggregation
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -79,7 +79,7 @@ class Solution:
     def lg_p4653(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4653
-        tag: greedy|sort|two_pointers|brain_teaser
+        tag: greed|sort|two_pointers|brain_teaser
         """
         n = ac.read_int()
 
@@ -524,7 +524,7 @@ class Solution:
     def abc_337f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc337/tasks/abc337_f
-        tag: two_pointers|implemention|greedy
+        tag: two_pointers|implemention|greed
         """
         n, m, k = ac.read_list_ints()
         cnt = [0] * (n + 1)

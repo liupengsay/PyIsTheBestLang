@@ -26,10 +26,10 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 1074（https://leetcode.cn/problems/number-of-submatrices-that-sum-to-target/description/）matrix_prefix_sum|brute_force
 1139（https://leetcode.cn/problems/largest-1-bordered-square/）matrix_prefix_sum|counter|brute_force
 2281（https://leetcode.cn/problems/sum-of-total-strength-of-wizards/description/）monotonic_stack|counter|prefix_sum_of_prefix_sum
-995（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）greedy|diff_array|implemention
+995（https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/）greed|diff_array|implemention
 986（https://leetcode.cn/problems/interval-list-intersections/description/）discretization_diff_array|two_pointers
-1744（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greedy|implemention
-1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
+1744（https://leetcode.cn/problems/can-you-eat-your-favorite-candy-on-your-favorite-day/description/）prefix_sum|greed|implemention
+1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greed|1520E
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
 3017（https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
@@ -40,7 +40,7 @@ list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=7
 P2367（https://www.luogu.com.cn/problem/P2367）diff_array
 P2280（https://www.luogu.com.cn/problem/P2280）matrix_prefix_sum
 P3138（https://www.luogu.com.cn/problem/P3138）matrix_prefix_sum
-P3406（https://www.luogu.com.cn/problem/P3406）diff_array|greedy
+P3406（https://www.luogu.com.cn/problem/P3406）diff_array|greed
 P3655（https://www.luogu.com.cn/problem/P3655）diff_array|implemention
 P5542（https://www.luogu.com.cn/problem/P5542）diff_matrix
 P5686（https://www.luogu.com.cn/problem/P5686）prefix_sum_of_prefix_sum
@@ -52,7 +52,7 @@ P1869（https://www.luogu.com.cn/problem/P1869）prefix_sum|comb|odd_even
 P7667（https://www.luogu.com.cn/problem/P7667）math|sort|prefix_sum
 P2671（https://www.luogu.com.cn/problem/P2671）prefix_or_sum|counter|brute_force|odd_even
 P1719（https://www.luogu.com.cn/problem/P1719）max_sub_matrix_sum|brute_force|prefix_sum
-P2882（https://www.luogu.com.cn/problem/P2882）greedy|brute_force|diff_array
+P2882（https://www.luogu.com.cn/problem/P2882）greed|brute_force|diff_array
 P4552（https://www.luogu.com.cn/problem/P4552）diff_array|brain_teaser|classical
 P1627（https://www.luogu.com.cn/problem/P1627）prefix_suffix|median|counter
 P1895（https://www.luogu.com.cn/problem/P1895）prefix_sum|counter|binary_search
@@ -62,7 +62,7 @@ P2190（https://www.luogu.com.cn/problem/P2190）diff_array|circular_array
 P2352（https://www.luogu.com.cn/problem/P2352）discretization_diff_array
 P2363（https://www.luogu.com.cn/problem/P2363）matrix_prefix_sum|brute_force
 P2706（https://www.luogu.com.cn/problem/P2706）max_sub_matrix_sum
-P2879（https://www.luogu.com.cn/problem/P2879）diff_array|greedy
+P2879（https://www.luogu.com.cn/problem/P2879）diff_array|greed
 P3028（https://www.luogu.com.cn/problem/P3028）discretization_diff_array|range_cover
 P4030（https://www.luogu.com.cn/problem/P4030）brain_teaser|matrix_prefix_sum
 P4440（https://www.luogu.com.cn/problem/P4440）prefix_sum|counter
@@ -70,7 +70,7 @@ P4623（https://www.luogu.com.cn/problem/P4623）discretization_diff_array|count
 P6032（https://www.luogu.com.cn/problem/P6032）prefix_suffix|counter
 P6278（https://www.luogu.com.cn/problem/P6278）reverse_order_pair|action_scope|diff_array|prefix_sum
 P6537（https://www.luogu.com.cn/problem/P6537）prefix_sum|brute_force
-P6877（https://www.luogu.com.cn/problem/P6877）sort|greedy|prefix_suffix|dp|brute_force
+P6877（https://www.luogu.com.cn/problem/P6877）sort|greed|prefix_suffix|dp|brute_force
 P6878（https://www.luogu.com.cn/problem/P6878）prefix_suffix|brute_force
 P8081（https://www.luogu.com.cn/problem/P8081）diff_array|counter|action_scope
 P8033（https://www.luogu.com.cn/problem/P8033）matrix_prefix_sum|counter
@@ -99,7 +99,7 @@ P3016（https://www.luogu.com.cn/problem/P3016）prefix_sum|triangle|left_up_sum
 1985H1（https://codeforces.com/contest/1985/problem/H1）union_find|contribution_method|diff_matrix|brain_teaser
 1985H2（https://codeforces.com/contest/1985/problem/H2）union_find|contribution_method|diff_matrix|brain_teaser
 245H（https://codeforces.com/problemset/problem/245/H）interval_dp|prefix_sum
-1253C（https://codeforces.com/problemset/problem/1253/C）diff_array|contribution_method|greedy|linear_dp
+1253C（https://codeforces.com/problemset/problem/1253/C）diff_array|contribution_method|greed|linear_dp
 1000C（https://codeforces.com/problemset/problem/1000/C）discretization_diff_array|hash|classical
 
 ====================================AtCoder=====================================
@@ -125,7 +125,7 @@ ABC188D（https://atcoder.jp/contests/abc188/tasks/abc188_d）discretization_dif
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/description/101/）matrix_prefix_sum
 100（https://www.acwing.com/problem/content/102/）diff_array|classical
-101（https://www.acwing.com/problem/content/103/）diff_array|greedy
+101（https://www.acwing.com/problem/content/103/）diff_array|greed
 102（https://www.acwing.com/problem/content/104/）prefix_sum|binary_search|brute_force|average
 121（https://www.acwing.com/problem/content/description/123/）discretization_diff_array|prefix_sum|two_pointers|binary_search
 126（https://www.acwing.com/problem/content/128/）max_sub_matrix_sum
@@ -141,7 +141,7 @@ from typing import List
 from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import DiffMatrix, PreFixSumMatrix, PreFixXorMatrix, PreFixSumCube
 from src.graph.union_find.template import UnionFindGeneral
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 
@@ -322,7 +322,7 @@ class Solution:
     def lc_995(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/description/
-        tag: greedy|diff_array|implemention
+        tag: greed|diff_array|implemention
         """
         n = len(nums)
         ans = 0
@@ -470,7 +470,7 @@ class Solution:
     def lg_p2882(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2882
-        tag: greedy|brute_force|diff_array|classical
+        tag: greed|brute_force|diff_array|classical
         """
         n = ac.read_int()
         lst = [int(ac.read_str() == "F") for _ in range(n)]
@@ -878,7 +878,7 @@ class Solution:
     def lg_p2879(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2879
-        tag: diff_array|greedy
+        tag: diff_array|greed
         """
         n, _, h, r = ac.read_list_ints()
         diff = [0] * n
@@ -1096,7 +1096,7 @@ class Solution:
     def lg_p6877(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6877
-        tag: sort|greedy|prefix_suffix|dp|brute_force
+        tag: sort|greed|prefix_suffix|dp|brute_force
         """
         n = ac.read_int()
         a = ac.read_list_ints()

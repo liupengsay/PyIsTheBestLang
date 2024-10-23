@@ -14,7 +14,7 @@ P5440（https://www.luogu.com.cn/problem/P5440）brute_force|prime
 import datetime
 from datetime import datetime, timedelta
 
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

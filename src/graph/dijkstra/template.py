@@ -2,7 +2,7 @@ import math
 from collections import defaultdict, deque
 from heapq import heappush, heappop
 
-from src.data_structure.sorted_list.template import SortedList
+from src.structure.sorted_list.template import SortedList
 
 
 class WeightedGraphForShortestPathMST:

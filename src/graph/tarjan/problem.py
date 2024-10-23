@@ -34,7 +34,7 @@ P7965（https://www.luogu.com.cn/problem/P7965）scc|dag|tree_dp
 427C（https://codeforces.com/problemset/problem/427/C）scc|shrink_point
 193A（https://codeforces.com/contest/193/problem/A）brain_teaser|cut_point
 999E（https://codeforces.com/contest/999/problem/E）scc|shrink_point|union_find
-1213F（https://codeforces.com/contest/1213/problem/F）scc|shrink_point|topological_sort|greedy
+1213F（https://codeforces.com/contest/1213/problem/F）scc|shrink_point|topological_sort|greed
 1547G（https://codeforces.com/contest/1547/problem/G）scc|shrink_point|build_graph|counter|number_of_path
 1702E（https://codeforces.com/contest/1702/problem/E）point_doubly_connected_component|pdcc|undirected|odd_circle
 1768D（https://codeforces.com/contest/1768/problem/D）permutation_circle|tarjan
@@ -65,7 +65,7 @@ from typing import List
 from src.graph.tarjan.template import Tarjan, DirectedGraphForTarjanScc
 from src.graph.topological_sort.template import WeightedGraphForTopologicalSort
 from src.graph.union_find.template import UnionFind
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

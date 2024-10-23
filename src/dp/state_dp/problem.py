@@ -19,7 +19,7 @@ Description：state_dp|dfs|back_trace|brute_force|sub_set|bit_operation|brute_fo
 1655（https://leetcode.cn/problems/distribute-repeating-integers/）state_dp
 1879（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）state_dp
 2019（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
-943（https://leetcode.cn/problems/find-the-shortest-superstring/）string|greedy|state_dp
+943（https://leetcode.cn/problems/find-the-shortest-superstring/）string|greed|state_dp
 1434（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_dp|reverse_thinking
 847（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
 2741（https://leetcode.cn/problems/special-permutations/description/）state_dp
@@ -40,7 +40,7 @@ P1433（https://www.luogu.com.cn/problem/P1433）state_dp
 P1896（https://www.luogu.com.cn/problem/P1896）state_dp
 P1556（https://www.luogu.com.cn/problem/P1556）state_dp|shortest_path|specific_plan
 P3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
-P5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
+P5997（https://www.luogu.com.cn/problem/P5997）greed|bag_dp|state_dp
 P6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
 P8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
 P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|classical
@@ -52,7 +52,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|cl
 1102F（https://codeforces.com/contest/1102/problem/F）state_dp|classical|brute_force|fill_table|refresh_table
 453B（https://codeforces.com/problemset/problem/453/B）state_dp|specific_plan|math|number_theory
 16E（https://codeforces.com/problemset/problem/16/E）state_dp|prob_dp|refresh_table
-1316E（https://codeforces.com/problemset/problem/1316/E）state_dp|greedy|sort|brain_teaser|classical
+1316E（https://codeforces.com/problemset/problem/1316/E）state_dp|greed|sort|brain_teaser|classical
 
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
@@ -69,6 +69,7 @@ ABC199E（https://atcoder.jp/contests/abc199/tasks/abc199_e）state_dp
 ABC199D（https://atcoder.jp/contests/abc199/tasks/abc199_d）state_dp
 ABC195F（https://atcoder.jp/contests/abc195/tasks/abc195_f）state_dp|data_range|classical|brain_teaser|prime_factor
 ABC190E（https://atcoder.jp/contests/abc190/tasks/abc190_e）bfs|state_dp|classical
+ABC187F（https://atcoder.jp/contests/abc187/tasks/abc187_f）state_dp|transitive_closure|refresh_table
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -85,9 +86,9 @@ from operator import or_
 from typing import List
 
 from src.graph.dijkstra.template import WeightedGraphForDijkstra
-from src.mathmatics.number_theory.template import PrimeSieve
-from src.mathmatics.prime_factor.template import PrimeFactor
-from src.utils.fast_io import FastIO
+from src.math.number_theory.template import PrimeSieve
+from src.math.prime_factor.template import PrimeFactor
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -609,7 +610,7 @@ class Solution:
     def lg_p5997(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5997
-        tag: greedy|bag_dp|state_dp
+        tag: greed|bag_dp|state_dp
         """
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1383,7 +1384,7 @@ class Solution:
     def cf_1316e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1316/E
-        tag: state_dp|greedy|sort|brain_teaser|classical
+        tag: state_dp|greed|sort|brain_teaser|classical
         """
         n, p, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1435,4 +1436,29 @@ class Solution:
                     dp[s | (1 << y)][y] = min(dp[s | (1 << y)][y], dp[s][x] + dis[x][target[y]])
         ans = min(dp[(1 << k) - 1])
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_187f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc187/tasks/abc187_f
+        tag: state_dp|transitive_closure|refresh_table
+        """
+        n, m = ac.read_list_ints()
+        edge = [1 << i for i in range(n)]
+        for _ in range(m):
+            i, j = ac.read_list_ints_minus_one()
+            edge[i] |= 1 << j
+            edge[j] |= 1 << i
+        dp = [0] * (1 << n)
+        for s in range(1, 1 << n):
+            dp[s] = s.bit_count()
+            if all(edge[i] & s == s for i in range(n) if (s >> i) & 1):
+                dp[s] = 1
+                continue
+            sub = s
+            while sub:
+                dp[s] = min(dp[s], dp[s ^ sub] + dp[sub])
+                sub = (sub - 1) & s
+        ac.st(dp[-1])
         return

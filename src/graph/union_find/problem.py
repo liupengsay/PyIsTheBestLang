@@ -21,7 +21,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 1998（https://leetcode.cn/problems/gcd-sort-of-an-array/）union_find|prime_factorization
 2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）union_find_range|union_left|union_find_right_root
 2471（https://leetcode.cn/problems/minimum-number-of-operations-to-sort-a-binary-tree-by-level/description/）discretization|permutation_circle
-945（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greedy
+945（https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/）union_find_right_root|greed
 947（https://leetcode.cn/contest/weekly-contest-112/problems/most-stones-removed-with-same-row-or-column/）brain_teaser|union_find
 547（https://leetcode.cn/problems/number-of-provinces/description/）union_find
 684（https://leetcode.cn/problems/redundant-connection/description/）union_find
@@ -38,7 +38,7 @@ P5836（https://www.luogu.com.cn/problem/P5836）union_find|several_union_find
 P5877（https://www.luogu.com.cn/problem/P5877）union_find|implemention|counter
 P6111（https://www.luogu.com.cn/problem/P6111）union_find|offline_query
 P6121（https://www.luogu.com.cn/problem/P6121）reverse_order|union_find|size
-P6153（https://www.luogu.com.cn/problem/P6153）union_find|greedy|classical
+P6153（https://www.luogu.com.cn/problem/P6153）union_find|greed|classical
 P1955（https://www.luogu.com.cn/problem/P1955）union_find
 P1196（https://www.luogu.com.cn/problem/P1196）union_find_weighted
 P1197（https://www.luogu.com.cn/problem/P1197）reverse_order|union_find|reverse_order|brute_force|part
@@ -49,7 +49,7 @@ P2189（https://www.luogu.com.cn/problem/P2189）union_find
 P2307（https://www.luogu.com.cn/problem/P2307）union_find
 P3420（https://www.luogu.com.cn/problem/P3420）union_find
 P5429（https://www.luogu.com.cn/problem/P5429）union_find
-P6004（https://www.luogu.com.cn/problem/P6004）union_find|permutation_circle|kruskal|mst|greedy|pointer
+P6004（https://www.luogu.com.cn/problem/P6004）union_find|permutation_circle|kruskal|mst|greed|pointer
 P6193（https://www.luogu.com.cn/problem/P6193）permutation_circle
 P6706（https://www.luogu.com.cn/problem/P6706）directed_graph|union_find|reverse_order|find_range_merge_to_disjoint
 P7991（https://www.luogu.com.cn/problem/P7991）union_find|shrink_point
@@ -57,7 +57,7 @@ P8230（https://www.luogu.com.cn/problem/P8230）layer|union_find|implemention
 P8637（https://www.luogu.com.cn/problem/P8637）union_find|permutation_circle
 P8686（https://www.luogu.com.cn/problem/P8686）union_find
 P8785（https://www.luogu.com.cn/problem/P8785）union_find|counter
-P8787（https://www.luogu.com.cn/problem/P8787）greedy|heapq|implemention|union_find
+P8787（https://www.luogu.com.cn/problem/P8787）greed|heapq|implemention|union_find
 P8881（https://www.luogu.com.cn/problem/P8881）brain_teaser|union_find|circle_judge|part
 P5930（https://www.luogu.com.cn/problem/P5930）union_find|classical
 P2024（https://www.luogu.com.cn/problem/P2024）union_find_type|build_graph
@@ -72,7 +72,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 540C（https://codeforces.com/problemset/problem/540/C）union_find
 1800E2（https://codeforces.com/problemset/problem/1800/E2）union_find
 1691E（https://codeforces.com/contest/1691/problem/E）union_find_range
-827A（https://codeforces.com/problemset/problem/827/A）union_find_right_root|implemention|greedy
+827A（https://codeforces.com/problemset/problem/827/A）union_find_right_root|implemention|greed
 1167C（https://codeforces.com/problemset/problem/1167/C）union_find
 1411C（https://codeforces.com/contest/1411/problem/C）brain_teaser|classical|hard
 1726D（https://codeforces.com/contest/1726/problem/D）union_find|brain_teaser|classical
@@ -97,7 +97,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1618G（https://codeforces.com/contest/1618/problem/G）union_find_left|union_find_right|classical|offline_query
 1941G（https://codeforces.com/contest/1941/problem/G）union_find|build_graph|bfs|brain_teaser|classical
 1971G（https://codeforces.com/contest/1971/problem/G）union_find|bit_operation
-1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greedy|implemention|union_find|brain_teaser|observation
+1383A（https://codeforces.com/problemset/problem/1383/A）build_graph|greed|implemention|union_find|brain_teaser|observation
 1494D（https://codeforces.com/problemset/problem/1494/D）union_right|union_find|implemention|construction
 1209D（https://codeforces.com/problemset/problem/1494/D）union_find|brain_teaser
 776D（https://codeforces.com/problemset/problem/776/D）union_find|classical|2-sat
@@ -166,13 +166,13 @@ from heapq import heappop, heapify, heappush
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
-from src.data_structure.segment_tree.template import RangeDivideRangeSum
-from src.data_structure.sorted_list.template import SortedList
+from src.structure.segment_tree.template import RangeDivideRangeSum
+from src.structure.sorted_list.template import SortedList
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd, UnionFindGeneral
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.mathmatics.number_theory.template import PrimeSieve
-from src.mathmatics.prime_factor.template import PrimeFactor
-from src.utils.fast_io import FastIO
+from src.math.comb_perm.template import Combinatorics
+from src.math.number_theory.template import PrimeSieve
+from src.math.prime_factor.template import PrimeFactor
+from src.util.fast_io import FastIO
 
 
 
@@ -273,7 +273,7 @@ class Solution:
     def cf_872a(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/827/A
-        tag: union_find_right_root|implemention|greedy
+        tag: union_find_right_root|implemention|greed
         """
         n = ac.read_int()
         nums = [ac.read_list_strs() for _ in range(n)]
@@ -721,7 +721,7 @@ class Solution:
     def lg_p6004(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6004
-        tag: union_find|permutation_circle|kruskal|mst|greedy|pointer
+        tag: union_find|permutation_circle|kruskal|mst|greed|pointer
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints_minus_one()
@@ -978,7 +978,7 @@ class Solution:
     def lg_p8787_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8787
-        tag: greedy|heapq|implemention|union_find|classical|hard
+        tag: greed|heapq|implemention|union_find|classical|hard
 
         """
         n = ac.read_int()
@@ -1011,7 +1011,7 @@ class Solution:
     def lg_p8787_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8787
-        tag: greedy|heapq|implemention|union_find|classical|hard
+        tag: greed|heapq|implemention|union_find|classical|hard
 
         """
         ac.read_int()
@@ -1054,7 +1054,7 @@ class Solution:
     def lc_945_1(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
-        tag: union_find_right_root|greedy
+        tag: union_find_right_root|greed
         """
         nums.sort()
         ans = 0
@@ -1069,7 +1069,7 @@ class Solution:
     def lc_945_2(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-increment-to-make-array-unique/description/
-        tag: union_find_right_root|greedy
+        tag: union_find_right_root|greed
         """
         nums.sort()
         ans = 0
@@ -1168,7 +1168,7 @@ class Solution:
     def ac_4309(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4309/
-        tag: union_right|greedy
+        tag: union_right|greed
         """
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -2667,7 +2667,7 @@ class Solution:
     def cf_1383a(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1383/A
-        tag: build_graph|greedy|implemention|union_find|brain_teaser|observation
+        tag: build_graph|greed|implemention|union_find|brain_teaser|observation
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()

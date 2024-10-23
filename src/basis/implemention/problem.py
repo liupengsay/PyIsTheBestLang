@@ -48,16 +48,16 @@ P6282（https://www.luogu.com.cn/problem/P6282）reverse_thinking|reverse_order|
 P6410（https://www.luogu.com.cn/problem/P6410）implemention
 P6480（https://www.luogu.com.cn/problem/P6480）implemention|counter
 P7186（https://www.luogu.com.cn/problem/P7186）brain_teaser|action_scope|implemention
-P7338（https://www.luogu.com.cn/problem/P7338）greedy|implemention
+P7338（https://www.luogu.com.cn/problem/P7338）greed|implemention
 P2129（https://www.luogu.com.cn/problem/P2129）stack|pointer|implemention
 P3407（https://www.luogu.com.cn/problem/P3407）implemention
 P5329（https://www.luogu.com.cn/problem/P5329）lexicographical_order|lexicographical_order|sorting
-P6397（https://www.luogu.com.cn/problem/P6397）greedy|implemention
+P6397（https://www.luogu.com.cn/problem/P6397）greed|implemention
 P8247（https://www.luogu.com.cn/problem/P8247）implemention
 P8611（https://www.luogu.com.cn/problem/P8611）implemention|classification_discussion
 P8755（https://www.luogu.com.cn/problem/P8755）heapq|implemention
 P9023（https://www.luogu.com.cn/problem/P9023）matrix_rotate|implemention|counter
-P8898（https://www.luogu.com.cn/problem/P8898）greedy|implemention
+P8898（https://www.luogu.com.cn/problem/P8898）greed|implemention
 P8895（https://www.luogu.com.cn/problem/P8895）implemention|counter
 P8884（https://www.luogu.com.cn/problem/P8884）classification_discussion|odd_even
 P8873（https://www.luogu.com.cn/problem/P8873）math|arithmetic_sequence
@@ -72,7 +72,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1722F（https://codeforces.com/contest/1722/problem/F）
 1807F（https://codeforces.com/contest/1807/problem/F）implemention|classical
 1850G（https://codeforces.com/contest/1850/problem/G）implemention|classical|matrix_direction
-1006D（https://codeforces.com/contest/1006/problem/D）greedy|implemention|brute_force
+1006D（https://codeforces.com/contest/1006/problem/D）greed|implemention|brute_force
 1506F（https://codeforces.com/contest/1506/problem/F）implemention|odd_even
 1560E（https://codeforces.com/contest/1560/problem/E）reverse_thinking|implemention
 1976C（https://codeforces.com/contest/1976/problem/C）binary_search|implemention|inclusion_exclusion|reverse_thinking
@@ -86,7 +86,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1990C（https://codeforces.com/problemset/problem/1990/C）implemention
 
 ====================================AtCoder=====================================
-ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
+ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greed|brute_force
 ABC321E（https://atcoder.jp/contests/abc321/tasks/abc321_e）implemention|binary_tree|counter
 ABC315D（https://atcoder.jp/contests/abc315/tasks/abc315_d）bfs|classical|implemention
 ABC278D（https://atcoder.jp/contests/abc278/tasks/abc278_d）brain_teaser|classical
@@ -103,7 +103,7 @@ ABC203E（https://atcoder.jp/contests/abc203/tasks/abc203_e）implemention
 ABC375C（https://atcoder.jp/contests/abc375/tasks/abc375_c）implemention|matrix_rotate
 
 =====================================AcWing=====================================
-4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction
+4318（https://www.acwing.com/problem/content/description/4321/）hash|greed|implemention|construction
 
 1（https://www.codechef.com/problems/MODE_PROBLEM）contribution_method
 
@@ -114,7 +114,7 @@ from heapq import heappop, heappush
 
 from src.basis.binary_search.template import BinarySearch
 from src.basis.implemention.template import SpiralMatrix
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 
@@ -298,7 +298,7 @@ class Solution:
     def lg_p6397(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6397
-        tag: greedy|implemention|brain_teaser
+        tag: greed|implemention|brain_teaser
         """
         k = ac.read_float()
         nums = [ac.read_float() for _ in range(ac.read_int())]
@@ -510,7 +510,7 @@ class Solution:
     def ac_4318(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4321/
-        tag: hash|greedy|implemention|construction|brain_teaser
+        tag: hash|greed|implemention|construction|brain_teaser
         """
         x = y = 0
         ind = dict()

@@ -8,7 +8,7 @@ class CodecBFS:
 
     @staticmethod
     def serialize(root: Optional[TreeNode]) -> str:
-        """Encodes a tree to a single strings.
+        """Encodes a tree to a single string.
         """
         stack = deque([root]) if root else deque()
         res = []
@@ -48,7 +48,7 @@ class CodecDFS:
 
     @staticmethod
     def serialize(root: TreeNode) -> str:
-        """Encodes a tree to a single strings.
+        """Encodes a tree to a single string.
         """
         def dfs(node):
             if not node:

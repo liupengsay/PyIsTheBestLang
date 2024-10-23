@@ -18,9 +18,9 @@ ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）sorted_list|offlin
 """
 from typing import List
 
-from src.data_structure.sorted_list.template import SortedList
-from src.utils.fast_io import FastIO
-from tests.leetcode.template import max
+from src.structure.sorted_list.template import SortedList
+from src.util.fast_io import FastIO
+from test.leetcode.template import max
 
 
 class Solution:

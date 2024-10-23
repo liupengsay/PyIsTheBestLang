@@ -20,7 +20,7 @@ ABC255F（https://atcoder.jp/contests/abc255/tasks/abc255_f）pre_order|in_order
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode, TreeOrder
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

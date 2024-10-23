@@ -22,7 +22,7 @@ ABC100C（https://atcoder.jp/contests/arc100/tasks/arc100_c）sos_dp|classical|s
 
 """
 
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

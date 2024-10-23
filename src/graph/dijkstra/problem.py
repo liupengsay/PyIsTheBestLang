@@ -11,9 +11,9 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 2258（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）bfs|preprocess|shortest_path|maximum_weight_on_shortest_path
 2290（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）shortest_path
 499（https://leetcode.cn/problems/the-maze-iii/）two_params_dijkstra
-6442（https://leetcode.cn/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greedy
+6442（https://leetcode.cn/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greed
 2714（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）limited_shortest_path|layered_dijkstra
-2699（https://leetcode.cn/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greedy
+2699（https://leetcode.cn/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greed
 1786（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
 1928（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）dijkstra|limited_shortest_path|floyd
 75（https://leetcode.cn/problems/rdmXM7/）bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
@@ -93,8 +93,8 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 
 ===================================CodeForces===================================
 20C（https://codeforces.com/problemset/problem/20/C）shortest_path|specific_plan
-1343E（https://codeforces.com/problemset/problem/1343/E）several_bfs|shortest_path|greedy|brute_force
-715B（https://codeforces.com/contest/715/problem/B）several_dijkstra|shortest_path|greedy|dynamic_graph
+1343E（https://codeforces.com/problemset/problem/1343/E）several_bfs|shortest_path|greed|brute_force
+715B（https://codeforces.com/contest/715/problem/B）several_dijkstra|shortest_path|greed|dynamic_graph
 1433G（https://codeforces.com/contest/1433/problem/G）several_source_dijkstra|shortest_path|brute_force
 1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
 1915G（https://codeforces.com/contest/1915/problem/G）shortest_path|limited_shortest_path|dijkstra
@@ -106,7 +106,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
-545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greedy
+545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greed
 786B（https://codeforces.com/contest/786/problem/B）segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
 1076D（https://codeforces.com/problemset/problem/1076/D）weighted_graph|shortest_path_mst
 
@@ -131,8 +131,8 @@ ABC376D（https://atcoder.jp/contests/abc376/tasks/abc376_d）dijkstra_for_stric
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
 3628（https://www.acwing.com/problem/content/3631/）shortest_path_spanning_tree
-3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
-3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greedy
+3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greed|implemention
+3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greed
 4196（https://www.acwing.com/problem/content/4199/）shortest_path
 385（https://www.acwing.com/problem/content/description/385/）dijkstra_for_cnt_of_strictly_second_shortest_path
 
@@ -148,10 +148,10 @@ from itertools import accumulate, permutations
 from operator import add
 from typing import List
 
-from src.data_structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
+from src.structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
 from src.graph.dijkstra.template import UnDirectedShortestCycle, LimitedWeightedGraph, \
     WeightedGraphForShortestPathMST, WeightedGraphForDijkstra
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -199,7 +199,7 @@ class Solution:
     def cf_1343e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1343/E
-        tag: several_bfs|shortest_path|greedy|brute_force
+        tag: several_bfs|shortest_path|greed|brute_force
         """
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
@@ -1031,7 +1031,7 @@ class Solution:
     def lc_6442(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
-        tag: several_dijkstra|shortest_path|greedy
+        tag: several_dijkstra|shortest_path|greed
         """
         dct = [[] for _ in range(n)]
         m = len(edges)
@@ -1089,7 +1089,7 @@ class Solution:
     def cf_715b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/715/problem/B
-        tag: several_dijkstra|shortest_path|greedy|dynamic_graph
+        tag: several_dijkstra|shortest_path|greed|dynamic_graph
         """
         # 两遍shortest_path，greedy动态更新路径权值
         n, m, target, source, destination = ac.read_list_ints()
@@ -1630,7 +1630,7 @@ class Solution:
     def lc_2699(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
-        tag: dijkstra|shortest_path|greedy|brain_teaser
+        tag: dijkstra|shortest_path|greed|brain_teaser
         """
         dct = [[] for _ in range(n)]
         m = len(edges)
@@ -1921,7 +1921,7 @@ class Solution:
     def ac_3772(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3775/
-        tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
+        tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greed|implemention
         """
         n, m = ac.read_list_ints()
         inf = m + 1
@@ -1956,7 +1956,7 @@ class Solution:
     def ac_3797(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3800/
-        tag: shortest_path|brute_force|sort|greedy
+        tag: shortest_path|brute_force|sort|greed
         """
         n, m, k = ac.read_list_ints()
         color = ac.read_list_ints_minus_one()
@@ -2537,7 +2537,7 @@ class Solution:
     def cf_545e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/545/E
-        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy|shortest_path_mst
+        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greed|shortest_path_mst
         """
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]

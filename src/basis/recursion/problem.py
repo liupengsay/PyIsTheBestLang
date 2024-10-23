@@ -20,14 +20,14 @@ P2907（https://www.luogu.com.cn/problem/P2907）recursion|implemention
 P7673（https://www.luogu.com.cn/problem/P7673）mid_order|recursion|2-tree
 P1228（https://www.luogu.com.cn/problem/P1228）4-tree|divide_and_conquer|recursion|matrix
 P1185（https://www.luogu.com.cn/problem/P1185）2-tree|recursion
-P2101（https://www.luogu.com.cn/problem/P2101）divide_and_conquer|greedy|classical
+P2101（https://www.luogu.com.cn/problem/P2101）divide_and_conquer|greed|classical
 P5551（https://www.luogu.com.cn/problem/P5551）recursion
 
 ===================================CodeForces===================================
-448C（https://codeforces.com/contest/448/problem/C）greedy|recursion|dp
+448C（https://codeforces.com/contest/448/problem/C）greed|recursion|dp
 1811D（https://codeforces.com/contest/1811/problem/D）recursion|fibonacci
 559B（https://codeforces.com/problemset/problem/559/B）divide_and_conquer|implemention|string_hash
-1400E（https://codeforces.com/problemset/problem/1400/E）divide_and_conquer|greedy|classical
+1400E（https://codeforces.com/problemset/problem/1400/E）divide_and_conquer|greed|classical
 
 ===================================AcWing===================================
 98（https://www.acwing.com/problem/content/100/）4-tree|recursion|matrix_rotate
@@ -36,7 +36,7 @@ P5551（https://www.luogu.com.cn/problem/P5551）recursion
 
 ===================================AtCoder===================================
 ABC350F（https://atcoder.jp/contests/abc350/tasks/abc350_f）implemention|divide_and_conquer|recursion|classical
-ABC188F（https://atcoder.jp/contests/abc188/tasks/abc188_f）linear_dp|recursion|divide_and_conquer|implemention|greedy|reverse_thinking
+ABC188F（https://atcoder.jp/contests/abc188/tasks/abc188_f）linear_dp|recursion|divide_and_conquer|implemention|greed|reverse_thinking
 
 """
 import math
@@ -45,7 +45,7 @@ from itertools import combinations
 from typing import Optional, List
 
 from src.basis.tree_node.template import TreeNode
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -252,7 +252,7 @@ class Solution:
     def cf_448c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/448/problem/C
-        tag: greedy|recursion|dp|implemention
+        tag: greed|recursion|dp|implemention
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -496,7 +496,7 @@ class Solution:
     def lg_p2101(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2101
-        tag: divide_and_conquer|greedy|classical
+        tag: divide_and_conquer|greed|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -530,7 +530,7 @@ class Solution:
     def cf_1400e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1400/E
-        tag: divide_and_conquer|greedy|classical
+        tag: divide_and_conquer|greed|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()  # MLE
@@ -578,7 +578,7 @@ class Solution:
     def abc_188f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc188/tasks/abc188_f
-        tag: linear_dp|recursion|divide_and_conquer|implemention|greedy|reverse_thinking
+        tag: linear_dp|recursion|divide_and_conquer|implemention|greed|reverse_thinking
         """
         x, y = ac.read_list_ints()
 

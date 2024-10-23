@@ -55,9 +55,9 @@ from collections import deque
 
 
 from src.basis.binary_search.template import BinarySearch
-from src.data_structure.segment_tree.template import RangeAddPointGet
-from src.search.dfs.template import UnWeightedTree
-from src.utils.fast_io import FastIO
+from src.structure.segment_tree.template import RangeAddPointGet
+from src.tree.tree_dp.template import WeightedTree
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -593,7 +593,7 @@ class Solution:
         """
         ac.flush = True
         n = ac.read_int()
-        graph = UnWeightedTree(n)
+        graph = WeightedTree(n)
         degree = [0] * n
         for _ in range(n - 1):
             i, j = ac.read_list_ints_minus_one()

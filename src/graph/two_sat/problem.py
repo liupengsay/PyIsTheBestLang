@@ -20,7 +20,7 @@ P4171（https://www.luogu.com.cn/problem/P4171）2-sat|scc|classical
 """
 
 from src.graph.tarjan.template import Tarjan
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class TwoSAT:

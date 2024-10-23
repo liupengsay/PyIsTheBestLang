@@ -54,7 +54,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.graph.floyd.template import WeightedGraphForFloyd
-from src.utils.fast_io import FastIO
+from src.util.fast_io import FastIO
 
 
 class Solution:

@@ -14,8 +14,8 @@ P2171（https://www.luogu.com.cn/problem/P2171）array_to_bst|reverse_order|unio
 from typing import List
 
 from src.graph.binary_search_tree.template import BinarySearchTree
-from src.mathmatics.comb_perm.template import Combinatorics
-from src.utils.fast_io import FastIO
+from src.math.comb_perm.template import Combinatorics
+from src.util.fast_io import FastIO
 
 
 class Solution:

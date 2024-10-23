@@ -44,8 +44,8 @@ P1836（https://www.luogu.com.cn/problem/P1836）digital_dp
 from functools import lru_cache
 
 from src.dp.digital_dp.template import DigitalDP
-from src.strings.kmp.template import KMP
-from src.utils.fast_io import FastIO
+from src.string.kmp.template import KMP
+from src.util.fast_io import FastIO
 
 
 class Solution:
