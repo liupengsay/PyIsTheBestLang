@@ -24,7 +24,8 @@ ABC309E（https://atcoder.jp/contests/abc309/tasks/abc309_e）tree_diff_array|df
 from typing import List
 
 from src.tree.tree_diff_array.template import TreeDiffArray
-from src.tree.tree_lca.template import OfflineLCA
+from src.tree.tree_dp.template import WeightedTree
+from src.tree.tree_lca.template import OfflineLCA, UnionFindGetLCA
 from src.util.fast_io import FastIO
 
 
