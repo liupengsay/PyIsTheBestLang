@@ -20,7 +20,7 @@ Description：brain_teaser
 517（https://leetcode.cn/problems/super-washing-machines/）greed|binary_search|brute_force
 1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greed
 625（https://leetcode.cn/problems/minimum-factorization/）greed|factorization
-2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greed|guess|watch_pattern
+2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greed|guess_table|watch_pattern
 6361（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）brain_teaser|greed
 6316（https://leetcode.cn/problems/rearrange-array-to-maximize-prefix-score/）greed|prefix_sum
 2436（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greed
@@ -33,7 +33,7 @@ Description：brain_teaser
 1808（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）mod|greed|classical|maximum_mul
 1953（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）greed|classical|maximum|sum
 2856（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）greed|classical|maximum|sum
-858（https://leetcode.cn/problems/mirror-reflection/description/）brain_teaser
+858（https://leetcode.cn/problems/mirror-reflection/description/）brain_teaser|math
 1927（https://leetcode.cn/problems/sum-game/description/）game_dp|brain_teaser|classification_discussion
 2592（https://leetcode.cn/problems/maximize-greatness-of-an-array/）classical|greed|sort|two_pointers
 1503（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser|classical
@@ -304,14 +304,14 @@ import bisect
 import heapq
 import math
 from bisect import insort_left, bisect_left
-from collections import Counter, deque, defaultdict
+from collections import deque, defaultdict
 from functools import reduce
 from heapq import heappop, heapify, heappush
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.structure.sorted_list.template import SortedList
 from src.math.number_theory.template import NumFactor
+from src.structure.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 
@@ -877,9 +877,9 @@ class Solution:
             if i > j:
                 i, j = j, i
             last[i] = x
-            edges.append(i*n+j)
+            edges.append(i * n + j)
         for x, val in enumerate(edges):
-            i, j = val//n, val%n
+            i, j = val // n, val % n
             if last[i] == x:
                 ac.st(1)
             else:
@@ -1086,22 +1086,19 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4432/
         tag: greed|custom_sort|prefix_suffix|brute_force
         """
-        # 邻项公式greedysorting，prefix_suffixbrute_force
+
         n, x1, y1, x2, y2 = ac.read_list_ints()
         pos = [ac.read_list_ints() for _ in range(n)]
         dis1 = [(x - x1) * (x - x1) + (y - y1) * (y - y1) for x, y in pos]
         dis2 = [(x - x2) * (x - x2) + (y - y2) * (y - y2) for x, y in pos]
-        # sorting
         ind = list(range(n))
         ind.sort(key=lambda it: dis1[it] - dis2[it])
-        # 后缀最大值
         post = [0] * (n + 1)
         ceil = 0
         for i in range(n - 1, -1, -1):
             ceil = max(dis2[ind[i]], ceil)
             post[i] = ceil
 
-        # brute_force前缀
         ans = post[0]
         pre = 0
         for i in range(n):
@@ -1117,12 +1114,11 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4433/
         tag: brute_force|prefix_suffix|bracket
         """
-        # 括号匹配brute_force，prefix_suffix遍历
+
         n = ac.read_int()
         s = ac.read_str()
         ans = 0
 
-        # 左变右
         post = [-1] * (n + 1)
         post[n] = 0
         right = 0
@@ -1146,7 +1142,6 @@ class Solution:
                     ans += 1
                 left += 1
 
-        # 右变左
         pre = [-1] * (n + 1)
         pre[0] = 0
         left = 0
@@ -1178,7 +1173,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4495/
         tag: brain_teaser|odd_even
         """
-        # brain_teaser分为奇数与偶数讨论
         n = ac.read_int()
         if n % 2 == 0:
             ac.st(n // 2)
@@ -1194,7 +1188,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4626/
         tag: greed|implemention
         """
-        # greedyimplemention
         n, t = ac.read_list_ints()
         a = ac.read_list_ints()
         ans = 0
@@ -1252,19 +1245,14 @@ class Solution:
     def lc_858(p: int, q: int) -> int:
         """
         url: https://leetcode.cn/problems/mirror-reflection/description/
-        tag: brain_teaser
+        tag: brain_teaser|math
         """
-        # brain_teaserbrain_teaser|
-
         g = math.gcd(p, q)
-        # 求解等式 k*p = m*q
 
-        # 左右次数k合计为偶数
         k = p // g
         if k % 2 == 0:
             return 2
 
-        # 上下次数m合计为偶数
         m = q // g
         if m % 2 == 0:
             return 0
@@ -1276,7 +1264,6 @@ class Solution:
         url: https://leetcode.cn/problems/broken-calculator/
         tag: reverse_order|reverse_thinking|greed|odd_even|implemention
         """
-        # 逆向greedy，偶数除2奇数|1
         ans = 0
         while target > start:
             if target % 2:
@@ -1292,7 +1279,6 @@ class Solution:
         url: https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/
         tag: brain_teaser|classical
         """
-        # 
         ans = 0
         for x in left:
             if x > ans:
@@ -1308,7 +1294,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimize-deviation-in-array/
         tag: brain_teaser|greed
         """
-        # brain_teaserbrain_teaser|greed
         lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
         while True:
@@ -1325,7 +1310,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximize-number-of-nice-divisors/
         tag: mod|greed|classical|maximum_mul
         """
-        # 按照模3的因子个数greedy处理，将和拆分成最大乘积
         mod = 10 ** 9 + 7
         if prime_factors <= 2:
             return prime_factors
@@ -1343,7 +1327,6 @@ class Solution:
         tag: game_dp|brain_teaser|classification_discussion
         """
 
-        # 博弈brain_teaser|classification_discussion
         def check(s):
             res = 0
             cnt = 0
@@ -1354,12 +1337,10 @@ class Solution:
                     cnt += 1
             return [res, cnt]
 
-        # 左右两边的数字和以及问号个数
         n = len(num)
         a, x = check(num[:n // 2])
         b, y = check(num[n // 2:])
 
-        # Alice把宝压在右边
         b_add = 9 * (y // 2 + y % 2)
         if y % 2 == 0:
             a_add = 9 * (x // 2)
@@ -1368,7 +1349,6 @@ class Solution:
         if a + a_add < b + b_add:
             return True
 
-        # Alice把宝压在左边
         a_add = 9 * (x // 2 + x % 2)
         if x % 2 == 0:
             b_add = 9 * (y // 2)
@@ -1377,7 +1357,6 @@ class Solution:
         if b + b_add < a + a_add:
             return True
 
-        # 左右都不能获胜
         return False
 
     @staticmethod
@@ -1386,7 +1365,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximize-greatness-of-an-array/
         tag: classical|greed|sort|two_pointers
         """
-        # classicalgreedysorting后two_pointers
         n = len(nums)
         nums.sort()
         j = 0
@@ -1403,9 +1381,8 @@ class Solution:
     def lc_2568(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-impossible-or/
-        tag: brain_teaser|greed|guess|watch_pattern
+        tag: brain_teaser|greed|guess_table|watch_pattern
         """
-        # brain_teasergreedy，可以根据打表观察规律
         dct = set(nums)
         for i in range(34):
             if 1 << i not in dct:
@@ -2042,8 +2019,8 @@ class Solution:
         nums = ac.read_list_ints()
         nums.sort()
         ans = 0
-        j = n//2
-        for i in range(n//2):
+        j = n // 2
+        for i in range(n // 2):
             while j < n and nums[j] < z + nums[i]:
                 j += 1
             if j < n:
@@ -2301,7 +2278,7 @@ class Solution:
         stack = []
         nums = ac.read_list_ints()
         for i in range(n):
-            x = nums[i] - i  # important
+            x = nums[i] - i  # important!
             heappush(stack, -x)
             if stack and x < -stack[0]:
                 heappush(stack, -x)
