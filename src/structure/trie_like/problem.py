@@ -62,6 +62,7 @@ ABC287E（https://atcoder.jp/contests/abc287/tasks/abc287_e）trie|prefix_suffix
 
 """
 import heapq
+import math
 from collections import Counter, defaultdict
 from functools import reduce
 from operator import or_

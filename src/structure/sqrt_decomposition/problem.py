@@ -181,8 +181,8 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        ds = PointSetBitRangeMode(nums, 20)
-        ds = PointSetRandomRangeMode(nums)
+        # ds = PointSetBitRangeMode(nums, 20)
+        # ds = PointSetRandomRangeMode(nums)
         ds = PointSetMergeRangeMode(nums)
         for _ in range(m):
             ll, rr = ac.read_list_ints_minus_one()
@@ -837,8 +837,8 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        ds = PointSetBitRangeMode(nums, 20)
-        ds = PointSetRandomRangeMode(nums)
+        # ds = PointSetBitRangeMode(nums, 20)
+        # ds = PointSetRandomRangeMode(nums)
         ds = PointSetMergeRangeMode(nums)
         for _ in range(m):
             ll, rr = ac.read_list_ints_minus_one()
@@ -854,8 +854,8 @@ class Solution:
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
-        ds = PointSetBitRangeMode(nums, 20)
-        ds = PointSetRandomRangeMode(nums)
+        # ds = PointSetBitRangeMode(nums, 20)
+        # ds = PointSetRandomRangeMode(nums)
         ds = PointSetMergeRangeMode(nums)
         for _ in range(m):
             lst = ac.read_list_ints()

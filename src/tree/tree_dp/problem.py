@@ -2479,7 +2479,7 @@ class Solution:
                 i, j = ac.read_list_ints_minus_one()
                 graph.add_undirected_edge(i, j, 1)
             q = ac.read_int()
-            queries = [list(int) for _ in range(n)]
+            queries = [list() for _ in range(n)]
             for i in range(q):
                 j, k = ac.read_list_ints()
                 queries[j - 1].append(k * q + i)

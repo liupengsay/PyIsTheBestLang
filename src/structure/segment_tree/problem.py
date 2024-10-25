@@ -167,6 +167,7 @@ ABC194E（https://atcoder.jp/contests/abc194/tasks/abc194_e）point_set|pre_min|
 
 """
 import bisect
+import math
 import random
 from collections import defaultdict, Counter, deque
 from functools import lru_cache
@@ -174,6 +175,10 @@ from heapq import heappush, heappop
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.graph.dfs.template import DFS
+from src.graph.union_find.template import UnionFind
+from src.math.number_theory.template import PrimeSieve
+from src.math.prime_factor.template import AllFactorCnt, PrimeFactor
 from src.structure.segment_tree.template import RangeAscendRangeMax, RangeDescendRangeMin, \
     RangeAddRangeSumMinMax, RangeRevereRangeBitCount, RangeSetRangeOr, \
     RangeAddRangeAvgDev, \
@@ -190,14 +195,10 @@ from src.structure.segment_tree.template import RangeAscendRangeMax, RangeDescen
     RangeSetRangeSumMinMaxDynamicDct, RangeSetPreSumMaxDynamic, RangeRevereRangeAlter, \
     PointSetRangeMaxSecondCnt, PointSetRangeXor, RangeAddMulRangeSum, RangeAddRangeMinCount, RangeSetPreSumMax, \
     PointSetRangeMaxSubSumAlter, RangeAddRangeMulSum, LazySegmentTree, PointSetPreMaxPostMin, PointSetPreMinPostMin, \
-    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr
+    PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr, RangeAddRangeMaxIndex
 from src.structure.sorted_list.template import SortedList
 from src.structure.tree_array.template import PointAddRangeSum, PointXorRangeXor
 from src.structure.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
-from src.graph.union_find.template import UnionFind
-from src.math.number_theory.template import PrimeSieve
-from src.math.prime_factor.template import AllFactorCnt, PrimeFactor
-from src.graph.dfs.template import DFS
 from src.util.fast_io import FastIO
 
 
@@ -1614,7 +1615,7 @@ class Solution:
                 ans = tree.range_or(x, y)
                 ac.st(bin(ans).count("1"))
             else:
-                tree.point_set(x, x, 1 << y)
+                tree.point_set(x, 1 << y)
         return
 
     @staticmethod
@@ -4063,7 +4064,7 @@ class Solution:
         tag: dfs_order|range_add|range_max|implemention
         """
         n = ac.read_int()
-        dct = [[] for _ in range(n)]
+        dct = [list() for _ in range(n)]
         for _ in range(n - 1):
             i, j, ll = ac.read_list_ints_minus_one()
             ll += 1

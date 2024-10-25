@@ -78,6 +78,7 @@ ABC189C（https://atcoder.jp/contests/abc189/tasks/abc189_c）monotonic_stack|co
 """
 import bisect
 import heapq
+import math
 from collections import defaultdict, Counter
 from typing import List
 
@@ -533,7 +534,7 @@ class Solution:
                 post[stack.pop()] = i - 1
             stack.append(i)
             dct[nums[i]].append(i)
-        st = SparseTable(nums)
+        st = SparseTable(nums, max)
         ans = 0
         for i in range(n):
             x = st.query(i + 1, post[i] + 1)

@@ -104,7 +104,7 @@ class Solution:
         url: https://codeforces.com/problemset/problem/474/F
         tag: sparse_table|range_min|range_gcd|binary_search|counter
         """
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         dct = defaultdict(list)
         for i, num in enumerate(nums):

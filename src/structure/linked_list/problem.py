@@ -34,6 +34,7 @@ ABC225D（https://atcoder.jp/contests/abc225/tasks/abc225_d）linked_list
 
 """
 import heapq
+import math
 from collections import deque
 from typing import List
 

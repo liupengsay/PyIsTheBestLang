@@ -50,6 +50,7 @@ ABC212D（https://atcoder.jp/contests/abc212/tasks/abc212_d）implemention|inclu
 """
 
 import heapq
+import math
 from collections import deque, defaultdict
 from heapq import heappushpop, heappush, heappop, heapify
 from typing import List

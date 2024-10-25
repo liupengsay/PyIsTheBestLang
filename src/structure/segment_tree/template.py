@@ -7,7 +7,6 @@ from src.structure.sorted_list.template import SortedList
 from src.structure.tree_array.template import PointAddRangeSum
 
 
-
 class RangeLongestRegularBrackets:
     def __init__(self, n):
         """query the longest regular brackets of static range"""
@@ -516,7 +515,7 @@ class RangeAddRangePrePreSum:
     def range_pre_pre(self, left, right):
         # query the range sum
         stack = [(0, self.n - 1, 1)]
-        ans = tot = pre = 0
+        ans = pre = 0
         while stack:
             s, t, i = stack.pop()
             if left <= s and t <= right:
@@ -529,7 +528,7 @@ class RangeAddRangePrePreSum:
                 stack.append((m + 1, t, (i << 1) | 1))
             if left <= m:
                 stack.append((s, m, i << 1))
-            ans %= mod
+            ans %= self.mod
         return ans
 
     def point_get(self, ind):
@@ -4985,7 +4984,6 @@ class RangeSetRangeSegCountLength:
             else:
                 i = ~i
                 self._push_up(i)
-        assert i == 1
         return
 
     def point_set(self, ind, val):
@@ -6245,7 +6243,7 @@ class PointSetRangeMinCount:
             self._push_up(i)
         return
 
-    def range_min_count(self, left, right, ceil=1<<32):
+    def range_min_count(self, left, right, ceil=1 << 32):
         stack = [(0, self.n - 1, 1)]
         ans = (ceil << self.m) | 1
         while stack:
@@ -6603,7 +6601,8 @@ class PointSetRangeMaxSubSum:
         self.sum[i] = val
         return
 
-    def _range_merge_to_disjoint(self, res1, res2):
+    @staticmethod
+    def _range_merge_to_disjoint(res1, res2):
         res = [0] * 4
         res[0] = max(res1[0], res2[0])
         res[0] = max(res[0], res1[2] + res2[1])

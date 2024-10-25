@@ -45,6 +45,7 @@ ABC334F（https://atcoder.jp/contests/abc334/tasks/abc334_f）linear_dp|monotoni
 135（https://www.acwing.com/problem/content/137/）monotonic_queue
 
 """
+import math
 from collections import deque
 from typing import List
 
