@@ -1,17 +1,46 @@
+import math
 import random
 import unittest
-
-from operator import add
+from functools import reduce
+from operator import add, or_, and_, xor, mul
 
 from src.structure.segment_tree.template import PointSetRangeSum, RangeAddPointGet, RangeAddRangeSumMinMax
 from src.structure.tree_array.template import PointAddRangeSum as PointAddRangeSumTA
 from src.structure.zkw_segment_tree.template import (
-    PointSetAddRangeSum as PointSetRangeSumZKW,
+    PointSetPointAddRangeSum as PointSetRangeSumZKW,
     RangeAddPointGet as RangeAddPointGetZKW,
-    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength)
-import math
+    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge)
+
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_set_add_range_merge(self):
+        for merge in [add, xor, mul, and_, or_, max, min, math.gcd, math.lcm]:
+            n = 100
+            initial = 0
+            if merge == min:
+                initial = math.inf
+            elif merge == and_:
+                initial = (1 << 32) - 1
+            elif merge == mul or merge == math.lcm:
+                initial = 1
+            tree = PointSetPointAddRangeMerge(n, initial, merge)
+            nums = [random.getrandbits(32) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(n):
+                op = random.getrandbits(32)
+                i = random.randint(0, n - 1)
+                x = random.getrandbits(32)
+                if op % 2:
+                    nums[i] = x
+                    tree.point_set(i, x)
+                else:
+                    nums[i] += x
+                    tree.point_add(i, x)
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                assert tree.range_merge(ll, rr) == reduce(merge, nums[ll:rr + 1])
+        return
 
     def test_point_set_range_sum(self):
         random.seed(2024)
@@ -160,7 +189,7 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 50000
 
-        def add_only(a, b, c):
+        def add_only(a, b):
             return a + b
 
         def add_with_length(a, b, c):
@@ -209,13 +238,13 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 50000
 
-        def add_only(a, b, c):
+        def add_only(b):
             return b
 
-        def add_with_length(a, b, c):
+        def add_with_length(b, c):
             return b * c
 
-        def merge_tag(tag1, tag2):
+        def merge_tag(tag1):
             return tag1
 
         def num_to_cover(x):

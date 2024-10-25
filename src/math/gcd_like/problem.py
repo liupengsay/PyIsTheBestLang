@@ -15,6 +15,7 @@ P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 
 =====================================AtCoder======================================
 ABC340F（https://atcoder.jp/contests/abc340/tasks/abc340_f）ex_gcd|equation|math
+ABC186E（https://atcoder.jp/contests/abc186/tasks/abc186_e）gcd_like|solve_equation|extend_gcd|math
 
 =====================================CodeForces======================================
 1152C（https://codeforces.com/problemset/problem/1152/C）gcd_like|observation|brute_force
@@ -82,4 +83,23 @@ class Solution:
             return
         gcd, x0, y0 = lst[:]
         ac.lst([x0, y0])
+        return
+
+    @staticmethod
+    def abc_186e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc186/tasks/abc186_e
+        tag: gcd_like|solve_equation|extend_gcd|math
+        """
+        for _ in range(ac.read_int()):
+            n, s, k = ac.read_list_ints()
+            ans = GcdLike().solve_equation(k, -n, -s)
+            if not ans:
+                ac.st(-1)
+            else:
+                gcd, x0, y0 = ans
+                t = (x0 - 1) * gcd // n
+                while x0 - (n // gcd) * t < 0:
+                    t += 1
+                ac.st(x0 - (n // gcd) * t)
         return

@@ -59,7 +59,10 @@ class GcdLike:
         return (x + p) % p
 
     def solve_equation(self, a, b, n=1):
-        """a * x + b * y = n"""
+        """
+        a*x+b*y=n
+        (a*x)%b=n
+        """
         gcd, x, y = self.extend_gcd(a, b)
         assert a * x + b * y == gcd
         if n % gcd:
@@ -72,7 +75,6 @@ class GcdLike:
 
     @staticmethod
     def add_to_n(n):
-
         # minimum times to make a == n or b == n by change [a, b] to [a + b, b] or [a, a + b] from [1, 1]
         if n == 1:
             return 0

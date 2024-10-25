@@ -106,6 +106,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 2020D（https://codeforces.com/contest/2020/problem/D）union_find|union_right|classical
 277A（https://codeforces.com/problemset/problem/277/A）union_find_general
 1156D（https://codeforces.com/problemset/problem/1156/D）union_find|brute_force
+2033E（https://codeforces.com/contest/2033/problem/E）union_find|permutation_circle|greedy
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find

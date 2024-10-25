@@ -95,6 +95,7 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 1153D（https://codeforces.com/problemset/problem/1153/D）tree_dp|greed|brain_teaser
 274B（https://codeforces.com/problemset/problem/274/B）tree_dp|greed|brain_teaser|classical
 369C（https://codeforces.com/contest/369/problem/C）tree_dp|greed|classical
+2033G（https://codeforces.com/contest/2033/problem/G）reroot_dp|tree_multiplication|build_graph|brain_teaser|implemention|dfs|back_trace|PointSetPointAddRangeMerge
 
 =====================================AcWing=====================================
 3760（https://www.acwing.com/problem/content/description/3763/）brain_teaser|tree_dp
@@ -107,10 +108,11 @@ from functools import lru_cache
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
+from src.math.prime_factor.template import PrimeFactor
 from src.structure.list_node.template import ListNode
 from src.structure.sorted_list.template import SortedList
+from src.structure.zkw_segment_tree.template import PointSetPointAddRangeMerge
 from src.tree.tree_dp.template import WeightedTree
-from src.math.prime_factor.template import PrimeFactor
 from src.util.fast_io import FastIO
 
 
@@ -1286,7 +1288,7 @@ class Solution:
         tag: reroot_dp|classical
         """
 
-        def standard_procedure(n: int) -> int:
+        def standard_procedure() -> int:
             dct = [[] for _ in range(n)]
             for i, j, w in edges:
                 dct[i].append((j, w))
@@ -1360,7 +1362,7 @@ class Solution:
 
         n = ac.read_int()
         edges = [ac.read_list_ints() for _ in range(n - 1)]
-        ac.st(standard_procedure(n))
+        ac.st(standard_procedure())
         return
 
     @staticmethod
@@ -1969,7 +1971,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 ans = [0] * self.n
                 stack = [0]
                 res = nums[0]
@@ -2002,12 +2004,12 @@ class Solution:
 
         for _ in range(ac.read_int()):
             n = ac.read_int()
-            arr = ac.read_list_ints()
+            nums = ac.read_list_ints()
             tree = Graph(n)
             p = ac.read_list_ints_minus_one()
             for k in range(n - 1):
                 tree.add_directed_edge(p[k], k + 1)
-            final = tree.tree_dp(arr)
+            final = tree.tree_dp()
             ac.st(final)
         return
 
@@ -2019,7 +2021,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 ans = [0] * self.n
                 parent = [-1] * self.n
                 stack = [0]
@@ -2054,11 +2056,11 @@ class Solution:
 
         n = ac.read_int()
         graph = Graph(n)
-        weights = ac.read_list_ints()
+        nums = ac.read_list_ints()
         for _ in range(n - 1):
             u, v, c = ac.read_list_ints_minus_one()
             graph.add_undirected_edge(u, v, c + 1)
-        final = graph.tree_dp(weights)
+        final = graph.tree_dp()
         ac.st(final)
         return
 
@@ -2070,7 +2072,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 ans = [1] * self.n
                 parent = [-1] * self.n
                 stack = [0]
@@ -2104,7 +2106,7 @@ class Solution:
         if n % 2:
             ac.st(-1)
         else:
-            ac.st(graph.tree_dp([-1]))
+            ac.st(graph.tree_dp())
         return
 
     @staticmethod
@@ -2115,7 +2117,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 ans = [1] * self.n
                 parent = [-1] * self.n
                 stack = [0]
@@ -2158,7 +2160,7 @@ class Solution:
         p = ac.read_list_ints_minus_one()
         for u in range(1, n):
             graph.add_undirected_edge(p[u - 1], u)
-        final = graph.tree_dp([-1])
+        final = graph.tree_dp()
         ac.st(final)
         return
 
@@ -2170,7 +2172,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 ans = [1] * self.n
                 parent = [-1] * self.n
                 stack = [0]
@@ -2207,11 +2209,11 @@ class Solution:
 
         n = ac.read_int()
         graph = Graph(n)
-        arr = ac.read_list_ints()
+        nums = ac.read_list_ints()
         p = ac.read_list_ints_minus_one()
         for u in range(1, n):
             graph.add_undirected_edge(p[u - 1], u)
-        final = graph.tree_dp(arr)
+        final = graph.tree_dp()
         ac.st(final)
         return
 
@@ -2247,7 +2249,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 f = [0] * self.n
                 g = [0] * self.n
                 parent = [-1] * self.n
@@ -2287,8 +2289,8 @@ class Solution:
         for _ in range(n - 1):
             u, v = ac.read_list_ints_minus_one()
             graph.add_undirected_edge(u, v)
-        arr = ac.read_list_ints()
-        final = graph.tree_dp(arr)
+        nums = ac.read_list_ints()
+        final = graph.tree_dp()
         ac.st(final)
         return
 
@@ -2300,7 +2302,7 @@ class Solution:
         """
 
         class Graph(WeightedTree):
-            def tree_dp(self, nums):
+            def tree_dp(self):
                 res = []
                 ans = [0] * self.n
                 parent = [-1] * self.n
@@ -2337,7 +2339,151 @@ class Solution:
         for _ in range(n - 1):
             u, v, ww = ac.read_list_ints_minus_one()
             graph.add_undirected_edge(u, v, ww)
-        final = graph.tree_dp([-1])
+        final = graph.tree_dp()
         ac.st(len(final))
         ac.lst(final)
+        return
+
+    @staticmethod
+    def cf_2033g_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2033/problem/G
+        tag: reroot_dp|tree_multiplication|build_graph|brain_teaser|implemention|dfs|back_trace|PointSetPointAddRangeMerge
+        """
+
+        class Graph(WeightedTree):
+            def reroot_dp(self):
+                dp1 = [0] * self.n
+                dp2 = [0] * self.n
+                self.parent = [-1] * self.n
+                stack = [self.root]
+                depth = [0] * self.n
+                while stack:
+                    u = stack.pop()
+                    if u >= 0:
+                        stack.append(~u)
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                self.parent[v] = u
+                                stack.append(v)
+                                depth[v] = depth[u] + 1
+                    else:
+                        u = ~u
+                        a = b = 0
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                if dp1[v] + 1 > a:
+                                    a, b = dp1[v] + 1, a
+                                elif dp1[v] + 1 > b:
+                                    b = dp1[v] + 1
+                        dp1[u] = a
+                        dp2[u] = b
+                        ind = self.point_head[u]
+                        while ind:
+                            v = self.edge_to[ind]
+                            if v != self.parent[u]:
+                                sub = dp1[u] if dp1[u] != dp1[v] + 1 else dp2[u]
+                                self.edge_weight[ind] = depth[u] - sub
+                            ind = self.edge_next[ind]
+
+                self.multiplication_build_for_minimum_weights()
+                for _ in range(q):
+                    jj, k = ac.read_list_ints()
+                    jj -= 1
+                    if not k:
+                        ans.append(dp1[jj])
+                    else:
+                        k = min(k, depth[jj])
+                        lowest = self.multiplication_get_kth_ancestor_min_weights(jj, k)
+                        ans.append(max(dp1[jj], depth[jj] - lowest))
+                return
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            graph = Graph(n)
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(i, j, 1)
+            q = ac.read_int()
+            ans = []
+            graph.reroot_dp()
+            ac.lst(ans)
+        return
+
+    @staticmethod
+    def cf_2033g_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2033/problem/G
+        tag: reroot_dp|tree_multiplication|build_graph|brain_teaser|implemention|dfs|back_trace|PointSetPointAddRangeMerge
+        """
+
+        class Graph(WeightedTree):
+            def reroot_dp(self):
+                dp1 = [0] * self.n
+                dp2 = [0] * self.n
+                self.parent = [-1] * self.n
+                stack = [self.root]
+                depth = [0] * self.n
+                while stack:
+                    u = stack.pop()
+                    if u >= 0:
+                        stack.append(~u)
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                self.parent[v] = u
+                                stack.append(v)
+                                depth[v] = depth[u] + 1
+                    else:
+                        u = ~u
+                        a = b = 0
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                if dp1[v] + 1 > a:
+                                    a, b = dp1[v] + 1, a
+                                elif dp1[v] + 1 > b:
+                                    b = dp1[v] + 1
+                        dp1[u] = a
+                        dp2[u] = b
+
+                stack = [(self.root, 0)]
+                mono = []
+                tree = PointSetPointAddRangeMerge(self.n, 32 * self.n, min)
+                while stack:
+                    u, pre = stack.pop()
+                    if u >= 0:
+                        stack.append((~u, -1))
+                        if u:
+                            mono.append(pre)
+                            tree.point_set(len(mono) - 1, pre)
+                        for val in queries[u]:
+                            kk, ii = val // q, val % q
+                            if kk == 0 or not u:
+                                ans[ii] = dp1[u]
+                            else:
+                                ans[ii] = max(dp1[u],
+                                              depth[u] - tree.range_merge(max(0, len(mono) - kk), len(mono) - 1))
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                sub = dp1[u] if dp1[u] != dp1[v] + 1 else dp2[u]
+                                stack.append((v, depth[u] - sub))
+                    else:
+                        u = ~u
+                        if u:
+                            mono.pop()
+                return
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            graph = Graph(n)
+            for _ in range(n - 1):
+                i, j = ac.read_list_ints_minus_one()
+                graph.add_undirected_edge(i, j, 1)
+            q = ac.read_int()
+            queries = [list(int) for _ in range(n)]
+            for i in range(q):
+                j, k = ac.read_list_ints()
+                queries[j - 1].append(k * q + i)
+            ans = [-1] * q
+            graph.reroot_dp()
+            ac.lst(ans)
         return

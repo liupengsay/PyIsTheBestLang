@@ -104,6 +104,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1114C（https://codeforces.com/problemset/problem/1114/C）get_prime_factor|num_factor|inclusion_exclusion|n_base
 2007C（https://codeforces.com/problemset/problem/2007/C）peishu_theorem|gcd_like|greed|brain_teaser|implemention|math
 1010C（https://codeforces.com/problemset/problem/1010/C）peishu_theorem
+2033F（https://codeforces.com/contest/2033/problem/F）data_range|fibonacci_property|brain_teaser|math
 
 ====================================AtCoder=====================================
 ABC114D（https://atcoder.jp/contests/abc114/tasks/abc114_d）prime_factorization|counter
@@ -2060,4 +2061,26 @@ class Solution:
             if (y + 1 - t) % 2 == 0:
                 ans += 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2033f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2033/problem/F
+        tag: data_range|fibonacci_property|brain_teaser|math
+        """
+        mod = 10 ** 9 + 7
+
+        for _ in range(ac.read_int()):
+            n, x = ac.read_list_ints()
+            a = b = 1
+            res = 1
+            while a % x:
+                a, b = b, a + b
+                a %= x
+                b %= x
+                res += 1
+            res *= n
+            res %= mod
+            ac.st(res)
         return

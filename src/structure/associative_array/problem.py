@@ -10,6 +10,7 @@ Reference：https://judge.yosupo.jp/problem/associative_array
 1676F（https://codeforces.com/contest/1676/problem/F）hash|dp|sort
 776C（https://codeforces.com/problemset/problem/776/C）prefix_sum|hash|random_seed|random_xor
 1188B（https://codeforces.com/problemset/problem/1188/B）hash|math|classical
+650A（https://codeforces.com/problemset/problem/650/A）hash|count
 
 ================================Library Checker================================
 1（https://judge.yosupo.jp/problem/associative_array）hash|xor_random_seed

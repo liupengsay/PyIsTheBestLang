@@ -27,11 +27,12 @@ ABC361E（https://atcoder.jp/contests/abc361/tasks/abc361_e）tree_diameter|clas
 1（https://judge.yosupo.jp/problem/tree_diameter）tree_diameter
 
 """
+import math
 from collections import Counter
 from typing import List
 
-from src.tree.tree_diameter.template import TreeDiameter, GraphDiameter
 from src.graph.union_find.template import UnionFind
+from src.tree.tree_diameter.template import TreeDiameter, GraphDiameter
 from src.util.fast_io import FastIO
 
 
@@ -52,7 +53,7 @@ class Solution:
             edge[u].append([v, 1])
             edge[v].append([u, 1])
         tree = TreeDiameter(edge)
-        u, v = tree.get_diameter_math.info()[:2]
+        u, v = tree.get_diameter_info()[:2]
         dis1, _ = tree.get_bfs_dis(u)
         dis2, _ = tree.get_bfs_dis(v)
         diff = [0] * (n + 1)
@@ -177,7 +178,7 @@ class Solution:
             if uf.part != 1:
                 continue
             tree = TreeDiameter(dct)
-            ans[tree.get_diameter_math.info()[-1]] += 1
+            ans[tree.get_diameter_info()[-1]] += 1
         return ans[1:]
 
     @staticmethod
@@ -193,7 +194,7 @@ class Solution:
             dct[x].append((y, c))
             dct[y].append((x, c))
         tree = TreeDiameter(dct)
-        _, _, path, d = tree.get_diameter_math.info()
+        _, _, path, d = tree.get_diameter_info()
         ac.lst([d, len(path)])
         ac.lst(path)
         return
@@ -210,7 +211,7 @@ class Solution:
             i, j = ac.read_list_ints_minus_one()
             dct[i].append((j, 1))
             dct[j].append((i, 1))
-        _, _, stack, _ = TreeDiameter(dct).get_diameter_math.info()
+        _, _, stack, _ = TreeDiameter(dct).get_diameter_info()
         ind = {num: i for i, num in enumerate(stack)}
         queries = [[] for _ in range(n)]
         q = ac.read_int()
@@ -262,7 +263,7 @@ class Solution:
             ac.st(1)
             return
 
-        x, y, path, d = TreeDiameter(dct).get_diameter_math.info()
+        x, y, path, d = TreeDiameter(dct).get_diameter_info()
         if len(path) % 2 == 0:
             m = len(path)
             i, j = path[m // 2 - 1], path[m // 2]
@@ -274,7 +275,7 @@ class Solution:
             dct[i].append((n - 1, 1))
             dct[n - 1].append((j, 1))
             dct[j].append((n - 1, 1))
-            x, y, path, d = TreeDiameter(dct).get_diameter_math.info()
+            x, y, path, d = TreeDiameter(dct).get_diameter_info()
         m = len(path)
         mid = path[m // 2]
         dis = [-1] * n
@@ -395,6 +396,6 @@ class Solution:
             else:
                 dct[i].append((j, 1))
                 dct[j].append((i, 1))
-        _, _, _, dis = TreeDiameter(dct).get_diameter_math.info()
+        _, _, _, dis = TreeDiameter(dct).get_diameter_info()
         ac.st((dis + 1) // 2)
         return

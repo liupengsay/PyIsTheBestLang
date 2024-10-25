@@ -21,6 +21,8 @@ class WeightedTree:
         self.dis = [0]
         self.order_to_node = [-1]
         self.ancestor = [-1]
+        self.weights = [-1]
+        self.ancestor = [-1]
         return
 
     def add_directed_edge(self, u, v, w=1):
@@ -364,3 +366,60 @@ class WeightedTree:
                     if v != self.parent[u]:
                         diff[u] += diff[v]
         return
+
+    def multiplication_build_for_minimum_weights(self, inf=3e8):
+        self.weights = [inf] * self.n * self.cols
+        self.ancestor = [-1] * self.n * self.cols
+        self.depth = [0] * self.n
+        stack = [0]
+        while stack:
+            nex = []
+            for u in stack:
+                for v, weight in self.get_to_nodes_weights(u):
+                    if v != self.ancestor[u * self.cols]:
+                        self.ancestor[v * self.cols] = u
+                        self.weights[v * self.cols] = weight
+                        self.depth[v] = self.depth[u] + 1
+                        nex.append(v)
+            stack = nex
+
+        for j in range(1, self.cols):
+            for i in range(self.n):
+                father = self.ancestor[i * self.cols + j - 1]
+                if father != -1:
+                    self.weights[i * self.cols + j] = min(self.weights[i * self.cols + j - 1],
+                                                          self.weights[father * self.cols + j - 1])
+                    self.ancestor[i * self.cols + j] = self.ancestor[father * self.cols + j - 1]
+        return
+
+    def multiplication_get_min_weights_between_nodes(self, u: int, v: int):
+        assert 0 <= u < self.n
+        assert 0 <= v < self.n
+        if self.depth[u] < self.depth[v]:
+            u, v = v, u
+        ans = math.inf
+        while self.depth[u] > self.depth[v]:
+            d = self.depth[u] - self.depth[v]
+            ans = min(ans, self.weights[u * self.cols + int(math.log2(d))])
+            u = self.ancestor[u * self.cols + int(math.log2(d))]
+        if u == v:
+            return ans
+        for k in range(int(math.log2(self.depth[u])), -1, -1):
+            if self.ancestor[u * self.cols + k] != self.ancestor[v * self.cols + k]:
+                ans = min(ans, self.weights[u * self.cols + k])
+                ans = min(ans, self.weights[v * self.cols + k])
+                u = self.ancestor[u * self.cols + k]
+                v = self.ancestor[v * self.cols + k]
+        ans = min(ans, self.weights[u * self.cols])
+        ans = min(ans, self.weights[v * self.cols])
+        return ans
+
+    def multiplication_get_kth_ancestor_min_weights(self, u: int, k: int):
+        ans = math.inf
+        for i in range(self.cols - 1, -1, -1):
+            if k & (1 << i):
+                ans = min(ans, self.weights[u * self.cols + i])
+                u = self.ancestor[u * self.cols + i]
+                if u == -1:
+                    break
+        return ans

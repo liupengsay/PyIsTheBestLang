@@ -10,6 +10,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1093G（https://codeforces.com/contest/1093/problem/G）manhattan_distance|point_set|range_max_min_gap|classical
 
 ====================================AtCoder=====================================
+ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
 
 =====================================AcWing=====================================
 
@@ -17,9 +18,11 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 
 
 """
-from src.structure.segment_tree.template import PointSetRangeMaxMinGap
-from src.util.fast_io import FastIO
+import math
 
+from src.structure.segment_tree.template import PointSetRangeMaxMinGap
+from src.structure.zkw_segment_tree.template import PointSetPointAddRangeSum
+from src.util.fast_io import FastIO
 
 
 class Solution:
@@ -63,4 +66,47 @@ class Solution:
                     cur = tree[i].range_max_min_gap(ll, rr)
                     ans = ans if ans > cur else cur
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_186f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc186/tasks/abc186_f
+        tag: PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+        """
+        m, n, k = ac.read_list_ints()
+        stone = [[] for _ in range(m)]
+        col = [m] * n
+        row = [n] * m
+        for _ in range(k):
+            x, y = ac.read_list_ints_minus_one()
+            stone[x].append(y)
+            col[y] = min(col[y], x)
+            row[x] = min(row[x], y)
+        ans = 0
+        tree = PointSetPointAddRangeSum(n)
+        for y in range(n):
+            if col[y] == 0:
+                for yy in range(y, n):
+                    tree.point_set(yy, 1)
+        for x in range(m):
+            if row[x] == 0:
+                for y in range(n):
+                    if col[y] == 0:
+                        ans += (n - y) * (m - x)
+                        break
+                    if col[y] <= x:
+                        ans += m - x
+                    else:
+                        ans += m - col[y]
+                break
+            if not stone[x]:
+                continue
+            res = n
+            for y in stone[x]:
+                tree.point_set(y, 1)
+                res = min(res, y)
+            ans += tree.range_sum(res, n - 1)
+        ans = m * n - ans
+        ac.st(ans)
         return

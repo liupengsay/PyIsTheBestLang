@@ -1,9 +1,9 @@
+import math
 import random
 import unittest
 
-import math
-from src.tree.tree_diameter.template import TreeDiameter
 from src.graph.union_find.template import UnionFind
+from src.tree.tree_diameter.template import TreeDiameter
 
 
 class TestGeneral(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestGeneral(unittest.TestCase):
             edges = []
             for i in range(1, n):
                 j = random.randint(0, i - 1)
-                edges.append((i, j, random.randint(1, 10**9)))
+                edges.append((i, j, random.randint(1, 10 ** 9)))
             uf = UnionFind(n)
             for x, y, _ in edges:
                 uf.union(x, y)
@@ -43,7 +43,7 @@ class TestGeneral(unittest.TestCase):
                             dct[ind[x]].append((ind[y], w))
                             dct[ind[y]].append((ind[x], w))
                     dia = TreeDiameter(dct)
-                    cur.append(dia.get_diameter_math.info()[-1])
+                    cur.append(dia.get_diameter_info()[-1])
                 ans1 = min(ans1, max(cur) - min(cur))
 
             dct = [[] for _ in range(n)]
@@ -84,7 +84,7 @@ class TestGeneral(unittest.TestCase):
             while stack:
                 x, fa, pre, pre_dia = stack.pop()
                 a, b, c = sub[x]
-                #print("x, a, b, c, pre, pre_dia", x, a, b, c, pre, pre_dia)
+                # print("x, a, b, c, pre, pre_dia", x, a, b, c, pre, pre_dia)
                 aa = bb = -math.inf
                 for y, _ in dct[x]:
                     if y != fa:
@@ -103,7 +103,7 @@ class TestGeneral(unittest.TestCase):
                         elif sub[y][0] == b - w:
                             up = max(pre + a, a + c, pre_dia)
                             nex = max(pre, a) + w
-                            nex_dia = max(pre_dia, pre + a, a + w,  a + c)
+                            nex_dia = max(pre_dia, pre + a, a + w, a + c)
                         else:
                             up = max(pre + a, a + b, pre_dia)
                             nex = max(pre, a) + w
@@ -115,10 +115,10 @@ class TestGeneral(unittest.TestCase):
                             up = max(up, aa)
                             nex_dia = max(nex_dia, aa)
                         ans2 = min(ans2, abs(up - down))
-                        #print("y, up, down", y, up, down)
+                        # print("y, up, down", y, up, down)
                         stack.append((y, x, nex, nex_dia))
 
-            #print(edges, ans1, ans2)
+            # print(edges, ans1, ans2)
             assert ans1 == ans2
         return
 
