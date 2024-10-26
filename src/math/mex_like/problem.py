@@ -158,8 +158,6 @@ class Solution:
         for _ in range(ac.read_int()):
             n = ac.read_int()
             nums = ac.read_list_ints()
-
-            n = len(nums)
             post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
             pre = [0] * n  # initial can be 0 or -1 dependent on usage
             stack = []

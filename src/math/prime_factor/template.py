@@ -34,6 +34,7 @@ class PrimeFactor:
         for i in range(2, self.n + 1):
             if not self.min_prime[i]:
                 self.min_prime[i] = i
+                # i is prime <> self.min_prime[i]==i
                 for j in range(i * i, self.n + 1, i):
                     if not self.min_prime[j]:
                         self.min_prime[j] = i

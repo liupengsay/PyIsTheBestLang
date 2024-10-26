@@ -396,11 +396,18 @@ class TestGeneral(unittest.TestCase):
             webbrowser.open(url)
         return
 
+    def test_codeforces_daily(self):
+        webbrowser.open("https://codeforces.com/submissions/liupengsay")
+        url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags=1400-1400"
+        webbrowser.open(url)
+        time.sleep(0.5)
+        print(url)
+        return
+
     def test_codeforces_practice(self):
         webbrowser.open("https://codeforces.com/submissions/liupengsay")
         difficulty = list(range(1400, 2200, 100))
-        i = 0
-        for x in difficulty[i:i + 1]:
+        for x in difficulty:
             url = f"https://codeforces.com/problemset?order=BY_SOLVED_DESC&tags={x}-"
             webbrowser.open(url)
             time.sleep(0.5)

@@ -167,9 +167,10 @@ from heapq import heappop, heapify, heappush
 from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.structure.segment_tree.template import RangeDivideRangeSum
 from src.structure.sorted_list.template import SortedList
-from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindInd, UnionFindGeneral
+from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindGeneral
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
@@ -423,7 +424,7 @@ class Solution:
         tag: union_find|circle_judge
         """
         n, m = ac.read_list_ints()
-        edges = [ac.read_list_ints() for i in range(m)]
+        edges = [ac.read_list_ints() for _ in range(m)]
         uf = UnionFind(n)
         dct = [[] for _ in range(n)]
         for i in range(m):
@@ -520,18 +521,18 @@ class Solution:
         n = ac.read_int()
         nums = [[w for w in ac.read_list_ints()] for _ in range(n)]
         grid = [ac.read_str() for _ in range(n)]
-        dct = [dict() for _ in range(n)]
+        graph = WeightedGraphForDijkstra(n)
         uf = UnionFind(n)
         for i in range(n):
             for j in range(i + 1, n):
                 if grid[i][j] == "1":
                     uf.union(i, j)
                     d = dis(nums[i][0], nums[i][1], nums[j][0], nums[j][1])
-                    dct[i][j] = dct[j][i] = d
+                    graph.add_undirected_edge(i, j, d)
 
         dist = []
         for i in range(n):
-            dist.append(Dijkstra().get_shortest_path(dct, i))
+            dist.append(graph.dijkstra_for_shortest_path_float(i))
 
         part = uf.get_root_part()
         fast = [math.inf] * n

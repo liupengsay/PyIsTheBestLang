@@ -63,18 +63,19 @@ ABC367F（https://atcoder.jp/contests/abc367/tasks/abc367_f）random_seed|random
 3（https://ac.nowcoder.com/acm/problem/51003）matrix_hash|string_hash
 
 """
-
+import math
 import random
 from collections import defaultdict, Counter
 from itertools import accumulate
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.math.fast_power.template import MatrixFastPower
 from src.math.prime_factor.template import PrimeFactor
-from src.tree.tree_dp.template import WeightedTree
 from src.string.string_hash.template import StringHash, PointSetRangeHashReverse, RangeSetRangeHashReverse, \
     MatrixHash, MatrixHashReverse, StringHashSingle, StringHashSingleBuild
+from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 
 
@@ -700,7 +701,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_1923_2(n: int, paths: List[List[int]]) -> int:
+    def lc_1923_2(paths: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/longest-common-subpath/
         tag: binary_search|string_hash
@@ -781,7 +782,7 @@ class Solution:
         def query(x, y):
             if y < x:
                 return 0, 0
-            res = tuple((pre[i][y + 1] - pre[i][x] * pp[i][y - x + 1]) % mod[i] for i in range(2))
+            res = tuple((pre[ii][y + 1] - pre[ii][x] * pp[ii][y - x + 1]) % mod[ii] for ii in range(2))
             return res
 
         ans = set()
@@ -1034,14 +1035,14 @@ class Solution:
         tag: string_hash|dp|dijkstra|trie
         """
 
+        len(source)
         sh1 = StringHash([ord(w) - ord("a") for w in source + target])
-        sh2 = StringHash([ord(w) - ord("a") for w in source + target])
 
         has = dict()
 
         nodes = set(original + changed)
         for string in nodes:
-            lst = [len(string)]
+            lst = []
 
             p, mod = sh1.p, sh1.mod
             state = 0
@@ -1050,27 +1051,19 @@ class Solution:
                 state += ord(w) - ord("a")
                 state %= mod
             lst.append(state)
-
-            p, mod = sh2.p, sh2.mod
-            state = 0
-            for w in string:
-                state *= p
-                state += ord(w) - ord("a")
-                state %= mod
-            lst.append(state)
-
+            lst.append(len(string))
             has[tuple(lst)] = string
 
         ind = {x: i for i, x in enumerate(nodes)}
         m = len(ind)
-        dct = [[] for _ in range(m)]
+        graph = WeightedGraphForDijkstra(m)
         for x, y, z in zip(original, changed, cost):
             x = ind[x]
             y = ind[y]
-            dct[x].append([y, z])
+            graph.add_directed_edge(x, y, z)
         dis = []
         for x in range(m):
-            dis.append(Dijkstra().get_shortest_path(dct, x))
+            dis.append(graph.dijkstra_for_shortest_path(x))
 
         n = len(source)
         dp = [math.inf] * (n + 1)
@@ -1085,13 +1078,14 @@ class Solution:
                 dp[i + 1] = dp[i]
             for w in exist[source[i]]:
                 j = i - len(w) + 1
-                s1 = (i - j + 1, sh1.query(j, i), sh2.query(j, i))
-                t1 = (i - j + 1, sh1.query(j + n, i + n), sh2.query(j + n, i + n))
-                if s1 in has and t1 in has:
-                    x, y = ind[has[s1]], ind[has[t1]]
-                    z = dis[x][y]
-                    if dp[j] + z < dp[i + 1]:
-                        dp[i + 1] = dp[j] + z
+                if j >= 0:
+                    s1 = sh1.query(j, i)
+                    t1 = sh1.query(j + n, i + n)
+                    if s1 in has and t1 in has:
+                        x, y = ind[has[s1]], ind[has[t1]]
+                        z = dis[x][y]
+                        if dp[j] + z < dp[i + 1]:
+                            dp[i + 1] = dp[j] + z
 
         return dp[-1] if dp[-1] < math.inf else -1
 
@@ -1263,7 +1257,7 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p4503(ac=FastIO()):
+    def lg_p4503_1(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4503
         tag: string_hash
@@ -1570,7 +1564,7 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p4503(ac=FastIO()):
+    def lg_p4503_2(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4503
         tag: string_hash|random_hash
@@ -1625,10 +1619,11 @@ class Solution:
         graph = WeightedTree(n)
         for i in range(n - 1, 0, -1):
             graph.add_directed_edge(parent[i], i)
-        graph.dfs_order(0)
+        graph.dfs_order()
         lst = [ord(s[i]) - ord("a") for i in graph.order_to_node]
         sh = StringHashSingle(lst + lst[::-1])
         ans = []
         for i in range(n):
-            ans.append(sh.query(graph.start[i], graph.end[i]) == sh.query(n + n - 1 - graph.end[i], n + n - 1 - graph.start[i]))
+            ans.append(sh.query(graph.start[i], graph.end[i]) == sh.query(n + n - 1 - graph.end[i],
+                                                                          n + n - 1 - graph.start[i]))
         return ans

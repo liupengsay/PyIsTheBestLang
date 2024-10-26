@@ -1,10 +1,8 @@
 import math
-from collections import deque
 from heapq import heappop, heappush
 
-from src.structure.tree_array.template import PointDescendPreMin
 from src.graph.union_find.template import UnionFind
-
+from src.structure.tree_array.template import PointDescendPreMin
 
 
 class ManhattanMST:
@@ -83,7 +81,7 @@ class KruskalMinimumSpanningTree:
                     self.cost += z
             if uf.part != 1:
                 self.cost = -1
-        else:  # prim
+        else:
             # Point priority with Dijkstra
             dct = [dict() for _ in range(self.n)]
             for i, j, w in self.edges:
@@ -450,4 +448,3 @@ class TreeMultiplicationMaxWeights:
         ans = max(ans, self.weights[x * self.cols])
         ans = max(ans, self.weights[y * self.cols])
         return ans
-

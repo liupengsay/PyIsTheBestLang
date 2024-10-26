@@ -21,6 +21,7 @@ ABC251E（https://atcoder.jp/contests/abc251/tasks/abc251_e）circular_array|lin
 
 
 """
+import math
 from collections import defaultdict
 
 from typing import List

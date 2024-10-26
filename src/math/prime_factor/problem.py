@@ -170,41 +170,6 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1034a(ac=FastIO()):
-
-        n = ac.read_int()
-        nums = ac.read_list_ints()
-        ceil = max(nums)
-
-        # 快速 1~ceil 的质数因子数
-        p = [0] * (ceil + 1)
-        for i in range(2, ceil + 1):
-            if p[i] == 0:
-                p[i] = i
-                # 从 i*i 开始作为 p[j] 的最小质数因子
-                for j in range(i * i, ceil + 1, i):
-                    p[j] = i
-
-        # gcd
-        g = reduce(math.gcd, nums)
-        cnt = [0] * (ceil + 1)
-        for i in range(n):
-            b = nums[i] // g
-            while b > 1:
-                #  num[i] 除掉 g 以后的质数因子数
-                fac = p[b]
-                # counter| 1 也可以记录由多少个因子
-                cnt[fac] += 1
-                while b % fac == 0:
-                    b //= fac
-        res = max(cnt)
-        if res == 0:
-            ac.st(-1)
-        else:
-            ac.st(n - res)
-        return
-
-    @staticmethod
     def lc_6334(nums: List[int]) -> int:
         # 非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（bag_dp|counter）
         dct = {2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30}
@@ -226,44 +191,6 @@ class Solution:
         ans = sum(pre.values()) * p
         ans += p - 1
         return ans % mod
-
-    @staticmethod
-    def cf_1366d(ac=FastIO()):
-        ac.read_int()
-        nums = ac.read_list_ints()
-        ceil = max(nums)
-
-        # 利用linear_sieve的思想最小的质因数
-        min_div = [i for i in range(ceil + 1)]
-        for i in range(2, len(min_div)):
-            if min_div[i] != i:
-                continue
-            if i * i >= len(min_div):
-                break
-            for j in range(i, len(min_div)):
-                if i * j >= len(min_div):
-                    break
-                if min_div[i * j] == i * j:
-                    min_div[i * j] = i
-
-        # construction结果
-        ans1 = []
-        ans2 = []
-        for num in nums:
-            p = min_div[num]
-            v = num
-            while v % p == 0:
-                v //= p
-            if v == 1:
-                # 只有一个质因子
-                ans1.append(-1)
-                ans2.append(-1)
-            else:
-                ans1.append(v)
-                ans2.append(num // v)
-        ac.lst(ans1)
-        ac.lst(ans2)
-        return
 
     @staticmethod
     def lc_2183(nums: List[int], k: int) -> int:
@@ -491,19 +418,6 @@ class Solution:
         return
 
     @staticmethod
-    def ac_199(ac=FastIO()):
-        #  sum(k%i for i in range(n))
-        n, k = ac.read_list_ints()
-        ans = n * k
-        left = 1
-        while left <= min(n, k):
-            right = min(k // (k // left), n)
-            ans -= (k // left) * (left + right) * (right - left + 1) // 2
-            left = right + 1
-        ac.st(ans)
-        return
-
-    @staticmethod
     def lc_p2429(ac=FastIO()):
         # brute_force质因数组合|inclusion_exclusioncounter
         n, m = ac.read_list_ints()
@@ -584,33 +498,6 @@ class Solution:
 
         for _ in range(ac.read_int()):
             ac.st(dp[ac.read_int()])
-        return
-
-    @staticmethod
-    def lg_p8319(ac=FastIO()):
-        # prime_factorization|greed
-        n = 2 * 10 ** 6
-        f = [1] * (n + 1)
-        prime = [0] * (n + 1)
-        for x in range(2, n + 1):
-            if not prime[x]:
-                # 当前值作为质因子的花费次数
-                t = 1
-                while t * x <= n:
-                    c = 1
-                    xx = t
-                    while xx % x == 0:
-                        xx //= x
-                        c += 1
-                    f[t * x] += (x - 1) * c
-                    prime[t * x] = 1
-                    t += 1
-
-        # 前缀最大值处理
-        for i in range(1, n + 1):
-            f[i] = max(f[i - 1], f[i])
-        for _ in range(ac.read_int()):
-            ac.st(f[ac.read_int()])
         return
 
     @staticmethod
@@ -840,7 +727,7 @@ class Solution:
         url: https://codeforces.com/contest/1627/problem/D
         tag: euler_series|prime_factor|all_factor|implemention|brute_force
         """
-        n = ac.read_int()
+        ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums)
         cnt = [0] * (ceil + 1)

@@ -8,7 +8,10 @@ P4721（https://www.luogu.com.cn/problem/P4721）divide_and_conquer|fft
 
 
 def fft_v(x):
-    import numpy as np
+    try:
+        import numpy as np
+    except ImportError:
+        return
     x = np.asarray(x, dtype=float)
     n = x.shape[0]
     if np.log2(n) % 1 > 0:

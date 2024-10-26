@@ -16,13 +16,21 @@ class WeightedTree:
         self.order = 0
         self.start = [-1]
         self.end = [-1]
-        self.parent = [-1]
         self.depth = [0]
         self.dis = [0]
-        self.order_to_node = [-1]
         self.ancestor = [-1]
         self.weights = [-1]
         self.ancestor = [-1]
+        # index is dfs order and value is original node
+        self.order_to_node = [-1]
+        # index is dfs order and value is its depth
+        self.order_depth = [0]
+        # the order of original node visited in the total backtracking path
+        self.euler_order = []
+        # the pos of original node first appears in the euler order
+        self.euler_in = [-1]
+        # the pos of original node last appears in the euler order
+        self.euler_out = [-1]
         return
 
     def add_directed_edge(self, u, v, w=1):
@@ -101,6 +109,60 @@ class WeightedTree:
                 u = ~u
                 if self.parent[u] != -1:
                     self.end[self.parent[u]] = self.end[u]
+        return
+
+    def dfs_euler_order(self):
+        """build dfs order and euler order and relative math.info"""
+        self.order = 0
+        # index is original node value is dfs self.order
+        self.start = [-1] * self.n
+        # index is original node value is the maximum subtree dfs self.order
+        self.end = [-1] * self.n
+        # index is original node and value is its self.parent
+        self.parent = [-1] * self.n
+        # index is dfs self.order and value is original node
+        self.order_to_node = [-1] * self.n
+        # index is dfs order and value is original node
+        self.order_to_node = [-1] * self.n
+        # index is original node and value is its depth
+        self.depth = [0] * self.n
+        # index is dfs order and value is its depth
+        self.order_depth = [0] * self.n
+        # the order of original node visited in the total backtracking path
+        self.euler_order = []
+        # the pos of original node first appears in the euler order
+        self.euler_in = [-1] * self.n
+        # the pos of original node last appears in the euler order
+        self.euler_out = [-1] * self.n  # 每个原始节点再欧拉序中最后出现的位置
+        order = 0
+        stack = [self.root]
+        while stack:
+            u = stack.pop()
+            if u >= 0:
+                self.euler_order.append(u)
+                self.start[u] = order
+                self.order_to_node[order] = u
+                self.end[u] = order
+                self.order_depth[order] = self.depth[u]
+                order += 1
+                stack.append(~u)
+                for v in self.get_to_nodes(u):
+                    if v != self.parent[u]:
+                        # the order of son nodes can be assigned for lexicographical order
+                        self.parent[v] = u
+                        self.depth[v] = self.depth[u] + 1
+                        stack.append(v)
+            else:
+                u = ~u
+                if u != self.root:
+                    self.euler_order.append(self.parent[u])
+                if self.parent[u] != -1:
+                    self.end[self.parent[u]] = self.end[u]
+        for u, num in enumerate(self.euler_order):
+            # pos of euler order for every original node
+            self.euler_out[num] = u
+            if self.euler_in[num] == -1:
+                self.euler_in[num] = u
         return
 
     def lca_build_with_multiplication(self):

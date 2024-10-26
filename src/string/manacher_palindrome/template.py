@@ -98,7 +98,6 @@ class ManacherPlindrome:
 
     def palindrome_just_start(self, s: str) -> (list, list):
         """template of get the endpoint of palindrome substring for every i-th character as start or end pos"""
-        n = len(s)
         # trick to promise every palindrome substring has odd length
         # with # centered as the original even palindrome substring
         # letter centered as the original odd palindrome substring

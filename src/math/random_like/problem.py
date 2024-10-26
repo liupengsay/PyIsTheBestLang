@@ -19,9 +19,9 @@ ABC238G（https://atcoder.jp/contests/abc238/tasks/abc238_g）random_hash|prime_
 import random
 from collections import Counter
 
-from src.structure.segment_tree.template import RangeSetRangeSumMinMax
 from src.math.number_theory.template import NumFactor
 from src.math.prime_factor.template import PrimeFactor
+from src.structure.segment_tree.template import RangeSetRangeSumMinMax
 from src.util.fast_io import FastIO
 
 
@@ -101,7 +101,7 @@ class Solution:
         nums = ac.read_list_ints()
         prime_hash = [(0, 0, 0) for _ in range(ceil + 1)]
         for i in range(ceil + 1):
-            if pf.is_prime[i]:
+            if pf.min_prime[i] == i > 1:
                 h1 = random.getrandbits(64)
                 h2 = random.getrandbits(64)
                 h3 = h1 ^ h2

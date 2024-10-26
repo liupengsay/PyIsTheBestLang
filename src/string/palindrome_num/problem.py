@@ -21,6 +21,7 @@ from collections import defaultdict
 from itertools import accumulate
 from typing import List
 
+from src.math.number_theory.template import NumBase
 from src.string.palindrome_num.template import PalindromeNum
 
 
@@ -101,13 +102,11 @@ class Solution:
         url: https://leetcode.cn/problems/sum-of-k-mirror-numbers/
         tag: brute_force|10-base|palindrome_number
         """
-        # brute_force 10 进制palindrome_number并判断其 k 进制是否依然回文
         dct = defaultdict(list)
-        # 放到preprocess
         nums = PalindromeNum().get_palindrome_num_2(12)
         for k in range(2, 10):
             for num in nums:
-                lst = NumberTheory().get_k_bin_of_n(num, k)
+                lst = NumBase().get_k_bin_of_n(num, k)
                 if lst == lst[::-1]:
                     dct[k].append(num)
                     if len(dct[k]) >= 30:

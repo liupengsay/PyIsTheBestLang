@@ -98,10 +98,10 @@ from collections import Counter, defaultdict
 from functools import lru_cache
 from typing import List
 
-from src.structure.sorted_list.template import SortedList
 from src.math.comb_perm.template import Combinatorics, Lucas
 from src.math.number_theory.template import NumFactor, PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
+from src.structure.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 
@@ -771,7 +771,6 @@ class Solution:
         url: https://atcoder.jp/contests/abc132/tasks/abc132_d
         tag: comb|math|counter|classical|equation
         """
-
         n, k = ac.read_list_ints()
         mod = 10 ** 9 + 7
         cb = Combinatorics(n, mod)
@@ -980,19 +979,6 @@ class Solution:
         ans = sum(x * (pre[x] - pre[x + 1]) for x in range(1, m + 1)) % mod
         ans = ans * pow(tot, -1, mod) % mod
         ac.st(ans)
-        return
-
-    @staticmethod
-    def abc_266g(ac=FastIO()):
-        """
-        url: https://atcoder.jp/contests/abc266/tasks/abc266_g
-        tag: comb|brain_teaser|inclusion_exclusion|classical
-        """
-        mod = 998244353
-        r, g, b, k = ac.read_list_ints()
-        cb = Combinatorics(2 * 10 ** 6, mod)
-        ans = cb.comb(g + b, g - k) * cb.comb(b + k, k) * cb.comb(b + r, b + k)
-        ac.st(ans % mod)
         return
 
     @staticmethod

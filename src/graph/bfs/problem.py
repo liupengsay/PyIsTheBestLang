@@ -950,12 +950,12 @@ class Solution:
         """
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
-        for j in range(n):
-            grid[0][j] = -grid[0][j] - 1
+        for jj in range(n):
+            grid[0][jj] = -grid[0][jj] - 1
         dct = dict()
 
         def check(x):
-            stack = [(0, j) for j in range(n)]
+            stack = [(0, _) for _ in range(n)]
             cnt = 0
             while stack and cnt < n:
                 i, j = stack.pop()

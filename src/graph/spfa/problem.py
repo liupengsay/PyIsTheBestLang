@@ -34,6 +34,7 @@ import math
 from collections import deque
 from typing import List
 
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.graph.spfa.template import SPFA
 from src.util.fast_io import FastIO
 
@@ -402,7 +403,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5905
         tag: johnson_shortest_path|several_source|shortest_path|classical
         """
-        n, m = ac.read_list_ints()
+        n, m = ac.read_list_ints()  # TLE
         dct = [dict() for _ in range(n + 1)]
         for _ in range(m):
             u, v, w = ac.read_list_ints()
@@ -416,14 +417,15 @@ class Solution:
             ac.st(-1)
             return
 
+        graph = WeightedGraphForDijkstra(n + 1)
         for i in range(n + 1):
             dct[i] = [(j, w + h[i] - h[j]) for j, w in dct[i]]
-
+            for j, w in dct[i]:
+                graph.add_directed_edge(i, j, w)
         ceil = 10 ** 9
-        dj = Dijkstra()
         for i in range(1, n + 1):
             ans = 0
-            dis = dj.get_shortest_path(dct, i)
+            dis = graph.dijkstra_for_shortest_path(i)
             for j in range(1, n + 1):
                 ans += j * (dis[j] + h[j] - h[i]) if dis[j] < math.inf else j * ceil
             ac.st(ans)
@@ -497,18 +499,18 @@ class Solution:
         tag: differential_constraint|minimum|longest_path|prefix_sum|classical|can_be_dijkstra|reverse_thinking|dijkstra|shortest_path|maximum
         """
         n, m = ac.read_list_ints()
-        edge = [[] for _ in range(n + 1)]
+        graph = WeightedGraphForDijkstra(n + 1)
         for _ in range(m):
             a, b, c = ac.read_list_ints()
             if a > b:
                 a, b = b, a
-            edge[a - 1].append((b, b - a + 1 - c))
+            graph.add_directed_edge(a - 1, b, b - a + 1 - c)
 
         for i in range(1, n + 1):
-            edge[i - 1].append((i, 1))
-            edge[i].append((i - 1, 0))
+            graph.add_directed_edge(i - 1, i, 1)
+            graph.add_directed_edge(i, i - 1, 0)
 
-        dis = Dijkstra().get_shortest_path(edge, 0)
+        dis = graph.dijkstra_for_shortest_path()
         ans = [1 - (dis[i + 1] - dis[i]) for i in range(n)]
         ac.lst(ans)
         return

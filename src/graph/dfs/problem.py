@@ -809,20 +809,17 @@ class Solution:
         url: https://atcoder.jp/contests/abc133/tasks/abc133_f
         tag: euler_order|online_tree_dis|binary_search|prefix_sum
         """
-
         n, q = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
-        edges = [[] for _ in range(n)]
+        graph = WeightedTree(n)
         for _ in range(n - 1):
             a, b, c, d = ac.read_list_ints()
             a -= 1
             b -= 1
             dct[a][b] = [c, d]
             dct[b][a] = [c, d]
-            edges[a].append(b)
-            edges[b].append(a)
-        tree = TreeAncestor(edges)
-
+            graph.add_undirected_edge(a, b, 1)
+        graph.lca_build_with_multiplication()
         dis = [0] * n
         stack = [[0, -1]]
         while stack:
@@ -834,19 +831,18 @@ class Solution:
                     dct[y][x] = [-c, d]
                     dis[y] = dis[x] + d
                     stack.append([y, x])
-
-        euler_order = DfsEulerOrder(edges).euler_order[:]
-        m = len(euler_order)
+        graph.dfs_euler_order()
+        m = len(graph.euler_order)
         euler_ind = [-1] * n
         color_pos_ind = defaultdict(list)
         color_neg_ind = defaultdict(list)
         color_pos_pre = defaultdict(lambda: [0])
         color_neg_pre = defaultdict(lambda: [0])
         for i in range(m):
-            if euler_ind[euler_order[i]] == -1:
-                euler_ind[euler_order[i]] = i
+            if euler_ind[graph.euler_order[i]] == -1:
+                euler_ind[graph.euler_order[i]] = i
             if i:
-                a, b = euler_order[i - 1], euler_order[i]
+                a, b = graph.euler_order[i - 1], graph.euler_order[i]
                 c, d = dct[a][b]
                 if c > 0:
                     color_pos_ind[c].append(i)
@@ -859,7 +855,7 @@ class Solution:
             x, y, u, v = ac.read_list_ints()
             u -= 1
             v -= 1
-            ancestor = tree.get_lca(u, v)
+            ancestor = graph.lca_get_lca_between_nodes(u, v)
             if euler_ind[u] > euler_ind[v]:
                 u, v = v, u
             cur_dis = dict()
@@ -1678,7 +1674,7 @@ class Solution:
         graph = WeightedTree(n)
         for i in range(n - 1, 0, -1):
             graph.add_directed_edge(parent[i], i)
-        graph.dfs_order(0)
+        graph.dfs_order()
         ss = [s[i] for i in graph.order_to_node]
         t = "#" + "#".join(list(ss)) + "#"
         arm = ManacherPlindrome().manacher(t)

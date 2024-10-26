@@ -7,11 +7,11 @@ P3812（https://www.luogu.com.cn/problem/P3812）linear_basis|classical
 P3857（https://www.luogu.com.cn/problem/P3857）linear_basis|classical
 P4570（https://www.luogu.com.cn/problem/P4570）linear_basis|classical
 P4301（https://www.luogu.com.cn/problem/P4301）linear_basis|classical
-P4151（https://www.luogu.com.cn/problem/P4151）todo
-P3265（https://www.luogu.com.cn/problem/P3265）todo tle
+P4151（https://www.luogu.com.cn/problem/P4151）
+P3265（https://www.luogu.com.cn/problem/P3265）
 
 =====================================CodeForces======================================
-CF845G（https://codeforces.com/problemset/problem/845/G）todo
+CF845G（https://codeforces.com/problemset/problem/845/G）
 
 =====================================AtCoder======================================
 ABC283G（https://atcoder.jp/contests/abc283/tasks/abc283_g）linear_basis|classical
