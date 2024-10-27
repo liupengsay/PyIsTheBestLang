@@ -386,11 +386,11 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "2033"
+        num = "2035"
         webbrowser.open(f"https://codeforces.com/contest/{num}")
         webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
-        for i in range(8):
+        for i in range(6):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i + ord("A"))
             time.sleep(0.5)
             webbrowser.open(url)
@@ -415,12 +415,12 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "186"
+        num = "377"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/submissions/me")
-        for i in range(6):
+        for i in range(7):
             time.sleep(0.5)
             url = f"https://atcoder.jp/contests/abc{num}/tasks/abc{num}_" + chr(i + ord("a"))
             webbrowser.open(url)

@@ -29,6 +29,7 @@ Description：graph|reverse_thinking|permutation_circle|offline_query|merge_wise
 407（https://leetcode-cn.com/problems/trapping-rain-water-ii/）union_find|classical
 1632（https://leetcode.cn/problems/rank-transform-of-a-matrix/）union_find|matrix_rank|row_column_union_find
 100376（https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-ii/）build_graph|union_find|union_right
+685（https://leetcode.cn/problems/redundant-connection-ii/）union_find|directed_graph|in_degree|circle_based_tree|classical
 
 =====================================LuoGu======================================
 P3367（https://www.luogu.com.cn/problem/P3367）connected_part|counter|union_find
@@ -168,14 +169,13 @@ from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.graph.dijkstra.template import WeightedGraphForDijkstra
-from src.structure.segment_tree.template import RangeDivideRangeSum
-from src.structure.sorted_list.template import SortedList
 from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFindSP, UnionFindGeneral
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
+from src.structure.segment_tree.template import RangeDivideRangeSum
+from src.structure.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -2346,7 +2346,7 @@ class Solution:
             if (x1 - sx) * (x1 - sx) + (y1 - sy) * (y1 - sy) == r1 * r1:
                 uf.union(i, n)
             if (x1 - tx) * (x1 - tx) + (y1 - ty) * (y1 - ty) == r1 * r1:
-                uf.union(i, n + 1 )
+                uf.union(i, n + 1)
             if uf.is_connected(n, n + 1):
                 ac.yes()
                 return
@@ -2740,12 +2740,12 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-distance-after-road-addition-queries-ii/
         tag: build_graph|union_find|union_right
         """
-        uf = UnionFind(n-1)
+        uf = UnionFind(n - 1)
         ans = []
         for x, y in queries:
-            while uf.find(x) < y-1:
-                uf.union_right(x, uf.find(x+1))
-                x = uf.find(x+1)
+            while uf.find(x) < y - 1:
+                uf.union_right(x, uf.find(x + 1))
+                x = uf.find(x + 1)
             ans.append(uf.part)
         return ans
 
@@ -2778,7 +2778,6 @@ class Solution:
         else:
             ac.yes()
         return
-
 
     @staticmethod
     def cf_1278d(ac=FastIO()):
@@ -2879,3 +2878,29 @@ class Solution:
                 else:
                     ac.st(nodes[root1][-b] + 1)
         return
+
+    @staticmethod
+    def lc_685(edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/redundant-connection-ii/
+        tag: union_find|directed_graph|in_degree|circle_based_tree|classical
+        """
+        n = len(edges)
+        degree = [0] * (n + 1)
+        for i, j in edges:
+            degree[j] += 1
+        uf = UnionFind(n + 1)
+        if max(degree) == 1:
+            for i, j in edges:
+                if not uf.union(i, j):
+                    return [i, j]
+        lst = []
+        for i, j in edges:
+            if degree[j] == 2:
+                lst.append([i, j])
+            else:
+                uf.union(i, j)
+        for ls in lst:
+            if uf.is_connected(ls[0], ls[1]):
+                return ls
+            uf.union(ls[0], ls[1])

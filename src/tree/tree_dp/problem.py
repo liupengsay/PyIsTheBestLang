@@ -20,6 +20,7 @@ Description：reroot_dp|up_to_down|down_to_up
 100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 3241（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
+100430（https://leetcode.cn/problems/find-subtree-sizes-after-changes/）tree_dp|build_graph
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -2487,3 +2488,94 @@ class Solution:
             graph.reroot_dp()
             ac.lst(ans)
         return
+
+    @staticmethod
+    def lc_100430_1(parent: List[int], s: str) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/find-subtree-sizes-after-changes/
+        tag: tree_dp|build_graph
+        """
+
+        class Graph(WeightedTree):
+            def tree_dp1(self):
+                res = 0
+                stack = [0]
+                ind = [[] for _ in range(26)]
+
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        if ind[ord(s[i]) - ord("a")]:
+                            graph2.add_directed_edge(ind[ord(s[i]) - ord("a")][-1], i, 1)
+                        elif i:
+                            graph2.add_directed_edge(parent[i], i, 1)
+                        ind[ord(s[i]) - ord("a")].append(i)
+                        for j in self.get_to_nodes(i):
+                            stack.append(j)
+                    else:
+                        i = ~i
+                        ind[ord(s[i]) - ord("a")].pop()
+                return res
+
+            def tree_dp2(self):
+                dp = [0] * self.n
+                stack = [0]
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        for j in self.get_to_nodes(i):
+                            stack.append(j)
+                    else:
+                        i = ~i
+                        for j in self.get_to_nodes(i):
+                            dp[i] += dp[j]
+                return dp
+
+        n = len(parent)
+        graph = Graph(n)
+        graph2 = Graph(n)
+        for x in range(1, n):
+            graph.add_directed_edge(parent[x], x)
+        graph.tree_dp1()
+        return graph2.tree_dp2()
+
+    @staticmethod
+    def lc_100430_2(parent: List[int], s: str) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/find-subtree-sizes-after-changes/
+        tag: tree_dp|build_graph
+        """
+
+        class Graph(WeightedTree):
+            def tree_dp(self):
+                stack = [0]
+                ind = [[] for _ in range(26)]
+                sub = [1] * n
+                while stack:
+                    i = stack.pop()
+                    if i >= 0:
+                        stack.append(~i)
+                        ind[ord(s[i]) - ord("a")].append(i)
+                        for j in self.get_to_nodes(i):
+                            stack.append(j)
+                    else:
+                        i = ~i
+                        ind[ord(s[i]) - ord("a")].pop()
+                        lst = set()
+                        for j in self.get_to_nodes(i):
+                            if i == parent[j]:
+                                lst.add(j)
+                        for j in lst:
+                            sub[i] += sub[j]
+                        if ind[ord(s[i]) - ord("a")]:
+                            self.add_directed_edge(ind[ord(s[i]) - ord("a")][-1], i, 1)
+                            parent[i] = ind[ord(s[i]) - ord("a")][-1]
+                return sub
+
+        n = len(parent)
+        graph = Graph(n)
+        for x in range(1, n):
+            graph.add_directed_edge(parent[x], x)
+        return graph.tree_dp()

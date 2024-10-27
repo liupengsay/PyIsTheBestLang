@@ -51,6 +51,8 @@ P1325（https://www.luogu.com.cn/problem/P1325）sort|greed|minimum_range_cover
 =====================================AtCoder=====================================
 ABC256D（https://atcoder.jp/contests/abc256/tasks/abc256_d）range_merge_to_disjoint|classical
 ABC225E（https://atcoder.jp/contests/abc225/tasks/abc225_e）greed|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
+ABC377D（https://atcoder.jp/contests/abc377/tasks/abc377_d）implemention|linear_dp|brute_force
+
 
 """
 import bisect
@@ -61,7 +63,6 @@ from typing import List
 from src.basis.range.template import Range
 from src.structure.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
-
 
 
 class Solution:

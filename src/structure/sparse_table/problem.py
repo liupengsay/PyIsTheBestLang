@@ -48,6 +48,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greed
 =====================================AtCoder=====================================
 ABC212F（https://atcoder.jp/contests/abc212/tasks/abc212_f）multiplication_method|build_graph|brain_teaser|classical
 ABC367E（https://atcoder.jp/contests/abc367/tasks/abc367_e）multiplication_method|classical
+ABC377E（https://atcoder.jp/contests/abc377/tasks/abc377_e）permutation_circle|brute_force|circle_based_tree|multiplication_method|implemention
 
 """
 
@@ -60,10 +61,9 @@ from itertools import accumulate
 from operator import and_
 from typing import List
 
-from src.structure.sparse_table.template import SparseTable, SparseTableIndex
 from src.math.prime_factor.template import PrimeFactor
+from src.structure.sparse_table.template import SparseTable, SparseTableIndex
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -854,3 +854,27 @@ class Solution:
                     pos += (1 << x)
             ans = max(ans, pos - i)
         return ans
+
+    @staticmethod
+    def abc_377e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc377/tasks/abc377_e
+        tag: permutation_circle|brute_force|circle_based_tree|multiplication_method|implemention
+        """
+        n, k = ac.read_list_ints()
+        p = ac.read_list_ints_minus_one()
+        visit = [0] * n
+        ans = [0] * n
+        for i in range(n):
+            if not visit[i]:
+                lst = [i]
+                visit[i] = 1
+                while not visit[p[lst[-1]]]:
+                    lst.append(p[lst[-1]])
+                    visit[lst[-1]] = 1
+                m = len(lst)
+                j = pow(2, k, m)
+                for x in range(m):
+                    ans[lst[x]] = lst[(x + j) % m] + 1
+        ac.lst(ans)
+        return

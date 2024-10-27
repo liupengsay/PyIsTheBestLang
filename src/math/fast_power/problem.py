@@ -8,6 +8,7 @@ Description：mod|power|doubling|multiplication_method
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
 1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|mod_reverse|inclusion_exclusion
 552（https://leetcode.cn/problems/student-attendance-record-ii）matrix_fast_power|dp
+100472（https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/）matrix_fast_power|classical
 
 =====================================LuoGu======================================
 P1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod
@@ -47,7 +48,7 @@ ABC199F（https://atcoder.jp/contests/abc199/tasks/abc199_f）expectation|matrix
 
 """
 import math
-
+from typing import List
 
 from src.math.fast_power.template import MatrixFastPower, FastPower, MatrixFastPowerFlatten, MatrixFastPowerMin
 from src.string.kmp.template import KMP
@@ -460,3 +461,23 @@ class Solution:
         for i in range(n):
             ac.st(sum(res[i][j] * nums[j] for j in range(n)) % mod)
         return
+
+    @staticmethod
+    def lc_100472(s: str, t: int, nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/
+        tag: matrix_fast_power|classical
+        """
+        cnt = [0] * 26
+        for w in s:
+            cnt[ord(w) - ord("a")] += 1
+        grid = [[0] * 26 for _ in range(26)]
+        for i in range(26):
+            for j in range(1, nums[i] + 1):
+                grid[(i + j) % 26][i] += 1
+        mod = 10 ** 9 + 7
+        res = MatrixFastPower().matrix_pow(grid, t, mod)
+        ans = [0] * 26
+        for i in range(26):
+            ans[i] = sum(res[i][j] * cnt[j] for j in range(26))
+        return sum(ans) % mod

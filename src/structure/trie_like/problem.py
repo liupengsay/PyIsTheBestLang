@@ -49,6 +49,7 @@ P4735（https://www.luogu.com.cn/problem/P4735）
 
 ===================================AtCoder===================================
 ABC287E（https://atcoder.jp/contests/abc287/tasks/abc287_e）trie|prefix_suffix|classical
+ABC377G（https://atcoder.jp/contests/abc377/tasks/abc377_g）trie_like|dict|greedy|classical
 
 =====================================AcWing=====================================
 144（https://www.acwing.com/problem/content/144/）trie_like|prefix_count
@@ -71,7 +72,6 @@ from typing import List
 from src.structure.trie_like.template import BinaryTrieXor, StringTriePrefix, StringTrieSearch, \
     BinaryTrieXorLimited
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -1156,4 +1156,35 @@ class Solution:
             if cnt >= k:
                 ans ^= 1 << i
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_377g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc377/tasks/abc377_g
+        tag: trie_like|dict|greedy|classical
+        """
+        n = ac.read_int()
+        words = [ac.read_str() for _ in range(n)]
+
+        dct = dict()
+        for i, word in enumerate(words):
+            cur = dct
+            pre = 0
+            m = len(word)
+            ans = m
+            for w in word:
+                if w in cur:
+                    pre += 1
+                    cur = cur[w]
+                    ans = min(ans, m - pre + cur["len"] - pre)
+                else:
+                    cur[w] = dict()
+                    cur = cur[w]
+                    pre = math.inf
+                cur["len"] = min(cur.get("len", math.inf), m)
+            if i:
+                ac.st(ans)
+            else:
+                ac.st(m)
         return
