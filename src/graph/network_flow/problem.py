@@ -26,6 +26,7 @@ P2050（https://www.luogu.com.cn/problem/P2050）dinic_max_flow|min_cost
 P4722（https://www.luogu.com.cn/problem/P4722）dinic_max_flow
 
 ===================================CodeForces===================================
+2026E（https://codeforces.com/contest/2026/problem/E）max_flow_min_cut|network_flow|build_graph|classical
 
 ===================================AtCoder===================================
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
@@ -547,3 +548,26 @@ class Solution:
             flow.add_edge(m + va, m + va + 100, 1, -va)
         ans = flow.max_flow_min_cost(start, end)
         return -ans[1]
+
+    @staticmethod
+    def cf_2026e(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2026/problem/E
+        tag: max_flow_min_cut|network_flow|build_graph|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            s = n + 60 + 1
+            t = n + 60 + 2
+            flow = DinicMaxflowMinCut(t)
+            for i in range(n):
+                for j in range(60):
+                    if (nums[i] >> j) & 1:
+                        flow.add_edge(i + 1, n + j + 1, math.inf)
+                flow.add_edge(s, i + 1, 1)
+            for j in range(60):
+                flow.add_edge(n + j + 1, t, 1)
+            ans = n - flow.max_flow_min_cut(s, t)
+            ac.st(ans)
+        return

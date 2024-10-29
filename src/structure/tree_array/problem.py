@@ -52,6 +52,7 @@ ABC353G（https://atcoder.jp/contests/abc353/tasks/abc353_g）point_ascend|range
 ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_search|bisect_right|classical
 ABC368G（https://atcoder.jp/contests/abc368/tasks/abc368_g）point_add|range_sum|observation|data_range
 ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_ascend|pre_max_index|construction|specific_plan
+ABC185F（https://atcoder.jp/contests/abc185/tasks/abc185_f）PointXorRangeXor|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -75,18 +76,18 @@ ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_a
 4（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/A）tree_array|point_set|range_sum|inversion
 
 """
+import math
 from collections import defaultdict, deque
 from typing import List
 
+from src.graph.dfs.template import DfsEulerOrder
+from src.math.comb_perm.template import Combinatorics
 from src.structure.segment_tree.template import RangeAscendRangeMax
 from src.structure.sorted_list.template import SortedList
 from src.structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
     PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex
-from src.math.comb_perm.template import Combinatorics
-from src.graph.dfs.template import DfsEulerOrder
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -1768,4 +1769,23 @@ class Solution:
                 tree.point_add(x, ans[x])
                 ans[x] = res
         ac.st(sum(ans))
+        return
+
+    @staticmethod
+    def ac_185f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc185/tasks/abc185_f
+        tag: PointXorRangeXor|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointXorRangeXor(n)
+        tree.build(nums)
+        for _ in range(q):
+            t, x, y = ac.read_list_ints()
+            if t == 1:
+                tree.point_xor(x - 1, y)
+            else:
+                ans = tree.range_xor(x - 1, y - 1)
+                ac.st(ans)
         return

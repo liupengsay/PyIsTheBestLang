@@ -176,6 +176,7 @@ ABC207E（https://atcoder.jp/contests/abc207/tasks/abc207_e）matrix_dp|prefix_s
 ABC362E（https://atcoder.jp/contests/abc362/tasks/abc362_e）matrix_dp
 ABC375E（https://atcoder.jp/contests/abc375/tasks/abc375_e）matrix_dp
 ABC192F（https://atcoder.jp/contests/abc192/tasks/abc192_f）matrix_dp
+ABC185E（https://atcoder.jp/contests/abc185/tasks/abc185_e）matrix_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
