@@ -21,7 +21,7 @@ P5691（https://www.luogu.com.cn/problem/P5691）meet_in_middle|sorted_list|two_
 =====================================AtCoder=====================================
 ABC326F（https://atcoder.jp/contests/abc326/tasks/abc326_f）meet_in_middle|brain_teaser|classical
 ABC271F（https://atcoder.jp/contests/abc271/tasks/abc271_f）meet_in_middle|brute_force|classical
-
+ABC184F（https://atcoder.jp/contests/abc184/tasks/abc184_f）meet_in_middle|brute_force|classical
 
 =====================================AcWing=====================================
 173（https://www.acwing.com/problem/content/173/）meet_in_middle
@@ -37,7 +37,6 @@ from itertools import combinations
 from typing import List
 
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -406,5 +405,36 @@ class Solution:
             i = bisect.bisect_left(pre, m - num) - 1
             if i >= 0:
                 ans = max(ans, (pre[i] + num) % m)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_184f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc184/tasks/abc184_f
+        tag: meet_in_middle|brute_force|classical
+        """
+        n, t = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        nums.sort()
+
+        def check(lst):
+            pre = {0}
+            for num in lst:
+                pre |= {xx + num for xx in pre if xx + num <= t}
+            return pre
+
+        lst1 = sorted(check(nums[:n // 2]))
+        lst2 = sorted(check(nums[n // 2:]))
+        ans = 0
+        m = len(lst2)
+        j = m - 1
+        for x in lst1:
+            while j >= 0 and x + lst2[j] > t:
+                j -= 1
+            if j >= 0:
+                ans = max(ans, x + lst2[j])
+            else:
+                break
         ac.st(ans)
         return

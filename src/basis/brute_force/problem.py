@@ -190,6 +190,7 @@ ABC220E（https://atcoder.jp/contests/abc220/tasks/abc220_e）contribution_metho
 ABC219E（https://atcoder.jp/contests/abc219/tasks/abc219_e）brute_force|union_find|brain_teaser
 ABC366E（https://atcoder.jp/contests/abc366/tasks/abc366_e）brute_force|prefix_suffix
 ABC198D（https://atcoder.jp/contests/abc198/tasks/abc198_d）brute_force|permutation
+ABC184C（https://atcoder.jp/contests/abc184/tasks/abc184_c）brute_force|brain_teaser|observation
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision

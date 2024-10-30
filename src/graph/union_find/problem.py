@@ -137,6 +137,7 @@ ABC218E（https://atcoder.jp/contests/abc218/tasks/abc218_e）union_find|mst
 ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|dict|discretization|implemention|linked_list
 ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_teaser|implemention
 ABC372E（https://atcoder.jp/contests/abc372/tasks/abc372_e）heuristic_merge|union_find
+ABC183F（https://atcoder.jp/contests/abc183/tasks/abc183_f）heuristic_merge|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -2904,3 +2905,31 @@ class Solution:
             if uf.is_connected(ls[0], ls[1]):
                 return ls
             uf.union(ls[0], ls[1])
+        return [-1, -1]
+
+    @staticmethod
+    def abc_183f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc183/tasks/abc183_f
+        tag: heuristic_merge|classical
+        """
+        n, q = ac.read_list_ints()
+        c = ac.read_list_ints_minus_one()
+        uf = UnionFind(n)
+        sub = [{c[i]: 1} for i in range(n)]
+        for _ in range(q):
+            op, x, y = ac.read_list_ints_minus_one()
+            if op == 0:
+                root_x, root_y = uf.find(x), uf.find(y)
+                if root_x == root_y:
+                    continue
+                if uf.size(root_x) > uf.size(root_y):
+                    root_x, root_y = root_y, root_x
+                uf.union_right(root_x, root_y)
+                for w, v in sub[root_x].items():
+                    sub[root_y][w] = sub[root_y].get(w, 0) + v
+                sub[root_x] = dict()
+            else:
+                ans = sub[uf.find(x)].get(y, 0)
+                ac.st(ans)
+        return

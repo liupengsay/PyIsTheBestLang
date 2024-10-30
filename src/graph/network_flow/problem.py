@@ -27,12 +27,14 @@ P4722（https://www.luogu.com.cn/problem/P4722）dinic_max_flow
 
 ===================================CodeForces===================================
 2026E（https://codeforces.com/contest/2026/problem/E）max_flow_min_cut|network_flow|build_graph|classical
+1082G（https://codeforces.com/problemset/problem/1082/G）max_flow_min_cut|brain_teaser|build_graph|classical
 
 ===================================AtCoder===================================
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
 ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greed|implemention|classical
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_g）specific_plan|network_flow|max_flow|min_cut|greed|implemention
 ABC205F（https://atcoder.jp/contests/abc205/tasks/abc205_f）max_flow_min_cut|matrix|build_graph
+ABC326G（https://atcoder.jp/contests/abc326/tasks/abc326_g）max_flow_min_cut|brain_teaser|build_graph
 
 """
 import math
@@ -570,4 +572,53 @@ class Solution:
                 flow.add_edge(n + j + 1, t, 1)
             ans = n - flow.max_flow_min_cut(s, t)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_326g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc326/tasks/abc326_g
+        tag: max_flow_min_cut|brain_teaser|build_graph
+        """
+        n, m = ac.read_list_ints()
+        c = ac.read_list_ints()
+        a = ac.read_list_ints()
+        s = 6 * n + m + 1
+        t = 6 * n + m + 2
+        graph = DinicMaxflowMinCut(t)
+        for i in range(n):
+            graph.add_edge(s, i * 6 + 6, math.inf)
+            for j in range(6, 1, -1):
+                graph.add_edge(i * 6 + j, i * 6 + j - 1, c[i] * (j - 2))
+        for j in range(m):
+            ll = ac.read_list_ints()
+            for i in range(n):
+                graph.add_edge(i * 6 + ll[i], 6 * n + j + 1, math.inf)
+            graph.add_edge(6 * n + j + 1, t, a[j])
+        ans = sum(a) - graph.max_flow_min_cut(s, t)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_1082g(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/1082/G
+        tag: max_flow_min_cut|brain_teaser|build_graph|classical
+        """
+        n, m = ac.read_list_ints()
+        a = ac.read_list_ints()
+        s = n + m + 1
+        t = n + m + 2
+        graph = DinicMaxflowMinCut(t)
+        for i in range(n):
+            graph.add_edge(m + i + 1, t, a[i])
+        ans = 0
+        for j in range(m):
+            u, v, w = ac.read_list_ints()
+            graph.add_edge(s, j + 1, w)
+            graph.add_edge(j + 1, u + m, w)
+            graph.add_edge(j + 1, v + m, w)
+            ans += w
+        ans -= graph.max_flow_min_cut(s, t)
+        ac.st(ans)
         return

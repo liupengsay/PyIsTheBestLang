@@ -141,6 +141,7 @@ ABC211E（https://atcoder.jp/contests/abc211/tasks/abc211_e）bfs|classical|not_
 ABC209E（https://atcoder.jp/contests/abc209/tasks/abc209_e）build_graph|reverse_graph|brain_teaser|game_dp
 ABC361D（https://atcoder.jp/contests/abc361/tasks/abc361_d）bfs|classical
 ABC197F（https://atcoder.jp/contests/abc197/tasks/abc197_f）bfs|classical
+ABC184E（https://atcoder.jp/contests/abc184/tasks/abc184_e）bfs|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical

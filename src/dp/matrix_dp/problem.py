@@ -177,6 +177,8 @@ ABC362E（https://atcoder.jp/contests/abc362/tasks/abc362_e）matrix_dp
 ABC375E（https://atcoder.jp/contests/abc375/tasks/abc375_e）matrix_dp
 ABC192F（https://atcoder.jp/contests/abc192/tasks/abc192_f）matrix_dp
 ABC185E（https://atcoder.jp/contests/abc185/tasks/abc185_e）matrix_dp
+ABC184D（https://atcoder.jp/contests/abc184/tasks/abc184_d）matrix_dp
+ABC138E（https://atcoder.jp/contests/abc183/tasks/abc183_e）matrix_dp|matrix_prefix_sum_opt
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -197,14 +199,13 @@ from itertools import permutations, accumulate
 from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix
-from src.structure.segment_tree.template import RangeAddRangeSumMinMax
-from src.structure.tree_array.template import PointDescendPreMin
 from src.greed.longest_increasing_subsequence.template import LcsComputeByLis
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
+from src.structure.segment_tree.template import RangeAddRangeSumMinMax
+from src.structure.tree_array.template import PointDescendPreMin
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -606,7 +607,7 @@ class Solution:
                         cur[j * (k + 1) + p] = max(pre[j * (k + 1) + p], pre[(j - 1) * (k + 1) + p]) + lst[j]
                     elif p:
                         cur[j * (k + 1) + p] = max(pre[j * (k + 1) + p] + lst[j],
-                                                      pre[j * (k + 1) + p - 1] + lst[j] * 3)
+                                                   pre[j * (k + 1) + p - 1] + lst[j] * 3)
                     else:
                         cur[j * (k + 1) + p] = pre[j * (k + 1) + p] + lst[j]
             for j in range(n * (k + 1)):
@@ -3551,6 +3552,7 @@ class Solution:
             ans = dp[mm][nn][kk]
             ac.st(ans)
         return
+
     @staticmethod
     def cf_833b(ac=FastIO()):
         """
@@ -3646,4 +3648,34 @@ class Solution:
                         left[i - j + n] %= 2
                         right[i + j] %= 2
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_138e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc183/tasks/abc183_e
+        tag: matrix_dp|matrix_prefix_sum_opt
+        """
+        m, n = ac.read_list_ints()
+        mod = 10 ** 9 + 7
+        left = [[0] * n for _ in range(m)]
+        up = [[0] * n for _ in range(m)]
+        left_up = [[0] * n for _ in range(m)]
+        grid = [ac.read_str() for _ in range(m)]
+        dp = [[0] * n for _ in range(m)]
+        dp[0][0] = 1
+        left[0][0] = up[0][0] = left_up[0][0] = 1
+        for i in range(m):
+            for j in range(n):
+                if i == j == 0 or grid[i][j] == "#":
+                    continue
+                cur = up[i - 1][j] if i else 0
+                cur += left[i][j - 1] if j else 0
+                cur += left_up[i - 1][j - 1] if i and j else 0
+                dp[i][j] = cur % mod
+                up[i][j] = (cur + (up[i - 1][j] if i else 0)) % mod
+                left[i][j] = (cur + (left[i][j - 1] if j else 0)) % mod
+                left_up[i][j] = (cur + (left_up[i - 1][j - 1] if i and j else 0)) % mod
+        ans = dp[-1][-1]
+        ac.st(ans)
         return

@@ -1,12 +1,12 @@
-# classical	758
+# classical	771
 
-# greedy	277
+# greed	280
 
-# brute_force	262
+# brute_force	266
 
-# brain_teaser	261
+# brain_teaser	265
 
-# implemention	211
+# implemention	216
 
 # counter	157
 
@@ -16,19 +16,19 @@
 
 # matrix_dp	119
 
-# union_find	93
+# union_find	94
 
-# math	90
+# math	94
 
-# linear_dp	89
+# linear_dp	90
 
 # prefix_sum	88
 
 # hard	73
 
-# bfs	71
+# bfs	72
 
-# inclusion_exclusion	69
+# inclusion_exclusion	68
 
 # bag_dp	65
 
@@ -44,7 +44,7 @@
 
 # bit_operation	58
 
-# data_range	56
+# data_range	57
 
 # suffix_array	55
 
@@ -52,45 +52,45 @@
 
 # specific_plan	50
 
-# state_dp	47
+# state_dp	49
 
 # mst	46
 
-# dijkstra	46
+# kmp	46
 
 # point_set	46
 
-# kmp	46
-
 # liner_dp	45
 
+# dijkstra	45
+
 # sorted_list	42
+
+# tree_dp	42
+
+# build_graph	42
 
 # range_sum	42
 
 # string_hash	41
 
-# diff_array	40
-
-# tree_dp	40
-
 # prefix_suffix	40
 
-# comb	40
+# contribution_method	40
 
-# contribution_method	39
+# diff_array	39
+
+# reverse_thinking	39
+
+# comb	39
 
 # hash	38
 
 # monotonic_queue	38
 
-# reverse_thinking	38
+# dfs	37
 
 # sort	36
-
-# build_graph	35
-
-# dfs	35
 
 # height	35
 
@@ -98,23 +98,19 @@
 
 # offline_query	33
 
+# reverse_order	32
+
 # range_add	32
 
 # dp	31
-
-# reverse_order	30
 
 # dfs_order	27
 
 # topological_sort	26
 
-# back_trace	23
+# back_trace	25
 
 # interval_dp	23
-
-# sqrt_decomposition	23
-
-# binary_trie	23
 
 # lis	23
 
@@ -122,35 +118,41 @@
 
 # scc	23
 
+# binary_trie	23
+
+# sqrt_decomposition	23
+
 # lcp	22
 
 # circular_array	21
 
-# recursion	19
+# recursion	20
 
-# discretization	19
+# reroot_dp	20
+
+# multiplication_method	19
 
 # digital_dp	19
 
-# odd_even	18
+# manacher	19
 
-# multiplication_method	18
+# discretization	19
+
+# odd_even	18
 
 # interactive	18
 
-# sparse_table	18
+# tree_lca	18
 
 # range_min	18
 
-# reroot_dp	18
+# sparse_table	18
 
 # prime_factorization	17
 
 # game_dp	17
 
-# tree_lca	17
-
-# manacher	17
+# custom_sort	17
 
 # lcs	17
 
@@ -164,87 +166,85 @@
 
 # geometry	16
 
-# custom_sort	16
-
-# range_set	16
-
 # partition_method	16
 
 # z-function	16
 
+# range_set	16
+
+# dag_dp	15
+
 # stack	15
+
+# matrix_fast_power	15
 
 # sliding_window	14
 
-# pointer	14
+# high_precision	14
 
-# dag_dp	14
+# pointer	14
 
 # preprocess	14
 
-# matrix_fast_power	14
+# divide_and_conquer	14
 
 # bipartite_graph	13
 
 # mod	13
 
-# divide_and_conquer	13
+# meet_in_middle	13
 
 # ternary_search	13
-
-# heuristic_merge	13
 
 # limited_shortest_path	13
 
 # dinic_max_flow	13
 
-# high_precision	12
-
-# range_reverse	12
+# permutation_circle	12
 
 # range_max	12
 
-# meet_in_middle	12
+# heuristic_merge	12
+
+# range_reverse	12
 
 # euler_series	11
 
-# permutation_circle	11
-
 # manhattan_distance	11
-
-# action_scope	11
 
 # finite	11
 
 # prob_dp	11
 
+# trie_like	11
+
 # dag	10
 
 # matrix_prefix_sum	10
 
+# action_scope	10
+
 # catalan_number	10
+
+# matrix_bag_dp	10
+
+# num_factor	10
+
+# circle_judge	10
+
+# template	10
+
+# down_to_up	10
+
+# point_get	10
+
+# union_find_range	10
+
+# maximum_xor	10
 
 # double_linked_list	10
 
 # sub_consequence	10
-
-# union_find_range	10
-
-# point_get	10
-
-# trie_like	10
-
-# maximum_xor	10
-
-# template	10
-
-# matrix_bag_dp	10
-
-# down_to_up	10
-
-# tree_diameter	10
-
-# circle_judge	10
 
 # median	9
 
@@ -254,57 +254,63 @@
 
 # n_base	9
 
-# linked_list	9
-
-# sub_matrix	9
-
-# fill_table	9
+# refresh_table	9
 
 # bin_split	9
 
 # group_bag_dp	9
 
-# num_factor	9
+# fill_table	9
+
+# linked_list	9
+
+# expectation_dp	9
+
+# tree_diameter	9
 
 # up_to_down	9
 
-# prim	9
-
 # lca	9
+
+# prim	9
 
 # z_function	9
 
-# refresh_table	8
-
-# regret_heapq	8
-
-# range_or	8
-
-# point_add	8
-
-# union_find_right	8
-
-# expectation	8
-
-# trie	8
+# sub_matrix	9
 
 # math.infinite	8
+
+# expectation	8
 
 # prime_factor	8
 
 # differential_constraint	8
 
+# union_find_right	8
+
+# regret_heapq	8
+
+# range_or	8
+
 # linear_basis	8
+
+# peishu_theorem	8
 
 # sub_sequence_automaton	8
 
+# trie	8
+
 # sa	8
+
+# point_add	8
 
 # coloring_method	7
 
 # median_greedy	7
 
 # graph	7
+
+# palindrome	7
 
 # discretization_diff_array	7
 
@@ -316,17 +322,11 @@
 
 # fast_power	7
 
-# range_mul	7
-
-# range_gcd	7
-
-# range_super_mode	7
-
-# expectation_dp	7
-
 # md_matrix_dp	7
 
 # prune	7
+
+# tree_diff_array	7
 
 # several_dijkstra	7
 
@@ -334,7 +334,11 @@
 
 # mod_reverse	7
 
-# peishu_theorem	7
+# range_mul	7
+
+# range_gcd	7
+
+# range_super_mode	7
 
 # triangle	6
 
@@ -344,19 +348,11 @@
 
 # matrix	6
 
+# min_prime	6
+
 # partial_order	6
 
 # gcd	6
-
-# RangeAddRangeSum	6
-
-# bisect_left	6
-
-# dynamic	6
-
-# bisect_right	6
-
-# trick	6
 
 # kmp_automaton	6
 
@@ -364,41 +360,53 @@
 
 # undirected	6
 
+# deque_bfs	6
+
+# negative_circle	6
+
+# positive_circle	6
+
 # dynamic_graph	6
 
 # dense_graph	6
 
 # min_cut	6
 
-# positive_circle	6
-
-# negative_circle	6
-
 # shrink_point	6
 
-# tree_diff_array	6
+# circle_based_tree	6
+
+# dynamic	6
 
 # second_stirling_number	6
 
-# deque_bfs	6
+# gcd_like	6
+
+# trick	6
+
+# RangeAddRangeSum	6
+
+# bisect_left	6
+
+# bisect_right	6
 
 # O(nlogn)	5
 
 # float_to_frac	5
 
+# directed_graph	5
+
 # state_compression	5
 
 # palindrome_substring	5
 
-# palindrome	5
-
 # xor_property	5
+
+# reverse_pair	5
 
 # matrix_rotate	5
 
 # tree_hash	5
-
-# min_prime	5
 
 # range	5
 
@@ -406,25 +414,11 @@
 
 # deque	5
 
-# bit_set	5
-
-# union_find_right_root	5
-
-# range_merge	5
-
-# range_change	5
-
-# range_max_bisect_left	5
-
-# limited_operation	5
-
-# pre_min	5
-
-# top_k_sum	5
-
 # mul	5
 
 # longest_palindrome_subsequence	5
+
+# limited_operation	5
 
 # outline_dp	5
 
@@ -436,21 +430,29 @@
 
 # min_cost	5
 
-# offline_lca	5
+# union_find_right_root	5
 
 # factorial	5
-
-# gcd_like	5
 
 # find	5
 
 # matrix_hash	5
 
+# range_change	5
+
+# bit_set	5
+
+# range_merge	5
+
+# range_max_bisect_left	5
+
+# pre_min	5
+
+# top_k_sum	5
+
+# offline_lca	5
+
 # factorization	4
-
-# directed_graph	4
-
-# reverse_pair	4
 
 # diff_matrix	4
 
@@ -468,35 +470,23 @@
 
 # maximum	4
 
-# random_seed	4
+# tree_bag_dp	4
+
+# xor	4
 
 # array_implemention	4
 
 # prefix_min	4
 
-# SortedList	4
-
-# RangeAffineRangeSum	4
-
-# range_xor	4
-
-# range_and	4
-
-# pre_max	4
-
-# random_guess	4
-
-# point_ascend	4
-
-# xor	4
-
 # hungarian	4
 
 # equation	4
 
-# tree_centroid	4
+# undirected_smallest_circle	4
 
 # bipartite_matching	4
+
+# random_seed	4
 
 # fake_source	4
 
@@ -506,13 +496,17 @@
 
 # cutting_edge	4
 
+# network_flow	4
+
+# max_flow_min_cut	4
+
 # minimum	4
 
 # edcc	4
 
-# undirected_circle_based_tree	4
+# tree_centroid	4
 
-# circle_based_tree	4
+# undirected_circle_based_tree	4
 
 # directed_circle_based_tree	4
 
@@ -530,17 +524,31 @@
 
 # chinese_reminder_theorem	4
 
-# undirected_smallest_circle	4
+# random_guess	4
 
 # ac_automan	4
 
 # longest_palindrome_substring	4
+
+# SortedList	4
+
+# RangeAffineRangeSum	4
+
+# range_xor	4
+
+# range_and	4
+
+# pre_max	4
+
+# point_ascend	4
 
 # pigeonhole_principle	3
 
 # in_place_hash	3
 
 # average	3
+
+# guess_table	3
 
 # max_sub_matrix_sum	3
 
@@ -574,6 +582,76 @@
 
 # inverse_pair	3
 
+# rolling_update	3
+
+# maximum_mul	3
+
+# sub_set	3
+
+# multi_source_bfs	3
+
+# bilateral_bfs	3
+
+# odd_circle	3
+
+# number_of_shortest_path	3
+
+# several_source	3
+
+# array_to_bst	3
+
+# km	3
+
+# strictly_second_shortest_path	3
+
+# directed_euler_path	3
+
+# lexicographical_order_minimum	3
+
+# several_floyd	3
+
+# necessary_edge	3
+
+# kruskal	3
+
+# tree_multiplication	3
+
+# maximum_weight	3
+
+# scan_line	3
+
+# spfa	3
+
+# circle	3
+
+# multi_edge	3
+
+# self_loop	3
+
+# part	3
+
+# union_find_weighted_dis	3
+
+# union_find_left	3
+
+# operation	3
+
+# lcs_by_lis	3
+
+# base	3
+
+# divide_conquer	3
+
+# lucas	3
+
+# suffix_zero	3
+
+# mex	3
+
+# longest_prefix_suffix	3
+
+# lyndon_decomposition	3
+
 # sliding_window_maximum	3
 
 # post_second_larger	3
@@ -596,83 +674,11 @@
 
 # range_bit_count	3
 
-# union_find_left	3
-
 # range_mul_sum	3
 
 # post_min	3
 
-# scan_line	3
-
 # get_cnt_smaller_xor	3
-
-# tree_bag_dp	3
-
-# rolling_update	3
-
-# maximum_mul	3
-
-# sub_set	3
-
-# array_to_bst	3
-
-# km	3
-
-# strictly_second_shortest_path	3
-
-# number_of_shortest_path	3
-
-# directed_euler_path	3
-
-# lexicographical_order_minimum	3
-
-# several_floyd	3
-
-# necessary_edge	3
-
-# kruskal	3
-
-# maximum_weight	3
-
-# network_flow	3
-
-# spfa	3
-
-# several_source	3
-
-# circle	3
-
-# multi_edge	3
-
-# self_loop	3
-
-# odd_circle	3
-
-# part	3
-
-# union_find_weighted_dis	3
-
-# operation	3
-
-# lcs_by_lis	3
-
-# base	3
-
-# divide_conquer	3
-
-# lucas	3
-
-# suffix_zero	3
-
-# mex	3
-
-# multi_source_bfs	3
-
-# bilateral_bfs	3
-
-# longest_prefix_suffix	3
-
-# lyndon_decomposition	3
 
 # check	2
 
@@ -687,8 +693,6 @@
 # suffix_sum	2
 
 # string	2
-
-# guess_table	2
 
 # binary_tree	2
 
@@ -728,62 +732,6 @@
 
 # three_pointers	2
 
-# xor_random_seed	2
-
-# area	2
-
-# heapq_median	2
-
-# bracket	2
-
-# RangeSetRangeOr	2
-
-# dynamic_segment_tree	2
-
-# range_max_non_emp_con_sub_sum	2
-
-# offline	2
-
-# range_ascend_sub_cnt	2
-
-# bryte_force	2
-
-# range_sort	2
-
-# range_max_sub_sum_alter	2
-
-# range_max_sub_sum_alter_signal	2
-
-# segment_tree_opt_build_graph	2
-
-# block_query	2
-
-# random_like	2
-
-# xor_pair	2
-
-# P5041	2
-
-# pre_sum	2
-
-# range_unique	2
-
-# PointChangeRangeSum	2
-
-# PointAddRangeSum	2
-
-# prefix_xor	2
-
-# discretize	2
-
-# prefix_count	2
-
-# get_maximum_xor	2
-
-# kth_xor	2
-
-# minimum_xor	2
-
 # sub_array	2
 
 # nim	2
@@ -800,19 +748,31 @@
 
 # maximum_square	2
 
+# prefix_xor	2
+
+# bryte_force	2
+
 # float	2
 
 # float_fast_power	2
 
-# mis	2
+# transitive_closure	2
 
-# maximum_independent_set	2
+# bound_bfs	2
+
+# discretization_bfs	2
+
+# topologic_sort	2
 
 # minimum_point_cover	2
 
 # maximum_match	2
 
 # complete_tripartite	2
+
+# euler_order	2
+
+# range_unique	2
 
 # layer_dijkstra	2
 
@@ -831,6 +791,8 @@
 # shortest_path_mst	2
 
 # weighted_graph	2
+
+# dijkstra_for_strictly_second_shortest_path	2
 
 # second_mst	2
 
@@ -854,12 +816,6 @@
 
 # undirected_topological_sort	2
 
-# graph_diameter	2
-
-# diameter_merge	2
-
-# heavy_chain	2
-
 # cannot_be_union_find	2
 
 # heuristic_search	2
@@ -872,9 +828,13 @@
 
 # comb_perm	2
 
+# dict	2
+
 # card_split_average	2
 
 # suffix_max	2
+
+# bracket	2
 
 # lds	2
 
@@ -895,6 +855,10 @@
 # corner_case	2
 
 # minimum_circle_coverage	2
+
+# fibonacci_property	2
+
+# extend_gcd	2
 
 # square	2
 
@@ -922,12 +886,6 @@
 
 # all_factor	2
 
-# bound_bfs	2
-
-# discretization_bfs	2
-
-# euler_order	2
-
 # ac_automaton	2
 
 # AhoCorasick	2
@@ -949,6 +907,64 @@
 # different_limited_substring	2
 
 # sub_string	2
+
+# xor_random_seed	2
+
+# area	2
+
+# heapq_median	2
+
+# RangeSetRangeOr	2
+
+# dynamic_segment_tree	2
+
+# range_max_non_emp_con_sub_sum	2
+
+# offline	2
+
+# range_ascend_sub_cnt	2
+
+# range_sort	2
+
+# range_max_sub_sum_alter	2
+
+# range_max_sub_sum_alter_signal	2
+
+# block_query	2
+
+# random_like	2
+
+# xor_pair	2
+
+# P5041	2
+
+# pre_sum	2
+
+# PointChangeRangeSum	2
+
+# PointAddRangeSum	2
+
+# discretize	2
+
+# prefix_count	2
+
+# get_maximum_xor	2
+
+# kth_xor	2
+
+# minimum_xor	2
+
+# graph_diameter	2
+
+# diameter_merge	2
+
+# mis	2
+
+# maximum_independent_set	2
+
+# PointSetPointAddRangeMerge	2
+
+# heavy_chain	2
 
 # sum_nearest_subsequence	1
 
@@ -1078,6 +1094,8 @@
 
 # binary_search_strictly	1
 
+# group_by_length	1
+
 # bucket_cnt	1
 
 # arithmetic_sequence	1
@@ -1103,6 +1121,464 @@
 # P1774	1
 
 # cmp_to_key	1
+
+# various_sort	1
+
+# rolling_hash	1
+
+# lazy_bag_like	1
+
+# no_order	1
+
+# date	1
+
+# winning_state	1
+
+# gap_dp	1
+
+# win_state	1
+
+# lose_state	1
+
+# draw_state	1
+
+# preprocess_dp	1
+
+# lps	1
+
+# hanoi_tower	1
+
+# different_subsequence	1
+
+# connected_graph	1
+
+# sqrt_sqrt_n	1
+
+# maximum_second	1
+
+# slope_dp	1
+
+# maximum_sum	1
+
+# edit_distance	1
+
+# longest_palindrome_sequence	1
+
+# minimum_mul	1
+
+# con_lcp	1
+
+# different_sub_sequence	1
+
+# md_vector	1
+
+# prefix_sum_opt	1
+
+# perm	1
+
+# prefix_optimization	1
+
+# continuous_lcs	1
+
+# even	1
+
+# array	1
+
+# second_stirling_num	1
+
+# circle_dp	1
+
+# inv	1
+
+# suffix_sum_opt	1
+
+# minimum_maximum	1
+
+# md_state	1
+
+# level_wise	1
+
+# not_dfs_back_trace	1
+
+# tree_depth	1
+
+# point_add_range_sum	1
+
+# online_tree_dis	1
+
+# leaf	1
+
+# circle_check	1
+
+# several_bfs	1
+
+# zero_one_bfs	1
+
+# dijkstra_for_cnt_of_strictly_second_shortest_path	1
+
+# dijkstra_like	1
+
+# minimum_max_weight	1
+
+# maximum_weight_on_shortest_path	1
+
+# node_shortest_path_count	1
+
+# two_params	1
+
+# shortest_odd_path	1
+
+# shortest_even_path	1
+
+# undirected_to_dag	1
+
+# directed_smallest_circle	1
+
+# state	1
+
+# second_shortest_path	1
+
+# negative_weight	1
+
+# graph_mapping	1
+
+# not_shortest_path_spanning_tree	1
+
+# minimum_weight	1
+
+# segment_tree_opt_build_graph	1
+
+# dijkstra_for_cnt_of_shortest_path	1
+
+# key_edge_in_shortest_path	1
+
+# euler_path	1
+
+# limited_floyd	1
+
+# get_cnt_of_shortest_path	1
+
+# add_undirected_edge	1
+
+# connected_grap	1
+
+# second	1
+
+# fake_necessary_edge	1
+
+# strictly_second_minimum_spanning_tree	1
+
+# judge_circle_by_union_find	1
+
+# sparse	1
+
+# virtual_source	1
+
+# get_minimum_xor	1
+
+# tree_multiplication_method	1
+
+# max_flow_max_cost	1
+
+# minimum_weight_match	1
+
+# max_cost	1
+
+# max_flow_min_cost	1
+
+# dinic_max_flow_min_cost	1
+
+# can_not_be_dijkstra	1
+
+# reachable	1
+
+# johnson_shortest_path	1
+
+# negative_circle_edge	1
+
+# several_circle	1
+
+# point_doubly_connected_component	1
+
+# edge_doubly_connected_component	1
+
+# largest_circle	1
+
+# order	1
+
+# topological	1
+
+# topological_order	1
+
+# topological_lexicographic_order	1
+
+# simple_graph	1
+
+# binary_search_tree	1
+
+# union_find_weighted	1
+
+# connected_part	1
+
+# layer	1
+
+# union_left	1
+
+# several_union_find	1
+
+# size	1
+
+# union_find_max	1
+
+# union_find_min	1
+
+# range_divide	1
+
+# prob	1
+
+# union_min	1
+
+# circle_location	1
+
+# bucket_sort	1
+
+# in_degree	1
+
+# LC2488	1
+
+# mst_like	1
+
+# full_binary_tree	1
+
+# LC2673	1
+
+# property	1
+
+# watch_pattern	1
+
+# perishu_theorem	1
+
+# special_judge	1
+
+# small_to_big	1
+
+# strictly_monotonic_trick	1
+
+# longest_non_decreasing_subsequence	1
+
+# lineardp	1
+
+# super_sequence	1
+
+# dilworth	1
+
+# prefix_or	1
+
+# mex_like	1
+
+# st	1
+
+# or	1
+
+# and	1
+
+# odd_xor	1
+
+# merge	1
+
+# lexicographically_maximal	1
+
+# prefix_and	1
+
+# bit_count	1
+
+# bitwise_xor	1
+
+# minimax	1
+
+# regular_bracket_number	1
+
+# can_not_be_comb	1
+
+# comb(n+m,m)	1
+
+# comb(i,j)%k==0	1
+
+# first_stirling_number	1
+
+# postfix_mul	1
+
+# convex_hull	1
+
+# tripart_pack_tripart	1
+
+# random_increment_method	1
+
+# interaction	1
+
+# sparse_matrix_fast_power	1
+
+# matrix_fast_power_min	1
+
+# single_equation	1
+
+# ex_gcd	1
+
+# solve_equation	1
+
+# circle_center	1
+
+# angle	1
+
+# is_convex_quad	1
+
+# closest_pair	1
+
+# map	1
+
+# rectangle_overlap	1
+
+# rectangle_edge_touch	1
+
+# rectangle_corner_touch	1
+
+# line_scope	1
+
+# right_triangle	1
+
+# angle_with_x_axis	1
+
+# angle_between_vectors	1
+
+# minus	1
+
+# divide	1
+
+# factorial_of_factorial	1
+
+# division_to_multiplication	1
+
+# kth	1
+
+# kth_subset	1
+
+# rank_of_perm	1
+
+# kth_perm	1
+
+# next_permutation	1
+
+# sprague_grundy	1
+
+# sg_theorem	1
+
+# game	1
+
+# n_coprime	1
+
+# anti_prime_number	1
+
+# ugly_number	1
+
+# is_prime	1
+
+# O(n^0.25)	1
+
+# minimum_lcm_pair	1
+
+# euler_sieve	1
+
+# all_factor_sum	1
+
+# multiplicative_function	1
+
+# eratosthenes_sieve	1
+
+# get_all_factor_square	1
+
+# get_prime_with_pollard_rho	1
+
+# divide_block	1
+
+# ring_mst	1
+
+# bain_teaser	1
+
+# extend_euler_theorem	1
+
+# pollard_rho	1
+
+# get_all_factor	1
+
+# prefix_lcm	1
+
+# factor_cnt	1
+
+# get_prime_factor	1
+
+# group_by_mul	1
+
+# factor_dp	1
+
+# prime_factor_cnt	1
+
+# prime_factor_mi_cnt	1
+
+# prime_hash	1
+
+# longest_palindrome_prefix	1
+
+# rotate_string	1
+
+# n-pi[n-1]	1
+
+# longest_common_prefix_suffix	1
+
+# longest_circular_section	1
+
+# prefix_function_reverse	1
+
+# fail_tree	1
+
+# border	1
+
+# longest_common_border	1
+
+# find_longest_palindrome	1
+
+# z_algorithm	1
+
+# max_express	1
+
+# center_expansion_method	1
+
+# plindrome	1
+
+# palindrome_longest_length	1
+
+# palindrome_post_pre	1
+
+# palindrome_just_start	1
+
+# palindrome_count_start_end	1
+
+# change_manacher	1
+
+# palindrome_just_end	1
+
+# palindrome_count	1
+
+# palindrome_number	1
+
+# reverse_hash	1
+
+# longest_prefix_palindrome_substring	1
+
+# tree_minimum_expression	1
+
+# range_hash	1
+
+# string_hash_single	1
 
 # random_xor	1
 
@@ -1274,6 +1750,8 @@
 
 # pre_max_index	1
 
+# PointXorRangeXor	1
+
 # automaton	1
 
 # update	1
@@ -1282,195 +1760,11 @@
 
 # tree_xor	1
 
+# greedy	1
+
 # range_max_min_gap	1
 
-# rolling_hash	1
-
-# lazy_bag_like	1
-
-# no_order	1
-
-# date	1
-
-# winning_state	1
-
-# gap_dp	1
-
-# win_state	1
-
-# lose_state	1
-
-# draw_state	1
-
-# preprocess_dp	1
-
-# lps	1
-
-# hanoi_tower	1
-
-# different_subsequence	1
-
-# connected_graph	1
-
-# sqrt_sqrt_n	1
-
-# maximum_second	1
-
-# slope_dp	1
-
-# maximum_sum	1
-
-# edit_distance	1
-
-# longest_palindrome_sequence	1
-
-# minimum_mul	1
-
-# con_lcp	1
-
-# different_sub_sequence	1
-
-# md_vector	1
-
-# prefix_sum_opt	1
-
-# perm	1
-
-# prefix_optimization	1
-
-# continuous_lcs	1
-
-# even	1
-
-# array	1
-
-# second_stirling_num	1
-
-# circle_dp	1
-
-# inv	1
-
-# minimum_maximum	1
-
-# memory_dp	1
-
-# link_cut_centroids	1
-
-# tree_centroids	1
-
-# weighted_tree	1
-
-# tree_depth	1
-
-# several_bfs	1
-
-# zero_one_bfs	1
-
-# dijkstra_for_cnt_of_strictly_second_shortest_path	1
-
-# dijkstra_like	1
-
-# minimum_max_weight	1
-
-# maximum_weight_on_shortest_path	1
-
-# node_shortest_path_count	1
-
-# two_params	1
-
-# shortest_odd_path	1
-
-# shortest_even_path	1
-
-# undirected_to_dag	1
-
-# directed_smallest_circle	1
-
-# state	1
-
-# second_shortest_path	1
-
-# negative_weight	1
-
-# graph_mapping	1
-
-# not_shortest_path_spanning_tree	1
-
-# minimum_weight	1
-
-# dijkstra_for_cnt_of_shortest_path	1
-
-# key_edge_in_shortest_path	1
-
-# euler_path	1
-
-# transitive_closure	1
-
-# limited_floyd	1
-
-# get_cnt_of_shortest_path	1
-
-# add_undirected_edge	1
-
-# connected_grap	1
-
-# second	1
-
-# fake_necessary_edge	1
-
-# tree_multiplication	1
-
-# strictly_second_minimum_spanning_tree	1
-
-# judge_circle_by_union_find	1
-
-# sparse	1
-
-# virtual_source	1
-
-# get_minimum_xor	1
-
-# tree_multiplication_method	1
-
-# max_flow_max_cost	1
-
-# minimum_weight_match	1
-
-# max_cost	1
-
-# max_flow_min_cost	1
-
-# max_flow_min_cut	1
-
-# dinic_max_flow_min_cost	1
-
-# can_not_be_dijkstra	1
-
-# reachable	1
-
-# johnson_shortest_path	1
-
-# negative_circle_edge	1
-
-# several_circle	1
-
-# point_doubly_connected_component	1
-
-# edge_doubly_connected_component	1
-
-# largest_circle	1
-
-# order	1
-
-# topological	1
-
-# topological_order	1
-
-# topological_lexicographic_order	1
-
-# simple_graph	1
-
-# binary_search_tree	1
+# PointSetPointAddRangeSum	1
 
 # necessary_diameter_edge	1
 
@@ -1481,6 +1775,14 @@
 # tree_diff_array_edge	1
 
 # tree_diff_array_point	1
+
+# memory_dp	1
+
+# link_cut_centroids	1
+
+# tree_centroids	1
+
+# weighted_tree	1
 
 # build_tree	1
 
@@ -1498,284 +1800,4 @@
 
 # range_min_gain	1
 
-# union_find_weighted	1
-
-# connected_part	1
-
-# layer	1
-
-# union_left	1
-
-# several_union_find	1
-
-# size	1
-
-# union_find_max	1
-
-# union_find_min	1
-
-# range_divide	1
-
-# prob	1
-
-# union_min	1
-
-# circle_location	1
-
-# dict	1
-
-# bucket_sort	1
-
-# LC2488	1
-
-# mst_like	1
-
-# full_binary_tree	1
-
-# LC2673	1
-
-# property	1
-
-# guess	1
-
-# watch_pattern	1
-
-# perishu_theorem	1
-
-# special_judge	1
-
-# small_to_big	1
-
-# strictly_monotonic_trick	1
-
-# longest_non_decreasing_subsequence	1
-
-# lineardp	1
-
-# super_sequence	1
-
-# dilworth	1
-
-# prefix_or	1
-
-# mex_like	1
-
-# st	1
-
-# or	1
-
-# and	1
-
-# odd_xor	1
-
-# merge	1
-
-# lexicographically_maximal	1
-
-# prefix_and	1
-
-# bit_count	1
-
-# bitwise_xor	1
-
-# minimax	1
-
-# regular_bracket_number	1
-
-# can_not_be_comb	1
-
-# comb(n+m,m)	1
-
-# comb(i,j)%k==0	1
-
-# first_stirling_number	1
-
-# postfix_mul	1
-
-# convex_hull	1
-
-# tripart_pack_tripart	1
-
-# random_increment_method	1
-
-# interaction	1
-
-# sparse_matrix_fast_power	1
-
-# fibonacci_property	1
-
-# matrix_fast_power_min	1
-
-# single_equation	1
-
-# extend_gcd	1
-
-# ex_gcd	1
-
-# circle_center	1
-
-# angle	1
-
-# is_convex_quad	1
-
-# closest_pair	1
-
-# map	1
-
-# rectangle_overlap	1
-
-# rectangle_edge_touch	1
-
-# rectangle_corner_touch	1
-
-# line_scope	1
-
-# right_triangle	1
-
-# angle_with_x_axis	1
-
-# angle_between_vectors	1
-
-# minus	1
-
-# divide	1
-
-# factorial_of_factorial	1
-
-# kth	1
-
-# kth_subset	1
-
-# rank_of_perm	1
-
-# kth_perm	1
-
-# next_permutation	1
-
-# sprague_grundy	1
-
-# sg_theorem	1
-
-# game	1
-
-# n_coprime	1
-
-# anti_prime_number	1
-
-# ugly_number	1
-
-# is_prime	1
-
-# O(n^0.25)	1
-
-# minimum_lcm_pair	1
-
-# euler_sieve	1
-
-# all_factor_sum	1
-
-# multiplicative_function	1
-
-# eratosthenes_sieve	1
-
-# get_all_factor_square	1
-
-# get_prime_with_pollard_rho	1
-
-# divide_block	1
-
-# ring_mst	1
-
-# bain_teaser	1
-
-# extend_euler_theorem	1
-
-# pollard_rho	1
-
-# get_all_factor	1
-
-# prefix_lcm	1
-
-# factor_cnt	1
-
-# get_prime_factor	1
-
-# group_by_mul	1
-
-# factor_dp	1
-
-# prime_factor_cnt	1
-
-# prime_factor_mi_cnt	1
-
-# prime_hash	1
-
-# md_state	1
-
-# level_wise	1
-
-# topologic_sort	1
-
-# not_dfs_back_trace	1
-
-# point_add_range_sum	1
-
-# online_tree_dis	1
-
-# leaf	1
-
-# circle_check	1
-
-# group_by_length	1
-
-# longest_palindrome_prefix	1
-
-# rotate_string	1
-
-# n-pi[n-1]	1
-
-# longest_common_prefix_suffix	1
-
-# longest_circular_section	1
-
-# prefix_function_reverse	1
-
-# fail_tree	1
-
-# border	1
-
-# longest_common_border	1
-
-# find_longest_palindrome	1
-
-# z_algorithm	1
-
-# max_express	1
-
-# center_expansion_method	1
-
-# plindrome	1
-
-# palindrome_longest_length	1
-
-# palindrome_post_pre	1
-
-# palindrome_just_start	1
-
-# palindrome_count_start_end	1
-
-# change_manacher	1
-
-# palindrome_just_end	1
-
-# palindrome_count	1
-
-# palindrome_number	1
-
-# reverse_hash	1
-
-# longest_prefix_palindrome_substring	1
-
-# tree_minimum_expression	1
-
-# range_hash	1
+# tree_dfs_order	1
