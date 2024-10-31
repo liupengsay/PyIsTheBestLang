@@ -18,7 +18,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 3003（https://leetcode.cn/problems/maximize-the-number-of-partitions-after-operations）segment_tree|bisect_left|range_or|point_set
 1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
 100314（https://leetcode.cn/problems/block-placement-queries/）point_set|range_max_non_emp_con_sub_sum
-100306（https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements）point_set|range_max_sub_sum_alter
+3165（https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements）point_set|range_max_sub_sum_alter
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -3374,7 +3374,7 @@ class Solution:
         return ans
 
     @staticmethod
-    def lc_100306(nums: List[int], queries: List[List[int]]) -> int:
+    def lc_3165(nums: List[int], queries: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements
         tag: point_set|range_max_sub_sum_alter

@@ -101,6 +101,7 @@ P3016（https://www.luogu.com.cn/problem/P3016）prefix_sum|triangle|left_up_sum
 245H（https://codeforces.com/problemset/problem/245/H）interval_dp|prefix_sum
 1253C（https://codeforces.com/problemset/problem/1253/C）diff_array|contribution_method|greed|linear_dp
 1000C（https://codeforces.com/problemset/problem/1000/C）discretization_diff_array|hash|classical
+2026D（https://codeforces.com/contest/2026/problem/D）prefix_sum_prefix_sum|binary_search|brute_force
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
