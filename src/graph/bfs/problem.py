@@ -142,6 +142,7 @@ ABC209E（https://atcoder.jp/contests/abc209/tasks/abc209_e）build_graph|revers
 ABC361D（https://atcoder.jp/contests/abc361/tasks/abc361_d）bfs|classical
 ABC197F（https://atcoder.jp/contests/abc197/tasks/abc197_f）bfs|classical
 ABC184E（https://atcoder.jp/contests/abc184/tasks/abc184_e）bfs|classical
+ABC182E（https://atcoder.jp/contests/abc182/tasks/abc182_e）bfs|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -3011,7 +3012,45 @@ class Solution:
             graph = Graph(n)
             for _ in range(m):
                 u, v = ac.read_list_ints_minus_one()
-                graph.add_undirected_edge(u, v)
+                graph.add_undirected_edge(u, v, 1)
             ans = (n - graph.bfs(a, b)) * (n - graph.bfs(b, a))
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_182e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc182/tasks/abc182_e
+        tag: bfs|classical
+        """
+        m, n, a, b = ac.read_list_ints()
+        visit = [0] * 4 * m * n
+        grid = [0] * m * n
+        stack = []
+        ans = m * n
+        for _ in range(a):
+            i, j = ac.read_list_ints_minus_one()
+            for k in range(4):
+                visit[(i * n + j) * 4 + k] = 1
+                stack.append((i * n + j) * 4 + k)
+        for _ in range(b):
+            i, j = ac.read_list_ints_minus_one()
+            grid[i * n + j] = 1
+        while stack:
+            nex = []
+            for val in stack:
+                i, j, k = val // 4 // n, (val // 4) % n, val % 4
+                aa, bb = i + ac.dire4[k][0], j + ac.dire4[k][1]
+                if 0 <= aa < m and 0 <= bb < n and not grid[aa * n + bb] and not visit[aa * 4 * n + bb * 4 + k]:
+                    nex.append(aa * 4 * n + bb * 4 + k)
+                    visit[aa * 4 * n + bb * 4 + k] = 1
+            stack = nex
+
+        for i in range(m):
+            for j in range(n):
+                cur = 0
+                for k in range(4):
+                    cur += visit[(i * n + j) * 4 + k]
+                ans -= cur == 0
+        ac.st(ans)
         return

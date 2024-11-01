@@ -57,6 +57,7 @@ ARC076B（https://atcoder.jp/contests/abc065/tasks/arc076_b）mst
 ABC282E（https://atcoder.jp/contests/abc282/tasks/abc282_e）union_find|mst|brain_teaser|classical
 ABC235E（https://atcoder.jp/contests/abc235/tasks/abc235_e）online_query|data_range|offline_query|mst|maximum_weight|classical
 ABC352E（https://atcoder.jp/contests/abc352/tasks/abc352_e）union_find|mst|reverse_order
+ABC181F（https://atcoder.jp/contests/abc181/tasks/abc181_f）geometry|binary_search|mst|classical
 
 =====================================AcWing=====================================
 3731（https://www.acwing.com/problem/content/3731/）prim|mst|dense_graph|specific_plan
@@ -74,15 +75,15 @@ import math
 from collections import defaultdict
 from typing import List
 
-from src.structure.sorted_list.template import SortedList
-from src.structure.trie_like.template import BinaryTrieXor
+from src.basis.binary_search.template import BinarySearch
 from src.graph.minimum_spanning_tree.template import KruskalMinimumSpanningTree, \
     PrimMinimumSpanningTree, ManhattanMST, TreeAncestorMinIds, \
     TreeMultiplicationMaxWeights, TreeMultiplicationMaxSecondWeights
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
+from src.structure.sorted_list.template import SortedList
+from src.structure.trie_like.template import BinaryTrieXor
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -1275,4 +1276,37 @@ class Solution:
             ans = tree.get_min_ids_between_nodes(u, v)[:a]
             ans = [x for x in ans if x < n + 1]
             ac.lst([len(ans)] + ans)
+        return
+
+    @staticmethod
+    def abc_181f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc181/tasks/abc181_f
+        tag: geometry|binary_search|mst|classical
+        """
+        n = ac.read_int()
+        nums = []
+        for _ in range(n):
+            x, y = ac.read_list_ints()
+            nums.append((x, y))
+            nums.append((x, -100))
+            nums.append((x, 100))
+
+        def check(d):
+            uf = UnionFind(len(nums))
+            for i in range(len(nums)):
+                aa, bb = nums[i]
+                for j in range(i + 1, len(nums)):
+                    cc, dd = nums[j]
+                    if (aa - cc) ** 2 + (bb - dd) ** 2 <= 4 * d * d:
+                        uf.union(i, j)
+            group = uf.get_root_part()
+            for g in group:
+                lst = [nums[i][1] for i in group[g]]
+                if -100 in lst and 100 in lst:
+                    return False
+            return True
+
+        ans = BinarySearch().find_float_right(0, 100, check, 1e-9)
+        ac.st(ans)
         return

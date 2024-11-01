@@ -103,6 +103,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greed|implementio
 1610C（https://codeforces.com/problemset/problem/1610/C）binary_search|brain_teaser|monotonic_property
 1946C（https://codeforces.com/problemset/problem/1946/C）binary_search|point_head|tree_dp|greed
 1168A（https://codeforces.com/problemset/problem/1168/A）binary_search|brain_teaser|greed
+2026C（https://codeforces.com/contest/2026/problem/C）binary_search|greedy|classical
 
 ====================================AtCoder=====================================
 ARC070B（https://atcoder.jp/contests/abc056/tasks/arc070_b）binary_search|bag_dp
@@ -2163,4 +2164,27 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, sum(m - num for num in nums), check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2026c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2026/problem/C
+        tag: binary_search|greedy|classical
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            lst = [i for i in range(n) if s[i] == "1"]
+            m = len(lst)
+
+            def check(x):
+                for j in range(m - x, m):
+                    if (j - m + x + 1) * 2 > lst[j] + 1:
+                        return False
+                return True
+
+            y = BinarySearch().find_int_right(0, len(lst), check)
+            ans = sum([p + 1 for p in lst[-y:]]) if y else 0
+            ac.st(n * (n + 1) // 2 - ans)
         return
