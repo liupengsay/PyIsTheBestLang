@@ -26,7 +26,7 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 907（https://leetcode.cn/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
 2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greed
-3113（https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/）brute_force|teo_pointer|monotonic_stack|classical）
+3113（https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/）brute_force|two_pointer|monotonic_stack|classical）
 
 =====================================LuoGu======================================
 P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
@@ -1021,7 +1021,7 @@ class Solution:
     def lc_3113(nums: List[int]) -> int:
         """
         url: https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/
-        tag: brute_force|teo_pointer|monotonic_stack|classical
+        tag: brute_force|two_pointer|monotonic_stack|classical
         """
 
         n = len(nums)

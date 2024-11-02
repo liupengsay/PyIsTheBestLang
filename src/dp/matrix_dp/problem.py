@@ -124,7 +124,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1381B（https://codeforces.com/problemset/problem/1381/B）matrix_dp|monotonic_stack
 1393D（https://codeforces.com/problemset/problem/1393/D）matrix_dp
 1731D（https://codeforces.com/contest/1731/problem/D）binary_search|maximum_square
-1003F（https://codeforces.com/contest/1003/problem/F）con_lcp|matrix_dp|lcp
+1003F（https://codeforces.com/contest/1003/problem/F）continuous_lcp|matrix_dp|lcp
 835D（https://codeforces.com/problemset/problem/835/D）palindrome|matrix_dp
 1829G（https://codeforces.com/contest/1829/problem/G）matrix_dp|classical|inclusion_exclusion
 1077F2（https://codeforces.com/contest/1077/problem/F2）matrix_dp|monotonic_queue|implemention
@@ -187,7 +187,7 @@ ABC138E（https://atcoder.jp/contests/abc183/tasks/abc183_e）matrix_dp|matrix_p
 
 
 =====================================AcWing=====================================
-1（https://www.codechef.com/problems/MILKYDARK）matrix_dp|prefix_optimization|classical
+1（https://www.codechef.com/problems/MILKYDARK）matrix_dp|prefix_sum_opt|classical
 
 """
 
@@ -2406,7 +2406,7 @@ class Solution:
     def cf_1003f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1003/problem/F
-        tag: con_lcp|matrix_dp|string_hash|brute_force
+        tag: continuous_lcp|matrix_dp|string_hash|brute_force
         """
         n = ac.read_int()
         words = ac.read_list_strs()
@@ -3012,7 +3012,7 @@ class Solution:
     def cc_1(ac=FastIO()):
         """
         url: https://www.codechef.com/problems/MILKYDARK
-        tag: matrix_dp|prefix_optimization|classical
+        tag: matrix_dp|prefix_sum_opt|classical
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()

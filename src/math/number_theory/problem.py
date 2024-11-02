@@ -122,7 +122,7 @@ ABC245D（https://atcoder.jp/contests/abc245/tasks/abc245_d）implemention|math|
 ABC242F（https://atcoder.jp/contests/abc242/tasks/abc242_f）inclusion_exclusion|counter|brute_force|classical
 ABC242E（https://atcoder.jp/contests/abc242/tasks/abc242_e）n_base|math
 ABC233E（https://atcoder.jp/contests/abc233/tasks/abc233_e）big_number|prefix_sum|data_range
-ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|divide_block|template
+ABC230E（https://atcoder.jp/contests/abc230/tasks/abc230_e）brain_teaser|math|divide_into_block|template
 ABC228E（https://atcoder.jp/contests/abc228/tasks/abc228_e）math|fast_power|classical
 ABC210E（https://atcoder.jp/contests/abc210/tasks/abc210_e）math|brain_teaser|ring_mst
 ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_method|math
@@ -1286,7 +1286,7 @@ class Solution:
     def abc_230e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc230/tasks/abc230_e
-        tag: brain_teaser|math|divide_block|template
+        tag: brain_teaser|math|divide_into_block|template
         """
 
         n = ac.read_int()

@@ -46796,14 +46796,14 @@ class Solution:
         return
 """
 
-Algorithm：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
-Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
+Algorithm：dinic_max_flow_min_cut|max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
+Description：dinic_max_flow_min_cut|max_flow_min_cost|dinic_max_flow_max_cost|bipartite_matching
 
 ====================================LeetCode====================================
 1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
 100401（https://leetcode.cn/problems/find-the-power-of-k-size-subarrays-ii/）max_flow_min_cost|classical
-3276（https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/）dinic_max_flow_min_cost|state_dp|classical
+3276（https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/）max_flow_min_cost|state_dp|classical
 
 =====================================LuoGu======================================
 P3376（https://www.luogu.com.cn/problem/P3376）dinic_max_flow
@@ -47322,7 +47322,7 @@ class Solution:
     def lc_3276(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/submissions/
-        tag: dinic_max_flow_min_cost|state_dp|classical
+        tag: max_flow_min_cost|state_dp|classical
         """
         m, n = len(grid), len(grid[0])
         flow = DinicMaxflowMinCost(m + 202)

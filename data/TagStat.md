@@ -1,4 +1,4 @@
-# classical	771
+# classical	775
 
 # greed	280
 
@@ -12,9 +12,9 @@
 
 # segment_tree	128
 
-# binary_search	124
+# binary_search	126
 
-# matrix_dp	119
+# matrix_dp	120
 
 # union_find	94
 
@@ -24,15 +24,15 @@
 
 # prefix_sum	88
 
-# hard	73
+# bfs	73
 
-# bfs	72
+# hard	73
 
 # inclusion_exclusion	68
 
 # bag_dp	65
 
-# observation	61
+# observation	62
 
 # construction	60
 
@@ -54,7 +54,7 @@
 
 # state_dp	49
 
-# mst	46
+# mst	47
 
 # kmp	46
 
@@ -152,6 +152,8 @@
 
 # game_dp	17
 
+# geometry	17
+
 # custom_sort	17
 
 # lcs	17
@@ -163,8 +165,6 @@
 # circular_section	16
 
 # lexicographical_order	16
-
-# geometry	16
 
 # partition_method	16
 
@@ -198,13 +198,13 @@
 
 # limited_shortest_path	13
 
+# heuristic_merge	13
+
 # dinic_max_flow	13
 
 # permutation_circle	12
 
 # range_max	12
-
-# heuristic_merge	12
 
 # range_reverse	12
 
@@ -274,6 +274,8 @@
 
 # prim	9
 
+# peishu_theorem	9
+
 # z_function	9
 
 # sub_matrix	9
@@ -293,8 +295,6 @@
 # range_or	8
 
 # linear_basis	8
-
-# peishu_theorem	8
 
 # sub_sequence_automaton	8
 
@@ -552,6 +552,8 @@
 
 # max_sub_matrix_sum	3
 
+# prefix_sum_of_prefix_sum	3
+
 # alphabet	3
 
 # quick_sort	3
@@ -688,6 +690,8 @@
 
 # find_int_left	2
 
+# greedy	2
+
 # prime	2
 
 # suffix_sum	2
@@ -707,8 +711,6 @@
 # unweighted_graph	2
 
 # can_be_discretization_hard_version	2
-
-# prefix_sum_of_prefix_sum	2
 
 # range_cover	2
 
@@ -749,6 +751,8 @@
 # maximum_square	2
 
 # prefix_xor	2
+
+# prefix_sum_opt	2
 
 # bryte_force	2
 
@@ -1068,8 +1072,6 @@
 
 # matrix_prefix_xor_sum	1
 
-# prefix_sum_prefix_sum	1
-
 # probability	1
 
 # matrix_diff_array	1
@@ -1166,17 +1168,13 @@
 
 # minimum_mul	1
 
-# con_lcp	1
+# continuous_lcp	1
 
 # different_sub_sequence	1
 
 # md_vector	1
 
-# prefix_sum_opt	1
-
 # perm	1
-
-# prefix_optimization	1
 
 # continuous_lcs	1
 
@@ -1185,6 +1183,8 @@
 # array	1
 
 # second_stirling_num	1
+
+# matrix_prefix_sum_opt	1
 
 # circle_dp	1
 
@@ -1354,10 +1354,6 @@
 
 # property	1
 
-# watch_pattern	1
-
-# perishu_theorem	1
-
 # special_judge	1
 
 # small_to_big	1
@@ -1498,7 +1494,7 @@
 
 # get_prime_with_pollard_rho	1
 
-# divide_block	1
+# divide_into_block	1
 
 # ring_mst	1
 
@@ -1606,7 +1602,7 @@
 
 # monotonic_stack_greedy	1
 
-# teo_pointer	1
+# two_pointer	1
 
 # convex	1
 
@@ -1759,8 +1755,6 @@
 # query	1
 
 # tree_xor	1
-
-# greedy	1
 
 # range_max_min_gap	1
 

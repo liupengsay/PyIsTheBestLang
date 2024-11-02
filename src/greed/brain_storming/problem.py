@@ -20,7 +20,7 @@ Description：brain_teaser
 517（https://leetcode.cn/problems/super-washing-machines/）greed|binary_search|brute_force
 1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greed
 625（https://leetcode.cn/problems/minimum-factorization/）greed|factorization
-2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greed|guess_table|watch_pattern
+2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greed|guess_table|observation
 6361（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）brain_teaser|greed
 6316（https://leetcode.cn/problems/rearrange-array-to-maximize-prefix-score/）greed|prefix_sum
 2436（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greed
@@ -45,7 +45,7 @@ Description：brain_teaser
 1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greed|classical
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greed|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greed|classical|maximum
-3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|perishu_theorem|hard|greed
+3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|peishu_theorem|hard|greed
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 100227（https://leetcode.cn/problems/minimum-moves-to-pick-k-ones/description/）median_greedy|brute_force|implemention
 100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greed|big_to_small
@@ -1381,7 +1381,7 @@ class Solution:
     def lc_2568(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-impossible-or/
-        tag: brain_teaser|greed|guess_table|watch_pattern
+        tag: brain_teaser|greed|guess_table|observation
         """
         dct = set(nums)
         for i in range(34):
@@ -1486,7 +1486,7 @@ class Solution:
     def lc_3012(nums: List[int]) -> int:
         """
         url: https://leetcode.com/problems/minimize-length-of-array-using-operations/
-        tag: brain_teaser|perishu_theorem|hard|greed
+        tag: brain_teaser|peishu_theorem|hard|greed
         """
         low = min(nums)
         gcd = reduce(math.gcd, nums)
