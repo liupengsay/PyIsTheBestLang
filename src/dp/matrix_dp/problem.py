@@ -46,6 +46,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 3316（https://leetcode.com/problems/find-maximum-removals-from-source-string）matrix_dp
 3193（https://leetcode.cn/problems/count-the-number-of-inversions）matrix_dp|prefix_opt
 100462（https://leetcode.cn/problems/find-the-original-typed-string-ii/）matrix_dp|prefix_opt|inclusion_exclusion|data_range
+3343（https://leetcode.com/problems/count-number-of-balanced-permutations/）matrix_dp|comb
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -179,6 +180,7 @@ ABC192F（https://atcoder.jp/contests/abc192/tasks/abc192_f）matrix_dp
 ABC185E（https://atcoder.jp/contests/abc185/tasks/abc185_e）matrix_dp
 ABC184D（https://atcoder.jp/contests/abc184/tasks/abc184_d）matrix_dp
 ABC138E（https://atcoder.jp/contests/abc183/tasks/abc183_e）matrix_dp|matrix_prefix_sum_opt
+ABC180F（https://atcoder.jp/contests/abc180/tasks/abc180_f）circle_permutation|brute_force|inclusion_exclusion|matrix_dp|observation|comb_perm|counter|construction|low_bit_contribution
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -3677,5 +3679,79 @@ class Solution:
                 left[i][j] = (cur + (left[i][j - 1] if j else 0)) % mod
                 left_up[i][j] = (cur + (left_up[i - 1][j - 1] if i and j else 0)) % mod
         ans = dp[-1][-1]
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_180f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc180/tasks/abc180_f
+        tag: circle_permutation|brute_force|inclusion_exclusion|matrix_dp|observation|comb_perm|counter|construction|low_bit_contribution
+        """
+
+        mod = 10 ** 9 + 7
+        n, m, ll = ac.read_list_ints()
+        cb = Combinatorics(n, mod)
+        p = pow(2, -1, mod)
+        mod = 10 ** 9 + 7
+        n, m, ll = ac.read_list_ints()
+        cb = Combinatorics(n, mod)
+        p = pow(2, -1, mod)
+
+        # @lru_cache(None)
+        # def dfs(nn, mm):
+        #     if nn < mm:
+        #         return 0
+        #     if nn == 0:
+        #         return mm == 0
+        #     res = 0
+        #     for x in range(1, min(nn, ll) + 1):
+        #         if x - 1 > mm:
+        #             break
+        #         if x == 1:
+        #             res += cb.comb(nn - 1, x - 1) * dfs(nn - x, mm - (x - 1))
+        #         else:
+        #             res += cb.comb(nn - 1, x - 1) * dfs(nn - x, mm - (x - 1)) * cb.perm[x] * p
+        #         if mm >= x > 1:
+        #             if x == 2:
+        #                 res += cb.comb(nn - 1, x - 1) * dfs(nn - x, mm - x) * cb.perm[x - 1]
+        #             else:
+        #                 res += cb.comb(nn - 1, x - 1) * dfs(nn - x, mm - x) * cb.perm[x - 1] * p
+        #     return res % mod
+        #
+        # ans = dfs(n, m)
+        # if ll - 1:
+        #     ll -= 1
+        #     dfs.cache_clear()
+        #     ans -= dfs(n, m)
+        #     ans %= mod
+        # ac.st(ans)
+
+        ans = 0
+        for k in [ll, ll - 1]:
+            if k == 0:
+                break
+            dp = [0] * (m + 1) * (n + 1)
+            dp[0] = 1
+            for i in range(1, n + 1):
+                for j in range(min(i, m) + 1):
+                    res = 0
+                    for x in range(1, min(k, i, j + 1) + 1):
+                        if x == 1:
+                            res += dp[(i - x) * (m + 1) + j - (x - 1)] * cb.comb(n - 1 - (i - x), x - 1)
+                        else:
+                            res += dp[(i - x) * (m + 1) + j - (x - 1)] * cb.comb(n - 1 - (i - x),
+                                                                                 x - 1) * cb.perm[x] * p
+                        if j >= x > 1:
+                            if x == 2:
+                                res += dp[(i - x) * (m + 1) + j - x] * cb.comb(n - 1 - (i - x), x - 1) * \
+                                       cb.perm[x - 1]
+                            else:
+                                res += dp[(i - x) * (m + 1) + j - x] * cb.comb(n - 1 - (i - x), x - 1) * \
+                                       cb.perm[x - 1] * p
+                    dp[i * (m + 1) + j] = res % mod
+
+            ans += dp[n * (m + 1) + m] if k == ll else - dp[n * (m + 1) + m]
+            ans %= mod
         ac.st(ans)
         return

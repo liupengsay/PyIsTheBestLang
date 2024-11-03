@@ -138,6 +138,7 @@ ABC214E（https://atcoder.jp/contests/abc214/tasks/abc214_e）union_find_right|d
 ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_teaser|implemention
 ABC372E（https://atcoder.jp/contests/abc372/tasks/abc372_e）heuristic_merge|union_find
 ABC183F（https://atcoder.jp/contests/abc183/tasks/abc183_f）heuristic_merge|classical
+ABC378F（https://atcoder.jp/contests/abc378/tasks/abc378_f）union_find|brute_force|observation
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -2932,4 +2933,40 @@ class Solution:
             else:
                 ans = sub[uf.find(x)].get(y, 0)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_378f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc378/tasks/abc378_f
+        tag: union_find|brute_force|observation
+        """
+        n = ac.read_int()
+        dct = [[] for i in range(n)]
+        degree = [0] * n
+        edges = []
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            dct[i].append(j)
+            dct[j].append(i)
+            degree[i] += 1
+            degree[j] += 1
+            edges.append((i, j))
+        uf = UnionFind(n)
+        for i, j in edges:
+            if degree[i] == degree[j] == 3:
+                uf.union(i, j)
+        ans = 0
+        group = uf.get_root_part()
+        for g in group:
+            lst = group[g]
+            if all(degree[x] == 3 for x in lst):
+                cur = set()
+                for x in lst:
+                    for y in dct[x]:
+                        if degree[y] == 2:
+                            cur.add(y)
+                tow = len(cur)
+                ans += tow * (tow - 1) // 2
+        ac.st(ans)
         return

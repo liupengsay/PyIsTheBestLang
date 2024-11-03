@@ -53,6 +53,7 @@ ABC356F（https://atcoder.jp/contests/abc356/tasks/abc356_f）tree_array|binary_
 ABC368G（https://atcoder.jp/contests/abc368/tasks/abc368_g）point_add|range_sum|observation|data_range
 ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_ascend|pre_max_index|construction|specific_plan
 ABC185F（https://atcoder.jp/contests/abc185/tasks/abc185_f）PointXorRangeXor|classical
+ABC378E（https://atcoder.jp/contests/abc378/tasks/abc378_e）tree_array|prefix_sum|brain_teaser|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -86,7 +87,7 @@ from src.structure.segment_tree.template import RangeAscendRangeMax
 from src.structure.sorted_list.template import SortedList
 from src.structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex
+    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex, PointSetPointAddRangeSum
 from src.util.fast_io import FastIO
 
 
@@ -1788,4 +1789,71 @@ class Solution:
             else:
                 ans = tree.range_xor(x - 1, y - 1)
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_186f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc186/tasks/abc186_f
+        tag: PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+        """
+        m, n, k = ac.read_list_ints()
+        stone = [[] for _ in range(m)]
+        col = [m] * n
+        row = [n] * m
+        for _ in range(k):
+            x, y = ac.read_list_ints_minus_one()
+            stone[x].append(y)
+            col[y] = min(col[y], x)
+            row[x] = min(row[x], y)
+        ans = 0
+        tree = PointSetPointAddRangeSum(n)
+        for y in range(n):
+            if col[y] == 0:
+                for yy in range(y, n):
+                    tree.point_set(yy, 1)
+        for x in range(m):
+            if row[x] == 0:
+                for y in range(n):
+                    if col[y] == 0:
+                        ans += (n - y) * (m - x)
+                        break
+                    if col[y] <= x:
+                        ans += m - x
+                    else:
+                        ans += m - col[y]
+                break
+            if not stone[x]:
+                continue
+            res = n
+            for y in stone[x]:
+                tree.point_set(y, 1)
+                res = min(res, y)
+            ans += tree.range_sum(res, n - 1)
+        ans = m * n - ans
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_378e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc378/tasks/abc378_e
+        tag: tree_array|prefix_sum|brain_teaser|classical
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        tree = PointAddRangeSum(m + 1)
+        tree_cnt = PointAddRangeSum(m + 1)
+        ans = pre = 0
+        tree_cnt.point_add(0, 1)
+        for i in range(n):
+            pre += nums[i]
+            pre %= m
+            low = pre * tree_cnt.range_sum(0, pre) - tree.range_sum(0, pre)
+            ans += low
+            high = tree_cnt.range_sum(pre + 1, m) * (m + pre) - tree.range_sum(pre + 1, m)
+            ans += high
+            tree.point_add(pre, pre)
+            tree_cnt.point_add(pre, 1)
+        ac.st(ans)
         return

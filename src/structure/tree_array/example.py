@@ -5,11 +5,49 @@ from itertools import accumulate
 
 from src.structure.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
-    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum
+    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum, PointSetPointAddRangeSum
 import math
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_set_point_add_range_sum(self):
+
+        for _ in range(10):
+            ceil = random.randint(10, 1000)
+            nums = [random.randint(-ceil, ceil) for _ in range(ceil)]
+            tree_array = PointSetPointAddRangeSum(ceil)
+            tree_array.build(nums[:])
+            for _ in range(ceil):
+                d = random.randint(-ceil, ceil)
+                i = random.randint(0, ceil - 1)
+                x = random.randint(0, 1)
+                if x:
+                    nums[i] += d
+                    tree_array.point_add(i, d)
+                else:
+                    nums[i] = d
+                    tree_array.point_set(i, d)
+                assert nums == tree_array.nums
+                left = random.randint(0, ceil - 1)
+                right = random.randint(left, ceil - 1)
+                assert sum(nums[left: right + 1]) == tree_array.range_sum(left, right)
+                assert nums == tree_array.get()
+
+        nums = [0, 0, 1, 2, 3, 4, 5]
+        pre = list(accumulate(nums))
+        tree_array = PointAddRangeSum(len(nums))
+        tree_array.build(nums)
+        for x in range(sum(nums) + 7):
+            assert tree_array.bisect_right(x) == bisect.bisect_right(pre, x)
+
+        nums = [1, 1, 1, 2, 3, 4, 5]
+        pre = list(accumulate(nums))
+        tree_array = PointAddRangeSum(len(nums))
+        tree_array.build(nums)
+        for x in range(sum(nums) + 7):
+            assert tree_array.bisect_right(x) == bisect.bisect_right(pre, x)
+        return
 
     def test_point_add_range_sum(self):
 

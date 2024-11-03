@@ -70,6 +70,7 @@ ABC199D（https://atcoder.jp/contests/abc199/tasks/abc199_d）state_dp
 ABC195F（https://atcoder.jp/contests/abc195/tasks/abc195_f）state_dp|data_range|classical|brain_teaser|prime_factor
 ABC190E（https://atcoder.jp/contests/abc190/tasks/abc190_e）bfs|state_dp|classical
 ABC187F（https://atcoder.jp/contests/abc187/tasks/abc187_f）state_dp|transitive_closure|refresh_table
+ABC180E（https://atcoder.jp/contests/abc180/tasks/abc180_e）state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1461,4 +1462,39 @@ class Solution:
                 dp[s] = min(dp[s], dp[s ^ sub] + dp[sub])
                 sub = (sub - 1) & s
         ac.st(dp[-1])
+        return
+
+    @staticmethod
+    def abc_180e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc180/tasks/abc180_e
+        tag: state_dp|classical
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        dis = [[0] * n for _ in range(n)]
+        for i in range(n):
+            a, b, c = nums[i]
+            for j in range(n):
+                if i == j:
+                    dis[i][j] = 0
+                    continue
+                p, q, r = nums[j]
+                dis[i][j] = abs(p - a) + abs(q - b) + max(0, r - c)
+
+        dp = [[math.inf] * (1 << n) for _ in range(n)]
+        dp[0][1 << 0] = 0
+        for s in range(1 << n):
+            pre = []
+            post = []
+            for i in range(n):
+                if (s >> i) & 1:
+                    pre.append(i)
+                else:
+                    post.append(i)
+            for x in pre:
+                for y in post:
+                    dp[y][s | (1 << y)] = min(dp[y][s | (1 << y)], dp[x][s] + dis[x][y])
+        ans = min(dp[x][-1] + dis[x][0] for x in range(n))
+        ac.st(ans)
         return

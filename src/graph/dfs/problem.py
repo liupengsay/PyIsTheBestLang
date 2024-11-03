@@ -78,6 +78,7 @@ ABC240F（https://atcoder.jp/contests/abc240/tasks/abc240_e）dfs_order|leaf|cla
 ABC236D（https://atcoder.jp/contests/abc236/tasks/abc236_d）back_trace|prune|brute_force|classical
 ABC213D（https://atcoder.jp/contests/abc213/tasks/abc213_d）euler_order|classical
 ABC196D（https://atcoder.jp/contests/abc196/tasks/abc196_d）dfs|state_compression|bit_operation
+ABC378D（https://atcoder.jp/contests/abc378/tasks/abc378_d）dfs|back_track|classical
 
 =====================================AcWing=====================================
 4313（https://www.acwing.com/problem/content/4313/）dfs_order|template
@@ -1686,3 +1687,39 @@ class Solution:
             mid = a + (b - a) // 2
             ans.append(mid - arm[mid] + 1 <= a)
         return ans
+
+    @staticmethod
+    def abc_378d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc378/tasks/abc378_d
+        tag: dfs|back_track|classical
+        """
+
+        m, n, k = ac.read_list_ints()
+        grid = [list(ac.read_str()) for _ in range(m)]
+
+        def dfs(i):
+            if i == k + 1:
+                ans[0] += 1
+                return
+            xx, yy = pre[-1]
+            for a, b in ac.dire4:
+                if 0 <= xx + a < m and 0 <= yy + b < n and grid[xx + a][yy + b] == '.':
+                    pre.append((xx + a, yy + b))
+                    grid[xx + a][yy + b] = '#'
+                    dfs(i + 1)
+                    grid[xx + a][yy + b] = '.'
+                    pre.pop()
+            return
+
+        ans = [0]
+        for x in range(m):
+            for y in range(n):
+                if grid[x][y] == ".":
+                    pre = [(x, y)]
+                    grid[x][y] = "#"
+                    dfs(1)
+                    pre.pop()
+                    grid[x][y] = "."
+        ac.st(ans[0])
+        return

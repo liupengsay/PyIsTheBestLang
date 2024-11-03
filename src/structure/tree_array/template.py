@@ -48,6 +48,83 @@ class PointXorRangeXor:
         return res
 
 
+class PointSetPointAddRangeSum:
+    def __init__(self, n: int, initial=0) -> None:
+        """index from 1 to n"""
+        self.n = n
+        self.t = [initial] * (self.n + 1)  # default nums = [0]*n
+        self.nums = [0] * n
+        return
+
+    def _lowest_bit(self, i: int) -> int:
+        assert 1 <= i <= self.n
+        return i & (-i)
+
+    def _pre_sum(self, i: int) -> int:
+        """index start from 1 and the prefix sum of nums[:i] which is 0-index"""
+        assert 0 <= i < self.n
+        i += 1
+        val = 0
+        while i:
+            val += self.t[i]
+            i -= self._lowest_bit(i)
+        return val
+
+    def build(self, nums) -> None:
+        """initialize the tree array"""
+        assert len(nums) == self.n
+        pre = [0] * (self.n + 1)
+        for i in range(self.n):
+            pre[i + 1] = pre[i] + nums[i]
+            # meaning of self.t[i+1]
+            self.t[i + 1] = pre[i + 1] - pre[i + 1 - self._lowest_bit(i + 1)]
+        self.nums = nums[:]
+        return
+
+    def get(self):
+        """get the original nums sometimes for debug"""
+        nums = [self._pre_sum(i) for i in range(self.n)]
+        for i in range(self.n - 1, 0, -1):
+            nums[i] -= nums[i - 1]
+        return nums
+
+    def point_add(self, i: int, val: int) -> None:
+        """index start from 1 and the value val can be any inter including positive and negative number"""
+        assert 0 <= i < self.n
+        self.nums[i] += val
+        i += 1
+        while i < len(self.t):
+            self.t[i] += val
+            i += self._lowest_bit(i)
+        return
+
+    def point_set(self, i: int, val: int) -> None:
+        """index start from 1 and the value val can be any inter including positive and negative number"""
+        assert 0 <= i < self.n
+        diff = val - self.nums[i]
+        self.point_add(i, diff)
+        return
+
+    def range_sum(self, x: int, y: int) -> int:
+        assert 0 <= x <= y < self.n
+        """0-index"""
+        res = self._pre_sum(y) - self._pre_sum(x - 1) if x else self._pre_sum(y)
+        return res
+
+    def bisect_right(self, w):
+        # all value in nums must be non-negative
+        x, k = 0, 1
+        while k * 2 <= self.n:
+            k *= 2
+        while k > 0:
+            if x + k <= self.n and self.t[x + k] <= w:
+                w -= self.t[x + k]
+                x += k
+            k //= 2
+        assert 0 <= x <= self.n
+        return x
+
+
 class PointAddRangeSum:
     def __init__(self, n: int, initial=0) -> None:
         """index from 1 to n"""
