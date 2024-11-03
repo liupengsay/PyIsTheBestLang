@@ -93,7 +93,7 @@ P2769（https://www.luogu.com.cn/problem/P2769）matrix_dp
 P3012（https://www.luogu.com.cn/problem/P3012）matrix_dp
 P3860（https://www.luogu.com.cn/problem/P3860）matrix_dp|specific_plan
 P4958（https://www.luogu.com.cn/problem/P4958）linear_dp|prefix_sum
-P5144（https://www.luogu.com.cn/problem/P5144）linear_dp|prefix_xor
+P5144（https://www.luogu.com.cn/problem/P5144）linear_dp|matrix_prefix_xor
 P5858（https://www.luogu.com.cn/problem/P5858）matrix_dp|monotonic_queue
 P5879（https://www.luogu.com.cn/problem/P5879）matrix_dp|prefix_sum
 P6119（https://www.luogu.com.cn/problem/P6119）matrix_dp|lcs
@@ -1011,9 +1011,8 @@ class Solution:
     def lg_p2380(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2380
-        tag: md_matrix_dp
+        tag: md_matrix_dp|predix_sum
         """
-        # prefix_sum与matrix_dp
         while True:
             m, n = ac.read_list_ints()
             if m == n == 0:
@@ -1032,7 +1031,6 @@ class Solution:
             dp = [[0] * (n + 1) for _ in range(m + 1)]
             for i in range(m):
                 for j in range(n):
-                    # 只能往左或者往上挖
                     dp[i + 1][j + 1] = max(dp[i][j + 1] + grid_west[i][j + 1], dp[i + 1][j] + grid_north[i + 1][j])
             ac.st(dp[-1][-1])
         return
@@ -1064,7 +1062,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2528
         tag: reverse_order_pair|matrix_dp|implemention|construction
         """
-        # reverse_order_pair|matrix_dp| 与implementionconstruction
         n, t = ac.read_list_ints()
         dp = [[0] * (t + 1) for _ in range(n + 1)]
         dp[0][0] = 1
@@ -1093,7 +1090,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2733
         tag: diff_array|matrix_dp|counter|maximum_square
         """
-        # DP通过边长与diff_array|正方形子矩阵的个数
         n = ac.read_int()
         grid = [ac.read_str() for _ in range(n)]
         dp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -1101,7 +1097,6 @@ class Solution:
         for i in range(n):
             for j in range(n):
                 if grid[i][j] == "1":
-                    # 转移公式
                     dp[i + 1][j + 1] = min(dp[i][j], dp[i + 1][j], dp[i][j + 1]) + 1
                     x = dp[i + 1][j + 1]
                     if x >= 2:
@@ -1159,7 +1154,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2769
         tag: matrix_dp
         """
-        # matrix_dp| 注意初始化条件
+
         n = ac.read_int()
         a = ac.read_list_ints()
         a.sort()
@@ -1198,7 +1193,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3012
         tag: matrix_dp
         """
-        # matrix_dp| 可以按照顺序转移
+
         u, l, p = ac.read_list_ints()
         dct = defaultdict(list)
         nodes = set()
@@ -1212,20 +1207,17 @@ class Solution:
         m = len(ind)
         mod = 97654321
 
-        # 大写字母个数，小写字母个数，当前结尾字母
         dp = [[[0] * m for _ in range(l + 1)] for _ in range(u + 1)]
         for w in nodes:
-            if w.isupper():  # 初始化
+            if w.isupper():
                 dp[1][0][ind[w]] = 1
             else:
                 dp[0][1][ind[w]] = 1
 
-        # 从小到大
         for i in range(u + 1):
             for j in range(l + 1):
                 for k in range(m):
                     for nex in dct[nodes[k]]:
-                        # 状态转移
                         if nex.isupper() and i + 1 <= u:
                             dp[i + 1][j][ind[nex]] += dp[i][j][k]
                             dp[i + 1][j][ind[nex]] %= mod
@@ -1241,7 +1233,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3860
         tag: matrix_dp|specific_plan
         """
-        # matrix_dp| 并具体转移specific_plan
+
         n, m = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         dp = [[math.inf] * (n + 1) for _ in range(m + 1)]
@@ -1304,9 +1296,8 @@ class Solution:
     def lg_p5144(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5144
-        tag: linear_dp|prefix_xor
+        tag: linear_dp|matrix_prefix_xor
         """
-        # linear_dp 二维|前缀异或和
         n, m = ac.read_list_ints()
         dp = [[0] * m for _ in range(n)]
         nums = ac.read_list_ints()
@@ -1360,9 +1351,9 @@ class Solution:
     def lg_p5879(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5879
-        tag: matrix_dp|prefix_sum
+        tag: matrix_dp|prefix_sum_opt|suffix_sum_opt
         """
-        # matrix_dp| 后缀和优化
+
         n = ac.read_int()
         pre = [1] * (n + 1)
         pre[0] = 0
@@ -1380,9 +1371,9 @@ class Solution:
     def lg_p6119(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6119
-        tag: matrix_dp|lcs
+        tag: matrix_dp|lcs|longest_common_subsequence
         """
-        # matrix_dp| 为 LCS 的变形题
+
         n = ac.read_int()
         a = [ac.read_int() for _ in range(n)]
         b = [ac.read_int() for _ in range(n)]
@@ -1397,9 +1388,9 @@ class Solution:
     def lg_p6323(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6323
-        tag: reverse_order_pair|prefix_sum
+        tag: reverse_order_pair|prefix_sum_opt
         """
-        #  DP reverse_order_pair|为指定数量时的排列个数prefix_sum优化
+
         mod = 10 ** 9 + 7
         n, k = ac.read_list_ints()
         dp = [[0] * (k + 1) for _ in range(2)]
@@ -1419,9 +1410,9 @@ class Solution:
     def lg_p6394(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6394
-        tag: matrix_dp|prefix_sum
+        tag: matrix_dp|prefix_sum_opt
         """
-        # matrix_dp| |prefix_sum优化
+
         n, k = ac.read_list_ints()
         s = ac.read_list_ints()
         if sum(s) < n:
@@ -1450,7 +1441,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6433
         tag: greed|classification_discussion|matrix_dp
         """
-        # greed|classification_discussionmatrix_dp|
+
         n, m, k = ac.read_list_ints()
 
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -1462,7 +1453,6 @@ class Solution:
             ac.st(ans)
             return
 
-        # dp[i][j]表示花费时间 i 翻倍次数为 j 时的最大毒瘤程度
         dp = [[0 for _ in range(k + 1)] for _ in range(m + 1)]
         for a, x in nums:
             for i in range(m, -1, -1):
@@ -1482,7 +1472,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6451
         tag: md_matrix_dp|brute_force|4-tree
         """
-        # 迭代方式实现md_matrix_dp 并brute_force四叉树获取对应最小代价和状态
+
         n = ac.read_int()
         grid = [[int(w) for w in ac.read_str()] for _ in range(n)]
         pre = PreFixSumMatrix(grid)
@@ -1491,7 +1481,6 @@ class Solution:
         ind = {state: i for i, state in enumerate(states)}  # MLE
 
         def dfs():
-            # 最小代价
             stack = [[0, 0, n - 1, n - 1]]
             while stack:
                 x1, y1, x2, y2 = stack.pop()
@@ -1533,7 +1522,6 @@ class Solution:
             return
 
         def check():
-            # 通过转移状态结果赋值
             stack = [[0, 0, n - 1, n - 1]]
             while stack:
                 x1, y1, x2, y2 = stack.pop()
@@ -1573,7 +1561,7 @@ class Solution:
         url: https://leetcode.cn/problems/disconnect-path-in-a-binary-matrix-by-at-most-one-flip/description/
         tag: matrix_dp|brain_teaser
         """
-        # matrix_dpbrain_teaser|，判断cut_point可行性
+
         m, n = len(grid), len(grid[0])
 
         left = [[0] * n for _ in range(m)]
@@ -1615,9 +1603,9 @@ class Solution:
     def lc_2617_1(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
-        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        tag: reverse_order|matrix_dp|tree_array|prefix_min|specific_plan
         """
-        # reverse_order|matrix_dp| 并tree_array|记录更新前缀最小值
+
         m, n = len(grid), len(grid[0])
         dp = [[math.inf] * n for _ in range(m)]
         dp[-1][-1] = 1
@@ -1643,9 +1631,8 @@ class Solution:
     def lc_2617_2(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
-        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        tag: reverse_order|matrix_dp|tree_array|prefix_min|priority_queue|monotonic_queue
         """
-        # matrix_dp| priority_queue或者monotonic_queue
         m, n = len(grid), len(grid[0])
         dp = [[math.inf] * n for _ in range(m)]
         dp[0][0] = 1
@@ -1672,9 +1659,8 @@ class Solution:
     def lc_2617_3(grid: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/
-        tag: reverse_order|matrix_dp|tree_array|prefix_min
+        tag: reverse_order|matrix_dp|tree_array|prefix_min|bfs|union_find|linked_list
         """
-        # matrix_dp|  bfs |union_find的方式
         m, n = len(grid), len(grid[0])
         row = [list(range(1, n + 1)) for _ in range(m)]
         col = [list(range(1, m + 1)) for _ in range(n)]
@@ -1687,10 +1673,7 @@ class Solution:
             if i == m - 1 and j == n - 1:
                 return d
             val = grid[i][j]
-
-            # union_find或者类似linked_list|合并
             lst = [j]
-            # 查到下一个就可以移动到的未访问格子
             while lst[-1] <= j + val and lst[-1] < n:
                 lst.append(row[i][lst[-1]])
             last = lst[-1]
@@ -1700,8 +1683,6 @@ class Solution:
                     stack.append([i, x])
                 row[i][x] = last
             row[i][j] = last
-
-            # union_find或者类似linked_list|合并
             lst = [i]
             while lst[-1] <= i + val and lst[-1] < m:
                 lst.append(col[j][lst[-1]])
@@ -1721,7 +1702,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P6509
         tag: classical|matrix_dp|specific_plan
         """
-        # classicalmatrix_dp| 并记录对应的状态转移
         s = ac.read_str().split("=")
         b = int(s[1])
         s = s[0]
@@ -1789,10 +1769,8 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4421/
         tag: monotonic_queue|matrix_dp
         """
-        # monotonic_queuematrix_dp
         n, k, x = ac.read_list_ints()
         nums = ac.read_list_ints()
-        # dp[i][j]表示选第i个元素，且选了j个元素的最大和
         dp = [[-math.inf] * (x + 1) for _ in range(n + 1)]
         dp[0][0] = 0
         stack = [deque() for _ in range(x + 1)]
@@ -1815,9 +1793,8 @@ class Solution:
     def lc_1216(s: str, k: int) -> bool:
         """
         url: https://leetcode.cn/problems/valid-palindrome-iii/
-        tag: matrix_dp|longest_palindrome_subsequence
+        tag: matrix_dp|longest_palindrome_subsequence|lps
         """
-        # DP求最长回文子序列
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -1839,7 +1816,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P7995
         tag: matrix_dp
         """
-        # matrix_dp|
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
             k += 1
@@ -1877,7 +1853,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8325
         tag: brute_force|matrix_dp|maximum_square
         """
-        # 动态规划brute_force，类似最大正方形matrix_dp| 变形
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
 
@@ -1941,7 +1916,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8614
         tag: matrix_dp|mod
         """
-        # matrix_dp| 关键在于mod|作为一维状态
         n, s, a, b = ac.read_list_ints()
         mod = 100000007
         dp = [[0] * n for _ in range(n)]
@@ -1960,9 +1934,8 @@ class Solution:
     def lg_p8638(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8638
-        tag: matrix_dp|longest_palindrome_sequence
+        tag: matrix_dp|longest_palindrome_sequence|lps
         """
-        # matrix_dp| 最长回文子序列
         s = ac.read_str()
         n = len(s)
         dp = [[0] * n for _ in range(n)]
@@ -1979,10 +1952,8 @@ class Solution:
     def lg_p8786(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8786
-        tag: classical|md_matrix_dp| implemention|memory_search
+        tag: classical|md_matrix_dp|implemention|memory_search|dfs
         """
-
-        # classical三维matrix_dp| implementionmemory_search
 
         @lru_cache(None)
         def dfs(x, y, wine):
@@ -2011,7 +1982,6 @@ class Solution:
         tag: matrix_dp
         """
 
-        # 类似求正方形的边长和面积matrix_dp
         def check():
             nonlocal ans
             dp = [[0] * n for _ in range(m)]
@@ -2039,9 +2009,8 @@ class Solution:
     def lc_2430(s: str) -> int:
         """
         url: https://leetcode.cn/problems/maximum-deletions-on-a-string/
-        tag: lcp|matrix_dp
+        tag: lcp|matrix_dp|longest_common_prefix
         """
-        # 双重DPLCP与matrix_dp
         n = len(s)
         lcp = [[0] * (n + 1) for _ in range(n + 1)]
         for i in range(n - 1, -1, -1):
@@ -2062,7 +2031,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4381/
         tag: classical|matrix_dp
         """
-        # classicalmatrix_dp
         n, m, k = ac.read_list_ints()
         dp = [[-math.inf] * (k + 1) for _ in range(n + 1)]
         dp[0][0] = 0
@@ -2084,7 +2052,10 @@ class Solution:
 
     @staticmethod
     def abc_130e(ac=FastIO()):
-        # matrix_prefix_sum|优化matrix_dp
+        """
+        url: https://atcoder.jp/contests/abc130/tasks/abc130_e
+        tag: matrix_prefix_sum|matrix_dp
+        """
         m, n = ac.read_list_ints()
         mod = 10 ** 9 + 7
         s = ac.read_list_ints()
@@ -2105,14 +2076,11 @@ class Solution:
     def ac_2694(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/2696/
-        tag: lcs|matrix_dp|counter
+        tag: lcs|matrix_dp|counter|classical
         """
-        # 问题求解最长公共子序列LCS的长度与个数
         a = ac.read_str()[:-1]
         b = ac.read_str()[:-1]
         mod = 10 ** 8
-
-        # 滚动数组优化
         m, n = len(a), len(b)
         dp = [[0] * (n + 1) for _ in range(2)]
         cnt = [[0] * (n + 1) for _ in range(2)]
@@ -2129,7 +2097,6 @@ class Solution:
                     cnt[t ^ 1][j] += cnt[t][j - 1]
                 else:
                     dp[t ^ 1][j] = max(dp[t][j], dp[t ^ 1][j - 1])
-                # 注意个数去重
                 if dp[t ^ 1][j] == dp[t ^ 1][j - 1]:
                     cnt[t ^ 1][j] += cnt[t ^ 1][j - 1]
                 if dp[t ^ 1][j] == dp[t][j]:
@@ -2149,7 +2116,6 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-non-negative-product-in-a-matrix/
         tag: matrix_dp|maximum_mul|minimum_mul
         """
-        # matrix_dp最大与最小乘积转移
         m, n = len(grid), len(grid[0])
 
         @lru_cache(None)
@@ -2176,9 +2142,8 @@ class Solution:
     def lc_1639(words: List[str], target: str) -> int:
         """
         url: https://leetcode.cn/problems/number-of-ways-to-form-a-target-string-given-a-dictionary/description/
-        tag: prefix_sum|matrix_dp
+        tag: prefix_sum_opt|matrix_dp
         """
-        # prefix_sum优化matrix_dp|
         dct = defaultdict(lambda: defaultdict(int))
         n = len(words[0])
         for word in words:
@@ -2204,7 +2169,6 @@ class Solution:
         url: https://leetcode.cn/problems/palindrome-partitioning-iv/description/
         tag: matrix_dp|palindrome_substring|manacher|brute_force
         """
-        # matrix_dp判断是否为palindrome_substring，或者manacher然后brute_force
         n = len(s)
         dp = [[0] * n for _ in range(n)]
         for i in range(n - 1, -1, -1):
@@ -2225,9 +2189,8 @@ class Solution:
     def lc_1771(word1: str, word2: str) -> int:
         """
         url: https://leetcode.cn/problems/maximize-palindrome-length-from-subsequences/
-        tag: longest_palindrome_subsequence|matrix_dp
+        tag: longest_palindrome_subsequence|matrix_dp|lps
         """
-        # 最长回文子序列matrix_dp
         m, n = len(word1), len(word2)
         s = word1 + word2
         ans = 0
@@ -2254,9 +2217,8 @@ class Solution:
     def lc_1937(points: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-number-of-points-with-cost/
-        tag: prefix_sum|matrix_dp
+        tag: prefix_sum_opt|matrix_dp
         """
-        # 矩阵prefix_sum后缀和优化的DP
         m, n = len(points), len(points[0])
         pre = points[0][:]
 
@@ -2284,9 +2246,8 @@ class Solution:
     def lc_1977(num: str) -> int:
         """
         url: https://leetcode.cn/problems/number-of-ways-to-separate-numbers/
-        tag: matrix_dp|lcp|prefix_sum
+        tag: matrix_dp|lcp|prefix_sum_opt
         """
-        # 两个matrix_dp含LCP优化，或者前缀优化DP
         mod = 10 ** 9 + 7
         n = len(num)
         lcp = [[0] * (n + 1) for _ in range(n + 1)]
@@ -2295,24 +2256,21 @@ class Solution:
             for j in range(i + 1, n):
                 lcp[i][j] = 0 if num[i] != num[j] else lcp[i + 1][j + 1] + 1
 
-        # 以索引 i 结尾且末尾数字长为 j 的specific_plan数
         dp = [[0] * (n + 1) for _ in range(n + 1)]
-        dp[0] = [1] * (n + 1)  # 边界条件prefix_sum
+        dp[0] = [1] * (n + 1)
         for i in range(1, n + 1):
-            # i 从 1 到 n 表示
             for j in range(1, i + 1):
-                if num[i - j] == "0":  # 只能是没有前导零的正整数
+                if num[i - j] == "0":
                     continue
                 if i - 2 * j >= 0:
                     x = lcp[i - 2 * j][i - j]
                     if x >= j or num[i - 2 * j + x] <= num[i - j + x]:
-                        dp[i][j] = dp[i - j][j]  # 只有这时才满足 num[i-2*j:i-j] <= num[i-j:i]
+                        dp[i][j] = dp[i - j][j]
                     else:
                         dp[i][j] = dp[i - j][j - 1]
                 else:
                     dp[i][j] = dp[i - j][j - 1]
             for j in range(1, n + 1):
-                # prefix_sum优化
                 dp[i][j] += dp[i][j - 1]
                 dp[i][j] %= mod
         return dp[n][n]
@@ -2323,8 +2281,6 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-an-original-string-exists-given-two-encoded-strings/description/
         tag: matrix_dp|brute_force|memory_search
         """
-
-        # 二维matrix_dpbrute_forcememory_search
 
         def check(st):
             if len(st) == 1:

@@ -70,7 +70,7 @@ class DfsEulerOrder:
         # the pos of original node first appears in the euler order
         self.euler_in = [-1] * n
         # the pos of original node last appears in the euler order
-        self.euler_out = [-1] * n  # 每个原始节点再欧拉序中最后出现的位置
+        self.euler_out = [-1] * n
         self.build(dct, root)
         return
 

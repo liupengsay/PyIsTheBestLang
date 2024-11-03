@@ -40,7 +40,7 @@ P2370（https://www.luogu.com.cn/problem/P2370）mst|sort|greed|bag_dp
 P2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
 P2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|math.infinite
 P1474（https://www.luogu.com.cn/problem/P1474）bag_dp|math.infinite|counter
-P1466（https://www.luogu.com.cn/problem/P1466）bag_dp|finite|和counter
+P1466（https://www.luogu.com.cn/problem/P1466）bag_dp|finite|counter
 P1455（https://www.luogu.com.cn/problem/P1455）union_find|bag_dp|finite|
 P1230（https://www.luogu.com.cn/problem/P1230）sort|bag_dp|finite|
 P1077（https://www.luogu.com.cn/problem/P1077）bag_dp|finite|counter

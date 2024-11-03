@@ -1,5 +1,6 @@
 import os
 import random
+import re
 import time
 import unittest
 import webbrowser
@@ -380,6 +381,34 @@ class TestGeneral(unittest.TestCase):
         parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
         grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
         pre = set()
+        rem = 0
+        process_directory(os.path.join(grandparent_path, "src"))
+        print(f"total rem：{rem}")
+        return
+
+    def test_check_chinese(self):
+
+        def process_file(file_path):
+
+            with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                lines = f.readlines()
+                pattern = re.compile(r'[\u4e00-\u9fff]')
+                for s in lines:
+                    if bool(pattern.search(s)):
+                        print(file_path, s.strip("\n"))
+            return
+
+        def process_directory(directory):
+            for root, dirs, files in os.walk(directory):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    if file == "problem.py" or file == "template.py" or file == "example.py":
+                        process_file(file_path)
+            return
+
+        current_path = os.getcwd()
+        parent_path = os.path.abspath(os.path.join(current_path, os.pardir))
+        grandparent_path = os.path.abspath(os.path.join(parent_path, os.pardir))
         rem = 0
         process_directory(os.path.join(grandparent_path, "src"))
         print(f"total rem：{rem}")

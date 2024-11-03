@@ -198,9 +198,9 @@ class Solution:
     def cf_165e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/165/E
-        tag: liner_dp|state_dp|brute_force
+        tag: liner_dp|state_dp|brute_force|subset_sum
         """
-        # 线性state_dpDP，类似子集思想求解可能存在的与为0的数对
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         ceil = max(nums).bit_length()
@@ -227,9 +227,8 @@ class Solution:
     def cf_580d(ac):
         """
         url: https://codeforces.com/problemset/problem/580/D
-        tag: state_dp
+        tag: state_dp|bit_mask|bit_operation|refresh_table
         """
-        # bitmaskbit_operationstate_dp转移，从 1 少的状态向多的转移，并brute_force前一个 1 的位置增益
         n, m, k = ac.read_list_ints()
         ind = {1 << i: i for i in range(n + 1)}
         nums = ac.read_list_ints()
@@ -264,7 +263,7 @@ class Solution:
         url: https://leetcode.cn/problems/shortest-path-visiting-all-nodes/
         tag: shortest_path|floyd|dijkstra|preprocess|state_dp
         """
-        # shortest_pathFloyd或者Dijkstrapreprocessshortest_path|state_dp
+
         n = len(graph)
         dis = [[math.inf] * n for _ in range(n)]
         for i in range(n):
@@ -291,10 +290,8 @@ class Solution:
     def lc_1349(seats: List[List[str]]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-students-taking-exam/
-        tag: brute_force|state_dp
+        tag: brute_force|state_dp|outline_dp
         """
-        # 考试就座state_dp DP
-
         lst = []
         for se in seats:
             st = "".join(["0" if x == "." else "1" for x in se])
@@ -332,9 +329,9 @@ class Solution:
     def lc_1434_1(hats: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
-        tag: state_dp|reverse_thinking
+        tag: state_dp|reverse_thinking|dfs|memory_search
         """
-        # state_compressreverse_thinking，memory_search实现
+
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -361,9 +358,9 @@ class Solution:
     def lc_1434_2(hats: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/
-        tag: state_dp|reverse_thinking
+        tag: state_dp|reverse_thinking|fill_table
         """
-        # state_compressreverse_thinking，fill_table迭代实现
+
         mod = 10 ** 9 + 7
         n = len(hats)
         people = [[] for _ in range(40)]
@@ -389,7 +386,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
-        # state_dpDP数组形式
         m = len(power)
         dp = [0] * (1 << m)
         for state in range(1, 1 << m):
@@ -408,8 +404,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-kill-all-monsters/
         tag: state_dp
         """
-
-        # state_dpDPmemory_search形式
 
         @lru_cache(None)
         def dfs(state):
@@ -432,12 +426,12 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1896
         tag: state_dp
         """
-        # state_compress迭代写法
+
         n, k = ac.read_list_ints()
         dp = [[[0] * (k + 1) for _ in range(1 << n)] for _ in range(n + 1)]
         dp[0][0][0] = 1
 
-        for i in range(n):  # 行
+        for i in range(n):
             for j in range(1 << n):
                 for num in range(k + 1):
                     cur = [x for x in range(n) if not j & (1 << x) and (x == 0 or not j & (1 << (x - 1))) and (
@@ -457,41 +451,35 @@ class Solution:
     def cf_11d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/11/problem/D
-        tag: state_dp|undirected|counter
+        tag: state_dp|undirected_circle|counter|build_graph
         """
-        # state_compress无向图简单环counter
+
         n, m = ac.read_list_ints()
 
-        # build_graph|
         dct = [[] for _ in range(n)]
         for _ in range(m):
             i, j = ac.read_list_ints_minus_one()
             dct[i].append(j)
             dct[j].append(i)
 
-        # 初始化
         dp = [[0] * n for _ in range(1 << n)]
         for i in range(n):
             dp[1 << i][i] = 1
 
         ans = 0
-        for i in range(1, 1 << n):  # 经过的点状态，lowest_bit为起点
+        for i in range(1, 1 << n):
             for j in range(n):
                 if not dp[i][j]:
                     continue
                 for k in dct[j]:
-                    # 下一跳必须不能比起点序号小
                     if (i & -i) > (1 << k):
                         continue
                     if i & (1 << k):
-                        # 访问过且是起点则形成环
                         if (i & -i) == 1 << k:
                             ans += dp[i][j]
                     else:
-                        # 未访问过传到下一状态
                         dp[i ^ (1 << k)][k] += dp[i][j]
 
-        # 去除一条边的环以及是无向图需要除以二
         ans = (ans - m) // 2
         ac.st(ans)
         return
@@ -502,7 +490,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1433
         tag: state_dp
         """
-        # state_dp
+
         n = ac.read_int()
         lst = [[0, 0]]
         for _ in range(n):
@@ -540,27 +528,21 @@ class Solution:
     def lg_p1556(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1556
-        tag: state_dp|shortest_path|specific_plan
+        tag: state_dp|shortest_path|specific_plan|build_graph
         """
-        # state_dpshortest_path
         n = ac.read_int()
-        # 增|虚拟的起终点
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)] + [[0, 0]]
         n += 2
-        # 根据题意build_graph|，表示起终点与方向
         dct = [[] for _ in range(n)]
         for i in range(n):
             a, b = nums[i]
             for j in range(n):
                 if i != j:
-                    # 只有在同一行或者同一列时可以build_graph|连边
                     c, d = nums[j]
                     if a == c:
                         dct[i].append([j, 4] if b < d else [j, 2])
                     if b == d:
                         dct[i].append([j, 1] if a < c else [j, 3])
-
-        # 状态 当前点 方向
         dp = [[[0] * 5 for _ in range(n)] for _ in range((1 << n) - 1)]
         dp[0][n - 1] = [0, 1, 1, 1, 1]
         for state in range(1, (1 << n) - 1):
@@ -569,12 +551,10 @@ class Solution:
                     if x == n - 1:
                         dp[state][x][f] = 1 if not state else 0
                     res = 0
-                    # brute_force上一个点与方向是否可以转移过来
                     for y, ff in dct[x]:
                         if state & (1 << y) and ff != f:
                             res += dp[state ^ (1 << y)][y][ff]
                     dp[state][x][f] = res
-        #  0 表示初始任意不同于 1234 的方向总和
         ac.st(dp[(1 << n) - 1 - 1][0][0])
         return
 
@@ -584,23 +564,20 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3052
         tag: state_dp|matrix_dp
         """
-        # state_dp DP 二维优化
         n, w = ac.read_list_ints()
         nums = []
         while len(nums) < n:
             nums.extend(ac.read_list_ints())
-        f = [math.inf] * (1 << n)  # 当前状态下的分组
+        f = [math.inf] * (1 << n)
         f[0] = 1
-        g = [0] * (1 << n)  # 当前状态下最后一组占用的重量
+        g = [0] * (1 << n)
         for i in range(1, 1 << n):
             for j in range(n):
                 if i & (1 << j):
                     pre = i ^ (1 << j)
-                    # 装在当前最后一组
                     if g[pre] + nums[j] <= w and [f[i], g[i]] > [f[pre], g[pre] + nums[j]]:
                         f[i] = f[pre]
                         g[i] = g[pre] + nums[j]
-                    # 新开组
                     elif [f[i], g[i]] > [f[pre] + 1, nums[j]]:
                         f[i] = f[pre] + 1
                         g[i] = nums[j]
@@ -666,7 +643,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8687
         tag: state_dp|bag_dp
         """
-        # state_dp 结合背包 DP 思想
         n, m, k = ac.read_list_ints()
         dp = [math.inf] * (1 << m)
         dp[0] = 0
@@ -683,10 +659,8 @@ class Solution:
     def lc_1467(balls: List[int]) -> float:
         """
         url: https://leetcode.cn/problems/probability-of-a-two-boxes-having-the-same-number-of-distinct-balls/
-        tag: memory_search|counter
+        tag: memory_search|math|counter
         """
-
-        # memory_search与组合mathcounter
 
         @lru_cache(None)
         def dfs(i, s, c1, c2):
@@ -716,7 +690,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-connect-two-groups-of-points/
         tag: state_dp
         """
-        # state_dp，需要一点变形
         m, n = len(cost), len(cost[0])
         low = [min(cost[i][j] for i in range(m)) for j in range(n)]
 
@@ -739,7 +712,6 @@ class Solution:
         tag: state_dp
         """
 
-        # 线性索引|brute_force子集state_compress
         @lru_cache(None)
         def dfs(i, state):
             if not state:
@@ -765,10 +737,9 @@ class Solution:
     def lc_2019(s: str, answers: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/the-score-of-students-solving-math-expression/
-        tag: memory_search|fill_table
+        tag: memory_search|fill_table|divide_and_conquer
         """
 
-        # 类似divide_and_conquer的思想memory_search
         @lru_cache(None)
         def dfs(state):
             if len(state) == 1:
@@ -798,7 +769,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
-        # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
         n = len(tasks)
         valid = [False] * (1 << n)
         for mask in range(1, 1 << n):
@@ -813,7 +783,7 @@ class Solution:
         f[0] = 0
         for mask in range(1, 1 << n):
             subset = mask
-            while subset:  # 状压子集brute_force
+            while subset:
                 if valid[subset]:
                     a, b = f[mask], f[mask ^ subset] + 1
                     f[mask] = a if a < b else b
@@ -826,8 +796,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/
         tag: sub_set|preprocess|brute_force|state_dp
         """
-
-        # preprocess子集后memory_search状态转移，子集brute_force，也可两个状态
 
         @lru_cache(None)
         def dfs(state, rest):
@@ -881,7 +849,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3738/
         tag: reverse_order|state_dp|specific_plan
         """
-        # reverse_order|state_compress与输出specific_plan
         n, m = ac.read_list_ints()
         if m == n * (n - 1) // 2:
             ac.st(0)
@@ -926,12 +893,10 @@ class Solution:
     def lc_2172(nums: List[int], num_slots: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-and-sum-of-array/
-        tag: bit_operation|state_dp|3-base|state_dp
+        tag: bit_operation|state_dp|3-base|state_dp|classical
         """
 
-        # bit_operation和state_dp转移，三进制state_compress（天平就是三进制）
-
-        def get_k_bin_of_n(n: int, k: int, m: int):  # 进制与数字转换state_compress
+        def get_k_bin_of_n(n: int, k: int, m: int):  # classical
             lst = []
             while n:
                 lst.append(n % k)

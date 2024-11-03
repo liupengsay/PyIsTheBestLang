@@ -2009,7 +2009,7 @@ class Solution:
                                 cnt[color] += 1
                                 nex.append(y)
                             elif visit[y] != color:
-                                # 奇数环
+                                # odd_circle
                                 ac.st("Impossible")
                                 return
                     stack = nex

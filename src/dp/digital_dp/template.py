@@ -39,9 +39,7 @@ class DigitalDP:
         cnt = []
         val = 1
         while val <= m:
-            # a, b 分别是循环节和剩余元素个数
             a, b = divmod(m, val * 2)
-            # 统计 1 的数量
             cnt.append(a * val + min(max(b - val + 1, 0), val))
             val *= 2
         return cnt

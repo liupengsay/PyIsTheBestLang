@@ -21,7 +21,6 @@ class TestGeneral(unittest.TestCase):
         tpt = TriPartPackTriPart()
         nodes = [[1, 1], [1, -1], [-1, 1], [-1, -1]]
 
-        # 定义目标函数
         def target(x, y): return max([(x - p[0]) ** 2 + (y - p[1]) ** 2 for p in nodes])
 
         x0, y0, _ = tpt.find_floor_point_float(target, -10, 10, -10, 10)

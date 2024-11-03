@@ -32,7 +32,7 @@ P3586（https://www.luogu.com.cn/problem/P3586）offline_query|discretization|tr
 P1198（https://www.luogu.com.cn/problem/P1198）tree_array|range_max
 P4868（https://www.luogu.com.cn/problem/P4868）math|tree_array|prefix_sum_of_prefix_sum
 P5463（https://www.luogu.com.cn/problem/P5463）tree_array|counter|brute_force|contribution_method
-P6225（https://www.luogu.com.cn/problem/P6225）tree_array|prefix_xor
+P6225（https://www.luogu.com.cn/problem/P6225）tree_array|matrix_prefix_xor
 P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_unique|PointChangeRangeSum
 P5041（https://www.luogu.com.cn/problem/P5041）tree_array|implemention|classical
 
@@ -709,7 +709,7 @@ class Solution:
     def lg_p6225(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6225
-        tag: tree_array|prefix_xor
+        tag: tree_array|matrix_prefix_xor
         """
         n, q = ac.read_list_ints()  # TLE
         nums = ac.read_list_ints()

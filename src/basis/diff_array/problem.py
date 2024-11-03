@@ -1716,7 +1716,7 @@ class Solution:
             return cnt[1:]
 
         for i in range(x + 1):
-            # 左边
+            # left
             if i + 1 <= x:
                 low = i + 1 - i
                 high = x - i
@@ -1740,14 +1740,14 @@ class Solution:
                 high = x - i + 1 + y - (j + 1)
                 update()
 
-        # 右边
+        # right
         for i in range(y, n):
             # [i+1, n-1]
             low = i + 1 - i
             high = n - 1 - i
             update()
 
-        # 中间
+        # middle
         for i in range(x + 1, y):
 
             # [y, n-1]

@@ -66,7 +66,7 @@ P4086（https://www.luogu.com.cn/problem/P4086）suffix|reverse_order|brute_forc
 P4596（https://www.luogu.com.cn/problem/P4596）brute_force
 P4759（https://www.luogu.com.cn/problem/P4759）factorization|brute_force
 P6267（https://www.luogu.com.cn/problem/P6267）factorization|brute_force
-P5077（https://www.luogu.com.cn/problem/P5077）factorization|brute_force可
+P5077（https://www.luogu.com.cn/problem/P5077）factorization|brute_force
 P4960（https://www.luogu.com.cn/problem/P4960）implemention|brute_force
 P4994（https://www.luogu.com.cn/problem/P4994）implemention|pi(n)<=6n
 P5190（https://www.luogu.com.cn/problem/P5190）counter|prefix_sum|harmonic_progression|O(nlogn)
