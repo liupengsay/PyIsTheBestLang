@@ -26,7 +26,7 @@ P1298（https://www.luogu.com.cn/problem/P1298）high_precision|frac_to_float|br
 ===================================CodeForces===================================
 1144E（https://codeforces.com/contest/1144/problem/E）big_number|minus|mul|divide|high_precision|classical
 1883E（https://codeforces.com/contest/1883/problem/E）high_precision|big_number|math|log
-1995D（https://codeforces.com/contest/1995/problem/C）high_precision|greed|implemention
+1995D（https://codeforces.com/contest/1995/problem/C）high_precision|greedy|implemention
 1543C（https://codeforces.com/contest/1543/problem/C）high_precision|prob|expectation|implemention
 
 ====================================AtCoder=====================================

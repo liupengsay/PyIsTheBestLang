@@ -26,7 +26,7 @@ P1692（https://www.luogu.com.cn/problem/P1692）dfs|brute_force|lexicographical
 P1612（https://www.luogu.com.cn/problem/P1612）dfs|prefix_sum|binary_search
 P1475（https://www.luogu.com.cn/problem/P1475）dfs
 P2080（https://www.luogu.com.cn/problem/P2080）dfs|back_trace|prune
-P2090（https://www.luogu.com.cn/problem/P2090）dfs|greed|back_trace|prune|euclidean_division|euclidean_minus
+P2090（https://www.luogu.com.cn/problem/P2090）dfs|greedy|back_trace|prune|euclidean_division|euclidean_minus
 P2420（https://www.luogu.com.cn/problem/P2420）brain_teaser|dfs|shortest_path|xor_path|classical
 P1473（https://www.luogu.com.cn/problem/P1473）dfs|brute_force
 P1461（https://www.luogu.com.cn/problem/P1461）dfs|back_trace|brute_force
@@ -42,7 +42,7 @@ P5318（https://www.luogu.com.cn/problem/P5318）bfs|topological_sort|dfs_order
 P6691（https://www.luogu.com.cn/problem/P6691）coloring_method|bipartite_graph|specific_plan|counter
 P7370（https://www.luogu.com.cn/problem/P7370）ancestor
 P1036（https://www.luogu.com.cn/problem/P1036）back_trace|prune
-P8578（https://www.luogu.com.cn/problem/P8578）greed|dfs_order
+P8578（https://www.luogu.com.cn/problem/P8578）greedy|dfs_order
 P8838（https://www.luogu.com.cn/problem/P8838）dfs|back_trace
 P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|brain_teaser|observation
 
@@ -53,15 +53,15 @@ P1444（https://www.luogu.com.cn/problem/P1444）dfs|back_trace|circle_check|bra
 1702G2（https://codeforces.com/contest/1702/problem/G2）dfs_order|lca
 1899G（https://codeforces.com/contest/1899/problem/G）dfs|inclusion_exclusion|classical|point_add_range_sum|heuristic_merge
 1714G（https://codeforces.com/contest/1714/problem/G）dfs|binary_search|prefix_sum
-1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greed
+1675F（https://codeforces.com/contest/1675/problem/F）dfs_order|greedy
 219D（https://codeforces.com/contest/219/problem/D）reroot_dp|dfs|dfs_order|diff_array
 246E（https://codeforces.com/problemset/problem/246/E）tree_array|offline_query|range_unique|dfs_order
 1076E（https://codeforces.com/problemset/problem/1076/E）tree_diff_array|dfs|classical
 383C（https://codeforces.com/problemset/problem/383/C）dfs_order|odd_even|range_add|point_get
 3C（https://codeforces.com/problemset/problem/3/C）dfs|back_trace|brute_force|implemention
 459C（https://codeforces.com/problemset/problem/459/C）back_trace|brute_force|classical|implemention
-1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greed|tree_lca|implemention|observation|brain_teaser
-1882D（https://codeforces.com/problemset/problem/1882/D）dfs_order|diff_array|contribution_method|greed
+1918F（https://codeforces.com/problemset/problem/1918/F）dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
+1882D（https://codeforces.com/problemset/problem/1882/D）dfs_order|diff_array|contribution_method|greedy
 1009F（https://codeforces.com/problemset/problem/1009/F）heuristic_merge|classical
 27E（https://codeforces.com/problemset/problem/27/E）prime_factor|brute_force|factor_dp
 
@@ -1468,7 +1468,7 @@ class Solution:
     def cf_1918f(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1918/F
-        tag: dfs_order|greed|tree_lca|implemention|observation|brain_teaser
+        tag: dfs_order|greedy|tree_lca|implemention|observation|brain_teaser
         """
         n, k = ac.read_list_ints()
         k += 1
@@ -1593,7 +1593,7 @@ class Solution:
     def cf_1882d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1882/D
-        tag: dfs_order|diff_array|contribution_method|greed
+        tag: dfs_order|diff_array|contribution_method|greedy
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()

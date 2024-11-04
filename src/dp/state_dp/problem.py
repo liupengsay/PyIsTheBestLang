@@ -19,7 +19,7 @@ Description：state_dp|dfs|back_trace|brute_force|sub_set|bit_operation|brute_fo
 1655（https://leetcode.cn/problems/distribute-repeating-integers/）state_dp
 1879（https://leetcode.cn/problems/minimum-xor-sum-of-two-arrays/）state_dp
 2019（https://leetcode.cn/problems/the-score-of-students-solving-math-expression/）memory_search|fill_table
-943（https://leetcode.cn/problems/find-the-shortest-superstring/）string|greed|state_dp
+943（https://leetcode.cn/problems/find-the-shortest-superstring/）string|greedy|state_dp
 1434（https://leetcode.cn/problems/number-of-ways-to-wear-different-hats-to-each-other/description/）state_dp|reverse_thinking
 847（https://leetcode.cn/problems/shortest-path-visiting-all-nodes/）shortest_path|floyd|dijkstra|preprocess|state_dp
 2741（https://leetcode.cn/problems/special-permutations/description/）state_dp
@@ -40,7 +40,7 @@ P1433（https://www.luogu.com.cn/problem/P1433）state_dp
 P1896（https://www.luogu.com.cn/problem/P1896）state_dp
 P1556（https://www.luogu.com.cn/problem/P1556）state_dp|shortest_path|specific_plan
 P3052（https://www.luogu.com.cn/problem/P3052）state_dp|matrix_dp
-P5997（https://www.luogu.com.cn/problem/P5997）greed|bag_dp|state_dp
+P5997（https://www.luogu.com.cn/problem/P5997）greedy|bag_dp|state_dp
 P6883（https://www.luogu.com.cn/problem/P6883）classical|state_dp
 P8687（https://www.luogu.com.cn/problem/P8687）state_dp|bag_dp
 P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|classical
@@ -52,7 +52,7 @@ P8733（https://www.luogu.com.cn/problem/P8733）floyd|shortest_path|state_dp|cl
 1102F（https://codeforces.com/contest/1102/problem/F）state_dp|classical|brute_force|fill_table|refresh_table
 453B（https://codeforces.com/problemset/problem/453/B）state_dp|specific_plan|math|number_theory
 16E（https://codeforces.com/problemset/problem/16/E）state_dp|prob_dp|refresh_table
-1316E（https://codeforces.com/problemset/problem/1316/E）state_dp|greed|sort|brain_teaser|classical
+1316E（https://codeforces.com/problemset/problem/1316/E）state_dp|greedy|sort|brain_teaser|classical
 
 =====================================AtCoder====================================
 ABC332E（https://atcoder.jp/contests/abc332/tasks/abc332_e）math|state_dp|classical
@@ -588,7 +588,7 @@ class Solution:
     def lg_p5997(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5997
-        tag: greed|bag_dp|state_dp
+        tag: greedy|bag_dp|state_dp
         """
         n, m = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1350,7 +1350,7 @@ class Solution:
     def cf_1316e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1316/E
-        tag: state_dp|greed|sort|brain_teaser|classical
+        tag: state_dp|greedy|sort|brain_teaser|classical
         """
         n, p, k = ac.read_list_ints()
         nums = ac.read_list_ints()

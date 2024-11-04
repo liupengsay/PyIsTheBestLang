@@ -7,7 +7,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 2286（https://leetcode.cn/problems/booking-concert-tickets-in-groups/）segment_tree|RangeAddRangeSumMaxMin
 2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/）segment_tree|RangeAddRangeMax|linear_dp
 2158（https://leetcode.cn/problems/amount-of-new-area-painted-each-day/）segment_tree|RangeAddRangeSum
-2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）segment_tree|greed|bisect_left
+2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）segment_tree|greedy|bisect_left
 732（https://leetcode.cn/problems/my-calendar-iii/）dynamic_segment_tree
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query/）segment_tree|RangeChangeRangeMin|offline_query|monotonic_queue
 2213（https://leetcode.cn/problems/longest-substring-of-one-repeating-character/）segment_tree|sub_consequence|range_query|range_merge
@@ -87,7 +87,7 @@ P2846（https://www.luogu.com.cn/problem/P2846）range_reverse|range_bit_count
 242E（https://codeforces.com/contest/242/problem/E）segment_tree|range_xor|range_reverse|range_sum|range_bit_count
 1982F（https://codeforces.com/contest/1982/problem/F）point_set|pre_max|post_min|pre_min|implemention|bisect_left|bisect_right
 620E（https://codeforces.com/problemset/problem/620/E）range_set|range_or|dfs_order
-1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greed
+1420C2（https://codeforces.com/problemset/problem/1420/C2）point_set|range_max_sub_sum_alter_signal|greedy
 1859D（https://codeforces.com/problemset/problem/1859/D）range_ascend|range_max|implemention
 1555E（https://codeforces.com/problemset/problem/1555/E）brain_teaser|build_graph|segment_tree|range_add|range_min|two_pointers
 2001D（https://codeforces.com/contest/2001/problem/D）segment_tree|point_set|range_max|range_max_bisect_right
@@ -3845,7 +3845,7 @@ class Solution:
     def cf_1420c2_1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1420/C2
-        tag: point_set|range_max_sub_sum_alter_signal|greed
+        tag: point_set|range_max_sub_sum_alter_signal|greedy
         """
         for _ in range(ac.read_int()):
             n, q = ac.read_list_ints()
@@ -3867,7 +3867,7 @@ class Solution:
     def cf_1420c2_2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1420/C2
-        tag: point_set|range_max_sub_sum_alter_signal|greed
+        tag: point_set|range_max_sub_sum_alter_signal|greedy
         """
 
         for _ in range(ac.read_int()):

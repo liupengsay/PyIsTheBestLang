@@ -8,7 +8,7 @@ Description：range_query|binary_search
 295（https://leetcode.cn/problems/find-median-from-data-stream/）sorted_list
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 2179（https://leetcode.cn/problems/count-good-triplets-in-an-array/）sorted_list|binary_search
-2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greed|binary_search|implemention
+2141（https://leetcode.cn/problems/maximum-running-time-of-n-computers/）greedy|binary_search|implemention
 2102（https://leetcode.cn/problems/sequentially-ordinal-rank-tracker/）sorted_list
 2519（https://leetcode.cn/problems/count-the-number-of-k-big-indices/）sorted_list
 1912（https://leetcode.cn/problems/design-movie-rental-system/）sorted_list|classical
@@ -22,11 +22,11 @@ Description：range_query|binary_search
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
-P7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greed|implemention|lazy_heapq
+P7391（https://www.luogu.com.cn/problem/P7391）sorted_list|greedy|implemention|lazy_heapq
 P7910（https://www.luogu.com.cn/problem/P7910）sorted_list
 P4375（https://www.luogu.com.cn/problem/P4375）bubble_sort|sorted_list
 P1908（https://www.luogu.com.cn/problem/P1908）reverse_order_pair|merge_sort
-P1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greed
+P1966（https://www.luogu.com.cn/problem/P1966）reverse_order_pair|greedy
 P2161（https://www.luogu.com.cn/problem/P2161）range_merge_to_disjoint
 P1637（https://www.luogu.com.cn/problem/P1637）sorted_list|prefix_suffix|counter
 P2234（https://www.luogu.com.cn/problem/P2234）sorted_list
@@ -35,7 +35,7 @@ P3608（https://www.luogu.com.cn/problem/P3608）sorted_list
 P5076（https://www.luogu.com.cn/problem/P5076）sorted_list|implemention
 P5149（https://www.luogu.com.cn/problem/P5149）reverse_order_pair|bisect
 P5459（https://www.luogu.com.cn/problem/P5459）prefix_sum|sorted_list|binary_search
-P6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greed
+P6538（https://www.luogu.com.cn/problem/P6538）sorted_list|greedy
 P7912（https://www.luogu.com.cn/problem/P7912）sorted_list|implemention
 P8667（https://www.luogu.com.cn/problem/P8667）sorted_list
 P3369（https://www.luogu.com.cn/problem/P3369）sorted_list
@@ -48,29 +48,29 @@ P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range
 61E（https://codeforces.com/problemset/problem/61/E）sorted_list|prefix_suffix|counter
 1354D（https://codeforces.com/problemset/problem/1354/D）sorted_list
 1005E2（https://codeforces.com/contest/1005/problem/E2）median|inclusion_exclusion|prefix_sum|sorted_list|binary_search
-1619E（https://codeforces.com/contest/1619/problem/E）mex|greed
+1619E（https://codeforces.com/contest/1619/problem/E）mex|greedy
 1676H2（https://codeforces.com/contest/1676/problem/H2）sorted_list|inversion_pair
 1915F（https://codeforces.com/contest/1915/problem/F）sorted_list|sorting
 1462F（https://codeforces.com/contest/1462/problem/F）sorted_list|brute_force|prefix_suffix
 1690G（https://codeforces.com/contest/1690/problem/G）sorted_list|implemention
-1969D（https://codeforces.com/contest/1969/problem/D）sorted_list|top_k_sum|greed
+1969D（https://codeforces.com/contest/1969/problem/D）sorted_list|top_k_sum|greedy
 1974F（https://codeforces.com/contest/1974/problem/F）sorted_list|implemention
 1418D（https://codeforces.com/problemset/problem/1418/D）sorted_list|implemention
-1342D（https://codeforces.com/problemset/problem/1342/D）sorted_list|greed|reverse_order
+1342D（https://codeforces.com/problemset/problem/1342/D）sorted_list|greedy|reverse_order
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
 ABC330E（https://atcoder.jp/contests/abc330/tasks/abc330_e）reverse_thinking|sorted_list|hash
 ABC324E（https://atcoder.jp/contests/abc324/tasks/abc324_e）sorted_list|two_pointers
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）sorted_list|contribution_method
-ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greed
+ABC298F（https://atcoder.jp/contests/abc298/tasks/abc298_f）sorted_list|brute_force|greedy
 ABC281E（https://atcoder.jp/contests/abc281/tasks/abc281_e）top_k_sum|sorted_list|classical
-ABC267E（https://atcoder.jp/contests/abc267/tasks/abc267_e）implemention|greed|sorted_list|degree|classical
+ABC267E（https://atcoder.jp/contests/abc267/tasks/abc267_e）implemention|greedy|sorted_list|degree|classical
 ABC261F（https://atcoder.jp/contests/abc261/tasks/abc261_f）reverse_pair|sorted_list|classical
-ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）partial_order|sorted_list|greed|implemention
+ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）partial_order|sorted_list|greedy|implemention
 
 ===================================CodeForces===================================
-129（https://www.acwing.com/problem/content/129/）greed|classical|sorted_list
+129（https://www.acwing.com/problem/content/129/）greedy|classical|sorted_list
 
 """
 import bisect
@@ -173,7 +173,7 @@ class Solution:
     def lg_1966(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1966
-        tag: reverse_order_pair|greed|classical
+        tag: reverse_order_pair|greedy|classical
         """
         n = ac.read_int()
         ans = 0
@@ -200,7 +200,7 @@ class Solution:
     def ac_129(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/129/
-        tag: greed|classical|sorted_list
+        tag: greedy|classical|sorted_list
         """
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
@@ -577,7 +577,7 @@ class Solution:
     def abc_267e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc267/tasks/abc267_e
-        tag: implemention|greed|sorted_list|degree|classical
+        tag: implemention|greedy|sorted_list|degree|classical
         """
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -649,7 +649,7 @@ class Solution:
     def cf_1969d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1969/problem/D
-        tag: sorted_list|top_k_sum|greed
+        tag: sorted_list|top_k_sum|greedy
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()

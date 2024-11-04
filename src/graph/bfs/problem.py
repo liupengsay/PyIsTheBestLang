@@ -105,7 +105,7 @@ P6909（https://www.luogu.com.cn/problem/P6909）01-bfs|preprocess|classical
 82C（https://codeforces.com/problemset/problem/82/C）implemention|bfs
 1093D（https://codeforces.com/problemset/problem/1093/D）bfs|color_method|classical
 1349C（https://codeforces.com/problemset/problem/1349/C）bfs|observation|implemention
-1214D（https://codeforces.com/problemset/problem/1214/D）bfs|greed|classical
+1214D（https://codeforces.com/problemset/problem/1214/D）bfs|greedy|classical
 1276B（https://codeforces.com/problemset/problem/1276/B）bfs|unweighted_graph|multiplication_method
 
 ====================================AtCoder=====================================

@@ -31,8 +31,8 @@ P4722（https://www.luogu.com.cn/problem/P4722）dinic_max_flow
 
 ===================================AtCoder===================================
 ABC247G（https://atcoder.jp/contests/abc247/tasks/abc247_g）max_flow|max_cost|dynamic_graph|brain_teaser|network_flow|classical
-ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greed|implemention|classical
-ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_g）specific_plan|network_flow|max_flow|min_cut|greed|implemention
+ABC241G（https://atcoder.jp/contests/abc241/tasks/abc241_g）network_flow|brain_teaser|brute_force|greedy|implemention|classical
+ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_g）specific_plan|network_flow|max_flow|min_cut|greedy|implemention
 ABC205F（https://atcoder.jp/contests/abc205/tasks/abc205_f）max_flow_min_cut|matrix|build_graph
 ABC326G（https://atcoder.jp/contests/abc326/tasks/abc326_g）max_flow_min_cut|brain_teaser|build_graph
 
@@ -412,7 +412,7 @@ class Solution:
     def abc_241g(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc241/tasks/abc241_g
-        tag: network_flow|brain_teaser|brute_force|greed|implemention|classical
+        tag: network_flow|brain_teaser|brute_force|greedy|implemention|classical
         """
         n, m = ac.read_list_ints()
         lose = [0] * (n + 1)
@@ -459,7 +459,7 @@ class Solution:
     def abc_239e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc239/tasks/abc239_g
-        tag: specific_plan|network_flow|max_flow|min_cut|greed|implemention
+        tag: specific_plan|network_flow|max_flow|min_cut|greedy|implemention
         """
         n, m = ac.read_list_ints()
         s = 1

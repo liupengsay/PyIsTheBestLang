@@ -7,7 +7,7 @@ Description：game_dp|winning_state|lose_state|sprague_grundy|sg_theorem
 P2197（https://www.luogu.com.cn/problem/P2197）xor_sum|classical
 
 ===================================CodeForces===================================
-1396B（https://codeforces.com/contest/1396/problem/B）greed|game_dp
+1396B（https://codeforces.com/contest/1396/problem/B）greedy|game_dp
 2004E（https://codeforces.com/problemset/problem/2004/E）sprague_grundy|sg_theorem|game
 
 
@@ -26,7 +26,7 @@ class Solution:
     def cf_1396b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1396/problem/B
-        tag: greed|game_dp
+        tag: greedy|game_dp
         """
         for _ in range(ac.read_int()):
             ac.read_int()

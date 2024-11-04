@@ -9,15 +9,15 @@ Description：string|prefix_suffix
 25（https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/）find|kmp|substring
 1392（https://leetcode.cn/problems/longest-happy-prefix/）longest_prefix_suffix|kmp|z_function|template
 2223（https://leetcode.cn/problems/sum-of-scores-of-built-strings）z_function
-2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greed|brain_teaser
+2800（https://leetcode.cn/problems/shortest-string-that-contains-three-strings/）kmp|prefix_suffix|greedy|brain_teaser
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|string_hash
 3008（https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/）kmp|find
-686（https://leetcode.cn/problems/repeated-string-match/）kmp|find|greed
+686（https://leetcode.cn/problems/repeated-string-match/）kmp|find|greedy
 1397（https://leetcode.cn/problems/find-all-good-strings/）digital_dp|kmp_automaton
 459（https://leetcode.cn/problems/repeated-substring-pattern/）kmp|circular_section
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
-3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greed|linear_dp
-100433（https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greed|classical
+3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greedy|linear_dp
+100433（https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greedy|classical
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -37,9 +37,9 @@ P8112（https://www.luogu.com.cn/problem/P8112）z_function|point_set|range_min|
 
 
 ===================================CodeForces===================================
-1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greed|prefix_suffix|longest_prefix_suffix|palindrome_substring
+1326D2（https://codeforces.com/problemset/problem/1326/D2）manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
 432D（https://codeforces.com/contest/432/problem/D）kmp|z-function|sorted_list
-25E（https://codeforces.com/contest/25/problem/E）kmp|prefix_suffix|greed|longest_common_prefix_suffix
+25E（https://codeforces.com/contest/25/problem/E）kmp|prefix_suffix|greedy|longest_common_prefix_suffix
 126B（https://codeforces.com/contest/126/problem/B）kmp|z-function|classical|brute_force
 471D（https://codeforces.com/contest/471/problem/D）kmp|brain_teaser|classical|diff_array
 346B（https://codeforces.com/contest/346/problem/B）kmp|lcs|matrix_dp
@@ -134,7 +134,7 @@ class Solution:
     def cf_1326d2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1326/D2
-        tag: manacher|greed|prefix_suffix|longest_prefix_suffix|palindrome_substring
+        tag: manacher|greedy|prefix_suffix|longest_prefix_suffix|palindrome_substring
         """
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -257,7 +257,7 @@ class Solution:
     def cf_25e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/25/problem/E
-        tag: kmp|prefix_suffix|greed|longest_common_prefix_suffix
+        tag: kmp|prefix_suffix|greedy|longest_common_prefix_suffix
         """
 
         s = [ac.read_str() for _ in range(3)]
@@ -276,7 +276,7 @@ class Solution:
     def lc_2800(a: str, b: str, c: str) -> str:
         """
         url: https://leetcode.cn/problems/shortest-string-that-contains-three-strings/
-        tag: kmp|prefix_suffix|greed|brain_teaser
+        tag: kmp|prefix_suffix|greedy|brain_teaser
         """
 
         s = [a, b, c]
@@ -379,7 +379,7 @@ class Solution:
     def lc_186(a: str, b: str) -> int:
         """
         url: https://leetcode.cn/problems/repeated-string-match/
-        tag: kmp|find|greed
+        tag: kmp|find|greedy
         """
         ceil = len(b) // len(a) + 2
         kmp = KMP()
@@ -1315,7 +1315,7 @@ class Solution:
     def lc_3292(words: List[str], target: str) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/
-        tag: kmp|greed|linear_dp
+        tag: kmp|greedy|linear_dp
         """
         m = len(target)
         post = [0] * m
@@ -1346,7 +1346,7 @@ class Solution:
     def lc_100433(s: str, pattern: str) -> int:
         """
         url: https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/
-        tag: z_function|greed|classical
+        tag: z_function|greedy|classical
         """
         m, n = len(s), len(pattern)
         z1 = KMP().z_function(pattern + s)

@@ -1,304 +1,304 @@
 """
 
-Algorithm：greed|reverse_thinking|pigeonhole_principle|inclusion_exclusion|custom_sort|brain_teaser|construction
+Algorithm：greedy|reverse_thinking|pigeonhole_principle|inclusion_exclusion|custom_sort|brain_teaser|construction
 Description：brain_teaser
 
 ====================================LeetCode====================================
-30（https://leetcode.cn/problems/p0NxJO）greed|regret_heapq|brain_teaser
-134（https://leetcode.cn/problems/gas-station/）greed
-330（https://leetcode.cn/problems/patching-array/）greed
-1199（https://leetcode.cn/problems/minimum-time-to-build-blocks/）huffman_tree|greed|classical|heapq
-2499（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）pigeonhole_principle|greed
-2449（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）sort|odd_even|greed
-2448（https://leetcode.cn/problems/minimum-cost-to-make-array-equal/）median|greed
+30（https://leetcode.cn/problems/p0NxJO）greedy|regret_heapq|brain_teaser
+134（https://leetcode.cn/problems/gas-station/）greedy
+330（https://leetcode.cn/problems/patching-array/）greedy
+1199（https://leetcode.cn/problems/minimum-time-to-build-blocks/）huffman_tree|greedy|classical|heapq
+2499（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）pigeonhole_principle|greedy
+2449（https://leetcode.cn/problems/minimum-total-cost-to-make-arrays-unequal/）sort|odd_even|greedy
+2448（https://leetcode.cn/problems/minimum-cost-to-make-array-equal/）median|greedy
 2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort
-2366（https://leetcode.cn/problems/minimum-replacements-to-sort-the-array/）reverse_order|greed
+2366（https://leetcode.cn/problems/minimum-replacements-to-sort-the-array/）reverse_order|greedy
 2350（https://leetcode.cn/problems/shortest-impossible-sequence-of-rolls/）brain_teaser|classical
-2344（https://leetcode.cn/problems/minimum-deletions-to-make-array-divisible/）greed|range_gcd
-2136（https://leetcode.cn/problems/earliest-possible-day-of-full-bloom/）greed
-2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）greed|binary_search
-517（https://leetcode.cn/problems/super-washing-machines/）greed|binary_search|brute_force
-1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greed
-625（https://leetcode.cn/problems/minimum-factorization/）greed|factorization
-2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greed|guess_table|observation
-6361（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）brain_teaser|greed
-6316（https://leetcode.cn/problems/rearrange-array-to-maximize-prefix-score/）greed|prefix_sum
-2436（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greed
-1029（https://leetcode.cn/problems/two-city-scheduling/）greed|sort
-1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）brute_force|greed
-1402（https://leetcode.cn/problems/reducing-dishes/）prefix_sum|greed
-1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）greed|sort|implemention|CF1203F
-1675（https://leetcode.cn/problems/minimize-deviation-in-array/）brain_teaser|greed
-1686（https://leetcode.cn/problems/stone-game-vi/）greed|custom_sort
-1808（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）mod|greed|classical|maximum_mul
-1953（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）greed|classical|maximum|sum
-2856（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）greed|classical|maximum|sum
+2344（https://leetcode.cn/problems/minimum-deletions-to-make-array-divisible/）greedy|range_gcd
+2136（https://leetcode.cn/problems/earliest-possible-day-of-full-bloom/）greedy
+2071（https://leetcode.cn/problems/maximum-number-of-tasks-you-can-assign/）greedy|binary_search
+517（https://leetcode.cn/problems/super-washing-machines/）greedy|binary_search|brute_force
+1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greedy
+625（https://leetcode.cn/problems/minimum-factorization/）greedy|factorization
+2568（https://leetcode.cn/problems/minimum-impossible-or/）brain_teaser|greedy|guess_table|observation
+6361（https://leetcode.cn/problems/minimum-score-by-changing-two-elements/）brain_teaser|greedy
+6316（https://leetcode.cn/problems/rearrange-array-to-maximize-prefix-score/）greedy|prefix_sum
+2436（https://leetcode.cn/problems/minimum-split-into-subarrays-with-gcd-greater-than-one/）greedy
+1029（https://leetcode.cn/problems/two-city-scheduling/）greedy|sort
+1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）brute_force|greedy
+1402（https://leetcode.cn/problems/reducing-dishes/）prefix_sum|greedy
+1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）greedy|sort|implemention|CF1203F
+1675（https://leetcode.cn/problems/minimize-deviation-in-array/）brain_teaser|greedy
+1686（https://leetcode.cn/problems/stone-game-vi/）greedy|custom_sort
+1808（https://leetcode.cn/problems/maximize-number-of-nice-divisors/）mod|greedy|classical|maximum_mul
+1953（https://leetcode.cn/problems/maximum-number-of-weeks-for-which-you-can-work/）greedy|classical|maximum|sum
+2856（https://leetcode.cn/problems/minimum-array-length-after-pair-removals/）greedy|classical|maximum|sum
 858（https://leetcode.cn/problems/mirror-reflection/description/）brain_teaser|math
 1927（https://leetcode.cn/problems/sum-game/description/）game_dp|brain_teaser|classification_discussion
-2592（https://leetcode.cn/problems/maximize-greatness-of-an-array/）classical|greed|sort|two_pointers
+2592（https://leetcode.cn/problems/maximize-greatness-of-an-array/）classical|greedy|sort|two_pointers
 1503（https://leetcode.cn/problems/last-moment-before-all-ants-fall-out-of-a-plank/）brain_teaser|classical
-991（https://leetcode.cn/problems/broken-calculator/）reverse_order|reverse_thinking|greed|odd_even|implemention
-2745（https://leetcode.cn/problems/construct-the-longest-new-string/）brain_teaser|greed
-1657（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）brain_teaser|greed
-2561（https://leetcode.cn/problems/rearranging-fruits/）brain_teaser|greed
-843（https://leetcode.cn/problems/guess-the-word/）brain_teaser|greed|implemention|interactive
-1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greed|classical
-1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greed|brain_teaser|pointer
-1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greed|classical|maximum
-3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|peishu_theorem|hard|greed
+991（https://leetcode.cn/problems/broken-calculator/）reverse_order|reverse_thinking|greedy|odd_even|implemention
+2745（https://leetcode.cn/problems/construct-the-longest-new-string/）brain_teaser|greedy
+1657（https://leetcode.cn/problems/determine-if-two-strings-are-close/description/）brain_teaser|greedy
+2561（https://leetcode.cn/problems/rearranging-fruits/）brain_teaser|greedy
+843（https://leetcode.cn/problems/guess-the-word/）brain_teaser|greedy|implemention|interactive
+1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
+1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
+1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
+3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|peishu_theorem|hard|greedy
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 100227（https://leetcode.cn/problems/minimum-moves-to-pick-k-ones/description/）median_greedy|brute_force|implemention
-100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greed|big_to_small
-2576（https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices）observation|greed|classical
+100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greedy|big_to_small
+2576（https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices）observation|greedy|classical
 
 =====================================LuoGu======================================
-P1031（https://www.luogu.com.cn/problem/P1031）greed|prefix_sum|counter
+P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
 P1286（https://www.luogu.com.cn/problem/P1286）brain_teaser|sorted_list
-P1684（https://www.luogu.com.cn/problem/P1684）greed
-P1658（https://www.luogu.com.cn/problem/P1658）greed
-P2001（https://www.luogu.com.cn/problem/P2001）greed|classical
-P1620（https://www.luogu.com.cn/problem/P1620）classification_discussion|greed
-P2773（https://www.luogu.com.cn/problem/P2773）classification_discussion|greed
-P2255（https://www.luogu.com.cn/problem/P2255）pointers|greed
+P1684（https://www.luogu.com.cn/problem/P1684）greedy
+P1658（https://www.luogu.com.cn/problem/P1658）greedy
+P2001（https://www.luogu.com.cn/problem/P2001）greedy|classical
+P1620（https://www.luogu.com.cn/problem/P1620）classification_discussion|greedy
+P2773（https://www.luogu.com.cn/problem/P2773）classification_discussion|greedy
+P2255（https://www.luogu.com.cn/problem/P2255）pointers|greedy
 P2327（https://www.luogu.com.cn/problem/P2327）brain_teaser|brute_force
-P2777（https://www.luogu.com.cn/problem/P2777）greed|brute_force|prefix_suffix
-P2649（https://www.luogu.com.cn/problem/P2649）greed|brain_teaser
+P2777（https://www.luogu.com.cn/problem/P2777）greedy|brute_force|prefix_suffix
+P2649（https://www.luogu.com.cn/problem/P2649）greedy|brain_teaser
 P1367（https://www.luogu.com.cn/problem/P1367）brain_teaser|sort|classical
 P1362（https://www.luogu.com.cn/problem/P1362）bfs|brute_force|observe_pattern
-P1090（https://www.luogu.com.cn/problem/P1090）greed|small_to_big
-P1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking|greed|small_to_big
-P1250（https://www.luogu.com.cn/problem/P1250）greed|segment_tree|range_update|range_sum|binary_search
-P1230（https://www.luogu.com.cn/problem/P1230）sort|greed
-P1159（https://www.luogu.com.cn/problem/P1159）greed|implemention|deque
-P1095（https://www.luogu.com.cn/problem/P1095）greed|implemention
-P1056（https://www.luogu.com.cn/problem/P1056）counter|sort|greed
-P8847（https://www.luogu.com.cn/problem/P8847）classification_discussion|greed
+P1090（https://www.luogu.com.cn/problem/P1090）greedy|small_to_big
+P1334（https://www.luogu.com.cn/problem/P1334）reverse_thinking|greedy|small_to_big
+P1250（https://www.luogu.com.cn/problem/P1250）greedy|segment_tree|range_update|range_sum|binary_search
+P1230（https://www.luogu.com.cn/problem/P1230）sort|greedy
+P1159（https://www.luogu.com.cn/problem/P1159）greedy|implemention|deque
+P1095（https://www.luogu.com.cn/problem/P1095）greedy|implemention
+P1056（https://www.luogu.com.cn/problem/P1056）counter|sort|greedy
+P8847（https://www.luogu.com.cn/problem/P8847）classification_discussion|greedy
 P8845（https://www.luogu.com.cn/problem/P8845）brain_teaser|prime_property|only_even_prime
 P2772（https://www.luogu.com.cn/problem/P2772）sort|partial_order
-P2878（https://www.luogu.com.cn/problem/P2878）greed|custom_sort|classical
-P2920（https://www.luogu.com.cn/problem/P2920）sort|greed
-P2983（https://www.luogu.com.cn/problem/P2983）greed|sort
-P3173（https://www.luogu.com.cn/problem/P3173）sort|greed|big_to_small
-P5098（https://www.luogu.com.cn/problem/P5098）greed|partial_order|classification_discussion|prefix_min|sort
+P2878（https://www.luogu.com.cn/problem/P2878）greedy|custom_sort|classical
+P2920（https://www.luogu.com.cn/problem/P2920）sort|greedy
+P2983（https://www.luogu.com.cn/problem/P2983）greedy|sort
+P3173（https://www.luogu.com.cn/problem/P3173）sort|greedy|big_to_small
+P5098（https://www.luogu.com.cn/problem/P5098）greedy|partial_order|classification_discussion|prefix_min|sort
 P5159（https://www.luogu.com.cn/problem/P5159）xor_property|brute_force|counter|fast_power
 P5497（https://www.luogu.com.cn/problem/P5497）pigeonhole_principle|classification_discussion
-P5682（https://www.luogu.com.cn/problem/P5682）brain_teaser|sort|greed|brute_force
-P5804（https://www.luogu.com.cn/problem/P5804）sort|greed|brute_force|binary_search
-P5963（https://www.luogu.com.cn/problem/P5963）greed|sort
+P5682（https://www.luogu.com.cn/problem/P5682）brain_teaser|sort|greedy|brute_force
+P5804（https://www.luogu.com.cn/problem/P5804）sort|greedy|brute_force|binary_search
+P5963（https://www.luogu.com.cn/problem/P5963）greedy|sort
 P6023（https://www.luogu.com.cn/problem/P6023）pointer|implemention|brain_teaser
-P6243（https://www.luogu.com.cn/problem/P6243）greed|custom_sort
-P6179（https://www.luogu.com.cn/problem/P6179）greed
-P6380（https://www.luogu.com.cn/problem/P6380）greed|implemention
-P6446（https://www.luogu.com.cn/problem/P6446）greed|implemention
-P5019（https://www.luogu.com.cn/problem/P5019）greed|implemention
-P6462（https://www.luogu.com.cn/problem/P6462）greed|classification_discussion
+P6243（https://www.luogu.com.cn/problem/P6243）greedy|custom_sort
+P6179（https://www.luogu.com.cn/problem/P6179）greedy
+P6380（https://www.luogu.com.cn/problem/P6380）greedy|implemention
+P6446（https://www.luogu.com.cn/problem/P6446）greedy|implemention
+P5019（https://www.luogu.com.cn/problem/P5019）greedy|implemention
+P6462（https://www.luogu.com.cn/problem/P6462）greedy|classification_discussion
 P6549（https://www.luogu.com.cn/problem/P6549）reverse_thinking|sort|implemention
-P6785（https://www.luogu.com.cn/problem/P6785）brain_teaser|greed|counter
-P6851（https://www.luogu.com.cn/problem/P6851）greed|implemention|sort
-P7176（https://www.luogu.com.cn/problem/P7176）greed|classical|maximum_property|observation
-P7228（https://www.luogu.com.cn/problem/P7228）brain_teaser|greed|tree_dfs
-P7260（https://www.luogu.com.cn/problem/P7260）greed|dp|operation
-P7319（https://www.luogu.com.cn/problem/P7319）greed|custom_sort
-P7412（https://www.luogu.com.cn/problem/P7412）greed
-P7522（https://www.luogu.com.cn/problem/P7522）classification_discussion|greed
-P7633（https://www.luogu.com.cn/problem/P7633）euler_series|O(nlogn)|implemention|greed
+P6785（https://www.luogu.com.cn/problem/P6785）brain_teaser|greedy|counter
+P6851（https://www.luogu.com.cn/problem/P6851）greedy|implemention|sort
+P7176（https://www.luogu.com.cn/problem/P7176）greedy|classical|maximum_property|observation
+P7228（https://www.luogu.com.cn/problem/P7228）brain_teaser|greedy|tree_dfs
+P7260（https://www.luogu.com.cn/problem/P7260）greedy|dp|operation
+P7319（https://www.luogu.com.cn/problem/P7319）greedy|custom_sort
+P7412（https://www.luogu.com.cn/problem/P7412）greedy
+P7522（https://www.luogu.com.cn/problem/P7522）classification_discussion|greedy
+P7633（https://www.luogu.com.cn/problem/P7633）euler_series|O(nlogn)|implemention|greedy
 P7714（https://www.luogu.com.cn/problem/P7714）sort|prefix_max|pointer|counter
 P7787（https://www.luogu.com.cn/problem/P7787）brain_teaser|tree|complete_binary_tree
-P7813（https://www.luogu.com.cn/problem/P7813）greed
-P1031（https://www.luogu.com.cn/problem/P1031）greed|card_split_average|classical
-P2512（https://www.luogu.com.cn/problem/P2512）greed|card_split_average|classical|circular_array
-P1080（https://www.luogu.com.cn/problem/P1080）greed|custom_sort
-P1650（https://www.luogu.com.cn/problem/P1650）greed|classical
-P2088（https://www.luogu.com.cn/problem/P2088）greed
-P2816（https://www.luogu.com.cn/problem/P2816）sort|greed|sorted_list
-P3819（https://www.luogu.com.cn/problem/P3819）median|greed
-P3918（https://www.luogu.com.cn/problem/P3918）brain_teaser|greed
-P4025（https://www.luogu.com.cn/problem/P4025）greed|custom_sort
-P4266（https://www.luogu.com.cn/problem/P4266）greed|implemention|suffix_max
-P4447（https://www.luogu.com.cn/problem/P4447）greed|deque
+P7813（https://www.luogu.com.cn/problem/P7813）greedy
+P1031（https://www.luogu.com.cn/problem/P1031）greedy|card_split_average|classical
+P2512（https://www.luogu.com.cn/problem/P2512）greedy|card_split_average|classical|circular_array
+P1080（https://www.luogu.com.cn/problem/P1080）greedy|custom_sort
+P1650（https://www.luogu.com.cn/problem/P1650）greedy|classical
+P2088（https://www.luogu.com.cn/problem/P2088）greedy
+P2816（https://www.luogu.com.cn/problem/P2816）sort|greedy|sorted_list
+P3819（https://www.luogu.com.cn/problem/P3819）median|greedy
+P3918（https://www.luogu.com.cn/problem/P3918）brain_teaser|greedy
+P4025（https://www.luogu.com.cn/problem/P4025）greedy|custom_sort
+P4266（https://www.luogu.com.cn/problem/P4266）greedy|implemention|suffix_max
+P4447（https://www.luogu.com.cn/problem/P4447）greedy|deque
 P4575（https://www.luogu.com.cn/problem/P4575）brain_teaser|state_compression
-P4653（https://www.luogu.com.cn/problem/P4653）binary_search|pointer|greed
+P4653（https://www.luogu.com.cn/problem/P4653）binary_search|pointer|greedy
 P5093（https://www.luogu.com.cn/problem/P5093）brain_teaser|classical
-P5425（https://www.luogu.com.cn/problem/P5425）mst_like|brain_teaser|greed
+P5425（https://www.luogu.com.cn/problem/P5425）mst_like|brain_teaser|greedy
 P5884（https://www.luogu.com.cn/problem/P5884）brain_teaser
-P5948（https://www.luogu.com.cn/problem/P5948）greed|implemention
-P6196（https://www.luogu.com.cn/problem/P6196）greed
+P5948（https://www.luogu.com.cn/problem/P5948）greedy|implemention
+P6196（https://www.luogu.com.cn/problem/P6196）greedy
 P6874（https://www.luogu.com.cn/problem/P6874）median_greedy
 P8050（https://www.luogu.com.cn/problem/P8050）brain_teaser|coloring_method|operation
 P7935（https://www.luogu.com.cn/problem/P7935）brain_teaser
-P8109（https://www.luogu.com.cn/problem/P8109）sorted_list|greed
-P8669（https://www.luogu.com.cn/problem/P8669）greed|maximum_mul
+P8109（https://www.luogu.com.cn/problem/P8109）sorted_list|greedy
+P8669（https://www.luogu.com.cn/problem/P8669）greedy|maximum_mul
 P8709（https://www.luogu.com.cn/problem/P8709）brain_teaser|implemention
-P8732（https://www.luogu.com.cn/problem/P8732）greed|brute_force|custom_sort
-P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greed
-P1342（https://www.luogu.com.cn/problem/P1342）brain_teaser|greed
-P1842（https://www.luogu.com.cn/problem/P1842）greed
-P2968（https://www.luogu.com.cn/problem/P2968）greed|implemention|observation
-P3619（https://www.luogu.com.cn/problem/P3619）greed|classical|custom_sort
-P3550（https://www.luogu.com.cn/problem/P3550）greed|observation
-P4823（https://www.luogu.com.cn/problem/P4823）greed|regret_heapq|classical|brain_teaser
-P4998（https://www.luogu.com.cn/problem/P4998）brain_teaser|greed|prefix_sum
-P5963（https://www.luogu.com.cn/problem/P5963）pair_wise|greed|classical|custom_sort
-P6002（https://www.luogu.com.cn/problem/P6002）brute_force|greed|brain_teaser
-P7148（https://www.luogu.com.cn/problem/P7148）greed
+P8732（https://www.luogu.com.cn/problem/P8732）greedy|brute_force|custom_sort
+P8887（https://www.luogu.com.cn/problem/P8887）brain_teaser|greedy
+P1342（https://www.luogu.com.cn/problem/P1342）brain_teaser|greedy
+P1842（https://www.luogu.com.cn/problem/P1842）greedy
+P2968（https://www.luogu.com.cn/problem/P2968）greedy|implemention|observation
+P3619（https://www.luogu.com.cn/problem/P3619）greedy|classical|custom_sort
+P3550（https://www.luogu.com.cn/problem/P3550）greedy|observation
+P4823（https://www.luogu.com.cn/problem/P4823）greedy|regret_heapq|classical|brain_teaser
+P4998（https://www.luogu.com.cn/problem/P4998）brain_teaser|greedy|prefix_sum
+P5963（https://www.luogu.com.cn/problem/P5963）pair_wise|greedy|classical|custom_sort
+P6002（https://www.luogu.com.cn/problem/P6002）brute_force|greedy|brain_teaser
+P7148（https://www.luogu.com.cn/problem/P7148）greedy
 
 ===================================CodeForces===================================
-1186D（https://codeforces.com/problemset/problem/1186/D）greed|floor|property
-792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greed
+1186D（https://codeforces.com/problemset/problem/1186/D）greedy|floor|property
+792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greedy
 166E（https://codeforces.com/problemset/problem/166/E）implemention|brain_teaser|dp
 1025C（https://codeforces.com/problemset/problem/1025/C）brain_teaser
-1042C（https://codeforces.com/problemset/problem/1042/C）greed|classification_discussion|implemention
-439C（https://codeforces.com/problemset/problem/439/C）greed|classification_discussion
-1283E（https://codeforces.com/problemset/problem/1283/E）greed|classification_discussion|linear_dp
+1042C（https://codeforces.com/problemset/problem/1042/C）greedy|classification_discussion|implemention
+439C（https://codeforces.com/problemset/problem/439/C）greedy|classification_discussion
+1283E（https://codeforces.com/problemset/problem/1283/E）greedy|classification_discussion|linear_dp
 1092C（https://codeforces.com/contest/1092/problem/C）brain_teaser|classification_discussion
 1280B（https://codeforces.com/problemset/problem/1280/B）brain_teaser|classification_discussion
-723C（https://codeforces.com/problemset/problem/723/C）greed|implemention|construction
+723C（https://codeforces.com/problemset/problem/723/C）greedy|implemention|construction
 712C（https://codeforces.com/problemset/problem/712/C）reverse_thinking|implemention
-747D（https://codeforces.com/problemset/problem/747/D）greed|implemention
-1148D（https://codeforces.com/problemset/problem/1148/D）greed|custom_sort|construction
-792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greed
-830A（https://codeforces.com/problemset/problem/830/A）sort|greed|action_scope
-478C（https://codeforces.com/problemset/problem/478/C）greed|math|property
-1329A（https://codeforces.com/problemset/problem/1329/A）greed|pointer|implemention
-1401D（https://codeforces.com/problemset/problem/1401/D）greed|dfs|brute_force|counter
-600C（https://codeforces.com/problemset/problem/600/C）palindrome_substring|counter|greed
-1038D（https://codeforces.com/problemset/problem/1038/D）greed|implemention|classification_discussion
-349B（https://codeforces.com/problemset/problem/349/B）greed|implemention
-1370C（https://codeforces.com/problemset/problem/1370/C）greed|implemention|winning_state
-1822E（https://codeforces.com/contest/1822/problem/E）greed|implemention|counter
+747D（https://codeforces.com/problemset/problem/747/D）greedy|implemention
+1148D（https://codeforces.com/problemset/problem/1148/D）greedy|custom_sort|construction
+792C（https://codeforces.com/contest/792/problem/C）classification_discussion|greedy
+830A（https://codeforces.com/problemset/problem/830/A）sort|greedy|action_scope
+478C（https://codeforces.com/problemset/problem/478/C）greedy|math|property
+1329A（https://codeforces.com/problemset/problem/1329/A）greedy|pointer|implemention
+1401D（https://codeforces.com/problemset/problem/1401/D）greedy|dfs|brute_force|counter
+600C（https://codeforces.com/problemset/problem/600/C）palindrome_substring|counter|greedy
+1038D（https://codeforces.com/problemset/problem/1038/D）greedy|implemention|classification_discussion
+349B（https://codeforces.com/problemset/problem/349/B）greedy|implemention
+1370C（https://codeforces.com/problemset/problem/1370/C）greedy|implemention|winning_state
+1822E（https://codeforces.com/contest/1822/problem/E）greedy|implemention|counter
 1005E2（https://codeforces.com/contest/1005/problem/E2）median|inclusion_exclusion|prefix_sum|sorted_list|binary_search|LC2488
-1512E（https://codeforces.com/contest/1512/problem/E）brain_teaser|greed|big_to_small
-1665C（https://codeforces.com/contest/1665/problem/C）graph|greed
+1512E（https://codeforces.com/contest/1512/problem/E）brain_teaser|greedy|big_to_small
+1665C（https://codeforces.com/contest/1665/problem/C）graph|greedy
 1649B（https://codeforces.com/contest/1649/problem/B）maximum_greedy|classical
-1914E2（https://codeforces.com/contest/1914/problem/E2）greed|custom_sort
+1914E2（https://codeforces.com/contest/1914/problem/E2）greedy|custom_sort
 1929D（https://codeforces.com/contest/1920/problem/D）data_range|brute_force|reverse_thinking
-724D（https://codeforces.com/contest/724/problem/D）greed|implemention|brain_teaser
+724D（https://codeforces.com/contest/724/problem/D）greedy|implemention|brain_teaser
 1669D（https://codeforces.com/contest/1669/problem/D）brain_teaser
-1807G2（https://codeforces.com/contest/1807/problem/G2）brain_teaser|classical|sorting|greed
+1807G2（https://codeforces.com/contest/1807/problem/G2）brain_teaser|classical|sorting|greedy
 1873G（https://codeforces.com/contest/1873/problem/G）brain_teaser
-977D（https://codeforces.com/contest/977/problem/D）brain_teaser|greed|classical|sorting
-978G（https://codeforces.com/contest/978/problem/G）brain_teaser|greed|sorting|implemention|reverse_thinking
-999D（https://codeforces.com/contest/999/problem/D）greed|brute_force
-1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greed|classical|construction|brain_teaser
-1157G（https://codeforces.com/contest/1157/problem/G）brain_teaser|brute_force|classical|implemention|greed
-1157F（https://codeforces.com/contest/1157/problem/F）greed|brain_teaser|construction|specific_plan
-1157C2（https://codeforces.com/contest/1157/problem/C2）greed|brain_teaser|implemention
-1183G（https://codeforces.com/contest/1183/problem/G）greed|brain_teaser|implemention|classical
-1183D（https://codeforces.com/contest/1183/problem/D）greed|brain_teaser|implemention|classical
-1183F（https://codeforces.com/contest/1183/problem/F）greed|brain_teaser|classical|brute_force|special_judge
-1203F1（https://codeforces.com/contest/1203/problem/F1）greed|brain_teaser|linear_dp|define_sort|classical
-1203F2（https://codeforces.com/contest/1203/problem/F2）greed|brain_teaser|linear_dp|define_sort|classical
-1249D2（https://codeforces.com/contest/1249/problem/D2）greed|offline_query|sorted_list
-1256F（https://codeforces.com/contest/1256/problem/F）greed|brain_teaser|reverse_pair|bubble_sort|classical
-1296E2（https://codeforces.com/contest/1296/problem/E2）greed|brain_teaser|lis
-1296E1（https://codeforces.com/contest/1296/problem/E1）greed|brain_teaser|lis
-1367F2（https://codeforces.com/contest/1367/problem/F2）greed|brain_teaser|lis
-1385F（https://codeforces.com/contest/1385/problem/F）greed|brain_teaser|topological_sort
-1399E2（https://codeforces.com/contest/1399/problem/E2）greed|graph|brain_teaser|brute_force
-1538G（https://codeforces.com/contest/1538/problem/G）greed|brain_teaser
-1512F（https://codeforces.com/contest/1512/problem/F）greed|brain_teaser
-1593G（https://codeforces.com/contest/1593/problem/G）greed|brain_teaser|prefix_sum
-1579E2（https://codeforces.com/contest/1579/problem/E2）greed|brain_teaser
-1560F2（https://codeforces.com/contest/1560/problem/F2）greed
-1660F2（https://codeforces.com/contest/1660/problem/F2）greed|brain_teaser|sorted_list
-1674E（https://codeforces.com/contest/1674/problem/E）greed|brute_force
-1772E（https://codeforces.com/contest/1772/problem/E）greed|brain_teaser
-1759G（https://codeforces.com/contest/1759/problem/G）greed|brain_teaser
+977D（https://codeforces.com/contest/977/problem/D）brain_teaser|greedy|classical|sorting
+978G（https://codeforces.com/contest/978/problem/G）brain_teaser|greedy|sorting|implemention|reverse_thinking
+999D（https://codeforces.com/contest/999/problem/D）greedy|brute_force
+1144G（https://codeforces.com/contest/1144/problem/G）linear_dp|greedy|classical|construction|brain_teaser
+1157G（https://codeforces.com/contest/1157/problem/G）brain_teaser|brute_force|classical|implemention|greedy
+1157F（https://codeforces.com/contest/1157/problem/F）greedy|brain_teaser|construction|specific_plan
+1157C2（https://codeforces.com/contest/1157/problem/C2）greedy|brain_teaser|implemention
+1183G（https://codeforces.com/contest/1183/problem/G）greedy|brain_teaser|implemention|classical
+1183D（https://codeforces.com/contest/1183/problem/D）greedy|brain_teaser|implemention|classical
+1183F（https://codeforces.com/contest/1183/problem/F）greedy|brain_teaser|classical|brute_force|special_judge
+1203F1（https://codeforces.com/contest/1203/problem/F1）greedy|brain_teaser|linear_dp|define_sort|classical
+1203F2（https://codeforces.com/contest/1203/problem/F2）greedy|brain_teaser|linear_dp|define_sort|classical
+1249D2（https://codeforces.com/contest/1249/problem/D2）greedy|offline_query|sorted_list
+1256F（https://codeforces.com/contest/1256/problem/F）greedy|brain_teaser|reverse_pair|bubble_sort|classical
+1296E2（https://codeforces.com/contest/1296/problem/E2）greedy|brain_teaser|lis
+1296E1（https://codeforces.com/contest/1296/problem/E1）greedy|brain_teaser|lis
+1367F2（https://codeforces.com/contest/1367/problem/F2）greedy|brain_teaser|lis
+1385F（https://codeforces.com/contest/1385/problem/F）greedy|brain_teaser|topological_sort
+1399E2（https://codeforces.com/contest/1399/problem/E2）greedy|graph|brain_teaser|brute_force
+1538G（https://codeforces.com/contest/1538/problem/G）greedy|brain_teaser
+1512F（https://codeforces.com/contest/1512/problem/F）greedy|brain_teaser
+1593G（https://codeforces.com/contest/1593/problem/G）greedy|brain_teaser|prefix_sum
+1579E2（https://codeforces.com/contest/1579/problem/E2）greedy|brain_teaser
+1560F2（https://codeforces.com/contest/1560/problem/F2）greedy
+1660F2（https://codeforces.com/contest/1660/problem/F2）greedy|brain_teaser|sorted_list
+1674E（https://codeforces.com/contest/1674/problem/E）greedy|brute_force
+1772E（https://codeforces.com/contest/1772/problem/E）greedy|brain_teaser
+1759G（https://codeforces.com/contest/1759/problem/G）greedy|brain_teaser
 1883F（https://codeforces.com/contest/1883/problem/F）brain_teaser|prefix_suffix
-1872G（https://codeforces.com/contest/1872/problem/G）brain_teaser|greed
-1899E（https://codeforces.com/contest/1899/problem/E）brain_teaser|greed
-1923D（https://codeforces.com/contest/1923/problem/D）brain_teaser|greed|prefix_sum|binary_search
-1923B（https://codeforces.com/contest/1923/problem/D）brain_teaser|implemention|greed
-1921E（https://codeforces.com/contest/1921/problem/E）brain_teaser|implemention|greed|odd_even
-1941F（https://codeforces.com/contest/1941/problem/F）brain_teaser|implemention|greed|median|binary_search
-1941C（https://codeforces.com/contest/1941/problem/C）brain_teaser|greed
+1872G（https://codeforces.com/contest/1872/problem/G）brain_teaser|greedy
+1899E（https://codeforces.com/contest/1899/problem/E）brain_teaser|greedy
+1923D（https://codeforces.com/contest/1923/problem/D）brain_teaser|greedy|prefix_sum|binary_search
+1923B（https://codeforces.com/contest/1923/problem/D）brain_teaser|implemention|greedy
+1921E（https://codeforces.com/contest/1921/problem/E）brain_teaser|implemention|greedy|odd_even
+1941F（https://codeforces.com/contest/1941/problem/F）brain_teaser|implemention|greedy|median|binary_search
+1941C（https://codeforces.com/contest/1941/problem/C）brain_teaser|greedy
 1974G（https://codeforces.com/contest/1974/problem/G）regret_heapq|implemention|brain_teaser|classical
-1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greed
-985C（https://codeforces.com/problemset/problem/985/C）greed|brain_teaser|reverse_order
-1978D（https://codeforces.com/contest/1978/problem/D）greed|brain_teaser|implemention
+1976B（https://codeforces.com/contest/1976/problem/B）brute_force|greedy
+985C（https://codeforces.com/problemset/problem/985/C）greedy|brain_teaser|reverse_order
+1978D（https://codeforces.com/contest/1978/problem/D）greedy|brain_teaser|implemention
 1316C（https://codeforces.com/problemset/problem/1316/C）observation|math|brain_teaser
-1156C（https://codeforces.com/problemset/problem/1156/C）greed|two_pointers|classical|brain_teaser
-1684D（https://codeforces.com/problemset/problem/1684/D）greed|observation|contribution_method
-1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greed
-1451D（https://codeforces.com/problemset/problem/1451/D）data_range|observation|classical|greed|implemention
+1156C（https://codeforces.com/problemset/problem/1156/C）greedy|two_pointers|classical|brain_teaser
+1684D（https://codeforces.com/problemset/problem/1684/D）greedy|observation|contribution_method
+1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
+1451D（https://codeforces.com/problemset/problem/1451/D）data_range|observation|classical|greedy|implemention
 1295B（https://codeforces.com/problemset/problem/1295/B）observation|brain_teaser|classification_discussion
-1870D（https://codeforces.com/problemset/problem/1870/D）observation|greed|monotonic_stack
+1870D（https://codeforces.com/problemset/problem/1870/D）observation|greedy|monotonic_stack
 1415D（https://codeforces.com/problemset/problem/1415/D）observation|bit_operation|data_range
-893D（https://codeforces.com/problemset/problem/893/D）greed|brain_teaser|implemention|low_to_high
-1849D（https://codeforces.com/problemset/problem/1849/D）observation|greed|implemention
-1496D（https://codeforces.com/problemset/problem/1496/D）observation|prefix_suffix|brute_force|greed|implemention|game
-1436D（https://codeforces.com/problemset/problem/1436/D）tree_bfs|greed|brain_teaser
-1621D（https://codeforces.com/problemset/problem/1621/D）greed|brain_teaser
-1700D（https://codeforces.com/problemset/problem/1700/D）greed|brain_teaser
-1430D（https://codeforces.com/problemset/problem/1430/D）greed|two_pointers
+893D（https://codeforces.com/problemset/problem/893/D）greedy|brain_teaser|implemention|low_to_high
+1849D（https://codeforces.com/problemset/problem/1849/D）observation|greedy|implemention
+1496D（https://codeforces.com/problemset/problem/1496/D）observation|prefix_suffix|brute_force|greedy|implemention|game
+1436D（https://codeforces.com/problemset/problem/1436/D）tree_bfs|greedy|brain_teaser
+1621D（https://codeforces.com/problemset/problem/1621/D）greedy|brain_teaser
+1700D（https://codeforces.com/problemset/problem/1700/D）greedy|brain_teaser
+1430D（https://codeforces.com/problemset/problem/1430/D）greedy|two_pointers
 1392D（https://codeforces.com/problemset/problem/1392/D）observation|brain_teaser
 1238D（https://codeforces.com/problemset/problem/1238/D）observation
 1186C（https://codeforces.com/problemset/problem/1186/C）observation|brain_teaser
-372A（https://codeforces.com/problemset/problem/372/A）observation|greed|classical
-1804D（https://codeforces.com/problemset/problem/1804/D）greed
-282B（https://codeforces.com/problemset/problem/282/B）greed
-1257D（https://codeforces.com/problemset/problem/1257/D）suffix_max|greed|implemention|classical
-1539D（https://codeforces.com/problemset/problem/1539/D）greed|two_pointers|implemention
-865D（https://codeforces.com/problemset/problem/865/D）regret_heapq|greed|classical
-713C（https://codeforces.com/problemset/problem/713/C）greed|brain_teaser|strictly_monotonic_trick|classical
-13C（https://codeforces.com/problemset/problem/13/C）greed|brain_teaser|regret_heapq|classical
-1119E（https://codeforces.com/problemset/problem/1119/E）greed
-1515D（https://codeforces.com/problemset/problem/1515/D）greed|brain_teaser|classification_discussion
-1466D（https://codeforces.com/problemset/problem/1466/D）greed|implemention
-1282B2（https://codeforces.com/problemset/problem/1282/B2）greed|linear_dp
+372A（https://codeforces.com/problemset/problem/372/A）observation|greedy|classical
+1804D（https://codeforces.com/problemset/problem/1804/D）greedy
+282B（https://codeforces.com/problemset/problem/282/B）greedy
+1257D（https://codeforces.com/problemset/problem/1257/D）suffix_max|greedy|implemention|classical
+1539D（https://codeforces.com/problemset/problem/1539/D）greedy|two_pointers|implemention
+865D（https://codeforces.com/problemset/problem/865/D）regret_heapq|greedy|classical
+713C（https://codeforces.com/problemset/problem/713/C）greedy|brain_teaser|strictly_monotonic_trick|classical
+13C（https://codeforces.com/problemset/problem/13/C）greedy|brain_teaser|regret_heapq|classical
+1119E（https://codeforces.com/problemset/problem/1119/E）greedy
+1515D（https://codeforces.com/problemset/problem/1515/D）greedy|brain_teaser|classification_discussion
+1466D（https://codeforces.com/problemset/problem/1466/D）greedy|implemention
+1282B2（https://codeforces.com/problemset/problem/1282/B2）greedy|linear_dp
 2004D（https://codeforces.com/problemset/problem/2004/D）observation|data_range|brain_teaser|brute_force
-468B（https://codeforces.com/problemset/problem/468/B）greed|sort
+468B（https://codeforces.com/problemset/problem/468/B）greedy|sort
 2032C（https://codeforces.com/contest/2032/problem/C）greedy|two_pointer
 
 ====================================AtCoder=====================================
-ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greed|custom_sort
-ARC088B（https://atcoder.jp/contests/abc083/tasks/arc088_b）brain_teaser|greed
-ABC116D（https://atcoder.jp/contests/abc116/tasks/abc116_d）brain_teaser|greed
-ABC137D（https://atcoder.jp/contests/abc137/tasks/abc137_d）reverse_order|brain_teaser|greed
-ABC333E（https://atcoder.jp/contests/abc333/tasks/abc333_e）reverse_order|greed
-ABC330F（https://atcoder.jp/contests/abc330/tasks/abc330_f）brain_teaser|greed|brute_force|binary_search|prefix_sum
+ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
+ARC088B（https://atcoder.jp/contests/abc083/tasks/arc088_b）brain_teaser|greedy
+ABC116D（https://atcoder.jp/contests/abc116/tasks/abc116_d）brain_teaser|greedy
+ABC137D（https://atcoder.jp/contests/abc137/tasks/abc137_d）reverse_order|brain_teaser|greedy
+ABC333E（https://atcoder.jp/contests/abc333/tasks/abc333_e）reverse_order|greedy
+ABC330F（https://atcoder.jp/contests/abc330/tasks/abc330_f）brain_teaser|greedy|brute_force|binary_search|prefix_sum
 ABC314D（https://atcoder.jp/contests/abc314/tasks/abc314_d）reverse_order|brain_teaser
 ABC313C（https://atcoder.jp/contests/abc313/tasks/abc313_c）brain_teaser|median_greedy
 ABC310E（https://atcoder.jp/contests/abc310/tasks/abc310_e）brain_teaser|implemention
-ABC308F（https://atcoder.jp/contests/abc308/tasks/abc308_f）brain_teaser|greed
-ABC296F（https://atcoder.jp/contests/abc296/tasks/abc296_f）brain_teaser|greed|sorted_list|reverse_pair|property
+ABC308F（https://atcoder.jp/contests/abc308/tasks/abc308_f）brain_teaser|greedy
+ABC296F（https://atcoder.jp/contests/abc296/tasks/abc296_f）brain_teaser|greedy|sorted_list|reverse_pair|property
 ABC293F（https://atcoder.jp/contests/abc293/tasks/abc293_f）binary_search|brute_force|brain_teaser|classical
 ABC290D（https://atcoder.jp/contests/abc290/tasks/abc290_d）brain_teaser|implemention|math
 ABC347C（https://atcoder.jp/contests/abc347/tasks/abc347_c）brain_teaser|implemention
-ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greed
-ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greed|small_to_big|reverse_order|classical
-ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greed|brain_teaser
-ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greed|implemention|reverse_order|classical
-ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greed
+ABC347D（https://atcoder.jp/contests/abc347/tasks/abc347_d）greedy
+ABC252F（https://atcoder.jp/contests/abc252/tasks/abc252_f）greedy|small_to_big|reverse_order|classical
+ABC349D（https://atcoder.jp/contests/abc349/tasks/abc349_d）greedy|brain_teaser
+ABC249F（https://atcoder.jp/contests/abc249/tasks/abc249_f）greedy|implemention|reverse_order|classical
+ABC230D（https://atcoder.jp/contests/abc230/tasks/abc230_d）greedy
 ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|median_greedy|two_pointers|classical|prefix_sum
-ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greed|brain_teaser
-ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greed|implemention|stack
-ABC187D（https://atcoder.jp/contests/abc187/tasks/abc187_d）greed|custom_sort|classical
+ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_teaser
+ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implemention|stack
+ABC187D（https://atcoder.jp/contests/abc187/tasks/abc187_d）greedy|custom_sort|classical
 
 =====================================AcWing=====================================
-104（https://www.acwing.com/problem/content/106/）median|greed
-1536（https://www.acwing.com/problem/content/description/1538/）greed|card_split_average|classical
-105（https://www.acwing.com/problem/content/description/1538/）greed|card_split_average|classical|circular_array
-110（https://www.acwing.com/problem/content/112/）greed
+104（https://www.acwing.com/problem/content/106/）median|greedy
+1536（https://www.acwing.com/problem/content/description/1538/）greedy|card_split_average|classical
+105（https://www.acwing.com/problem/content/description/1538/）greedy|card_split_average|classical|circular_array
+110（https://www.acwing.com/problem/content/112/）greedy
 123（https://www.acwing.com/problem/content/description/125/）median_greedy
-125（https://www.acwing.com/problem/content/127/）greed|custom_sort
-127（https://www.acwing.com/problem/content/description/129/）partial_order|sort|greed
-145（https://www.acwing.com/problem/content/147/）heapq|greed
-122（https://www.acwing.com/problem/content/124/）greed|card_split_average|classical|circular_array
+125（https://www.acwing.com/problem/content/127/）greedy|custom_sort
+127（https://www.acwing.com/problem/content/description/129/）partial_order|sort|greedy
+145（https://www.acwing.com/problem/content/147/）heapq|greedy
+122（https://www.acwing.com/problem/content/124/）greedy|card_split_average|classical|circular_array
 4204（https://www.acwing.com/problem/content/description/4207/）construction
-4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_order|brute_force|greed
-4313（https://www.acwing.com/problem/content/4316/）full_binary_tree|tree_dp|greed|LC2673
+4307（https://www.acwing.com/problem/content/description/4310/）lexicographical_order|brute_force|greedy
+4313（https://www.acwing.com/problem/content/4316/）full_binary_tree|tree_dp|greedy|LC2673
 4426（https://www.acwing.com/problem/content/4429/）brain_teaser|brain_teaser|property
-4427（https://www.acwing.com/problem/content/4430/）greed|construction
-4429（https://www.acwing.com/problem/content/description/4432/）greed|custom_sort|prefix_suffix|brute_force
+4427（https://www.acwing.com/problem/content/4430/）greedy|construction
+4429（https://www.acwing.com/problem/content/description/4432/）greedy|custom_sort|prefix_suffix|brute_force
 4430（https://www.acwing.com/problem/content/description/4433/）brute_force|prefix_suffix|bracket
 4492（https://www.acwing.com/problem/content/description/4495/）brain_teaser|odd_even
-4623（https://www.acwing.com/problem/content/description/4626/）greed|implemention
+4623（https://www.acwing.com/problem/content/description/4626/）greedy|implemention
 
 
 =====================================CodeChef=====================================
-1（https://www.codechef.com/problems/CHANGEXY）greed|implemention
-2（https://www.codechef.com/problems/DESTBRIDGE2）greed|implemention
+1（https://www.codechef.com/problems/CHANGEXY）greedy|implemention
+2（https://www.codechef.com/problems/DESTBRIDGE2）greedy|implemention
 
 """
 import bisect
@@ -352,7 +352,7 @@ class Solution:
     def cf_1038d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1038/D
-        tag: greed|implemention|classification_discussion
+        tag: greedy|implemention|classification_discussion
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -371,9 +371,8 @@ class Solution:
     def lg_p2512(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2512
-        tag: greed|card_split_average|classical|circular_array
+        tag: greedy|card_split_average|classical|circular_array
         """
-        # 环形均分纸牌问题
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         m = sum(nums) // n
@@ -390,7 +389,10 @@ class Solution:
 
     @staticmethod
     def abc_46b(ac=FastIO()):
-        # brain_teaser|，不等式greedy
+        """
+        url: https://atcoder.jp/contests/abc046/tasks/arc062_a
+        tag: brain_teaser|greedy|custom_sort
+        """
         n = ac.read_int()
         a = b = 1
         for _ in range(n):
@@ -407,11 +409,10 @@ class Solution:
     def ac_105(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/1538/
-        tag: greed|card_split_average|classical|circular_array
+        tag: greedy|card_split_average|classical|circular_array
         """
 
         def check(nums):
-            # 环形均分纸牌
             nn = len(nums)
             s = sum(nums)
             if s % nn:
@@ -450,9 +451,9 @@ class Solution:
     def ac_123(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/125/
-        tag: median_greedy
+        tag: median_greedy|minus_index_trick|strictly_monotonic
         """
-        # mediangreedy扩展问题，连续相邻sorting减去下标后再sorting
+
         n = ac.read_int()
         lst_x = []
         lst_y = []
@@ -476,9 +477,8 @@ class Solution:
     def ac_125(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/127/
-        tag: greed|custom_sort
+        tag: greedy|custom_sort
         """
-        # greedy思路，邻项交换
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: it[0] + it[1])
@@ -494,9 +494,8 @@ class Solution:
     def ac_127(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/129/
-        tag: partial_order|sort|greed
+        tag: partial_order|sort|greedy
         """
-        # 二维sortinggreedy
         n, m = ac.read_list_ints()
         machine = [ac.read_list_ints() for _ in range(n)]
         task = [ac.read_list_ints() for _ in range(m)]
@@ -521,9 +520,8 @@ class Solution:
     def ac_145(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/147/
-        tag: heapq|greed
+        tag: heapq|greedy
         """
-        # heapq|greed
         lst = []
         cnt = 0
         while cnt < 10000:
@@ -552,18 +550,16 @@ class Solution:
     def lc_2745(x: int, y: int, z: int) -> int:
         """
         url: https://leetcode.cn/problems/construct-the-longest-new-string/
-        tag: brain_teaser|greed
+        tag: brain_teaser|greedy
         """
-        # brain_teasergreedybrain_teaser|
         return z * 2 + min(x, y) * 4 + int((max(x, y) - min(x, y)) > 0) * 2
 
     @staticmethod
     def lg_p1080(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1080
-        tag: greed|custom_sort
+        tag: greedy|custom_sort
         """
-        # greed，举例两项确定sorting公式
         n = ac.read_int()
         a, b = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -580,26 +576,22 @@ class Solution:
     def lg_p1650(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1650
-        tag: greed|classical
+        tag: greedy|horse_racing|classical
         """
-        # greed，优先上对上其次下对下最后下对上
         ac.read_int()
         a = deque(sorted(ac.read_list_ints(), reverse=True))
         b = deque(sorted(ac.read_list_ints(), reverse=True))
 
         ans = 0
         while a and b:
-            # 上对上
             if a[0] > b[0]:
                 a.popleft()
                 b.popleft()
                 ans += 200
-            # 下对下
             elif a[-1] > b[-1]:
                 a.pop()
                 b.pop()
                 ans += 200
-            # 下对上
             else:
                 x = a.pop()
                 y = b.popleft()
@@ -614,9 +606,8 @@ class Solution:
     def lg_p2088(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2088
-        tag: greed
+        tag: greedy
         """
-        # 队列集合greedy，取空闲的，或者下一个离得最远的
         ans = 0
         k, n = ac.read_list_ints()
         nums = []
@@ -652,9 +643,8 @@ class Solution:
     def lg_p2816(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2816
-        tag: sort|greed|sorted_list
+        tag: sort|greedy|sorted_list
         """
-        # sorting后从小到大greedy放置，STL维护当前积木列高度
         lst = SortedList()
         ac.read_int()
         nums = ac.read_list_ints()
@@ -674,9 +664,8 @@ class Solution:
     def lg_p3819(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3819
-        tag: median|greed
+        tag: median_greedy|greedy
         """
-        # mediangreedy题
         length, n = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
         s = sum(x for _, x in nums)
@@ -694,9 +683,9 @@ class Solution:
     def lg_p4025(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4025
-        tag: greed|custom_sort
+        tag: greedy|custom_sort
         """
-        # greedy血量与增幅custom_sort
+
         n, z = ac.read_list_ints()
         pos = []
         neg = []
@@ -724,13 +713,11 @@ class Solution:
     def lg_p4266(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4266
-        tag: greed|implemention|suffix_max
+        tag: greedy|implemention|suffix_max
         """
-        # 后缀最大值greedyimplemention
         length, n, rf, rb = ac.read_list_ints()
         nums = [[0, 0]] + [ac.read_list_ints() for _ in range(n)]
         n += 1
-        # 记录后缀最大值序列
         post = [n - 1] * n
         ind = n - 1
         for i in range(n - 2, -1, -1):
@@ -740,7 +727,6 @@ class Solution:
         path = [post[0]]
         while post[path[-1]] != path[-1]:
             path.append(post[path[-1]])
-        # implemention
         ans = t = pre = 0
         for i in path:
             cur = nums[i][0]
@@ -755,21 +741,17 @@ class Solution:
     def lg_p4447(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4447
-        tag: greed|deque
+        tag: greedy|deque
         """
-        # greedy队列使得连续值序列最少的分组长度最大
         ac.read_int()
         lst = ac.read_list_ints()
         lst.sort()
-        # 记录末尾值为 num 的连续子序列长度
         cnt = defaultdict(list)
         for num in lst:
             if cnt[num - 1]:
-                # 将最小的长度取出添上
                 val = heapq.heappop(cnt[num - 1])
                 heapq.heappush(cnt[num], val + 1)
             else:
-                # 单独成为一个序列
                 heapq.heappush(cnt[num], 1)
         ac.st(min(min(cnt[k]) for k in cnt if cnt[k]))
         return
@@ -780,7 +762,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4575
         tag: brain_teaser|state_compression
         """
-        # brain_teaser|状压运算
         for _ in range(ac.read_int()):
             m = ac.read_int()
             k = ac.read_int()
@@ -805,9 +786,8 @@ class Solution:
     def lg_p4653(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4653
-        tag: binary_search|pointer|greed
+        tag: binary_search|pointer|greedy
         """
-        # 看似binary_searchpointergreedy选取
         n = ac.read_int()
         nums1 = []
         nums2 = []
@@ -839,7 +819,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5093
         tag: brain_teaser|classical
         """
-        # brain_teaser集合确定轮数
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
         pre = set()
@@ -856,9 +835,8 @@ class Solution:
     def lg_p5425(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5425
-        tag: mst_like|brain_teaser|greed
+        tag: mst_like|brain_teaser|greedy
         """
-        # 看似mst|，实则brain_teasergreedy距离
         n, k = ac.read_list_ints()
         ans = (2019201913 * (k - 1) + 2019201949 * n) % 2019201997
         ac.st(ans)
@@ -891,9 +869,8 @@ class Solution:
     def lg_p6196(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6196
-        tag: greed
+        tag: greedy
         """
-        # greed 1 分段代价
         ac.read_int()
         nums = ac.read_list_ints()
         ans = 0
@@ -943,7 +920,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8050
         tag: brain_teaser|coloring_method|operation
         """
-        # brain_teaser黑白coloring_method任意操作不改变黑白元素和的差值
         m1, n1, m2, n2, k = ac.read_list_ints()
         black = white = cnt = state = 0
         for i in range(m1 + m2):
@@ -968,9 +944,8 @@ class Solution:
     def lg_p8732(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8732
-        tag: greed|brute_force|custom_sort
+        tag: greedy|brute_force|custom_sort
         """
-        # greedybrute_force两项优先级公式
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums.sort(key=lambda it: sum(it))
@@ -986,9 +961,8 @@ class Solution:
     def ac_4307(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4310/
-        tag: lexicographical_order|brute_force|greed
+        tag: lexicographical_order|brute_force|greedy
         """
-        # lexicographical_orderbrute_forcegreedy
         a = [int(w) for w in str(ac.read_int())]
         b = [int(w) for w in str(ac.read_int())]
         a.sort()
@@ -1012,9 +986,8 @@ class Solution:
     def ac_4313(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4316/
-        tag: full_binary_tree|tree_dp|greed|LC2673
+        tag: full_binary_tree|tree_dp|greedy|LC2673
         """
-        # 满二叉树tree_dpgreedy
         n = ac.read_int()
         m = 2 ** (n + 1)
         dp = [0] * m
@@ -1033,17 +1006,16 @@ class Solution:
     def ac_4426(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4429/
-        tag: brain_teaser|brain_teaser|property
+        tag: brain_teaser|brain_teaser|property|math
         """
-        # brain_teaser|brain_teaser，等价于末尾两位数字可以被4整除
         s = ac.read_str()
         ans = 0
         n = len(s)
         for i in range(n):
             if i - 1 >= 0 and int(s[i - 1:i + 1]) % 4 == 0:
-                ans += i  # 两位数及以上
+                ans += i
             if int(s[i]) % 4 == 0:
-                ans += 1  # 一位数
+                ans += 1
         ac.st(ans)
         return
 
@@ -1051,9 +1023,8 @@ class Solution:
     def ac_4427(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/4430/
-        tag: greed|construction
+        tag: tree_greedy|construction
         """
-        # 树形greedyconstruction
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         parent = ac.read_list_ints_minus_one()
@@ -1066,10 +1037,10 @@ class Solution:
         while stack:
             x, pre, ss = stack.pop()
             pre += 1
-            if pre % 2:  # 奇数位没得选
+            if pre % 2: # odd
                 ans[x] = s[x] - ss
             else:
-                lst = []  # 偶数位greedy取最大值
+                lst = []  # even
                 for y in dct[x]:
                     lst.append(s[y])
                 if lst:
@@ -1085,7 +1056,7 @@ class Solution:
     def ac_4429(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4432/
-        tag: greed|custom_sort|prefix_suffix|brute_force
+        tag: greedy|custom_sort|prefix_suffix|brute_force
         """
 
         n, x1, y1, x2, y2 = ac.read_list_ints()
@@ -1187,7 +1158,7 @@ class Solution:
     def ac_4623(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4626/
-        tag: greed|implemention
+        tag: greedy|implemention
         """
         n, t = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1210,7 +1181,7 @@ class Solution:
     def cf_1665c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1665/problem/C
-        tag: graph|greed
+        tag: graph|greedy
         """
 
         def solve():
@@ -1263,7 +1234,7 @@ class Solution:
     def lc_991(start: int, target: int) -> int:
         """
         url: https://leetcode.cn/problems/broken-calculator/
-        tag: reverse_order|reverse_thinking|greed|odd_even|implemention
+        tag: reverse_order|reverse_thinking|greedy|odd_even|implemention
         """
         ans = 0
         while target > start:
@@ -1293,7 +1264,7 @@ class Solution:
     def lc_1675(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimize-deviation-in-array/
-        tag: brain_teaser|greed
+        tag: brain_teaser|greedy
         """
         lst = SortedList([num if num % 2 == 0 else num * 2 for num in nums])
         ans = lst[-1] - lst[0]
@@ -1309,7 +1280,7 @@ class Solution:
     def lc_1808(prime_factors: int) -> int:
         """
         url: https://leetcode.cn/problems/maximize-number-of-nice-divisors/
-        tag: mod|greed|classical|maximum_mul
+        tag: mod|greedy|classical|maximum_mul
         """
         mod = 10 ** 9 + 7
         if prime_factors <= 2:
@@ -1364,7 +1335,7 @@ class Solution:
     def lc_2592(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximize-greatness-of-an-array/
-        tag: classical|greed|sort|two_pointers
+        tag: classical|greedy|sort|two_pointers
         """
         n = len(nums)
         nums.sort()
@@ -1382,7 +1353,7 @@ class Solution:
     def lc_2568(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-impossible-or/
-        tag: brain_teaser|greed|guess_table|observation
+        tag: brain_teaser|greedy|guess_table|observation
         """
         dct = set(nums)
         for i in range(34):
@@ -1487,7 +1458,7 @@ class Solution:
     def lc_3012(nums: List[int]) -> int:
         """
         url: https://leetcode.com/problems/minimize-length-of-array-using-operations/
-        tag: brain_teaser|peishu_theorem|hard|greed
+        tag: brain_teaser|peishu_theorem|hard|greedy
         """
         low = min(nums)
         gcd = reduce(math.gcd, nums)
@@ -1500,7 +1471,7 @@ class Solution:
     def cf_724d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/724/problem/D
-        tag: greed|implemention|brain_teaser
+        tag: greedy|implemention|brain_teaser
         """
         m = ac.read_int()
         s = ac.read_str()
@@ -1532,7 +1503,7 @@ class Solution:
     def cf_1144g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1144/problem/G
-        tag: linear_dp|greed|classical|construction|brain_teaser
+        tag: linear_dp|greedy|classical|construction|brain_teaser
         """
         ascend = -math.inf
         descend = math.inf
@@ -1563,7 +1534,7 @@ class Solution:
     def cf_1157g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1157/problem/G
-        tag: brain_teaser|brute_force|classical|implemention|greed
+        tag: brain_teaser|brute_force|classical|implemention|greedy
         """
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -1658,7 +1629,7 @@ class Solution:
     def cf_1157f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1157/problem/F
-        tag: greed|brain_teaser|construction|specific_plan
+        tag: greedy|brain_teaser|construction|specific_plan
         """
         ac.read_int()
         a = ac.read_list_ints()
@@ -1698,7 +1669,7 @@ class Solution:
     def cf_1183f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1183/problem/F
-        tag: greed|brain_teaser|classical|brute_force|special_judge
+        tag: greedy|brain_teaser|classical|brute_force|special_judge
         """
         for _ in range(ac.read_int()):
             ac.read_int()
@@ -1804,7 +1775,7 @@ class Solution:
     def abc_252f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc252/tasks/abc252_f
-        tag: greed|small_to_big|reverse_order|classical
+        tag: greedy|small_to_big|reverse_order|classical
         """
         n, ll = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1824,7 +1795,7 @@ class Solution:
     def abc_349d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc349/tasks/abc349_d
-        tag: greed|brain_teaser
+        tag: greedy|brain_teaser
         """
         lst = []
         for _ in range(3):
@@ -1851,7 +1822,7 @@ class Solution:
     def abc_249f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc249/tasks/abc249_f
-        tag: greed|implemention|reverse_order|classical
+        tag: greedy|implemention|reverse_order|classical
         """
         n, k = ac.read_list_ints()
         not_use = []
@@ -1945,7 +1916,7 @@ class Solution:
     def cf_1976b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1976/problem/B
-        tag: brute_force|greed
+        tag: brute_force|greedy
         """
         for _ in range(ac.read_int()):
             ac.get_random_seed()
@@ -1974,7 +1945,7 @@ class Solution:
     def abc_209c(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc209/tasks/abc209_c
-        tag: greed|brain_teaser
+        tag: greedy|brain_teaser
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -1994,7 +1965,7 @@ class Solution:
     def cf_985c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/985/C
-        tag: greed|brain_teaser|reverse_order
+        tag: greedy|brain_teaser|reverse_order
         """
         n, k, ll = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -2014,7 +1985,7 @@ class Solution:
     def cf_1156c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1156/C
-        tag: greed|two_pointers|classical|brain_teaser
+        tag: greedy|two_pointers|classical|brain_teaser
         """
         n, z = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -2036,7 +2007,7 @@ class Solution:
     def cf_1684d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1684/D
-        tag: greed|observation|contribution_method
+        tag: greedy|observation|contribution_method
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -2058,7 +2029,7 @@ class Solution:
     def cf_1379c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1379/problem/C
-        tag: observation|prefix_sum|binary_search|brute_force|greed
+        tag: observation|prefix_sum|binary_search|brute_force|greedy
         """
         q = ac.read_int()
         for i in range(q):
@@ -2117,7 +2088,7 @@ class Solution:
     def lg_p2968(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2968
-        tag: greed|implemention|observation
+        tag: greedy|implemention|observation
         """
         pos = 0
         speed = 1
@@ -2140,7 +2111,7 @@ class Solution:
     def lg_p4823(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4823
-        tag: greed|regret_heapq|classical|brain_teaser
+        tag: greedy|regret_heapq|classical|brain_teaser
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -2168,7 +2139,7 @@ class Solution:
     def lg_p6002(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6002
-        tag: brute_force|greed|brain_teaser
+        tag: brute_force|greedy|brain_teaser
         """
         n, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -2189,7 +2160,7 @@ class Solution:
     def cf_1257d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1257/D
-        tag: suffix_max|greed|implemention|classical
+        tag: suffix_max|greedy|implemention|classical
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -2220,7 +2191,7 @@ class Solution:
     def cf_1539d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1539/D
-        tag: greed|two_pointers|implemention
+        tag: greedy|two_pointers|implemention
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -2253,7 +2224,7 @@ class Solution:
     def cf_865d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/865/D
-        tag: regret_heapq|greed|classical
+        tag: regret_heapq|greedy|classical
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -2272,7 +2243,7 @@ class Solution:
     def cf_713c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/713/C
-        tag: greed|brain_teaser|strictly_monotonic_trick|classical
+        tag: greedy|brain_teaser|strictly_monotonic_trick|classical
         """
         n = ac.read_int()
         ans = 0
@@ -2291,7 +2262,7 @@ class Solution:
     def cf_13c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/13/C
-        tag: greed|brain_teaser|regret_heapq|classical
+        tag: greedy|brain_teaser|regret_heapq|classical
         """
         n = ac.read_int()
         ans = 0
@@ -2310,7 +2281,7 @@ class Solution:
     def abc_187d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc187/tasks/abc187_d
-        tag: greed|custom_sort|classical
+        tag: greedy|custom_sort|classical
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]

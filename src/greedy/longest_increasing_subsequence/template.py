@@ -65,7 +65,7 @@ class LcsComputeByLis:
 
     @staticmethod
     def length_of_lis(nums) -> int:
-        # greed and binary search to check lis
+        # greedy and binary search to check lis
         stack = []
         for x in nums:
             idx = bisect_left(stack, x)
@@ -77,7 +77,7 @@ class LcsComputeByLis:
         return len(stack)
 
     def index_of_lcs(self, s1, s2):
-        # greed and binary search to check lis output the index
+        # greedy and binary search to check lis output the index
         if len(s1) > len(s2):
             s1, s2 = s2, s1
         m = len(s2)
@@ -95,7 +95,7 @@ class LcsComputeByLis:
     @staticmethod
     def minimum_lexicographical_order_of_lis(nums):
         """template of minimum lexicographical order lis"""
-        # greed and binary search to check lis output the index
+        # greedy and binary search to check lis output the index
         if not nums:
             return []
         n = len(nums)

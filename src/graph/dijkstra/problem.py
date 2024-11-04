@@ -11,9 +11,9 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 2258（https://leetcode.cn/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/）bfs|preprocess|shortest_path|maximum_weight_on_shortest_path
 2290（https://leetcode.cn/problems/minimum-obstacle-removal-to-reach-corner/）shortest_path
 499（https://leetcode.cn/problems/the-maze-iii/）two_params_dijkstra
-6442（https://leetcode.cn/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greed
+6442（https://leetcode.cn/problems/modify-graph-edge-weights/）several_dijkstra|shortest_path|greedy
 2714（https://leetcode.cn/problems/find-shortest-path-with-k-hops/）limited_shortest_path|layered_dijkstra
-2699（https://leetcode.cn/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greed
+2699（https://leetcode.cn/problems/modify-graph-edge-weights/）dijkstra|shortest_path|greedy
 1786（https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/）dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
 1928（https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/）dijkstra|limited_shortest_path|floyd
 75（https://leetcode.cn/problems/rdmXM7/）bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
@@ -93,8 +93,8 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 
 ===================================CodeForces===================================
 20C（https://codeforces.com/problemset/problem/20/C）shortest_path|specific_plan
-1343E（https://codeforces.com/problemset/problem/1343/E）several_bfs|shortest_path|greed|brute_force
-715B（https://codeforces.com/contest/715/problem/B）several_dijkstra|shortest_path|greed|dynamic_graph
+1343E（https://codeforces.com/problemset/problem/1343/E）several_bfs|shortest_path|greedy|brute_force
+715B（https://codeforces.com/contest/715/problem/B）several_dijkstra|shortest_path|greedy|dynamic_graph
 1433G（https://codeforces.com/contest/1433/problem/G）several_source_dijkstra|shortest_path|brute_force
 1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
 1915G（https://codeforces.com/contest/1915/problem/G）shortest_path|limited_shortest_path|dijkstra
@@ -106,7 +106,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 938D（https://codeforces.com/problemset/problem/938/D）dijkstra|fake_source|build_graph|classical
 1817B（https://codeforces.com/problemset/problem/1817/B）undirected_shortest_circle|brute_force
 1473E（https://codeforces.com/problemset/problem/1473/E）layer_dijkstra|observation|classical|brain_teaser
-545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greed
+545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greedy
 786B（https://codeforces.com/contest/786/problem/B）segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
 1076D（https://codeforces.com/problemset/problem/1076/D）weighted_graph|shortest_path_mst
 
@@ -131,8 +131,8 @@ ABC376D（https://atcoder.jp/contests/abc376/tasks/abc376_d）dijkstra_for_stric
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
 3628（https://www.acwing.com/problem/content/3631/）shortest_path_spanning_tree
-3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greed|implemention
-3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greed
+3772（https://www.acwing.com/problem/content/description/3775/）build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
+3797（https://www.acwing.com/problem/content/description/3800/）shortest_path|brute_force|sort|greedy
 4196（https://www.acwing.com/problem/content/4199/）shortest_path
 385（https://www.acwing.com/problem/content/description/385/）dijkstra_for_cnt_of_strictly_second_shortest_path
 
@@ -199,7 +199,7 @@ class Solution:
     def cf_1343e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1343/E
-        tag: several_bfs|shortest_path|greed|brute_force
+        tag: several_bfs|shortest_path|greedy|brute_force
         """
         for _ in range(ac.read_int()):
             n, m, a, b, c = ac.read_list_ints()
@@ -580,7 +580,7 @@ class Solution:
         url: https://leetcode.cn/problems/rdmXM7/
         tag: bfs|minimum_max_weight|shortest_path|maximum_weight_on_shortest_path
         """
-        # shortest_path逃离
+
         m, n = len(maze), len(maze[0])
         start = [-1, -1]
         end = [-1, -1]
@@ -592,7 +592,6 @@ class Solution:
                 elif w == "T":
                     end = [i, j]
 
-        # 反向到达终点距离
         bfs = [[math.inf] * n for _ in range(m)]
         bfs[end[0]][end[1]] = 0
         stack = deque([end])
@@ -603,7 +602,6 @@ class Solution:
                     bfs[x][y] = bfs[i][j] + 1
                     stack.append([x, y])
 
-        # 魔法卷轴更新正向距离
         dis = [[math.inf] * n for _ in range(n)]
         for i in range(m):
             for j in range(n):
@@ -615,7 +613,6 @@ class Solution:
                         if maze[i][n - 1 - j] != "#":
                             dis[i][j] = max(dis[i][j], bfs[i][n - 1 - j])
 
-        # dijkstrashortest_path径边权最小的最大值
         visit = [[math.inf] * n for _ in range(n)]
         stack = [[dis[start[0]][start[1]], start[0], start[1]]]
         visit[start[0]][start[1]] = dis[start[0]][start[1]]
@@ -639,7 +636,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2622
         tag: state_compress|dijkstra|shortest_path
         """
-        # Dijkstra|状压shortest_path
+
         n = ac.read_int()
         m = ac.read_int()
         grid = [ac.read_list_ints() for _ in range(m)]
@@ -668,9 +665,9 @@ class Solution:
     def lg_p1073(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1073
-        tag: reverse_graph|build_graph|dijkstra
+        tag: reverse_graph|build_graph|several_dijkstra
         """
-        # 正反两遍build_graph|，两个shortest_path
+
         n, m = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -683,7 +680,7 @@ class Solution:
                 dct[y].append(x)
                 rev[x].append(y)
 
-        # 前面最小值
+        # pre_min
         floor = [math.inf] * n
         stack = [[nums[0], 0]]
         floor[0] = nums[0]
@@ -697,7 +694,7 @@ class Solution:
                     floor[j] = dj
                     heappush(stack, (dj, j))
 
-        # 后面最大值
+        # post_max
         ceil = [-math.inf] * n
         ceil[n - 1] = nums[n - 1]
         stack = [[-nums[n - 1], n - 1]]
@@ -720,7 +717,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1300
         tag: dijkstra|shortest_path
         """
-        # Dijkstra求shortest_path
+
         m, n = ac.read_list_ints()
         grid = [ac.read_str() for _ in range(m)]
         ind = [[0, 1], [1, 0], [0, -1], [-1, 0]]
@@ -917,20 +914,18 @@ class Solution:
     def lg_p2269(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2269
-        tag: shortest_path
+        tag: shortest_path|dijkstra_like
         """
-        # 比较两个维度的Dijkstra
+
         n, src, dst = ac.read_list_ints()
         src -= 1
         dst -= 1
         time = [ac.read_list_ints() for _ in range(n)]
         loss = [ac.read_list_floats() for _ in range(n)]
 
-        # 丢失率与时延
         dis = [[math.inf, math.inf] for _ in range(n)]
         stack = [[0, 0, src]]
         dis[src] = [0, 0]
-        # shortest_path
         while stack:
             ll, tt, i = heappop(stack)
             if dis[i] < [ll, tt]:
@@ -953,9 +948,9 @@ class Solution:
     def lg_p2349(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2349
-        tag: shortest_path
+        tag: shortest_path|dijkstra_like
         """
-        # 比较两个项相|的shortest_path
+
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         for _ in range(m):
@@ -965,7 +960,6 @@ class Solution:
             dct[u][v] = min(dct[u].get(v, math.inf), w)
             dct[v][u] = min(dct[v].get(u, math.inf), w)
 
-        # shortest_path模板
         dis = [math.inf] * n
         stack = [[0, 0, 0, 0]]
         dis[0] = 0
@@ -989,8 +983,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2914
         tag: dijkstra|build_graph|dynamic_graph
         """
-
-        # Dijkstra动态build_graph|距离
 
         def dis(x, y):
             if y in dct[x]:
@@ -1031,7 +1023,7 @@ class Solution:
     def lc_6442(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
-        tag: several_dijkstra|shortest_path|greed
+        tag: several_dijkstra|shortest_path|greedy|brain_teaser
         """
         dct = [[] for _ in range(n)]
         m = len(edges)
@@ -1044,7 +1036,6 @@ class Solution:
             dct[i].append([ind, j])
             dct[j].append([ind, i])
 
-        # 第一遍shortest_path最小情况下的距离
         dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
@@ -1060,7 +1051,6 @@ class Solution:
         if dis0[destination] > target:
             return []
 
-        # 第二遍shortest_path
         dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
@@ -1070,9 +1060,7 @@ class Solution:
                 continue
             for ind, j in dct[i]:
                 if book[ind]:
-                    # 假设 (i, j) 是shortest_path上的边
                     if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
-                        # 此时还有一些增长空间即（当前到达 j 的距离）|上（剩余 j 到 destination）的距离仍旧小于 target
                         x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
                         edges[ind][2] += x
                     book[ind] = 0
@@ -1089,9 +1077,8 @@ class Solution:
     def cf_715b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/715/problem/B
-        tag: several_dijkstra|shortest_path|greed|dynamic_graph
+        tag: several_dijkstra|shortest_path|greedy|dynamic_graph
         """
-        # 两遍shortest_path，greedy动态更新路径权值
         n, m, target, source, destination = ac.read_list_ints()
         edges = []
         dct = [[] for _ in range(n)]
@@ -1105,7 +1092,6 @@ class Solution:
             dct[i].append([ind, j])
             dct[j].append([ind, i])
 
-        # 第一遍shortest_path最小情况下的距离
         dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
@@ -1122,7 +1108,6 @@ class Solution:
             ac.no()
             return
 
-        # 第二遍shortest_path
         dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
@@ -1132,9 +1117,7 @@ class Solution:
                 continue
             for ind, j in dct[i]:
                 if book[ind]:
-                    # 假设 (i, j) 是shortest_path上的边
                     if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
-                        # 此时还有一些增长空间即（当前到达 j 的距离）|上（剩余 j 到 destination）的距离仍旧小于 target
                         x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
                         edges[ind][2] += x
                     book[ind] = 0
@@ -1157,7 +1140,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3753
         tag: shortest_path|two_params
         """
-        # shortest_path变形两个维度的比较
         n, m = ac.read_list_ints()
         dct = [dict() for _ in range(n)]
         cnt = 0
@@ -1193,7 +1175,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P3956
         tag: several_params|dijkstra
         """
-        # Dijkstra最小代价
 
         m, n = ac.read_list_ints()
         grid = [[-1] * m for _ in range(m)]
@@ -1326,9 +1307,9 @@ class Solution:
     def lg_p5201(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5201
-        tag: shortest_path_spanning_tree|build_graph|tree_dp
+        tag: shortest_path_spanning_tree|build_graph|tree_dp|lexicographical_order
         """
-        #  shortest_path_spanning_tree build_graph|，再tree_dp| 最优解
+
         n, m, t = ac.read_list_ints()
         nums = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1338,7 +1319,7 @@ class Solution:
             dct[b].append([a, c + 1])
         for i in range(n):
             dct[i].sort()
-        # 先跑一遍shortest_path
+
         dis = [math.inf] * n
         stack = [[0, 0]]
         dis[0] = 0
@@ -1352,7 +1333,6 @@ class Solution:
                     dis[j] = dj
                     heappush(stack, (dj, j))
 
-        # 选择lexicographical_order较小的边建立shortest_path_spanning_tree
         edge = [[] for _ in range(n)]
         visit = [0] * n
         for i in range(n):
@@ -1364,7 +1344,6 @@ class Solution:
                     edge[j].append(i)
                     visit[j] = 1
 
-        # tree_dp| 
         stack = [[0, -1]]
         ans = 0
         while stack:
@@ -1441,7 +1420,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5837
         tag: dijkstra|several_params
         """
-        # Dijkstra变形问题，带多个状态
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for _ in range(m):
@@ -1470,7 +1448,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5930
         tag: dijkstra|minimum_max_weight_on_shortest_path
         """
-        # 接雨水 Dijkstra 
         m, n = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
         visit = [[math.inf] * n for _ in range(n)]
@@ -1490,7 +1467,6 @@ class Solution:
                 continue
             for x, y in [[i - 1, j], [i + 1, j], [i, j - 1], [i, j + 1]]:
                 if 0 <= x < m and 0 <= y < n:
-                    # 每条路径边权最大值当中的最小值
                     dj = max(grid[x][y], d)
                     if dj < visit[x][y]:
                         visit[x][y] = dj
@@ -1506,13 +1482,12 @@ class Solution:
     def lg_p6063(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6063
-        tag: dijkstra|minimum_max_weight_on_shortest_path
+        tag: dijkstra|minimum_max_weight_on_shortest_path|build_graph
         """
-        # Dijkstra应用接雨水
+
         n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(m)]
 
-        # 虚拟化超级汇点初始化起点
         stack = []
         for i in [0, m - 1]:
             for j in range(n):
@@ -1522,7 +1497,6 @@ class Solution:
                 stack.append([grid[i][j], i, j])
         heapify(stack)
 
-        # shortest_path算法寻找每个格子到达超级汇点的路径途中最大值里面的最小值
         ans = 0
         while stack:
             dis, i, j = heappop(stack)
@@ -1542,7 +1516,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-shortest-path-with-k-hops/
         tag: limited_shortest_path|layered_dijkstra
         """
-        # limited_shortest_path，也可以分层 Dijkstra 求解
         dct = [[] for _ in range(n)]
         for u, v, w in edges:
             dct[u].append([v, w])
@@ -1572,7 +1545,6 @@ class Solution:
         url: https://leetcode.cn/problems/find-shortest-path-with-k-hops/
         tag: limited_shortest_path|layered_dijkstra
         """
-        # limited_shortest_path，也可以分层 Dijkstra 求解
         dct = [[] for _ in range(n)]
         for u, v, w in edges:
             dct[u].append([v, w])
@@ -1601,8 +1573,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/
         tag: dijkstra|matrix
         """
-        # Dijkstra变形二维矩阵题目
-
         m, n = len(grid), len(grid[0])
         if grid[0][1] > 1 and grid[1][0] > 1:
             return -1
@@ -1630,7 +1600,7 @@ class Solution:
     def lc_2699(n: int, edges: List[List[int]], source: int, destination: int, target: int) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/modify-graph-edge-weights/
-        tag: dijkstra|shortest_path|greed|brain_teaser
+        tag: dijkstra|shortest_path|greedy|brain_teaser
         """
         dct = [[] for _ in range(n)]
         m = len(edges)
@@ -1643,7 +1613,6 @@ class Solution:
             dct[i].append([ind, j])
             dct[j].append([ind, i])
 
-        # 第一遍shortest_path最小情况下的距离
         dis0 = [math.inf] * n
         stack = [[0, source]]
         dis0[source] = 0
@@ -1659,7 +1628,6 @@ class Solution:
         if dis0[destination] > target:
             return []
 
-        # 第二遍shortest_path
         dis1 = [math.inf] * n
         stack = [[0, source]]
         dis1[source] = 0
@@ -1669,9 +1637,7 @@ class Solution:
                 continue
             for ind, j in dct[i]:
                 if book[ind]:
-                    # 假设 (i, j) 是shortest_path上的边
                     if (edges[ind][2] + dis1[i]) + (dis0[destination] - dis0[j]) < target:
-                        # 此时还有一些增长空间即（当前到达 j 的距离）|上（剩余 j 到 destination）的距离仍旧小于 target
                         x = target - (edges[ind][2] + dis1[i]) - (dis0[destination] - dis0[j])
                         edges[ind][2] += x
                     book[ind] = 0
@@ -1716,7 +1682,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P8385
         tag: brain_teaser|build_graph|shortest_path
         """
-        # brain_teaserbuild_graph|shortest_path
         n = ac.read_int()
         price = [ac.read_int() for _ in range(n)]
         dct = [[] for _ in range(2 * n)]
@@ -1749,18 +1714,17 @@ class Solution:
         url: https://leetcode.cn/problems/number-of-restricted-paths-from-first-to-last-node/
         tag: dijkstra|limited_shortest_path|counter|dag|undirected_to_dag
         """
-        # dijkstralimited_shortest_pathcounter（类似shortest_pathcounter）
         dct = defaultdict(dict)
         for i, j, w in edges:
             dct[i - 1][j - 1] = w
             dct[j - 1][i - 1] = w
         mod = 10 ** 9 + 7
-        # reverse_order|shortest_path搜寻
+
         dis = [float('math.inf')] * n
         cnt = [0] * n
         cnt[n - 1] = 1
         dis[n - 1] = 0
-        # 定义好初始值
+
         stack = [[0, n - 1]]
         while stack:
             cur_dis, cur = heappop(stack)
@@ -1768,11 +1732,9 @@ class Solution:
                 continue
             dis[cur] = cur_dis
             for nex in dct[cur]:
-                # 如果到达下一个点更近，则更新值
                 if dis[nex] > dis[cur] + dct[cur][nex]:
                     dis[nex] = dis[cur] + dct[cur][nex]
                     heappush(stack, [dis[nex], nex])
-                # 可以形成有效的路径
                 if dis[cur] < dis[nex]:
                     cnt[nex] += cnt[cur]
                     cnt[nex] %= mod
@@ -1799,7 +1761,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-cost-to-reach-destination-in-time/
         tag: dijkstra|limited_shortest_path|floyd
         """
-        # Dijkstralimited_shortest_path，也可根据无后效性类似Floyd的动态规划求解
         n = len(passing_fees)
         dp = [[math.inf] * (max_time + 1) for _ in range(n)]
         dp[0][0] = passing_fees[0]
@@ -1864,7 +1825,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/3631/
         tag: shortest_path_spanning_tree
         """
-        # shortest_path_spanning_tree模板题
         n, m, k = ac.read_list_ints()
         dct = [[] for _ in range(n)]
         for ind in range(m):
@@ -1877,7 +1837,6 @@ class Solution:
         for i in range(n):
             dct[i].sort()
 
-        # 先跑一遍shortest_path
         dis = [math.inf] * n
         stack = [[0, 0]]
         dis[0] = 0
@@ -1891,7 +1850,6 @@ class Solution:
                     dis[j] = dj
                     heappush(stack, (dj, j))
 
-        # 选择lexicographical_order较小的边建立shortest_path树
         edge = [[] for _ in range(n)]
         visit = [0] * n
         for i in range(n):
@@ -1903,7 +1861,6 @@ class Solution:
                     edge[j].append([i, ind])
                     visit[j] = 1
 
-        # 最后一遍bfs确定选择的边
         ans = []
         stack = [[0, -1]]
         while stack:
@@ -1921,7 +1878,7 @@ class Solution:
     def ac_3772(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3775/
-        tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greed|implemention
+        tag: build_graph|reverse_graph|dijkstra|shortest_path|counter|greedy|implemention
         """
         n, m = ac.read_list_ints()
         inf = m + 1
@@ -1956,7 +1913,7 @@ class Solution:
     def ac_3797(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3800/
-        tag: shortest_path|brute_force|sort|greed
+        tag: shortest_path|brute_force|sort|greedy
         """
         n, m, k = ac.read_list_ints()
         color = ac.read_list_ints_minus_one()
@@ -2537,7 +2494,7 @@ class Solution:
     def cf_545e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/545/E
-        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greed|shortest_path_mst
+        tag: shortest_path_spanning_tree|minimum_weight|dijkstra|classical|greedy|shortest_path_mst
         """
         n, m = ac.read_list_ints()
         dct = [[] for _ in range(n)]

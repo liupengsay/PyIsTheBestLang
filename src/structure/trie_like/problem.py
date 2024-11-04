@@ -23,16 +23,16 @@ P4551（https://www.luogu.com.cn/problem/P4551）xor
 P3864（https://www.luogu.com.cn/problem/P3864）hash|brute_force|trie_like
 P5755（https://www.luogu.com.cn/problem/P5755）trie_like|counter
 P1481（https://www.luogu.com.cn/problem/P1481）trie_like
-P5283（https://www.luogu.com.cn/problem/P5283）trie_like|kth_xor|heapq|greed
+P5283（https://www.luogu.com.cn/problem/P5283）trie_like|kth_xor|heapq|greedy
 P2922（https://www.luogu.com.cn/problem/P2922）trie_like|prefix|counter
 P1738（https://www.luogu.com.cn/problem/P1738）trie_like|counter
-P8420（https://www.luogu.com.cn/problem/P8420）trie_like|greed
+P8420（https://www.luogu.com.cn/problem/P8420）trie_like|greedy
 P4735（https://www.luogu.com.cn/problem/P4735）
 
 ===================================CodeForces===================================
 1792D（https://codeforces.com/problemset/problem/1792/D）trie_like|counter
 706D（https://codeforces.com/problemset/problem/706/D）binary_trie|maximum_xor
-241B（https://codeforces.com/contest/241/problem/B）binary_trie|kth_xor|heapq|greed
+241B（https://codeforces.com/contest/241/problem/B）binary_trie|kth_xor|heapq|greedy
 665E（https://codeforces.com/contest/665/problem/E）counter|xor_pair
 282E（https://codeforces.com/contest/282/problem/E）binary_trie|maximum_xor
 1902E（https://codeforces.com/contest/1902/problem/E）trie_like|prefix_count
@@ -40,7 +40,7 @@ P4735（https://www.luogu.com.cn/problem/P4735）
 817E（https://codeforces.com/contest/817/problem/E）binary_trie|get_cnt_smaller_xor
 1777F（https://codeforces.com/problemset/problem/1777/F）
 1446C（https://codeforces.com/contest/1446/problem/C）
-923C（https://codeforces.com/problemset/problem/923/C）binary_trie|greed
+923C（https://codeforces.com/problemset/problem/923/C）binary_trie|greedy
 1055F（https://codeforces.com/problemset/problem/1055/F）binary_trie|get_cnt_smaller_xor
 1720D2（https://codeforces.com/contest/1720/problem/D2）
 1849F（https://codeforces.com/problemset/problem/1849/F）
@@ -332,7 +332,7 @@ class Solution:
     def lg_p5283(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5283
-        tag: trie_like|kth_xor|heapq|greed
+        tag: trie_like|kth_xor|heapq|greedy
         """
         mod = 10 ** 9 + 7  # TLE
         n, k = ac.read_list_ints()
@@ -355,7 +355,7 @@ class Solution:
     def cf_241b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/241/problem/B
-        tag: binary_trie|kth_xor|heapq|greed
+        tag: binary_trie|kth_xor|heapq|greedy
         """
         mod = 10 ** 9 + 7  # TLE
         n, k = ac.read_list_ints()
@@ -607,7 +607,7 @@ class Solution:
     def lg_p8420(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P8420
-        tag: trie_like|greed
+        tag: trie_like|greedy
         """
         n, m, length = ac.read_list_ints()
         cnt = [0] * length
@@ -912,7 +912,7 @@ class Solution:
     def cf_923c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/923/C
-        tag: binary_trie|greed
+        tag: binary_trie|greedy
         """
         n = ac.read_int()
         a = ac.read_list_ints()

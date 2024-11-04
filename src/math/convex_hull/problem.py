@@ -27,7 +27,6 @@ class Solution:
         url: https://leetcode.cn/problems/erect-the-fence-ii/
         tag: convex_hull|tripart_pack_tripart|minimum_circle_coverage
         """
-        # 随机增量法求最小圆覆盖
         ans = MinCircleOverlap().get_min_circle_overlap(trees)
         return list(ans)
 
@@ -37,7 +36,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1742
         tag: random_increment_method|minimum_circle_coverage
         """
-        # 随机增量法求最小圆覆盖
         n = ac.read_int()
         nums = [ac.read_list_floats() for _ in range(n)]
         x, y, r = MinCircleOverlap().get_min_circle_overlap(nums)
@@ -47,8 +45,10 @@ class Solution:
 
     @staticmethod
     def lg_3517(ac=FastIO()):
-
-        # 随机增量法求最小圆覆盖
+        """
+        url: https://www.luogu.com.cn/problem/P3517
+        tag: binary_search_of_binary_search|random_increment_method|minimum_circle_coverage
+        """
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
 

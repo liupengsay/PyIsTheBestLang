@@ -1,6 +1,6 @@
 """
 Algorithm：game_dp|wining_state|lose
-Description：brute_force|interval_dp|implemention|greed
+Description：brute_force|interval_dp|implemention|greedy
 
 ====================================LeetCode====================================
 375（https://leetcode.cn/problems/guess-number-higher-or-lower-ii/）interval_dp|classical|game_dp
@@ -28,7 +28,7 @@ P2953（https://www.luogu.com.cn/problem/P2953）game_dp|winning_state|liner_dp
 
 =====================================AtCoder=====================================
 ABC349E（https://atcoder.jp/contests/abc349/tasks/abc349_e）game_dp|implemention|classical
-ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greed|dfs|linear_dp
+ABC231E（https://atcoder.jp/contests/abc231/tasks/abc231_e）implemention|greedy|dfs|linear_dp
 ABC368F（https://atcoder.jp/contests/abc368/tasks/abc368_f）nim|game_dp|xor
 ABC201D（https://atcoder.jp/contests/abc201/tasks/abc201_d）game_dp|classical
 
@@ -227,7 +227,7 @@ class Solution:
     def abc_231e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc231/tasks/abc231_e
-        tag: implemention|greed|dfs|linear_dp
+        tag: implemention|greedy|dfs|linear_dp
         """
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()

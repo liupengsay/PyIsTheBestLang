@@ -8,22 +8,22 @@ Description：reverse_order_pair
 912（https://leetcode.cn/problems/sort-an-array/）quick_sort
 1585（https://leetcode.cn/problems/check-if-string-is-transformable-with-substring-sort-operations/）bubble_sort|implemention
 45（https://leetcode.cn/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/）custom_sort|minimum
-2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort|greed
-1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greed|sorting
-100391（https://leetcode.cn/problems/minimum-amount-of-damage-dealt-to-bob/）greed|custom_sort|classical
+2412（https://leetcode.cn/problems/minimum-money-required-before-transactions/）custom_sort|greedy
+1665（https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/）custom_sort|greedy|sorting
+100391（https://leetcode.cn/problems/minimum-amount-of-damage-dealt-to-bob/）greedy|custom_sort|classical
 
 =====================================LuoGu======================================
 P2310（https://www.luogu.com.cn/problem/P2310）sorting
 P4378（https://www.luogu.com.cn/problem/P4378）brute_force|bubble_sort
-P6243（https://www.luogu.com.cn/problem/P6243）greed|custom_sort
+P6243（https://www.luogu.com.cn/problem/P6243）greedy|custom_sort
 P1774（https://www.luogu.com.cn/problem/P1774）merge_sort|reverse_order_pair
 P1908（https://www.luogu.com.cn/problem/P1908）tree_array|reverse_order_pair
 P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 
 ===================================CodeForces===================================
-922D（https://codeforces.com/problemset/problem/922/D）greed|custom_sort
+922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
 1983D（https://codeforces.com/problemset/problem/1983/D）inverse_pair|observation|brain_teaser
-632C（https://codeforces.com/problemset/problem/632/C）custom_sort|greed|classical
+632C（https://codeforces.com/problemset/problem/632/C）custom_sort|greedy|classical
 
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
@@ -161,7 +161,7 @@ class Solution:
     def lc_1665(tasks: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-initial-energy-to-finish-tasks/
-        tag: custom_sort|greed|classical
+        tag: custom_sort|greedy|classical
         """
 
         def compare(aa, bb):
@@ -188,7 +188,7 @@ class Solution:
     def lc_2412(transactions: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-money-required-before-transactions/
-        tag: custom_sort|greed|classical
+        tag: custom_sort|greedy|classical
         """
 
         def check(it):
@@ -292,7 +292,7 @@ class Solution:
     def lc_100391(power: int, damage: List[int], health: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-amount-of-damage-dealt-to-bob/
-        tag: greed|custom_sort|classical
+        tag: greedy|custom_sort|classical
         """
         n = len(damage)
 
@@ -339,7 +339,7 @@ class Solution:
     def cf_632c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/632/C
-        tag: custom_sort|greed|classical
+        tag: custom_sort|greedy|classical
         """
         n = ac.read_int()
 

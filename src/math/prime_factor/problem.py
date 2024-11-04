@@ -6,13 +6,13 @@ Description：
 2183（https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/）brute_force|counter|group_by_mul|classical
 2584（https://leetcode.cn/problems/split-the-array-to-make-coprime-products/）prime_factorization|counter
 3164（https://leetcode.cn/problems/find-the-number-of-good-pairs-ii/）brute_force|euler_series
-3326（https://leetcode.cn/problems/minimum-division-operations-to-make-array-non-decreasing/）greed|min_prime|reverse_order|classical
+3326（https://leetcode.cn/problems/minimum-division-operations-to-make-array-non-decreasing/）greedy|min_prime|reverse_order|classical
 
 =====================================LuoGu======================================
 P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 
 ===================================CodeForces===================================
-1176D（https://codeforces.com/contest/1176/problem/D）construction|greed|implemention
+1176D（https://codeforces.com/contest/1176/problem/D）construction|greedy|implemention
 1884D（https://codeforces.com/contest/1884/problem/D）factor_dp|gcd_pair|counter|classical
 1900D（https://codeforces.com/contest/1900/problem/D）inclusion_exclusion|gcd_pair|counter|classical
 1034A（https://codeforces.com/contest/1034/problem/A）prime_factorization
@@ -171,9 +171,11 @@ class Solution:
 
     @staticmethod
     def lc_6334(nums: List[int]) -> int:
-        # 非空子集乘积不含除 1 之外任何平方整除数，即乘积质数因子的幂次均为 1（bag_dp|counter）
+        """
+        url:
+        tag: bag_dp|counter
+        """
         dct = {2, 3, 5, 6, 7, 10, 11, 13, 14, 15, 17, 19, 21, 22, 23, 26, 29, 30}
-        # 集合为质数因子幂次均为 1
         mod = 10 ** 9 + 7
         cnt = Counter(nums)
         pre = defaultdict(int)
@@ -186,7 +188,6 @@ class Solution:
                         cur[p * num] %= mod
                 cur[num] += cnt[num]
                 pre = cur.copy()
-        # 1 需要特殊处理
         p = pow(2, cnt[1], mod)
         ans = sum(pre.values()) * p
         ans += p - 1
@@ -198,7 +199,6 @@ class Solution:
         url: https://leetcode.cn/problems/count-array-pairs-divisible-by-k/description/
         tag: brute_force|counter|group_by_mul|classical
         """
-        # 可以所有因子遍历brute_forcecounter解决，正解为按照 k 的最大公因数分组
         nt = PrimeFactor(10 ** 5)
         ans = 0
         dct = defaultdict(int)
@@ -211,7 +211,10 @@ class Solution:
 
     @staticmethod
     def lc_2464(nums: List[int]) -> int:
-        #  1 到 n 的数所有的质因子并动态规划counter
+        """
+        url: https://leetcode.cn/problems/minimum-subarrays-in-a-valid-split/description/
+        tag: linear_dp|counter|math
+        """
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
@@ -232,7 +235,10 @@ class Solution:
 
     @staticmethod
     def lc_8041(nums: List[int]) -> int:
-        # preprocess幂次为奇数的质因子hash分组counter
+        """
+        url:
+        tag: hash|math|counter
+        """
         n = len(nums)
         nt = PrimeFactor(n)
         dct = defaultdict(int)
@@ -244,7 +250,10 @@ class Solution:
 
     @staticmethod
     def lc_lcp14(nums: List[int]) -> int:
-        #  1 到 n 的数所有的质因子并动态规划counter
+        """
+        url: https://leetcode.cn/problems/lcp14
+        tag: lcp14|counter
+        """
         nt = PrimeFactor(max(nums))
         ind = dict()
         n = len(nums)
@@ -267,7 +276,7 @@ class Solution:
     def cf_1176d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1176/problem/D
-        tag: construction|greed|implemention
+        tag: construction|greedy|implemention
         """
         primes = PrimeSieve().eratosthenes_sieve(2750131)
         ind = {num: i + 1 for i, num in enumerate(primes)}
@@ -302,7 +311,11 @@ class Solution:
 
     @staticmethod
     def cf_1349a(ac=FastIO()):
-        # prime_factorization|，brute_force最终结果当中质因子的幂次
+        """
+        url:
+        tag: prime_factorization|brute_force
+        """
+
         n = ac.read_int()
         nums = ac.read_list_ints()
         nmp = PrimeFactor(max(nums))
@@ -322,12 +335,14 @@ class Solution:
 
     @staticmethod
     def cf_1458a(ac=FastIO()):
-        # gcdmath|求解gcd(x,y)=gcd(x-y,y)
+        """
+        url: https://codeforces.com/contest/1458/problem/A
+        tag: gcd|math|brain_teaser
+        """
         m, n = ac.read_list_ints()
         a = ac.read_list_ints()
         b = ac.read_list_ints()
         g = 0
-        # 推广到n维
         for i in range(1, m):
             g = math.gcd(g, a[i] - a[i - 1])
         ans = [math.gcd(g, a[0] + num) for num in b]
@@ -336,7 +351,10 @@ class Solution:
 
     @staticmethod
     def abc_114d(ac=FastIO()):
-        # prime_factorization|counter
+        """
+        url:
+        tag: prime_factorization|counter
+        """
         n = ac.read_int()
         nt = PrimeFactor(n + 10)
         cnt = Counter()
@@ -365,7 +383,10 @@ class Solution:
 
     @staticmethod
     def ac_124(ac=FastIO()):
-        # 不同进制之间的转换
+        """
+        url:
+        tag: n-base|math
+        """
         st = "0123456789"
         for i in range(26):
             st += chr(i + ord("A"))
@@ -393,17 +414,18 @@ class Solution:
 
     @staticmethod
     def ac_197(ac=FastIO()):
-        # n!阶乘的prime_factorization|即因子与因子的个数
+        """
+        url:
+        tag: prime_factorization|counter
+        """
         ceil = ac.read_int()
         min_prime = [0] * (ceil + 1)
-        #  1 到 ceil 所有数字的最小质数因子
         for i in range(2, ceil + 1):
             if not min_prime[i]:
                 min_prime[i] = i
                 for j in range(i * i, ceil + 1, i):
                     min_prime[j] = i
 
-        #  1 到 ceil 所有数字的prime_factorization|结果
         dct = defaultdict(int)
         for num in range(2, ceil + 1):
             while num > 1:
@@ -419,7 +441,10 @@ class Solution:
 
     @staticmethod
     def lc_p2429(ac=FastIO()):
-        # brute_force质因数组合|inclusion_exclusioncounter
+        """
+        url:
+        tag: inclusion_exclusion|counter|brute_force|prime_factor
+        """
         n, m = ac.read_list_ints()
         primes = sorted(ac.read_list_ints())
 
@@ -451,7 +476,10 @@ class Solution:
 
     @staticmethod
     def lg_p2527(ac=FastIO()):
-        # 丑数即只含特定质因子的数
+        """
+        url:
+        tag: ugly_number|linear_dp
+        """
         n, k = ac.read_list_ints()
         primes = ac.read_list_ints()
         dp = [1] * (k + 1)
@@ -467,7 +495,10 @@ class Solution:
 
     @staticmethod
     def lg_p5248(ac=FastIO()):
-        # 进制题目
+        """
+        url:
+        tag: n-base
+        """
         m, fm = ac.read_list_ints()
         lst = []
         while fm:
@@ -479,7 +510,10 @@ class Solution:
 
     @staticmethod
     def lg_p7960(ac=FastIO()):
-        # 类似prime_sieve的思路preprocess
+        """
+        url:
+        tag: prime_sieve|preprocess
+        """
         n = 10 ** 7
         dp = [0] * (n + 1)
         for x in range(1, n + 1):
@@ -502,7 +536,10 @@ class Solution:
 
     @staticmethod
     def lg_p8646(ac=FastIO()):
-        # peishu_theorem|与背包 DP
+        """
+        url:
+        tag: peishu_theorem|bag_dp
+        """
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         s = 10000
@@ -959,7 +996,7 @@ class Solution:
     def lc_3326(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/minimum-division-operations-to-make-array-non-decreasing/
-        tag: greed|min_prime|reverse_order|classical
+        tag: greedy|min_prime|reverse_order|classical
         """
         pf = PrimeFactor(10 ** 6)
         ans = 0

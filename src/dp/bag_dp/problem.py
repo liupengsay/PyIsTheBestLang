@@ -36,7 +36,7 @@ P1509（https://www.luogu.com.cn/problem/P1509）matrix_bag_dp
 P1504（https://www.luogu.com.cn/problem/P1504）bag_dp|finite
 P2066（https://www.luogu.com.cn/problem/P2066）group_bag_dp|finite
 P2340（https://www.luogu.com.cn/problem/P2340）bag_dp
-P2370（https://www.luogu.com.cn/problem/P2370）mst|sort|greed|bag_dp
+P2370（https://www.luogu.com.cn/problem/P2370）mst|sort|greedy|bag_dp
 P2386（https://www.luogu.com.cn/problem/P2386）bag_dp|counter
 P2623（https://www.luogu.com.cn/problem/P2623）bag_dp|finite|bin_split|math.infinite
 P1474（https://www.luogu.com.cn/problem/P1474）bag_dp|math.infinite|counter
@@ -70,9 +70,9 @@ P1833（https://www.luogu.com.cn/problem/P1833）math.infinite|bag_dp|monotonic_
 P2014（https://www.luogu.com.cn/problem/P2014）dag|tree_bag_dp
 P2079（https://www.luogu.com.cn/problem/P2079）rolling_hash|bag_dp
 P2170（https://www.luogu.com.cn/problem/P2170）union_find|bag_dp|finite|bin_split
-P2214（https://www.luogu.com.cn/problem/P2214）bag_dp|greed
+P2214（https://www.luogu.com.cn/problem/P2214）bag_dp|greedy
 P2306（https://www.luogu.com.cn/problem/P2306）data_range|counter|finite|bin_split
-P2320（https://www.luogu.com.cn/problem/P2320）bin_split|greed|reverse_thinking
+P2320（https://www.luogu.com.cn/problem/P2320）bin_split|greedy|reverse_thinking
 P2737（https://www.luogu.com.cn/problem/P2737）math.infinite|bag_dp
 P2760（https://www.luogu.com.cn/problem/P2760）monotonic_queue|matrix_bag_dp
 P2854（https://www.luogu.com.cn/problem/P2854）bag_dp|group_bag_dp|finite
@@ -83,8 +83,8 @@ P3423（https://www.luogu.com.cn/problem/P3423）bin_split|matrix_bag_dp|specifi
 P3983（https://www.luogu.com.cn/problem/P3983）math.infinite|bag_dp
 P5322（https://www.luogu.com.cn/problem/P5322）matrix_dp|group_bag_dp|classical
 P5365（https://www.luogu.com.cn/problem/P5365）bag_dp|math.infinite|brute_force|counter
-P5662（https://www.luogu.com.cn/problem/P5662）math.infinite|bag_dp|greed
-P1417（https://www.luogu.com.cn/problem/P1417）greed|sort|bag_dp
+P5662（https://www.luogu.com.cn/problem/P5662）math.infinite|bag_dp|greedy
+P1417（https://www.luogu.com.cn/problem/P1417）greedy|sort|bag_dp
 P1489（https://www.luogu.com.cn/problem/P1489）bag_dp|brute_force
 P1651（https://www.luogu.com.cn/problem/P1651）linear_dp|brain_teaser|classical
 P1687（https://www.luogu.com.cn/problem/P1687）bag_dp
@@ -95,34 +95,34 @@ P3861（https://www.luogu.com.cn/problem/P3861）bag_dp|math|num_factor|matrix_d
 543A（https://codeforces.com/problemset/problem/543/A）matrix_bag_dp
 148E（https://codeforces.com/problemset/problem/148/E）bag_dp|finite|brute_force
 1433F（https://codeforces.com/problemset/problem/1433/F）bag_dp|finite|brute_force
-1657D（https://codeforces.com/contest/1657/problem/D）math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greed
-1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greed|specific_plan|classical
+1657D（https://codeforces.com/contest/1657/problem/D）math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
+1650F（https://codeforces.com/contest/1650/problem/F）bag_dp|reverse_thinking|greedy|specific_plan|classical
 1862F（https://codeforces.com/contest/1862/problem/F）bag_dp|brute_force
-1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greed|data_range|classical
+1974E（https://codeforces.com/contest/1974/problem/E）bag_dp|greedy|data_range|classical
 837D（https://codeforces.com/problemset/problem/837/D）matrix_dp|observation|classical|brain_teaser|bag_dp
 478D（https://codeforces.com/problemset/problem/478/D）matrix_dp|data_range|implemention|bag_dp
 163A（https://codeforces.com/problemset/problem/163/A）bag_dp|matrix_dp|classical
 1340B（https://codeforces.com/problemset/problem/1340/B）bag_dp|reverse_order|specific_plan
-2000E（https://codeforces.com/problemset/problem/2000/F）brute_force|greed|bag_dp
+2000E（https://codeforces.com/problemset/problem/2000/F）brute_force|greedy|bag_dp
 366C（https://codeforces.com/problemset/problem/366/C）bag_dp|data_range
-864E（https://codeforces.com/problemset/problem/864/E）bag_dp|specific_plan|greed|observation|classical
+864E（https://codeforces.com/problemset/problem/864/E）bag_dp|specific_plan|greedy|observation|classical
 
 ====================================AtCoder=====================================
 ABC054D（https://atcoder.jp/contests/abc054/tasks/abc054_d）matrix_bag_dp|finite
-ABC118D（https://atcoder.jp/contests/abc118/tasks/abc118_d）greed|bag_dp|specific_plan
+ABC118D（https://atcoder.jp/contests/abc118/tasks/abc118_d）greedy|bag_dp|specific_plan
 ABC145E（https://atcoder.jp/contests/abc145/tasks/abc145_e）brain_teaser|bag_dp|finite|sort|refresh_table
-ABC341F（https://atcoder.jp/contests/abc341/tasks/abc341_f）bag_dp|tree_dp|greed|classical
+ABC341F（https://atcoder.jp/contests/abc341/tasks/abc341_f）bag_dp|tree_dp|greedy|classical
 ABC327E（https://atcoder.jp/contests/abc327/tasks/abc327_e）bag_dp|brute_force
 ABC321f（https://atcoder.jp/contests/abc321/tasks/abc321_f）bag_dp|classical
 ABC317D（https://atcoder.jp/contests/abc317/tasks/abc317_d）bag_dp|brute_force|classical
-ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greed
+ABC257E（https://atcoder.jp/contests/abc257/tasks/abc257_e）bag_dp|greedy
 ABC222E（https://atcoder.jp/contests/abc222/tasks/abc222_e）bfs|bag_dp
 ABC219D（https://atcoder.jp/contests/abc219/tasks/abc219_d）bag_dp|classical
 ABC216F（https://atcoder.jp/contests/abc216/tasks/abc216_f）matrix_dp|bag_dp
 ABC204D（https://atcoder.jp/contests/abc204/tasks/abc204_d）bag_dp
 ABC200E（https://atcoder.jp/contests/abc200/tasks/abc200_e）bag_dp|counter|prefix_sum
 ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_plan
-ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greed|brain_teaser
+ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greedy|brain_teaser
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -357,7 +357,7 @@ class Solution:
     def cf_1657d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1657/problem/D
-        tag: math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greed
+        tag: math.infinite|bag_dp|mul|euler_series|O(nlogn)||binary_search|greedy
         """
         n, c = ac.read_list_ints()
         dp = [0] * (c + 1)
@@ -403,7 +403,7 @@ class Solution:
     def abc_118d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc118/tasks/abc118_d
-        tag: greed|bag_dp|specific_plan
+        tag: greedy|bag_dp|specific_plan
         """
         score = [2, 5, 5, 4, 5, 6, 3, 7, 6]
         n, m = ac.read_list_ints()
@@ -1024,7 +1024,7 @@ class Solution:
     def lg_p2214(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2214
-        tag: bag_dp|greed
+        tag: bag_dp|greedy
         """
         n, b = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(b)]
@@ -1076,7 +1076,7 @@ class Solution:
     def lg_p2320(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2320
-        tag: bin_split|greed|reverse_thinking
+        tag: bin_split|greedy|reverse_thinking
         """
         m = ac.read_int()
         ans = []
@@ -1363,7 +1363,7 @@ class Solution:
     def lg_p5662(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5662
-        tag: math.infinite|bag_dp|greed
+        tag: math.infinite|bag_dp|greedy
         """
         t, n, m = ac.read_list_ints()
         grid = [ac.read_list_ints() for _ in range(t)]
@@ -1382,7 +1382,7 @@ class Solution:
     def lg_p1417(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1417
-        tag: greed|sort|bag_dp
+        tag: greedy|sort|bag_dp
         """
         t, n = ac.read_list_ints()
         a = ac.read_list_ints()
@@ -1488,7 +1488,7 @@ class Solution:
     def abc_257e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc257/tasks/abc257_e
-        tag: bag_dp|greed
+        tag: bag_dp|greedy
         """
         n = ac.read_int()
         c = ac.read_list_ints()
@@ -1649,7 +1649,7 @@ class Solution:
     def cf_1964e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1974/problem/E
-        tag: bag_dp|greed|data_range|classical
+        tag: bag_dp|greedy|data_range|classical
         """
         for _ in range(ac.read_int()):
             m, x = ac.read_list_ints()
@@ -1941,7 +1941,7 @@ class Solution:
     def abc_373f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc373/tasks/abc373_f
-        tag: bag_dp|heapq|greed|brain_teaser
+        tag: bag_dp|heapq|greedy|brain_teaser
         """
         n, w = ac.read_list_ints()
         nums = [[] for _ in range(w + 1)]
@@ -1970,7 +1970,7 @@ class Solution:
     def cf_2000e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/2000/F
-        tag: brute_force|greed|bag_dp
+        tag: brute_force|greedy|bag_dp
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -2029,7 +2029,7 @@ class Solution:
     def cf_864e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/864/E
-        tag: bag_dp|specific_plan|greed|observation|classical
+        tag: bag_dp|specific_plan|greedy|observation|classical
         """
         n = ac.read_int()
         t = []

@@ -21,7 +21,7 @@ P1816（https://www.luogu.com.cn/problem/P1816）sparse_table|range_min
 P2412（https://www.luogu.com.cn/problem/P2412）lexicographical_order|sparse_table
 P5097（https://www.luogu.com.cn/problem/P5097）sparse_table|range_min
 P5648（https://www.luogu.com.cn/problem/P5648）sparse_table|range_max_index|monotonic_stack
-P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greed
+P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greedy
 
 ===================================CodeForces===================================
 1691D（https://codeforces.com/problemset/problem/1691/D）monotonic_stack|brute_force|sparse_table|range_max|range_min
@@ -43,7 +43,7 @@ P2048（https://www.luogu.com.cn/problem/P2048）sparse_table_index|heapq|greed
 1632D（https://codeforces.com/problemset/problem/1632/D）sparse_table|binary_search
 
 =====================================AcWing=====================================
-109（https://www.acwing.com/problem/content/111/）greed|multiplication_method
+109（https://www.acwing.com/problem/content/111/）greedy|multiplication_method
 
 =====================================AtCoder=====================================
 ABC212F（https://atcoder.jp/contests/abc212/tasks/abc212_f）multiplication_method|build_graph|brain_teaser|classical
@@ -126,7 +126,7 @@ class Solution:
     def ac_109(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/111/
-        tag: greed|multiplication_method|two_pointers|merge_sort|hard|classical
+        tag: greedy|multiplication_method|two_pointers|merge_sort|hard|classical
         """
 
         def range_merge_to_disjoint(lst1, lst2):
@@ -423,7 +423,7 @@ class Solution:
     def lg_p2048(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2048
-        tag: sparse_table_index|heapq|greed
+        tag: sparse_table_index|heapq|greedy
         """
         n, k, l, r = ac.read_list_ints()
         pre = [0] * (n + 1)

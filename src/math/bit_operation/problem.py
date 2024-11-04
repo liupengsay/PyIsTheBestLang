@@ -8,7 +8,7 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 2354（https://leetcode.cn/problems/number-of-excellent-pairs/）brain_teaser|hash|counter|brute_force
 260（https://leetcode.cn/problems/single-number-iii/）bit_operation|cor_property|lowest_bit
 2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
-2568（https://leetcode.cn/problems/minimum-impossible-or/）greed
+2568（https://leetcode.cn/problems/minimum-impossible-or/）greedy
 2564（https://leetcode.cn/problems/substring-xor-queries/）bit_operation|bit_property
 1238（https://leetcode.cn/problems/circular-permutation-in-binary-representation/）gray_code|classical
 89（https://leetcode.cn/problems/gray-code/）gray_code|classical
@@ -23,10 +23,10 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 1611（https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/）gray_code|classical
 2275（https://leetcode.cn/problems/largest-combination-with-bitwise-and-greater-than-zero/）range_add|classical|st
 2527（https://leetcode.cn/problems/find-xor-beauty-of-array/description/）brute_force|brain_teaser|bit_operation
-2680（https://leetcode.cn/problems/maximum-or/description/）greed|brute_force|prefix_suffix
-100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greed
+2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
+100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
 3007（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
-100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greed|brain_teaser
+100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
 3145（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range|classical|inclusion_exclusion|counter
 233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
 3315（https://leetcode.com/problems/construct-the-minimum-bitwise-array-ii/）construction|guess_table|bit_operation
@@ -37,11 +37,11 @@ P6102（https://www.luogu.com.cn/problem/P6102）bit_operation|and
 P7442（https://www.luogu.com.cn/problem/P7442）bit_operation|implemention|observe_pattern
 P7617（https://www.luogu.com.cn/problem/P7617）bit_operation|brute_force
 P7627（https://www.luogu.com.cn/problem/P7627）bit_operation|brute_force
-P7649（https://www.luogu.com.cn/problem/P7649）3-base|greed|implemention
+P7649（https://www.luogu.com.cn/problem/P7649）3-base|greedy|implemention
 P1582（https://www.luogu.com.cn/problem/P1582）base|brain_teaser
-P2114（https://www.luogu.com.cn/problem/P2114）bit_operation|implemention|greed
-P2326（https://www.luogu.com.cn/problem/P2326）bit_operation|implemention|greed|maximum_and
-P4144（https://www.luogu.com.cn/problem/P4144）bit_operation|greed|brain_teaser
+P2114（https://www.luogu.com.cn/problem/P2114）bit_operation|implemention|greedy
+P2326（https://www.luogu.com.cn/problem/P2326）bit_operation|implemention|greedy|maximum_and
+P4144（https://www.luogu.com.cn/problem/P4144）bit_operation|greedy|brain_teaser
 P4310（https://www.luogu.com.cn/problem/P4310）linear_dp|bit_operation
 P5390（https://www.luogu.com.cn/problem/P5390）bit_operation
 P6824（https://www.luogu.com.cn/problem/P6824）bit_operation|xor|diff_array|action_scope|counter
@@ -55,26 +55,26 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 305C（https://codeforces.com/problemset/problem/305/C）2-base
 878A（https://codeforces.com/problemset/problem/878/A）bit_operation
 282C（https://codeforces.com/problemset/problem/282/C）bit_operation
-1554C（https://codeforces.com/contest/1554/problem/C）bit_operation|greed
+1554C（https://codeforces.com/contest/1554/problem/C）bit_operation|greedy
 1800F（https://codeforces.com/contest/1800/problem/F）bit_operation|brute_force|counter
 276D（https://codeforces.com/contest/276/problem/D）maximum_xor|classical
 1742G（https://codeforces.com/contest/1742/problem/G）prefix_or|lexicographical_order|construction|specific_plan
 1851F（https://codeforces.com/contest/1851/problem/F）minimum_xor_pair|classical|sort|adjacent_pair|brain_teaser
 1879D（https://codeforces.com/contest/1879/problem/D）bit_operation|bit_contribution_method|prefix_sum|counter|prefix_or
-1368D（https://codeforces.com/problemset/problem/1368/D）implemention|greed|bit_wise|bit_operation
+1368D（https://codeforces.com/problemset/problem/1368/D）implemention|greedy|bit_wise|bit_operation
 1802C（https://codeforces.com/contest/1802/problem/C）construction|xor_property
-1918C（https://codeforces.com/contest/1918/problem/C）greed|bit_operation
+1918C（https://codeforces.com/contest/1918/problem/C）greedy|bit_operation
 1669H（https://codeforces.com/contest/1669/problem/H）bit_operation
 1760G（https://codeforces.com/contest/1760/problem/G）bit_operation|dfs|brute_force
 1066E（https://codeforces.com/contest/1066/problem/E）bit_operation|brute_force|implemention|prefix_sum
 1790E（https://codeforces.com/contest/1790/problem/E）bit_operation
 1968F（https://codeforces.com/contest/1968/problem/F）brute_force|bit_operation|binary_search
-1973B（https://codeforces.com/contest/1973/problem/B）bit_operation|implemention|greed
+1973B（https://codeforces.com/contest/1973/problem/B）bit_operation|implemention|greedy
 1362C（https://codeforces.com/problemset/problem/1362/C）bit_count|bit_operation
 1981B（https://codeforces.com/contest/1981/problem/B）bit_operation|classical|range_or
 1285D（https://codeforces.com/problemset/problem/1285/D）bitwise_xor|minimax|divide_and_conquer
 1982E（https://codeforces.com/contest/1982/problem/E）divide_and_conquer|bit_operation|brain_teaser|segment_tree
-1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greed|implemention
+1303D（https://codeforces.com/problemset/problem/1303/D）bit_operation|greedy|implemention
 1466E（https://codeforces.com/problemset/problem/1466/E）bit_operation|math|contribution_method|classical
 1491D（https://codeforces.com/problemset/problem/1491/D）bit_operation|observation|brain_teaser
 1322B（https://codeforces.com/problemset/problem/1322/B）bit_operation|contribution_method|classical|two_pointers
@@ -83,15 +83,15 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1720D1（https://codeforces.com/problemset/problem/1720/D1）linear_dp|data_range|observation|bit_operation
 1632C（https://codeforces.com/problemset/problem/1632/C）bit_operation|brute_force|construction
 2020C（https://codeforces.com/contest/2020/problem/C）bit_operation|construction
-1715D（https://codeforces.com/problemset/problem/1715/D）greed|construction|bit_operation
+1715D（https://codeforces.com/problemset/problem/1715/D）greedy|construction|bit_operation
 1416C（https://codeforces.com/problemset/problem/1416/C）bit_operation|divide_and_conquer|reverse_pair
 
 ====================================AtCoder=====================================
-ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greed|brain_teaser
+ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
 ABC147D（https://atcoder.jp/contests/abc147/tasks/abc147_d）classical|xor_sum
 ABC121D（https://atcoder.jp/contests/abc121/tasks/abc121_d）classical|xor_sum
 ABC308G（https://atcoder.jp/contests/abc308/tasks/abc308_g）minimum_pair_xor|dynamic
-ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greed|dfs|implemention|divide_conquer|merge
+ABC281F（https://atcoder.jp/contests/abc281/tasks/abc281_f）bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
 ABC261E（https://atcoder.jp/contests/abc261/tasks/abc261_e）bit_operation|brain_teaser|implemention|classical
 ABC356D（https://atcoder.jp/contests/abc356/tasks/abc356_d）bit_count|classical|math|digital_dp
 ARC092B（https://atcoder.jp/contests/arc092/tasks/arc092_b）bit_operation|contribution_method|classical|two_pointers
@@ -99,12 +99,12 @@ ABC365E（https://atcoder.jp/contests/abc365/tasks/abc365_e）bit_operation|pref
 ABC201E（https://atcoder.jp/contests/abc201/tasks/abc201_e）bit_operation|classical
 
 =====================================AcWing=====================================
-998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greed
+998（https://www.acwing.com/problem/content/1000/）or|xor|and|bit_operation|greedy
 4614（https://www.acwing.com/problem/content/4617/）bit_operation|brute_force|prefix_sum|preprocess
 
 =====================================Library=====================================
 1（https://ac.nowcoder.com/acm/contest/53485/F）minimum_pair_xor|dynamic|classical
-2（https://www.codechef.com/problems/LEXMAX）bit_operation|maximum_and|lexicographically_maximal|prefix_and|greed|classical
+2（https://www.codechef.com/problems/LEXMAX）bit_operation|maximum_and|lexicographically_maximal|prefix_and|greedy|classical
 3（https://www.codechef.com/problems/PREFSUFF）bit_operation|construction
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
@@ -247,7 +247,7 @@ class Solution:
     def cf_1554c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1554/problem/C
-        tag: bit_operation|greed|mex_like|brain_teaser|classical|hard|reverse_thinking
+        tag: bit_operation|greedy|mex_like|brain_teaser|classical|hard|reverse_thinking
         """
 
         for _ in range(ac.read_int()):
@@ -292,7 +292,7 @@ class Solution:
     def lc_2568(nums):
         """
         url: https://leetcode.cn/problems/minimum-impossible-or/
-        tag: greed|brain_teaser
+        tag: greedy|brain_teaser
         """
 
         dct = set(nums)
@@ -409,7 +409,7 @@ class Solution:
     def abc_117d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc117/tasks/abc117_d
-        tag: bit_operation|greed|brain_teaser|implemention|hard|bit_property
+        tag: bit_operation|greedy|brain_teaser|implemention|hard|bit_property
         """
 
         n, k = ac.read_list_ints()
@@ -442,7 +442,7 @@ class Solution:
     def ac_998(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/1000/
-        tag: or|xor|and|bit_operation|greed|implemention
+        tag: or|xor|and|bit_operation|greedy|implemention
         """
 
         n, m = ac.read_list_ints()
@@ -490,7 +490,7 @@ class Solution:
     def lg_p2114(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2114
-        tag: bit_operation|implemention|greed
+        tag: bit_operation|implemention|greedy
         """
 
         n, m = ac.read_list_ints()
@@ -524,7 +524,7 @@ class Solution:
     def lg_p2326(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2326
-        tag: bit_operation|implemention|greed|maximum_and
+        tag: bit_operation|implemention|greedy|maximum_and
         """
 
         for case in range(ac.read_int()):
@@ -551,7 +551,7 @@ class Solution:
     def lg_p4144(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4144
-        tag: bit_operation|greed|brain_teaser|hard|classical
+        tag: bit_operation|greedy|brain_teaser|hard|classical
         """
 
         n, b, p = ac.read_list_ints()
@@ -791,7 +791,7 @@ class Solution:
     def lc_100179(nums: List[int], k: int) -> int:
         """
         url: https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/
-        tag: bit_operation|greed|brain_teaser
+        tag: bit_operation|greedy|brain_teaser
         """
         ans = mask = 0
         for i in range(max(nums).bit_length(), -1, -1):
@@ -813,7 +813,7 @@ class Solution:
     def cf_1918c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1918/problem/C
-        tag: bit_operation|greed
+        tag: bit_operation|greedy
         """
         for _ in range(ac.read_int()):
             a, b, r = ac.read_list_ints()
@@ -830,7 +830,7 @@ class Solution:
     def abc_281f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc281/tasks/abc281_f
-        tag: bit_operation|sort|binary_trie|greed|dfs|implemention|divide_conquer|merge
+        tag: bit_operation|sort|binary_trie|greedy|dfs|implemention|divide_conquer|merge
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -882,7 +882,7 @@ class Solution:
     def cc_2(ac=FastIO()):
         """
         url: https://www.codechef.com/problems/LEXMAX
-        tag: bit_operation|maximum_and|lexicographically_maximal|prefix_and|greed|classical
+        tag: bit_operation|maximum_and|lexicographically_maximal|prefix_and|greedy|classical
         """
         for _ in range(ac.read_int()):
             ac.read_int()
@@ -1022,7 +1022,7 @@ class Solution:
     def cf_1303d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1303/D
-        tag: bit_operation|greed|implemention
+        tag: bit_operation|greedy|implemention
         """
 
         for _ in range(ac.read_int()):
@@ -1324,7 +1324,7 @@ class Solution:
     def cf_1715d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1715/D
-        tag: greed|construction|bit_operation
+        tag: greedy|construction|bit_operation
         """
         n, q = ac.read_list_ints()
         dct = [[] for _ in range(n)]

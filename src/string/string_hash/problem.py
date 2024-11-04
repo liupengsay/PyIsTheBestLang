@@ -20,11 +20,11 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 3327（https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/）dfs_order|manacher|palindrome|string_hash_single|classical
 
 =====================================LuoGu======================================
-P6140（https://www.luogu.com.cn/problem/P6140）greed|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
-P2870（https://www.luogu.com.cn/problem/P2870）greed|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+P6140（https://www.luogu.com.cn/problem/P6140）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
+P2870（https://www.luogu.com.cn/problem/P2870）greedy|implemention|lexicographical_order|string_hash|binary_search|reverse_order|lcs
 P5832（https://www.luogu.com.cn/problem/P5832）string_hash
 P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|height|monotonic_queue|string_hash
-P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greed
+P4656（https://www.luogu.com.cn/problem/P4656）string_hash|greedy
 P6739（https://www.luogu.com.cn/problem/P6739）prefix_suffix|string_hash
 P3370（https://www.luogu.com.cn/problem/P3370）string_hash
 P2601（https://www.luogu.com.cn/problem/P2601）matrix_hash
@@ -464,7 +464,7 @@ class Solution:
     def lg_p4656(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4656
-        tag: string_hash|greed
+        tag: string_hash|greedy
         """
         # string_hashgreedy选取
 

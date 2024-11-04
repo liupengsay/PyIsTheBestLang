@@ -8,9 +8,9 @@ Description：range_add|range_sum
 1626（https://leetcode.cn/problems/best-team-with-no-conflicts/）tree_array|prefix_maximum|dp
 2617（https://leetcode.cn/problems/minimum-number-of-visited-cells-in-a-grid/）tree_array|prefix_minimum
 308（https://leetcode.cn/problems/range-sum-query-2d-mutable/）tree_matrix|RangeAddRangeSum
-2659（https://leetcode.cn/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greed
+2659（https://leetcode.cn/problems/make-array-empty/submissions/）implemention|tree_array|sortedList|greedy
 1505（https://leetcode.cn/problems/minimum-possible-integer-after-at-most-k-adjacent-swaps-on-digits/）tree_array|implemention|counter|sorted_list
-2193（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greed|implemention|P5041
+2193（https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/）tree_array|greedy|implemention|P5041
 2407（https://leetcode.cn/problems/longest-increasing-subsequence-ii/description/）tree_array|liner_dp
 2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
@@ -22,7 +22,7 @@ P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
 P2345（https://www.luogu.com.cn/problem/P2345）tree_array|counter|range_sum
 P2357（https://www.luogu.com.cn/problem/P2357）tree_array|range_sum
 P2781（https://www.luogu.com.cn/problem/P2781）tree_array|range_sum
-P5200（https://www.luogu.com.cn/problem/P5200）tree_array|greed|implemention
+P5200（https://www.luogu.com.cn/problem/P5200）tree_array|greedy|implemention
 P3374（https://www.luogu.com.cn/problem/P3374）tree_array|RangeAddRangeSum
 P3368（https://www.luogu.com.cn/problem/P3368）tree_array|RangeAddRangeSum
 P5094（https://www.luogu.com.cn/problem/P5094）tree_array|RangeAddRangeSum
@@ -37,7 +37,7 @@ P1972（https://www.luogu.com.cn/problem/P1972）tree_array|offline_query|range_
 P5041（https://www.luogu.com.cn/problem/P5041）tree_array|implemention|classical
 
 ====================================AtCoder=====================================
-ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greed|tree_array
+ABC103D（https://atcoder.jp/contests/abc103/tasks/abc103_d）greedy|tree_array
 ABC127F（https://atcoder.jp/contests/abc127/tasks/abc127_f）discretization|tree_array|counter
 ABC287G（https://atcoder.jp/contests/abc287/tasks/abc287_g）segment_tree|range_sum|dynamic|offline|tree_array|bisect_right
 ABC306F（https://atcoder.jp/contests/abc306/tasks/abc306_f）tree_array|contribution_method|classical
@@ -112,7 +112,7 @@ class Solution:
     def lc_2193_1(s: str) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
-        tag: tree_array|greed|implemention|P5041
+        tag: tree_array|greedy|implemention|P5041
         """
         n = len(s)
         lst = list(s)
@@ -158,7 +158,7 @@ class Solution:
     def lc_2193_2(s: str) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-moves-to-make-palindrome/description/
-        tag: tree_array|greed|implemention|P5041
+        tag: tree_array|greedy|implemention|P5041
         """
         n = len(s)
         ans = 0
@@ -204,7 +204,7 @@ class Solution:
     def lc_2659(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/make-array-empty/submissions/
-        tag: implemention|tree_array|sortedList|greed
+        tag: implemention|tree_array|sortedList|greedy
         """
         n = len(nums)
         ans = 0

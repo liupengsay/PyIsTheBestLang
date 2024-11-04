@@ -13,47 +13,47 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 673（https://leetcode.cn/problems/number-of-longest-increasing-subsequence/）lis|counter|O(nlogn)|classical
 1092（https://leetcode.cn/problems/shortest-common-supersequence/）lcs_by_lis|super_sequence
 1671（https://leetcode.cn/problems/minimum-number-of-removals-to-make-mountain-array/）lis|prefix_suffix
-2111（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）lis|dp|greed
-17（https://leetcode.cn/problems/circus-tower-lcci/）partial_order|greed|sort|lis
+2111（https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/）lis|dp|greedy
+17（https://leetcode.cn/problems/circus-tower-lcci/）partial_order|greedy|sort|lis
 1691（https://leetcode.cn/problems/maximum-height-by-stacking-cuboids/submissions/）md_partial_order
 1713（https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/）lcs_by_lis
 1940（https://leetcode.cn/problems/longest-common-subsequence-between-sorted-arrays/）lcs_by_lis
 2826（https://leetcode.cn/problems/sorting-three-groups/）longest_non_decreasing_subsequence|classical
 1964（https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/）lis
-2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear dp|deque|greed|prefix_sum
+2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear_dp|deque|greedy|prefix_sum
 1035（https://leetcode.cn/problems/uncrossed-lines/description/）lcs|classical
 3288（https://leetcode.cn/problems/length-of-the-longest-increasing-path/）lis|partial_order|classical
 
 ===================================CodeForces===================================
-1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greed|counter
-486E（https://codeforces.com/problemset/problem/486/E）lis|greed|brain_teaser|classical
+1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
+486E（https://codeforces.com/problemset/problem/486/E）lis|greedy|brain_teaser|classical
 650D（https://codeforces.com/problemset/problem/650/D）lis|brain_teaser|classical|offline_query
 1922E（https://codeforces.com/problemset/problem/1922/E）lis|construction|divide_and_conquer
 
 =====================================LuoGu======================================
-P1020（https://www.luogu.com.cn/problem/P1020）greed|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
-P1439（https://www.luogu.com.cn/problem/P1439）greed|binary_search|lis
+P1020（https://www.luogu.com.cn/problem/P1020）greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence
+P1439（https://www.luogu.com.cn/problem/P1439）greedy|binary_search|lis
 P1091（https://www.luogu.com.cn/problem/P1091）prefix_suffix|lis
 P1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis
 P2782（https://www.luogu.com.cn/problem/P2782）partial_order|lis
 P3902（https://www.luogu.com.cn/problem/P3902）lis
 P6403（https://www.luogu.com.cn/problem/P6403）longest_non_decreasing_subsequence
 P5939（https://www.luogu.com.cn/problem/P5939）lis
-P5978（https://www.luogu.com.cn/problem/P5978）lis|greed|brute_force
+P5978（https://www.luogu.com.cn/problem/P5978）lis|greedy|brute_force
 P7957（https://www.luogu.com.cn/problem/P7957）lis|lds|construction
 P1410（https://www.luogu.com.cn/problem/P1410）dilworth|lis
 P2516（https://www.luogu.com.cn/problem/P2516）length_of_lcs|cnt_of_lcs
 P1108（https://www.luogu.com.cn/problem/P1108）matrix_dp|lis|classical|brain_teaser
 
 =====================================AcWing=====================================
-3549（https://www.acwing.com/problem/content/3552/）liner_dp|greed
+3549（https://www.acwing.com/problem/content/3552/）liner_dp|greedy
 2694（https://www.acwing.com/problem/content/description/2696/）lcs_by_lis|counter|dp
 3662（https://www.acwing.com/problem/content/description/3665/）lis|counter|discretization|tree_array|liner_dp|segment_tree
 
 ====================================AtCoder=====================================
 ABC134E（https://atcoder.jp/contests/abc134/tasks/abc134_e）minimum_group_increasing_subsequence_partition|length_of_longest_non_increasing_subsequence
 ABC354F（https://atcoder.jp/contests/abc354/tasks/abc354_f）lis|classical
-ABC360G（https://atcoder.jp/contests/abc360/tasks/abc360_g）lis|greed|implemention|classical|linear_dp|prefix_suffix
+ABC360G（https://atcoder.jp/contests/abc360/tasks/abc360_g）lis|greedy|implemention|classical|linear_dp|prefix_suffix
 
 （https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）lis|lexicographical_order
 
@@ -68,7 +68,7 @@ from typing import List
 
 from src.structure.segment_tree.template import RangeAscendRangeMax
 from src.structure.tree_array.template import PointAscendPreMax
-from src.greed.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
+from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.util.fast_io import FastIO
 
 
@@ -78,7 +78,10 @@ class Solution:
 
     @staticmethod
     def abc_134e(ac=FastIO()):
-        # 分成最少组数的上升子序列，等于最长不上升的子序列长度
+        """
+        url: https://atcoder.jp/contests/abc134/tasks/abc134_e
+        tag: minimum_group_increasing_subsequence_partition|length_of_longest_non_increasing_subsequence
+        """
         n = ac.read_int()
         nums = [ac.read_int() for _ in range(n)]
         ans = LongestIncreasingSubsequence().definitely_not_increase(nums)
@@ -91,7 +94,6 @@ class Solution:
         url: https://leetcode.cn/problems/minimum-operations-to-make-a-subsequence/
         tag: lcs_by_lis
         """
-        # 最长递增子序列模板题
         ind = {num: i for i, num in enumerate(target)}
         lst = [ind[num] for num in arr if num in ind]
         return len(target) - LongestIncreasingSubsequence().definitely_increase(lst)
@@ -100,9 +102,8 @@ class Solution:
     def lc_1964(obstacles: List[int]) -> List[int]:
         """
         url: https://leetcode.cn/problems/find-the-longest-valid-obstacle-course-at-each-position/
-        tag: lis
+        tag: lis|longest_increment_subsequence
         """
-        # LIS求以每个位置结尾的最长不降子序列长度
         pre = []
         dp = []
         for num in obstacles:
@@ -119,9 +120,8 @@ class Solution:
     def lc_2111(arr: List[int], k: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-operations-to-make-the-array-k-increasing/
-        tag: lis|dp|greed
+        tag: lis|dp|greedy
         """
-        # 最长不降子序列
         ans = 0
         for i in range(k):
             lst = arr[i::k]
@@ -134,7 +134,6 @@ class Solution:
         url: https://leetcode.cn/problems/sorting-three-groups/
         tag: longest_non_decreasing_subsequence|classical
         """
-        # 转换为求最长不降子序列
         n = len(nums)
         return n - LongestIncreasingSubsequence().definitely_not_reduce(nums)
 
@@ -142,7 +141,7 @@ class Solution:
     def lc_2945(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/
-        tag: linear dp|deque|greed|prefix_sum
+        tag: linear_dp|deque|greedy|prefix_sum
         """
         n = len(nums)
         stack = deque([0])
@@ -161,7 +160,10 @@ class Solution:
 
     @staticmethod
     def lc_p1020(ac=FastIO()):
-        # 根据 dilworth 最长不升子序列的长度与分成不降子序列的最小组数（最长上升子序列的长度）
+        """
+        url: https://www.luogu.com.cn/problem/P1020
+        tag: greedy|binary_search|longest_non_increasing_subsequence|longest_non_decreasing_subsequence|dilworth_theorem
+        """
         nums = ac.read_list_ints()
         lis = LongestIncreasingSubsequence()
         ac.st(lis.definitely_not_increase(nums))
@@ -170,7 +172,10 @@ class Solution:
 
     @staticmethod
     def lg_1439(ac=FastIO()):
-        # 最长公共子序列求解hash映射转换为最长上升子序列
+        """
+        url: https://www.luogu.com.cn/problem/P1439
+        tag: greedy|binary_search|lis|lcs
+        """
         n = ac.read_int()
         nums = ac.read_list_ints()
         ind = [0] * (n + 1)
@@ -186,7 +191,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P5939
         tag: lis
         """
-        # 旋转后转换为 LIS 问题
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
         nums = [[x + y, y - x] for x, y in nums]
@@ -205,12 +209,10 @@ class Solution:
     def lg_p5978(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5978
-        tag: lis|greed|brute_force
+        tag: lis|greedy|brute_force
         """
-        #  LIS 变形问题，greedybrute_force前半部分
         n, x = ac.read_list_ints()
         nums = ac.read_list_ints()
-        # preprocess后缀部分的最长 LIS 序列
         post = [0] * (n + 1)
         dp = []
         for i in range(n - 1, -1, -1):
@@ -221,7 +223,6 @@ class Solution:
             else:
                 dp.append(-nums[i])
 
-        # greedy减少前缀值并维护最长子序列
         ans = max(post)
         dp = []
         for i in range(n):
@@ -239,9 +240,8 @@ class Solution:
     def lg_p7957(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P7957
-        tag: lis|lds|construction
+        tag: lis|lds|construction|lms
         """
-        #  LMS 逆问题construction
         n, k = ac.read_list_ints()
         if k * k < n:
             ac.st(-1)
@@ -260,7 +260,7 @@ class Solution:
     def cf_1682c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1682/problem/C
-        tag: lis|lds|greed|counter
+        tag: lis|lds|greedy|counter
         """
         for _ in range(ac.read_int()):
             ac.read_int()
@@ -287,9 +287,8 @@ class Solution:
     def lc_1092(str1: str, str2: str) -> str:
         """
         url: https://leetcode.cn/problems/shortest-common-supersequence/
-        tag: lcs_by_lis|super_sequence
+        tag: lcs_by_lis|super_sequence|classical
         """
-        # 利用LIS求LCS的最短公共超序列
         if len(str1) > len(str2):
             str1, str2 = str2, str1
         lcs_lis = LcsComputeByLis().index_of_lcs(str1, str2)
@@ -315,7 +314,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1410
         tag: dilworth|lis
         """
-        # 最长不上升子序列
         while True:
             lst = ac.read_list_ints()
             if not lst:
@@ -335,9 +333,8 @@ class Solution:
     def ac_3549(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/3552/
-        tag: liner_dp|greed
+        tag: liner_dp|greedy
         """
-        # 翻转连续子数组获得最长不降子序列
         ac.read_int()
         nums = ac.read_list_ints()
         s1 = s12 = s121 = s1212 = 0
@@ -357,13 +354,11 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3665/
         tag: lis|counter|discretization|tree_array|liner_dp|segment_tree
         """
-        # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
         n = len(ind)
         tree = PointAscendPreMax(n)
-
         for num in nums:
             if ind[num] == 0:
                 tree.point_ascend(1, num)
@@ -378,7 +373,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3665/
         tag: lis|counter|discretization|tree_array|liner_dp|segment_tree
         """
-        # 所有长度的严格上升子序列的最大子序列和，discretizationtree_array|与liner_dp，也可segment_tree|
         ac.read_int()
         nums = ac.read_list_ints()
         ind = {num: i for i, num in enumerate(sorted(list(set(nums))))}
@@ -399,7 +393,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/2696/
         tag: lcs_by_lis|counter|dp
         """
-        # LIS的方法求解LCS的长度与个数
         mod = 10 ** 8
         s1 = ac.read_str()[:-1]
         s2 = ac.read_str()[:-1]
@@ -498,7 +491,7 @@ class Solution:
     def cf_486e_1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/486/E
-        tag: lis|greed|brain_teaser|classical
+        tag: lis|greedy|brain_teaser|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -543,7 +536,7 @@ class Solution:
     def cf_486e_2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/486/E
-        tag: lis|greed|brain_teaser|classical
+        tag: lis|greedy|brain_teaser|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -680,7 +673,7 @@ class Solution:
     def abc_360g(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc360/tasks/abc360_g
-        tag: lis|greed|implemention|classical|linear_dp|prefix_suffix
+        tag: lis|greedy|implemention|classical|linear_dp|prefix_suffix
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

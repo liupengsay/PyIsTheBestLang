@@ -74,7 +74,7 @@ class KruskalMinimumSpanningTree:
         if method == "kruskal":
             # Edge priority
             self.edges.sort(key=lambda item: item[2])
-            # greed selection of edges based on weight for connected merging
+            # greedy selection of edges based on weight for connected merging
             uf = UnionFind(self.n)
             for x, y, z in self.edges:
                 if uf.union(x, y):

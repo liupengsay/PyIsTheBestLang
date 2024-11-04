@@ -1,6 +1,5 @@
 class PruferAndTree:
     def __init__(self):
-        """默认以0为最小标号"""
         return
 
     @staticmethod
@@ -28,10 +27,8 @@ class PruferAndTree:
         return parent
 
     def tree_to_prufer(self, adj, root):
-        # 以root为根的带标号树生成prufer序列，adj为邻接关系
         parent = self.adj_to_parent(adj, root)
         n = len(adj)
-        # 统计度数，以较小的叶子节点序号开始
         ptr = -1
         degree = [0] * n
         for i in range(0, n):
@@ -39,7 +36,6 @@ class PruferAndTree:
             if degree[i] == 1 and ptr == -1:
                 ptr = i
 
-        # 生成prufer序列
         code = [0] * (n - 2)
         leaf = ptr
         for i in range(0, n - 2):
@@ -57,10 +53,8 @@ class PruferAndTree:
 
     @staticmethod
     def prufer_to_tree(code, root):
-        # prufer序列生成以root为根的带标号树
         n = len(code) + 2
 
-        # 根据度确定初始叶节点
         degree = [1] * n
         for i in code:
             degree[i] += 1
@@ -69,7 +63,6 @@ class PruferAndTree:
             ptr += 1
         leaf = ptr
 
-        # 逆向工程还原
         adj = [[] for _ in range(n)]
         for v in code:
             adj[v].append(leaf)
@@ -83,7 +76,6 @@ class PruferAndTree:
                     ptr += 1
                 leaf = ptr
 
-        # 最后还由就是生成prufer序列剩下的根和叶子节点
         adj[leaf].append(root)
         adj[root].append(leaf)
         for i in range(n):

@@ -7,14 +7,14 @@ Description：multi_source_bfs|bilateral_bfs|spfa|a-star|heuristic_search
 100318（https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees）graph_diameter|diameter_merge|classical
 
 =====================================LuoGu======================================
-P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greed
-P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greed
+P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greedy
+P2491（https://www.luogu.com.cn/problem/P2491）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greedy
 P3304（https://www.luogu.com.cn/problem/P3304）tree_diameter
 
 ===================================CodeForces===================================
 1805D（https://codeforces.com/problemset/problem/1805/D）tree_diameter
 455C（https://codeforces.com/problemset/problem/455/C）bfs|graph_diameter|union_find|implemention|diameter_merge
-734E（https://codeforces.com/problemset/problem/734/E）tree_diameter|brain_teaser|greed|shrink_node
+734E（https://codeforces.com/problemset/problem/734/E）tree_diameter|brain_teaser|greedy|shrink_node
 
 ====================================AtCoder=====================================
 ABC267F（https://atcoder.jp/contests/abc267/tasks/abc267_f）tree_diameter|reroot_dp|brain_teaser|dfs|back_trace|classical
@@ -383,7 +383,7 @@ class Solution:
     def cf_734e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/734/E
-        tag: tree_diameter|brain_teaser|greed|shrink_node
+        tag: tree_diameter|brain_teaser|greedy|shrink_node
         """
         n = ac.read_int()
         color = ac.read_list_ints()

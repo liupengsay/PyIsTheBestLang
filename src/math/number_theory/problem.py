@@ -30,7 +30,7 @@ P1555（https://www.luogu.com.cn/problem/P1555）2-base|3-base
 P1465（https://www.luogu.com.cn/problem/P1465）int_to_roman
 P1112（https://www.luogu.com.cn/problem/P1112）brute_force
 P2926（https://www.luogu.com.cn/problem/P2926）prime_factorization|counter
-P5535（https://www.luogu.com.cn/problem/P5535）prime|is_prime5|greed|brain_teaser
+P5535（https://www.luogu.com.cn/problem/P5535）prime|is_prime5|greedy|brain_teaser
 P1876（https://www.luogu.com.cn/problem/P1876）odd_even|factorization|classical
 P1887（https://www.luogu.com.cn/problem/P1887）classical|maximum_mul
 P2043（https://www.luogu.com.cn/problem/P2043）prime_factorization|prime_sieve|factorial
@@ -53,7 +53,7 @@ P5253（https://www.luogu.com.cn/problem/P5253）math
 P7960（https://www.luogu.com.cn/problem/P7960）prime_sieve|preprocess
 P8762（https://www.luogu.com.cn/problem/P8762）inclusion_exclusion|prefix_sum|counter
 P8778（https://www.luogu.com.cn/problem/P8778）brute_force|prime_factorization|O(n^0.25)|classical
-P8782（https://www.luogu.com.cn/problem/P8782）base|greed|classical
+P8782（https://www.luogu.com.cn/problem/P8782）base|greedy|classical
 P5091（https://www.luogu.com.cn/problem/P5091）extend_euler_theorem|classical
 P1619（https://www.luogu.com.cn/problem/P1619）prime_factor|pollard_rho
 P2104（https://www.luogu.com.cn/problem/P2104）stack|n_bin
@@ -72,13 +72,13 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1295D（https://codeforces.com/contest/1295/problem/D）euler_phi|n_coprime
 1538D（https://codeforces.com/problemset/problem/1538/D）pollard_rho|prime_factorization
 1458A（https://codeforces.com/problemset/problem/1458/A）gcd|math
-1444A（https://codeforces.com/problemset/problem/1444/A）greed|brute_force|prime_factorization
-1823C（https://codeforces.com/contest/1823/problem/C）prime_factorization|greed
+1444A（https://codeforces.com/problemset/problem/1444/A）greedy|brute_force|prime_factorization
+1823C（https://codeforces.com/contest/1823/problem/C）prime_factorization|greedy
 1744E2（https://codeforces.com/contest/1744/problem/E2）brute_force|factorization
 1612D（https://codeforces.com/contest/1612/problem/D）gcd_like
 1920C（https://codeforces.com/contest/1920/problem/C）brute_force|num_factor|gcd_like
-1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greed
-1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greed|brain_teaser|classical|minimum_lcm_pair
+1029F（https://codeforces.com/contest/1029/problem/F）num_factor|brute_force|greedy
+1154G（https://codeforces.com/contest/1154/problem/G）num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
 1360H（https://codeforces.com/contest/1360/problem/H）n_base
 1475G（https://codeforces.com/contest/1475/problem/G）linear_dp|brute_force|euler_series|reverse_thinking|brute_force
 1512G（https://codeforces.com/contest/1512/problem/G）euler_sieve|number_theory|all_factor_sum|multiplicative_function|classical
@@ -88,7 +88,7 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1878F（https://codeforces.com/contest/1878/problem/F）number_theory|brute_force
 1982D（https://codeforces.com/contest/1982/problem/D）peishu_theorem|math|implemention|brute_force|prefix_sum_matrix
 1656D（https://codeforces.com/problemset/problem/1656/D）math|odd_even|observation|bain_teaser
-1992F（https://codeforces.com/contest/1992/problem/F）greed|implemention|math
+1992F（https://codeforces.com/contest/1992/problem/F）greedy|implemention|math
 1361B（https://codeforces.com/problemset/problem/1361/B）observation|limited_operation|data_range|brain_teaser|math
 1478D（https://codeforces.com/problemset/problem/1478/D）math|peishu_theorem
 1228C（https://codeforces.com/problemset/problem/1228/C）math|num_factor|contribution_method
@@ -97,12 +97,12 @@ P6539（https://www.luogu.com.cn/problem/P6539）euler_series|classical|brute_fo
 1614D2（https://codeforces.com/problemset/problem/1614/D2）euler_series|number_theory|linear_dp|classical|factor_cnt
 632D（https://codeforces.com/problemset/problem/632/D）linear_dp|math|classical|euler_series
 1753B（https://codeforces.com/contest/1753/problem/B）math|n_base
-2013E（https://codeforces.com/contest/2013/problem/E）greed|gcd_like|number_theory|observation
+2013E（https://codeforces.com/contest/2013/problem/E）greedy|gcd_like|number_theory|observation
 1750D（https://codeforces.com/problemset/problem/1750/D）number_theory|observation|data_range|limited_operation|inclusion_exclusion|gcd_like|num_factor|classical
 687B（https://codeforces.com/problemset/problem/687/B）math|mod|lcm|classical
 2020B（https://codeforces.com/contest/2020/problem/B）factor_cnt|number_theory|classical
 1114C（https://codeforces.com/problemset/problem/1114/C）get_prime_factor|num_factor|inclusion_exclusion|n_base
-2007C（https://codeforces.com/problemset/problem/2007/C）peishu_theorem|gcd_like|greed|brain_teaser|implemention|math
+2007C（https://codeforces.com/problemset/problem/2007/C）peishu_theorem|gcd_like|greedy|brain_teaser|implemention|math
 1010C（https://codeforces.com/problemset/problem/1010/C）peishu_theorem
 2033F（https://codeforces.com/contest/2033/problem/F）data_range|fibonacci_property|brain_teaser|math
 
@@ -114,7 +114,7 @@ ABC304F（https://atcoder.jp/contests/abc304/tasks/abc304_f）classical|inclusio
 ABC300D（https://atcoder.jp/contests/abc300/tasks/abc300_d）brute_force|two_pointers
 ABC293E（https://atcoder.jp/contests/abc293/tasks/abc293_e）power_reverse|frac_pow|classical|math|recursion|divide_conquer
 ABC284D（https://atcoder.jp/contests/abc284/tasks/abc284_d）get_prime_with_pollard_rho|num_factor|classical
-ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greed|classical
+ABC280D（https://atcoder.jp/contests/abc280/tasks/abc280_d）prime_factorization|brain_teaser|greedy|classical
 ABC259E（https://atcoder.jp/contests/abc259/tasks/abc259_e）brute_force|lcm|num_factor
 ABC253D（https://atcoder.jp/contests/abc253/tasks/abc253_d）inclusion_exclusion|lcm|math|corner_case|classical
 ABC250D（https://atcoder.jp/contests/abc250/tasks/abc250_d）brute_force|counter|contribution_method|math
@@ -140,8 +140,8 @@ ABC190D（https://atcoder.jp/contests/abc190/tasks/abc190_d）num_factor|brute_f
 4002（https://www.acwing.com/problem/content/description/4002/）CF1295D
 4322（https://www.acwing.com/problem/content/4322/）prime_factorization|prefix_hash|counter
 4487（https://www.acwing.com/problem/content/4487/）base
-4489（https://www.acwing.com/problem/content/description/4489/）prime_factorization|greed
-4625（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greed|construction
+4489（https://www.acwing.com/problem/content/description/4489/）prime_factorization|greedy
+4625（https://www.acwing.com/problem/content/description/4625/）brain_teaser|greedy|construction
 5052（https://www.acwing.com/problem/content/description/5052/）prime_factorization|comb
 
 
@@ -372,7 +372,7 @@ class Solution:
     def lg_p1069(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1069
-        tag: prime_factorization|counter|greed
+        tag: prime_factorization|counter|greedy
         """
         ac.read_int()
         m1, m2 = ac.read_list_ints()
@@ -717,7 +717,7 @@ class Solution:
     def ac_4486(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4489/
-        tag: prime_factorization|greed
+        tag: prime_factorization|greedy
         """
 
         n = ac.read_int()
@@ -749,7 +749,7 @@ class Solution:
     def ac_4622(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/4625/
-        tag: brain_teaser|greed|construction
+        tag: brain_teaser|greedy|construction
         """
 
         n = ac.read_int()
@@ -794,7 +794,11 @@ class Solution:
 
     @staticmethod
     def cf_1744_e2(ac=FastIO()):
-        # 因数brute_force
+        """
+        url: https://codeforces.com/contest/1744/problem/E2
+        tag: brute_force|factorization
+        """
+
         for _ in range(ac.read_int()):
             a, b, c, d = ac.read_list_ints()
             lst_a = NumFactor().get_all_factor(a)
@@ -892,7 +896,7 @@ class Solution:
     def cf_1029f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1029/problem/F
-        tag: num_factor|brute_force|greed
+        tag: num_factor|brute_force|greedy
         """
         a, b = ac.read_list_ints()
         lst_a = NumFactor().get_all_factor(a)
@@ -920,7 +924,7 @@ class Solution:
     def cf_1154g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1154/problem/G
-        tag: num_factor|brute_force|greed|brain_teaser|classical|minimum_lcm_pair
+        tag: num_factor|brute_force|greedy|brain_teaser|classical|minimum_lcm_pair
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -1121,7 +1125,7 @@ class Solution:
     def abc_280d(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc280/tasks/abc280_d
-        tag: prime_factorization|brain_teaser|greed|classical
+        tag: prime_factorization|brain_teaser|greedy|classical
         """
         k = ac.read_int()
         lst = NumFactor().get_prime_factor(k)
@@ -1426,7 +1430,7 @@ class Solution:
     def cf_1992f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1992/problem/F
-        tag: greed|implemention|math
+        tag: greedy|implemention|math
         """
 
         for _ in range(ac.read_int()):
@@ -1852,7 +1856,7 @@ class Solution:
     def cf_2013e(ac=FastIO()):
         """
         url: https://codeforces.com/contest/2013/problem/E
-        tag: greed|gcd_like|number_theory|observation
+        tag: greedy|gcd_like|number_theory|observation
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -2019,7 +2023,7 @@ class Solution:
     def cf_2007c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/2007/C
-        tag: peishu_theorem|gcd_like|greed|brain_teaser|implemention|math
+        tag: peishu_theorem|gcd_like|greedy|brain_teaser|implemention|math
         """
         for _ in range(ac.read_int()):
             n, a, b = ac.read_list_ints()

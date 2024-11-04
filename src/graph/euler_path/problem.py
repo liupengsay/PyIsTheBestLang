@@ -69,7 +69,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P2731
         tag: lexicographical_order_minimum|undirected_euler_path|specific_plan
         """
-        # 无向图euler_path或者euler_circular_path
         m = ac.read_int()
         pairs = [ac.read_list_ints() for _ in range(m)]
         node = set()
@@ -91,7 +90,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1341
         tag: lexicographical_order_minimum|undirected_euler_path|specific_plan
         """
-        # 无向图euler_path或者euler_circular_path
+
         m = ac.read_int()
         nodes = set()
         pairs = []
@@ -101,7 +100,6 @@ class Solution:
             nodes.add(s[1])
             pairs.append([s[0], s[1]])
 
-        # 首先discretization编码判断是否连通
         nodes = sorted(list(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(nodes)
@@ -112,7 +110,6 @@ class Solution:
             ac.st("No Solution")
             return
 
-        # 无向图lexicographical_order最小的欧拉序
         pairs = [[ind[x], ind[y]] for x, y in pairs]
         euler = UnDirectedEulerPath(n, pairs)
         if not euler.exist:
@@ -128,10 +125,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1127
         tag: lexicographical_order_minimum|directed_euler_path|specific_plan
         """
-        # 有向图euler_path或者euler_circular_path
         m = ac.read_int()
-
-        # 最关键的build_graph|
         nodes = set()
         pairs = []
         for _ in range(m):
@@ -142,7 +136,6 @@ class Solution:
             pairs.append([s[0], s])
             pairs.append([s, s[-1]])
 
-        # 按照序号编码并检查连通性
         nodes = sorted(list(nodes))
         ind = {num: i for i, num in enumerate(nodes)}
         n = len(nodes)
@@ -153,14 +146,12 @@ class Solution:
             ac.st("***")
             return
 
-        # 有向图euler_path或者euler_circular_path的获取
         pairs = [[ind[x], ind[y]] for x, y in pairs]
         euler = DirectedEulerPath(n, pairs)
         if not euler.exist:
             ac.st("***")
             return
 
-        # 去除虚拟开头与结尾字母
         ans = []
         for x in euler.nodes:
             ans.append(nodes[x])
@@ -169,18 +160,17 @@ class Solution:
         return
 
     @staticmethod
-    def lg_p6606(ac=FastIO()):
-        # 有向图euler_path或者euler_circular_path
+    def lg_p6066(ac=FastIO()):
+        """
+        url: https://www.luogu.com.cn/problem/P6066
+        tag: euler_path|directed_euler_path|euler_circular_path|build_graph
+        """
         n, m = ac.read_list_ints()
-        # 最关键的build_graph|
         pairs = []
         for _ in range(m):
             u, v = ac.read_list_ints_minus_one()
-            # 每条边两个方向各走一遍
             pairs.append([u, v])
             pairs.append([v, u])
-
-        # 有向图euler_path或者euler_circular_path的获取
         euler = DirectedEulerPath(n, pairs)
         i = euler.nodes.index(0)
         for x in euler.nodes[i:] + euler.nodes[:i]:
@@ -193,7 +183,6 @@ class Solution:
         url: https://leetcode.cn/problems/restore-the-array-from-adjacent-pairs/
         tag: undirected_euler_path|discretization
         """
-        # 无向图euler_path模板题, discretization解决
         nodes = set()
         for a, b in adjacent:
             nodes.add(a)
@@ -209,9 +198,8 @@ class Solution:
     def lc_2097(pairs: List[List[int]]) -> List[List[int]]:
         """
         url: https://leetcode.cn/problems/valid-arrangement-of-pairs/submissions/
-        tag: euler_path
+        tag: directed_euler_path|discretization
         """
-        # euler_path模板题，discretization后转化为图的euler_path求解
         nodes = set()
         for a, b in pairs:
             nodes.add(a)
@@ -230,7 +218,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/4214/
         tag: directed_euler_path|specific_plan
         """
-        # 有向图euler_path模板题
         n = ac.read_int()
         pairs = []
         nums = ac.read_list_ints()

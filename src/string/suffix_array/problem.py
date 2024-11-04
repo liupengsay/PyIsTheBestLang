@@ -19,13 +19,13 @@ P2852（https://www.luogu.com.cn/problem/P2852）binary_search|suffix_array|heig
 P2852（https://www.luogu.com.cn/problem/P2408）suffix_array|height
 P3804（https://www.luogu.com.cn/problem/P3804）suffix_array|height|monotonic_stack
 P4248（https://www.luogu.com.cn/problem/P4248）suffix_array|height|lcp|monotonic_stack
-P3975（https://www.luogu.com.cn/problem/P3975）greed|bfs|suffix_array|height
+P3975（https://www.luogu.com.cn/problem/P3975）greedy|bfs|suffix_array|height
 P3796（https://www.luogu.com.cn/problem/P3796）suffix_array|height|sa|monotonic_stack|prefix_sum
 P5546（https://www.luogu.com.cn/problem/P5546）suffix_array|lcs|lcp|monotonic_queue
 P4341（https://www.luogu.com.cn/problem/P4341）suffix_array|height
 P4070（https://www.luogu.com.cn/problem/P4070）
 P6095（https://www.luogu.com.cn/problem/P6095）
-P2870（https://www.luogu.com.cn/problem/P2870）suffix_array|greed|implemention|classical
+P2870（https://www.luogu.com.cn/problem/P2870）suffix_array|greedy|implemention|classical
 
 =====================================AcWing=====================================
 142（https://www.acwing.com/problem/content/142/）suffix_array|template
@@ -35,7 +35,7 @@ P2870（https://www.luogu.com.cn/problem/P2870）suffix_array|greed|implemention
 123D（https://codeforces.com/problemset/problem/123/D）suffix_array|height|monotonic_stack
 271D（https://codeforces.com/contest/271/problem/D）suffix_array|height|different_limited_substring
 802I（https://codeforces.com/contest/802/problem/I）suffix_array|height|monotonic_stack
-128B（https://codeforces.com/contest/128/problem/B）greed|bfs|suffix_array|height
+128B（https://codeforces.com/contest/128/problem/B）greedy|bfs|suffix_array|height
 427D（https://codeforces.com/contest/427/problem/D）suffix_array|height|sa|lcp|trick|lcs
 1526E（https://codeforces.com/contest/1526/problem/E）suffix_array|reverse_thinking|comb|construction
 611D（https://codeforces.com/problemset/problem/611/D）
@@ -628,7 +628,7 @@ class Solution:
     def cf_128b(ac=FastIO()):
         """
         url: https://codeforces.com/contest/128/problem/B
-        tag: greed|bfs|suffix_array|height
+        tag: greedy|bfs|suffix_array|height
         """
         s = ac.read_str()
         lst = [ord(w) - ord("a") for w in s]
@@ -1538,7 +1538,7 @@ class Solution:
     def lg_p2870(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2870
-        tag: suffix_array|greed|implemention|classical
+        tag: suffix_array|greedy|implemention|classical
         """
         s = []
         for _ in range(ac.read_int()):

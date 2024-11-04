@@ -54,7 +54,7 @@ P7158（https://www.luogu.com.cn/problem/P7158）comb
 559C（https://codeforces.com/contest/559/problem/C）inclusion_exclusion|counter
 1436C（https://codeforces.com/contest/1436/problem/C）binary_search|comb
 414B（https://codeforces.com/contest/414/problem/B）min_prime|partition_method|counter|dp
-1879C（https://codeforces.com/contest/1879/problem/C）greed|brute_force|comb|counter
+1879C（https://codeforces.com/contest/1879/problem/C）greedy|brute_force|comb|counter
 1833F（https://codeforces.com/contest/1833/problem/F）prefix_mul|mod
 1420D（https://codeforces.com/problemset/problem/1420/D）contribution_method|comb|range
 1359E（https://codeforces.com/problemset/problem/1359/E）math|comb|brute_force

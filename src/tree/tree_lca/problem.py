@@ -5,7 +5,7 @@ Description：
 
 ====================================LeetCode====================================
 1483（https://leetcode.cn/problems/kth-ancestor-of-a-tree-node/）sparse_table|tree_array|lca|tree_lca|classical
-2846（https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree）tree_lca|greed
+2846（https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree）tree_lca|greedy
 
 
 =====================================LuoGu======================================
@@ -24,7 +24,7 @@ P3976（https://www.luogu.com.cn/problem/P3976）range_add|range_max_gain|range_
 1328E（https://codeforces.com/problemset/problem/1328/E）tree_lca|dfs_order
 321C（https://codeforces.com/problemset/problem/321/C）tree_centroid_recursion|classical
 519E（https://codeforces.com/problemset/problem/519/E）lca|kth_ancestor|counter
-1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greed|construction|multiplication_method
+1296F（https://codeforces.com/contest/1296/problem/F）offline_lca|greedy|construction|multiplication_method
 1702G2（https://codeforces.com/contest/1702/problem/G2）tree_lca
 1843F2（https://codeforces.com/contest/1843/problem/F2）tree_lca|multiplication_method|classical|max_con_sub_sum
 1304E（https://codeforces.com/problemset/problem/1304/E）observation|tree_lca|graph|implemention
@@ -414,7 +414,7 @@ class Solution:
 
         """
         url: https://leetcode.cn/problems/minimum-edge-weight-equilibrium-queries-in-a-tree
-        tag: tree_lca|greed
+        tag: tree_lca|greedy
         """
 
         class Graph(WeightedTree):

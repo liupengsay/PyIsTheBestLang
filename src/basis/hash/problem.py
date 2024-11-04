@@ -7,12 +7,12 @@ Description：prefix_suffix|counter|index|prefix_sum
 17（https://leetcode.cn/problems/find-longest-subarray-lcci/）prefix_sum|hash
 1590（https://leetcode.cn/problems/make-sum-divisible-by-p/）prefix_sum|hash|mod|counter
 2588（https://leetcode.cn/problems/count-the-number-of-beautiful-subarrays/）prefix_sum|hash|counter
-02（https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/）prefix_sum|hash|brain_teaser|greed
+02（https://leetcode.cn/contest/hhrc2022/problems/0Wx4Pc/）prefix_sum|hash|brain_teaser|greedy
 03（https://leetcode.cn/contest/hhrc2022/problems/VAc7h3/）tree_hash
 2031（https://leetcode.cn/problems/count-subarrays-with-more-ones-than-zeros/）prefix_sum|hash|counter
 2025（https://leetcode.cn/problems/maximum-number-of-ways-to-partition-an-array/description/）hash|contribution_method|counter
 895（https://leetcode.cn/problems/maximum-frequency-stack/description/）hash|stack
-1658（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sum|hash|brain_teaser|greed
+1658（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sum|hash|brain_teaser|greedy
 2227（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）brain_teaser|reverse_thinking
 
 ===================================CodeForces===================================
@@ -77,7 +77,7 @@ class Solution:
     def lc_1658(nums: List[int], x: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/
-        tag: prefix_sum|hash|brain_teaser|greed|reverse_thinking
+        tag: prefix_sum|hash|brain_teaser|greedy|reverse_thinking
         """
         pre = {0: -1}
         cur = 0

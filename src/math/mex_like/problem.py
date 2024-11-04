@@ -1,12 +1,12 @@
 """
 Algorithm：Minimum Excluded Element
-Ability：brain storming like or g greed
+Ability：brain storming like or g greedy
 Reference：
 
 ====================================LeetCode====================================
-330（https://leetcode.cn/problems/patching-array/）greed|sort|implemention|mex
-1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greed|sort|implemention|mex
-2952（https://leetcode.cn/problems/minimum-number-of-coins-to-be-added/）greed|sort|implemention|mex
+330（https://leetcode.cn/problems/patching-array/）greedy|sort|implemention|mex
+1798（https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/）greedy|sort|implemention|mex
+2952（https://leetcode.cn/problems/minimum-number-of-coins-to-be-added/）greedy|sort|implemention|mex
 
 ======================================Luogu=====================================
 P9202（https://www.luogu.com.cn/problem/P9202）mex|operation
@@ -33,7 +33,7 @@ class Solution:
     def lc_330(nums: List[int], n: int) -> int:
         """
         url: https://leetcode.cn/problems/patching-array/
-        tag: greed|sort|implemention|mex|classical
+        tag: greedy|sort|implemention|mex|classical
         """
         nums.sort()
         m = len(nums)
@@ -53,7 +53,7 @@ class Solution:
     def lc_2952(nums: List[int], n: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-number-of-coins-to-be-added/
-        tag: greed|sort|implemention|mex
+        tag: greedy|sort|implemention|mex
         """
         nums.sort()
         m = len(nums)
@@ -73,7 +73,7 @@ class Solution:
     def lc_1798(coins: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-number-of-consecutive-values-you-can-make/
-        tag: greed|sort|implemention|mex
+        tag: greedy|sort|implemention|mex
         """
         coins.sort()
         mex = 1

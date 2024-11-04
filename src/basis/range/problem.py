@@ -5,52 +5,52 @@ minimum_point_cover_range|minimum_group_range_disjoint|maximum_point_cover_range
 
 ====================================LeetCode====================================
 45（https://leetcode.cn/problems/jump-game-ii/）minimum_range_cover
-452（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）greed|maximum_disjoint_range
+452（https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/）greedy|maximum_disjoint_range
 1326（https://leetcode.cn/problems/minimum-number-of-taps-to-open-to-water-a-garden/）range_merge_to_disjoint
 1024（https://leetcode.cn/problems/video-stitching/）minimum_range_cover
 1520（https://leetcode.cn/problems/maximum-number-of-non-overlapping-substrings/）maximum_disjoint_range
-1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）greed|minimum_point_cover_range
-2406（https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/）minimum_group_range_disjoint|greed|diff_array|counter
-435（https://leetcode.cn/problems/non-overlapping-intervals/）maximum_disjoint_range|greed|binary_search|dp
+1353（https://leetcode.cn/problems/maximum-number-of-events-that-can-be-attended/）greedy|minimum_point_cover_range
+2406（https://leetcode.cn/problems/divide-intervals-into-minimum-number-of-groups/）minimum_group_range_disjoint|greedy|diff_array|counter
+435（https://leetcode.cn/problems/non-overlapping-intervals/）maximum_disjoint_range|greedy|binary_search|dp
 763（https://leetcode.cn/problems/partition-labels/）range_merge_to_disjoint
 6313（https://leetcode.cn/contest/biweekly-contest-99/problems/count-ways-to-group-overlapping-ranges/）range_merge_to_disjoint|fast_power|counter
 2345（https://leetcode.cn/problems/finding-the-number-of-visible-mountains/）partial_order|range_include
-757（https://leetcode.cn/problems/set-intersection-size-at-least-two/）greed|minimum_point_cover_range
-2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）greed|minimum_point_cover_range
-32（https://leetcode.cn/problems/t3fKg1/）greed|minimum_point_cover_range
+757（https://leetcode.cn/problems/set-intersection-size-at-least-two/）greedy|minimum_point_cover_range
+2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）greedy|minimum_point_cover_range
+32（https://leetcode.cn/problems/t3fKg1/）greedy|minimum_point_cover_range
 100311（https://leetcode.cn/problems/count-days-without-meetings）range_merge_to_disjoint
 
 =====================================LuoGu======================================
 P2082（https://www.luogu.com.cn/problem/P2082）range_merge_to_disjoint
 P2434（https://www.luogu.com.cn/problem/P2434）range_merge_to_disjoint
-P2970（https://www.luogu.com.cn/problem/P2970）maximum_disjoint_range|greed|binary_search|dp
+P2970（https://www.luogu.com.cn/problem/P2970）maximum_disjoint_range|greedy|binary_search|dp
 P6123（https://www.luogu.com.cn/problem/P6123）range_merge_to_disjoint
 P2684（https://www.luogu.com.cn/problem/P2684）minimum_range_cover
 P1233（https://www.luogu.com.cn/problem/P1233）partial_order|lis|range_include
 P1496（https://www.luogu.com.cn/problem/P1496）range_merge_to_disjoint
 P1668（https://www.luogu.com.cn/problem/P1668）minimum_range_cover
 P2887（https://www.luogu.com.cn/problem/P2887）maximum_point_cover_range
-P3661（https://www.luogu.com.cn/problem/P3661）greed
-P3737（https://www.luogu.com.cn/problem/P3737）greed|range_cover
-P5199（https://www.luogu.com.cn/problem/P5199）greed|range_include
+P3661（https://www.luogu.com.cn/problem/P3661）greedy
+P3737（https://www.luogu.com.cn/problem/P3737）greedy|range_cover
+P5199（https://www.luogu.com.cn/problem/P5199）greedy|range_include
 P1868（https://www.luogu.com.cn/problem/P1868）liner_dp|binary_search|maximum_disjoint_range
 P2439（https://www.luogu.com.cn/problem/P2439）liner_dp|binary_search|maximum_disjoint_range
-P1325（https://www.luogu.com.cn/problem/P1325）sort|greed|minimum_range_cover
+P1325（https://www.luogu.com.cn/problem/P1325）sort|greedy|minimum_range_cover
 
 ===================================CodeForces===================================
-827A（https://codeforces.com/problemset/problem/827/A）range_merge_to_disjoint|greed
+827A（https://codeforces.com/problemset/problem/827/A）range_merge_to_disjoint|greedy
 652D（https://codeforces.com/problemset/problem/652/D）partial_order|range_include
-1426D（https://codeforces.com/problemset/problem/1426/D）greed|minimum_point_cover_range
+1426D（https://codeforces.com/problemset/problem/1426/D）greedy|minimum_point_cover_range
 1102E（https://codeforces.com/contest/1102/problem/E）range_merge_to_disjoint
 1141F2（https://codeforces.com/contest/1141/problem/F2）prefix_sum|brute_force|maximum_disjoint_range
 
 =====================================AcWing=====================================
-112（https://www.acwing.com/problem/content/114/）greed
+112（https://www.acwing.com/problem/content/114/）greedy
 4421（https://www.acwing.com/problem/content/4424/）minimum_range_cover
 
 =====================================AtCoder=====================================
 ABC256D（https://atcoder.jp/contests/abc256/tasks/abc256_d）range_merge_to_disjoint|classical
-ABC225E（https://atcoder.jp/contests/abc225/tasks/abc225_e）greed|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
+ABC225E（https://atcoder.jp/contests/abc225/tasks/abc225_e）greedy|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
 ABC377D（https://atcoder.jp/contests/abc377/tasks/abc377_d）implemention|linear_dp|brute_force
 
 
@@ -153,7 +153,7 @@ class Solution:
     def lc_435(intervals):
         """
         url: https://leetcode.cn/problems/non-overlapping-intervals/
-        tag: maximum_disjoint_range|greed|binary_search|dp|classical
+        tag: maximum_disjoint_range|greedy|binary_search|dp|classical
         """
         n = len(intervals)
         return n - Range().maximum_disjoint_range(intervals)
@@ -206,7 +206,7 @@ class Solution:
     def cf_1426d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1426/D
-        tag: greed|minimum_point_cover_range|prefix_sum_hash
+        tag: greedy|minimum_point_cover_range|prefix_sum_hash
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -227,7 +227,7 @@ class Solution:
     def ac_112(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/114/
-        tag: greed|range|rever_thinking|minimum_point_cover_range
+        tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
         n, d = ac.read_list_ints()
         lst = [ac.read_list_ints() for _ in range(n)]
@@ -270,7 +270,7 @@ class Solution:
     def lg_p2887(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2887
-        tag: maximum_point_cover_range|greed|sorted_list|classical
+        tag: maximum_point_cover_range|greedy|sorted_list|classical
         """
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -292,7 +292,7 @@ class Solution:
     def lg_p3661(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3661
-        tag: greed|maximum_point_cover_range|classical
+        tag: greedy|maximum_point_cover_range|classical
         """
         n, m = ac.read_list_ints()
         lst = SortedList([ac.read_int() for _ in range(n)])
@@ -311,7 +311,7 @@ class Solution:
     def lg_p3737(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P3737
-        tag: greed|range|rever_thinking|minimum_point_cover_range
+        tag: greedy|range|rever_thinking|minimum_point_cover_range
         """
         n, r = ac.read_list_ints()
         lst = []
@@ -329,7 +329,7 @@ class Solution:
     def lg_p5199(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5199
-        tag: greed|range_include|classical|partial_order
+        tag: greedy|range_include|classical|partial_order
         """
         n = ac.read_int()
         nums = []
@@ -417,7 +417,7 @@ class Solution:
     def abc_225e(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc225/tasks/abc225_e
-        tag: greed|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
+        tag: greedy|geometry|brain_teaser|maximum_disjoint_range|custom_sort|classical
         """
         n = ac.read_int()
         points = [ac.read_list_ints() for _ in range(n)]

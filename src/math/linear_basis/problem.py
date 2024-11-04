@@ -15,7 +15,7 @@ CF845G（https://codeforces.com/problemset/problem/845/G）
 
 =====================================AtCoder======================================
 ABC283G（https://atcoder.jp/contests/abc283/tasks/abc283_g）linear_basis|classical
-ABC236F（https://atcoder.jp/contests/abc236/tasks/abc236_f）linear_basis|mst|greed|classical
+ABC236F（https://atcoder.jp/contests/abc236/tasks/abc236_f）linear_basis|mst|greedy|classical
 
 =====================================AcWing======================================
 3167（https://www.acwing.com/problem/content/description/3167/）linear_basis|classical
@@ -150,7 +150,7 @@ class Solution:
     def abc_236f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc236/tasks/abc236_f
-        tag: linear_basis|mst|greed|classical
+        tag: linear_basis|mst|greedy|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()

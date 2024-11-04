@@ -10,13 +10,11 @@ class MinCircleOverlap:
         return
 
     def get_min_circle_overlap(self, points: List[List[int]]):
-        # 随机增量法求解最小圆覆盖
 
         def cross(a, b):
             return a[0] * b[1] - b[0] * a[1]
 
         def intersection_point(p1, v1, p2, v2):
-            # 求解两条直线的交点
             u = (p1[0] - p2[0], p1[1] - p2[1])
             t = cross(v2, u) / cross(v1, v2)
             return p1[0] + v1[0] * t, p1[1] + v1[1] * t
@@ -46,7 +44,6 @@ class MinCircleOverlap:
         n = len(points)
         p = points
 
-        # 圆心与半径
         cc1 = (p[0][0], p[0][1], 0)
         for ii in range(1, n):
             if not is_point_in_circle(cc1[0], cc1[1], cc1[2], p[ii][0], p[ii][1]):

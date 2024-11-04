@@ -1,51 +1,51 @@
 """
 Algorithm：heapq|monotonic_queue|huffman_tree
-Description：greed
+Description：greedy
 
 ====================================LeetCode====================================
-630（https://leetcode.cn/problems/course-schedule-iii/）delay_heapq|greed
+630（https://leetcode.cn/problems/course-schedule-iii/）delay_heapq|greedy
 2454（https://leetcode.cn/problems/next-greater-element-iv/）heapq|post_second_larger|hash|SortedList
 2402（https://leetcode.cn/problems/meeting-rooms-iii/）heapq|implemention|counter
 2386（https://leetcode.cn/problems/find-the-k-sum-of-an-array/）heapq|brain_teaser
 2163（https://leetcode.cn/problems/minimum-difference-in-sums-after-removal-of-elements/）prefix_suffix|brute_force
-1792（https://leetcode.cn/problems/maximum-average-pass-ratio/）greed
+1792（https://leetcode.cn/problems/maximum-average-pass-ratio/）greedy
 295（https://leetcode.cn/problems/find-median-from-data-stream/）heapq|median
-2542（https://leetcode.cn/problems/maximum-subsequence-score/）greed|sort|brute_force|heapq
-2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）heapq|greed
+2542（https://leetcode.cn/problems/maximum-subsequence-score/）greedy|sort|brute_force|heapq
+2263（https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/）heapq|greedy
 
 =====================================LuoGu======================================
 P1168（https://www.luogu.com.cn/problem/P1168）heapq|median
 P1801（https://www.luogu.com.cn/problem/P1801）heapq
 P2085（https://www.luogu.com.cn/problem/P2085）math|heapq
 P1631（https://www.luogu.com.cn/problem/P1631）heapq|pointer
-P4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greed
+P4053（https://www.luogu.com.cn/problem/P4053）delay_heapq|greedy
 P1878（https://www.luogu.com.cn/problem/P1878）hash|heapq|implemention
-P3620（https://www.luogu.com.cn/problem/P3620）greed|heapq|double_linked_list
-P2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greed
+P3620（https://www.luogu.com.cn/problem/P3620）greedy|heapq|double_linked_list
+P2168（https://www.luogu.com.cn/problem/P2168）huffman_tree|heapq|greedy
 P2278（https://www.luogu.com.cn/problem/P2278）heapq|implemention
-P1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greed
-P1905（https://www.luogu.com.cn/problem/P1905）heapq|greed
+P1717（https://www.luogu.com.cn/problem/P1717）brute_force|heapq|greedy
+P1905（https://www.luogu.com.cn/problem/P1905）heapq|greedy
 P2409（https://www.luogu.com.cn/problem/P2409）heapq
-P2949（https://www.luogu.com.cn/problem/P2949）heapq|greed|implemention|delay_heapq|lazy_heapq
-P6033（https://www.luogu.com.cn/problem/P6033）greed|deque
-P4597（https://www.luogu.com.cn/problem/P4597）heapq|greed
+P2949（https://www.luogu.com.cn/problem/P2949）heapq|greedy|implemention|delay_heapq|lazy_heapq
+P6033（https://www.luogu.com.cn/problem/P6033）greedy|deque
+P4597（https://www.luogu.com.cn/problem/P4597）heapq|greedy
 
 =====================================CodeForces=====================================
-1837F（https://codeforces.com/problemset/problem/1837/F）binary_search|priority_queue|implemention|greed|nlognlogn
+1837F（https://codeforces.com/problemset/problem/1837/F）binary_search|priority_queue|implemention|greedy|nlognlogn
 
 =====================================AtCoder=====================================
-ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greed|implemention|classical
-ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greed|brain_teaser|classical
+ABC325D（https://atcoder.jp/contests/abc325/tasks/abc325_d）heapq|greedy|implemention|classical
+ABC250G（https://atcoder.jp/contests/abc250/tasks/abc250_g）regret_heapq|greedy|brain_teaser|classical
 ABC212D（https://atcoder.jp/contests/abc212/tasks/abc212_d）implemention|inclusion_exclusion|stack
 
 =====================================AcWing=====================================
 146（https://www.acwing.com/problem/content/description/148/）heapq
-147（https://www.acwing.com/problem/content/description/149/）greed|heapq|double_linked_list
-148（https://www.acwing.com/problem/content/150/）greed|heapq|huffman_tree
-149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greed
+147（https://www.acwing.com/problem/content/description/149/）greedy|heapq|double_linked_list
+148（https://www.acwing.com/problem/content/150/）greedy|heapq|huffman_tree
+149（https://www.acwing.com/problem/content/description/151/）huffman_tree|heapq|greedy
 
 =====================================CodeChef=====================================
-1（https://www.codechef.com/problems/OKLAMA）priority_queue|greed|implemention|math|brain_teaser|induction_method
+1（https://www.codechef.com/problems/OKLAMA）priority_queue|greedy|implemention|math|brain_teaser|induction_method
 
 """
 
@@ -127,7 +127,7 @@ class Solution:
     def lc_1792(classes, extra_students):
         """
         url: https://leetcode.cn/problems/maximum-average-pass-ratio/
-        tag: greed|math|classical
+        tag: greedy|math|classical
         """
         stack = []
         for p, t in classes:
@@ -143,7 +143,7 @@ class Solution:
     def lc_630(courses: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/course-schedule-iii/
-        tag: delay_heapq|greed|regret_heapq|classical
+        tag: delay_heapq|greedy|regret_heapq|classical
         """
         courses.sort(key=lambda x: x[1])
         stack = []
@@ -162,7 +162,7 @@ class Solution:
     def ac_146(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/148/
-        tag: heapq|classical|dp|greed|pointer
+        tag: heapq|classical|dp|greedy|pointer
         """
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
@@ -186,7 +186,7 @@ class Solution:
     def ac_147(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/149/
-        tag: greed|heapq|double_linked_list|classical|hard
+        tag: greedy|heapq|double_linked_list|classical|hard
         """
         n, k = ac.read_list_ints()
         nums = [ac.read_int() for _ in range(n)]
@@ -228,7 +228,7 @@ class Solution:
     def lg_p2168(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2168
-        tag: huffman_tree|heapq|greed
+        tag: huffman_tree|heapq|greedy
         """
         n, k = ac.read_list_ints()
         stack = [[ac.read_int(), 0] for _ in range(n)]
@@ -273,7 +273,7 @@ class Solution:
     def lg_p4053(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4053
-        tag: delay_heapq|greed|regret_heapq|LC630
+        tag: delay_heapq|greedy|regret_heapq|LC630
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -367,7 +367,7 @@ class Solution:
     def lg_p1717(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1717
-        tag: brute_force|heapq|greed
+        tag: brute_force|heapq|greedy
         """
         ans = 0
         n = ac.read_int()
@@ -395,7 +395,7 @@ class Solution:
     def lg_p1905(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1905
-        tag: heapq|greed
+        tag: heapq|greedy
         """
         ac.read_int()
         p = ac.read_int()
@@ -439,7 +439,7 @@ class Solution:
     def lg_p2949(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2949
-        tag: heapq|greed|implemention|delay_heapq|lazy_heapq|regret_heapq
+        tag: heapq|greedy|implemention|delay_heapq|lazy_heapq|regret_heapq
         """
         n = ac.read_int()
         nums = [ac.read_list_ints() for _ in range(n)]
@@ -458,7 +458,7 @@ class Solution:
     def lg_p6033(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6033
-        tag: greed|priority_queue|classical
+        tag: greedy|priority_queue|classical
         """
         ac.read_int()
         pre = deque(sorted(ac.read_list_ints()))
@@ -492,7 +492,7 @@ class Solution:
     def lc_2263(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/make-array-non-decreasing-or-non-increasing/
-        tag: heapq|greed
+        tag: heapq|greedy
         """
 
         def helper(lst: List[int]) -> int:
@@ -585,7 +585,7 @@ class Solution:
     def abc_250g(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc250/tasks/abc250_g
-        tag: regret_heapq|greed|brain_teaser|classical
+        tag: regret_heapq|greedy|brain_teaser|classical
         """
         ac.read_int()
         nums = ac.read_list_ints()
@@ -603,7 +603,7 @@ class Solution:
     def cc_1(ac=FastIO()):
         """
         url: https://www.codechef.com/problems/OKLAMA
-        tag: priority_queue|greed|implemention|math|brain_teaser|induction_method
+        tag: priority_queue|greedy|implemention|math|brain_teaser|induction_method
         """
         for _ in range(ac.read_int()):
             n, k = ac.read_list_ints()
@@ -678,7 +678,7 @@ class Solution:
     def cf_1837e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1837/F
-        tag: binary_search|priority_queue|implemention|greed|nlognlogn
+        tag: binary_search|priority_queue|implemention|greedy|nlognlogn
         """
         for _ in range(ac.read_int()):  # TLE
             n, k = ac.read_list_ints()

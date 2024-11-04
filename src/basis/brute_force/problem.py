@@ -3,7 +3,7 @@ Algorithm：brute_force|matrix_rotate|matrix_spiral|contribution_method
 Description：brute force according to the data range
 
 ====================================LeetCode====================================
-670（https://leetcode.cn/problems/maximum-swap/）greed|brute_force
+670（https://leetcode.cn/problems/maximum-swap/）greedy|brute_force
 395（https://leetcode.cn/problems/longest-substring-with-at-least-k-repeating-characters/）brute_force|divide_and_conquer
 1330（https://leetcode.cn/problems/reverse-subarray-to-maximize-array-value/）brute_force
 2488（https://leetcode.cn/problems/count-subarrays-with-median-k/）median|brute_force|pre_consequence|post_consequence
@@ -17,12 +17,12 @@ Description：brute force according to the data range
 2147（https://leetcode.cn/problems/number-of-ways-to-divide-a-long-corridor/）brute_force|counter
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force
 2468（https://leetcode.cn/problems/split-message-based-on-limit/）binary_search
-2417（https://leetcode.cn/problems/closest-fair-integer/）digit|greed|brute_force
+2417（https://leetcode.cn/problems/closest-fair-integer/）digit|greedy|brute_force
 2681（https://leetcode.cn/problems/power-of-heroes/）contribution_method|brute_force|counter
 1625（https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/）brute_force|lexicographical_order
 1819（https://leetcode.cn/problems/number-of-different-subsequences-gcds/）harmonic_progression|brute_force
 1862（https://leetcode.cn/submissions/detail/371754298/）brute_force|harmonic_progression
-2014（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）data_range|brute_force|greed|permutations
+2014（https://leetcode.cn/problems/longest-subsequence-repeated-k-times/）data_range|brute_force|greedy|permutations
 2077（https://leetcode.cn/problems/paths-in-maze-that-lead-to-same-room/）bit_operation|brute_force
 2081（https://leetcode.cn/problems/sum-of-k-mirror-numbers/）palindrome_num|base_n|brute_force
 2170（https://leetcode.cn/problems/minimum-operations-to-make-the-array-alternating/）brute_force|secondary_maximum
@@ -52,7 +52,7 @@ P2128（https://www.luogu.com.cn/problem/P2128）brute_force
 P2191（https://www.luogu.com.cn/problem/P2191）reverse_thinking|matrix_rotate
 P2699（https://www.luogu.com.cn/problem/P2699）classification_discussion|brute_force|implemention
 P1371（https://www.luogu.com.cn/problem/P1371）prefix_suffix|brute_force|counter
-P1369（https://www.luogu.com.cn/problem/P1369）matrix_dp|greed|brute_force
+P1369（https://www.luogu.com.cn/problem/P1369）matrix_dp|greedy|brute_force
 P1158（https://www.luogu.com.cn/problem/P1158）sort|brute_force|suffix_maximum
 P8928（https://www.luogu.com.cn/problem/P8928）brute_force|counter
 P8892（https://www.luogu.com.cn/problem/P8892）brute_force
@@ -83,7 +83,7 @@ P2705（https://www.luogu.com.cn/problem/P2705）brute_force
 P5690（https://www.luogu.com.cn/problem/P5690）brute_force
 P7076（https://www.luogu.com.cn/problem/P7076）bit_operation|brute_force|counter
 P7094（https://www.luogu.com.cn/problem/P7094）math|data_range|brute_force
-P7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greed
+P7273（https://www.luogu.com.cn/problem/P7273）brute_force|math|greedy
 P7286（https://www.luogu.com.cn/problem/P7286）sort|brute_force|counter
 P7626（https://www.luogu.com.cn/problem/P7626）brute_force|matrix|diagonal
 P7799（https://www.luogu.com.cn/problem/P7799）hash|brute_force|counter
@@ -93,7 +93,7 @@ P2119（https://www.luogu.com.cn/problem/P2119）brute_force|prefix_suffix|count
 P2652（https://www.luogu.com.cn/problem/P2652）brute_force|two_pointers
 P2994（https://www.luogu.com.cn/problem/P2994）brute_force
 P3985（https://www.luogu.com.cn/problem/P3985）brute_force
-P4181（https://www.luogu.com.cn/problem/P4181）greed|brute_force|suffix_sum
+P4181（https://www.luogu.com.cn/problem/P4181）greedy|brute_force|suffix_sum
 P6149（https://www.luogu.com.cn/problem/P6149）brute_force|triangle|prefix_sum|binary_search
 P6393（https://www.luogu.com.cn/problem/P6393）data_range|brute_force
 P6767（https://www.luogu.com.cn/problem/P6767）brute_force
@@ -119,11 +119,11 @@ P8599（https://www.luogu.com.cn/problem/P8599）brute_force
 1400D（https://codeforces.com/problemset/problem/1400/D）brute_force|binary_search
 1793D（https://codeforces.com/contest/1793/problem/D）brute_force|counter
 584D（https://codeforces.com/problemset/problem/584/D）brute_force|prime|decompose_into_sum_of_prime_at_most_3
-1311D（https://codeforces.com/problemset/problem/1311/D）greed|brute_force
+1311D（https://codeforces.com/problemset/problem/1311/D）greedy|brute_force
 1181C（https://codeforces.com/problemset/problem/1181/C）column_wised|brute_force
 484B（https://codeforces.com/problemset/problem/484/B）sort|brute_force|binary_search
 382C（https://codeforces.com/problemset/problem/382/C）classification_discussion
-988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greed|brute_force
+988E（https://codeforces.com/contest/988/problem/E）brain_teaser|greedy|brute_force
 1661B（https://codeforces.com/contest/1661/problem/B）brute_force
 1692F（https://codeforces.com/contest/1692/problem/F）brute_force
 978D（https://codeforces.com/contest/978/problem/D）brute_force
@@ -138,7 +138,7 @@ P8599（https://www.luogu.com.cn/problem/P8599）brute_force
 1744F（https://codeforces.com/contest/1744/problem/F）brute_force
 1729F（https://codeforces.com/contest/1729/problem/F）brute_force
 1846E2（https://codeforces.com/contest/1846/problem/E2）brute_force|binary_search
-1926F（https://codeforces.com/contest/1926/problem/F）brute_force|greed|classical
+1926F（https://codeforces.com/contest/1926/problem/F）brute_force|greedy|classical
 1689D（https://codeforces.com/contest/1689/problem/D）manhattan_distance|prefix_suffix|classical
 1992E（https://codeforces.com/contest/1992/problem/E）brute_force|observation|data_range
 1648B（https://codeforces.com/problemset/problem/1648/B）observation|brute_force|data_range|euler_series
@@ -148,7 +148,7 @@ P8599（https://www.luogu.com.cn/problem/P8599）brute_force
 ====================================AtCoder=====================================
 ARC060B（https://atcoder.jp/contests/abc044/tasks/arc060_b）base|classification_discussion|brute_force|factorization
 ARC069B（https://atcoder.jp/contests/abc055/tasks/arc069_b）brain_teaser|brute_force
-ARC072A（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_force|prefix_sum|greed
+ARC072A（https://atcoder.jp/contests/abc059/tasks/arc072_a）brute_force|prefix_sum|greedy
 ARC074A（https://atcoder.jp/contests/abc062/tasks/arc074_a）brute_force
 ARC083A（https://atcoder.jp/contests/abc074/tasks/arc083_a）brute_force|math
 ARC091B（https://atcoder.jp/contests/abc090/tasks/arc091_b）brute_force
@@ -166,7 +166,7 @@ ABC307C（https://atcoder.jp/contests/abc307/tasks/abc307_c）brute_force|implem
 ABC345D（https://atcoder.jp/contests/abc345/tasks/abc345_d）brute_force|implemention
 ABC345C（https://atcoder.jp/contests/abc345/tasks/abc345_c）contribution_method
 ABC302G（https://atcoder.jp/contests/abc302/tasks/abc302_g）brute_force
-ABC300F（https://atcoder.jp/contests/abc300/tasks/abc300_f）brute_force|circular_array|prefix_sum|greed
+ABC300F（https://atcoder.jp/contests/abc300/tasks/abc300_f）brute_force|circular_array|prefix_sum|greedy
 ABC296D（https://atcoder.jp/contests/abc296/tasks/abc296_d）brute_force|math
 ABC346D（https://atcoder.jp/contests/abc346/tasks/abc346_d）brute_force|prefix_suffix
 ABC290E（https://atcoder.jp/contests/abc290/tasks/abc290_e）brute_force|contribution_method
@@ -229,7 +229,7 @@ class Solution:
     def cf_1311d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1311/D
-        tag: greed|brute_force|specific_plan|data_range|classical
+        tag: greedy|brute_force|specific_plan|data_range|classical
         """
         for _ in range(ac.read_int()):
             a, b, c = ac.read_list_ints()
@@ -288,10 +288,10 @@ class Solution:
     def lc_670(num: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-swap/
-        tag: greed|brute_force
+        tag: greedy|brute_force
         """
 
-        def check():  # greed
+        def check():  # greedy
             lst = list(str(num))
             n = len(lst)
             post = list(range(n))
@@ -443,7 +443,7 @@ class Solution:
     def abc_072a(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc059/tasks/arc072_a
-        tag: brute_force|prefix_sum|greed
+        tag: brute_force|prefix_sum|greedy
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -748,7 +748,7 @@ class Solution:
     def lg_p4181(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4181
-        tag: greed|brute_force|suffix_sum
+        tag: greedy|brute_force|suffix_sum
         """
         n, m, r = ac.read_list_ints()
         cow = [ac.read_int() for _ in range(n)]

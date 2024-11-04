@@ -14,18 +14,18 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 654（https://leetcode.cn/problems/maximum-binary-tree/）monotonic_stack
 1130（https://leetcode.cn/problems/minimum-cost-tree-from-leaf-values/）monotonic_stack|interval_dp
 1504（https://leetcode.cn/problems/count-submatrices-with-all-ones/）brute_force|monotonic_stack|counter|sub_matrix
-1673（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）monotonic_stack|greed
+1673（https://leetcode.cn/problems/find-the-most-competitive-subsequence/）monotonic_stack|greedy
 1776（https://leetcode.cn/problems/car-fleet-ii/）monotonic_stack|union_find|linked_list|implemention
-1840（https://leetcode.cn/problems/maximum-building-height/）monotonic_stack|greed|prefix_suffix|implemention
+1840（https://leetcode.cn/problems/maximum-building-height/）monotonic_stack|greedy|prefix_suffix|implemention
 1944（https://leetcode.cn/problems/number-of-visible-people-in-a-queue/）reverse_thinking|monotonic_stack
 1950（https://leetcode.cn/problems/maximum-of-minimum-values-in-all-subarrays/）monotonic_stack
-2030（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|greed|lexicographical_order
+2030（https://leetcode.cn/problems/smallest-k-length-subsequence-with-occurrences-of-a-letter/）monotonic_stack|greedy|lexicographical_order
 2104（https://leetcode.cn/problems/sum-of-subarray-ranges/）monotonic_stack|contribution_method
 2282（https://leetcode.cn/problems/number-of-people-that-can-be-seen-in-a-grid/）monotonic_stack
 2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）monotonic_stack|implemention
 907（https://leetcode.cn/problems/sum-of-subarray-minimums/）monotonic_stack|implemention
 2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
-2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greed
+2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greedy
 3113（https://leetcode.com/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/）brute_force|two_pointer|monotonic_stack|classical）
 
 =====================================LuoGu======================================
@@ -36,13 +36,13 @@ P2947（https://www.luogu.com.cn/problem/P2947）monotonic_stack
 P4147（https://www.luogu.com.cn/problem/P4147）brute_force|monotonic_stack|sub_matrix|area
 P5788（https://www.luogu.com.cn/problem/P5788）monotonic_stack
 P7314（https://www.luogu.com.cn/problem/P7314）brute_force|monotonic_stack|pre_larger|post_larger
-P7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greed
+P7399（https://www.luogu.com.cn/problem/P7399）monotonic_stack|greedy
 P7410（https://www.luogu.com.cn/problem/P7410）inclusion_exclusion|monotonic_stack|counter
-P7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greed|sort|contribution_method|area
+P7762（https://www.luogu.com.cn/problem/P7762）monotonic_stack|greedy|sort|contribution_method|area
 P1578（https://www.luogu.com.cn/problem/P1578）monotonic_stack|discretization|brute_force|sub_matrix|area
-P3467（https://www.luogu.com.cn/problem/P3467）greed|monotonic_stack
+P3467（https://www.luogu.com.cn/problem/P3467）greedy|monotonic_stack
 P1191（https://www.luogu.com.cn/problem/P1191）monotonic_stack|sub_matrix|counter
-P1323（https://www.luogu.com.cn/problem/P1323）heapq|monotonic_stack|lexicographical_order|greed
+P1323（https://www.luogu.com.cn/problem/P1323）heapq|monotonic_stack|lexicographical_order|greedy
 P2422（https://www.luogu.com.cn/problem/P2422）monotonic_stack|prefix_sum
 P3467（https://www.luogu.com.cn/problem/P3467）monotonic_stack
 P6404（https://www.luogu.com.cn/problem/P6404）monotonic_stack|sub_matrix|counter
@@ -52,28 +52,28 @@ P6801（https://www.luogu.com.cn/problem/P6801）monotonic_stack|sub_matrix|coun
 P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post_larger
 
 ===================================CodeForces===================================
-1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|liner_dp|greed|counter|brute_force|prefix_suffix|dp
+1795E（https://codeforces.com/problemset/problem/1795/E）monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
 1313C2（https://codeforces.com/problemset/problem/1313/C2）monotonic_stack|liner_dp
 1454F（https://codeforces.com/contest/1454/problem/F）monotonic_stack|brute_force
 1092D2（https://codeforces.com/contest/1092/problem/D2）monotonic_stack|implemention
-1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greed|implemention
-1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greed|classical
+1092D1（https://codeforces.com/contest/1092/problem/D1）brain_teaser|greedy|implemention
+1506G（https://codeforces.com/contest/1506/problem/G）monotonic_stack|greedy|classical
 1919D（https://codeforces.com/problemset/problem/1919/D）brain_teaser|monotonic_stack|construction
-1299C（https://codeforces.com/problemset/problem/1299/C）monotonic_stack|convex|brain_teaser|greed|construction
+1299C（https://codeforces.com/problemset/problem/1299/C）monotonic_stack|convex|brain_teaser|greedy|construction
 1407D（https://codeforces.com/problemset/problem/1407/D）array_implemention|monotonic_stack|linear_dp|classical
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
 ABC336D（https://atcoder.jp/contests/abc336/tasks/abc336_d）monotonic_stack|linear_dp
 ABC311G（https://atcoder.jp/contests/abc311/tasks/abc311_g）brute_force|prefix_sum|monotonic_stack|classical
-ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack|greed|implemention|classical
+ABC299G（https://atcoder.jp/contests/abc299/tasks/abc299_g）monotonic_stack|greedy|implemention|classical
 ABC359E（https://atcoder.jp/contests/abc359/tasks/abc359_e）monotonic_stack|implemention|classical
 ABC189C（https://atcoder.jp/contests/abc189/tasks/abc189_c）monotonic_stack|contribution_method|action_scope|classical
 
 =====================================AcWing=====================================
 131（https://www.acwing.com/problem/content/133/）monotonic_stack|sub_matrix
 152（https://www.acwing.com/problem/content/description/154/）monotonic_stack|sub_matrix
-3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|greed|linear_dp|construction
+3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|greedy|linear_dp|construction
 
 """
 import bisect
@@ -202,7 +202,7 @@ class Solution:
     def lc_2866(max_heights: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/beautiful-towers-ii/
-        tag: monotonic_stack|greed
+        tag: monotonic_stack|greedy
         """
         n = len(max_heights)
         pre = [0] * (n + 1)
@@ -267,7 +267,7 @@ class Solution:
     def lg_p1323(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1323
-        tag: heapq|monotonic_stack|lexicographical_order|greed
+        tag: heapq|monotonic_stack|lexicographical_order|greedy
         """
         k, m = ac.read_list_ints()
         dct = set()
@@ -667,7 +667,7 @@ class Solution:
     def lc_1673(nums: List[int], k: int) -> List[int]:
         """
         url: https://leetcode.cn/problems/find-the-most-competitive-subsequence/
-        tag: monotonic_stack|greed
+        tag: monotonic_stack|greedy
         """
         n = len(nums)
         rem = n - k
@@ -683,7 +683,7 @@ class Solution:
     def lc_1840(n: int, restrictions: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-building-height/
-        tag: monotonic_stack|greed|prefix_suffix|implemention
+        tag: monotonic_stack|greedy|prefix_suffix|implemention
         """
         restrictions.sort()
         stack = [[1, 0]]
@@ -782,7 +782,7 @@ class Solution:
     def cf_1795e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1795/E
-        tag: monotonic_stack|liner_dp|greed|counter|brute_force|prefix_suffix|dp
+        tag: monotonic_stack|liner_dp|greedy|counter|brute_force|prefix_suffix|dp
         """
         for _ in range(ac.read_int()):
 
@@ -851,7 +851,7 @@ class Solution:
     def ac_3780(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/3783/
-        tag: monotonic_stack|greed|linear_dp|construction|CF1313C2
+        tag: monotonic_stack|greedy|linear_dp|construction|CF1313C2
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -943,7 +943,7 @@ class Solution:
     def cf_1506g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1506/problem/G
-        tag: monotonic_stack|greed|classical
+        tag: monotonic_stack|greedy|classical
         """
         for _ in range(ac.read_int()):
             s = ac.read_str()
@@ -1092,7 +1092,7 @@ class Solution:
     def cf_1299c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1299/C
-        tag: monotonic_stack|convex|brain_teaser|greed|construction
+        tag: monotonic_stack|convex|brain_teaser|greedy|construction
         """
         n = ac.read_int()
         a = ac.read_list_ints()

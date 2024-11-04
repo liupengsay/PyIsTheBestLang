@@ -33,7 +33,6 @@ class Solution:
         url: https://leetcode.cn/problems/check-if-it-is-a-good-array/
         tag: gcd|peishu_theorem|classical
         """
-        # 转化为peishu_theorem|数组最大公约数是否等于 1 求解
         return PeiShuTheorem().get_lst_gcd(nums) == 1
 
     @staticmethod
@@ -42,7 +41,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4549
         tag: gcd|peishu_theorem
         """
-        # 转化为peishu_theorem|数组最大公约数求解
         ac.read_int()
         nums = ac.read_list_ints()
         ac.st(PeiShuTheorem().get_lst_gcd(nums))

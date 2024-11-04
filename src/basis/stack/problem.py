@@ -7,12 +7,12 @@ Description：implemention|monotonic_stack|maximum_stack|minimum_stack
 2197（https://leetcode.cn/problems/replace-non-coprime-numbers-in-array/）math|stack|implemention
 394（https://leetcode.cn/problems/decode-string/）decode|stack
 1096（https://leetcode.cn/problems/brace-expansion-ii/）stack|decode
-2116（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）stack|greed|bracket
-857（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）greed|sort|brute_force|heapq
+2116（https://leetcode.cn/problems/check-if-a-parentheses-string-can-be-valid/）stack|greedy|bracket
+857（https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/）greedy|sort|brute_force|heapq
 2542（https://leetcode.cn/problems/maximum-subsequence-score/）sort|brute_force|heapq
 2813（https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/）brain_teaser|sort|brute_force|function
-2462（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）heapq|greed|implemention
-1705（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）heapq|greed|implemention
+2462（https://leetcode.cn/problems/total-cost-to-hire-k-workers/）heapq|greedy|implemention
+1705（https://leetcode.cn/problems/maximum-number-of-eaten-apples/）heapq|greedy|implemention
 1750（https://leetcode.cn/problems/minimum-length-of-string-after-deleting-similar-ends/description/）stack|implemention
 2296（https://leetcode.cn/problems/design-a-text-editor/description/）stack|implemention
 
@@ -22,7 +22,7 @@ P2201（https://www.luogu.com.cn/problem/P2201）stack|implemention|pointer|pref
 P4387（https://www.luogu.com.cn/problem/P4387）implemention|stack|stack|deque
 P7674（https://www.luogu.com.cn/problem/P7674）stack|implemention
 P3719（https://www.luogu.com.cn/problem/P3719）string|stack
-P1974（https://www.luogu.com.cn/problem/P1974）greed|deque|implemention
+P1974（https://www.luogu.com.cn/problem/P1974）greedy|deque|implemention
 P3551（https://www.luogu.com.cn/problem/P3551）stack|counter|pointer
 P3719（https://www.luogu.com.cn/problem/P3719）stack|implemention
 P2776（https://www.luogu.com.cn/problem/P2776）stack|implemention
@@ -86,7 +86,7 @@ class Solution:
     def lc_2462(costs: List[int], k: int, candidates: int) -> int:
         """
         url: https://leetcode.cn/problems/total-cost-to-hire-k-workers/
-        tag: heapq|greed|implemention
+        tag: heapq|greedy|implemention
         """
         n = len(costs)
         visit = [0] * n
@@ -129,7 +129,7 @@ class Solution:
     def lc_2813(items: List[List[int]], k: int) -> int:
         """
         url: https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/
-        tag: brain_teaser|sort|brute_force|function|greed|classical
+        tag: brain_teaser|sort|brute_force|function|greedy|classical
         """
         items.sort(reverse=True)
         ans = cnt = pre = tp = 0
@@ -157,7 +157,7 @@ class Solution:
     def lc_1705(apples: List[int], days: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-number-of-eaten-apples/
-        tag: heapq|greed|implemention
+        tag: heapq|greedy|implemention
         """
         n = len(apples)
         ans = i = 0
@@ -195,7 +195,7 @@ class Solution:
     def lc_857(quality: List[int], wage: List[int], k: int) -> float:
         """
         url: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
-        tag: greed|sort|brute_force|heapq
+        tag: greedy|sort|brute_force|heapq
         """
         n = len(quality)
         ind = list(range(n))
@@ -435,7 +435,7 @@ class Solution:
     def lg_p1974(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1974
-        tag: greed|deque|implemention
+        tag: greedy|deque|implemention
         """
         n = ac.read_int()
         stack = deque([1] * n)
@@ -511,7 +511,7 @@ class Solution:
     def ac_5136(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/description/5139/
-        tag: stack|reverse_order|implemention|greed
+        tag: stack|reverse_order|implemention|greedy
         """
         s = ac.read_str()
         n = len(s)

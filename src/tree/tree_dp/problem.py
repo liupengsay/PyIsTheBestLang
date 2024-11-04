@@ -12,11 +12,11 @@ Description：reroot_dp|up_to_down|down_to_up
 2445（https://leetcode.cn/problems/number-of-nodes-with-value-one/）up_to_down|tree_dp|implemention
 834（https://leetcode.cn/problems/sum-of-distances-in-tree/）tree_dis|tree_centroid
 2003（https://leetcode.cn/problems/smallest-missing-genetic-value-in-each-subtree/）tree_dp|heuristic_merge|classical
-2673（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greed
+2673（https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/）tree_dp|greedy
 1367（https://leetcode.cn/problems/linked-list-in-binary-tree/description/）classical|2-tree|linked_list|memory_dp
-979（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）tree_dp|greed
+979（https://leetcode.cn/problems/distribute-coins-in-binary-tree/description/）tree_dp|greedy
 1373（https://leetcode.cn/problems/maximum-sum-bst-in-binary-tree/）tree_dp|2-tree
-971（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greed|implemention
+971（https://leetcode.cn/problems/flip-binary-tree-to-match-preorder-traversal/description/）tree_dp|greedy|implemention
 100041（https://www.acwing.com/problem/content/description/4384/）reroot_dp|dfs_order|diff_array
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 3241（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
@@ -25,10 +25,10 @@ Description：reroot_dp|up_to_down|down_to_up
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
 P1352（https://www.luogu.com.cn/problem/P1352）tree_dp|mis|maximum_independent_set
-P1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greed
+P1922（https://www.luogu.com.cn/problem/P1922）tree_dp|greedy
 P2016（https://www.luogu.com.cn/problem/P2016）tree_dp|classical
 P1122（https://www.luogu.com.cn/problem/P1122）tree_dp|union_find
-P2932（https://www.luogu.com.cn/problem/P2932）tree_dp|greed
+P2932（https://www.luogu.com.cn/problem/P2932）tree_dp|greedy
 P2996（https://www.luogu.com.cn/problem/P2996）tree_dp
 P3074（https://www.luogu.com.cn/problem/P3074）longest_path|tree_dp
 P3884（https://www.luogu.com.cn/problem/P3884）tree_dp
@@ -45,7 +45,7 @@ P3408（https://www.luogu.com.cn/problem/P3408）tree_dp
 P3478（https://www.luogu.com.cn/problem/P3478）tree_centroid
 P3931（https://www.luogu.com.cn/problem/P3931）classical|tree_dp
 P4084（https://www.luogu.com.cn/problem/P4084）classical|tree_dp
-P4395（https://www.luogu.com.cn/problem/P4395）tree_dp|greed
+P4395（https://www.luogu.com.cn/problem/P4395）tree_dp|greedy
 P5765（https://www.luogu.com.cn/problem/P5765）tree_dp|P4395
 P8602（https://www.luogu.com.cn/problem/P8602）tree_diameter|bfs|tree_dp
 P8625（https://www.luogu.com.cn/problem/P8625）tree_dp|classical
@@ -55,10 +55,10 @@ U420033（https://www.luogu.com.cn/problem/U420033）reroot_dp|classical
 
 ====================================AtCoder=====================================
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp
-ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greed
+ABC333D（https://atcoder.jp/contests/abc333/tasks/abc333_d）tree_dp|greedy
 ABC329F（https://atcoder.jp/contests/abc329/tasks/abc329_f）heuristic_merge|classical|implemention
 ABC348E（https://atcoder.jp/contests/abc348/tasks/abc348_e）reroot_dp|classical
-ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teaser|greed
+ABC259F（https://atcoder.jp/contests/abc259/tasks/abc259_f）tree_dp|brain_teaser|greedy
 ABC239E（https://atcoder.jp/contests/abc239/tasks/abc239_e）tree_dp|classical
 ABC222F（https://atcoder.jp/contests/abc222/tasks/abc222_f）reroot_dp|classical
 ABC220F（https://atcoder.jp/contests/abc220/tasks/abc220_f）reroot_dp|classical
@@ -82,20 +82,20 @@ ABC359G（https://atcoder.jp/contests/abc359/tasks/abc359_g）heuristic_merge|cl
 161D（https://codeforces.com/problemset/problem/161/D）tree_dp|counter
 1923E（https://codeforces.com/contest/1923/problem/E）heuristic_merge|tree_dp|counter|classical
 1984E（https://codeforces.com/contest/1984/problem/E）reroot_dp|mis|maximum_independent_set
-1363E（https://codeforces.com/problemset/problem/1363/E）greed|implemention|observation
-1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greed|implemention|construction|classical
+1363E（https://codeforces.com/problemset/problem/1363/E）greedy|implemention|observation
+1406C（https://codeforces.com/problemset/problem/1406/C）link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
 461B（https://codeforces.com/problemset/problem/461/B）classical|tree_dp|observation
 1551F（https://codeforces.com/problemset/problem/1551/F）tree_dp|bag_dp|brute_force
 486D（https://codeforces.com/problemset/problem/486/D）multiplication_method|tree_dp|contribution_method|brute_force
 1988D（https://codeforces.com/problemset/problem/1988/D）tree_dp|classical|observation|data_range
 1101D（https://codeforces.com/problemset/problem/1101/D）tree_dp|prime_factor|classical|observation
-1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greed
-1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greed|implemention|weighted_tree|classical
-982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greed|classical
-1856E1（https://codeforces.com/problemset/problem/1856/E1）tree_dp|greed|down_to_up|classical
-1153D（https://codeforces.com/problemset/problem/1153/D）tree_dp|greed|brain_teaser
-274B（https://codeforces.com/problemset/problem/274/B）tree_dp|greed|brain_teaser|classical
-369C（https://codeforces.com/contest/369/problem/C）tree_dp|greed|classical
+1997D（https://codeforces.com/problemset/problem/1997/D）tree_dp|greedy
+1083A（https://codeforces.com/problemset/problem/1083/A）tree_dp|greedy|implemention|weighted_tree|classical
+982C（https://codeforces.com/problemset/problem/982/C）tree_dp|greedy|classical
+1856E1（https://codeforces.com/problemset/problem/1856/E1）tree_dp|greedy|down_to_up|classical
+1153D（https://codeforces.com/problemset/problem/1153/D）tree_dp|greedy|brain_teaser
+274B（https://codeforces.com/problemset/problem/274/B）tree_dp|greedy|brain_teaser|classical
+369C（https://codeforces.com/contest/369/problem/C）tree_dp|greedy|classical
 2033G（https://codeforces.com/contest/2033/problem/G）reroot_dp|tree_multiplication|build_graph|brain_teaser|implemention|dfs|back_trace|PointSetPointAddRangeMerge
 
 =====================================AcWing=====================================
@@ -923,7 +923,7 @@ class Solution:
     def lg_p4395(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4395
-        tag: tree_dp|greed
+        tag: tree_dp|greedy
         """
 
         class Graph(WeightedTree):
@@ -1135,7 +1135,7 @@ class Solution:
     def lc_2673(n: int, cost: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/
-        tag: tree_dp|greed
+        tag: tree_dp|greedy
         """
         # tree_dpgreedy
         ans = 0
@@ -1386,7 +1386,7 @@ class Solution:
     def abc_259f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc259/tasks/abc259_f
-        tag: tree_dp|brain_teaser|greed
+        tag: tree_dp|brain_teaser|greedy
         """
         n = ac.read_int()
         d = ac.read_list_ints()
@@ -1667,7 +1667,7 @@ class Solution:
     def cf_1363e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1363/E
-        tag: greed|implemention|observation
+        tag: greedy|implemention|observation
         """
         n = ac.read_int()
         a = []
@@ -1716,7 +1716,7 @@ class Solution:
     def cf_1406c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1406/C
-        tag: link_cut_centroids|tree_centroids|greed|implemention|construction|classical
+        tag: link_cut_centroids|tree_centroids|greedy|implemention|construction|classical
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
@@ -1968,7 +1968,7 @@ class Solution:
     def cf_1997d(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1997/D
-        tag: tree_dp|greed
+        tag: tree_dp|greedy
         """
 
         class Graph(WeightedTree):
@@ -2018,7 +2018,7 @@ class Solution:
     def cf_1083a(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1083/A
-        tag: tree_dp|greed|implemention|weighted_tree|classical
+        tag: tree_dp|greedy|implemention|weighted_tree|classical
         """
 
         class Graph(WeightedTree):
@@ -2069,7 +2069,7 @@ class Solution:
     def cf_982c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/982/C
-        tag: tree_dp|greed|classical
+        tag: tree_dp|greedy|classical
         """
 
         class Graph(WeightedTree):
@@ -2114,7 +2114,7 @@ class Solution:
     def cf_1856e1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1856/E1
-        tag: tree_dp|greed|down_to_up|classical
+        tag: tree_dp|greedy|down_to_up|classical
         """
 
         class Graph(WeightedTree):
@@ -2169,7 +2169,7 @@ class Solution:
     def cf_1153d_1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1153/D
-        tag: tree_dp|greed|brain_teaser
+        tag: tree_dp|greedy|brain_teaser
         """
 
         class Graph(WeightedTree):
@@ -2222,7 +2222,7 @@ class Solution:
     def cf_1153d_2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1153/D
-        tag: tree_dp|greed|brain_teaser
+        tag: tree_dp|greedy|brain_teaser
         """
 
         n = ac.read_int()
@@ -2246,7 +2246,7 @@ class Solution:
     def cf_274b(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/274/B
-        tag: tree_dp|greed|brain_teaser|classical
+        tag: tree_dp|greedy|brain_teaser|classical
         """
 
         class Graph(WeightedTree):
@@ -2299,7 +2299,7 @@ class Solution:
     def cf_369c(ac=FastIO()):
         """
         url: https://codeforces.com/contest/369/problem/C
-        tag: tree_dp|greed|classical
+        tag: tree_dp|greedy|classical
         """
 
         class Graph(WeightedTree):

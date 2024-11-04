@@ -11,8 +11,8 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 221（https://leetcode.cn/problems/maximal-square/）maximum_square|classical
 72（https://leetcode.cn/problems/edit-distance/）matrix_dp
 329（https://leetcode.cn/problems/longest-increasing-path-in-a-matrix/）matrix_dp
-1478（https://leetcode.cn/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greed
-2573（https://leetcode.cn/problems/find-the-string-with-lcp/）greed|construction|lcp
+1478（https://leetcode.cn/problems/allocate-mailboxes/）matrix_dp|median_greedy|interval_dp|greedy
+2573（https://leetcode.cn/problems/find-the-string-with-lcp/）greedy|construction|lcp
 2328（https://leetcode.cn/problems/number-of-increasing-paths-in-a-grid/）matrix_dp|counter
 2312（https://leetcode.cn/problems/selling-pieces-of-wood/）memory_search|specific_plan
 2267（https://leetcode.cn/problems/check-if-there-is-a-valid-parentheses-string-path/）memory_search
@@ -39,7 +39,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 1959（https://leetcode.cn/problems/minimum-total-space-wasted-with-k-resizing-operations/description/）matrix_dp|prefix_sum
 1458（https://leetcode.cn/problems/max-dot-product-of-two-subsequences/description/）matrix_dp
 1745（https://leetcode.cn/problems/palindrome-partitioning-iv/description/）matrix_dp|palindrome_substring|manacher|brute_force
-2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greed|implemention
+2809（https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/）matrix_dp|greedy|implemention
 100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
 100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
 3098（https://leetcode.cn/problems/find-the-sum-of-subsequence-powers）matrix_dp
@@ -99,7 +99,7 @@ P5879（https://www.luogu.com.cn/problem/P5879）matrix_dp|prefix_sum
 P6119（https://www.luogu.com.cn/problem/P6119）matrix_dp|lcs
 P6323（https://www.luogu.com.cn/problem/P6323）reverse_order_pair|prefix_sum
 P6394（https://www.luogu.com.cn/problem/P6394）matrix_dp|prefix_sum
-P6433（https://www.luogu.com.cn/problem/P6433）greed|classification_discussion|matrix_dp
+P6433（https://www.luogu.com.cn/problem/P6433）greedy|classification_discussion|matrix_dp
 P6451（https://www.luogu.com.cn/problem/P6451）md_matrix_dp|brute_force|4-tree
 P6509（https://www.luogu.com.cn/problem/P6509）classical|matrix_dp|specific_plan
 P6870（https://www.luogu.com.cn/problem/P6870）matrix_dp|comb|counter
@@ -132,7 +132,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1133E（https://codeforces.com/contest/1133/problem/E）matrix_dp|preprocess|classical
 1183H（https://codeforces.com/contest/1183/problem/H）matrix_dp|classical|hard|different_sub_sequence
 1183E（https://codeforces.com/contest/1183/problem/E）matrix_dp|classical|hard|different_sub_sequence
-1353F（https://codeforces.com/contest/1353/problem/F）matrix_dp|greed|monotonic_stack
+1353F（https://codeforces.com/contest/1353/problem/F）matrix_dp|greedy|monotonic_stack
 1409F（https://codeforces.com/contest/1409/problem/F）matrix_dp
 1433F（https://codeforces.com/contest/1433/problem/F）matrix_dp
 1551E（https://codeforces.com/contest/1551/problem/E）matrix_dp
@@ -140,7 +140,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1729G（https://codeforces.com/contest/1729/problem/G）matrix_dp
 1811G2（https://codeforces.com/contest/1811/problem/G2）matrix_dp|comb
 1132F（https://codeforces.com/problemset/problem/1132/F）matrix_dp|classical
-1935C（https://codeforces.com/problemset/problem/1935/C）matrix_dp|greed|sort
+1935C（https://codeforces.com/problemset/problem/1935/C）matrix_dp|greedy|sort
 1989B（https://codeforces.com/contest/1989/problem/B）continuous_lcs|dp|classical
 1517D（https://codeforces.com/contest/1517/problem/D）implemention|brain_teaser|observation|even|matrix_dp|bfs
 1625C（https://codeforces.com/problemset/problem/1625/C）matrix_dp|brute_force|implemention
@@ -158,7 +158,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
 ABC325F（https://atcoder.jp/contests/abc325/tasks/abc325_f）matrix_dp|brute_force|classical
-ABC344F（https://atcoder.jp/contests/abc344/tasks/abc344_f）matrix_dp|greed|brain_teaser|classical
+ABC344F（https://atcoder.jp/contests/abc344/tasks/abc344_f）matrix_dp|greedy|brain_teaser|classical
 ABC311F（https://atcoder.jp/contests/abc311/tasks/abc311_f）matrix_dp|prefix_sum_opt|classical|brain_teaser
 ABC311E（https://atcoder.jp/contests/abc311/tasks/abc311_e）matrix_dp|classical
 ABC298G（https://atcoder.jp/contests/abc298/tasks/abc298_g）matrix_dp|brute_force|classical
@@ -168,7 +168,7 @@ ABC264F（https://atcoder.jp/contests/abc264/tasks/abc264_f）matrix_dp|tle
 ABC261D（https://atcoder.jp/contests/abc261/tasks/abc261_d）matrix_dp
 ABC262D（https://atcoder.jp/contests/abc262/tasks/abc262_d）brute_force|matrix_dp|classical
 ABC253E（https://atcoder.jp/contests/abc253/tasks/abc253_e）prefix_sum|matrix_dp|inclusion_exclusion|reverse_thinking|classical
-ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greed|matrix_dp|implemention|classical
+ABC238F（https://atcoder.jp/contests/abc238/tasks/abc238_f）sort|greedy|matrix_dp|implemention|classical
 ABC237F（https://atcoder.jp/contests/abc237/tasks/abc237_f）matrix_dp|lis|counter|brain_teaser|classical
 ABC227F（https://atcoder.jp/contests/abc227/tasks/abc227_f）matrix_dp|bryte_force|brain_teaser
 ABC217G（https://atcoder.jp/contests/abc217/tasks/abc217_g）comb|perm|counter|matrix_dp|comb_dp
@@ -201,7 +201,7 @@ from itertools import permutations, accumulate
 from typing import List
 
 from src.basis.diff_array.template import PreFixSumMatrix
-from src.greed.longest_increasing_subsequence.template import LcsComputeByLis
+from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
@@ -333,7 +333,7 @@ class Solution:
     def lc_2573(lcp: List[List[int]]) -> str:
         """
         url: https://leetcode.cn/problems/find-the-string-with-lcp/
-        tag: greed|construction|lcp|brain_teaser|classical
+        tag: greedy|construction|lcp|brain_teaser|classical
         """
         n = len(lcp)
         ans = [""] * n
@@ -1439,7 +1439,7 @@ class Solution:
     def lg_p6433(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6433
-        tag: greed|classification_discussion|matrix_dp
+        tag: greedy|classification_discussion|matrix_dp
         """
 
         n, m, k = ac.read_list_ints()
@@ -2405,7 +2405,7 @@ class Solution:
     def lc_2809(nums1: List[int], nums2: List[int], x: int) -> int:
         """
         url: https://leetcode.cn/problems/minimum-time-to-make-array-sum-at-most-x/
-        tag: matrix_dp|greed|implemention
+        tag: matrix_dp|greedy|implemention
         """
         n = len(nums2)
         ind = list(range(n))
@@ -2530,7 +2530,7 @@ class Solution:
     def cf_1353f(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1353/problem/F
-        tag: matrix_dp|greed|monotonic_stack
+        tag: matrix_dp|greedy|monotonic_stack
         """
         for _ in range(ac.read_int()):
             m, n = ac.read_list_ints()
@@ -2669,7 +2669,7 @@ class Solution:
     def abc344f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc344/tasks/abc344_f
-        tag: matrix_dp|greed|brain_teaser|classical
+        tag: matrix_dp|greedy|brain_teaser|classical
         """
         n = ac.read_int()
         pp = [ac.read_list_ints() for _ in range(n)]
@@ -2850,7 +2850,7 @@ class Solution:
     def abc_238f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc238/tasks/abc238_f
-        tag: sort|greed|matrix_dp|implemention|classical
+        tag: sort|greedy|matrix_dp|implemention|classical
         """
         n, k = ac.read_list_ints()
         p = ac.read_list_ints()
@@ -3085,7 +3085,7 @@ class Solution:
     def cf_1935c(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1935/C
-        tag: matrix_dp|greed|sort
+        tag: matrix_dp|greedy|sort
         """
 
         for _ in range(ac.read_int()):

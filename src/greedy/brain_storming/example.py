@@ -1,6 +1,6 @@
 import unittest
 
-from src.greed.brain_storming.template import BrainStorming
+from src.greedy.brain_storming.template import BrainStorming
 
 
 class TestGeneral(unittest.TestCase):

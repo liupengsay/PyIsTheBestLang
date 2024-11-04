@@ -1,6 +1,6 @@
 """
 
-Algorithm：mst|kruskal|prim|strictly_second_mst|multiplication_method|lca|brute_force|shortest_path_spanning_tree|greed
+Algorithm：mst|kruskal|prim|strictly_second_mst|multiplication_method|lca|brute_force|shortest_path_spanning_tree|greedy
 Description：prim is node wise and kruskal is edge wise, prim is suitable for dense graph and kruskal is suitable for sparse graph
 
 
@@ -40,9 +40,9 @@ P1550（https://www.luogu.com.cn/problem/P1550）mst|build_graph|fake_source|cla
 P1661（https://www.luogu.com.cn/problem/P1661）manhattan_distance|mst|classical
 
 ===================================CodeForces===================================
-609E（https://codeforces.com/problemset/problem/609/E）lca|greed|mst|strictly_second_mst|necessary_edge
+609E（https://codeforces.com/problemset/problem/609/E）lca|greedy|mst|strictly_second_mst|necessary_edge
 1108F（https://codeforces.com/contest/1108/problem/F）mst|classical
-1095F（https://codeforces.com/contest/1095/problem/F）mst|brain_teaser|greed
+1095F（https://codeforces.com/contest/1095/problem/F）mst|brain_teaser|greedy
 1624G（https://codeforces.com/contest/1624/problem/G）or_mst|classical
 1857G（https://codeforces.com/contest/1857/problem/G）mst|brain_teaser|classical
 1981E（https://codeforces.com/contest/1981/problem/E）scan_line|union_find|classical|implemention|mst
@@ -66,7 +66,7 @@ ABC181F（https://atcoder.jp/contests/abc181/tasks/abc181_f）geometry|binary_se
 1（https://judge.yosupo.jp/problem/manhattanmst）manhattan_distance|mst|classical
 Directed MST（https://judge.yosupo.jp/problem/directedmst）
 3（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/F）mst|brute_force
-4（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H）mst|greed
+4（https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H）mst|greedy
 5（https://vjudge.net/problem/BZOJ-2177）manhattan_distance|mst|classical
 6（https://www.51nod.com/Challenge/Problem.html#problemId=1213）manhattan_distance|mst|classical
 
@@ -387,11 +387,11 @@ class Solution:
     def cf_609e(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/609/E
-        tag: lca|greed|mst|strictly_second_mst|necessary_edge
+        tag: lca|greedy|mst|strictly_second_mst|necessary_edge
         """
         """
         url: https://codeforces.com/problemset/problem/609/E
-        tag: lca|greed|mst|tree_multiplication|maximum_weight|second_mst|strictly_second_minimum_spanning_tree
+        tag: lca|greedy|mst|tree_multiplication|maximum_weight|second_mst|strictly_second_minimum_spanning_tree
         """
         n, m = ac.read_list_ints()
         weights = []
@@ -931,7 +931,7 @@ class Solution:
     def library_check_4(ac=FastIO()):
         """
         url: https://codeforces.com/edu/course/2/lesson/7/2/practice/contest/289391/problem/H
-        tag: mst|greed
+        tag: mst|greedy
         """
         n, m, s = ac.read_list_ints()
         edges = [tuple(ac.read_list_ints()) for _ in range(m)]

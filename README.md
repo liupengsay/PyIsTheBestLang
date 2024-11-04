@@ -15,7 +15,7 @@ This project is orgnaized by the following structure
 > >**[graph](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/graph)** are some simple and classic graph theory algorithms 
 
 
-> >**[greed](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/greedy)** are some classic greedy problems
+> >**[greedy](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/greedy)** are some classic greedy problems
 
 
 > >**[math](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/mathmatics)** are mathematics related algorithms

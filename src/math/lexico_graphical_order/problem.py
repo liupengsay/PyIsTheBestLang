@@ -9,8 +9,8 @@ Description：kth_lexicographical_order|lexicographical_order_rank|subset_lexico
 1415（https://leetcode.cn/problems/the-k-th-lexicographical-string-of-all-happy-strings-of-length-n/）lexicographical_order|construction
 1643（https://leetcode.cn/problems/kth-smallest-instructions/）lexicographical_order
 1830（https://leetcode.cn/problems/minimum-number-of-operations-to-make-string-sorted/）lexicographical_order_rank|rank_order
-1842（https://leetcode.cn/problems/next-palindrome-using-same-digits/）lexicographical_order|greed
-1850（https://leetcode.cn/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greed
+1842（https://leetcode.cn/problems/next-palindrome-using-same-digits/）lexicographical_order|greedy
+1850（https://leetcode.cn/problems/minimum-adjacent-swaps-to-reach-the-kth-smallest-number/）next_lexicographical_order|bubble|greedy
 
 =====================================LuoGu======================================
 P1243（https://www.luogu.com.cn/problem/P1243）kth_subset

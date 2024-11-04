@@ -15,8 +15,8 @@ Description：
 49888C（https://ac.nowcoder.com/acm/contest/49888/C）double_linked_list
 
 =====================================LuoGu======================================
-P5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greed|lexicographical_order|deque
-P6155（https://www.luogu.com.cn/problem/P6155）sort|greed|union_find_right_root
+P5462（https://www.luogu.com.cn/problem/P5462）double_linked_list|greedy|lexicographical_order|deque
+P6155（https://www.luogu.com.cn/problem/P6155）sort|greedy|union_find_right_root
 
 ===================================CodeForces===================================
 1154E（https://codeforces.com/contest/1154/problem/E）double_linked_list|union_find_left|union_find_right
@@ -30,7 +30,7 @@ ABC225D（https://atcoder.jp/contests/abc225/tasks/abc225_d）linked_list
 =====================================AcWing=====================================
 136（https://www.acwing.com/problem/content/138/）linked_list|reverse_thinking
 4943（https://www.acwing.com/problem/content/description/4946/）bfs|linked_list
-5034（https://www.acwing.com/problem/content/5037/）heapq|greed|linked_list
+5034（https://www.acwing.com/problem/content/5037/）heapq|greedy|linked_list
 
 """
 import heapq
@@ -290,7 +290,7 @@ class Solution:
     def lg_p5462(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5462
-        tag: double_linked_list|greed|lexicographical_order|deque|classical
+        tag: double_linked_list|greedy|lexicographical_order|deque|classical
         """
         n = ac.read_int()
         nums = ac.read_list_ints()
@@ -321,7 +321,7 @@ class Solution:
     def lg_p6155(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P6155
-        tag: sort|greed|union_find_right_root|classical
+        tag: sort|greedy|union_find_right_root|classical
         """
         n = ac.read_int()
         a = ac.read_list_ints()
@@ -475,7 +475,7 @@ class Solution:
     def ac_5034(ac=FastIO()):
         """
         url: https://www.acwing.com/problem/content/5037/
-        tag: heapq|greed|linked_list
+        tag: heapq|greedy|linked_list
         """
         n = ac.read_int()
         s = ac.read_str()

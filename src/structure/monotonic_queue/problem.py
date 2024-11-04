@@ -10,7 +10,7 @@ Description：sliding_window|monotonic
 
 
 ====================================LeetCode====================================
-1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greed|monotonic_queue
+1918D（https://codeforces.com/contest/1918/problem/D）binary_search|greedy|monotonic_queue
 1941E（https://codeforces.com/contest/1941/problem/E）monotonic_queue|dp
 1976D（https://codeforces.com/contest/1796/problem/D）monotonic_queue|brain_teaser|classical|prefix_min|array_implemention
 514D（https://codeforces.com/problemset/problem/514/D）monotonic_queue|two_pointers
@@ -27,7 +27,7 @@ P1886（https://www.luogu.com.cn/problem/P1886）sliding_window
 P1725（https://www.luogu.com.cn/problem/P1725）monotonic_queue|pointer|sliding_window|liner_dp
 P2827（https://www.luogu.com.cn/problem/P2827）monotonic_queue
 P3800（https://www.luogu.com.cn/problem/P3800）monotonic_queue|matrix_dp
-P1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greed|implemention
+P1016（https://www.luogu.com.cn/problem/P1016）monotonic_queue|greedy|implemention
 P1714（https://www.luogu.com.cn/problem/P1714）prefix_sum|sliding_window
 P2629（https://www.luogu.com.cn/problem/P2629）circular_array|prefix_sum|sliding_window
 P3522（https://www.luogu.com.cn/problem/P3522）monotonic_stack
@@ -328,7 +328,7 @@ class Solution:
     def lg_p1016(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1016
-        tag: monotonic_queue|greed|implemention|classical
+        tag: monotonic_queue|greedy|implemention|classical
         """
         d1, c, d2, p, n = ac.read_list_floats()
         n = int(n)
@@ -520,7 +520,7 @@ class Solution:
     def cf_1918d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1918/problem/D
-        tag: binary_search|greed|monotonic_queue
+        tag: binary_search|greedy|monotonic_queue
         """
         for _ in range(ac.read_int()):
             n = ac.read_int()
