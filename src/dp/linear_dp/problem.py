@@ -174,6 +174,7 @@ ABC222D（https://atcoder.jp/contests/abc222/tasks/abc222_d）prefix|linear_dp
 ABC214F（https://atcoder.jp/contests/abc214/tasks/abc214_f）prefix|linear_dp
 ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
 ABC366F（https://atcoder.jp/contests/abc366/tasks/abc366_f）linear_dp|greedy|custom_sort|classical
+ABC179D（https://atcoder.jp/contests/abc179/tasks/abc179_d）linear_dp|prefix_sum_opt
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -194,7 +195,6 @@ from src.basis.binary_search.template import BinarySearch
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -599,7 +599,7 @@ class Solution:
         dp[2] = max(nums[0], nums[1])
         for i in range(2, n):
             dp[i + 1] = min(dp[i] + nums[0] + nums[i],
-                               dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
+                            dp[i - 1] + nums[0] + 2 * nums[1] + nums[i])
         ac.st(dp[-1])
         return
 

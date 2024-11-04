@@ -9,7 +9,7 @@ from src.structure.tree_array.template import PointAddRangeSum as PointAddRangeS
 from src.structure.zkw_segment_tree.template import (
     PointSetPointAddRangeSum as PointSetRangeSumZKW,
     RangeAddPointGet as RangeAddPointGetZKW,
-    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge)
+    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge, RangeMergePointGet)
 
 
 class TestGeneral(unittest.TestCase):
@@ -40,6 +40,31 @@ class TestGeneral(unittest.TestCase):
                 ll = random.randint(0, n - 1)
                 rr = random.randint(ll, n - 1)
                 assert tree.range_merge(ll, rr) == reduce(merge, nums[ll:rr + 1])
+        return
+
+    def test_range_merge_point_get(self):
+        for merge in [add, xor, mul, and_, or_, max, min, math.gcd, math.lcm]:
+            n = 100
+            initial = 0
+            if merge == min:
+                initial = math.inf
+            elif merge == and_:
+                initial = (1 << 32) - 1
+            elif merge == mul or merge == math.lcm:
+                initial = 1
+            tree = RangeMergePointGet(n, initial, merge)
+            nums = [random.getrandbits(32) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(n):
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                x = random.getrandbits(32)
+                tree.range_merge(ll, rr, x)
+                for j in range(ll, rr+1):
+                    nums[j] = merge(nums[j], x)
+                i = random.randint(0, n - 1)
+                assert tree.point_get(i) == nums[i]
+
         return
 
     def test_point_set_range_sum(self):
@@ -298,11 +323,11 @@ class TestGeneral(unittest.TestCase):
             i = random.randint(0, n - 1)
             num = random.randint(low, high)
             nums[i] += num
-            tree.point_add(i + 1, num)
+            tree.point_add(i, num)
 
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)
-            ans = tree.range_sum(ll + 1, rr + 1)
+            ans = tree.range_sum(ll, rr)
             assert ans == sum(nums[ll:rr + 1])
 
         assert nums == tree.get()

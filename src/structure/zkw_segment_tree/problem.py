@@ -1,6 +1,6 @@
 """
 Algorithm：segment_tree|bisect_left
-Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaulteddict
+Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segment_tree|defaulted_dict
 
 ====================================LeetCode====================================
 
@@ -11,6 +11,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 
 ====================================AtCoder=====================================
 ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+ABC179F（https://atcoder.jp/contests/abc179/tasks/abc179_f）zkw_segment_tree|implemention|brain_teaser
 
 =====================================AcWing=====================================
 
@@ -21,7 +22,7 @@ ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRa
 import math
 
 from src.structure.segment_tree.template import PointSetRangeMaxMinGap
-from src.structure.zkw_segment_tree.template import PointSetPointAddRangeSum
+from src.structure.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeMergePointGet
 from src.util.fast_io import FastIO
 
 
@@ -108,5 +109,29 @@ class Solution:
                 res = min(res, y)
             ans += tree.range_sum(res, n - 1)
         ans = m * n - ans
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_179f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc179/tasks/abc179_f
+        tag: zkw_segment_tree|implemention|brain_teaser
+        """
+        n, q = ac.read_list_ints()
+        ans = (n - 2) * (n - 2)
+        row = RangeMergePointGet(n + 1, n, min)
+        col = RangeMergePointGet(n + 1, n, min)
+
+        for _ in range(q):
+            op, x = ac.read_list_ints()
+            if op == 1:
+                cur = col.point_get(x)
+                ans -= cur - 2
+                row.range_merge(1, cur, x)
+            else:
+                cur = row.point_get(x)
+                ans -= cur - 2
+                col.range_merge(1, cur, x)
         ac.st(ans)
         return

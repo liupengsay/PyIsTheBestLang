@@ -113,6 +113,54 @@ class PointSetPointAddRangeSum:
         return ans_left + ans_right
 
 
+class RangeMergePointGet:
+    def __init__(self, n, initial=0, merge=add):
+        self.n = n
+        self.merge = merge
+        self.initial = initial
+        self.cover = [self.initial] * (2 * self.n)
+        return
+
+    def build(self, nums):
+        for i in range(self.n):
+            self.cover[i + self.n] = nums[i]
+        return
+
+    def push_up(self, i):
+        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def range_merge(self, left, right, val):
+        left += self.n
+        right += self.n + 1
+
+        while left < right:
+            if left & 1:
+                self.cover[left] = self.merge(self.cover[left], val)
+                left += 1
+            if right & 1:
+                right -= 1
+                self.cover[right] = self.merge(self.cover[right], val)
+            left >>= 1
+            right >>= 1
+        return
+
+    def get(self):
+        for i in range(1, self.n):
+            self.cover[i << 1] = self.merge(self.cover[i << 1], self.cover[i])
+            self.cover[(i << 1) | 1] = self.merge(self.cover[(i << 1) | 1], self.cover[i])
+            self.cover[i] = self.initial
+        return self.cover[self.n:]
+
+    def point_get(self, ind):
+        ans = self.initial
+        ind += self.n
+        while ind > 0:
+            ans = self.merge(self.cover[ind], ans)
+            ind //= 2
+        return ans
+
+
 class RangeAddPointGet:
     def __init__(self, n):
         self.n = n

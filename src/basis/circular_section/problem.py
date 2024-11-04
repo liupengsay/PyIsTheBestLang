@@ -30,6 +30,7 @@ ABC258E（https://atcoder.jp/contests/abc258/tasks/abc258_e）two_pointers|brute
 ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|brute_force|circular_section
 ABC241E（https://atcoder.jp/contests/abc241/tasks/abc241_e）circular_section|brute_force_valid|classical
 ABC214C（https://atcoder.jp/contests/abc214/tasks/abc214_c）circular_section|brain_teaser
+ABC179E（https://atcoder.jp/contests/abc179/tasks/abc179_e）circular_section|data_range|classical
 
 
 """
@@ -357,4 +358,33 @@ class Solution:
         for i in range(n):
             ans = max(ans, max(odd[i + n] - odd[i], even[i + n] - even[i]))
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_179e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc179/tasks/abc179_e
+        tag: circular_section|data_range|classical
+        """
+        n, x, m = ac.read_list_ints()
+
+        lst = [x % m]
+        x %= m
+        pre = {lst[0]: 0}
+        for i in range(2, n + 1):
+            x *= x
+            x %= m
+            if x in pre:
+                ind = pre[x]
+                ans = sum(lst)
+                rest = n - (i - 1)
+                c_sum = sum(lst[ind:])
+                circle = i - 1 - ind
+                ans += c_sum * (rest // circle)
+                ans += sum(lst[ind:ind + rest % circle])
+                ac.st(ans)
+                return
+            lst.append(x)
+            pre[lst[-1]] = len(lst) - 1
+        ac.st(sum(lst))
         return
