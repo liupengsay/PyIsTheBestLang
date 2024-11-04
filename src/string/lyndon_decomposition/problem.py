@@ -44,7 +44,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/160/
         tag: minimum_expression
         """
-        # 求字符串的minimum_expression
         s = ac.read_str()
         t = ac.read_str()
         _, s1 = LyndonDecomposition().min_express(s)

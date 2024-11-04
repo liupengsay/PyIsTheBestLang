@@ -21,7 +21,7 @@ class PruferAndTree:
         n = len(parent)
         adj = [[] for _ in range(n)]
         for i in range(n):
-            if parent[i] != -1:  # 即 i!=root
+            if parent[i] != -1:
                 adj[i].append(parent[i])
                 adj[parent[i]].append(i)
         return parent

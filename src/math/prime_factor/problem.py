@@ -32,6 +32,7 @@ ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorizatio
 
 =====================================AcWing=====================================
 199（https://www.acwing.com/problem/content/199/）factorial|prime_factorization
+3727（https://www.acwing.com/problem/content/3727/）factorial|prime_factorization
 
 1（https://www.codechef.com/problems/COUNTN）min_prime|prime_number
 
@@ -594,7 +595,10 @@ class Solution:
 
     @staticmethod
     def lc_1390(nums: List[int]) -> int:
-        # preprocess所有数的所有因子
+        """
+        url: https://leetcode.cn/problems/four-divisors/description/
+        tag: all_factor
+        """
         nt = PrimeFactor(10 ** 5)
         ans = 0
         for num in nums:
@@ -604,7 +608,10 @@ class Solution:
 
     @staticmethod
     def lc_1819(nums: List[int]) -> int:
-        # preprocess所有整数的所有因子，再brute_forcegcd
+        """
+        url: https://leetcode.cn/problems/number-of-different-subsequences-gcds/
+        tag: all_factor|brute_force|preprocess
+        """
         nt = PrimeFactor(2 * 10 ** 5 + 10)
         dct = defaultdict(list)
         for num in set(nums):
@@ -646,7 +653,10 @@ class Solution:
 
     @staticmethod
     def ac_3727(ac=FastIO()):
-        # brain_teaser转换成进制表达问题
+        """
+        url: https://www.acwing.com/problem/content/3727/
+        tag: brain_teaser|n-base
+        """
 
         for _ in range(ac.read_int()):
             def check():
@@ -671,7 +681,10 @@ class Solution:
 
     @staticmethod
     def ac_4319(ac=FastIO()):
-        # prime_factorization|后prefix_hashcounter
+        """
+        url:
+        tag: prime_factorization|prefix_hash|counter
+        """
         n, k = ac.read_list_ints()
         a = ac.read_list_ints()
         nt = PrimeFactor(max(a))
@@ -692,7 +705,10 @@ class Solution:
 
     @staticmethod
     def ac_4484(ac=FastIO()):
-        # 分数在某个进制下是否为有限小数问题
+        """
+        url:
+        tag: gcd_like|n_base
+        """
         for _ in range(ac.read_int()):
 
             def check():
@@ -715,7 +731,10 @@ class Solution:
 
     @staticmethod
     def ac_5049(ac=FastIO()):
-        # prime_factorization|组合数
+        """
+        url:
+        tag: prime_factorization|comb_perm
+        """
         n, m, h = ac.read_list_ints()
         a = ac.read_list_ints()
         h -= 1

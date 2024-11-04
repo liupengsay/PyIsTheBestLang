@@ -1012,7 +1012,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/3763/
         tag: brain_teaser|tree_dp
         """
-        # brain_teaser转化为tree_dp迭代方式求解
         n = ac.read_int()
         w = ac.read_list_ints()
         dct = [[] for _ in range(n)]
@@ -1056,7 +1055,6 @@ class Solution:
         url: https://www.acwing.com/problem/content/description/4384/
         tag: reroot_dp|dfs|dfs_order|diff_array
         """
-        # 迭代法实现树形reroot_dp
         n = ac.read_int()
         dct = [[] for _ in range(n)]
         for _ in range(n - 1):
@@ -1064,7 +1062,6 @@ class Solution:
             dct[x].append([y, 0])
             dct[y].append([x, 1])
 
-        # 第一遍DP子节点的影响，从上到下再从下到上累|
         sub = [0] * n
         stack = [[0, -1]]
         while stack:
@@ -1082,7 +1079,6 @@ class Solution:
                         cur += sub[j] + w
                 sub[i] = cur
 
-        # 第二遍DP祖先节点与兄弟节点的影响
         stack = [[0, -1, 0]]
         while stack:
             i, fa, pre = stack.pop()
@@ -1100,7 +1096,7 @@ class Solution:
 
     @staticmethod
     def lc_100041(n: int, edges: List[List[int]]) -> List[int]:
-        # 一遍DFS迭代实现树形reroot_dp
+
         dct = [[] for _ in range(n)]
         for x, y in edges:
             dct[x].append([y, 1])
@@ -1137,7 +1133,6 @@ class Solution:
         url: https://leetcode.cn/problems/make-costs-of-paths-equal-in-a-binary-tree/
         tag: tree_dp|greedy
         """
-        # tree_dpgreedy
         ans = 0
         for i in range(n // 2, 0, -1):
             left = cost[i * 2 - 1]

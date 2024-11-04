@@ -192,7 +192,6 @@ class TestGeneral(unittest.TestCase):
 
     def test_point_add_range_sum_2d(self):
 
-        # tree_matrix|，单点增减，区间查询
         m = n = 100
         high = 100000
         tree = PointAddRangeSum2D(m, n)
@@ -214,7 +213,6 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_range_add_range_sum_2d(self):
-        # tree_matrix|，区间增减，区间查询
         m = n = 100
         high = 100000
         tree = RangeAddRangeSum2D(m, n)
@@ -243,7 +241,6 @@ class TestGeneral(unittest.TestCase):
     @unittest.skip
     def test_point_change_max_min_2d(self):
 
-        # tree_matrix|，单点增减，区间查询
         random.seed(2023)
         m = n = 100
         high = 100000

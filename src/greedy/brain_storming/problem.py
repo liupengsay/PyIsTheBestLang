@@ -786,7 +786,7 @@ class Solution:
     def lg_p4653(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P4653
-        tag: binary_search|pointer|greedy
+        tag: binary_search|pointer|greedy|two_pointers
         """
         n = ac.read_int()
         nums1 = []
@@ -797,7 +797,6 @@ class Solution:
             nums2.append(y)
         nums1.sort(reverse=True)
         nums2.sort(reverse=True)
-        # two_pointers选择
         ans = i = j = a = b = 0
         light_a = light_b = 0
         while i < n or j < n:

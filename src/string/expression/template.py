@@ -12,6 +12,7 @@ class TreeExpression:
         return
 
     def exp_tree(self, s: str) -> Node:
+        # divide_and_conquer
 
         try:
             int(s)
@@ -40,30 +41,25 @@ class TreeExpression:
 
         n = len(s)
         cnt = 0
-        # 按照运算符号的优先级reverse_order|遍历字符串
         for i in range(n - 1, -1, -1):
             cnt += int(s[i] == ')') - int(s[i] == '(')
             if s[i] in ['+', '-'] and not cnt:
                 return Node(s[i], self.exp_tree(neg + s[:i]), self.exp_tree(s[i + 1:]))
 
-        # 注意是从后往前
         for i in range(n - 1, -1, -1):
             cnt += int(s[i] == ')') - int(s[i] == '(')
             if s[i] in ['*', '/'] and not cnt:
                 return Node(s[i], self.exp_tree(neg + s[:i]), self.exp_tree(s[i + 1:]))
 
-        # 注意是从前往后
         for i in range(n):
             cnt += int(s[i] == ')') - int(s[i] == '(')
-            if s[i] in ['^'] and not cnt:  # 这里的 ^ 表示幂
+            if s[i] in ['^'] and not cnt:
                 return Node(s[i], self.exp_tree(neg + s[:i]), self.exp_tree(s[i + 1:]))
 
-        # 其余则是开头结尾为括号的情况
         return self.exp_tree(s[1:-1])
 
     def main_1175(self, s):
-
-        # 按照前序、中序与后序变成前缀中缀与后缀表达式
+        # pre_order|mid_order|post_order
         def dfs(node):
             if not node:
                 return
@@ -104,7 +100,6 @@ class EnglishNumber:
     @staticmethod
     def number_to_english(n):
 
-        # 将 0-9999 的数字转换为美式英语即有 and
         one = ["", "one", "two", "three", "four",
                "five", "six", "seven", "eight", "nine",
                "ten", "eleven", "twelve", "thirteen", "fourteen",

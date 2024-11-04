@@ -33,9 +33,8 @@ class Solution:
     def lc_906(left: str, right: str) -> int:
         """
         url: https://leetcode.cn/problems/super-palindromes/
-        tag: preprocess|brute_force
+        tag: preprocess|brute_force|palindrome_number
         """
-        # preprocess所有的回文数其开方也是回文数
         nums = PalindromeNum().get_palindrome_num_2(10)
         res = [num * num for num in nums if str(num * num)[::-1] == str(num * num)]
         left = int(left)
@@ -68,9 +67,8 @@ class Solution:
     def lc_1088(n: int) -> int:
         """
         url: https://leetcode.cn/problems/confusing-number-ii/description/
-        tag: implemention|brute_force
+        tag: implemention|brute_force|binary_search
         """
-        # preprocess后binary_search
         ind = {0: 0, 1: 1, 6: 9, 8: 8, 9: 6}
         pre = [0, 1, 6, 8, 9]
         res = pre[:]
@@ -78,14 +76,12 @@ class Solution:
             nex = []
             for num in pre:
                 for d in ind:
-                    # brute_force方式
                     nex.append(num * 10 + d)
             res.extend(nex)
             pre = nex[:]
         res = sorted(set(res))
 
         def check(x):
-            # check函数
             if x <= 0:
                 return False
             s = str(x)
@@ -93,7 +89,7 @@ class Solution:
             return t != x
 
         res = [num for num in res if check(num)]
-        res.append(1000000000)  # 注意边界
+        res.append(1000000000)
         return bisect.bisect_right(res, n)
 
     @staticmethod

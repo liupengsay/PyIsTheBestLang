@@ -27,14 +27,13 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1884
         tag: scan_line
         """
-        # 矩形覆盖面积
         n = ac.read_int()
         lst = []
         for _ in range(n):
             lst.append(ac.read_list_ints())
         low_x = min(min(ls[0], ls[2]) for ls in lst)
         low_y = min(min(ls[1], ls[3]) for ls in lst)
-        # 注意挪到坐标原点
+
         lst = [[ls[0] - low_x, ls[1] - low_y, ls[2] - low_x, ls[3] - low_y] for ls in lst]
         lst = [[ls[0], ls[3], ls[2], ls[1]] for ls in lst]
         ans = ScanLine().get_rec_area(lst)

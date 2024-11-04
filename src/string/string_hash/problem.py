@@ -85,7 +85,10 @@ class Solution:
 
     @staticmethod
     def cf_1800g(ac=FastIO()):
-        # tree_hash编码判断树是否对称
+        """
+        url: https://codeforces.com/contest/1800/problem/D
+        tag: tree_hash|classical
+        """
         for _ in range(ac.read_int()):
             n = ac.read_int()
             edge = [[] for _ in range(n)]
@@ -110,13 +113,11 @@ class Solution:
                 sub[i] = cnt
                 yield
 
-            # dfs|或者迭代预先将子tree_hash编码
             tree_hash = [-1] * n
             sub = [0] * n
             seen = dict()
             dfs(0, -1)
 
-            # 逐层判断hash值不为0的子树是否对称
             u = 0
             father = -1
             ans = "YES"
@@ -144,10 +145,7 @@ class Solution:
         tag: reverse_hash|string_hash|longest_prefix_palindrome_substring|kmp|manacher
         """
 
-        # 正向与反向string_hash字符串前缀最长palindrome_substring，也可以用KMP与manacher
-
         def query(x, y):
-            # 字符串区间的hash值，索引从 0 开始
             ans = [0, 0]
             for ii in range(2):
                 if x <= y:
@@ -155,7 +153,6 @@ class Solution:
             return ans
 
         def query_rev(x, y):
-            # 字符串区间的hash值，索引从 0 开始
             ans = [0, 0]
             for ii in range(2):
                 if x <= y:
@@ -193,7 +190,6 @@ class Solution:
         tag: tree_hash
         """
 
-        # tree_hash编码序列化子树，查找重复子树
         def dfs(node):
             if not node:
                 return 0
@@ -307,7 +303,7 @@ class Solution:
         url: https://www.acwing.com/problem/content/140/
         tag: string_hash
         """
-        # string_hash，子串是否完全相等
+
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
         mod1 = random.randint(10 ** 9 + 7, 2 ** 31 - 1)
@@ -374,7 +370,7 @@ class Solution:
         """
 
         def check(st):
-            # 解码原始树的字符串表示，再tree_minimum_expression
+            # tree_minimum_expression
 
             parent = [-1]
             pa = 0
@@ -389,7 +385,6 @@ class Solution:
                 else:
                     pa = parent[pa]
 
-            # 生成tree_minimum_expression
             n = ind + 1
             stack = [0]
             sub = [""] * n
@@ -466,7 +461,6 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4656
         tag: string_hash|greedy
         """
-        # string_hashgreedy选取
 
         p1 = random.randint(26, 100)
         p2 = random.randint(26, 100)
@@ -479,7 +473,6 @@ class Solution:
             n = len(s)
             i, j = 0, n - 1
             while j - i + 1 >= 2:
-                # 从两边依次选取
                 flag = False
                 pre1 = post1 = pre2 = post2 = 0
                 pp1 = pp2 = 1
@@ -503,14 +496,12 @@ class Solution:
                     pp2 = (pp2 * p2) % mod2
                     x += 1
                     y -= 1
-                # 如果构成一对回文增| 2 否则增| 1
                 if flag:
                     ans += 2
                 else:
                     ans += 1
                     i = j + 1
                     break
-            # 特判还剩中间一个字母的情况
             if i == j:
                 ans += 1
             ac.st(ans)
@@ -575,9 +566,8 @@ class Solution:
         url: https://leetcode.cn/problems/delete-duplicate-folders-in-system/
         tag: trie_like|tree_hash
         """
-        # tree_hashtrie的子树编码
 
-        dct = dict()  # 建树
+        dct = dict()
         for path in paths:
             cur = dct
             for w in path:
@@ -586,7 +576,7 @@ class Solution:
                 cur = cur[w]
             cur["**"] = 1
 
-        def dfs(node, cur_w):  # hash
+        def dfs(node, cur_w):
             if not node:
                 return tuple([0])
 
@@ -618,7 +608,6 @@ class Solution:
                     pre.pop()
             return
 
-        # back_trace取出路径
         ans = []
         pre = []
         dfs(dct)
@@ -630,7 +619,6 @@ class Solution:
         url: https://leetcode.cn/problems/k-divisible-elements-subarrays/submissions/
         tag: string_hash
         """
-        # string_hash对数组编码
         n = len(nums)
         pre = list(accumulate([int(num % p == 0) for num in nums], initial=0))
         p = [random.randint(26, 100), random.randint(26, 100)]

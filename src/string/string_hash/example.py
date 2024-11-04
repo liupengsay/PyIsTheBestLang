@@ -10,12 +10,10 @@ class TestGeneral(unittest.TestCase):
         n = 1000
         st = "".join([chr(random.randint(0, 25) + ord("a")) for _ in range(n)])
 
-        # 生成hash种子
         p1, p2 = random.randint(26, 100), random.randint(26, 100)
         mod1, mod2 = random.randint(
             10 ** 9 + 7, 2 ** 31 - 1), random.randint(10 ** 9 + 7, 2 ** 31 - 1)
 
-        # 目标串的hash状态
         target = "".join([chr(random.randint(0, 25) + ord("a"))
                           for _ in range(10)])
         h1 = h2 = 0
@@ -25,7 +23,7 @@ class TestGeneral(unittest.TestCase):
             h2 = h2 * p2 + (ord(w) - ord("a"))
             h2 %= mod1
 
-        # sliding_windowhash状态
+        # sliding_window|hash
         m = len(target)
         pow1 = pow(p1, m - 1, mod1)
         pow2 = pow(p2, m - 1, mod2)

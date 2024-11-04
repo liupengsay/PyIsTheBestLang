@@ -275,7 +275,6 @@ class TestGeneral(unittest.TestCase):
         tree.build(nums)
         assert tree.get() == nums
         for _ in range(high):
-            # 区间更新最大值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
@@ -286,7 +285,6 @@ class TestGeneral(unittest.TestCase):
             right = random.randint(left, high - 1)
             assert tree.range_max(left, right) == max(nums[left:right + 1])
 
-            # 单点更新最大值
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
@@ -310,7 +308,7 @@ class TestGeneral(unittest.TestCase):
         tree.build(nums)
         assert tree.get() == nums
         for _ in range(high):
-            # 区间更新最大值
+
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
@@ -323,7 +321,6 @@ class TestGeneral(unittest.TestCase):
             res = tree.range_max_index(left, right)
             assert res[0] == max(nums[left:right + 1])
 
-            # 单点更新最大值
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
@@ -348,7 +345,6 @@ class TestGeneral(unittest.TestCase):
         tree.build(nums)
 
         for _ in range(high):
-            # 区间更新与查询最小值
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(low, high)
@@ -359,7 +355,6 @@ class TestGeneral(unittest.TestCase):
             right = random.randint(left, high - 1)
             assert tree.range_min(left, right) == min(nums[left:right + 1])
 
-            # 单点更新与查询最小值
             left = random.randint(0, high - 1)
             right = left
             num = random.randint(low, high)
@@ -694,7 +689,6 @@ class TestGeneral(unittest.TestCase):
         tree.build(nums)
 
         for _ in range(high):
-            # 区间修改
             left = random.randint(0, high - 1)
             right = random.randint(left, high - 1)
             num = random.randint(0, high)
