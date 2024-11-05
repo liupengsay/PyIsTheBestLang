@@ -160,6 +160,7 @@ ABC233F（https://atcoder.jp/contests/abc233/tasks/abc233_f）graph|union_find|c
 ABC231D（https://atcoder.jp/contests/abc231/tasks/abc231_d）union_find|construction
 ABC225C（https://atcoder.jp/contests/abc225/tasks/abc225_c）construction
 ABC362F（https://atcoder.jp/contests/abc362/tasks/abc362_f）construction|greedy|observation
+ABC178F（https://atcoder.jp/contests/abc178/tasks/abc178_f）construction|observation|greedy
 
 ====================================AtCoder=====================================
 1（https://www.codechef.com/problems/ENVPILE）bfs|construction|classical

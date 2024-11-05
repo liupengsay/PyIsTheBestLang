@@ -1,6 +1,55 @@
 from operator import add
 
 
+class PointUpdateRangeQuery:
+
+    def __init__(self, n, initial=0, merge=add):
+        self.n = n
+        self.initial = initial
+        self.merge = merge
+        self.cover = [initial] * 2 * self.n
+        return
+
+    def push_up(self, i):
+        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def build(self, nums):
+        for i in range(self.n):
+            self.cover[i + self.n] = nums[i]
+        for i in range(self.n - 1, 0, -1):
+            self.push_up(i)
+        return
+
+    def get(self):
+        return self.cover[self.n:]
+
+    def point_update(self, ind, val):
+        assert 0 <= ind < self.n
+        ind += self.n
+        self.cover[ind] = self.merge(self.cover[ind], val)
+        while ind > 1:
+            ind //= 2
+            self.push_up(ind)
+        return
+
+    def range_query(self, left, right):
+        assert 0 <= left <= right < self.n
+        ans_left = ans_right = self.initial
+        left += self.n
+        right += self.n + 1
+        while left < right:
+            if left & 1:
+                ans_left = self.merge(ans_left, self.cover[left])
+                left += 1
+            if right & 1:
+                right -= 1
+                ans_right = self.merge(self.cover[right], ans_right)
+            left >>= 1
+            right >>= 1
+        return self.merge(ans_left, ans_right)
+
+
 class PointSetPointAddRangeMerge:
 
     def __init__(self, n, initial=0, merge=add):

@@ -12,6 +12,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 ====================================AtCoder=====================================
 ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
 ABC179F（https://atcoder.jp/contests/abc179/tasks/abc179_f）zkw_segment_tree|implemention|brain_teaser
+ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）PointUpdateRangeQuery|manhattan_distance|classical
 
 =====================================AcWing=====================================
 
@@ -133,5 +134,32 @@ class Solution:
                 cur = row.point_get(x)
                 ans -= cur - 2
                 col.range_merge(1, cur, x)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_178e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc178/tasks/abc178_e
+        tag: PointUpdateRangeQuery|manhattan_distance|classical
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        nodes = set()
+        for x, y in nums:
+            nodes.add(y)
+        nodes = sorted(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        m = len(ind)
+        inf = 2 * 10 ** 9
+        tree_pos = PointUpdateRangeQuery(m, -inf, max)
+        tree_neg = PointUpdateRangeQuery(m, -inf, max)
+        ans = 0
+        nums.sort()
+        for x, y in nums:
+            ans = max(ans, x + y + tree_pos.range_query(0, ind[y]))
+            ans = max(ans, x - y + tree_neg.range_query(ind[y], m - 1))
+            tree_pos.point_update(ind[y], -x - y)
+            tree_neg.point_update(ind[y], -x + y)
         ac.st(ans)
         return

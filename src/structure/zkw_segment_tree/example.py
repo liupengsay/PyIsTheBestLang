@@ -9,10 +9,34 @@ from src.structure.tree_array.template import PointAddRangeSum as PointAddRangeS
 from src.structure.zkw_segment_tree.template import (
     PointSetPointAddRangeSum as PointSetRangeSumZKW,
     RangeAddPointGet as RangeAddPointGetZKW,
-    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge, RangeMergePointGet)
+    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge, RangeMergePointGet,
+    PointUpdateRangeQuery)
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_update_range_query(self):
+        for merge in [add, xor, mul, and_, or_, max, min, math.gcd, math.lcm]:
+            n = 100
+            initial = 0
+            if merge == min:
+                initial = math.inf
+            elif merge == and_:
+                initial = (1 << 32) - 1
+            elif merge == mul or merge == math.lcm:
+                initial = 1
+            tree = PointUpdateRangeQuery(n, initial, merge)
+            nums = [random.getrandbits(32) for _ in range(n)]
+            tree.build(nums)
+            for _ in range(n):
+                i = random.randint(0, n - 1)
+                x = random.getrandbits(32)
+                nums[i] = merge(nums[i], x)
+                tree.point_update(i, x)
+                ll = random.randint(0, n - 1)
+                rr = random.randint(ll, n - 1)
+                assert tree.range_query(ll, rr) == reduce(merge, nums[ll:rr + 1])
+        return
 
     def test_point_set_add_range_merge(self):
         for merge in [add, xor, mul, and_, or_, max, min, math.gcd, math.lcm]:
@@ -60,7 +84,7 @@ class TestGeneral(unittest.TestCase):
                 rr = random.randint(ll, n - 1)
                 x = random.getrandbits(32)
                 tree.range_merge(ll, rr, x)
-                for j in range(ll, rr+1):
+                for j in range(ll, rr + 1):
                     nums[j] = merge(nums[j], x)
                 i = random.randint(0, n - 1)
                 assert tree.point_get(i) == nums[i]

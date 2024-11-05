@@ -181,6 +181,7 @@ ABC185E（https://atcoder.jp/contests/abc185/tasks/abc185_e）matrix_dp
 ABC184D（https://atcoder.jp/contests/abc184/tasks/abc184_d）matrix_dp
 ABC138E（https://atcoder.jp/contests/abc183/tasks/abc183_e）matrix_dp|matrix_prefix_sum_opt
 ABC180F（https://atcoder.jp/contests/abc180/tasks/abc180_f）circle_permutation|brute_force|inclusion_exclusion|matrix_dp|observation|comb_perm|counter|construction|low_bit_contribution
+ABC178D（https://atcoder.jp/contests/abc178/tasks/abc178_d）matrix_dp|prefix_sum_opt
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
