@@ -31,7 +31,7 @@ class PointXorRangeXor:
     def get(self):
         nums = [self._pre_xor(i) for i in range(self.n)]
         for i in range(self.n - 1, 0, -1):
-            nums[i] -= nums[i - 1]
+            nums[i] ^= nums[i - 1]
         return nums
 
     def point_xor(self, i: int, val: int) -> None:
@@ -325,12 +325,14 @@ class RangeAddRangeSum:
 
     def range_add(self, left: int, right: int, v: int) -> None:
         # index start from 1 and v van be any integer
+        assert 1 <= left <= right <= self.n
         self._add(left, v)
         self._add(right + 1, -v)
         return
 
     def range_sum(self, left: int, right: int) -> int:
         # index start from 1 and query the sum(nums[left-1: right]) which is 0-index array
+        assert 1 <= left <= right <= self.n
         a = (right + 1) * self._sum(self.t1, right) - self._sum(self.t2, right)
         b = left * self._sum(self.t1, left - 1) - self._sum(self.t2, left - 1)
         return a - b

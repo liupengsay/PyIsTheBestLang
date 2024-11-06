@@ -113,7 +113,7 @@ class TestGeneral(unittest.TestCase):
                     x = random.randint(low, high)
                     i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] > x else x
-                    tree_array.point_ascend(i + 1, x)
+                    tree_array.point_ascend(i, x)
                     assert list(accumulate(nums, max)) == [tree_array.pre_max(i) for i in range(n)]
         return
 
@@ -147,7 +147,7 @@ class TestGeneral(unittest.TestCase):
                     x = random.randint(low, high)
                     i = random.randint(0, n - 1)
                     nums[i] = nums[i] if nums[i] < x else x
-                    tree_array.point_descend(i + 1, x)
+                    tree_array.point_descend(i, x)
                     assert list(accumulate(nums, min)) == [tree_array.pre_min(i) for i in range(n)]
         return
 
@@ -277,14 +277,14 @@ class TestGeneral(unittest.TestCase):
                 x = random.randint(low, high)
                 i = random.randint(0, n - 1)
                 nums[i] ^= x
-                tree_array.point_xor(i + 1, x)
+                tree_array.point_xor(i, x)
                 assert tree_array.get() == nums
                 ll = random.randint(0, n - 1)
                 rr = random.randint(ll, n - 1)
                 res = 0
                 for num in nums[ll: rr + 1]:
                     res ^= num
-                assert res == tree_array.range_xor(ll + 1, rr + 1)
+                assert res == tree_array.range_xor(ll, rr)
         return
 
 

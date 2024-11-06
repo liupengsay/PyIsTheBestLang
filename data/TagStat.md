@@ -1,60 +1,62 @@
-# classical	775
+# classical	784
 
-# greed	280
+# greedy	284
 
-# brute_force	266
+# brute_force	273
 
-# brain_teaser	265
+# brain_teaser	272
 
-# implemention	216
+# implemention	218
 
-# counter	157
+# counter	166
+
+# binary_search	129
 
 # segment_tree	128
 
-# binary_search	126
+# matrix_dp	122
 
-# matrix_dp	120
+# math	100
 
-# union_find	94
+# union_find	96
 
-# math	94
+# linear_dp	93
 
-# linear_dp	90
+# prefix_sum	83
 
-# prefix_sum	88
-
-# bfs	73
+# bfs	74
 
 # hard	73
 
-# inclusion_exclusion	68
+# inclusion_exclusion	70
 
-# bag_dp	65
+# bag_dp	67
 
-# observation	62
+# observation	64
 
-# construction	60
+# construction	61
 
 # monotonic_stack	60
 
+# tree_array	60
+
 # shortest_path	60
 
-# tree_array	59
+# bit_operation	59
 
-# bit_operation	58
-
-# data_range	57
+# data_range	58
 
 # suffix_array	55
 
-# two_pointers	51
+# two_pointers	52
 
-# specific_plan	50
+# specific_plan	51
 
-# state_dp	49
+# state_dp	50
 
 # mst	47
+
+# build_graph	46
 
 # kmp	46
 
@@ -62,33 +64,31 @@
 
 # liner_dp	45
 
-# dijkstra	45
+# dijkstra	44
 
 # sorted_list	42
 
 # tree_dp	42
 
-# build_graph	42
-
 # range_sum	42
+
+# contribution_method	41
 
 # string_hash	41
 
 # prefix_suffix	40
 
-# contribution_method	40
+# dfs	40
 
 # diff_array	39
+
+# hash	39
+
+# monotonic_queue	39
 
 # reverse_thinking	39
 
 # comb	39
-
-# hash	38
-
-# monotonic_queue	38
-
-# dfs	37
 
 # sort	36
 
@@ -110,9 +110,9 @@
 
 # back_trace	25
 
-# interval_dp	23
+# lis	24
 
-# lis	23
+# interval_dp	23
 
 # floyd	23
 
@@ -122,6 +122,8 @@
 
 # sqrt_decomposition	23
 
+# prime_factorization	22
+
 # lcp	22
 
 # circular_array	21
@@ -130,17 +132,21 @@
 
 # reroot_dp	20
 
+# discretization	20
+
 # multiplication_method	19
 
 # digital_dp	19
 
 # manacher	19
 
-# discretization	19
-
 # odd_even	18
 
 # interactive	18
+
+# custom_sort	18
+
+# lcs	18
 
 # tree_lca	18
 
@@ -148,23 +154,19 @@
 
 # sparse_table	18
 
-# prime_factorization	17
+# circular_section	17
+
+# lexicographical_order	17
 
 # game_dp	17
 
 # geometry	17
 
-# custom_sort	17
-
-# lcs	17
-
 # reverse_graph	17
 
 # longest_path	16
 
-# circular_section	16
-
-# lexicographical_order	16
+# preprocess	16
 
 # partition_method	16
 
@@ -176,6 +178,8 @@
 
 # stack	15
 
+# divide_and_conquer	15
+
 # matrix_fast_power	15
 
 # sliding_window	14
@@ -183,10 +187,6 @@
 # high_precision	14
 
 # pointer	14
-
-# preprocess	14
-
-# divide_and_conquer	14
 
 # bipartite_graph	13
 
@@ -204,13 +204,15 @@
 
 # permutation_circle	12
 
+# manhattan_distance	12
+
 # range_max	12
 
 # range_reverse	12
 
 # euler_series	11
 
-# manhattan_distance	11
+# matrix_prefix_sum	11
 
 # finite	11
 
@@ -218,17 +220,23 @@
 
 # trie_like	11
 
+# n_base	10
+
 # dag	10
 
-# matrix_prefix_sum	10
-
 # action_scope	10
+
+# refresh_table	10
 
 # catalan_number	10
 
 # matrix_bag_dp	10
 
+# fill_table	10
+
 # num_factor	10
+
+# linked_list	10
 
 # circle_judge	10
 
@@ -240,31 +248,25 @@
 
 # union_find_range	10
 
+# peishu_theorem	10
+
 # maximum_xor	10
 
 # double_linked_list	10
 
 # sub_consequence	10
 
-# median	9
-
 # number_theory	9
 
 # classification_discussion	9
-
-# n_base	9
-
-# refresh_table	9
 
 # bin_split	9
 
 # group_bag_dp	9
 
-# fill_table	9
-
-# linked_list	9
-
 # expectation_dp	9
+
+# prime_factor	9
 
 # tree_diameter	9
 
@@ -274,17 +276,21 @@
 
 # prim	9
 
-# peishu_theorem	9
-
 # z_function	9
 
 # sub_matrix	9
 
+# median	8
+
+# median_greedy	8
+
 # math.infinite	8
+
+# prefix_sum_opt	8
 
 # expectation	8
 
-# prime_factor	8
+# several_dijkstra	8
 
 # differential_constraint	8
 
@@ -306,8 +312,6 @@
 
 # coloring_method	7
 
-# median_greedy	7
-
 # graph	7
 
 # palindrome	7
@@ -322,17 +326,21 @@
 
 # fast_power	7
 
+# gcd	7
+
+# memory_search	7
+
 # md_matrix_dp	7
 
 # prune	7
 
 # tree_diff_array	7
 
-# several_dijkstra	7
-
 # tarjan	7
 
 # mod_reverse	7
+
+# gcd_like	7
 
 # range_mul	7
 
@@ -346,19 +354,17 @@
 
 # reverse_order_pair	6
 
+# tree_hash	6
+
 # matrix	6
 
 # min_prime	6
 
 # partial_order	6
 
-# gcd	6
-
 # kmp_automaton	6
 
-# memory_search	6
-
-# undirected	6
+# outline_dp	6
 
 # deque_bfs	6
 
@@ -380,8 +386,6 @@
 
 # second_stirling_number	6
 
-# gcd_like	6
-
 # trick	6
 
 # RangeAddRangeSum	6
@@ -393,6 +397,8 @@
 # O(nlogn)	5
 
 # float_to_frac	5
+
+# factorization	5
 
 # directed_graph	5
 
@@ -406,8 +412,6 @@
 
 # matrix_rotate	5
 
-# tree_hash	5
-
 # range	5
 
 # iteration	5
@@ -420,13 +424,17 @@
 
 # limited_operation	5
 
-# outline_dp	5
-
 # sos_dp	5
 
 # tree_dis	5
 
+# undirected	5
+
 # maximum_weight_match	5
+
+# directed_euler_path	5
+
+# prime_sieve	5
 
 # min_cost	5
 
@@ -452,8 +460,6 @@
 
 # offline_lca	5
 
-# factorization	4
-
 # diff_matrix	4
 
 # prefix_max	4
@@ -474,9 +480,15 @@
 
 # xor	4
 
+# lps	4
+
 # array_implemention	4
 
 # prefix_min	4
+
+# priority_queue	4
+
+# comb_perm	4
 
 # hungarian	4
 
@@ -491,8 +503,6 @@
 # fake_source	4
 
 # undirected_euler_path	4
-
-# prime_sieve	4
 
 # cutting_edge	4
 
@@ -523,6 +533,8 @@
 # cantor_expands	4
 
 # chinese_reminder_theorem	4
+
+# all_factor	4
 
 # random_guess	4
 
@@ -606,7 +618,7 @@
 
 # strictly_second_shortest_path	3
 
-# directed_euler_path	3
+# dijkstra_like	3
 
 # lexicographical_order_minimum	3
 
@@ -646,9 +658,13 @@
 
 # lucas	3
 
+# minimum_circle_coverage	3
+
 # suffix_zero	3
 
 # mex	3
+
+# n-base	3
 
 # longest_prefix_suffix	3
 
@@ -659,8 +675,6 @@
 # post_second_larger	3
 
 # delay_heapq	3
-
-# priority_queue	3
 
 # RangeAddRangeSumMaxMin	3
 
@@ -690,8 +704,6 @@
 
 # find_int_left	2
 
-# greedy	2
-
 # prime	2
 
 # suffix_sum	2
@@ -705,6 +717,8 @@
 # number_of_path	2
 
 # color_method	2
+
+# undirected_circle	2
 
 # fibonacci	2
 
@@ -750,9 +764,9 @@
 
 # maximum_square	2
 
-# prefix_xor	2
+# matrix_prefix_xor	2
 
-# prefix_sum_opt	2
+# suffix_sum_opt	2
 
 # bryte_force	2
 
@@ -830,8 +844,6 @@
 
 # row_column_union_find	2
 
-# comb_perm	2
-
 # dict	2
 
 # card_split_average	2
@@ -839,6 +851,8 @@
 # suffix_max	2
 
 # bracket	2
+
+# longest_non_decreasing_subsequence	2
 
 # lds	2
 
@@ -858,7 +872,7 @@
 
 # corner_case	2
 
-# minimum_circle_coverage	2
+# random_increment_method	2
 
 # fibonacci_property	2
 
@@ -878,6 +892,8 @@
 
 # euler_phi	2
 
+# ugly_number	2
+
 # negative_base	2
 
 # power_reverse	2
@@ -887,8 +903,6 @@
 # lcm	2
 
 # gcd_pair	2
-
-# all_factor	2
 
 # ac_automaton	2
 
@@ -901,6 +915,8 @@
 # palindrome_start_end	2
 
 # palindrome_length_count	2
+
+# palindrome_number	2
 
 # segment_tree_hash	2
 
@@ -949,6 +965,8 @@
 # PointAddRangeSum	2
 
 # discretize	2
+
+# PointSetPointAddRangeSum	2
 
 # prefix_count	2
 
@@ -1039,8 +1057,6 @@
 # dfs_tree	1
 
 # independent_set	1
-
-# undirected_circle	1
 
 # undirected_local_shortest_circle	1
 
@@ -1146,8 +1162,6 @@
 
 # preprocess_dp	1
 
-# lps	1
-
 # hanoi_tower	1
 
 # different_subsequence	1
@@ -1164,7 +1178,13 @@
 
 # edit_distance	1
 
+# predix_sum	1
+
+# longest_common_subsequence	1
+
 # longest_palindrome_sequence	1
+
+# longest_common_prefix	1
 
 # minimum_mul	1
 
@@ -1186,13 +1206,19 @@
 
 # matrix_prefix_sum_opt	1
 
+# circle_permutation	1
+
+# low_bit_contribution	1
+
 # circle_dp	1
 
 # inv	1
 
-# suffix_sum_opt	1
-
 # minimum_maximum	1
+
+# subset_sum	1
+
+# bit_mask	1
 
 # md_state	1
 
@@ -1210,13 +1236,13 @@
 
 # circle_check	1
 
+# back_track	1
+
 # several_bfs	1
 
 # zero_one_bfs	1
 
 # dijkstra_for_cnt_of_strictly_second_shortest_path	1
-
-# dijkstra_like	1
 
 # minimum_max_weight	1
 
@@ -1253,6 +1279,8 @@
 # key_edge_in_shortest_path	1
 
 # euler_path	1
+
+# euler_circular_path	1
 
 # limited_floyd	1
 
@@ -1346,6 +1374,12 @@
 
 # LC2488	1
 
+# minus_index_trick	1
+
+# strictly_monotonic	1
+
+# horse_racing	1
+
 # mst_like	1
 
 # full_binary_tree	1
@@ -1354,15 +1388,25 @@
 
 # property	1
 
+# tree_greedy	1
+
 # special_judge	1
 
 # small_to_big	1
 
 # strictly_monotonic_trick	1
 
-# longest_non_decreasing_subsequence	1
+# minimum_group_increasing_subsequence_partition	1
 
-# lineardp	1
+# length_of_longest_non_increasing_subsequence	1
+
+# longest_increment_subsequence	1
+
+# longest_non_increasing_subsequence	1
+
+# dilworth_theorem	1
+
+# lms	1
 
 # super_sequence	1
 
@@ -1408,7 +1452,7 @@
 
 # tripart_pack_tripart	1
 
-# random_increment_method	1
+# binary_search_of_binary_search	1
 
 # interaction	1
 
@@ -1474,8 +1518,6 @@
 
 # anti_prime_number	1
 
-# ugly_number	1
-
 # is_prime	1
 
 # O(n^0.25)	1
@@ -1514,7 +1556,11 @@
 
 # group_by_mul	1
 
+# lcp14	1
+
 # factor_dp	1
+
+# prefix_hash	1
 
 # prime_factor_cnt	1
 
@@ -1563,8 +1609,6 @@
 # palindrome_just_end	1
 
 # palindrome_count	1
-
-# palindrome_number	1
 
 # reverse_hash	1
 
@@ -1758,7 +1802,9 @@
 
 # range_max_min_gap	1
 
-# PointSetPointAddRangeSum	1
+# zkw_segment_tree	1
+
+# PointUpdateRangeQuery	1
 
 # necessary_diameter_edge	1
 

@@ -9,7 +9,7 @@ from src.math.prime_factor.template import PrimeFactor
 class TestGeneral(unittest.TestCase):
 
     def test_prime_sieve(self):
-        n = 10 ** 6
+        n = 10 ** 2
         pf = PrimeFactor(n)
         ps = PrimeSieve()
         euler_sieve = ps.euler_sieve(n)

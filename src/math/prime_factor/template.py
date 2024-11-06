@@ -93,4 +93,4 @@ class PrimeFactor:
         return ans
 
     def get_prime_numbers(self):
-        return [i for i in range(2, self.n + 1) if self.min_prime[i] == 0]
+        return [i for i in range(2, self.n + 1) if self.min_prime[i] == i]

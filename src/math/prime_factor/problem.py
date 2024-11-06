@@ -29,6 +29,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
+ABC177E（https://atcoder.jp/contests/abc177/tasks/abc177_e）factor_cnt|implemention
 
 =====================================AcWing=====================================
 199（https://www.acwing.com/problem/content/199/）factorial|prime_factorization
@@ -1028,3 +1029,27 @@ class Solution:
                 if x == 1:
                     return -1
         return ans
+
+    @staticmethod
+    def abc_177e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc177/tasks/abc177_e
+        tag: factor_cnt|implemention
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 6
+        cnt = [0] * (ceil + 1)
+        for num in nums:
+            cnt[num] += 1
+        for x in range(2, ceil + 1):
+            for y in range(x * 2, ceil + 1, x):
+                cnt[x] += cnt[y]
+        ceil = max(cnt[2:])
+        if ceil <= 1:
+            ac.st("pairwise coprime")
+        elif ceil < n:
+            ac.st("setwise coprime")
+        else:
+            ac.st("not coprime")
+        return

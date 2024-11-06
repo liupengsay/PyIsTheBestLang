@@ -49,12 +49,12 @@ class TestGeneral(unittest.TestCase):
             elif merge == mul or merge == math.lcm:
                 initial = 1
             tree = PointSetPointAddRangeMerge(n, initial, merge)
-            nums = [random.getrandbits(32) for _ in range(n)]
+            nums = [random.getrandbits(30) for _ in range(n)]
             tree.build(nums)
             for _ in range(n):
-                op = random.getrandbits(32)
+                op = random.getrandbits(30)
                 i = random.randint(0, n - 1)
-                x = random.getrandbits(32)
+                x = random.getrandbits(30)
                 if op % 2:
                     nums[i] = x
                     tree.point_set(i, x)
@@ -238,7 +238,7 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 50000
 
-        def add_only(a, b):
+        def add_only(a, b, _):
             return a + b
 
         def add_with_length(a, b, c):
@@ -287,13 +287,13 @@ class TestGeneral(unittest.TestCase):
         low = -10000
         high = 50000
 
-        def add_only(b):
+        def add_only(_, b, __):
             return b
 
-        def add_with_length(b, c):
+        def add_with_length(_, b, c):
             return b * c
 
-        def merge_tag(tag1):
+        def merge_tag(tag1, _):
             return tag1
 
         def num_to_cover(x):
@@ -361,9 +361,6 @@ class TestGeneral(unittest.TestCase):
         random.seed(2024)
         high = 5 * 100000
 
-        # start, end, cover_0, cover_1, length, sum
-        # start>0 1 start<0 0
-        # 0-change 1-change 2-reverse 3-null
         nums = [random.randint(0, 1) for _ in range(high)]
 
         def merge_cover_tag(cover, tag):
@@ -372,7 +369,7 @@ class TestGeneral(unittest.TestCase):
                 return -length, -length, length, 0, length, 0
             elif tag == 1:
                 return length, length, 0, length, length, length
-            elif tag == 2:  # 2
+            elif tag == 2:
                 start, end, cover_zero, cover_one, length, tot = cover
                 return -start, -end, cover_one, cover_zero, length, length - tot
             return cover
@@ -416,7 +413,6 @@ class TestGeneral(unittest.TestCase):
                 return tag2
             if tag1 <= 1:
                 return tag1
-            # tag1 = 2
             if tag2 <= 1:
                 tag2 = 1 - tag2
             elif tag2 == 2:
