@@ -441,10 +441,11 @@ class TestGeneral(unittest.TestCase):
             webbrowser.open(url)
             time.sleep(0.5)
             print(url)
+            break
         return
 
     def test_abc_problem(self):
-        num = "177"
+        num = "176"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

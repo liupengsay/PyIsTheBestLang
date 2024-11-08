@@ -143,6 +143,7 @@ ABC361D（https://atcoder.jp/contests/abc361/tasks/abc361_d）bfs|classical
 ABC197F（https://atcoder.jp/contests/abc197/tasks/abc197_f）bfs|classical
 ABC184E（https://atcoder.jp/contests/abc184/tasks/abc184_e）bfs|classical
 ABC182E（https://atcoder.jp/contests/abc182/tasks/abc182_e）bfs|classical
+ABC176D（https://atcoder.jp/contests/abc176/tasks/abc176_d）deque_bfs|01bfs|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -3053,4 +3054,37 @@ class Solution:
                     cur += visit[(i * n + j) * 4 + k]
                 ans -= cur == 0
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_176d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc176/tasks/abc176_d
+        tag: deque_bfs|01bfs|classical
+        """
+        m, n = ac.read_list_ints()
+        x1, y1 = ac.read_list_ints_minus_one()
+        x2, y2 = ac.read_list_ints_minus_one()
+        grid = [ac.read_str() for _ in range(m)]
+        inf = 10 ** 9
+        visit = [inf] * n * m
+        stack = [(x1, y1)]
+        visit[x1 * n + y1] = 0
+        while stack and visit[x2 * n + y2] == inf:
+            nex = []
+            while stack:
+                x, y = stack.pop()
+                for a in range(-2, 3):
+                    for b in range(-2, 3):
+                        cost = 1 - int(abs(a) + abs(b) == 1)
+                        if 0 <= (x + a) < m and 0 <= (y + b) < n and grid[x + a][y + b] == '.' and visit[
+                            (x + a) * n + y + b] > visit[x * n + y] + cost:
+                            visit[(x + a) * n + y + b] = visit[x * n + y] + cost
+                            if cost == 1:
+                                nex.append((x + a, y + b))
+                            else:
+                                stack.append((x + a, y + b))
+            stack = nex
+        ans = visit[x2 * n + y2]
+        ac.st(ans if ans < inf else -1)
         return

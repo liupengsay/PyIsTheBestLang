@@ -193,6 +193,7 @@ ABC198D（https://atcoder.jp/contests/abc198/tasks/abc198_d）brute_force|permut
 ABC184C（https://atcoder.jp/contests/abc184/tasks/abc184_c）brute_force|brain_teaser|observation
 ABC181E（https://atcoder.jp/contests/abc181/tasks/abc181_e）brute_force|binary_search|greedy|prefix_suffix
 ABC180D（https://atcoder.jp/contests/abc180/tasks/abc180_d）brute_force
+ABC176E（https://atcoder.jp/contests/abc176/tasks/abc176_e）brute_force|observation|greedy
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
@@ -1914,3 +1915,28 @@ class Solution:
                         pre -= cnt[w]
                 ans += cur
         return ans
+
+    @staticmethod
+    def abc_176e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc176/tasks/abc176_e
+        tag: brute_force|observation|greedy
+        """
+        m, n, k = ac.read_list_ints()
+        row = defaultdict(list)
+        col = [0] * n
+        for _ in range(k):
+            x, y = ac.read_list_ints_minus_one()
+            row[x].append(y)
+            col[y] += 1
+
+        ceil = max(col)
+        cnt = col.count(ceil)
+        ans = ceil
+        for r in row:
+            cur = len(row[r])
+            c = sum(col[y] == ceil for y in row[r])
+            cur += ceil if c < cnt else ceil - 1
+            ans = max(cur, ans)
+        ac.st(ans)
+        return
