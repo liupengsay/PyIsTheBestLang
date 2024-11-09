@@ -1012,7 +1012,7 @@ class Solution:
     def lg_p2380(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P2380
-        tag: md_matrix_dp|predix_sum
+        tag: md_matrix_dp|prefix_sum
         """
         while True:
             m, n = ac.read_list_ints()

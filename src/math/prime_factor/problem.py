@@ -29,7 +29,7 @@ P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
-ABC177E（https://atcoder.jp/contests/abc177/tasks/abc177_e）factor_cnt|implemention
+ABC177E（https://atcoder.jp/contests/abc177/tasks/abc177_e）factor_cnt|implemention|corner_case
 
 =====================================AcWing=====================================
 199（https://www.acwing.com/problem/content/199/）factorial|prime_factorization

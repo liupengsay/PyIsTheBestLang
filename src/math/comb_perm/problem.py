@@ -43,7 +43,7 @@ P3904（https://www.luogu.com.cn/problem/P3904）second_stirling_number|dp|class
 P5684（https://www.luogu.com.cn/problem/P5684）inclusion_exclusion|counter
 P6057（https://www.luogu.com.cn/problem/P6057）inclusion_exclusion|counter
 P3811（https://www.luogu.com.cn/problem/P3811）mod_reverse
-P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|postfix_mul|inclusion_exclusion
+P5431（https://www.luogu.com.cn/problem/P5431）mod_reverse|prefix_mul|suffix_mul|inclusion_exclusion
 P2613（https://www.luogu.com.cn/problem/P2613）mod_reverse
 P6184（https://www.luogu.com.cn/problem/P6184）comb|inclusion_exclusion|partition_method
 P7158（https://www.luogu.com.cn/problem/P7158）comb
@@ -862,7 +862,7 @@ class Solution:
     def lg_p5431(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P5431
-        tag: mod_reverse|prefix_mul|postfix_mul|inclusion_exclusion
+        tag: mod_reverse|prefix_mul|suffix_mul|inclusion_exclusion
         """
         n, p, k = ac.read_list_ints()
         a = ac.read_list_ints()  # MLE

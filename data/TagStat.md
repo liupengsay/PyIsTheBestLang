@@ -1,12 +1,12 @@
-# classical	784
+# classical	785
 
-# greedy	284
+# greedy	285
 
-# brute_force	273
+# brute_force	274
 
 # brain_teaser	272
 
-# implemention	218
+# implemention	219
 
 # counter	166
 
@@ -22,17 +22,17 @@
 
 # linear_dp	93
 
-# prefix_sum	83
+# prefix_sum	84
 
 # bfs	74
 
 # hard	73
 
-# inclusion_exclusion	70
+# inclusion_exclusion	71
 
 # bag_dp	67
 
-# observation	64
+# observation	65
 
 # construction	61
 
@@ -50,7 +50,7 @@
 
 # two_pointers	52
 
-# specific_plan	51
+# specific_plan	52
 
 # state_dp	50
 
@@ -290,6 +290,8 @@
 
 # expectation	8
 
+# deque_bfs	8
+
 # several_dijkstra	8
 
 # differential_constraint	8
@@ -365,8 +367,6 @@
 # kmp_automaton	6
 
 # outline_dp	6
-
-# deque_bfs	6
 
 # negative_circle	6
 
@@ -704,6 +704,8 @@
 
 # find_int_left	2
 
+# bit_mask	2
+
 # prime	2
 
 # suffix_sum	2
@@ -902,6 +904,8 @@
 
 # lcm	2
 
+# factor_cnt	2
+
 # gcd_pair	2
 
 # ac_automaton	2
@@ -1008,8 +1012,6 @@
 
 # maximum_length_of_sub_consequence_with_pos_sum	1
 
-# specific_plans	1
-
 # kth_coprime_of_n	1
 
 # bound	1
@@ -1017,8 +1019,6 @@
 # variance	1
 
 # query_order	1
-
-# bit_masks	1
 
 # monotonic_property	1
 
@@ -1178,8 +1178,6 @@
 
 # edit_distance	1
 
-# predix_sum	1
-
 # longest_common_subsequence	1
 
 # longest_palindrome_sequence	1
@@ -1218,8 +1216,6 @@
 
 # subset_sum	1
 
-# bit_mask	1
-
 # md_state	1
 
 # level_wise	1
@@ -1239,8 +1235,6 @@
 # back_track	1
 
 # several_bfs	1
-
-# zero_one_bfs	1
 
 # dijkstra_for_cnt_of_strictly_second_shortest_path	1
 
@@ -1446,7 +1440,7 @@
 
 # first_stirling_number	1
 
-# postfix_mul	1
+# suffix_mul	1
 
 # convex_hull	1
 
@@ -1549,8 +1543,6 @@
 # get_all_factor	1
 
 # prefix_lcm	1
-
-# factor_cnt	1
 
 # get_prime_factor	1
 
@@ -1691,8 +1683,6 @@
 # range_min_count	1
 
 # range_max_sub_sum	1
-
-# include_exclude	1
 
 # matrix_build	1
 

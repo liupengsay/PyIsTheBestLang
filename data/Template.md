@@ -1,3 +1,7 @@
+# Graph(WeightedTree)	7
+
+# Graph(WeightedGraphForTopologicalSort)	3
+
 # DateTime	2
 
 # TreeNode	2
@@ -5,6 +9,8 @@
 # RangeAddPointGet	2
 
 # LazySegmentTree	2
+
+# PointSetPointAddRangeSum	2
 
 # BinarySearch	1
 
@@ -51,6 +57,190 @@
 # SlidingWindowAggregation	1
 
 # VariousSort	1
+
+# BagDP	1
+
+# DigitalDP	1
+
+# LinearDP	1
+
+# MatrixDP	1
+
+# BinarySearchTree	1
+
+# BipartiteMatching	1
+
+# Hungarian	1
+
+# DFS	1
+
+# DfsEulerOrder	1
+
+# WeightedGraphForShortestPathMST	1
+
+# LimitedWeightedGraph	1
+
+# WeightedGraphForDijkstra	1
+
+# UnDirectedShortestCycle	1
+
+# DirectedEulerPath	1
+
+# UnDirectedEulerPath	1
+
+# WeightedGraphForFloyd	1
+
+# ManhattanMST	1
+
+# KruskalMinimumSpanningTree	1
+
+# PrimMinimumSpanningTree	1
+
+# TreeAncestorMinIds	1
+
+# TreeMultiplicationMaxSecondWeights	1
+
+# TreeMultiplicationMaxWeights	1
+
+# DinicMaxflowMinCut	1
+
+# UndirectedGraph	1
+
+# DirectedGraph	1
+
+# DinicMaxflowMinCost	1
+
+# PruferAndTree	1
+
+# SPFA	1
+
+# DirectedGraphForTarjanScc	1
+
+# Tarjan	1
+
+# WeightedGraphForTopologicalSort	1
+
+# TopologicalSort	1
+
+# UnionFind	1
+
+# UnionFindGeneral	1
+
+# UnionFindWeighted	1
+
+# PersistentUnionFind	1
+
+# UnionFindSP	1
+
+# UnionFindInd	1
+
+# BrainStorming	1
+
+# LongestIncreasingSubsequence	1
+
+# LcsComputeByLis	1
+
+# MinimumPairXor	1
+
+# BitOperation	1
+
+# CantorExpands	1
+
+# Combinatorics	1
+
+# Lucas	1
+
+# MinCircleOverlap	1
+
+# CRT	1
+
+# ExtendCRT	1
+
+# FastPower	1
+
+# MatrixFastPowerFlatten	1
+
+# MatrixFastPowerMin	1
+
+# MatrixFastPower	1
+
+# GcdLike	1
+
+# Geometry	1
+
+# ClosetPair	1
+
+# HighPrecision	1
+
+# FloatToFrac	1
+
+# LexicoGraphicalOrder	1
+
+# Permutation	1
+
+# LinearBasis	1
+
+# LinearBasisVector	1
+
+# Nim	1
+
+# NumBase	1
+
+# RomeToInt	1
+
+# PrimeJudge	1
+
+# NumFactor	1
+
+# PrimeSieve	1
+
+# NumTheory	1
+
+# EulerPhi	1
+
+# PeiShuTheorem	1
+
+# AllFactorCnt	1
+
+# PrimeFactor	1
+
+# ScanLine	1
+
+# Node	1
+
+# AhoCorasick	1
+
+# AcAutomaton	1
+
+# Node(object)	1
+
+# TreeExpression	1
+
+# EnglishNumber	1
+
+# KMP	1
+
+# LyndonDecomposition	1
+
+# ManacherPlindrome	1
+
+# PalindromeNum	1
+
+# MatrixHashReverse	1
+
+# MatrixHash	1
+
+# StringHash	1
+
+# StringHashSingle	1
+
+# PointSetRangeHashReverse	1
+
+# StringHashSingleBuild	1
+
+# RangeSetRangeHashReverse	1
+
+# SuffixArray	1
 
 # HashWithRandomSeedEscapeExplode	1
 
@@ -264,83 +454,21 @@
 
 # StringTriePrefix	1
 
-# PointSetAddRangeSum	1
+# PointUpdateRangeQuery	1
+
+# PointSetPointAddRangeMerge	1
+
+# RangeMergePointGet	1
 
 # LazySegmentTreeLength	1
-
-# BagDP	1
-
-# DigitalDP	1
-
-# LinearDP	1
-
-# MatrixDP	1
-
-# WeightedTree	1
-
-# Graph(WeightedTree)	1
-
-# ReadGraph	1
-
-# ReRootDP	1
-
-# BinarySearchTree	1
-
-# BipartiteMatching	1
-
-# Hungarian	1
-
-# WeightedGraphForShortestPathMST	1
-
-# LimitedWeightedGraph	1
-
-# WeightedGraphForDijkstra	1
-
-# UnDirectedShortestCycle	1
-
-# DirectedEulerPath	1
-
-# UnDirectedEulerPath	1
-
-# WeightedGraphForFloyd	1
-
-# ManhattanMST	1
-
-# KruskalMinimumSpanningTree	1
-
-# PrimMinimumSpanningTree	1
-
-# TreeAncestorMinIds	1
-
-# TreeMultiplicationMaxSecondWeights	1
-
-# TreeMultiplicationMaxWeights	1
-
-# DinicMaxflowMinCut	1
-
-# UndirectedGraph	1
-
-# DirectedGraph	1
-
-# DinicMaxflowMinCost	1
-
-# PruferAndTree	1
-
-# SPFA	1
-
-# DirectedGraphForTarjanScc	1
-
-# Tarjan	1
-
-# GraphForTopologicalSort	1
-
-# TopologicalSort	1
 
 # GraphDiameter	1
 
 # TreeDiameter	1
 
 # TreeDiffArray	1
+
+# WeightedTree	1
 
 # UnionFindGetLCA	1
 
@@ -359,131 +487,3 @@
 # TreeAncestorMaxSub	1
 
 # HeavyChain	1
-
-# UnionFind	1
-
-# UnionFindGeneral	1
-
-# UnionFindWeighted	1
-
-# PersistentUnionFind	1
-
-# UnionFindSP	1
-
-# UnionFindInd	1
-
-# BrainStorming	1
-
-# LongestIncreasingSubsequence	1
-
-# LcsComputeByLis	1
-
-# MinimumPairXor	1
-
-# BitOperation	1
-
-# CantorExpands	1
-
-# Combinatorics	1
-
-# Lucas	1
-
-# MinCircleOverlap	1
-
-# CRT	1
-
-# ExtendCRT	1
-
-# FastPower	1
-
-# MatrixFastPowerFlatten	1
-
-# MatrixFastPowerMin	1
-
-# MatrixFastPower	1
-
-# GcdLike	1
-
-# Geometry	1
-
-# ClosetPair	1
-
-# HighPrecision	1
-
-# FloatToFrac	1
-
-# LexicoGraphicalOrder	1
-
-# Permutation	1
-
-# LinearBasis	1
-
-# LinearBasisVector	1
-
-# Nim	1
-
-# NumBase	1
-
-# RomeToInt	1
-
-# PrimeJudge	1
-
-# NumFactor	1
-
-# PrimeSieve	1
-
-# NumTheory	1
-
-# EulerPhi	1
-
-# PeiShuTheorem	1
-
-# AllFactorCnt	1
-
-# PrimeFactor	1
-
-# ScanLine	1
-
-# UnWeightedTree	1
-
-# Graph(UnWeightedTree)	1
-
-# DFS	1
-
-# DfsEulerOrder	1
-
-# Node	1
-
-# AhoCorasick	1
-
-# AcAutomaton	1
-
-# Node(object)	1
-
-# TreeExpression	1
-
-# EnglishNumber	1
-
-# KMP	1
-
-# LyndonDecomposition	1
-
-# ManacherPlindrome	1
-
-# PalindromeNum	1
-
-# MatrixHashReverse	1
-
-# MatrixHash	1
-
-# StringHash	1
-
-# StringHashSingle	1
-
-# PointSetRangeHashReverse	1
-
-# StringHashSingleBuild	1
-
-# RangeSetRangeHashReverse	1
-
-# SuffixArray	1

@@ -52,7 +52,7 @@ P7177（https://www.luogu.com.cn/problem/P7177）binary_search|tree|dfs|implemen
 P1314（https://www.luogu.com.cn/problem/P1314）binary_search|sum_nearest_subsequence
 P3017（https://www.luogu.com.cn/problem/P3017）binary_search|sub_matrix_sum|max_min
 P1083（https://www.luogu.com.cn/problem/P1083）binary_search|diff_array
-P1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plans
+P1281（https://www.luogu.com.cn/problem/P1281）binary_search|specific_plan
 P1381（https://www.luogu.com.cn/problem/P1381）binary_search|sliding_window|brain_teaser
 P1419（https://www.luogu.com.cn/problem/P1419）binary_search|monotonic_queue
 P1525（https://www.luogu.com.cn/problem/P1525）binary_search|bfs|bipartite_graph|union_find|coloring
@@ -92,7 +92,7 @@ P1798（https://www.luogu.com.cn/problem/P1798）binary_search|greedy|implementi
 1490G（https://codeforces.com/contest/1490/problem/G）binary_search|prefix_sum
 1883G2（https://codeforces.com/contest/1883/problem/G2）binary_search|greedy|sorted_list
 1843E（https://codeforces.com/problemset/problem/1843/E）binary_search|query_order|classical
-1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_masks
+1288D（https://codeforces.com/contest/1288/problem/D）binary_search|bit_mask
 1393C（https://codeforces.com/problemset/problem/1393/C）binary_search|implemention|stack|classical|math
 1117C（https://codeforces.com/problemset/problem/1117/C）binary_search|observation|brain_teaser
 1379C（https://codeforces.com/contest/1379/problem/C）observation|prefix_sum|binary_search|brute_force|greedy
@@ -693,7 +693,7 @@ class Solution:
     def lg_p1281(ac=FastIO()):
         """
         url: https://www.luogu.com.cn/problem/P1281
-        tag: binary_search|specific_plans
+        tag: binary_search|specific_plan
         """
         m, k = ac.read_list_ints()
         nums = ac.read_list_ints()
@@ -1830,7 +1830,7 @@ class Solution:
     def cf_1288d(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1288/problem/D
-        tag: binary_search|bit_masks
+        tag: binary_search|bit_mask
         """
         n, m = ac.read_list_ints()
         nums = [ac.read_list_ints() for _ in range(n)]

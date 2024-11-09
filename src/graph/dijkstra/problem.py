@@ -96,7 +96,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 1343E（https://codeforces.com/problemset/problem/1343/E）several_bfs|shortest_path|greedy|brute_force
 715B（https://codeforces.com/contest/715/problem/B）several_dijkstra|shortest_path|greedy|dynamic_graph
 1433G（https://codeforces.com/contest/1433/problem/G）several_source_dijkstra|shortest_path|brute_force
-1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
+1650G（https://codeforces.com/contest/1650/problem/G）dijkstra|shortest_path|strictly_second_shortest_path|counter|deque_bfs
 1915G（https://codeforces.com/contest/1915/problem/G）shortest_path|limited_shortest_path|dijkstra
 1196F（https://codeforces.com/contest/1196/problem/F）shortest_path|data_range|kth_shortest|brute_force|data_range
 1741G（https://codeforces.com/contest/1741/problem/G）shortest_path|brute_force|state_dp
@@ -232,7 +232,7 @@ class Solution:
     def cf_1650g(ac=FastIO()):
         """
         url: https://codeforces.com/contest/1650/problem/G
-        tag: dijkstra|shortest_path|strictly_second_shortest_path|counter|zero_one_bfs
+        tag: dijkstra|shortest_path|strictly_second_shortest_path|counter|deque_bfs
         """
         mod = 10 ** 9 + 7
         for _ in range(ac.read_int()):

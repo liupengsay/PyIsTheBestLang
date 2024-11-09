@@ -136,7 +136,7 @@ ABC194E（https://atcoder.jp/contests/abc194/tasks/abc194_e）point_set|pre_min|
 11（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/A）segment_tree|point_set|range_sum|inversion
 12（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/B）segment_tree|point_set|range_sum|inversion|bisect_left
 13（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/C）segment_tree|point_set|range_sum|range_include
-14（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/D）segment_tree|point_set|range_sum|range_include|reverse_thinking|include_exclude
+14（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/D）segment_tree|point_set|range_sum|range_include|reverse_thinking|inclusion_exclusion
 15（https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/E）segment_tree|range_add|point_get
 16（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/A）segment_tree|point_set|range_sum
 17（https://codeforces.com/edu/course/2/lesson/4/4/practice/contest/274684/problem/B）segment_tree|matrix_build|range_mul
@@ -1487,7 +1487,7 @@ class Solution:
     def library_check_14(ac=FastIO()):
         """
         url: https://codeforces.com/edu/course/2/lesson/4/3/practice/contest/274545/problem/D
-        tag: segment_tree|point_set|range_sum|range_include|reverse_thinking|include_exclude
+        tag: segment_tree|point_set|range_sum|range_include|reverse_thinking|inclusion_exclusion
         """
         n = ac.read_int()
         nums = ac.read_list_ints_minus_one()

@@ -85,6 +85,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 2020C（https://codeforces.com/contest/2020/problem/C）bit_operation|construction
 1715D（https://codeforces.com/problemset/problem/1715/D）greedy|construction|bit_operation
 1416C（https://codeforces.com/problemset/problem/1416/C）bit_operation|divide_and_conquer|reverse_pair
+2036F（https://codeforces.com/contest/2036/problem/F）bit_property|bit_operation|inclusion_exclusion|classical
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -109,6 +110,7 @@ ABC201E（https://atcoder.jp/contests/abc201/tasks/abc201_e）bit_operation|clas
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
 """
+import math
 from collections import defaultdict, Counter
 from functools import lru_cache
 from functools import reduce
@@ -116,11 +118,9 @@ from operator import xor, or_
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.structure.sorted_list.template import SortedList
 from src.math.bit_operation.template import BitOperation, MinimumPairXor
 from src.math.comb_perm.template import Combinatorics
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -1381,4 +1381,31 @@ class Solution:
             pre += cur_one
             res |= 1 << i
         ac.lst([pre, res])
+        return
+
+    @staticmethod
+    def cf_2036f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2036/problem/F
+        tag: bit_property|bit_operation|inclusion_exclusion|classical
+        """
+        assert (1 << 64) >= 10 ** 18
+        for _ in range(ac.read_int()):
+            ll, rr, i, k = ac.read_list_ints()
+
+            def check(x):
+                res = BitOperation().sum_xor(x)
+                cur = 0
+                if x >= k:
+                    ceil = 0
+                    for j in range(64, i - 1, -1):
+                        if ceil | (1 << j) | k <= x:
+                            ceil |= (1 << j)
+                    cur = (BitOperation().sum_xor(ceil >> i)) << i
+                    if not (ceil >> i) & 1:
+                        cur |= k
+                return res ^ cur
+
+            ans = check(rr) ^ check(ll - 1)
+            ac.st(ans)
         return
