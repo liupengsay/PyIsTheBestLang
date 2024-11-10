@@ -16,6 +16,8 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 2801（https://leetcode.cn/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
 2827（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
 17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
+3352（https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/）digital_dp|linear_dp|preprocess|observation|data_range
+
 100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 104301C（https://codeforces.com/gym/104301/problem/C）digital_dp
 
@@ -30,6 +32,7 @@ ABC235F（https://atcoder.jp/contests/abc235/tasks/abc235_f）digital_dp|classic
 ===================================CodeForces===================================
 628D（https://codeforces.com/problemset/problem/628/D）digital_dp
 55D（https://codeforces.com/contest/55/problem/D）digital_dp|memorized|classical
+914C（https://codeforces.com/problemset/problem/914/C）digital_dp|linear_dp|corner_case
 
 =====================================LuoGu======================================
 P1590（https://www.luogu.com.cn/problem/P1590）counter|digital_dp
@@ -579,4 +582,123 @@ class Solution:
 
         final = count(b) - count(a)
         ac.st(final % mod)
+        return
+
+    @staticmethod
+    def lc_3352_1(s: str, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/
+        tag: digital_dp|linear_dp|preprocess|observation|data_range
+        """
+
+        @lru_cache(None)
+        def dfs(i, is_limit, cnt):
+            if i == m:
+                return dp[cnt] + 1 <= k if cnt else 0
+            res = 0
+            if not cnt:
+                res += dfs(i + 1, False, cnt)
+            low = 0 if cnt else 1
+            high = int(s[i]) if is_limit else 1
+            for x in range(low, high + 1):
+                res += dfs(i + 1, is_limit and high == x, cnt + int(x == 1))
+            return res % mod
+
+        dp = [0] * 801
+        for num in range(2, 801):
+            dp[num] = dp[num.bit_count()] + 1
+
+        mod = 10 ** 9 + 7
+
+        m = len(s)
+        ans = dfs(0, True, 0)
+        dfs.cache_clear()
+        if dp[s.count("1")] + 1 <= k:
+            ans = (ans - 1) % mod
+        return ans
+
+    @staticmethod
+    def lc_3352_2(s: str, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/
+        tag: digital_dp|linear_dp|preprocess|observation|data_range
+        """
+        ceil = 800
+        cost = [0] * (ceil + 1)
+        for num in range(2, ceil + 1):
+            cost[num] = cost[num.bit_count()] + 1
+
+        mod = 10 ** 9 + 7
+        n = len(s)
+        dp = [[0] * (n + 1) for _ in range(2)]
+        dp[0][0] = 1
+        for w in s:
+            ndp = [[0] * (n + 1) for _ in range(2)]
+            for i in range(2):
+                for j in range(n + 1):
+                    if i == 1:
+                        lst = [0, 1]
+                    else:
+                        lst = [0, 1] if w == "1" else [0]
+                    for x in lst:
+                        if j + x <= n:
+                            if i == 0 and int(w) == x:
+                                ndp[0][j + x] += dp[i][j]
+                            else:
+                                ndp[1][j + x] += dp[i][j]
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ans = 0
+        for i in range(2):
+            for j in range(1, n + 1):
+                if cost[j] + 1 <= k:
+                    ans += dp[i][j]
+                    ans %= mod
+        if cost[s.count("1")] + 1 == k:
+            ans = (ans - 1) % mod
+        return ans
+
+    @staticmethod
+    def cf_914c(ac=FastIO()):
+        """
+        url: https://codeforces.com/problemset/problem/914/C
+        tag: digital_dp|linear_dp|corner_case
+        """
+
+        ceil = 1000
+        cost = [0] * (ceil + 1)
+        for num in range(2, ceil + 1):
+            cost[num] = cost[num.bit_count()] + 1
+        s = ac.read_str()
+        k = ac.read_int()
+        if k == 0:
+            ac.st(1)
+            return
+        mod = 10 ** 9 + 7
+        n = len(s)
+        dp = [[0] * (n + 1) for _ in range(2)]
+        dp[0][0] = 1
+        for w in s:
+            ndp = [[0] * (n + 1) for _ in range(2)]
+            for i in range(2):
+                for j in range(n + 1):
+                    if i == 1:
+                        lst = [0, 1]
+                    else:
+                        lst = [0, 1] if w == "1" else [0]
+                    for x in lst:
+                        if j + x <= n:
+                            if i == 0 and int(w) == x:
+                                ndp[0][j + x] += dp[i][j]
+                            else:
+                                ndp[1][j + x] += dp[i][j]
+            dp = [[x % mod for x in ls] for ls in ndp]
+        ans = 0
+        for i in range(2):
+            for j in range(1, n + 1):
+                if cost[j] + 1 == k:
+                    ans += dp[i][j]
+                    ans %= mod
+        if k == 1:
+            ans = (ans - 1) % mod
+        ac.st(ans)
         return
