@@ -149,7 +149,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.basis.diff_array.template import PreFixSumMatrix
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 from src.math.high_precision.template import FloatToFrac
 from src.math.number_theory.template import NumFactor
 from src.tree.tree_dp.template import WeightedTree

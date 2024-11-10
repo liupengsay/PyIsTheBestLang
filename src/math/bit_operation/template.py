@@ -1,6 +1,6 @@
 from typing import List
 
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 
 
 class MinimumPairXor:

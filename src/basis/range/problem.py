@@ -61,7 +61,7 @@ from functools import cmp_to_key
 from typing import List
 
 from src.basis.range.template import Range
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 

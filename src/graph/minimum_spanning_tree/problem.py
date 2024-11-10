@@ -81,8 +81,8 @@ from src.graph.minimum_spanning_tree.template import KruskalMinimumSpanningTree,
     TreeMultiplicationMaxWeights, TreeMultiplicationMaxSecondWeights
 from src.graph.tarjan.template import Tarjan
 from src.graph.union_find.template import UnionFind, PersistentUnionFind
-from src.structure.sorted_list.template import SortedList
-from src.structure.trie_like.template import BinaryTrieXor
+from src.struct.sorted_list.template import SortedList
+from src.struct.trie_like.template import BinaryTrieXor
 from src.util.fast_io import FastIO
 
 

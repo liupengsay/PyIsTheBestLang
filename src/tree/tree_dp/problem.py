@@ -110,9 +110,9 @@ from typing import List, Optional
 
 from src.basis.tree_node.template import TreeNode
 from src.math.prime_factor.template import PrimeFactor
-from src.structure.list_node.template import ListNode
-from src.structure.sorted_list.template import SortedList
-from src.structure.zkw_segment_tree.template import PointSetPointAddRangeMerge
+from src.struct.list_node.template import ListNode
+from src.struct.sorted_list.template import SortedList
+from src.struct.zkw_segment_tree.template import PointSetPointAddRangeMerge
 from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 

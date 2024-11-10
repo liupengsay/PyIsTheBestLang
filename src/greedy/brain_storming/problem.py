@@ -312,7 +312,7 @@ from typing import List
 
 from src.basis.binary_search.template import BinarySearch
 from src.math.number_theory.template import NumFactor
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 

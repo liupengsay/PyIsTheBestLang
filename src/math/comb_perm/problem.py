@@ -101,7 +101,7 @@ from typing import List
 from src.math.comb_perm.template import Combinatorics, Lucas
 from src.math.number_theory.template import NumFactor, PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 

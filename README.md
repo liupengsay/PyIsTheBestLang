@@ -7,7 +7,7 @@ This project is orgnaized by the following structure
 > **[src](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src)** serve as template records for training
 > >**[basis](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/basis)** are some basic usage of date structure and algorithm
 
-> >**[strcuture](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/data_strcuture)** are some commonly used data structures
+> >**[struct](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/struct)** are some commonly used data structures
 
 > >**[dp](https://github.com/liupengsay/PyIsTheBestLang/tree/main/src/dp)** are summaries of dynamic programming
 

@@ -206,8 +206,8 @@ from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
-from src.structure.segment_tree.template import RangeAddRangeSumMinMax
-from src.structure.tree_array.template import PointDescendPreMin
+from src.struct.segment_tree.template import RangeAddRangeSumMinMax
+from src.struct.tree_array.template import PointDescendPreMin
 from src.util.fast_io import FastIO
 
 

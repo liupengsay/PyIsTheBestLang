@@ -1,5 +1,5 @@
-from src.structure.sorted_list.template import SortedList
-from src.structure.tree_array.template import PointAddRangeSum
+from src.struct.sorted_list.template import SortedList
+from src.struct.tree_array.template import PointAddRangeSum
 
 
 class CantorExpands:

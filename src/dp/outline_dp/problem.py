@@ -14,6 +14,8 @@ P2704（https://www.luogu.com.cn/problem/P2704）outline_dp|classical
 ===================================CodeForces===================================
 xx（xxx）xxxxxxxxxxxxxxxxxxxx
 
+===================================AtCoder===================================
+ABC379G（https://atcoder.jp/contests/abc379/tasks/abc379_g）outline_dp|observation|matrix_rotate|data_range|classical
 
 =======================================Other====================================
 1400（https://vjudge.net/problem/HDU-1400）outline_dp|classical
@@ -145,5 +147,33 @@ class Solution:
                         cur[pp] = max(cur[pp], pre[p] + 1)
                         ans = max(ans, cur[pp])
                 pre = cur
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_379g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc379/tasks/abc379_g
+        tag: outline_dp|observation|matrix_rotate|data_range|classical
+        """
+        m, n = ac.read_list_ints()
+        grid = [list(ac.read_str()) for _ in range(m)]
+        if m < n:
+            grid = [[grid[i][j] for i in range(m)] for j in range(n)]
+            m, n = n, m
+        mod = 998244353
+        pre = defaultdict(int)
+        pre[0] = 1
+        b = 10 ** (n - 1)
+        for i in range(m):
+            for j in range(n):
+                cur = defaultdict(int)
+                for x in [int(grid[i][j])] if grid[i][j] != "?" else [1, 2, 3]:
+                    for p in pre:
+                        if (not i or p // b != x) and (not j or p % 10 != x):
+                            cur[(p % b) * 10 + x] += pre[p]
+                            cur[(p % b) * 10 + x] %= mod
+                pre = cur
+        ans = sum(pre.values()) % mod
         ac.st(ans)
         return

@@ -148,7 +148,7 @@ from itertools import accumulate, permutations
 from operator import add
 from typing import List
 
-from src.structure.segment_tree.template import SegmentTreeOptBuildGraphZKW
+from src.struct.segment_tree.template import SegmentTreeOptBuildGraphZKW
 from src.graph.dijkstra.template import UnDirectedShortestCycle, LimitedWeightedGraph, \
     WeightedGraphForShortestPathMST, WeightedGraphForDijkstra
 from src.util.fast_io import FastIO

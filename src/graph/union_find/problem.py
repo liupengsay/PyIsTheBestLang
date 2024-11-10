@@ -175,8 +175,8 @@ from src.graph.union_find.template import UnionFind, UnionFindWeighted, UnionFin
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
-from src.structure.segment_tree.template import RangeDivideRangeSum
-from src.structure.sorted_list.template import SortedList
+from src.struct.segment_tree.template import RangeDivideRangeSum
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 

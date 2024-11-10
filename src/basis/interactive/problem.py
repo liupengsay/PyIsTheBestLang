@@ -56,7 +56,7 @@ from collections import deque
 
 
 from src.basis.binary_search.template import BinarySearch
-from src.structure.segment_tree.template import RangeAddPointGet
+from src.struct.segment_tree.template import RangeAddPointGet
 from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 

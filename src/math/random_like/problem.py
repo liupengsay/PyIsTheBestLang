@@ -21,7 +21,7 @@ from collections import Counter
 
 from src.math.number_theory.template import NumFactor
 from src.math.prime_factor.template import PrimeFactor
-from src.structure.segment_tree.template import RangeSetRangeSumMinMax
+from src.struct.segment_tree.template import RangeSetRangeSumMinMax
 from src.util.fast_io import FastIO
 
 

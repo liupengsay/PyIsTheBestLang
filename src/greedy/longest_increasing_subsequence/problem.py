@@ -66,8 +66,8 @@ from itertools import accumulate
 
 from typing import List
 
-from src.structure.segment_tree.template import RangeAscendRangeMax
-from src.structure.tree_array.template import PointAscendPreMax
+from src.struct.segment_tree.template import RangeAscendRangeMax
+from src.struct.tree_array.template import PointAscendPreMax
 from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.util.fast_io import FastIO
 

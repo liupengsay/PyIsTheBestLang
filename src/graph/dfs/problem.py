@@ -98,8 +98,8 @@ from src.basis.tree_node.template import TreeNode
 from src.graph.dfs.template import DFS, DfsEulerOrder
 from src.graph.union_find.template import UnionFind
 from src.string.manacher_palindrome.template import ManacherPlindrome
-from src.structure.segment_tree.template import RangeAddPointGet
-from src.structure.tree_array.template import PointAddRangeSum
+from src.struct.segment_tree.template import RangeAddPointGet
+from src.struct.tree_array.template import PointAddRangeSum
 from src.tree.tree_dp.template import WeightedTree
 from src.tree.tree_lca.template import OfflineLCA
 from src.util.fast_io import FastIO

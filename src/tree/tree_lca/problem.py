@@ -46,8 +46,8 @@ ABC202E（https://atcoder.jp/contests/abc202/tasks/abc202_e）heuristic_merge|of
 import math
 from typing import List
 
-from src.structure.segment_tree.template import PointSetRangeSum, RangeSetPointGet, RangeAddRangeMaxGainMinGain
-from src.structure.tree_array.template import RangeAddRangeSum
+from src.struct.segment_tree.template import PointSetRangeSum, RangeSetPointGet, RangeAddRangeMaxGainMinGain
+from src.struct.tree_array.template import RangeAddRangeSum
 from src.tree.tree_dp.template import WeightedTree
 from src.tree.tree_lca.template import OfflineLCA, TreeCentroid, HeavyChain, TreeAncestorPool, \
     UnionFindGetLCA, TreeAncestorMaxSub

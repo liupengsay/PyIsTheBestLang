@@ -18,7 +18,7 @@ ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）sorted_list|offlin
 """
 from typing import List
 
-from src.structure.sorted_list.template import SortedList
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 

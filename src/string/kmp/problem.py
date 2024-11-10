@@ -104,8 +104,8 @@ from src.graph.union_find.template import UnionFind
 from src.math.fast_power.template import MatrixFastPower
 from src.math.number_theory.template import NumFactor
 from src.string.kmp.template import KMP
-from src.structure.segment_tree.template import PointSetRangeMin
-from src.structure.sorted_list.template import SortedList
+from src.struct.segment_tree.template import PointSetRangeMin
+from src.struct.sorted_list.template import SortedList
 from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 

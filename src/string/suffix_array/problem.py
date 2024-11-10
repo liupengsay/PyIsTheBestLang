@@ -83,9 +83,9 @@ from functools import cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
-from src.structure.monotonic_stack.template import Rectangle
-from src.structure.sorted_list.template import SortedList
-from src.structure.sparse_table.template import SparseTable
+from src.struct.monotonic_stack.template import Rectangle
+from src.struct.sorted_list.template import SortedList
+from src.struct.sparse_table.template import SparseTable
 from src.math.comb_perm.template import Combinatorics
 from src.string.suffix_array.template import SuffixArray
 from src.util.fast_io import FastIO

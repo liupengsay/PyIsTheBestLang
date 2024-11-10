@@ -2,7 +2,7 @@ import math
 from heapq import heappop, heappush
 
 from src.graph.union_find.template import UnionFind
-from src.structure.tree_array.template import PointDescendPreMin
+from src.struct.tree_array.template import PointDescendPreMin
 
 
 class ManhattanMST:
