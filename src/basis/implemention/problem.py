@@ -102,6 +102,7 @@ ABC218C（https://atcoder.jp/contests/abc218/tasks/abc218_c）implemention|matri
 ABC359C（https://atcoder.jp/contests/abc359/tasks/abc359_c）implemention
 ABC203E（https://atcoder.jp/contests/abc203/tasks/abc203_e）implemention
 ABC375C（https://atcoder.jp/contests/abc375/tasks/abc375_c）implemention|matrix_rotate
+ABC379C（https://atcoder.jp/contests/abc379/tasks/abc379_c）implemention
 
 =====================================AcWing=====================================
 4318（https://www.acwing.com/problem/content/description/4321/）hash|greedy|implemention|construction

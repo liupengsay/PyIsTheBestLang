@@ -13,6 +13,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
 ABC179F（https://atcoder.jp/contests/abc179/tasks/abc179_f）zkw_segment_tree|implemention|brain_teaser
 ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）PointUpdateRangeQuery|manhattan_distance|classical
+ABC379D（https://atcoder.jp/contests/abc379/tasks/abc379_d）RangeAddPointGet|diff_array|classical
 
 =====================================AcWing=====================================
 
@@ -23,7 +24,8 @@ ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）PointUpdateRangeQu
 import math
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
-from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeMergePointGet
+from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeMergePointGet, RangeAddPointGet, \
+    PointUpdateRangeQuery
 from src.util.fast_io import FastIO
 
 
@@ -162,4 +164,30 @@ class Solution:
             tree_pos.point_update(ind[y], -x - y)
             tree_neg.point_update(ind[y], -x + y)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_379d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc379/tasks/abc379_d
+        tag: RangeAddPointGet|diff_array|classical
+        """
+        q = ac.read_int()
+        stack = []
+        ind = 0
+        tree = RangeAddPointGet(q)
+        for i in range(q):
+            lst = ac.read_list_ints()
+            if lst[0] == 1:
+                stack.append(i)
+            elif lst[0] == 2:
+                t = lst[1]
+                tree.range_add(0, i, t)
+            else:
+                h = lst[1]
+                ans = 0
+                while ind < len(stack) and tree.point_get(stack[ind]) >= h:
+                    ind += 1
+                    ans += 1
+                ac.st(ans)
         return

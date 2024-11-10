@@ -194,6 +194,7 @@ ABC184C（https://atcoder.jp/contests/abc184/tasks/abc184_c）brute_force|brain_
 ABC181E（https://atcoder.jp/contests/abc181/tasks/abc181_e）brute_force|binary_search|greedy|prefix_suffix
 ABC180D（https://atcoder.jp/contests/abc180/tasks/abc180_d）brute_force
 ABC176E（https://atcoder.jp/contests/abc176/tasks/abc176_e）brute_force|observation|greedy
+ABC379E（https://atcoder.jp/contests/abc379/tasks/abc379_e）brute_force|contribution_method
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
