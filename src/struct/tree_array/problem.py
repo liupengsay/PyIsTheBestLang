@@ -101,12 +101,11 @@ class Solution:
         url: https://leetcode.cn/problems/best-team-with-no-conflicts/
         tag: tree_array|prefix_maximum|dp
         """
-        n = max(ages)
-        tree_array = PointAscendPreMax(n)
-        for score, age in sorted(zip(scores, ages)):
-            cur = tree_array.pre_max(age) + score
-            tree_array.point_ascend(age, cur)
-        return tree_array.pre_max(n)
+        ceil = max(ages)
+        tree = PointAscendPreMax(ceil + 1, 0)
+        for s, a in sorted(zip(scores, ages)):
+            tree.point_ascend(a, tree.pre_max(a) + s)
+        return tree.pre_max(ceil)
 
     @staticmethod
     def lc_2193_1(s: str) -> int:

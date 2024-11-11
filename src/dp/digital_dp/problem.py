@@ -630,22 +630,21 @@ class Solution:
 
         mod = 10 ** 9 + 7
         n = len(s)
-        dp = [[0] * (n + 1) for _ in range(2)]
+        dp = [[0] for _ in range(2)]
         dp[0][0] = 1
-        for w in s:
-            ndp = [[0] * (n + 1) for _ in range(2)]
+        for c, w in enumerate(s):
+            ndp = [[0] * (c + 2) for _ in range(2)]
             for i in range(2):
-                for j in range(n + 1):
+                for j in range(c + 1):
                     if i == 1:
                         lst = [0, 1]
                     else:
                         lst = [0, 1] if w == "1" else [0]
                     for x in lst:
-                        if j + x <= n:
-                            if i == 0 and int(w) == x:
-                                ndp[0][j + x] += dp[i][j]
-                            else:
-                                ndp[1][j + x] += dp[i][j]
+                        if i == 0 and int(w) == x:
+                            ndp[0][j + x] += dp[i][j]
+                        else:
+                            ndp[1][j + x] += dp[i][j]
             dp = [[x % mod for x in ls] for ls in ndp]
         ans = 0
         for i in range(2):
@@ -653,7 +652,7 @@ class Solution:
                 if cost[j] + 1 <= k:
                     ans += dp[i][j]
                     ans %= mod
-        if cost[s.count("1")] + 1 == k:
+        if cost[s.count("1")] + 1 <= k:
             ans = (ans - 1) % mod
         return ans
 
@@ -675,22 +674,21 @@ class Solution:
             return
         mod = 10 ** 9 + 7
         n = len(s)
-        dp = [[0] * (n + 1) for _ in range(2)]
+        dp = [[0] for _ in range(2)]
         dp[0][0] = 1
-        for w in s:
-            ndp = [[0] * (n + 1) for _ in range(2)]
+        for c, w in enumerate(s):
+            ndp = [[0] * (c + 2) for _ in range(2)]
             for i in range(2):
-                for j in range(n + 1):
+                for j in range(c + 1):
                     if i == 1:
                         lst = [0, 1]
                     else:
                         lst = [0, 1] if w == "1" else [0]
                     for x in lst:
-                        if j + x <= n:
-                            if i == 0 and int(w) == x:
-                                ndp[0][j + x] += dp[i][j]
-                            else:
-                                ndp[1][j + x] += dp[i][j]
+                        if i == 0 and int(w) == x:
+                            ndp[0][j + x] += dp[i][j]
+                        else:
+                            ndp[1][j + x] += dp[i][j]
             dp = [[x % mod for x in ls] for ls in ndp]
         ans = 0
         for i in range(2):

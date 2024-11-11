@@ -85,6 +85,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1151C（https://codeforces.com/problemset/problem/1151/C）inclusion_exclusion
 1990C（https://codeforces.com/problemset/problem/1990/C）implemention
 2036E（https://codeforces.com/contest/2036/problem/E）matrix_rotate|binary_search
+2036D（https://codeforces.com/contest/2036/problem/D）get_spiral_matrix_loc|implemention|classical
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
@@ -117,7 +118,6 @@ from heapq import heappop, heappush
 from src.basis.binary_search.template import BinarySearch
 from src.basis.implemention.template import SpiralMatrix
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -735,7 +735,7 @@ class Solution:
             ans = [0] * k
             for i in range(k):
                 if n == 0:
-                    ans[i] = pre_b[-1]- b[i]
+                    ans[i] = pre_b[-1] - b[i]
                     continue
                 if m == 0:
                     ans[i] = pre_a[-1] - a[i]
@@ -895,4 +895,28 @@ class Solution:
                 grid[ii][jj] = val
         for g in grid:
             ac.lst(g)
+        return
+
+    @staticmethod
+    def cf_2036d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2036/problem/D
+        tag: get_spiral_matrix_loc|implemention|classical
+        """
+        for _ in range(ac.read_int()):
+            m, n = ac.read_list_ints()
+            grid = [ac.read_str() for _ in range(m)]
+            ans = 0
+            sp = SpiralMatrix()
+            cnt = min(m // 2, n // 2)
+            ind = 1
+            for i in range(cnt):
+                cur = 2 * (m - 2 * i) + 2 * (n - 2 * i) - 4
+                lst = [sp.get_spiral_matrix_loc(m, n, ind + x) for x in range(cur)]
+                lst += lst
+                ind += cur
+                for j in range(cur):
+                    st = [grid[x - 1][y - 1] for x, y in lst[j:j + 4]]
+                    ans += st == ["1", "5", "4", "3"]
+            ac.st(ans)
         return
