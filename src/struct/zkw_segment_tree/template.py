@@ -1,5 +1,67 @@
+import math
 from operator import add
 
+
+class PointSetRangeMinCount:
+
+    def __init__(self, n, initial=math.inf, mod=10 ** 9 + 7):
+        self.n = n
+        self.mod = mod
+        self.initial = initial
+        self.cover = [initial] * 2 * self.n
+        self.cnt = [1] * 2 * self.n
+        return
+
+    def merge(self, a1, a2, c1, c2):
+        if a1 > a2:
+            a1, a2 = a2, a1
+            c1, c2 = c2, c1
+        if a1 == a2:
+            c1 += c2
+        return a1, c1 % self.mod
+
+    def push_up(self, i):
+        a1, a2 = self.cover[i << 1], self.cover[(i << 1) | 1]
+        c1, c2 = self.cnt[i << 1], self.cnt[(i << 1) | 1]
+        self.cover[i], self.cnt[i] = self.merge(a1, a2, c1, c2)
+        return
+
+    def build(self, nums, cnt):
+        for i in range(self.n):
+            self.cover[i + self.n] = nums[i]
+            self.cnt[i + self.n] = cnt[i]
+        for i in range(self.n - 1, 0, -1):
+            self.push_up(i)
+        return
+
+    def get(self):
+        return self.cover[self.n:]
+
+    def point_set(self, ind, val, c):
+        assert 0 <= ind < self.n
+        ind += self.n
+        self.cover[ind], self.cnt[ind] = val, c
+        while ind > 1:
+            ind //= 2
+            self.push_up(ind)
+        return
+
+    def range_min_count(self, left, right):
+        assert 0 <= left <= right < self.n
+        ans_left = ans_right = self.initial
+        cnt_left = cnt_right = 0
+        left += self.n
+        right += self.n + 1
+        while left < right:
+            if left & 1:
+                ans_left, cnt_left = self.merge(ans_left, self.cover[left], cnt_left, self.cnt[left])
+                left += 1
+            if right & 1:
+                right -= 1
+                ans_right, cnt_right = self.merge(self.cover[right], ans_right, self.cnt[right], cnt_right)
+            left >>= 1
+            right >>= 1
+        return self.merge(ans_left, ans_right, cnt_left, cnt_right)
 
 class PointUpdateRangeQuery:
 

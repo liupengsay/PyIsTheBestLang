@@ -10,10 +10,31 @@ from src.struct.zkw_segment_tree.template import (
     PointSetPointAddRangeSum as PointSetRangeSumZKW,
     RangeAddPointGet as RangeAddPointGetZKW,
     LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge, RangeMergePointGet,
-    PointUpdateRangeQuery)
+    PointUpdateRangeQuery, PointSetRangeMinCount)
 
 
 class TestGeneral(unittest.TestCase):
+
+    def test_point_set_range_min_count(self):
+        low = 1
+        high = 100
+        n = 100
+        nums = [random.randint(low, high) for _ in range(n)]
+        tree = PointSetRangeMinCount(n)
+        tree.build(nums, [1]*n)
+        for _ in range(10000):
+            i = random.randint(0, n - 1)
+            num = random.randint(low, high)
+            nums[i] = num
+            tree.point_set(i, num, 1)
+            ll = random.randint(0, n - 1)
+            rr = random.randint(ll, n - 1)
+            low = min(nums[ll:rr + 1])
+            cnt = nums[ll:rr + 1].count(low)
+            res = tree.range_min_count(ll, rr)
+            assert res == (low, cnt)
+        assert nums == tree.get()
+        return
 
     def test_point_update_range_query(self):
         for merge in [add, xor, mul, and_, or_, max, min, math.gcd, math.lcm]:
