@@ -28,6 +28,7 @@ Description：sliding_window|two_pointers|center_extension_method
 948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greedy
 2953（https://leetcode.cn/problems/count-complete-substrings/）two_pointers|brute_force
 100424（https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/）two_pointers|brute_force
+3261（https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii）two_pointers|prefix_sum|classical
 
 =====================================LuoGu======================================
 P2381（https://www.luogu.com.cn/problem/P2381）circular_array|sliding_window|two_pointers
@@ -586,12 +587,39 @@ class Solution:
                     cnt -= lst2[i] in cur
                     while j < m and lst1[j] <= lst2[i]:
                         j += 1
-                    while k <= i and lst2[k] < lst2[i] - j+1:
+                    while k <= i and lst2[k] < lst2[i] - j + 1:
                         k += 1
-                    res = max(res, cnt+i-k+1)
+                    res = max(res, cnt + i - k + 1)
                 return res
 
             ans = check(sorted([x for x in a if x > 0]), sorted([x for x in b if x > 0]))
             ans += check(sorted([-x for x in a if -x > 0]), sorted([-x for x in b if -x > 0]))
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3261(s: str, k: int, queries: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii
+        tag: two_pointers|prefix_sum|classical
+        """
+        n = len(s)
+        right = [n - 1] * n
+        cnt = [0, 0]
+        i = 0
+        pre = [0] * (n + 1)
+        for j in range(n):
+            cnt[int(s[j])] += 1
+            while cnt[0] > k and cnt[1] > k:
+                cnt[int(s[i])] -= 1
+                right[i] = j - 1
+                i += 1
+            pre[j + 1] = pre[j] + j - i + 1
+
+        ans = []
+        for ll, rr in queries:
+            a = min(right[ll], rr)
+            b = pre[rr + 1] - pre[a + 1]
+            a = (1 + a - ll + 1) * (a - ll + 1) // 2
+            ans.append(a + b)
+        return ans
