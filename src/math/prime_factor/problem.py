@@ -27,6 +27,7 @@ P2429（https://www.luogu.com.cn/problem/P2429）inclusion_exclusion|counter|bru
 1826C（https://codeforces.com/problemset/problem/1826/C）math|observation|brain_teaser|construction
 1242A（https://codeforces.com/problemset/problem/1242/A）guess_table|brute_force
 27E（https://codeforces.com/contest/27/problem/E）linear_dp|brute_force|euler_series|data_range
+2037G（https://codeforces.com/contest/2037/problem/G）min_prime|inclusion_exclusion|mobius|linear_dp
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -48,7 +49,7 @@ from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.math.number_theory.template import PrimeSieve
-from src.math.prime_factor.template import PrimeFactor
+from src.math.prime_factor.template import PrimeFactor, PrimeFactor2
 from src.util.fast_io import FastIO
 
 
@@ -1046,4 +1047,88 @@ class Solution:
             ac.st("setwise coprime")
         else:
             ac.st("not coprime")
+        return
+
+    @staticmethod
+    def cf_2037g_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2037/problem/G
+        tag: min_prime|inclusion_exclusion|mobius|linear_dp
+        """
+        mod = 998244353
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 6
+        pf = PrimeFactor2(ceil)
+        dp = [0] * (ceil + 1)
+        for x in pf.get_rad_factor3(nums[0]):
+            dp[x] = 1
+        res = 1
+        for num in nums[1:]:
+            fs = pf.get_rad_factor3(num)
+            cur = 0
+            for x in fs:
+                if x == 1:
+                    continue
+                cur += dp[x] * pf.mobius[x]
+            res = cur % mod
+            for x in fs:
+                dp[x] = (dp[x] + cur) % mod
+        ac.st(res)
+        return
+
+    @staticmethod
+    def cf_2037g_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2037/problem/G
+        tag: min_prime|inclusion_exclusion|mobius|linear_dp
+        """
+        mod = 998244353
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 6
+        rf = PrimeFactor2(ceil)
+        dp = [0] * (ceil + 1)
+        for x in rf.get_rad_factor(nums[0]):
+            dp[abs(x)] = 1
+        res = 1
+        for num in nums[1:]:
+            fs = rf.get_rad_factor(num)
+            cur = 0
+            for x in fs:
+                if x == 1:
+                    continue
+                cur += -dp[x] if x > 0 else dp[-x]
+            res = cur % mod
+            for x in fs:
+                dp[abs(x)] = (dp[abs(x)] + cur) % mod
+        ac.st(res)
+        return
+
+    @staticmethod
+    def cf_2037g_3(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2037/problem/G
+        tag: min_prime|inclusion_exclusion|mobius|linear_dp
+        """
+        mod = 998244353
+        ac.read_int()
+        nums = ac.read_list_ints()
+        ceil = 10 ** 6
+        rf = PrimeFactor2(ceil)
+        dp = [0] * (ceil + 1)
+        for x in rf.get_rad_factor2(nums[0]):
+            dp[abs(x)] = 1
+        res = 1
+        for num in nums[1:]:
+            fs = rf.get_rad_factor2(num)
+            cur = 0
+            for x in fs:
+                if x == 1:
+                    continue
+                cur += -dp[x] if x > 0 else dp[-x]
+            res = cur % mod
+            for x in fs:
+                dp[abs(x)] = (dp[abs(x)] + cur) % mod
+        ac.st(res)
         return
