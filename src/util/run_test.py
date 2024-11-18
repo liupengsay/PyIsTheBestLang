@@ -415,11 +415,11 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "2030"
+        num = "2037"
         # webbrowser.open(f"https://codeforces.com/contest/{num}")
         # webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
-        for i in range(6):
+        for i in range(7):
             url = f"https://codeforces.com/contest/{num}/problem/" + chr(i + ord("A"))
             time.sleep(0.5)
             webbrowser.open(url)

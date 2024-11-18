@@ -19,11 +19,11 @@ class PrimeFactor:
         self.min_prime[1] = 1
         # determine whether all numbers from 1 to self.n are prime numbers
         self.prime_factor = [[] for _ in range(self.n + 1)]
-        self.prime_factor_cnt = [0]*(self.n+1)
+        self.prime_factor_cnt = [0] * (self.n + 1)
         self.prime_factor_mi_cnt = [0] * (self.n + 1)
         # calculate all factors of all numbers from 1 to self.n, including 1 and the number itself
         self.all_factor = [[], [1]] + [[1, i] for i in range(2, self.n + 1)]
-        self.euler_phi = list(range(self.n+1))
+        self.euler_phi = list(range(self.n + 1))
         self.build()
 
         return
@@ -61,7 +61,7 @@ class PrimeFactor:
                     num //= p
                     cnt += 1
                 self.prime_factor[i].append((p, cnt))
-                phi =  phi // p * (p - 1)
+                phi = phi // p * (p - 1)
             self.euler_phi[i] = phi
 
         # complexity is O(nlogn)
@@ -94,3 +94,52 @@ class PrimeFactor:
 
     def get_prime_numbers(self):
         return [i for i in range(2, self.n + 1) if self.min_prime[i] == i]
+
+
+class RadFactor:
+    def __init__(self, n):
+        self.n = n
+        self.min_prime = [0] * (self.n + 1)
+        self.min_prime[1] = 1
+        self.build()
+        return
+
+    def build(self):
+        for i in range(2, self.n + 1):
+            if not self.min_prime[i]:
+                self.min_prime[i] = i
+                for j in range(i * i, self.n + 1, i):
+                    if not self.min_prime[j]:
+                        self.min_prime[j] = i
+        return
+
+    def get_rad_factor(self, num):
+        prime = self.get_prime_factor(num)
+        rad_factor = [1]
+        for p in prime:
+            length = len(rad_factor)
+            for _ in range(length):
+                rad_factor.append(rad_factor[-length] * (-p))
+        return rad_factor
+
+    def get_rad_factor2(self, num):
+        prime = self.get_prime_factor(num)
+        m = len(prime)
+        rad_factor = []
+        for i in range(1 << m):
+            c = 0
+            x = 1
+            for j in range(m):
+                if (i >> j) & 1:
+                    c += 1
+                    x *= prime[j]
+            rad_factor.append(x if c % 2 == 0 else -x)
+        return rad_factor
+
+    def get_prime_factor(self, num):
+        prime = []
+        while num > 1:
+            prime.append(self.min_prime[num])
+            while num % prime[-1] == 0:
+                num //= prime[-1]
+        return prime

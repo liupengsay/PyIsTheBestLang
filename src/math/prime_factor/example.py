@@ -1,9 +1,18 @@
 import unittest
 
-from src.math.prime_factor.template import AllFactorCnt, PrimeFactor
+from src.math.prime_factor.template import AllFactorCnt, PrimeFactor, RadFactor
 
 
 class TestGeneral(unittest.TestCase):
+
+
+    def test_rad_factor(self):  # 1.891
+        n = 2 * 10 ** 5
+        rf = RadFactor(n)
+        for i in range(n+1):
+            assert sorted(rf.get_rad_factor(i)) == sorted(rf.get_rad_factor2(i))
+        return
+
 
     def test_all_factor(self):  # 1.891
         n = 2 * 10 ** 5

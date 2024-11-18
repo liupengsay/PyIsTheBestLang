@@ -50,6 +50,7 @@ P6465（https://www.luogu.com.cn/problem/P6465）sliding_window|two_pointers|cou
 1611F（https://codeforces.com/contest/1611/problem/F）two_pointers|classical
 1413C（https://codeforces.com/problemset/problem/1413/C）two_pointers
 1494C（https://codeforces.com/problemset/problem/1494/C）two_pointers|three_pointers|brute_force|observation
+2028C（https://codeforces.com/contest/2028/problem/C）prefix_suffix|greedy|two_pointer
 
 ====================================AtCoder=====================================
 ARC100B（https://atcoder.jp/contests/abc102/tasks/arc100_b）two_pointers|brute_force
@@ -623,3 +624,44 @@ class Solution:
             a = (1 + a - ll + 1) * (a - ll + 1) // 2
             ans.append(a + b)
         return ans
+
+    @staticmethod
+    def cf_2028c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2028/problem/C
+        tag: prefix_suffix|greedy|two_pointer
+        """
+        for _ in range(ac.read_int()):
+            n, m, v = ac.read_list_ints()
+            nums = ac.read_list_ints()
+            acc = ac.accumulate(nums)
+
+            post = [0] * (n + 1)
+            j = n - 1
+            for i in range(n - 1, -1, -1):
+                while j > i and acc[j] - acc[i] >= v:
+                    j -= 1
+                if acc[j + 1] - acc[i] >= v:
+                    post[i] = post[j + 1] + 1
+                post[i] = max(post[i], post[i + 1])
+            if post[0] < m:
+                ac.st(-1)
+                continue
+
+            pre = [0] * (n + 1)
+            j = 0
+            for i in range(n):
+                while j < i and acc[i + 1] - acc[j + 1] >= v:
+                    j += 1
+                if acc[i + 1] - acc[j] >= v:
+                    pre[i + 1] = pre[j] + 1
+                pre[i + 1] = max(pre[i], pre[i + 1])
+
+            ans = j = 0
+            for i in range(n):
+                while j + 1 < n and post[j + 2] + pre[i] >= m:
+                    j += 1
+                if pre[i] + post[j + 1] >= m:
+                    ans = max(ans, acc[j + 1] - acc[i])
+            ac.st(ans)
+        return

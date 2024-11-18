@@ -10,6 +10,7 @@ Description：
 
 =====================================LuoGu======================================
 P8319（https://www.luogu.com.cn/problem/P8319）prime_factorization|counter
+P2429（https://www.luogu.com.cn/problem/P2429）inclusion_exclusion|counter|brute_force|prime_factor
 
 ===================================CodeForces===================================
 1176D（https://codeforces.com/contest/1176/problem/D）construction|greedy|implemention
@@ -444,35 +445,28 @@ class Solution:
     @staticmethod
     def lc_p2429(ac=FastIO()):
         """
-        url:
+        url: https://www.luogu.com.cn/problem/P2429
         tag: inclusion_exclusion|counter|brute_force|prime_factor
         """
         n, m = ac.read_list_ints()
-        primes = sorted(ac.read_list_ints())
-
-        def dfs(i):
-            nonlocal ans, value, cnt
-            if value > m:
-                return
-            if i == n:
-                if cnt:
-                    num = m // value
-                    ans += value * (num * (num + 1) // 2) * (-1) ** (cnt + 1)
-                    ans %= mod
-                return
-
-            value *= primes[i]
-            cnt += 1
-            dfs(i + 1)
-            cnt -= 1
-            value //= primes[i]
-            dfs(i + 1)
-            return
-
-        cnt = ans = 0
-        value = 1
+        primes = ac.read_list_ints()
+        primes.sort()
+        pre = [1]
+        for p in primes:
+            length = len(pre)
+            for i in range(length):
+                if abs(pre[i] * p) <= m:
+                    pre.append(pre[i] * (-p))
         mod = 376544743
-        dfs(0)
+        ans = 0
+        for x in pre:
+            if x == 1:
+                continue
+            start = abs(x)
+            end = (m // abs(x)) * abs(x)
+            cur = (start + end) * (m // abs(x)) // 2
+            ans += cur if x < 0 else -cur
+            ans %= mod
         ac.st(ans)
         return
 

@@ -69,6 +69,7 @@ ABC378E（https://atcoder.jp/contests/abc378/tasks/abc378_e）tree_array|prefix_
 677D（https://codeforces.com/problemset/problem/677/D）layered_bfs|tree_array|two_pointers|partial_order|implemention|classical
 1667B（https://codeforces.com/problemset/problem/1667/B）tree_array|classical|prefix_sum
 597C（https://codeforces.com/problemset/problem/597/C）point_add|range_sum|bag_dp|classical
+2028D（https://codeforces.com/contest/2028/problem/D）linear_dp|observation|specific_plan|implemention
 
 =====================================LibraryChecker=====================================
 1（https://judge.yosupo.jp/problem/vertex_add_subtree_sum）tree_array|dfs_order
@@ -87,7 +88,8 @@ from src.struct.segment_tree.template import RangeAscendRangeMax
 from src.struct.sorted_list.template import SortedList
 from src.struct.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex, PointSetPointAddRangeSum
+    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex, PointSetPointAddRangeSum, \
+    PointDescendPreMinIndex
 from src.util.fast_io import FastIO
 
 
@@ -1856,3 +1858,57 @@ class Solution:
             tree_cnt.point_add(pre, 1)
         ac.st(ans)
         return
+
+    @staticmethod
+    def cf_2028d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2028/problem/D
+        tag: linear_dp|observation|specific_plan|implemention
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            grid = []
+            index = []
+            for _ in range(3):
+                lst = ac.read_list_ints_minus_one()
+                lst = [lst[i] * n + i for i in range(n)]
+                lst.sort(reverse=True)
+                lst = [x % n for x in lst]
+                grid.append(lst[:])
+                cur = [0] * n
+                for i in range(n):
+                    cur[lst[i]] = i
+                index.append(cur[:])
+
+            dp = [n + 1] * n
+            dp[0] = 0
+            plan = [-1] * n
+            tree = [PointDescendPreMinIndex(n, n + 1) for _ in range(3)]
+            for j in range(3):
+                tree[j].point_descend(index[j][0], dp[0], index[j][0])
+
+            for i in range(1, n):
+                for j in range(3):
+                    val, ind = tree[j].pre_min(index[j][i])
+                    if dp[i] > val + 1:
+                        dp[i] = val + 1
+                        plan[i] = (j, ind)
+                for j in range(3):
+                    tree[j].point_descend(index[j][i], dp[i], index[j][i])
+            if dp[-1] < n + 1:
+                ac.st("YES")
+                ac.st(dp[-1])
+                ans = []
+                i = n - 1
+                name = "qkj"
+                while i:
+                    j, ind = plan[i]
+                    ans.append([name[j], i + 1])
+                    i = grid[j][ind]
+                ans.reverse()
+                for ls in ans:
+                    ac.lst(ls)
+            else:
+                ac.st("NO")
+        return
+
