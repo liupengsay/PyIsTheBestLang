@@ -61,6 +61,7 @@ P8094（https://www.luogu.com.cn/problem/P8094）monotonic_stack|pre_larger|post
 1919D（https://codeforces.com/problemset/problem/1919/D）brain_teaser|monotonic_stack|construction
 1299C（https://codeforces.com/problemset/problem/1299/C）monotonic_stack|convex|brain_teaser|greedy|construction
 1407D（https://codeforces.com/problemset/problem/1407/D）array_implemention|monotonic_stack|linear_dp|classical
+2035D（https://codeforces.com/contest/2035/problem/D）monotonic_stack|data_range|classical
 
 ====================================AtCoder=====================================
 ABC140E（https://atcoder.jp/contests/abc140/tasks/abc140_e）monotonic_stack|pre_pre_larger|post_post_larger
@@ -1178,4 +1179,45 @@ class Solution:
             stack.append(i)
         for x in ans:
             ac.st(x)
+        return
+
+    @staticmethod
+    def cf_2035d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2035/problem/D
+        tag: monotonic_stack|data_range|classical
+        """
+        mod = 10 ** 9 + 7
+        ceil = 32 * 2 * 10 ** 5
+        p = [0] * (ceil + 1)
+        p[0] = 1
+        for i in range(1, ceil + 1):
+            p[i] = p[i - 1] * 2 % mod
+
+        def find(x):
+            c = 0
+            while not x & 1:
+                c += 1
+                x >>= 1
+            return c, x
+
+        for _ in range(ac.read_int()):
+            ac.read_int()
+            nums = ac.read_list_ints()
+            stack = []
+            ans = []
+            res = 0
+            for num in nums:
+                cc, xx = find(num)
+                while stack and stack[-1][1] <= xx * pow(2, min(32, cc)):
+                    ccc, xxx = stack.pop()
+                    res -= p[ccc] * xxx
+                    res += xxx
+                    res %= mod
+                    cc += ccc
+                res += p[cc] * xx
+                res %= mod
+                ans.append(res)
+                stack.append((cc, xx))
+            ac.lst(ans)
         return
