@@ -71,6 +71,7 @@ ABC195F（https://atcoder.jp/contests/abc195/tasks/abc195_f）state_dp|data_rang
 ABC190E（https://atcoder.jp/contests/abc190/tasks/abc190_e）bfs|state_dp|classical
 ABC187F（https://atcoder.jp/contests/abc187/tasks/abc187_f）state_dp|transitive_closure|refresh_table
 ABC180E（https://atcoder.jp/contests/abc180/tasks/abc180_e）state_dp|classical
+ABC380F（https://atcoder.jp/contests/abc380/tasks/abc380_f）state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan

@@ -30,6 +30,7 @@ ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
 ABC268F（https://atcoder.jp/contests/abc268/tasks/abc268_f）custom_sort|classical
 ABC225F（https://atcoder.jp/contests/abc225/tasks/abc225_f）linear_dp|cmp_to_key|custom_sort|brain_teaser|reverse_order
 ABC190F（https://atcoder.jp/contests/abc190/tasks/abc190_f）reverse_pair|various_sort|classical
+ABC380G（https://atcoder.jp/contests/abc380/tasks/abc380_g）reverse_pair|expectation|contribution_method|brute_force|two_pointers
 
 =====================================AcWing=====================================
 113（https://www.acwing.com/problem/content/description/115/）custom_sort
@@ -40,6 +41,7 @@ from functools import cmp_to_key
 from typing import List
 
 from src.basis.various_sort.template import VariousSort
+from src.struct.sorted_list.template import SortedList
 from src.util.fast_io import FastIO
 
 
@@ -371,4 +373,48 @@ class Solution:
             ans -= x
             ans += n - x - 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_380g(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc380/tasks/abc380_g
+        tag: reverse_pair|expectation|contribution_method|brute_force|two_pointers
+        """
+        mod = 998244353
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints_minus_one()
+
+        pre = []
+        lst = SortedList()
+        for i in range(n):
+            if i >= k:
+                lst.discard(nums[i - k])
+            cnt = len(lst) - lst.bisect_left(nums[i])
+            lst.add(nums[i])
+            pre.append(cnt)
+
+        post = []
+        lst = SortedList()
+        for i in range(n - 1, -1, -1):
+            if i + k < n:
+                lst.discard(nums[i + k])
+            cnt = lst.bisect_left(nums[i])
+            lst.add(nums[i])
+            post.append(cnt)
+        post.reverse()
+
+        reverse_pair = VariousSort().range_merge_to_disjoint_sort_inverse_pair(nums[:])
+        cur = VariousSort().range_merge_to_disjoint_sort_inverse_pair(nums[:k])
+        mid = k * (k - 1) * pow(4, -1, mod)
+        ans = 0
+        for i in range(n - k + 1):
+            ans += reverse_pair - cur + mid
+            ans %= mod
+            cur -= post[i]
+            if i + k < n:
+                cur += pre[i + k]
+        ans *= pow(n - k + 1, -1, mod)
+        ans %= mod
+        ac.st(ans)
         return

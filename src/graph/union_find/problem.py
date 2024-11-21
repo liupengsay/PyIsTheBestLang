@@ -108,6 +108,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 277A（https://codeforces.com/problemset/problem/277/A）union_find_general
 1156D（https://codeforces.com/problemset/problem/1156/D）union_find|brute_force
 2033E（https://codeforces.com/contest/2033/problem/E）union_find|permutation_circle|greedy
+ABC380E（https://atcoder.jp/contests/abc380/tasks/abc380_e）union_find_range|union_left|union_right|classical
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -2969,4 +2970,37 @@ class Solution:
                 tow = len(cur)
                 ans += tow * (tow - 1) // 2
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_380e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc380/tasks/abc380_e
+        tag: union_find_range|union_left|union_right|classical
+        """
+        n, q = ac.read_list_ints()
+        uf_left = UnionFind(n)
+        color = list(range(n))
+        uf_right = UnionFind(n)
+        cnt = [1] * n
+        for _ in range(q):
+            lst = ac.read_list_ints_minus_one()
+            if lst[0] == 0:
+                x, c = lst[1], lst[2]
+                root_left = uf_left.find(x)
+                root_right = uf_right.find(x)
+                cnt[color[root_left]] -= uf_left.size(x)
+                color[root_left] = color[root_right] = c
+                cnt[c] += uf_left.size(x)
+                while root_right + 1 < n and color[uf_right.find(root_right + 1)] == c:
+                    uf_right.union_right(root_right, root_right + 1)
+                    uf_left.union_left(root_left, root_right + 1)
+                    root_right = uf_right.find(root_right)
+                while root_left and color[uf_left.find(root_left - 1)] == c:
+                    uf_left.union_left(root_left - 1, root_left)
+                    uf_right.union_right(root_left - 1, root_right)
+                    root_left = uf_left.find(root_left)
+            else:
+                c = lst[1]
+                ac.st(cnt[c])
         return

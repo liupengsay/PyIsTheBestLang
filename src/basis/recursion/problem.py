@@ -37,6 +37,7 @@ P5551（https://www.luogu.com.cn/problem/P5551）recursion
 ===================================AtCoder===================================
 ABC350F（https://atcoder.jp/contests/abc350/tasks/abc350_f）implemention|divide_and_conquer|recursion|classical
 ABC188F（https://atcoder.jp/contests/abc188/tasks/abc188_f）linear_dp|recursion|divide_and_conquer|implemention|greedy|reverse_thinking
+ABC380D（https://atcoder.jp/contests/abc380/tasks/abc380_d）recursion|divide_and_conquer|classical
 
 """
 import math

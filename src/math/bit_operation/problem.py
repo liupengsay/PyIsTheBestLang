@@ -86,6 +86,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1715D（https://codeforces.com/problemset/problem/1715/D）greedy|construction|bit_operation
 1416C（https://codeforces.com/problemset/problem/1416/C）bit_operation|divide_and_conquer|reverse_pair
 2036F（https://codeforces.com/contest/2036/problem/F）bit_property|bit_operation|inclusion_exclusion|classical
+2035C（https://codeforces.com/contest/2035/problem/C）construction|bit_operation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1408,4 +1409,26 @@ class Solution:
 
             ans = check(rr) ^ check(ll - 1)
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2035c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2035/problem/C
+        tag: construction|bit_operation
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            if n == 6:
+                ac.st(7)
+                ac.lst([1, 2, 4, 6, 5, 3])
+            elif n % 2:
+                ac.st(n)
+                ac.lst(list(range(2, n - 1)) + [1, n - 1, n])
+            else:
+                x = n.bit_length() - 1
+                lst = [3, 1, 2 ** x - 2, 2 ** x - 1, n]
+                ans = [x for x in range(1, n + 1) if x not in lst] + lst
+                ac.st(2 ** (x + 1) - 1)
+                ac.lst(ans)
         return
