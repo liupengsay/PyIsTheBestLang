@@ -31,6 +31,7 @@ class TernarySearch:
     @staticmethod
     def find_ceil_point_int(fun, left, right, error=1):
         """the int point at which the upper convex function obtains its maximum value"""
+        ll, rr = left, right
         while left < right - error:
             diff = (right - left) // 3
             mid1 = left + diff
@@ -44,7 +45,11 @@ class TernarySearch:
             else:
                 left = mid1
                 right = mid2
-        return left
+        res = left
+        for x in range(left - 5, left + 5):
+            if ll <= x <= rr and fun(x) > fun(res):
+                res = x
+        return res
 
     @staticmethod
     def find_floor_point_float(fun, left, right, error=1e-9, high_precision=False):
@@ -67,6 +72,7 @@ class TernarySearch:
     @staticmethod
     def find_floor_point_int(fun, left, right, error=1, high_precision=False):
         """The int point when solving the convex function to obtain the minimum value"""
+        ll, rr = left, right
         while left < right - error:
             diff = Decimal(right - left) // 3 if high_precision else (right - left) // 3
             mid1 = left + diff
@@ -80,7 +86,11 @@ class TernarySearch:
             else:
                 left = mid1
                 right = mid2
-        return left
+        res = left
+        for x in range(left - 5, left + 5):
+            if ll <= x <= rr and fun(x) < fun(res):
+                res = x
+        return res
 
     @staticmethod
     def find_ceil_value_float(fun, left, right, error=1e-9, high_precision=False):

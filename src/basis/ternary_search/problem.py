@@ -314,11 +314,10 @@ class Solution:
         def check(x):
             if x < 0:
                 return math.inf
-            return x * b + a / (1 + x) ** 0.5
+            return Decimal(x * b + a / (1 + x) ** 0.5)
 
         y = TernarySearch().find_floor_point_int(check, 0, a)
-        y = int(y)
-        ans = min(Decimal(check(x)) for x in range(y - 5, y + 6))
+        ans = check(y)
         ac.st(ans)
         return
 
@@ -342,9 +341,7 @@ class Solution:
                 ans = max(ans, pre_pre + pre + x)
                 if x < 0:
                     ceil = TernarySearch().find_ceil_point_int(check, 1, y)
-                    for ss in range(ceil - 5, ceil + 5):
-                        if 1 <= ss <= y:
-                            ans = max(ans, check(ss))
+                    ans = max(ans, check(ceil))
                 pre_pre = pre_pre + pre * y + y * (y + 1) * x // 2
                 pre += x * y
                 ans = max(ans, pre_pre)
@@ -373,7 +370,7 @@ class Solution:
             return res
 
         mid = TernarySearch().find_floor_point_int(check, 0, max(h))
-        ans = min(check(x) for x in range(mid - 5, mid + 5) if x >= 0)
+        ans = check(mid)
         ac.st(ans)
         return
 
@@ -402,7 +399,7 @@ class Solution:
 
             if r1 <= l2:
                 x = TernarySearch().find_floor_point_int(check, 1, n)
-                ans = min(check(y) for y in range(x - 5, x + 5) if 1 <= y <= n)
+                ans = check(x)
             else:
                 zero = min(r1, r2) - max(l1, l2)
                 one = r2 - l2 + r1 - l1 - 2 * zero
@@ -496,13 +493,7 @@ class Solution:
             return compute(x)[0]
 
         y = TernarySearch().find_floor_point_int(check, lst[0], lst[-1])
-
-        ans = []
-        for yy in range(y - 5, y + 5):
-            if lst[0] <= yy <= lst[-1]:
-                res = compute(yy)
-                if not ans or res < ans:
-                    ans = res
+        ans = compute(y)
         ac.st(ans[0])
         index = [a[1] for a in aa[:ans[1]]] + [b[1] for b in bb[:ans[2]]] + [c[1] for c in cc[:ans[3]]] + [d[1] for d in
                                                                                                            dd[:ans[4]]]
