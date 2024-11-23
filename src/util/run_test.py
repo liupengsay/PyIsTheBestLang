@@ -414,8 +414,21 @@ class TestGeneral(unittest.TestCase):
         print(f"total rem：{rem}")
         return
 
+    def test_random_weekly_test(self):
+        random.seed(2024)
+        res = []
+        for num in range(380, 425):
+            res.append(f"https://leetcode.cn/contest/weekly-contest-{num}/")
+        for num in range(120, 144):
+            res.append(f"https://leetcode.cn/contest/biweekly-contest-{num}/")
+        random.shuffle(res)
+        for ls in res:
+            print(ls)
+        print(len(res))
+        return
+
     def test_codeforces_contest(self):
-        num = "2005"
+        num = "1993"
         # webbrowser.open(f"https://codeforces.com/contest/{num}")
         # webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
@@ -445,7 +458,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "380"
+        num = "381"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

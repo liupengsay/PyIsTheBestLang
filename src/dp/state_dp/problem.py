@@ -72,6 +72,7 @@ ABC190E（https://atcoder.jp/contests/abc190/tasks/abc190_e）bfs|state_dp|class
 ABC187F（https://atcoder.jp/contests/abc187/tasks/abc187_f）state_dp|transitive_closure|refresh_table
 ABC180E（https://atcoder.jp/contests/abc180/tasks/abc180_e）state_dp|classical
 ABC380F（https://atcoder.jp/contests/abc380/tasks/abc380_f）state_dp|classical
+ABC381F（https://atcoder.jp/contests/abc381/tasks/abc381_f）state_dp|classical
 
 =====================================AcWing=====================================
 3735（https://www.acwing.com/problem/content/3738/）reverse_order|state_dp|specific_plan
@@ -1462,5 +1463,40 @@ class Solution:
                 for y in post:
                     dp[y][s | (1 << y)] = min(dp[y][s | (1 << y)], dp[x][s] + dis[x][y])
         ans = min(dp[x][-1] + dis[x][0] for x in range(n))
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_381f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc381/tasks/abc381_f
+        tag: state_dp|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints_minus_one()
+        m = 20
+        post = [[-1] * m for _ in range(n)]
+        ind1 = [-1]*m
+        ind2 = [-1]*m
+        for i in range(n - 1, -1, -1):
+            x = nums[i]
+            if ind2[x] == -1:
+                ind2[x] = i
+            else:
+                ind1[x] = ind2[x]
+                ind2[x] = i
+            for j in range(m):
+                post[i][j] = ind1[j]
+
+        dp = [n + 1] * (1 << m)
+        dp[0] = 0
+        ans = 0
+        for s in range(1, 1 << m):
+            for j in range(m):
+                if (s >> j) & 1:
+                    if dp[s ^ (1 << j)] < n and post[dp[s ^ (1 << j)]][j] != -1:
+                        dp[s] = min(dp[s], post[dp[s ^ (1 << j)]][j] + 1)
+            if dp[s] <= n:
+                ans = max(ans, s.bit_count() * 2)
         ac.st(ans)
         return

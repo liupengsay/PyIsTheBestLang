@@ -122,6 +122,7 @@ ABC215F（https://atcoder.jp/contests/abc215/tasks/abc215_f）two_pointers|binar
 ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|prefix_sum
 ABC198C（https://atcoder.jp/contests/abc198/tasks/abc198_c）binary_search|corner_case
 ABC192D（https://atcoder.jp/contests/abc192/tasks/abc192_d）binary_search|n_base|corner_case
+ABC381E（https://atcoder.jp/contests/abc381/tasks/abc381_e）binary_search|greedy|brute_force|implemention
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -142,6 +143,7 @@ ABC192D（https://atcoder.jp/contests/abc192/tasks/abc192_d）binary_search|n_ba
 import bisect
 import heapq
 import math
+from bisect import bisect_left, bisect_right
 from collections import deque, defaultdict, Counter
 from functools import reduce
 from itertools import accumulate, combinations
@@ -2187,4 +2189,36 @@ class Solution:
             y = BinarySearch().find_int_right(0, len(lst), check)
             ans = sum([p + 1 for p in lst[-y:]]) if y else 0
             ac.st(n * (n + 1) // 2 - ans)
+        return
+
+    @staticmethod
+    def abc_381e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc381/tasks/abc381_e
+        tag: binary_search|greedy|brute_force|implemention
+        """
+        n, q = ac.read_list_ints()
+        s = ac.read_str()
+        pre = ac.accumulate([x == "/" for x in s])
+        one = [i for i in range(n) if s[i] == "1"]
+        two = [i for i in range(n) if s[i] == "2"]
+        n1 = len(one)
+
+        def check(x):
+            if x == 0:
+                return True
+            if i1 + x - 1 >= n1 or j2 - x + 1 < 0:
+                return False
+            aa, bb = one[i1 + x - 1], two[j2 - x + 1]
+            return aa < bb and pre[bb] - pre[aa + 1] > 0
+
+        for _ in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            if pre[rr + 1] == pre[ll]:
+                ac.st(0)
+                continue
+            i1 = bisect_left(one, ll)
+            j2 = bisect_right(two, rr) - 1
+            ans = BinarySearch().find_int_right(0, (rr - ll + 1) // 2, check) * 2 + 1
+            ac.st(ans)
         return

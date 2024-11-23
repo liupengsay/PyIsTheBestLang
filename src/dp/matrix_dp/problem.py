@@ -154,6 +154,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 833B（https://codeforces.com/problemset/problem/833/B）matrix_dp|segment_tree|range_add|range_max
 10D（https://codeforces.com/problemset/problem/10/D）lis|lcs|matrix_dp|specific_plan|classical
 1864D（https://codeforces.com/problemset/problem/1864/D）matrix_prefix_sum|implemention|matrix_dp
+2027D2（https://codeforces.com/contest/2027/problem/D2）matrix_dp|binary_search|PointSetRangeMinCount
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp
@@ -193,7 +194,7 @@ ABC178D（https://atcoder.jp/contests/abc178/tasks/abc178_d）matrix_dp|prefix_s
 1（https://www.codechef.com/problems/MILKYDARK）matrix_dp|prefix_sum_opt|classical
 
 """
-
+import bisect
 import heapq
 import math
 from collections import defaultdict, deque
@@ -3711,4 +3712,62 @@ class Solution:
             ans += dp[n * (m + 1) + m] if k == ll else - dp[n * (m + 1) + m]
             ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2027d2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2027/problem/D2
+        tag: matrix_dp|binary_search|PointSetRangeMinCount
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints()
+            if max(a) > b[0]:
+                ac.st(-1)
+                continue
+            inf = (m - 1) * n
+            dp = [inf] * (m + 1) * (n + 1)
+            cnt = [0] * (m + 1) * (n + 1)
+            dp[1] = 0
+            cnt[1] = 1
+            mod = 10 ** 9 + 7
+            tree = [PointSetRangeMinCount(n + 1, inf, mod) for _ in range(m + 1)]
+            for k in range(1, m + 1):
+                if dp[k] > dp[k - 1]:
+                    cnt[k] = cnt[k - 1]
+                    dp[k] = dp[k - 1]
+                elif dp[k] == dp[k - 1]:
+                    cnt[k] += cnt[k - 1]
+                    cnt[k] %= mod
+                tree[k].point_set(0, dp[k], cnt[k])
+
+            pre = ac.accumulate(a)
+
+            for i in range(n):
+                for k in range(1, m + 1):
+                    cost = m - k
+                    bb = b[k - 1]
+                    ind = bisect.bisect_left(pre, pre[i + 1] - bb)
+                    if ind <= i:
+                        if dp[ind * (m + 1) + k] + cost < dp[(i + 1) * (m + 1) + k]:
+                            dp[(i + 1) * (m + 1) + k] = dp[ind * (m + 1) + k] + cost
+                            cnt[(i + 1) * (m + 1) + k] = tree[k].range_min_count(ind, i)[1]
+                            cnt[(i + 1) * (m + 1) + k] %= mod
+                        elif dp[ind * (m + 1) + k] + cost == dp[(i + 1) * (m + 1) + k]:
+                            cnt[(i + 1) * (m + 1) + k] += tree[k].range_min_count(ind, i)[1]
+                            cnt[(i + 1) * (m + 1) + k] %= mod
+
+                for k in range(1, m + 1):
+                    if dp[(i + 1) * (m + 1) + k] > dp[(i + 1) * (m + 1) + k - 1]:
+                        dp[(i + 1) * (m + 1) + k] = dp[(i + 1) * (m + 1) + k - 1]
+                        cnt[(i + 1) * (m + 1) + k] = cnt[(i + 1) * (m + 1) + k - 1]
+                    elif dp[(i + 1) * (m + 1) + k] == dp[(i + 1) * (m + 1) + k - 1]:
+                        cnt[(i + 1) * (m + 1) + k] += cnt[(i + 1) * (m + 1) + k - 1]
+                        cnt[(i + 1) * (m + 1) + k] %= mod
+                    tree[k].point_set(i + 1, dp[(i + 1) * (m + 1) + k], cnt[(i + 1) * (m + 1) + k])
+            ans1 = dp[n * (m + 1) + m]
+            ans2 = cnt[n * (m + 1) + m]
+            ac.lst([ans1, ans2 % mod])
         return
