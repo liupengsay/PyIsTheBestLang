@@ -31,7 +31,7 @@ ABC244D（https://atcoder.jp/contests/abc244/tasks/abc244_d）dfs|back_trace|bru
 ABC241E（https://atcoder.jp/contests/abc241/tasks/abc241_e）circular_section|brute_force_valid|classical
 ABC214C（https://atcoder.jp/contests/abc214/tasks/abc214_c）circular_section|brain_teaser
 ABC179E（https://atcoder.jp/contests/abc179/tasks/abc179_e）circular_section|data_range|classical
-
+ABC175D（https://atcoder.jp/contests/abc175/tasks/abc175_d）permutation_circle|brute_force|prefix_sum
 
 """
 import math
@@ -387,4 +387,36 @@ class Solution:
             lst.append(x)
             pre[lst[-1]] = len(lst) - 1
         ac.st(sum(lst))
+        return
+
+    @staticmethod
+    def abc_175d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc175/tasks/abc175_d
+        tag: permutation_circle|brute_force|prefix_sum
+        """
+        n, k = ac.read_list_ints()
+        p = ac.read_list_ints_minus_one()
+        c = ac.read_list_ints()
+
+        visit = [0] * n
+        ans = -math.inf
+        for i in range(n):
+            if not visit[i]:
+                lst = [i]
+                visit[i] = 1
+                gain = []
+                while not visit[p[lst[-1]]]:
+                    lst.append(p[lst[-1]])
+                    visit[lst[-1]] = 1
+                    gain.append(c[lst[-1]])
+                gain.append(c[i])
+                pre = ac.accumulate(gain + gain)
+                m = len(gain)
+                for j1 in range(m):
+                    for j2 in range(j1, j1 + m):
+                        if j2 - j1 + 1 > k:
+                            break
+                        ans = max(ans, pre[j2 + 1] - pre[j1] + max(0, pre[m] * ((k - (j2 - j1 + 1)) // m)))
+        ac.st(ans)
         return

@@ -183,6 +183,7 @@ ABC184D（https://atcoder.jp/contests/abc184/tasks/abc184_d）matrix_dp
 ABC138E（https://atcoder.jp/contests/abc183/tasks/abc183_e）matrix_dp|matrix_prefix_sum_opt
 ABC180F（https://atcoder.jp/contests/abc180/tasks/abc180_f）circle_permutation|brute_force|inclusion_exclusion|matrix_dp|observation|comb_perm|counter|construction|low_bit_contribution
 ABC178D（https://atcoder.jp/contests/abc178/tasks/abc178_d）matrix_dp|prefix_sum_opt
+ABC175E（https://atcoder.jp/contests/abc175/tasks/abc175_e）matrix_dp
 
 =====================================AcWing=====================================
 4378（https://www.acwing.com/problem/content/4381/）classical|matrix_dp
@@ -3770,4 +3771,30 @@ class Solution:
             ans1 = dp[n * (m + 1) + m]
             ans2 = cnt[n * (m + 1) + m]
             ac.lst([ans1, ans2 % mod])
+        return
+
+    @staticmethod
+    def abc_175e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc175/tasks/abc175_e
+        tag: matrix_dp
+        """
+        m, n, k = ac.read_list_ints()
+        pre = dict()
+        for _ in range(k):
+            r, c, v = ac.read_list_ints_minus_one()
+            v += 1
+            pre[r * n + c] = v
+        dp = [0] * n
+        ndp = [[0] * 4 for _ in range(n)]
+        for i in range(m):
+            for j in range(n):
+                for w in range(4):
+                    ndp[j][w] = max(dp[j], ndp[j - 1][w] if j else 0)
+                cc = pre.get(i * n + j, 0)
+                if cc:
+                    for w in range(1, 4):
+                        ndp[j][w] = max(ndp[j][w], dp[j] + cc, ndp[j - 1][w - 1] + cc if j else cc)
+            dp = [max(ls) for ls in ndp]
+        ac.st(max(dp))
         return
