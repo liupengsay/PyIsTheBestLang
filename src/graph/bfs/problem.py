@@ -107,6 +107,7 @@ P6909（https://www.luogu.com.cn/problem/P6909）01-bfs|preprocess|classical
 1349C（https://codeforces.com/problemset/problem/1349/C）bfs|observation|implemention
 1214D（https://codeforces.com/problemset/problem/1214/D）bfs|greedy|classical
 1276B（https://codeforces.com/problemset/problem/1276/B）bfs|unweighted_graph|multiplication_method
+2027C（https://codeforces.com/contest/2027/problem/C）bfs|build_graph|topological_sort|contribution_method
 
 ====================================AtCoder=====================================
 ARC090B（https://atcoder.jp/contests/abc087/tasks/arc090_b）bfs|differential_constraint|O(n^2)

@@ -123,6 +123,7 @@ ABC203D（https://atcoder.jp/contests/abc203/tasks/abc203_d）binary_search|pref
 ABC198C（https://atcoder.jp/contests/abc198/tasks/abc198_c）binary_search|corner_case
 ABC192D（https://atcoder.jp/contests/abc192/tasks/abc192_d）binary_search|n_base|corner_case
 ABC381E（https://atcoder.jp/contests/abc381/tasks/abc381_e）binary_search|greedy|brute_force|implemention
+ABC174E（https://atcoder.jp/contests/abc174/tasks/abc174_e）binary_search|classical
 
 =====================================AcWing=====================================
 120（https://www.acwing.com/problem/content/122/）binary_search
@@ -2221,4 +2222,28 @@ class Solution:
             j2 = bisect_right(two, rr) - 1
             ans = BinarySearch().find_int_right(0, (rr - ll + 1) // 2, check) * 2 + 1
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_174e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc174/tasks/abc174_e
+        tag: binary_search|classical
+        """
+        n, k = ac.read_list_ints()
+        nums = ac.read_list_ints()
+
+        def check(x):
+            if x == 0:
+                return False
+            res = 0
+            for num in nums:
+                if num > x:
+                    res += num // x
+            return res <= k
+
+        up = max(nums)
+
+        ans = BinarySearch().find_int_left(0, up, check)
+        ac.st(ans)
         return

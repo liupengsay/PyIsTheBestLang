@@ -54,6 +54,7 @@ ABC368G（https://atcoder.jp/contests/abc368/tasks/abc368_g）point_add|range_su
 ABC369F（https://atcoder.jp/contests/abc369/tasks/abc369_f）tree_array|point_ascend|pre_max_index|construction|specific_plan
 ABC185F（https://atcoder.jp/contests/abc185/tasks/abc185_f）PointXorRangeXor|classical
 ABC378E（https://atcoder.jp/contests/abc378/tasks/abc378_e）tree_array|prefix_sum|brain_teaser|classical
+ABC174F（https://atcoder.jp/contests/abc174/tasks/abc174_f）range_unique|offline_query|tree_array|classical
 
 ===================================CodeForces===================================
 1791F（https://codeforces.com/problemset/problem/1791/F）tree_array|data_range|union_find_right|limited_operation
@@ -456,24 +457,29 @@ class Solution:
         tag: tree_array|offline_query|range_unique|PointChangeRangeSum
         """
         n = ac.read_int()
-        nums = ac.read_list_ints()
-        m = ac.read_int()
-        queries = [ac.read_list_ints_minus_one() + [i] for i in range(m)]
-        ans = [0] * m
+        nums = ac.read_list_ints_minus_one()
+        queries = []
+        q = ac.read_int()
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries.append((rr << 40) | (ll << 20) | i)
+        mask = [(1 << 40) - 1, (1 << 20) - 1]
+        ans = [0] * q
         tree = PointAddRangeSum(n)
-        queries.sort(key=lambda it: it[1])
+        queries.sort()
         pre = [-1] * (max(nums) + 1)
         i = 0
-        for ll, rr, ii in queries:
+        for val in queries:
+            ll, rr, ii = (val & mask[0]) >> 20, val >> 40, val & mask[1]
             while i <= rr:
                 d = nums[i]
                 if pre[d] != -1:
-                    tree.point_add(pre[d] + 1, -1)
+                    tree.point_add(pre[d], -1)
                 pre[d] = i
-                tree.point_add(i + 1, 1)
+                tree.point_add(i, 1)
                 i += 1
 
-            ans[ii] = tree.range_sum(ll + 1, rr + 1)
+            ans[ii] = tree.range_sum(ll, rr)
         for a in ans:
             ac.st(a)
         return
@@ -1912,3 +1918,36 @@ class Solution:
                 ac.st("NO")
         return
 
+
+    @staticmethod
+    def abc_174f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc174/tasks/abc174_f
+        tag: range_unique|offline_query|tree_array|classical
+        """
+        n, q = ac.read_list_ints()
+        nums = ac.read_list_ints_minus_one()
+        queries = []
+        for i in range(q):
+            ll, rr = ac.read_list_ints_minus_one()
+            queries.append((rr << 40) | (ll << 20) | i)
+        mask = [(1 << 40) - 1, (1 << 20) - 1]
+        ans = [0] * q
+        tree = PointAddRangeSum(n)
+        queries.sort()
+        pre = [-1] * n
+        i = 0
+        for val in queries:
+            ll, rr, ii = (val & mask[0]) >> 20, val >> 40, val & mask[1]
+            while i <= rr:
+                d = nums[i]
+                if pre[d] != -1:
+                    tree.point_add(pre[d], -1)
+                pre[d] = i
+                tree.point_add(i, 1)
+                i += 1
+
+            ans[ii] = tree.range_sum(ll, rr)
+        for a in ans:
+            ac.st(a)
+        return

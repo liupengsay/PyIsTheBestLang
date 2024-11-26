@@ -274,6 +274,8 @@ ABC229G（https://atcoder.jp/contests/abc229/tasks/abc229_g）implemention|media
 ABC209C（https://atcoder.jp/contests/abc209/tasks/abc209_c）greedy|brain_teaser
 ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implemention|stack
 ABC187D（https://atcoder.jp/contests/abc187/tasks/abc187_d）greedy|custom_sort|classical
+ABC173E（https://atcoder.jp/contests/abc173/tasks/abc173_e）greedy|classification_discussion
+ABC173D（https://atcoder.jp/contests/abc173/tasks/abc173_d）greedy|implemention
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy

@@ -195,6 +195,7 @@ ABC181E（https://atcoder.jp/contests/abc181/tasks/abc181_e）brute_force|binary
 ABC180D（https://atcoder.jp/contests/abc180/tasks/abc180_d）brute_force
 ABC176E（https://atcoder.jp/contests/abc176/tasks/abc176_e）brute_force|observation|greedy
 ABC379E（https://atcoder.jp/contests/abc379/tasks/abc379_e）brute_force|contribution_method
+ABC173F（https://atcoder.jp/contests/abc173/tasks/abc173_f）union_find|contribution_method|brute_force
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
@@ -220,7 +221,6 @@ from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -1797,7 +1797,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def abc_238c(ac=FastIO()):
         """
@@ -1939,5 +1938,24 @@ class Solution:
             c = sum(col[y] == ceil for y in row[r])
             cur += ceil if c < cnt else ceil - 1
             ans = max(cur, ans)
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_173f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc173/tasks/abc173_f
+        tag: union_find|contribution_method|brute_force
+        """
+        n = ac.read_int()
+        ans = 0
+        for i in range(1, n + 1):
+            x = n - i + 1
+            ans += x * (x + 1) // 2
+        for _ in range(n - 1):
+            i, j = ac.read_list_ints_minus_one()
+            if i > j:
+                i, j = j, i
+            ans -= (i + 1) * (n - j)
         ac.st(ans)
         return

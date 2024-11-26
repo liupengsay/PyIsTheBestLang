@@ -21,6 +21,7 @@ Description：reroot_dp|up_to_down|down_to_up
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 3241（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
 100430（https://leetcode.cn/problems/find-subtree-sizes-after-changes/）tree_dp|build_graph
+3367（https://leetcode.com/problems/maximize-sum-of-weights-after-edge-removals/）tree_dp|greedy
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -2574,3 +2575,57 @@ class Solution:
         for x in range(1, n):
             graph.add_directed_edge(parent[x], x)
         return graph.tree_dp()
+
+    @staticmethod
+    def lc_3367(edges: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.com/problems/maximize-sum-of-weights-after-edge-removals/
+        tag: tree_dp|greedy
+        """
+        n = len(edges) + 1
+
+        class Graph(WeightedTree):
+            def tree_dp(self):
+                dp0 = [0] * self.n  # k-1
+                dp1 = [0] * self.n  # k
+                self.parent = [-1] * self.n
+                stack = [self.root]
+
+                while stack:
+                    u = stack.pop()
+                    if u >= 0:
+                        stack.append(~u)
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                self.parent[v] = u
+                                stack.append(v)
+                    else:
+                        u = ~u
+                        nodes = []
+                        for v, ww in self.get_to_nodes_weights(u):
+                            if v != self.parent[u]:
+                                nodes.append((v, ww))
+                        nodes.sort(key=lambda it: -it[1] - dp0[it[0]] + dp1[it[0]])
+                        m = len(nodes)
+                        cur = 0
+                        tot = sum(dp1[v] for v, _ in nodes)
+                        dp0[u] = max(dp0[u], cur + tot)
+                        if m <= k:
+                            dp1[u] = max(dp1[u], cur + tot)
+                        for ind, (v, ww) in enumerate(nodes):
+                            cur += ww + dp0[v]
+                            tot -= dp1[v]
+                            if ind + 1 <= k:
+                                dp1[u] = max(dp1[u], cur + tot)
+                            else:
+                                break
+                            if ind + 1 < k:
+                                dp0[u] = max(dp0[u], cur + tot)
+                        dp1[u] = max(dp1[u], dp0[u])
+                return dp1[0]
+
+        graph = Graph(n)
+        for i, j, w in edges:
+            graph.add_undirected_edge(i, j, w)
+        ans = graph.tree_dp()
+        return ans
