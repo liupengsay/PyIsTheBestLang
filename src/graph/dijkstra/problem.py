@@ -109,6 +109,7 @@ P1807（https://www.luogu.com.cn/problem/P1807）dag|longest_path|dag_dp|topolog
 545E（https://codeforces.com/problemset/problem/545/E）shortest_path_spanning_tree|minimum_weight|dijkstra|classical|shortest_path_mst|greedy
 786B（https://codeforces.com/contest/786/problem/B）segment_tree_opt_build_graph|dijkstra|classical|weighted_graph
 1076D（https://codeforces.com/problemset/problem/1076/D）weighted_graph|shortest_path_mst
+2024D（https://codeforces.com/contest/2024/problem/D）brute_force|build_graph|brain_teaser
 
 ====================================AtCoder=====================================
 ABC142F（https://atcoder.jp/contests/abc142/tasks/abc142_f）directed|directed_smallest_circle
@@ -148,9 +149,9 @@ from itertools import accumulate, permutations
 from operator import add
 from typing import List
 
-from src.struct.segment_tree.template import SegmentTreeOptBuildGraphZKW
 from src.graph.dijkstra.template import UnDirectedShortestCycle, LimitedWeightedGraph, \
     WeightedGraphForShortestPathMST, WeightedGraphForDijkstra
+from src.struct.segment_tree.template import SegmentTreeOptBuildGraphZKW
 from src.util.fast_io import FastIO
 
 
@@ -767,6 +768,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P1354
         tag: build_graph|dijkstra|shortest_path
         """
+
         def dis(x1, y1, x2, y2):
             return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
@@ -784,7 +786,7 @@ class Solution:
         def check():
             for xx, aa1, aa2, bb1, bb2 in line:
                 if left <= xx <= right:
-                    if not (aa1<=k*xx+bb<=aa2) and not (bb1<=k*xx+bb<=bb2):
+                    if not (aa1 <= k * xx + bb <= aa2) and not (bb1 <= k * xx + bb <= bb2):
                         return False
             return True
 
@@ -820,7 +822,7 @@ class Solution:
         dct = [dict() for _ in range(n)]
         for _ in range(m):
             i, j, w = ac.read_list_ints_minus_one()
-            dct[i][j] = min(dct[i].get(j, inf), w+1)
+            dct[i][j] = min(dct[i].get(j, inf), w + 1)
 
         graph = WeightedGraphForDijkstra(n, inf)
         for i in range(n):
@@ -1256,6 +1258,7 @@ class Solution:
         url: https://www.luogu.com.cn/problem/P4943
         tag: brute_force|several_dijkstra|shortest_path
         """
+
         class Graph(WeightedGraphForDijkstra):
             def dijkstra_for_shortest_path_with_limit_and_target(self, src, initial, limit, target):
                 dis = [self.inf] * self.n
@@ -2653,4 +2656,26 @@ class Solution:
             ac.st(dis[1])
         else:
             ac.st(-1)
+        return
+
+    @staticmethod
+    def cf_2024d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2024/problem/D
+        tag: brute_force|build_graph|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            a = ac.read_list_ints()
+            b = ac.read_list_ints_minus_one()
+            inf = 10 ** 18
+            graph = WeightedGraphForDijkstra(n, inf)
+            pre = ac.accumulate(a)
+            for i in range(1, n):
+                graph.add_directed_edge(i, i - 1, 0)
+            for i in range(n):
+                graph.add_directed_edge(i, b[i], a[i])
+            dis = graph.dijkstra_for_shortest_path(0, 0)
+            ans = max(pre[i + 1] - dis[i] for i in range(n))
+            ac.st(ans)
         return
