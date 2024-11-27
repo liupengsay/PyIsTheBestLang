@@ -47,6 +47,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 3193（https://leetcode.cn/problems/count-the-number-of-inversions）matrix_dp|prefix_opt
 100462（https://leetcode.cn/problems/find-the-original-typed-string-ii/）matrix_dp|prefix_opt|inclusion_exclusion|data_range
 3343（https://leetcode.com/problems/count-number-of-balanced-permutations/）matrix_dp|comb
+3363（https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/）matrix_dp|observation|classical
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -3798,3 +3799,51 @@ class Solution:
             dp = [max(ls) for ls in ndp]
         ac.st(max(dp))
         return
+
+    @staticmethod
+    def lc_3363(fruits: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/
+        tag: matrix_dp|observation|classical
+        """
+        n = len(fruits)
+        ans = 0
+        for i in range(n):
+            ans += fruits[i][i]
+            fruits[i][i] = 0
+
+        dp = [-math.inf] * n
+        dp[n - 1] = 0
+        for j in range(n - 2, -1, -1):
+            ndp = [-math.inf] * n
+            for i in range(j, n):
+                if i == j:
+                    ndp[i] = 0
+                    continue
+                cur = fruits[i][j]
+                nex = -math.inf
+                for a, b in [[-1, 1], [0, 1], [1, 1]]:
+                    if 0 <= i + a < n and 0 <= j + b < n:
+                        nex = max(nex, dp[i + a])
+                ndp[i] = cur + nex
+            dp = ndp[:]
+        ans += dp[n - 1]
+
+        dp = [-math.inf] * n
+        dp[n - 1] = 0
+        for i in range(n - 2, -1, -1):
+            ndp = [-math.inf] * n
+            for j in range(i, n):
+                if i == j:
+                    ndp[j] = 0
+                    continue
+                cur = fruits[i][j]
+                nex = -math.inf
+                for a, b in [[1, -1], [1, 0], [1, 1]]:
+                    if 0 <= i + a < n and 0 <= j + b < n:
+                        nex = max(nex, dp[j + b])
+                ndp[j] = cur + nex
+            dp = ndp[:]
+        ans += dp[n - 1]
+        return ans
+

@@ -34,6 +34,7 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
 3017（https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
 100311（https://leetcode.cn/contest/weekly-contest-400/problems/count-days-without-meetings/）discretization_diff_array
+3362（https://leetcode.com/problems/zero-array-transformation-iii/）diff_array|greedy|implemention
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
@@ -137,6 +138,7 @@ ABC183D（https://atcoder.jp/contests/abc183/tasks/abc183_d）discretization_dif
 import bisect
 import math
 from collections import defaultdict
+from heapq import heappush, heappop
 from itertools import accumulate
 from typing import List
 
@@ -2236,3 +2238,31 @@ class Solution:
             x1, x2, y1, y2, z1, z2 = ac.read_list_ints()
             ac.st(pre.query(x1, x2, y1, y2, z1, z2))
         return
+
+    @staticmethod
+    def lc_3362(nums: List[int], queries: List[List[int]]) -> int:
+        """
+        url: https://leetcode.com/problems/zero-array-transformation-iii/
+        tag: diff_array|greedy|implemention
+        """
+        n = len(nums)
+        dct = [[] for _ in range(n)]
+        for i, j in queries:
+            dct[i].append(j)
+        diff = [0] * (n + 1)
+        pre = []
+        for i in range(n):
+            diff[i] += diff[i - 1] if i else 0
+            nums[i] += diff[i]
+            for x in dct[i]:
+                heappush(pre, -x)
+            if nums[i] > 0:
+                if nums[i] > len(pre):
+                    return -1
+                for _ in range(nums[i]):
+                    x = -heappop(pre)
+                    if x < i:
+                        return -1
+                    diff[i] -= 1
+                    diff[x + 1] += 1
+        return len(pre)
