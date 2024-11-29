@@ -20,6 +20,8 @@ Description：digital_dp|n_base|prime_factorization|factorization|linear_sieve|e
 1073（https://leetcode.cn/problems/adding-two-negabinary-numbers/）negative_base|classical
 8041（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
 100436（https://leetcode.com/problems/sorted-gcd-pair-queries/）inclusion_exclusion|math|number_theory|classical
+168（https://leetcode.cn/problems/excel-sheet-column-title/）n_base|reverse_thinking|classical
+171（https://leetcode.cn/problems/excel-sheet-column-number/）n_base|classical
 
 =====================================LuoGu======================================
 P1865（https://www.luogu.com.cn/problem/P1865）linear_sieve|prime|binary_search|range_prime_count
@@ -129,6 +131,7 @@ ABC356E（https://atcoder.jp/contests/abc356/tasks/abc356_e）contribution_metho
 ABC361F（https://atcoder.jp/contests/abc361/tasks/abc361_f）inclusion_exclusion|math
 ABC206E（https://atcoder.jp/contests/abc206/tasks/abc206_e）inclusion_exclusion|math|contribution_method|brute_force
 ABC190D（https://atcoder.jp/contests/abc190/tasks/abc190_d）num_factor|brute_force
+ABC171C（https://atcoder.jp/contests/abc171/tasks/abc171_c）n_base|classical
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -2087,4 +2090,42 @@ class Solution:
             res *= n
             res %= mod
             ac.st(res)
+        return
+
+    @staticmethod
+    def lc_168(column_number: int) -> str:
+        """
+        url: https://leetcode.cn/problems/excel-sheet-column-title/
+        tag: n_base|reverse_thinking|classical
+        """
+        ans = ""
+        while column_number:
+            ans += chr(ord("A") + (column_number - 1) % 26)
+            column_number = (column_number - 1) // 26
+        return ans[::-1]
+
+    @staticmethod
+    def lc_171(column_title: str) -> str:
+        """
+        url: https://leetcode.cn/problems/excel-sheet-column-number/
+        tag: n_base|classical
+        """
+        ans = 0
+        for w in column_title:
+            ans = ans*26 + ord(w) - ord('A') + 1
+        return ans
+
+    @staticmethod
+    def abc_171c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc171/tasks/abc171_c
+        tag: n_base|classical
+        """
+        n = ac.read_int()
+        lst = []
+        while n:
+            lst.append((n - 1) % 26)
+            n = (n - 1) // 26
+        lst.reverse()
+        ac.st("".join(chr(ord("a") + x) for x in lst))
         return

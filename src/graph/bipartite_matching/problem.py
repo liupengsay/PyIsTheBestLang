@@ -22,6 +22,9 @@ B3605（https://www.luogu.com.cn/problem/B3605）hungarian|bipartite_graph|maxim
 ================================LibraryChecker================================
 1（https://judge.yosupo.jp/problem/bipartitematching）maximum_weight_match|bipartite_matching
 
+================================CodeChef================================
+1（https://www.codechef.com/problems/PERMMODK?tab=solution）BipartiteMatching
+
 """
 import random
 from typing import List
@@ -285,4 +288,27 @@ class Solution:
             for i in range(n):
                 dct[i] = lst.index(dct[i]) + 1
             ac.lst(dct)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/PERMMODK?tab=solution
+        tag: BipartiteMatching
+        """
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+
+            bm = BipartiteMatching(n, n)
+            for i in range(n):
+                for j in range(n):
+                    if (i + 1) % k != (j + 1) % k:
+                        bm.add_edge(i, j)
+            matching = bm.solve()
+            if len(matching) != n:
+                ac.st(-1)
+            else:
+                ans = [x + 1 for _, x in matching]
+                assert all(ans[i] % k != (i + 1) % k for i in range(n))
+                ac.lst(ans)
         return

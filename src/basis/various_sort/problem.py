@@ -24,6 +24,7 @@ P1177（https://www.luogu.com.cn/problem/P1177）quick_sort
 922D（https://codeforces.com/problemset/problem/922/D）greedy|custom_sort
 1983D（https://codeforces.com/problemset/problem/1983/D）inverse_pair|observation|brain_teaser
 632C（https://codeforces.com/problemset/problem/632/C）custom_sort|greedy|classical
+2024C（https://codeforces.com/contest/2024/problem/C）greedy|various_sort|custom_sort
 
 ====================================AtCoder=====================================
 ABC042B（https://atcoder.jp/contests/abc042/tasks/abc042_b）custom_sort
@@ -417,4 +418,21 @@ class Solution:
         ans *= pow(n - k + 1, -1, mod)
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2024c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2024/problem/C
+        tag: greedy|various_sort|custom_sort
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = [ac.read_list_ints() for _ in range(n)]
+            lst = [(a + b) * n + i for i, (a, b) in enumerate(nums)]
+            lst.sort()
+            ans = []
+            for val in lst:
+                ans.extend(nums[val % n])
+            ac.lst(ans)
         return

@@ -82,6 +82,8 @@ ABC232E（https://atcoder.jp/contests/abc232/tasks/abc232_e）brute_force|linear
 ABC295E（https://atcoder.jp/contests/abc295/tasks/abc295_e）expectation|brute_force|inclusion_exclusion|brain_teaser|classical
 ABC226F（https://atcoder.jp/contests/abc226/tasks/abc226_f）bag_dp|brute_force|comb
 ABC205E（https://atcoder.jp/contests/abc205/tasks/abc205_e）comb|math|geometry|brain_teaser|corner_case
+ABC172E（https://atcoder.jp/contests/abc172/tasks/abc172_e）fault_perm|comb_perm|classical
+ABC171F（https://atcoder.jp/contests/abc171/tasks/abc171_f）comb_perm|contribution_method|brute_force|classical
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1373,3 +1375,45 @@ class Solution:
             ans += cur % mod
             ans %= mod
         return ans
+
+    @staticmethod
+    def abc_172e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc172/tasks/abc172_e
+        tag: fault_perm|comb_perm|classical
+        """
+        mod = 10 ** 9 + 7
+        n, m = ac.read_list_ints()
+        cb = Combinatorics(m, mod)
+        d0 = 1
+        d1 = m - n
+        for x in range(2, n + 1):
+            d2 = (m - n) * d1 + (x - 1) * (d0 + d1)
+            d2 %= mod
+            d0, d1 = d1, d2
+        ans = cb.comb(m, n) * cb.perm[n] * d1 % mod
+        ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_171f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc171/tasks/abc171_f
+        tag: comb_perm|contribution_method|brute_force|classical
+        """
+        k = ac.read_int()
+        s = ac.read_str()
+        n = len(s)
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(n + k, mod)
+        ans = 0
+        p1 = 1
+        p2 = [1] * (k + 1)
+        for i in range(1, k + 1):
+            p2[i] = p2[i - 1] * 25 % mod
+        for i in range(k + 1):
+            ans += p1 * cb.comb(n + k - i - 1, n - 1) * p2[k - i]
+            p1 = p1 * 26 % mod
+            ans %= mod
+        ac.st(ans)
+        return

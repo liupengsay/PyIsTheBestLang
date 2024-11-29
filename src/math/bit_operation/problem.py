@@ -110,6 +110,10 @@ ABC201E（https://atcoder.jp/contests/abc201/tasks/abc201_e）bit_operation|clas
 3（https://www.codechef.com/problems/PREFSUFF）bit_operation|construction
 
 https://blog.csdn.net/qq_35473473/article/details/106320878
+
+=====================================CodeChef=====================================
+1（https://www.codechef.com/problems/MEXXOR?tab=statement）bit_operation|brain_teaser
+
 """
 import math
 from collections import defaultdict, Counter
@@ -1431,4 +1435,22 @@ class Solution:
                 ans = [x for x in range(1, n + 1) if x not in lst] + lst
                 ac.st(2 ** (x + 1) - 1)
                 ac.lst(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/MEXXOR?tab=statement
+        tag: bit_operation|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            ll, rr, xx = ac.read_list_ints()
+            ans = 0
+            for i in range(29, -1, -1):
+                mask = xx & ~((1 << i) - 1)
+                mn = ans ^ mask
+                mx = mn + (1 << i) - 1
+                if ll <= mn <= mx <= rr:
+                    ans |= 1 << i
+            ac.st(ans)
         return

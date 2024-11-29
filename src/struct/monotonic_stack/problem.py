@@ -77,6 +77,9 @@ ABC379F（https://atcoder.jp/contests/abc379/tasks/abc379_f）sparse_table|monot
 152（https://www.acwing.com/problem/content/description/154/）monotonic_stack|sub_matrix
 3780（https://www.acwing.com/problem/content/description/3783/）monotonic_stack|greedy|linear_dp|construction
 
+=====================================CodeChef=====================================
+cc_1（https://www.codechef.com/problems/CNTEMPTY?tab=statement）monotonic_stack|contribution_method|prefix_sum
+
 """
 import bisect
 import heapq
@@ -1220,4 +1223,43 @@ class Solution:
                 ans.append(res)
                 stack.append((cc, xx))
             ac.lst(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/problems/CNTEMPTY?tab=statement
+        tag: monotonic_stack|contribution_method|prefix_sum
+        """
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            lst = [2 * int(w == "A") - 1 for w in s]
+            nums = ac.accumulate(lst)
+            n = len(nums)
+
+            post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
+            pre = [0] * n  # initial can be 0 or -1 dependent on usage
+            stack = []
+            for i in range(n):  # can be also range(n-1, -1, -1) dependent on usage
+                while stack and nums[stack[-1]] < nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                    post[stack.pop()] = i - 1  # can be i or i-1 dependent on usage
+                if stack:  # which can be done only pre and post are no-repeat such as post bigger and pre not-bigger
+                    pre[i] = stack[-1] + 1  # can be stack[-1] or stack[-1]-1 dependent on usage
+                stack.append(i)
+            ans = sum(nums[i] * (i - pre[i] + 1) * (post[i] - i + 1) for i in range(n))
+
+            post = [n - 1] * n  # initial can be n or n-1 or -1 dependent on usage
+            pre = [0] * n  # initial can be 0 or -1 dependent on usage
+            stack = []
+            for i in range(n):  # can be also range(n-1, -1, -1) dependent on usage
+                while stack and nums[stack[-1]] > nums[i]:  # can be < or > or <=  or >=  dependent on usage
+                    post[stack.pop()] = i - 1  # can be i or i-1 dependent on usage
+                if stack:  # which can be done only pre and post are no-repeat such as post bigger and pre not-bigger
+                    pre[i] = stack[-1] + 1  # can be stack[-1] or stack[-1]-1 dependent on usage
+                stack.append(i)
+
+            ans -= sum(nums[i] * (i - pre[i] + 1) * (post[i] - i + 1) for i in range(n))
+            ac.st(ans)
         return
