@@ -276,6 +276,7 @@ ABC359F（https://atcoder.jp/contests/abc359/tasks/abc359_f）greedy|implementio
 ABC187D（https://atcoder.jp/contests/abc187/tasks/abc187_d）greedy|custom_sort|classical
 ABC173E（https://atcoder.jp/contests/abc173/tasks/abc173_e）greedy|classification_discussion
 ABC173D（https://atcoder.jp/contests/abc173/tasks/abc173_d）greedy|implemention
+ABC169E（https://atcoder.jp/contests/abc169/tasks/abc169_e）greedy|brain_teaser|median_greedy
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -2295,4 +2296,29 @@ class Solution:
             if pre > s:
                 ac.st(i + 1)
                 return
+        return
+
+    @staticmethod
+    def abc_169e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc169/tasks/abc169_e
+        tag: greedy|brain_teaser|median_greedy
+        """
+        n = ac.read_int()
+        a = []
+        b = []
+        for _ in range(n):
+            x, y = ac.read_list_ints()
+            a.append(x)
+            b.append(y)
+        a.sort()
+        b.sort()
+        if n % 2:
+            ans2 = b[n // 2]
+            ans1 = a[n // 2]
+        else:
+            ans2 = b[n // 2] + b[n // 2 - 1]
+            ans1 = a[n // 2] + a[n // 2 - 1]
+        ans = ans2 - ans1 + 1
+        ac.st(ans)
         return

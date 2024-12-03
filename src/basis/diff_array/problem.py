@@ -103,6 +103,7 @@ P3016（https://www.luogu.com.cn/problem/P3016）prefix_sum|triangle|left_up_sum
 1253C（https://codeforces.com/problemset/problem/1253/C）diff_array|contribution_method|greedy|linear_dp
 1000C（https://codeforces.com/problemset/problem/1000/C）discretization_diff_array|hash|classical
 2026D（https://codeforces.com/contest/2026/problem/D）prefix_sum_of_prefix_sum|binary_search|brute_force
+2038D（https://codeforces.com/contest/2030/problem/D）diff_array|brain_teaser
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
@@ -2266,3 +2267,40 @@ class Solution:
                     diff[i] -= 1
                     diff[x + 1] += 1
         return len(pre)
+
+    @staticmethod
+    def cf_2038d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2030/problem/D
+        tag: diff_array|brain_teaser
+        """
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            p = ac.read_list_ints_minus_one()
+            diff = [0] * n
+            s = list(ac.read_str())
+            for i in range(n):
+                ll, rr = min(i, p[i]), max(i, p[i])
+                diff[ll] += 1
+                diff[rr] -= 1
+            for i in range(1, n):
+                diff[i] += diff[i - 1]
+
+            bad = 0
+            for i in range(n - 1):
+                if s[i] + s[i + 1] == "LR":
+                    bad += diff[i]
+            for _ in range(q):
+                j = ac.read_int() - 1
+                for i in range(j - 1, j + 1):
+                    if s[i] + s[i + 1] == "LR":
+                        bad -= diff[i]
+                s[j] = "L" if s[j] != "L" else "R"
+                for i in range(j - 1, j + 1):
+                    if s[i] + s[i + 1] == "LR":
+                        bad += diff[i]
+                if not bad:
+                    ac.yes()
+                else:
+                    ac.no()
+        return

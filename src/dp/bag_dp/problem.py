@@ -123,6 +123,7 @@ ABC204D（https://atcoder.jp/contests/abc204/tasks/abc204_d）bag_dp
 ABC200E（https://atcoder.jp/contests/abc200/tasks/abc200_e）bag_dp|counter|prefix_sum
 ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_plan
 ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greedy|brain_teaser
+ABC169F（https://atcoder.jp/contests/abc169/tasks/abc169_f）bag_dp|brain_teaser
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -137,6 +138,7 @@ ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greed
 
 """
 import bisect
+import math
 from collections import defaultdict, deque, Counter
 from functools import lru_cache
 from heapq import heapify, heappop, heappush
@@ -2056,4 +2058,22 @@ class Solution:
         ans = plan[i]
         ac.st(len(ans))
         ac.lst(ans)
+        return
+
+    @staticmethod
+    def abc_169f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc169/tasks/abc169_f
+        tag: bag_dp|brain_teaser
+        """
+        n, s = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        mod = 998244353
+        rev = pow(2, -1, mod)
+        dp = [0] * (s + 1)
+        dp[0] = pow(2, n, mod)
+        for num in nums:
+            for i in range(s, num - 1, -1):
+                dp[i] = (dp[i] + dp[i - num] * rev) % mod
+        ac.st(dp[s])
         return

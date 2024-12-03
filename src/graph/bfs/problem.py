@@ -145,6 +145,7 @@ ABC197F（https://atcoder.jp/contests/abc197/tasks/abc197_f）bfs|classical
 ABC184E（https://atcoder.jp/contests/abc184/tasks/abc184_e）bfs|classical
 ABC182E（https://atcoder.jp/contests/abc182/tasks/abc182_e）bfs|classical
 ABC176D（https://atcoder.jp/contests/abc176/tasks/abc176_d）deque_bfs|01bfs|classical
+ABC170F（https://atcoder.jp/contests/abc170/tasks/abc170_f）bfs|brain_teaser|union_find|classical
 
 =====================================AcWing=====================================
 175（https://www.acwing.com/problem/content/175/）multi_source_bfs|classical
@@ -3085,6 +3086,59 @@ class Solution:
                                 nex.append((x + a, y + b))
                             else:
                                 stack.append((x + a, y + b))
+            stack = nex
+        ans = visit[x2 * n + y2]
+        ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_170f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc170/tasks/abc170_f
+        tag: bfs|brain_teaser|union_find|classical
+        """
+        m, n, k = ac.read_list_ints()
+        x1, y1, x2, y2 = ac.read_list_ints_minus_one()
+        grid = [ac.read_str() for _ in range(m)]
+        inf = 10 ** 9
+        visit = [inf] * m * n
+        visit[x1 * n + y1] = 0
+        stack = [x1 * n + y1]
+        while stack and visit[x2 * n + y2] == inf:
+            nex = []
+            for val in stack:
+                d = visit[val]
+
+                x, y = val // n, val % n
+                i, j = x, y
+                while i and grid[i - 1][y] == "." and visit[(i - 1) * n + j] > d and i - 1 >= x - k:
+                    if visit[(i - 1) * n + j] > d + 1:
+                        visit[(i - 1) * n + j] = d + 1
+                        nex.append((i - 1) * n + j)
+                    i -= 1
+
+                i, j = x, y
+                while i + 1 < m and grid[i + 1][y] == "." and visit[(i + 1) * n + j] > d and i + 1 <= x + k:
+                    if visit[(i + 1) * n + j] > d + 1:
+                        visit[(i + 1) * n + j] = d + 1
+                        nex.append((i + 1) * n + j)
+
+                    i += 1
+
+                i, j = x, y
+                while j and grid[x][j - 1] == "." and visit[i * n + j - 1] > d and j - 1 >= y - k:
+                    if visit[i * n + j - 1] > d + 1:
+                        visit[i * n + j - 1] = d + 1
+                        nex.append(i * n + j - 1)
+
+                    j -= 1
+
+                i, j = x, y
+                while j + 1 < n and grid[x][j + 1] == "." and visit[i * n + j + 1] > d and j + 1 <= y + k:
+                    if visit[i * n + j + 1] > d + 1:
+                        visit[i * n + j + 1] = d + 1
+                        nex.append(i * n + j + 1)
+                    j += 1
             stack = nex
         ans = visit[x2 * n + y2]
         ac.st(ans if ans < inf else -1)

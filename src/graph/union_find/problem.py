@@ -140,6 +140,7 @@ ABC355F（https://atcoder.jp/contests/abc355/tasks/abc355_f）union_find|brain_t
 ABC372E（https://atcoder.jp/contests/abc372/tasks/abc372_e）heuristic_merge|union_find
 ABC183F（https://atcoder.jp/contests/abc183/tasks/abc183_f）heuristic_merge|classical
 ABC378F（https://atcoder.jp/contests/abc378/tasks/abc378_f）union_find|brute_force|observation
+ABC170F（https://atcoder.jp/contests/abc170/tasks/abc170_f）bfs|union_find|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -3003,4 +3004,65 @@ class Solution:
             else:
                 c = lst[1]
                 ac.st(cnt[c])
+        return
+
+    @staticmethod
+    def abc_170f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc170/tasks/abc170_f
+        tag: bfs|union_find|classical
+        """
+        m, n, k = ac.read_list_ints()
+        x1, y1, x2, y2 = ac.read_list_ints_minus_one()
+        grid = [ac.read_str() for _ in range(m)]
+        inf = 10 ** 9
+        visit = [inf] * n * m
+        visit[x1 * n + y1] = 0
+        stack = [x1 * n + y1]
+        uf_up = [UnionFind(m) for _ in range(n)]
+        uf_down = [UnionFind(m) for _ in range(n)]
+        uf_left = [UnionFind(n) for _ in range(m)]
+        uf_right = [UnionFind(n) for _ in range(m)]
+        while stack and visit[x2 * n + y2] == inf:
+            nex = []
+            for val in stack:
+                d = visit[val]
+                x, y = val // n, val % n
+                i, j = x, y
+
+                while uf_up[y].find(i) and grid[uf_up[y].find(i) - 1][y] == "." and uf_up[y].find(i) - 1 >= x - k:
+                    uf_up[y].union_right(i, uf_up[y].find(i) - 1)
+                    i, j = uf_up[y].find(i), y
+                    if visit[i * n + j] > d + 1:
+                        visit[i * n + j] = d + 1
+                        nex.append(i * n + j)
+
+                i, j = x, y
+                while uf_down[y].find(i) + 1 < m and grid[uf_down[y].find(i) + 1][y] == "." and uf_down[y].find(
+                        i) + 1 <= x + k:
+                    uf_down[y].union_right(i, uf_down[y].find(i) + 1)
+                    i, j = uf_down[y].find(i), y
+                    if visit[i * n + j] > d + 1:
+                        visit[i * n + j] = d + 1
+                        nex.append(i * n + j)
+
+                i, j = x, y
+                while uf_left[x].find(j) and grid[x][uf_left[x].find(j) - 1] == "." and uf_left[x].find(j) - 1 >= y - k:
+                    uf_left[x].union_right(j, uf_left[x].find(j) - 1)
+                    i, j = x, uf_left[x].find(j)
+                    if visit[i * n + j] > d + 1:
+                        visit[i * n + j] = d + 1
+                        nex.append(i * n + j)
+
+                i, j = x, y
+                while uf_right[x].find(j) + 1 < n and grid[x][uf_right[x].find(j) + 1] == "." and uf_right[x].find(
+                        j) + 1 <= y + k:
+                    uf_right[x].union_right(j, uf_right[x].find(j) + 1)
+                    i, j = x, uf_right[x].find(j)
+                    if visit[i * n + j] > d + 1:
+                        visit[i * n + j] = d + 1
+                        nex.append(i * n + j)
+            stack = nex
+        ans = visit[x2 * n + y2]
+        ac.st(ans if ans < inf else -1)
         return
