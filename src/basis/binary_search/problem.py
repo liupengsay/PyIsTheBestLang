@@ -134,6 +134,7 @@ ABC174E（https://atcoder.jp/contests/abc174/tasks/abc174_e）binary_search|clas
 
 =====================================CodeChef=====================================
 1（https://www.codechef.com/START125D/problems/BILM）binary_search|brute_force|brain_teaser|classical
+2（https://www.codechef.com/START163D/problems/TREE2SUM）binary_search|specific_plan
 
 =====================================LibraryChecker=====================================
 1（https://codeforces.com/edu/course/2/lesson/6/2/practice/contest/283932/problem/B）find_float_right
@@ -2246,4 +2247,32 @@ class Solution:
 
         ans = BinarySearch().find_int_left(0, up, check)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/START163D/problems/TREE2SUM
+        tag: binary_search|specific_plan
+        """
+        for _ in range(ac.read_int()):
+            x, n = ac.read_list_ints()
+
+            def compute(val):
+                res = val
+                for _ in range(n - 1):
+                    val //= 2
+                    res += val
+                    if not val:
+                        break
+                return res
+
+            def check(val):
+                return compute(val) >= x
+
+            ans = BinarySearch().find_int_left(1, 10 ** 18, check)
+            if compute(ans) == x:
+                ac.st(ans)
+            else:
+                ac.st(-1)
         return

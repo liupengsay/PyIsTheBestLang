@@ -185,14 +185,18 @@ ABC179D（https://atcoder.jp/contests/abc179/tasks/abc179_d）linear_dp|prefix_s
 =====================================LibraryChecker=====================================
 1（https://www.51nod.com/Challenge/Problem.html#problemId=1202）liner_dp|classical|different_subsequence
 
+=====================================CodeChef=====================================
+1（https://www.codechef.com/START163D/problems/SORT_THEM）linear_dp|build_graph|prefix_opt
 
 """
 import bisect
+import math
 from collections import defaultdict, Counter, deque
 from functools import lru_cache, cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.graph.dijkstra.template import WeightedGraphForDijkstra
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.util.fast_io import FastIO
@@ -2019,4 +2023,36 @@ class Solution:
             ans = max(ans, dp[num] + k + cnt[num])
             kk += num == c
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_1(ac=FastIO()):
+        """
+        url: https://www.codechef.com/START163D/problems/SORT_THEM?tab=statement
+        tag: linear_dp|build_graph|prefix_opt
+        """
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            s = ac.read_str()
+            p = ac.read_str()
+            ind = [0] * 26
+            for i in range(26):
+                ind[ord(p[i]) - ord("a")] = i
+            p = [ord(p[i]) - ord("a") for i in range(26)]
+            s = [ord(s[i]) - ord("a") for i in range(n)]
+            inf = 10 ** 9
+            graph = WeightedGraphForDijkstra(26, inf)
+            for i in range(26):
+                graph.add_directed_edge(i, p[25 - ind[i]], 1)
+            dis = [graph.bfs_for_shortest_path(i, 0) for i in range(26)]
+            dp = dis[s[0]]
+            for i in range(1, n):
+                pre = inf
+                ndp = []
+                for j in range(26):
+                    pre = min(pre, dp[j])
+                    ndp.append(pre + dis[s[i]][j])
+                dp = ndp[:]
+            ans = min(dp)
+            ac.st(ans if ans < inf else -1)
         return

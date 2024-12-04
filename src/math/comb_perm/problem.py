@@ -92,6 +92,7 @@ ABC171F（https://atcoder.jp/contests/abc171/tasks/abc171_f）comb_perm|contribu
 5058（https://www.acwing.com/problem/content/5058/）math|comb|mod
 
 1（https://www.codechef.com/problems/LUCMAT）math|comb|brute_force|classical
+2（https://www.codechef.com/START163D/problems/PERMUTATION2）brute_force|partition_method|comb|classical
 
 catalan_number（https://oi-wiki.org/math/combinatorics/catalan/）
 """
@@ -1416,4 +1417,26 @@ class Solution:
             p1 = p1 * 26 % mod
             ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cc_2(ac=FastIO()):
+        """
+        url: https://www.codechef.com/START163D/problems/PERMUTATION2
+        tag: brute_force|partition_method|comb|classical
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(2 * 10 ** 5, mod)
+        for _ in range(ac.read_int()):
+            n, k = ac.read_list_ints()
+            ans = 0
+            x = sum(i < k - i <= n for i in range(1, n + 1))
+            op = 1
+            p = -1
+            for i in range(1, x + 1):
+                op *= -1
+                p = p * 2 % mod
+                ans += cb.comb(x, i) * op * p * cb.comb(n - i, i) * cb.perm[i] * cb.perm[n - 2 * i]
+                ans %= mod
+            ac.st(ans)
         return

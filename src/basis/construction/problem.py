@@ -165,6 +165,8 @@ ABC178F（https://atcoder.jp/contests/abc178/tasks/abc178_f）construction|obser
 ====================================AtCoder=====================================
 1（https://www.codechef.com/problems/ENVPILE）bfs|construction|classical
 
+====================================CodeChef=====================================
+1（https://www.codechef.com/START163D/problems/LEX）construction|corner_case
 
 """
 import math
