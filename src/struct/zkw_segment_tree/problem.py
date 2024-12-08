@@ -14,6 +14,7 @@ ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRa
 ABC179F（https://atcoder.jp/contests/abc179/tasks/abc179_f）zkw_segment_tree|implemention|brain_teaser
 ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）PointUpdateRangeQuery|manhattan_distance|classical
 ABC379D（https://atcoder.jp/contests/abc379/tasks/abc379_d）RangeAddPointGet|diff_array|classical
+ABC382F（https://atcoder.jp/contests/abc382/tasks/abc382_f）RangeDescendRangeMin|implemention
 
 =====================================AcWing=====================================
 
@@ -25,7 +26,7 @@ import math
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
 from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeMergePointGet, RangeAddPointGet, \
-    PointUpdateRangeQuery
+    PointUpdateRangeQuery, RangeDescendRangeMin
 from src.util.fast_io import FastIO
 
 
@@ -190,4 +191,25 @@ class Solution:
                     ind += 1
                     ans += 1
                 ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_382f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc382/tasks/abc382_f
+        tag: RangeDescendRangeMin|implemention
+        """
+        m, n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(k)]
+        tree = RangeDescendRangeMin(n, m + 1)
+        vals = [nums[i][0] * k + i for i in range(k)]
+        vals.sort(reverse=True)
+        ans = [0] * k
+        for val in vals:
+            i = val % k
+            rr, cc, ll = nums[i]
+            ans[i] = tree.range_min(cc, cc + ll) - 1
+            tree.range_descend(cc, cc + ll, ans[i])
+        for a in ans:
+            ac.st(a)
         return

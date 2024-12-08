@@ -19,6 +19,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
 100314（https://leetcode.cn/problems/block-placement-queries/）point_set|range_max_non_emp_con_sub_sum
 3165（https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements）point_set|range_max_sub_sum_alter
+100514（https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/）point_set|range_min_count
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -118,6 +119,7 @@ ABC357F（https://atcoder.jp/contests/abc357/tasks/abc357_f）segment_tree|range
 ABC360F（https://atcoder.jp/contests/abc360/tasks/abc360_f）range_add|scan_line|range_max|range_max_bisect_left
 ABC369G（https://atcoder.jp/contests/abc369/tasks/abc369_g）dfs_order|range_add|range_max|implemention
 ABC194E（https://atcoder.jp/contests/abc194/tasks/abc194_e）point_set|pre_min|post_min|bisect_right
+ABC382E（https://atcoder.jp/contests/abc382/tasks/abc382_e）RangeDescendRangeMin|implemention
 
 =====================================AcWing=====================================
 3805（https://www.acwing.com/problem/content/3808/）RangeAddRangeMin
@@ -198,7 +200,7 @@ from src.struct.segment_tree.template import RangeAscendRangeMax, RangeDescendRa
     PointSetRangeMaxSubSumAlterSignal, RangeAddRangeConSubPalindrome, RangeOrRangeOr, RangeAddRangeMaxIndex
 from src.struct.sorted_list.template import SortedList
 from src.struct.tree_array.template import PointAddRangeSum, PointXorRangeXor
-from src.struct.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW
+from src.struct.zkw_segment_tree.template import LazySegmentTree as LazySegmentTreeZKW, PointUpdateRangeQuery
 from src.util.fast_io import FastIO
 
 
@@ -4179,3 +4181,68 @@ class Solution:
                 ans = min(ans, nums[i])
         ac.st(ans)
         return
+
+    @staticmethod
+    def abc_382e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc382/tasks/abc382_e
+        tag: RangeDescendRangeMin|implemention
+        """
+        m, n, k = ac.read_list_ints()
+        nums = [ac.read_list_ints_minus_one() for _ in range(k)]
+        tree = RangeDescendRangeMin(n, m + 1)
+        vals = [nums[i][0] * k + i for i in range(k)]
+        vals.sort(reverse=True)
+        ans = [0] * k
+        for val in vals:
+            i = val % k
+            rr, cc, ll = nums[i]
+            ans[i] = tree.range_min(cc, cc + ll) - 1
+            tree.range_descend(cc, cc + ll, ans[i])
+        for a in ans:
+            ac.st(a)
+        return
+
+    @staticmethod
+    def lc_100514(xs: List[int], ys: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
+        tag: point_set|range_min_count
+        """
+        points = [(x, y) for x, y in zip(xs, ys)]
+
+        nodes = set()
+        for x, y in points:
+            nodes.add(x)
+            nodes.add(y)
+        nodes = sorted(set(nodes))
+        m = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        dct = defaultdict(list)
+        for x, y in points:
+            dct[x].append(y)
+        inf = 10 ** 9
+
+        def merge(a, b):
+            if a[0] < b[0]:
+                return a
+            if a[0] > b[0]:
+                return b
+            return a[0], a[1] + b[1]
+
+        tree = PointUpdateRangeQuery(m, (inf, 1), merge)
+        low = [inf] * m
+        ans = -1
+        for x in sorted(dct, reverse=True):
+            lst = dct[x]
+            lst.sort()
+            k = len(lst)
+            for i in range(k - 1):
+                y1, y2 = lst[i], lst[i + 1]
+                floor, cnt = tree.range_query(ind[y1], ind[y2])
+                if floor == low[ind[y1]] == low[ind[y2]] < inf and cnt == 2:
+                    ans = max(ans, (y2 - y1) * (floor - x))
+            for y in lst:
+                low[ind[y]] = x
+                tree.point_update(ind[y], (x, 1))
+        return ans

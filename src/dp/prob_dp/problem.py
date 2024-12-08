@@ -27,6 +27,7 @@ ABC360E（https://atcoder.jp/contests/abc360/tasks/abc360_e）prob_dp|implementi
 ABC194D（https://atcoder.jp/contests/abc194/tasks/abc194_d）prob_dp
 ABC193D（https://atcoder.jp/contests/abc193/tasks/abc193_d）prob|math
 ABC189F（https://atcoder.jp/contests/abc189/tasks/abc189_f）expectation_dp|high_precision|math|reverse_order|suffix_sum_opt|classical
+ABC382E（https://atcoder.jp/contests/abc382/tasks/abc382_e）prob_dp|brute_force|brain_teaser
 
 ===================================CodeForces===================================
 540D（https://codeforces.com/problemset/problem/540/D）prob_dp|bag_dp|math|game_dp
@@ -478,4 +479,26 @@ class Solution:
             ac.st(ans)
         else:
             ac.st(-1)
+        return
+
+    @staticmethod
+    def abc_382e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc382/tasks/abc382_e
+        tag: prob_dp|brute_force|brain_teaser
+        """
+        n, x = ac.read_list_ints()
+        p = ac.read_list_ints()
+        f = [0] * (n + 1)
+        f[0] = 1
+
+        for i in range(n):
+            for j in range(n, 0, -1):
+                f[j] = f[j] * (1 - p[i] / 100) + f[j - 1] * p[i] / 100
+            f[0] *= (1 - p[i] / 100)
+
+        g = [0] * (x + 1)
+        for i in range(1, x + 1):
+            g[i] = (1 + sum(g[i - j] * f[j] for j in range(1, min(i, n+1)))) / (1 - f[0])
+        ac.st(g[x])
         return

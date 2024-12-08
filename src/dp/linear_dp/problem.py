@@ -148,6 +148,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 372F（https://atcoder.jp/contests/abc372/tasks/abc372_f）linear_dp|implemention|deque|array_implemention
 1082E（https://codeforces.com/problemset/problem/1082/E）linear_dp|prefix_sum|brain_teaser|observation
 1994C（https://codeforces.com/problemset/problem/1994/C）linear_dp|two_pointers
+2025D（https://codeforces.com/contest/2025/problem/D）linear_dp|diff_array|limited_operation|data_range|observation
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -2055,4 +2056,40 @@ class Solution:
                 dp = ndp[:]
             ans = min(dp)
             ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def cf_2025d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2025/problem/D
+        tag: linear_dp|diff_array|limited_operation|data_range|observation
+        """
+        n, m = ac.read_list_ints()
+        nums = ac.read_list_ints()
+        dp = [0] * (m + 2)
+        diff = [0] * (m + 2)
+        s = 0
+        for num in nums:
+            if num > 0:
+                if num <= s:
+                    diff[num] += 1
+                    diff[s + 1] -= 1
+            elif num < 0:
+                if s + num >= 0:
+                    diff[0] += 1
+                    diff[s + num + 1] -= 1
+            else:
+                s += 1
+                for i in range(1, s + 1):
+                    diff[i] += diff[i - 1]
+                for i in range(s + 1):
+                    dp[i] += diff[i]
+                    diff[i] = 0
+                for i in range(s, 0, -1):
+                    dp[i] = max(dp[i - 1], dp[i])
+        for i in range(1, s + 1):
+            diff[i] += diff[i - 1]
+        for i in range(s + 1):
+            dp[i] += diff[i]
+        ac.st(max(dp))
         return

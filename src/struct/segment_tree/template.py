@@ -677,10 +677,11 @@ class RangeAddRangePrePreSum:
 
 
 class RangeDescendRangeMin:
-    def __init__(self, n):
+    def __init__(self, n, inf=math.inf):
         self.n = n
-        self.cover = [math.inf] * (4 * n)
-        self.lazy_tag = [math.inf] * (4 * n)
+        self.inf = inf
+        self.cover = [inf] * (4 * n)
+        self.lazy_tag = [inf] * (4 * n)
 
     def _make_tag(self, i, val):
         self.cover[i] = min(self.cover[i], val)
@@ -692,12 +693,12 @@ class RangeDescendRangeMin:
         return
 
     def _push_down(self, i):
-        if self.lazy_tag[i] != math.inf:
+        if self.lazy_tag[i] != self.inf:
             self.cover[i << 1] = min(self.cover[i << 1], self.lazy_tag[i])
             self.cover[(i << 1) | 1] = min(self.cover[(i << 1) | 1], self.lazy_tag[i])
             self.lazy_tag[i << 1] = min(self.lazy_tag[i << 1], self.lazy_tag[i])
             self.lazy_tag[(i << 1) | 1] = min(self.lazy_tag[(i << 1) | 1], self.lazy_tag[i])
-            self.lazy_tag[i] = math.inf
+            self.lazy_tag[i] = self.inf
         return
 
     def build(self, nums):
@@ -737,18 +738,18 @@ class RangeDescendRangeMin:
 
         stack = [(0, self.n - 1, 1)]
         while stack:
-            a, b, i = stack.pop()
+            r, c, i = stack.pop()
             if i >= 0:
-                if left <= a and b <= right:
+                if left <= r and c <= right:
                     self._make_tag(i, val)
                     continue
                 self._push_down(i)
-                stack.append([a, b, ~i])
-                m = a + (b - a) // 2
+                stack.append([r, c, ~i])
+                m = r + (c - r) // 2
                 if left <= m:
-                    stack.append((a, m, i << 1))
+                    stack.append((r, m, i << 1))
                 if right > m:
-                    stack.append((m + 1, b, (i << 1) | 1))
+                    stack.append((m + 1, c, (i << 1) | 1))
             else:
                 i = ~i
                 self._push_up(i)
@@ -758,18 +759,18 @@ class RangeDescendRangeMin:
         # query the range min
 
         stack = [(0, self.n - 1, 1)]
-        lowest = math.inf
+        lowest = self.inf
         while stack:
-            a, b, i = stack.pop()
-            if left <= a and b <= right:
+            r, c, i = stack.pop()
+            if left <= r and c <= right:
                 lowest = min(lowest, self.cover[i])
                 continue
             self._push_down(i)
-            m = a + (b - a) // 2
+            m = r + (c - r) // 2
             if left <= m:
-                stack.append((a, m, i << 1))
+                stack.append((r, m, i << 1))
             if right > m:
-                stack.append((m + 1, b, (i << 1) | 1))
+                stack.append((m + 1, c, (i << 1) | 1))
         return lowest
 
 

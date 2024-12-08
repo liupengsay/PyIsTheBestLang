@@ -5,6 +5,7 @@ Description：single_equation
 ====================================LeetCode====================================
 365（https://leetcode.cn/problems/water-and-jug-problem/）peishu_theorem|greedy
 2543（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
+3378（https://leetcode.com/problems/count-connected-components-in-lcm-graph/）math|lcm_pair|union_find|data_range
 
 =====================================LuoGu======================================
 P1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
@@ -26,7 +27,9 @@ ABC186E（https://atcoder.jp/contests/abc186/tasks/abc186_e）gcd_like|solve_equ
 
 """
 import math
+from typing import List
 
+from src.graph.union_find.template import UnionFind
 from src.math.gcd_like.template import GcdLike
 from src.util.fast_io import FastIO
 
@@ -103,3 +106,19 @@ class Solution:
                     t += 1
                 ac.st(x0 - (n // gcd) * t)
         return
+
+    @staticmethod
+    def lc_3378(nums: List[int], threshold: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-connected-components-in-lcm-graph/
+        tag: math|lcm_pair|union_find|data_range
+        """
+        n = len(nums)
+        index = dict()
+        uf = UnionFind(n)
+        for i, num in enumerate(nums):
+            for x in range(num, threshold + 1, num):
+                if x in index:
+                    uf.union(i, index[x])
+                index[x] = i
+        return uf.part
