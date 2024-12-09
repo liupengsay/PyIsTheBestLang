@@ -40,6 +40,7 @@ xx（xxx）xxxxxxxxxxxxxxxxxxxx
 1521C（https://codeforces.com/problemset/problem/1521/C）interactive|observation|brain_teaser
 1780D（https://codeforces.com/problemset/problem/1780/D）interactive|bit_operation|classical
 2032D（https://codeforces.com/contest/2032/problem/D）interactive|construction|observation
+2022D1（https://codeforces.com/contest/2022/problem/D1）interactive|construction
 
 ===================================AtCoder===================================
 ABC313D（https://atcoder.jp/contests/abc313/tasks/abc313_d）interactive|brain_teaser

@@ -124,6 +124,7 @@ ABC200E（https://atcoder.jp/contests/abc200/tasks/abc200_e）bag_dp|counter|pre
 ABC200D（https://atcoder.jp/contests/abc200/tasks/abc200_d）bag_dp|specific_plan
 ABC373F（https://atcoder.jp/contests/abc373/tasks/abc373_f）bag_dp|heapq|greedy|brain_teaser
 ABC169F（https://atcoder.jp/contests/abc169/tasks/abc169_f）bag_dp|brain_teaser
+ABC383F（https://atcoder.jp/contests/abc383/tasks/abc383_f）linear_dp|bag_dp|classical
 
 =====================================AcWing=====================================
 4（https://www.acwing.com/problem/content/4/）bin_split|matrix_bag_dp
@@ -2076,4 +2077,28 @@ class Solution:
             for i in range(s, num - 1, -1):
                 dp[i] = (dp[i] + dp[i - num] * rev) % mod
         ac.st(dp[s])
+        return
+
+    @staticmethod
+    def abc_383f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc383/tasks/abc383_f
+        tag: linear_dp|bag_dp|classical
+        """
+        n, s, k = ac.read_list_ints()
+        color = [[] for _ in range(n)]
+        for _ in range(n):
+            p, u, c = ac.read_list_ints()
+            c -= 1
+            color[c].append((p, u))
+        dp = [0] * (s + 1)
+        ndp = [0] * (s + 1)
+        for c in range(n):
+            for p, u in color[c]:
+                for x in range(s, p - 1, -1):
+                    ndp[x] = max(ndp[x], ndp[x - p] + u, dp[x - p] + u + k)
+            for x in range(s + 1):
+                dp[x] = max(dp[x], ndp[x])
+                ndp[0] = 0
+        ac.st(max(dp))
         return

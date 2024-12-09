@@ -141,6 +141,7 @@ ABC372E（https://atcoder.jp/contests/abc372/tasks/abc372_e）heuristic_merge|un
 ABC183F（https://atcoder.jp/contests/abc183/tasks/abc183_f）heuristic_merge|classical
 ABC378F（https://atcoder.jp/contests/abc378/tasks/abc378_f）union_find|brute_force|observation
 ABC170F（https://atcoder.jp/contests/abc170/tasks/abc170_f）bfs|union_find|classical
+ABC383E（https://atcoder.jp/contests/abc383/tasks/abc383_e）union_find|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -3065,4 +3066,57 @@ class Solution:
             stack = nex
         ans = visit[x2 * n + y2]
         ac.st(ans if ans < inf else -1)
+        return
+
+    @staticmethod
+    def abc_383e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc383/tasks/abc383_e
+        tag: union_find|classical
+        """
+        n, m, k = ac.read_list_ints()
+        uu = []
+        vv = []
+        ww = []
+        for _ in range(m):
+            u, v, w = ac.read_list_ints_minus_one()
+            w += 1
+            uu.append(u)
+            vv.append(v)
+            ww.append(w)
+        ww = [ww[i] * m + i for i in range(m)]
+        ww.sort()
+        a = ac.read_list_ints_minus_one()
+        b = ac.read_list_ints_minus_one()
+        uf = UnionFind(n)
+
+        root = [0] * n
+        for x in a:
+            root[x] += 1
+        uf.size1 = root[:]
+
+        root = [0] * n
+        for x in b:
+            root[x] += 1
+        uf.size2 = root[:]
+
+        ans = 0
+        for val in ww:
+            w, i = val // m, val % m
+            u, v = uu[i], vv[i]
+            if not uf.is_connected(u, v):
+                u, v = uf.find(u), uf.find(v)
+                c = min(uf.size1[u], uf.size2[v])
+                ans += c * w
+                uf.size1[u] -= c
+                uf.size2[v] -= c
+                c = min(uf.size1[v], uf.size2[u])
+                ans += c * w
+                uf.size1[v] -= c
+                uf.size2[u] -= c
+                uf.union_right(u, v)
+                uf.size1[v] = uf.size1[u] + uf.size1[v]
+                uf.size2[v] = uf.size2[u] + uf.size2[v]
+                uf.size1[u] = uf.size2[u] = 0
+        ac.st(ans)
         return
