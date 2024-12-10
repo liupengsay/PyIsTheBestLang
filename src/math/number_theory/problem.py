@@ -2114,7 +2114,7 @@ class Solution:
         """
         ans = 0
         for w in column_title:
-            ans = ans*26 + ord(w) - ord('A') + 1
+            ans = ans * 26 + ord(w) - ord('A') + 1
         return ans
 
     @staticmethod
@@ -2138,35 +2138,44 @@ class Solution:
         url: https://atcoder.jp/contests/abc168/tasks/abc168_e
         tag: math|linear_scope|counter|multiplication_method
         """
-        mod = 1000000007
+        mod = 10 ** 9 + 7
         n = ac.read_int()
         ans = 1
         zero = 0
         pre = dict()
         for _ in range(n):
             a, b = ac.read_list_ints()
-            if a == b == 0:
+            g = math.gcd(a, b)
+            if g == 0:
                 zero += 1
                 continue
-            g = math.gcd(a, b)
             a //= g
             b //= g
             if a < 0:
                 a *= -1
                 b *= -1
+            elif a == 0:
+                b = abs(b)
             pre[(a, b)] = pre.get((a, b), 0) + 1
-        for a, b in pre:
+        for (a, b) in pre:
             c = pre[(a, b)]
             if c:
                 d = pow(2, c, mod)
-                if b > 0:
-                    a *= -1
+                if a == 0:
+                    b, a = 1, 0
+                elif b == 0:
+                    b, a = 0, 1
                 else:
-                    b *= -1
-                if pre.get((b, a), 0):
+                    if b > 0:
+                        a *= -1
+                    else:
+                        b *= -1
+                if (b, a) in pre:
                     d += pow(2, pre.get((b, a), 0), mod) - 1
                     pre[(b, a)] = 0
-                ans = ans * d % mod
+                    d %= mod
+                ans = (ans * d) % mod
         ans += zero - 1
-        ac.st(ans % mod)
+        ans %= mod
+        ac.st(ans)
         return
