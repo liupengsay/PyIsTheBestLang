@@ -132,6 +132,8 @@ ABC361F（https://atcoder.jp/contests/abc361/tasks/abc361_f）inclusion_exclusio
 ABC206E（https://atcoder.jp/contests/abc206/tasks/abc206_e）inclusion_exclusion|math|contribution_method|brute_force
 ABC190D（https://atcoder.jp/contests/abc190/tasks/abc190_d）num_factor|brute_force
 ABC171C（https://atcoder.jp/contests/abc171/tasks/abc171_c）n_base|classical
+ABC168E（https://atcoder.jp/contests/abc168/tasks/abc168_e）math|linear_scope|counter|multiplication_method
+
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -2128,4 +2130,43 @@ class Solution:
             n = (n - 1) // 26
         lst.reverse()
         ac.st("".join(chr(ord("a") + x) for x in lst))
+        return
+
+    @staticmethod
+    def abc_168e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc168/tasks/abc168_e
+        tag: math|linear_scope|counter|multiplication_method
+        """
+        mod = 1000000007
+        n = ac.read_int()
+        ans = 1
+        zero = 0
+        pre = dict()
+        for _ in range(n):
+            a, b = ac.read_list_ints()
+            if a == b == 0:
+                zero += 1
+                continue
+            g = math.gcd(a, b)
+            a //= g
+            b //= g
+            if a < 0:
+                a *= -1
+                b *= -1
+            pre[(a, b)] = pre.get((a, b), 0) + 1
+        for a, b in pre:
+            c = pre[(a, b)]
+            if c:
+                d = pow(2, c, mod)
+                if b > 0:
+                    a *= -1
+                else:
+                    b *= -1
+                if pre.get((b, a), 0):
+                    d += pow(2, pre.get((b, a), 0), mod) - 1
+                    pre[(b, a)] = 0
+                ans = ans * d % mod
+        ans += zero - 1
+        ac.st(ans % mod)
         return
