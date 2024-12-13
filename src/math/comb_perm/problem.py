@@ -84,6 +84,7 @@ ABC226F（https://atcoder.jp/contests/abc226/tasks/abc226_f）bag_dp|brute_force
 ABC205E（https://atcoder.jp/contests/abc205/tasks/abc205_e）comb|math|geometry|brain_teaser|corner_case
 ABC172E（https://atcoder.jp/contests/abc172/tasks/abc172_e）fault_perm|comb_perm|classical
 ABC171F（https://atcoder.jp/contests/abc171/tasks/abc171_f）comb_perm|contribution_method|brute_force|classical
+ABC167E（https://atcoder.jp/contests/abc167/tasks/abc167_e）partition_method|comb_perm|brute_force
 
 =====================================AcWing=====================================
 132（https://www.acwing.com/problem/content/132/）catalan_number
@@ -1439,4 +1440,23 @@ class Solution:
                 ans += cb.comb(x, i) * op * p * cb.comb(n - i, i) * cb.perm[i] * cb.perm[n - 2 * i]
                 ans %= mod
             ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_167e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc167/tasks/abc167_e
+        tag: partition_method|comb_perm|brute_force
+        """
+        mod = 998244353
+        n, m, k = ac.read_list_ints()
+        cb = Combinatorics(n, mod)
+        pp = [1] * (n + 1)
+        for i in range(1, n + 1):
+            pp[i] = pp[i - 1] * (m - 1) % mod
+        ans = 0
+        for y in range(k + 1):
+            ans += cb.comb(n - 1, y) * m * pp[n - y - 1] % mod
+            ans %= mod
+        ac.st(ans)
         return

@@ -157,6 +157,7 @@ P7248（https://www.luogu.com.cn/problem/P7248）matrix_dp|classical|regular_bra
 1864D（https://codeforces.com/problemset/problem/1864/D）matrix_prefix_sum|implemention|matrix_dp
 2027D2（https://codeforces.com/contest/2027/problem/D2）matrix_dp|binary_search|PointSetRangeMinCount
 2022C（https://codeforces.com/contest/2022/problem/C）matrix_dp
+2005E1（https://codeforces.com/contest/2005/problem/E1）matrix_dp|prefix_sum_opt
 
 ====================================AtCoder=====================================
 ABC130E（https://atcoder.jp/contests/abc130/tasks/abc130_e）matrix_prefix_sum|matrix_dp

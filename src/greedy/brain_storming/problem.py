@@ -249,6 +249,7 @@ P7148（https://www.luogu.com.cn/problem/P7148）greedy
 2004D（https://codeforces.com/problemset/problem/2004/D）observation|data_range|brain_teaser|brute_force
 468B（https://codeforces.com/problemset/problem/468/B）greedy|sort
 2032C（https://codeforces.com/contest/2032/problem/C）greedy|two_pointer
+2022B（https://codeforces.com/contest/2022/problem/B）maximum_greedy
 
 ====================================AtCoder=====================================
 ARC062A（https://atcoder.jp/contests/abc046/tasks/arc062_a）brain_teaser|greedy|custom_sort
@@ -277,6 +278,7 @@ ABC187D（https://atcoder.jp/contests/abc187/tasks/abc187_d）greedy|custom_sort
 ABC173E（https://atcoder.jp/contests/abc173/tasks/abc173_e）greedy|classification_discussion
 ABC173D（https://atcoder.jp/contests/abc173/tasks/abc173_d）greedy|implemention
 ABC169E（https://atcoder.jp/contests/abc169/tasks/abc169_e）greedy|brain_teaser|median_greedy
+ABC167F（https://atcoder.jp/contests/abc167/tasks/abc167_f）greedy|classical
 
 =====================================AcWing=====================================
 104（https://www.acwing.com/problem/content/106/）median|greedy
@@ -1039,7 +1041,7 @@ class Solution:
         while stack:
             x, pre, ss = stack.pop()
             pre += 1
-            if pre % 2: # odd
+            if pre % 2:  # odd
                 ans[x] = s[x] - ss
             else:
                 lst = []  # even
@@ -2321,4 +2323,52 @@ class Solution:
             ans1 = a[n // 2] + a[n // 2 - 1]
         ans = ans2 - ans1 + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_167f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc167/tasks/abc167_f
+        tag: greedy|classical
+        """
+        n = ac.read_int()
+
+        lll = 0
+        rrr = 0
+        pos = []
+        neg = []
+        for _ in range(n):
+            s = ac.read_str()
+            ll = rr = 0
+            for w in s:
+                if w == "(":
+                    ll += 1
+                else:
+                    if ll:
+                        ll -= 1
+                    else:
+                        rr += 1
+            if ll == rr == 0:
+                continue
+            if rr == 0:
+                lll += ll
+            elif ll == 0:
+                rrr += rr
+            else:
+                if rr <= ll:
+                    pos.append((rr, ll))
+                else:
+                    neg.append((rr, ll))
+        pos.sort()
+        neg.sort(key=lambda it: -it[1])
+
+        for rr, ll in pos + neg:
+            if lll < rr:
+                ac.no()
+                return
+            lll += ll - rr
+        if lll == rrr:
+            ac.yes()
+        else:
+            ac.no()
         return

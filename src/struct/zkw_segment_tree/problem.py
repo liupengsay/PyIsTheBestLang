@@ -23,9 +23,11 @@ ABC382F（https://atcoder.jp/contests/abc382/tasks/abc382_f）RangeDescendRangeM
 
 """
 import math
+from collections import defaultdict
+from typing import List
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
-from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeMergePointGet, RangeAddPointGet, \
+from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeUpdatePointQuery, RangeAddPointGet, \
     PointUpdateRangeQuery, RangeDescendRangeMin
 from src.util.fast_io import FastIO
 
@@ -93,7 +95,7 @@ class Solution:
         for y in range(n):
             if col[y] == 0:
                 for yy in range(y, n):
-                    tree.point_set(yy, 1)
+                    tree.point_update(yy, (0, 1))
         for x in range(m):
             if row[x] == 0:
                 for y in range(n):
@@ -109,9 +111,9 @@ class Solution:
                 continue
             res = n
             for y in stone[x]:
-                tree.point_set(y, 1)
+                tree.point_update(y, (0, 1))
                 res = min(res, y)
-            ans += tree.range_sum(res, n - 1)
+            ans += tree.range_query(res, n - 1)
         ans = m * n - ans
         ac.st(ans)
         return
@@ -124,8 +126,8 @@ class Solution:
         """
         n, q = ac.read_list_ints()
         ans = (n - 2) * (n - 2)
-        row = RangeMergePointGet(n + 1, n, min)
-        col = RangeMergePointGet(n + 1, n, min)
+        row = RangeUpdatePointQuery(n + 1, n, min)
+        col = RangeUpdatePointQuery(n + 1, n, min)
 
         for _ in range(q):
             op, x = ac.read_list_ints()
@@ -213,3 +215,47 @@ class Solution:
         for a in ans:
             ac.st(a)
         return
+
+    @staticmethod
+    def lc_3382(x_coord: List[int], y_coord: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/description/
+        tag: PointUpdateRangeQuery
+        """
+        points = [(x, y) for x, y in zip(x_coord, y_coord)]
+
+        nodes = set()
+        for x, y in points:
+            nodes.add(x)
+            nodes.add(y)
+        nodes = sorted(set(nodes))
+        m = len(nodes)
+        ind = {num: i for i, num in enumerate(nodes)}
+        dct = defaultdict(list)
+        for x, y in points:
+            dct[x].append(y)
+        inf = 10 ** 9
+
+        def query(a, b):
+            if a[0] < b[0]:
+                return a
+            if a[0] > b[0]:
+                return b
+            return a[0], a[1] + b[1]
+
+        tree = PointUpdateRangeQuery(m, (inf, 1), query, query)
+        low = [inf] * m
+        ans = -1
+        for x in sorted(dct, reverse=True):
+            lst = dct[x]
+            lst.sort()
+            k = len(lst)
+            for i in range(k - 1):
+                y1, y2 = lst[i], lst[i + 1]
+                floor, cnt = tree.range_query(ind[y1], ind[y2])
+                if floor == low[ind[y1]] == low[ind[y2]] < inf and cnt == 2:
+                    ans = max(ans, (y2 - y1) * (floor - x))
+            for y in lst:
+                low[ind[y]] = x
+                tree.point_update(ind[y], (x, 1))
+        return ans

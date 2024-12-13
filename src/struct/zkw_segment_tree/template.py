@@ -1,79 +1,21 @@
-import math
-from operator import add
-
-
-class PointSetRangeMinCount:
-
-    def __init__(self, n, initial=math.inf, mod=10 ** 9 + 7):
-        self.n = n
-        self.mod = mod
-        self.initial = initial
-        self.cover = [initial] * 2 * self.n
-        self.cnt = [1] * 2 * self.n
-        return
-
-    def merge(self, a1, a2, c1, c2):
-        if a1 > a2:
-            a1, a2 = a2, a1
-            c1, c2 = c2, c1
-        if a1 == a2:
-            c1 += c2
-        return a1, c1 % self.mod
-
-    def push_up(self, i):
-        a1, a2 = self.cover[i << 1], self.cover[(i << 1) | 1]
-        c1, c2 = self.cnt[i << 1], self.cnt[(i << 1) | 1]
-        self.cover[i], self.cnt[i] = self.merge(a1, a2, c1, c2)
-        return
-
-    def build(self, nums, cnt):
-        for i in range(self.n):
-            self.cover[i + self.n] = nums[i]
-            self.cnt[i + self.n] = cnt[i]
-        for i in range(self.n - 1, 0, -1):
-            self.push_up(i)
-        return
-
-    def get(self):
-        return self.cover[self.n:]
-
-    def point_set(self, ind, val, c):
-        assert 0 <= ind < self.n
-        ind += self.n
-        self.cover[ind], self.cnt[ind] = val, c
-        while ind > 1:
-            ind //= 2
-            self.push_up(ind)
-        return
-
-    def range_min_count(self, left, right):
-        assert 0 <= left <= right < self.n
-        ans_left = ans_right = self.initial
-        cnt_left = cnt_right = 0
-        left += self.n
-        right += self.n + 1
-        while left < right:
-            if left & 1:
-                ans_left, cnt_left = self.merge(ans_left, self.cover[left], cnt_left, self.cnt[left])
-                left += 1
-            if right & 1:
-                right -= 1
-                ans_right, cnt_right = self.merge(self.cover[right], ans_right, self.cnt[right], cnt_right)
-            left >>= 1
-            right >>= 1
-        return self.merge(ans_left, ans_right, cnt_left, cnt_right)
-
 class PointUpdateRangeQuery:
 
-    def __init__(self, n, initial=0, merge=add):
+    def __init__(self, n, initial=0):
         self.n = n
         self.initial = initial
-        self.merge = merge
         self.cover = [initial] * 2 * self.n
         return
 
+    @staticmethod
+    def query(a, b):
+        return a + b
+
+    @staticmethod
+    def update(a, b):
+        return a + b
+
     def push_up(self, i):
-        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = self.query(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
 
     def build(self, nums):
@@ -89,7 +31,7 @@ class PointUpdateRangeQuery:
     def point_update(self, ind, val):
         assert 0 <= ind < self.n
         ind += self.n
-        self.cover[ind] = self.merge(self.cover[ind], val)
+        self.cover[ind] = self.update(self.cover[ind], val)
         while ind > 1:
             ind //= 2
             self.push_up(ind)
@@ -102,218 +44,89 @@ class PointUpdateRangeQuery:
         right += self.n + 1
         while left < right:
             if left & 1:
-                ans_left = self.merge(ans_left, self.cover[left])
+                ans_left = self.query(ans_left, self.cover[left])
                 left += 1
             if right & 1:
                 right -= 1
-                ans_right = self.merge(self.cover[right], ans_right)
+                ans_right = self.query(self.cover[right], ans_right)
             left >>= 1
             right >>= 1
-        return self.merge(ans_left, ans_right)
+        return self.query(ans_left, ans_right)
 
 
-class PointSetPointAddRangeMerge:
+class PointSetRangeMinCount(PointUpdateRangeQuery):
 
-    def __init__(self, n, initial=0, merge=add):
-        self.n = n
-        self.initial = initial
-        self.merge = merge
-        self.cover = [initial] * 2 * self.n
-        return
+    @staticmethod
+    def query(a, b):
+        if a[0] < b[0]:
+            return a
+        if a[0] > b[0]:
+            return b
+        return a[0], a[1] + b[1]
 
-    def push_up(self, i):
-        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
-        return
-
-    def build(self, nums):
-        for i in range(self.n):
-            self.cover[i + self.n] = nums[i]
-        for i in range(self.n - 1, 0, -1):
-            self.push_up(i)
-        return
-
-    def get(self):
-        return self.cover[self.n:]
-
-    def point_set(self, ind, val):
-        assert 0 <= ind < self.n
-        ind += self.n
-        self.cover[ind] = val
-        while ind > 1:
-            ind //= 2
-            self.push_up(ind)
-        return
-
-    def point_add(self, ind, val):
-        assert 0 <= ind < self.n
-        ind += self.n
-        self.cover[ind] += val
-        while ind > 1:
-            ind //= 2
-            self.push_up(ind)
-        return
-
-    def range_merge(self, left, right):
-        assert 0 <= left <= right < self.n
-        ans_left = ans_right = self.initial
-        left += self.n
-        right += self.n + 1
-        while left < right:
-            if left & 1:
-                ans_left = self.merge(ans_left, self.cover[left])
-                left += 1
-            if right & 1:
-                right -= 1
-                ans_right = self.merge(self.cover[right], ans_right)
-            left >>= 1
-            right >>= 1
-        return self.merge(ans_left, ans_right)
+    @staticmethod
+    def update(_, b):
+        return b
 
 
-class PointSetPointAddRangeSum:
+class PointSetPointAddRangeSum(PointUpdateRangeQuery):
 
+    @staticmethod
+    def update(a, b):
+        return a + b[1] if b[0] else b[1]
+
+
+class RangeUpdatePointQuery:
     def __init__(self, n, initial=0):
         self.n = n
-        self.initial = initial
-        self.cover = [initial] * 2 * self.n
-        return
-
-    def push_up(self, i):
-        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        return
-
-    def build(self, nums):
-        for i in range(self.n):
-            self.cover[i + self.n] = nums[i]
-        for i in range(self.n - 1, 0, -1):
-            self.push_up(i)
-        return
-
-    def get(self):
-        return self.cover[self.n:]
-
-    def point_set(self, ind, val):
-        ind += self.n
-        self.cover[ind] = val
-        while ind > 1:
-            ind //= 2
-            self.push_up(ind)
-        return
-
-    def point_add(self, ind, val):
-        ind += self.n
-        self.cover[ind] += val
-        while ind > 1:
-            ind //= 2
-            self.push_up(ind)
-        return
-
-    def range_sum(self, left, right):
-        ans_left = ans_right = 0
-        left += self.n
-        right += self.n + 1
-        while left < right:
-            if left & 1:
-                ans_left = ans_left + self.cover[left]
-                left += 1
-            if right & 1:
-                right -= 1
-                ans_right = self.cover[right] + ans_right
-            left >>= 1
-            right >>= 1
-        return ans_left + ans_right
-
-
-class RangeMergePointGet:
-    def __init__(self, n, initial=0, merge=add):
-        self.n = n
-        self.merge = merge
         self.initial = initial
         self.cover = [self.initial] * (2 * self.n)
         return
 
+    @staticmethod
+    def query(a, b):
+        return a + b
+
+    @staticmethod
+    def update(a, b):
+        return a + b
+
     def build(self, nums):
         for i in range(self.n):
             self.cover[i + self.n] = nums[i]
         return
 
     def push_up(self, i):
-        self.cover[i] = self.merge(self.cover[i << 1], self.cover[(i << 1) | 1])
+        self.cover[i] = self.update(self.cover[i << 1], self.cover[(i << 1) | 1])
         return
 
-    def range_merge(self, left, right, val):
+    def range_update(self, left, right, val):
         left += self.n
         right += self.n + 1
 
         while left < right:
             if left & 1:
-                self.cover[left] = self.merge(self.cover[left], val)
+                self.cover[left] = self.update(self.cover[left], val)
                 left += 1
             if right & 1:
                 right -= 1
-                self.cover[right] = self.merge(self.cover[right], val)
+                self.cover[right] = self.update(self.cover[right], val)
             left >>= 1
             right >>= 1
         return
 
     def get(self):
         for i in range(1, self.n):
-            self.cover[i << 1] = self.merge(self.cover[i << 1], self.cover[i])
-            self.cover[(i << 1) | 1] = self.merge(self.cover[(i << 1) | 1], self.cover[i])
+            self.cover[i << 1] = self.update(self.cover[i << 1], self.cover[i])
+            self.cover[(i << 1) | 1] = self.update(self.cover[(i << 1) | 1], self.cover[i])
             self.cover[i] = self.initial
         return self.cover[self.n:]
 
-    def point_get(self, ind):
+    def point_query(self, ind):
         ans = self.initial
         ind += self.n
         while ind > 0:
-            ans = self.merge(self.cover[ind], ans)
-            ind //= 2
-        return ans
-
-
-class RangeAddPointGet:
-    def __init__(self, n):
-        self.n = n
-        self.cover = [0] * (2 * self.n)
-        return
-
-    def build(self, nums):
-        for i in range(self.n):
-            self.cover[i + self.n] = nums[i]
-        return
-
-    def push_up(self, i):
-        self.cover[i] = self.cover[i << 1] + self.cover[(i << 1) | 1]
-        return
-
-    def range_add(self, left, right, val):
-        left += self.n
-        right += self.n + 1
-
-        while left < right:
-            if left & 1:
-                self.cover[left] += val
-                left += 1
-            if right & 1:
-                right -= 1
-                self.cover[right] += val
-            left >>= 1
-            right >>= 1
-        return
-
-    def get(self):
-        for i in range(1, self.n):
-            self.cover[i << 1] += self.cover[i]
-            self.cover[(i << 1) | 1] += self.cover[i]
-            self.cover[i] = 0
-        return self.cover[self.n:]
-
-    def point_get(self, ind):
-        ans = 0
-        ind += self.n
-        while ind > 0:
-            ans += self.cover[ind]
+            ans = self.query(self.cover[ind], ans)
             ind //= 2
         return ans
 

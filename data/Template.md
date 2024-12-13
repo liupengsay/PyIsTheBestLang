@@ -458,7 +458,7 @@
 
 # PointSetPointAddRangeMerge	1
 
-# RangeMergePointGet	1
+# RangeUpdatePointQuery	1
 
 # LazySegmentTreeLength	1
 

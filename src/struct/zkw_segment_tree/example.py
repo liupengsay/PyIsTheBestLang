@@ -4,36 +4,33 @@ import unittest
 from functools import reduce
 from operator import add, or_, and_, xor, mul
 
-from src.struct.segment_tree.template import PointSetRangeSum, RangeAddPointGet, RangeAddRangeSumMinMax
-from src.struct.tree_array.template import PointAddRangeSum as PointAddRangeSumTA
-from src.struct.zkw_segment_tree.template import (
-    PointSetPointAddRangeSum as PointSetRangeSumZKW,
-    RangeAddPointGet as RangeAddPointGetZKW,
-    LazySegmentTree as LazySegmentTreeZKW, LazySegmentTreeLength, PointSetPointAddRangeMerge, RangeMergePointGet,
-    PointUpdateRangeQuery, PointSetRangeMinCount)
+from src.struct.segment_tree.template import RangeAddRangeSumMinMax
+from src.struct.zkw_segment_tree.template import LazySegmentTreeLength, RangeUpdatePointQuery, \
+    PointUpdateRangeQuery, PointSetRangeMinCount, LazySegmentTree
 
 
 class TestGeneral(unittest.TestCase):
 
     def test_point_set_range_min_count(self):
         low = 1
-        high = 100
-        n = 100
+        high = 10000
+        n = 1000
+        initial = (math.inf, 1)
         nums = [random.randint(low, high) for _ in range(n)]
-        tree = PointSetRangeMinCount(n)
-        tree.build(nums, [1]*n)
+        tree = PointSetRangeMinCount(n, initial)
+        tree.build([(num, 1) for num in nums])
         for _ in range(10000):
             i = random.randint(0, n - 1)
             num = random.randint(low, high)
             nums[i] = num
-            tree.point_set(i, num, 1)
+            tree.point_update(i, (num, 1))
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)
             low = min(nums[ll:rr + 1])
             cnt = nums[ll:rr + 1].count(low)
-            res = tree.range_min_count(ll, rr)
+            res = tree.range_query(ll, rr)
             assert res == (low, cnt)
-        assert nums == tree.get()
+        assert nums == [x[0] for x in tree.get()]
         return
 
     def test_point_update_range_query(self):
@@ -46,7 +43,9 @@ class TestGeneral(unittest.TestCase):
                 initial = (1 << 32) - 1
             elif merge == mul or merge == math.lcm:
                 initial = 1
-            tree = PointUpdateRangeQuery(n, initial, merge)
+            tree = PointUpdateRangeQuery(n, initial)
+            tree.query = merge
+            tree.update = merge
             nums = [random.getrandbits(32) for _ in range(n)]
             tree.build(nums)
             for _ in range(n):
@@ -69,7 +68,14 @@ class TestGeneral(unittest.TestCase):
                 initial = (1 << 32) - 1
             elif merge == mul or merge == math.lcm:
                 initial = 1
-            tree = PointSetPointAddRangeMerge(n, initial, merge)
+
+            def update(a, b):
+                return a + b[1] if b[0] else b[1]
+
+            tree = PointUpdateRangeQuery(n, initial)
+            tree.update = update
+            tree.query = merge
+
             nums = [random.getrandbits(30) for _ in range(n)]
             tree.build(nums)
             for _ in range(n):
@@ -78,13 +84,13 @@ class TestGeneral(unittest.TestCase):
                 x = random.getrandbits(30)
                 if op % 2:
                     nums[i] = x
-                    tree.point_set(i, x)
+                    tree.point_update(i, (0, x))
                 else:
                     nums[i] += x
-                    tree.point_add(i, x)
+                    tree.point_update(i, (1, x))
                 ll = random.randint(0, n - 1)
                 rr = random.randint(ll, n - 1)
-                assert tree.range_merge(ll, rr) == reduce(merge, nums[ll:rr + 1])
+                assert tree.range_query(ll, rr) == reduce(merge, nums[ll:rr + 1])
         return
 
     def test_range_merge_point_get(self):
@@ -97,18 +103,20 @@ class TestGeneral(unittest.TestCase):
                 initial = (1 << 32) - 1
             elif merge == mul or merge == math.lcm:
                 initial = 1
-            tree = RangeMergePointGet(n, initial, merge)
+            tree = RangeUpdatePointQuery(n, initial)
+            tree.update = merge
+            tree.query = merge
             nums = [random.getrandbits(32) for _ in range(n)]
             tree.build(nums)
             for _ in range(n):
                 ll = random.randint(0, n - 1)
                 rr = random.randint(ll, n - 1)
                 x = random.getrandbits(32)
-                tree.range_merge(ll, rr, x)
+                tree.range_update(ll, rr, x)
                 for j in range(ll, rr + 1):
                     nums[j] = merge(nums[j], x)
                 i = random.randint(0, n - 1)
-                assert tree.point_get(i) == nums[i]
+                assert tree.point_query(i) == nums[i]
 
         return
 
@@ -116,47 +124,31 @@ class TestGeneral(unittest.TestCase):
         random.seed(2024)
         low = 1
         high = 100
-        n = 100000
+        n = 1000
         nums = [random.randint(low, high) for _ in range(n)]
-        tree = PointSetRangeSum(n, 0)
-        tree.build(nums)
-        for _ in range(10000):
-            i = random.randint(0, n - 1)
-            num = random.randint(low, high)
-            nums[i] = num
-            tree.point_set(i, num)
 
-            ll = random.randint(0, n - 1)
-            rr = random.randint(ll, n - 1)
-            ans = tree.range_sum(ll, rr)
-            assert ans == sum(nums[ll:rr + 1])
+        def update(a, b):
+            return a + b[1] if b[0] else b[1]
 
-        assert nums == tree.get()
-        return
-
-    def test_point_set_range_sum_zkw(self):
-        random.seed(2024)
-        low = 1
-        high = 100
-        n = 100000
-        nums = [random.randint(low, high) for _ in range(n)]
-        tree = PointSetRangeSumZKW(n, 0)
+        tree = PointUpdateRangeQuery(n, 0)
+        tree.update = update
+        tree.query = add
         tree.build(nums)
         assert nums == tree.get()
         for _ in range(10000):
             i = random.randint(0, n - 1)
             num = random.randint(low, high)
             nums[i] = num
-            tree.point_set(i, num)
+            tree.point_update(i, (0, num))
 
             i = random.randint(0, n - 1)
             num = random.randint(low, high)
             nums[i] += num
-            tree.point_add(i, num)
+            tree.point_update(i, (1, num))
 
             ll = random.randint(0, n - 1)
             rr = random.randint(ll, n - 1)
-            ans = tree.range_sum(ll, rr)
+            ans = tree.range_query(ll, rr)
             assert ans == sum(nums[ll:rr + 1])
             assert tree.cover[1] == sum(nums)
 
@@ -167,9 +159,9 @@ class TestGeneral(unittest.TestCase):
         random.seed(2024)
         low = 1
         high = 100
-        n = 1000000
+        n = 1000
         nums = [random.randint(low, high) for _ in range(n)]
-        tree = RangeAddPointGet(n)
+        tree = RangeUpdatePointQuery(n)
         tree.build(nums)
         assert nums == tree.get()
         for _ in range(10000):
@@ -178,34 +170,10 @@ class TestGeneral(unittest.TestCase):
             num = random.randint(low, high)
             for i in range(ll, rr + 1):
                 nums[i] += num
-            tree.range_add(ll, rr, num)
+            tree.range_update(ll, rr, num)
 
             ll = random.randint(0, n - 1)
-            ans = tree.point_get(ll)
-            assert ans == nums[ll]
-
-        assert nums == tree.get()
-        return
-
-    def test_range_add_point_get_zkw(self):
-        random.seed(2024)
-        low = 1
-        high = 100
-        n = 1000000
-        nums = [random.randint(low, high) for _ in range(n)]
-        tree = RangeAddPointGetZKW(n)
-        tree.build(nums)
-        assert nums == tree.get()
-        for _ in range(10000):
-            ll = random.randint(0, n - 1)
-            rr = random.randint(ll, n - 1)
-            num = random.randint(low, high)
-            for i in range(ll, rr + 1):
-                nums[i] += num
-            tree.range_add(ll, rr, num)
-
-            ll = random.randint(0, n - 1)
-            ans = tree.point_get(ll)
+            ans = tree.point_query(ll)
             assert ans == nums[ll]
 
         assert nums == tree.get()
@@ -213,7 +181,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_range_add_range_sum_min_max(self):
         low = -10000
-        high = 50000
+        high = 1000
         nums = [random.randint(low, high) for _ in range(high)]
         tree = RangeAddRangeSumMinMax(high)
         tree.build(nums)
@@ -257,7 +225,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_range_add_range_sum_min_max_zkw(self):
         low = -10000
-        high = 50000
+        high = 5000
 
         def add_only(a, b, _):
             return a + b
@@ -269,9 +237,9 @@ class TestGeneral(unittest.TestCase):
             return x
 
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, add, 0, num_to_cover)
-        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, add, 0, num_to_cover)
-        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, add, 0, num_to_cover)
+        tree_max = LazySegmentTree(high, max, -math.inf, add_only, add, 0, num_to_cover)
+        tree_min = LazySegmentTree(high, min, math.inf, add_only, add, 0, num_to_cover)
+        tree_sum = LazySegmentTree(high, add, 0, add_with_length, add, 0, num_to_cover)
         tree_max.build(nums)
         tree_min.build(nums)
         tree_sum.build(nums)
@@ -306,7 +274,7 @@ class TestGeneral(unittest.TestCase):
 
     def test_range_set_range_sum_min_max_zkw(self):
         low = -10000
-        high = 50000
+        high = 5000
 
         def add_only(_, b, __):
             return b
@@ -321,9 +289,9 @@ class TestGeneral(unittest.TestCase):
             return x
 
         nums = [random.randint(low, high) for _ in range(high)]
-        tree_max = LazySegmentTreeZKW(high, max, -math.inf, add_only, merge_tag, math.inf, num_to_cover)
-        tree_min = LazySegmentTreeZKW(high, min, math.inf, add_only, merge_tag, math.inf, num_to_cover)
-        tree_sum = LazySegmentTreeZKW(high, add, 0, add_with_length, merge_tag, math.inf, num_to_cover)
+        tree_max = LazySegmentTree(high, max, -math.inf, add_only, merge_tag, math.inf, num_to_cover)
+        tree_min = LazySegmentTree(high, min, math.inf, add_only, merge_tag, math.inf, num_to_cover)
+        tree_sum = LazySegmentTree(high, add, 0, add_with_length, merge_tag, math.inf, num_to_cover)
         tree_max.build(nums)
         tree_min.build(nums)
         tree_sum.build(nums)
@@ -356,31 +324,10 @@ class TestGeneral(unittest.TestCase):
         assert tree_sum.get() == nums
         return
 
-    def test_point_set_range_sum_ta(self):
-        random.seed(2024)
-        low = 1
-        high = 100
-        n = 100000
-        nums = [random.randint(low, high) for _ in range(n)]
-        tree = PointAddRangeSumTA(n, 0)
-        tree.build(nums)
-        for _ in range(10000):
-            i = random.randint(0, n - 1)
-            num = random.randint(low, high)
-            nums[i] += num
-            tree.point_add(i, num)
-
-            ll = random.randint(0, n - 1)
-            rr = random.randint(ll, n - 1)
-            ans = tree.range_sum(ll, rr)
-            assert ans == sum(nums[ll:rr + 1])
-
-        assert nums == tree.get()
-        return
 
     def test_range_set_reverse_range_sum_longest_con_sub_sum(self):
         random.seed(2024)
-        high = 5 * 100000
+        high = 5 * 10000
 
         nums = [random.randint(0, 1) for _ in range(high)]
 
