@@ -28,7 +28,7 @@ from typing import List
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
 from src.struct.zkw_segment_tree.template import PointSetAddRangeSum, RangeUpdatePointQuery, RangeAddPointGet, \
-    PointUpdateRangeQuery, RangeDescendRangeMin, PointSetRangeMinCount
+    PointUpdateRangeQuery, PointSetRangeMinCount
 from src.util.fast_io import FastIO
 
 
@@ -185,11 +185,11 @@ class Solution:
                 stack.append(i)
             elif lst[0] == 2:
                 t = lst[1]
-                tree.range_add(0, i, t)
+                tree.range_update(0, i, t)
             else:
                 h = lst[1]
                 ans = 0
-                while ind < len(stack) and tree.point_get(stack[ind]) >= h:
+                while ind < len(stack) and tree.point_query(stack[ind]) >= h:
                     ind += 1
                     ans += 1
                 ac.st(ans)
@@ -203,15 +203,25 @@ class Solution:
         """
         m, n, k = ac.read_list_ints()
         nums = [ac.read_list_ints_minus_one() for _ in range(k)]
-        tree = RangeDescendRangeMin(n, m + 1)
+
+        def find(x):
+            return x
+        # self.combine = combine  # method of cover push_up
+        # self.cover_initial = cover_initial  # cover_initial value of cover
+        # self.merge_cover = merge_cover  # method of tag to cover
+        # self.merge_tag = merge_tag  # method of tag merge
+        # self.tag_initial = tag_initial  # cover_initial value of tag
+        # self.num_to_cover = num_to_cover  # cover_initial value from num to cover
+
+        tree = LazySegmentTree(n,combine=min, cover_initial=m+1, merge_cover=min, merge_tag=min, tag_initial=m+1, num_to_cover=find)
         vals = [nums[i][0] * k + i for i in range(k)]
         vals.sort(reverse=True)
         ans = [0] * k
         for val in vals:
             i = val % k
             rr, cc, ll = nums[i]
-            ans[i] = tree.range_min(cc, cc + ll) - 1
-            tree.range_descend(cc, cc + ll, ans[i])
+            ans[i] = tree.range_query(cc, cc + ll) - 1
+            tree.range_update(cc, cc + ll, ans[i])
         for a in ans:
             ac.st(a)
         return

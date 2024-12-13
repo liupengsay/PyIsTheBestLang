@@ -75,6 +75,66 @@ class PointSetAddRangeSum(PointUpdateRangeQuery):
     def update(a, b):
         return a + b[1] if b[0] else b[1]
 
+class RangeUpdatePointQuery:
+    def __init__(self, n, initial=0):
+        self.n = n
+        self.initial = initial
+        self.cover = [self.initial] * (2 * self.n)
+        return
+
+    @staticmethod
+    def query(a, b):
+        return a + b
+
+    @staticmethod
+    def update(a, b):
+        return a + b
+
+    def build(self, nums):
+        for i in range(self.n):
+            self.cover[i + self.n] = nums[i]
+        return
+
+    def push_up(self, i):
+        self.cover[i] = self.update(self.cover[i << 1], self.cover[(i << 1) | 1])
+        return
+
+    def range_update(self, left, right, val):
+        left += self.n
+        right += self.n + 1
+
+        while left < right:
+            if left & 1:
+                self.cover[left] = self.update(self.cover[left], val)
+                left += 1
+            if right & 1:
+                right -= 1
+                self.cover[right] = self.update(self.cover[right], val)
+            left >>= 1
+            right >>= 1
+        return
+
+    def get(self):
+        for i in range(1, self.n):
+            self.cover[i << 1] = self.update(self.cover[i << 1], self.cover[i])
+            self.cover[(i << 1) | 1] = self.update(self.cover[(i << 1) | 1], self.cover[i])
+            self.cover[i] = self.initial
+        return self.cover[self.n:]
+
+    def point_query(self, ind):
+        ans = self.initial
+        ind += self.n
+        while ind > 0:
+            ans = self.query(self.cover[ind], ans)
+            ind //= 2
+        return ans
+
+
+class RangeAddPointGet(RangeUpdatePointQuery):
+
+    @staticmethod
+    def update(a, b):
+        return a + b
 
 class RangeUpdatePointQuery:
     def __init__(self, n, initial=0):
