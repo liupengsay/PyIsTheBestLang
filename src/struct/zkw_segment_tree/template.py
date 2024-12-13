@@ -69,7 +69,7 @@ class PointSetRangeMinCount(PointUpdateRangeQuery):
         return b
 
 
-class PointSetPointAddRangeSum(PointUpdateRangeQuery):
+class PointSetAddRangeSum(PointUpdateRangeQuery):
 
     @staticmethod
     def update(a, b):

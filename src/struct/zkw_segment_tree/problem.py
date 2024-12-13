@@ -10,7 +10,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1093G（https://codeforces.com/contest/1093/problem/G）manhattan_distance|point_set|range_max_min_gap|classical
 
 ====================================AtCoder=====================================
-ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+ABC186F（https://atcoder.jp/contests/abc186/tasks/abc186_f）PointSetAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
 ABC179F（https://atcoder.jp/contests/abc179/tasks/abc179_f）zkw_segment_tree|implemention|brain_teaser
 ABC178E（https://atcoder.jp/contests/abc178/tasks/abc178_e）PointUpdateRangeQuery|manhattan_distance|classical
 ABC379D（https://atcoder.jp/contests/abc379/tasks/abc379_d）RangeAddPointGet|diff_array|classical
@@ -27,7 +27,7 @@ from collections import defaultdict
 from typing import List
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
-from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeUpdatePointQuery, RangeAddPointGet, \
+from src.struct.zkw_segment_tree.template import PointSetAddRangeSum, RangeUpdatePointQuery, RangeAddPointGet, \
     PointUpdateRangeQuery, RangeDescendRangeMin, PointSetRangeMinCount
 from src.util.fast_io import FastIO
 
@@ -79,7 +79,7 @@ class Solution:
     def abc_186f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc186/tasks/abc186_f
-        tag: PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+        tag: PointSetAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
         """
         m, n, k = ac.read_list_ints()
         stone = [[] for _ in range(m)]
@@ -91,7 +91,7 @@ class Solution:
             col[y] = min(col[y], x)
             row[x] = min(row[x], y)
         ans = 0
-        tree = PointSetPointAddRangeSum(n)
+        tree = PointSetAddRangeSum(n)
         for y in range(n):
             if col[y] == 0:
                 for yy in range(y, n):

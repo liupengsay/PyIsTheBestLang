@@ -48,7 +48,7 @@ class PointXorRangeXor:
         return res
 
 
-class PointSetPointAddRangeSum:
+class PointSetAddRangeSum:
     def __init__(self, n: int, initial=0) -> None:
         """index from 1 to n"""
         self.n = n

@@ -89,7 +89,7 @@ from src.struct.segment_tree.template import RangeAscendRangeMax
 from src.struct.sorted_list.template import SortedList
 from src.struct.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, PointXorRangeXor, \
-    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex, PointSetPointAddRangeSum, \
+    PointDescendRangeMin, PointChangeRangeSum, PointDescendPostMin, PointAscendPreMaxIndex, PointSetAddRangeSum, \
     PointDescendPreMinIndex
 from src.util.fast_io import FastIO
 
@@ -1802,7 +1802,7 @@ class Solution:
     def abc_186f(ac=FastIO()):
         """
         url: https://atcoder.jp/contests/abc186/tasks/abc186_f
-        tag: PointSetPointAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
+        tag: PointSetAddRangeSum|implemention|brain_teaser|brute_force|contribution_method
         """
         m, n, k = ac.read_list_ints()
         stone = [[] for _ in range(m)]
@@ -1814,7 +1814,7 @@ class Solution:
             col[y] = min(col[y], x)
             row[x] = min(row[x], y)
         ans = 0
-        tree = PointSetPointAddRangeSum(n)
+        tree = PointSetAddRangeSum(n)
         for y in range(n):
             if col[y] == 0:
                 for yy in range(y, n):

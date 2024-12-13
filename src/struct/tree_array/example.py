@@ -5,7 +5,7 @@ from itertools import accumulate
 
 from src.struct.tree_array.template import PointAddRangeSum, PointDescendPreMin, RangeAddRangeSum, \
     PointAscendPreMax, PointAscendRangeMax, PointAddRangeSum2D, RangeAddRangeSum2D, \
-    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum, PointSetPointAddRangeSum
+    PointChangeMaxMin2D, PointXorRangeXor, PointDescendRangeMin, PointChangeRangeSum, PointSetAddRangeSum
 import math
 
 
@@ -16,7 +16,7 @@ class TestGeneral(unittest.TestCase):
         for _ in range(10):
             ceil = random.randint(10, 1000)
             nums = [random.randint(-ceil, ceil) for _ in range(ceil)]
-            tree_array = PointSetPointAddRangeSum(ceil)
+            tree_array = PointSetAddRangeSum(ceil)
             tree_array.build(nums[:])
             for _ in range(ceil):
                 d = random.randint(-ceil, ceil)
