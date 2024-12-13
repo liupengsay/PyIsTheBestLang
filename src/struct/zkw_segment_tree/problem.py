@@ -28,7 +28,7 @@ from typing import List
 
 from src.struct.segment_tree.template import PointSetRangeMaxMinGap
 from src.struct.zkw_segment_tree.template import PointSetPointAddRangeSum, RangeUpdatePointQuery, RangeAddPointGet, \
-    PointUpdateRangeQuery, RangeDescendRangeMin
+    PointUpdateRangeQuery, RangeDescendRangeMin, PointSetRangeMinCount
 from src.util.fast_io import FastIO
 
 
@@ -236,14 +236,7 @@ class Solution:
             dct[x].append(y)
         inf = 10 ** 9
 
-        def query(a, b):
-            if a[0] < b[0]:
-                return a
-            if a[0] > b[0]:
-                return b
-            return a[0], a[1] + b[1]
-
-        tree = PointUpdateRangeQuery(m, (inf, 1), query, query)
+        tree = PointSetRangeMinCount(m, (inf, 1))
         low = [inf] * m
         ans = -1
         for x in sorted(dct, reverse=True):
