@@ -28,6 +28,7 @@ P2429（https://www.luogu.com.cn/problem/P2429）inclusion_exclusion|counter|bru
 1242A（https://codeforces.com/problemset/problem/1242/A）guess_table|brute_force
 27E（https://codeforces.com/contest/27/problem/E）linear_dp|brute_force|euler_series|data_range
 2037G（https://codeforces.com/contest/2037/problem/G）min_prime|inclusion_exclusion|mobius|linear_dp
+2044F（https://codeforces.com/contest/2044/problem/F）all_factor|math|observation
 
 ====================================AtCoder=====================================
 ABC215D（https://atcoder.jp/contests/abc215/tasks/abc215_d）prime_factorization
@@ -49,7 +50,7 @@ from typing import List
 
 from src.graph.union_find.template import UnionFind
 from src.math.number_theory.template import PrimeSieve
-from src.math.prime_factor.template import PrimeFactor, PrimeFactor2
+from src.math.prime_factor.template import PrimeFactor, PrimeFactor2, AllFactor
 from src.util.fast_io import FastIO
 
 
@@ -1131,4 +1132,57 @@ class Solution:
             for x in fs:
                 dp[abs(x)] = (dp[abs(x)] + cur) % mod
         ac.st(res)
+        return
+
+    @staticmethod
+    def cf_2044f(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2044/problem/F
+        tag: all_factor|math|observation
+        """
+        ceil = 2 * 10 ** 5
+        af = AllFactor(ceil)
+        n, m, q = ac.read_list_ints()
+        a = ac.read_list_ints()
+        b = ac.read_list_ints()
+        sa = sum(a)
+        a = [sa - x for x in a]
+        cnt_a = [0] * (2 * ceil + 10)
+        for aa in a:
+            if abs(aa) <= ceil:
+                cnt_a[aa] = 1
+
+        sb = sum(b)
+        b = [sb - x for x in b]
+        cnt_b = [0] * (2 * ceil + 10)
+        for aa in b:
+            if abs(aa) <= ceil:
+                cnt_b[aa] = 1
+        pre = [-1] * (2 * ceil + 10)
+        for _ in range(q):
+            x = ac.read_int()
+            if pre[x] != -1:
+                ac.st("Yes" if pre[x] else "No")
+                continue
+            factor = af.get_all_factor(abs(x))
+            for aa in factor:
+                if cnt_a[aa] and cnt_b[x // aa]:
+                    pre[x] = 1
+                    ac.yes()
+                    break
+                if cnt_a[-aa] and cnt_b[-x // aa]:
+                    pre[x] = 1
+                    ac.yes()
+                    break
+                if cnt_b[aa] and cnt_a[x // aa]:
+                    pre[x] = 1
+                    ac.yes()
+                    break
+                if cnt_b[-aa] and cnt_a[-x // aa]:
+                    pre[x] = 1
+                    ac.yes()
+                    break
+            else:
+                pre[x] = 0
+                ac.no()
         return

@@ -54,12 +54,14 @@ P1108（https://www.luogu.com.cn/problem/P1108）matrix_dp|lis|classical|brain_t
 ABC134E（https://atcoder.jp/contests/abc134/tasks/abc134_e）minimum_group_increasing_subsequence_partition|length_of_longest_non_increasing_subsequence
 ABC354F（https://atcoder.jp/contests/abc354/tasks/abc354_f）lis|classical
 ABC360G（https://atcoder.jp/contests/abc360/tasks/abc360_g）lis|greedy|implemention|classical|linear_dp|prefix_suffix
+ABC165F（https://atcoder.jp/contests/abc165/tasks/abc165_f）tree_lis|dfs|implemention|classical
 
 （https://www.nowcoder.com/questionTerminal/30fb9b3cab9742ecae9acda1c75bf927?orderByHotValue=1&questionTypes=000100&difficulty=11111&mutiTagIds=593&page=10&onlyReference=false）lis|lexicographical_order
 
 """
 
 import bisect
+import math
 import random
 from collections import deque, Counter
 from itertools import accumulate
@@ -69,6 +71,7 @@ from typing import List
 from src.struct.segment_tree.template import RangeAscendRangeMax
 from src.struct.tree_array.template import PointAscendPreMax
 from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
+from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 
 
@@ -756,3 +759,53 @@ class Solution:
                 else:
                     dp.append(y)
         return len(dp) + 1
+
+    @staticmethod
+    def abc_165f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc165/tasks/abc165_f
+        tag: tree_lis|dfs|implemention|classical
+        """
+
+        class Graph(WeightedTree):
+            def tree_dp(self):
+                self.parent = [-1] * self.n
+                stack = [self.root]
+                dp = []
+                pre = [0] * self.n
+                index = [-1] * self.n
+                while stack:
+                    u = stack.pop()
+                    if u >= 0:
+                        i = bisect.bisect_left(dp, a[u])
+                        if 0 <= i < len(dp):
+                            pre[u] = dp[i]
+                            dp[i] = a[u]
+                            index[u] = i
+                        else:
+                            dp.append(a[u])
+                            index[u] = len(dp) - 1
+                        ans[u] = len(dp)
+                        stack.append(~u)
+                        for v in self.get_to_nodes(u):
+                            if v != self.parent[u]:
+                                self.parent[v] = u
+                                stack.append(v)
+                    else:
+                        u = ~u
+                        dp[index[u]] = pre[u]
+                        if dp[index[u]] == 0:
+                            dp.pop()
+                return
+
+        n = ac.read_int()
+        a = ac.read_list_ints()
+        graph = Graph(n)
+        ans = [0] * n
+        for _ in range(n - 1):
+            ii, jj = ac.read_list_ints_minus_one()
+            graph.add_undirected_edge(ii, jj, 1)
+        graph.tree_dp()
+        for x in ans:
+            ac.st(x)
+        return

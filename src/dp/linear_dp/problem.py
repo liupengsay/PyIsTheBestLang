@@ -37,6 +37,7 @@ Description：prefix_suffix|maximum_sub_consequence_sum
 2289（https://leetcode.cn/problems/steps-to-make-array-non-decreasing/）liner_dp|counter|monotonic_stack|linked_list|
 3041（https://leetcode.com/contest/biweekly-contest-124/problems/maximize-consecutive-elements-in-an-array-after-modification/）linear_dp
 3351（https://leetcode.com/problems/sum-of-good-subsequences/）liner_dp
+3389（https://leetcode.cn/problems/minimum-operations-to-make-character-frequencies-equal）brute_force|linear_dp
 
 =====================================LuoGu======================================
 P1970（https://www.luogu.com.cn/problem/P1970）greedy|liner_dp
@@ -2093,3 +2094,26 @@ class Solution:
             dp[i] += diff[i]
         ac.st(max(dp))
         return
+
+    @staticmethod
+    def lc_3389(s: str) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-operations-to-make-character-frequencies-equal
+        tag: brute_force|linear_dp
+        """
+        cnt = [0] * 26
+        n = len(s)
+        for w in s:
+            cnt[ord(w) - ord('a')] += 1
+        ans = n
+        for c in range(1, max(cnt) + 1):
+            dp = [0] * 27
+            dp[25] = min(cnt[25], abs(cnt[25] - c))
+            for i in range(24, -1, -1):
+                x, y = cnt[i], cnt[i + 1]
+                dp[i] = dp[i + 1] + min(x, abs(x - c))
+                if y < c:
+                    t = c if x >= c else 0
+                    dp[i] = min(dp[i], dp[i + 2] + max(x - t, c - y))
+            ans = min(ans, dp[0])
+        return ans

@@ -1,6 +1,6 @@
 import unittest
 
-from src.math.prime_factor.template import AllFactorCnt, PrimeFactor, RadFactor
+from src.math.prime_factor.template import AllFactorCnt, PrimeFactor, RadFactor, AllFactor
 
 
 class TestGeneral(unittest.TestCase):
@@ -17,6 +17,7 @@ class TestGeneral(unittest.TestCase):
     def test_all_factor(self):  # 1.891
         n = 2 * 10 ** 5
         all_factor = [[], [1]] + [[1, i] for i in range(2, n + 1)]
+        af = AllFactor(n)
         for i in range(2, n + 1):
             x = i
             while x * i <= n:
@@ -24,8 +25,9 @@ class TestGeneral(unittest.TestCase):
                 if i != x:
                     all_factor[x * i].append(x)
                 x += 1
-        for i in range(n + 1):
+        for i in range(1, n + 1):
             all_factor[i].sort()
+            assert all_factor[i] == sorted(af.get_all_factor(i))
         assert [len(ls) for ls in all_factor] == AllFactorCnt(n).all_factor_cnt
         assert all_factor == PrimeFactor(n).all_factor
         return

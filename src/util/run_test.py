@@ -428,7 +428,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_codeforces_contest(self):
-        num = "2040"
+        num = "2044"
         # webbrowser.open(f"https://codeforces.com/contest/{num}")
         # webbrowser.open(f"https://codeforces.com/contest/{num}/standings/friends/true")
         time.sleep(0.5)
@@ -458,7 +458,7 @@ class TestGeneral(unittest.TestCase):
         return
 
     def test_abc_problem(self):
-        num = "166"
+        num = "165"
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}")
         webbrowser.open(f"https://atcoder.jp/contests/abc{num}/standings")
         # webbrowser.open(f"https://atcoder.jp/contests/abc{num}/results")

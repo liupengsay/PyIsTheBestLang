@@ -196,6 +196,7 @@ ABC180D（https://atcoder.jp/contests/abc180/tasks/abc180_d）brute_force
 ABC176E（https://atcoder.jp/contests/abc176/tasks/abc176_e）brute_force|observation|greedy
 ABC379E（https://atcoder.jp/contests/abc379/tasks/abc379_e）brute_force|contribution_method
 ABC173F（https://atcoder.jp/contests/abc173/tasks/abc173_f）union_find|contribution_method|brute_force
+ABC165C（https://atcoder.jp/contests/abc165/tasks/abc165_c）brute_force|dfs
 
 ===================================CodeForces===================================
 1971F（https://codeforces.com/contest/1971/problem/F）brute_force|high_precision
@@ -1958,4 +1959,33 @@ class Solution:
                 i, j = j, i
             ans -= (i + 1) * (n - j)
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_165c(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc165/tasks/abc165_c
+        tag: brute_force|dfs
+        """
+
+        n, m, q = ac.read_list_ints()
+        nums = [ac.read_list_ints() for _ in range(q)]
+
+        def dfs(i):
+            if i == n:
+                ans[0] = max(ans[0], sum(d if res[b - 1] - res[a - 1] == c else 0 for a, b, c, d in nums))
+                return
+
+            low = 1 if i == 0 else res[i - 1]
+            for x in range(low, m + 1):
+                res[i] = x
+                dfs(i + 1)
+            return
+
+        res = [0] * n
+        ans = [0]
+
+        dfs(0)
+
+        ac.st(ans[0])
         return

@@ -48,6 +48,7 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 100462（https://leetcode.cn/problems/find-the-original-typed-string-ii/）matrix_dp|prefix_opt|inclusion_exclusion|data_range
 3343（https://leetcode.com/problems/count-number-of-balanced-permutations/）matrix_dp|comb
 3363（https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/）matrix_dp|observation|classical
+3388（https://leetcode.cn/problems/count-beautiful-splits-in-an-array/）matrix_dp|lcs|classical
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -211,7 +212,7 @@ from src.greedy.longest_increasing_subsequence.template import LcsComputeByLis
 from src.math.comb_perm.template import Combinatorics
 from src.math.number_theory.template import PrimeSieve
 from src.math.prime_factor.template import PrimeFactor
-from src.struct.segment_tree.template import RangeAddRangeSumMinMax
+from src.struct.segment_tree.template import RangeAddRangeSumMinMax, PointSetRangeMinCount
 from src.struct.tree_array.template import PointDescendPreMin
 from src.util.fast_io import FastIO
 
@@ -3849,3 +3850,22 @@ class Solution:
         ans += dp[n - 1]
         return ans
 
+    @staticmethod
+    def lc_3388(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/count-beautiful-splits-in-an-array/
+        tag: matrix_dp|lcs|classical
+        """
+        n = len(nums)
+        dp = [[0] * (n + 1) for _ in range(n + 1)]
+
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                if nums[i] == nums[j]:
+                    dp[i][j] = dp[i + 1][j + 1] + 1
+        ans = 0
+        for j1 in range(1, n):
+            for j2 in range(j1, n - 1):
+                if (dp[0][j1] >= j1 and j2-j1+1 >= j1) or dp[j1][j2+1] >= j2-j1+1:
+                    ans += 1
+        return ans
