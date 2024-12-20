@@ -108,7 +108,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 277A（https://codeforces.com/problemset/problem/277/A）union_find_general
 1156D（https://codeforces.com/problemset/problem/1156/D）union_find|brute_force
 2033E（https://codeforces.com/contest/2033/problem/E）union_find|permutation_circle|greedy
-ABC380E（https://atcoder.jp/contests/abc380/tasks/abc380_e）union_find_range|union_left|union_right|classical
+2020D（https://codeforces.com/contest/2020/problem/D）union_find|union_right
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -142,6 +142,7 @@ ABC183F（https://atcoder.jp/contests/abc183/tasks/abc183_f）heuristic_merge|cl
 ABC378F（https://atcoder.jp/contests/abc378/tasks/abc378_f）union_find|brute_force|observation
 ABC170F（https://atcoder.jp/contests/abc170/tasks/abc170_f）bfs|union_find|classical
 ABC383E（https://atcoder.jp/contests/abc383/tasks/abc383_e）union_find|classical
+ABC380E（https://atcoder.jp/contests/abc380/tasks/abc380_e）union_find_range|union_left|union_right|classical
 
 =====================================AcWing=====================================
 4309（https://www.acwing.com/problem/content/description/4309/）union_right
@@ -3119,4 +3120,29 @@ class Solution:
                 uf.size2[v] = uf.size2[u] + uf.size2[v]
                 uf.size1[u] = uf.size2[u] = 0
         ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2020d(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2020/problem/D
+        tag: union_find|union_right
+        """
+        for _ in range(ac.read_int()):
+            n, m = ac.read_list_ints()
+            dct = [[] for _ in range(11)]
+            for _ in range(m):
+                a, d, k = ac.read_list_ints()
+                dct[d].append((a, k))
+            uf = UnionFind(n + 1)
+            for d in range(1, 11):
+                cur_uf = UnionFind(n + 1)
+                for a, k in dct[d]:
+                    node = a
+                    while node + d <= a + k * d:
+                        cur_uf.union_right(node, node + d)
+                        node = cur_uf.find(node + d)
+                for i in range(n):
+                    uf.union(i, cur_uf.find(i))
+            ac.st(uf.part - 1)
         return

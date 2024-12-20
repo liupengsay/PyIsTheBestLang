@@ -104,6 +104,7 @@ P3016（https://www.luogu.com.cn/problem/P3016）prefix_sum|triangle|left_up_sum
 1000C（https://codeforces.com/problemset/problem/1000/C）discretization_diff_array|hash|classical
 2026D（https://codeforces.com/contest/2026/problem/D）prefix_sum_of_prefix_sum|binary_search|brute_force
 2038D（https://codeforces.com/contest/2030/problem/D）diff_array|brain_teaser
+2044H（https://codeforces.com/contest/2044/problem/H）diff_array|prefix_sum_matrix|classical
 
 ====================================AtCoder=====================================
 ABC106D（https://atcoder.jp/contests/abc106/tasks/abc106_d）prefix_sum|dp|counter
@@ -2303,4 +2304,32 @@ class Solution:
                     ac.yes()
                 else:
                     ac.no()
+        return
+
+    @staticmethod
+    def cf_2044h(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2044/problem/H
+        tag: diff_array|prefix_sum_matrix|classical
+        """
+        for _ in range(ac.read_int()):
+            n, q = ac.read_list_ints()
+            grid = [ac.read_list_ints() for _ in range(n)]
+            pre = PreFixSumMatrix(grid)
+            tot = [[0] * n for _ in range(n)]
+            for i in range(n):
+                for j in range(n):
+                    tot[i][j] = grid[i][j] * (i + 1)
+            pre1 = PreFixSumMatrix(tot)
+            for i in range(n):
+                for j in range(n):
+                    tot[i][j] = grid[i][j] * (j + 1)
+            pre2 = PreFixSumMatrix(tot)
+            res = []
+            for _ in range(q):
+                x1, y1, x2, y2 = ac.read_list_ints_minus_one()
+                ans = (pre1.query(x1, y1, x2, y2) - (x1 + 1) * pre.query(x1, y1, x2, y2)) * (y2 - y1 + 1)
+                ans += pre2.query(x1, y1, x2, y2) - y1 * pre.query(x1, y1, x2, y2)
+                res.append(ans)
+            ac.lst(res)
         return

@@ -14,6 +14,7 @@ Description：prefix_suffix|counter|index|prefix_sum
 895（https://leetcode.cn/problems/maximum-frequency-stack/description/）hash|stack
 1658（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sum|hash|brain_teaser|greedy
 2227（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）brain_teaser|reverse_thinking
+3138（https://leetcode.cn/problems/minimum-length-of-anagram-concatenation）randon_hash|math|brute_force
 
 ===================================CodeForces===================================
 1692H（https://codeforces.com/contest/1692/problem/H）hash|prefix_min
@@ -203,6 +204,7 @@ class Solution:
         url: https://leetcode.cn/problems/maximum-frequency-stack/description/
         tag: hash|stack
         """
+
         class FreqStack:
             def __init__(self):
                 self.freq = defaultdict(list)
@@ -302,7 +304,7 @@ class Solution:
         seed = [random.getrandbits(64) for _ in range(3)]
 
         def make(aa, bb, cc):
-            return aa*seed[0] + bb*seed[1] + cc*seed[2]
+            return aa * seed[0] + bb * seed[1] + cc * seed[2]
 
         sub = [1] * n
         hash1 = [0] * n
@@ -339,3 +341,19 @@ class Solution:
                     ans = max(ans, sub[x])
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3138(s: str) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-length-of-anagram-concatenation
+        tag: randon_hash|math|brute_force
+        """
+        hash_num = [random.getrandbits(32) for _ in range(32)]
+        n = len(s)
+        pre = [0]
+        for w in s:
+            pre.append(pre[-1] + hash_num[ord(w) - ord('a')])
+        for x in range(1, n + 1):
+            if n % x == 0:
+                if all(pre[i + x] - pre[i] == pre[x] for i in range(x, n, x)):
+                    return x

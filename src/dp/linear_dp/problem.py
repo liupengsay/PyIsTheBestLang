@@ -150,6 +150,7 @@ P1514（https://www.luogu.com.cn/problem/P1514）bfs|linear_dp|observation
 1082E（https://codeforces.com/problemset/problem/1082/E）linear_dp|prefix_sum|brain_teaser|observation
 1994C（https://codeforces.com/problemset/problem/1994/C）linear_dp|two_pointers
 2025D（https://codeforces.com/contest/2025/problem/D）linear_dp|diff_array|limited_operation|data_range|observation
+2020E（https://codeforces.com/contest/2020/problem/E）observation|linear_dp|data_range|brute_force
 
 ====================================AtCoder=====================================
 ABC129E（https://atcoder.jp/contests/abc129/tasks/abc129_e）brain_teaser|digital_dp
@@ -2117,3 +2118,71 @@ class Solution:
                     dp[i] = min(dp[i], dp[i + 2] + max(x - t, c - y))
             ans = min(ans, dp[0])
         return ans
+
+    @staticmethod
+    def cf_2020e_1(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2020/problem/E
+        tag: observation|linear_dp|data_range|brute_force
+        """
+        mod = 10 ** 9 + 7
+        m = pow(10, -4, mod)
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            p = ac.read_list_ints()
+            dp = [0] * (1 << 10)
+            dp[0] = 1
+            ndp = [0] * (1 << 10)
+            for i in range(n):
+                cur = m * p[i] % mod
+                for x in range(1 << 10):
+                    ndp[x] = dp[x] * (1 - cur) + dp[x ^ nums[i]] * cur
+                for x in range(1 << 10):
+                    dp[x] = ndp[x] % mod
+                    ndp[x] = 0
+            res = 0
+            for num in range(1 << 10):
+                res += dp[num] * num * num
+                res %= mod
+            ac.st(res)
+        return
+
+
+    @staticmethod
+    def cf_2020e_2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2020/problem/E
+        tag: observation|linear_dp|data_range|brute_force
+        """
+        mod = 10 ** 9 + 7
+        m = pow(10, -4, mod)
+        mp = [i * m % mod for i in range(10001)]
+
+        for _ in range(ac.read_int()):
+            n = ac.read_int()
+            nums = ac.read_list_ints()
+            p = ac.read_list_ints()
+            for i in range(n):
+                p[i] = mp[p[i]]
+            np = [0] * (1 << 10)
+            for i in range(n):
+                num = nums[i]
+                np[num] = p[i] * (1 - np[num]) + (1 - p[i]) * np[num]
+                np[num] %= mod
+            dp = [0] * (1 << 10)
+            dp[0] = 1
+            ndp = [0] * (1 << 10)
+            for i in range(1 << 10):
+                if np[i]:
+                    for x in range(1 << 10):
+                        ndp[x] = dp[x] * (1 - np[i]) + dp[x ^ i] * np[i]
+                        ndp[x] %= mod
+                    dp = ndp[:]
+            res = 0
+            for num in range(1 << 10):
+                res += dp[num] * num * num % mod
+                res %= mod
+            ac.st(res)
+        return
+
