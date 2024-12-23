@@ -128,6 +128,7 @@ ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra_for_cnt_o
 ABC375G（https://atcoder.jp/contests/abc375/tasks/abc375_g）dijkstra|classical
 ABC191E（https://atcoder.jp/contests/abc191/tasks/abc191_e）dijkstra_for_strictly_second_shortest_path|classical
 ABC376D（https://atcoder.jp/contests/abc376/tasks/abc376_d）dijkstra_for_strictly_second_shortest_path|classical
+ABC164E（https://atcoder.jp/contests/abc164/tasks/abc164_e）build_graph|dijkstra|data_range|observation
 
 =====================================AcWing=====================================
 176（https://www.acwing.com/problem/content/178/）dijkstra|implemention
@@ -2677,5 +2678,33 @@ class Solution:
                 graph.add_directed_edge(i, b[i], a[i])
             dis = graph.dijkstra_for_shortest_path(0, 0)
             ans = max(pre[i + 1] - dis[i] for i in range(n))
+            ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_164e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc164/tasks/abc164_e
+        tag: build_graph|dijkstra|data_range|observation
+        """
+        n, m, s = ac.read_list_ints()
+        k = 2501
+        s = min(s, k - 1)
+        inf = 10 ** 15
+        graph = WeightedGraphForDijkstra(n * k, inf)
+        for _ in range(m):
+            u, v, a, b = ac.read_list_ints()
+            u -= 1
+            v -= 1
+            for x in range(k - 1, a - 1, -1):
+                graph.add_directed_edge(u * k + x, v * k + x - a, b)
+                graph.add_directed_edge(v * k + x, u * k + x - a, b)
+        for i in range(n):
+            c, d = ac.read_list_ints()
+            for x in range(c, k):
+                graph.add_directed_edge(i * k + x - c, i * k + x, d)
+        dis = graph.dijkstra_for_shortest_path(s, 0)
+        for i in range(1, n):
+            ans = min(dis[i * k + j] for j in range(k))
             ac.st(ans)
         return

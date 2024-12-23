@@ -34,6 +34,7 @@ ARC061B（https://atcoder.jp/contests/abc045/tasks/arc061_b）hash|inclusion_exc
 ABC304D（https://atcoder.jp/contests/abc304/tasks/abc304_d）hash|counter|brain_teaser
 ABC278E（https://atcoder.jp/contests/abc278/tasks/abc278_e）hash|inclusion_exclusion|implemention
 ABC367D（https://atcoder.jp/contests/abc367/tasks/abc367_d）hash|prefix|counter
+ABC164D（https://atcoder.jp/contests/abc164/tasks/abc164_d）reverse_thinking|suffix_sum|hash|classical
 
 =====================================AcWing=====================================
 
@@ -357,3 +358,24 @@ class Solution:
             if n % x == 0:
                 if all(pre[i + x] - pre[i] == pre[x] for i in range(x, n, x)):
                     return x
+
+    @staticmethod
+    def abc_164d(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc164/tasks/abc164_d
+        tag: reverse_thinking|suffix_sum|hash|classical
+        """
+        s = ac.read_str()
+        m = 2019
+        n = len(s)
+        cnt = [0] * m
+        cnt[0] = 1
+        ans = x = 0
+        p = 1
+        for i in range(n - 1, -1, -1):
+            x = (int(s[i]) * p + x) % m
+            p = (p * 10) % m
+            ans += cnt[x]
+            cnt[x] += 1
+        ac.st(ans)
+        return

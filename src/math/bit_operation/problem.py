@@ -87,6 +87,7 @@ P5390（ttps://www.luogu.com.cn/problem/P5390）bit_operation|contribution_metho
 1416C（https://codeforces.com/problemset/problem/1416/C）bit_operation|divide_and_conquer|reverse_pair
 2036F（https://codeforces.com/contest/2036/problem/F）bit_property|bit_operation|inclusion_exclusion|classical
 2035C（https://codeforces.com/contest/2035/problem/C）construction|bit_operation
+2020C（https://codeforces.com/contest/2020/problem/C）bit_operation|construction|observation
 
 ====================================AtCoder=====================================
 ABC117D（https://atcoder.jp/contests/abc117/tasks/abc117_d）bit_operation|greedy|brain_teaser
@@ -1453,4 +1454,19 @@ class Solution:
                 if ll <= mn <= mx <= rr:
                     ans |= 1 << i
             ac.st(ans)
+        return
+
+    @staticmethod
+    def cf_2020c(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2020/problem/C
+        tag: bit_operation|construction|observation
+        """
+        for _ in range(ac.read_int()):
+            b, c, d = ac.read_list_ints()
+            a = b ^ d
+            if (a | b) - (a & c) == d:
+                ac.st(a)
+            else:
+                ac.st(-1)
         return
