@@ -33,12 +33,13 @@ P1298（https://www.luogu.com.cn/problem/P1298）high_precision|frac_to_float|br
 ABC148E（https://atcoder.jp/contests/abc148/tasks/abc148_e）suffix_zero|odd_even|factorial
 ABC189D（https://atcoder.jp/contests/abc189/tasks/abc189_b）high_precision|division_to_multiplication
 ABC191D（https://atcoder.jp/contests/abc191/tasks/abc191_d）high_precision|division_to_multiplication|brute_force
+ABC385F（https://atcoder.jp/contests/abc385/tasks/abc385_f）math|slope|high_precision|monotonic_stack
 
 ====================================AtCoder=====================================
 1（https://judge.yosupo.jp/problem/many_aplusb）big_number|high_precision|plus
 
 """
-
+import decimal
 import math
 from decimal import Decimal
 from typing import List
@@ -261,4 +262,27 @@ class Solution:
                 high -= 1
             ans += high - low + 1
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_385f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc385/tasks/abc385_f
+        tag: math|slope|high_precision|monotonic_stack
+        """
+        n = ac.read_int()
+        nums = [ac.read_list_ints() for _ in range(n)]
+        stack = [nums[0]]
+        ans = -1
+        for i in range(1, n):
+            x, y = nums[i]
+            while len(stack) >= 2 and (y - stack[-1][1]) * (x - stack[-2][0]) >= (x - stack[-1][0]) * (
+                    y - stack[-2][1]):
+                stack.pop()
+
+            k = decimal.Decimal(y - stack[-1][1]) / decimal.Decimal(x - stack[-1][0])
+            b = decimal.Decimal(y - k * x)
+            ans = max(ans, b)
+            stack.append((x, y))
+        ac.st(ans if ans >= 0 else -1)
         return

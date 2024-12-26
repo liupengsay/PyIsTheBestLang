@@ -243,7 +243,7 @@ class Solution:
         return
 
     @staticmethod
-    def main(ac=FastIO()):
+    def cf_1228d_1(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1228/D
         tag: complete_tripartite|random_seed|random_hash|classical
@@ -267,7 +267,7 @@ class Solution:
         return
 
     @staticmethod
-    def cf_1228d(ac=FastIO()):
+    def cf_1228d_2(ac=FastIO()):
         """
         url: https://codeforces.com/problemset/problem/1228/D
         tag: complete_tripartite|random_seed|random_hash|classical

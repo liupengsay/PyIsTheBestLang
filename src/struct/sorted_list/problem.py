@@ -57,6 +57,7 @@ P5677（https://www.luogu.com.cn/problem/P5677）sorted_list|offline_query|range
 1974F（https://codeforces.com/contest/1974/problem/F）sorted_list|implemention
 1418D（https://codeforces.com/problemset/problem/1418/D）sorted_list|implemention
 1342D（https://codeforces.com/problemset/problem/1342/D）sorted_list|greedy|reverse_order
+2021C2（https://codeforces.com/contest/2021/problem/C2）sorted_list|implemention
 
 ===================================AtCoder===================================
 ABC306E（https://atcoder.jp/contests/abc306/tasks/abc306_e）sorted_list|top_k_sum
@@ -780,3 +781,64 @@ class Solution:
                     lst.add(-((c << bit) | num))
 
         return ans
+
+    @staticmethod
+    def cf_2021c2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2021/problem/C2
+        tag: sorted_list|implemention
+        """
+        for _ in range(ac.read_int()):
+            n, m, q = ac.read_list_ints()
+            a = ac.read_list_ints_minus_one()
+            b = ac.read_list_ints_minus_one()
+            ceil = max(n, m)
+            index = [0] * n
+            for i in range(n):
+                index[a[i]] = i
+            del a
+            ind = [SortedList([ceil]) for _ in range(n)]
+
+            for i in range(m):
+                ind[index[b[i]]].add(i)
+            state = [0] * n
+            for i in range(n):
+                if (i == 0 or ind[i - 1][0] <= ind[i][0]) and (i == n - 1 or ind[i + 1][0] >= ind[i][0]):
+                    state[i] = 1
+
+            tot = sum(state)
+
+            def check():
+                if tot == n and ind[0][0] == 0:
+                    ac.st("YA")
+                    return
+                ac.st("TIDAK")
+                return
+
+            check()
+            for _ in range(q):
+                s, t = ac.read_list_ints_minus_one()
+                j = index[b[s]]
+                ind[j].discard(s)
+                for i in range(j - 1, j + 2):
+                    if 0 <= i < n:
+                        tot -= state[i]
+                        if (i == 0 or ind[i - 1][0] <= ind[i][0]) and (i == n - 1 or ind[i + 1][0] >= ind[i][0]):
+                            state[i] = 1
+                        else:
+                            state[i] = 0
+                        tot += state[i]
+
+                b[s] = t
+                j = index[b[s]]
+                ind[j].add(s)
+                for i in range(j - 1, j + 2):
+                    if 0 <= i < n:
+                        tot -= state[i]
+                        if (i == 0 or ind[i - 1][0] <= ind[i][0]) and (i == n - 1 or ind[i + 1][0] >= ind[i][0]):
+                            state[i] = 1
+                        else:
+                            state[i] = 0
+                        tot += state[i]
+                check()
+        return

@@ -109,6 +109,7 @@ P1840（https://www.luogu.com.cn/problem/P1840）union_find_right
 1156D（https://codeforces.com/problemset/problem/1156/D）union_find|brute_force
 2033E（https://codeforces.com/contest/2033/problem/E）union_find|permutation_circle|greedy
 2020D（https://codeforces.com/contest/2020/problem/D）union_find|union_right
+2021E2（https://codeforces.com/contest/2021/problem/E2）tree_dp|bag_dp|union_dp|brain_teaser|classical
 
 ====================================AtCoder=====================================
 ARC065B（https://atcoder.jp/contests/abc049/tasks/arc065_b）union_find|several_union_find
@@ -3145,4 +3146,57 @@ class Solution:
                 for i in range(n):
                     uf.union(i, cur_uf.find(i))
             ac.st(uf.part - 1)
+        return
+
+    @staticmethod
+    def cf_2021e2(ac=FastIO()):
+        """
+        url: https://codeforces.com/contest/2021/problem/E2
+        tag: tree_dp|bag_dp|union_dp|brain_teaser|classical
+        """
+        for _ in range(ac.read_int()):
+            n, m, p = ac.read_list_ints()
+            s = ac.read_list_ints_minus_one()
+            inf = 10 ** 15
+            edges = []
+            for _ in range(m):
+                u, v, w = ac.read_list_ints_minus_one()
+                edges.append((w + 1, u, v))
+            edges.sort()
+            size = [0] * (n + 1)
+            sub = [inf] * (n + 1) * (n + 1)
+            for x in s:
+                size[x] = 1
+                sub[x * (n + 1) + 1] = 0
+            for i in range(n):
+                sub[i * (n + 1)] = 0
+            uf = UnionFindGeneral(n)
+            uf.size = size[:]
+            for w, i, j in edges:
+                i = uf.find(i)
+                j = uf.find(j)
+                if i != j:
+                    cur = [inf] * (uf.size[i] + uf.size[j] + 1)
+                    for x in range(uf.size[i] + 1):
+                        for y in range(uf.size[j] + 1):
+                            if x and y:
+                                cur[x + y] = min(cur[x + y], sub[i * (n + 1) + x] + sub[j * (n + 1) + y])
+                            elif x:
+                                cur[x + y] = min(cur[x + y],
+                                                 sub[i * (n + 1) + x] + sub[j * (n + 1) + y] + w * uf.size[j])
+                            elif y:
+                                cur[x + y] = min(cur[x + y],
+                                                 sub[i * (n + 1) + x] + sub[j * (n + 1) + y] + w * uf.size[i])
+                            else:
+                                cur[x + y] = 0
+                    uf.union(i, j)
+                    j = uf.find(j)
+                    for x in range(uf.size[j] + 1):
+                        sub[j * (n + 1) + x] = cur[x]
+
+                    if uf.size[j] == p:
+                        for x in range(uf.size[j] + 1, n + 1):
+                            sub[j * (n + 1) + x] = 0
+                        ac.lst([sub[j * (n + 1) + x] for x in range(1, n + 1)])
+                        break
         return
