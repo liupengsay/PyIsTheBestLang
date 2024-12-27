@@ -17,6 +17,7 @@ P1516（https://www.luogu.com.cn/problem/P1516）single_equation
 =====================================AtCoder======================================
 ABC340F（https://atcoder.jp/contests/abc340/tasks/abc340_f）ex_gcd|equation|math
 ABC186E（https://atcoder.jp/contests/abc186/tasks/abc186_e）gcd_like|solve_equation|extend_gcd|math
+ABC162E（https://atcoder.jp/contests/abc162/tasks/abc162_e）gcd_like|math|inclusion_exclusion|classical
 
 =====================================CodeForces======================================
 1152C（https://codeforces.com/problemset/problem/1152/C）gcd_like|observation|brute_force
@@ -122,3 +123,22 @@ class Solution:
                     uf.union(i, index[x])
                 index[x] = i
         return uf.part
+
+    @staticmethod
+    def abc_162e(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc162/tasks/abc162_e
+        tag: gcd_like|math|inclusion_exclusion|classical
+        """
+        mod = 10 ** 9 + 7
+        n, k = ac.read_list_ints()
+        dp = [0] * (k + 1)
+        for x in range(k, 0, -1):
+            s = k // x
+            dp[x] = pow(s, n, mod)
+            for y in range(x * 2, k + 1, x):
+                dp[x] -= dp[y]
+            dp[x] %= mod
+        ans = sum(x * dp[x] for x in range(1, k + 1)) % mod
+        ac.st(ans)
+        return

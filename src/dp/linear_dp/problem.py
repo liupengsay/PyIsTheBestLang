@@ -179,6 +179,7 @@ ABC214F（https://atcoder.jp/contests/abc214/tasks/abc214_f）prefix|linear_dp
 ABC359D（https://atcoder.jp/contests/abc359/tasks/abc359_d）linear_dp
 ABC366F（https://atcoder.jp/contests/abc366/tasks/abc366_f）linear_dp|greedy|custom_sort|classical
 ABC179D（https://atcoder.jp/contests/abc179/tasks/abc179_d）linear_dp|prefix_sum_opt
+ABC162F（https://atcoder.jp/contests/abc162/tasks/abc162_f）linear_dp|data_range|observation|classical
 
 =====================================AcWing=====================================
 96（https://www.acwing.com/problem/content/98/）liner_dp|classical|hanoi_tower
@@ -2148,7 +2149,6 @@ class Solution:
             ac.st(res)
         return
 
-
     @staticmethod
     def cf_2020e_2(ac=FastIO()):
         """
@@ -2186,3 +2186,27 @@ class Solution:
             ac.st(res)
         return
 
+    @staticmethod
+    def abc_162f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc162/tasks/abc162_f
+        tag: linear_dp|data_range|observation|classical
+        """
+        n = ac.read_int()
+        nums = ac.read_list_ints()
+        dct = {(0, 0): 0}
+        for i, num in enumerate(nums):
+            cur = defaultdict(lambda: -math.inf)
+            for pre, cnt in dct:
+                rest = (n - i) // 2 if pre else (n - i + 1) // 2
+                if cnt + rest >= n // 2:
+                    cur[(0, cnt)] = max(cur[(0, cnt)], dct[(pre, cnt)])
+                    if not pre:
+                        cur[(1, cnt + 1)] = max(cur[(1, cnt + 1)], dct[(pre, cnt)] + num)
+            dct = cur
+        ans = -math.inf
+        for pre, cnt in dct:
+            if cnt == n // 2:
+                ans = max(ans, dct[(pre, cnt)])
+        ac.st(ans)
+        return
