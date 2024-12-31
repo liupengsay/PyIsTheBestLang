@@ -44,6 +44,7 @@ Description：brute force according to the data range
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
 3102（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
 100406（https://leetcode.com/problems/find-the-count-of-good-integers/）brute_force|palindrome_num
+100507（https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）counter|brute_force|hash|preprocess
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -1989,3 +1990,37 @@ class Solution:
 
         ac.st(ans[0])
         return
+
+    @staticmethod
+    def lc_100507(nums: List[int]) -> int:
+        """
+        url: https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
+        tag: counter|brute_force|hash|preprocess
+        """
+        ceil = 1000
+        dp = [[0] * (ceil + 1) for _ in range(ceil + 1)]
+
+        for x in range(1, ceil + 1):
+            for y in range(1, ceil + 1):
+                g = math.gcd(x, y)
+                dp[x][y] = (x // g) * (ceil + 1) + y // g
+
+        n = len(nums)
+        ans = 0
+        post = dict()
+        for r in range(n - 1, -1, -1):
+            for s in range(r + 2, n):
+                post[dp[nums[s]][nums[r]]] += post.get(dp[nums[s]][nums[r]], 0) + 1
+
+        for q in range(n):
+            pre = defaultdict(int)
+            for p in range(q - 1):
+                pre[dp[nums[p]][nums[q]]] += 1
+                ans += post.get(dp[nums[p]][nums[q]], 0)
+            for s in range(q + 3, n):
+                ans -= pre[dp[nums[s]][nums[q + 1]]]
+            for s in range(q + 2, n):
+                ans -= pre[dp[nums[s]][nums[q]]]
+            for s in range(q + 2, n):
+                post[dp[nums[s]][nums[q]]] -= 1
+        return ans

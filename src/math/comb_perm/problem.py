@@ -17,6 +17,7 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1929（https://leetcode.cn/problems/distribute-candies-among-children-ii）comb|inclusion_exclusion|partition_method
 100305（https://leetcode.cn/problems/find-the-n-th-value-after-k-seconds/）yanghui_triangle
 3317（https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/）comb|inclusion_exclusion|brute_force
+100507（https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）math|comb
 
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
@@ -1460,3 +1461,14 @@ class Solution:
             ans %= mod
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_100507(n: int, m: int, k: int) -> int:
+        """
+        url: https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
+        tag: math|comb
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(10 ** 5 + 10, mod)
+        ans = cb.comb(n - 1, k) * m * pow(m - 1, n - k - 1, mod) % mod
+        return ans % mod

@@ -12,6 +12,7 @@ Description：suffix_array
 1923（https://leetcode.cn/problems/longest-common-subpath/）suffix_array|lcs|lcp|monotonic_queue
 1977（https://leetcode-cn.com/problems/number-of-ways-to-separate-numbers/）
 1018（https://leetcode-cn.com/problems/string-matching-in-an-array/）
+100508（https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/）suffix_array|greedy|brute_force
 
 =====================================LuoGu======================================
 P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
@@ -83,11 +84,11 @@ from functools import cmp_to_key
 from typing import List
 
 from src.basis.binary_search.template import BinarySearch
+from src.math.comb_perm.template import Combinatorics
+from src.string.suffix_array.template import SuffixArray
 from src.struct.monotonic_stack.template import Rectangle
 from src.struct.sorted_list.template import SortedList
 from src.struct.sparse_table.template import SparseTable
-from src.math.comb_perm.template import Combinatorics
-from src.string.suffix_array.template import SuffixArray
 from src.util.fast_io import FastIO
 
 
@@ -1533,7 +1534,6 @@ class Solution:
             ac.st("".join(chr(x + ord("a")) for x in ans))
         return
 
-
     @staticmethod
     def lg_p2870(ac=FastIO()):
         """
@@ -1565,3 +1565,47 @@ class Solution:
             res = "".join(chr(x + ord("A")) for x in ans)
             ac.st(res)
         return
+
+    @staticmethod
+    def lc_100508(word: str, m: int) -> str:
+        """
+        url: https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/
+        tag: suffix_array|greedy|brute_force
+        """
+        if m == 1:
+            return word
+
+        n = len(word)
+        ans = (0, 0)
+        s = [ord(w) - ord("a") for w in word]
+        sa, rk, height = SuffixArray().build(s, 26)
+        st = SparseTable(height, min)
+
+        def lcp(ii, jj):
+            ri, rj = rk[ii], rk[jj]
+            if ri > rj:
+                ri, rj = rj, ri
+            if ri == rj:
+                return n - sa[ri]
+            return st.query(ri + 1, rj)
+
+        def compare(a, b):
+            i1, j1 = a
+            i2, j2 = b
+            x = lcp(i1, i2)
+            x = min(x, j1 - i1 + 1)
+            x = min(x, j2 - i2 + 1)
+            if x == j1 - i1 + 1:
+                if x == j2 - i2 + 1:
+                    return -1 if i1 < i2 else 1
+                return -1
+            if x == j2 - i2 + 1:
+                return 1
+            return -1 if s[i1 + x] < s[i2 + x] else 1
+
+        for i in range(n):
+            need = max(0, m - i - 1)
+            cur = (i, n - need - 1)
+            if compare(ans, cur) == -1:
+                ans = cur
+        return word[ans[0]:ans[1] + 1]

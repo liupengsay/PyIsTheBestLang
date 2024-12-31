@@ -144,6 +144,7 @@ P8683（https://www.luogu.com.cn/problem/P8683）construction
 1110E（https://codeforces.com/problemset/problem/1110/E）observation|construction|operation|brain_teaser
 1329B（https://codeforces.com/problemset/problem/1329/B）construction|linear_dp|bit_operation
 1174D（https://codeforces.com/problemset/problem/1174/D）construction|bit_operation|greedy|matrix_prefix_xor
+1993C（https://codeforces.com/contest/1993/problem/C）brain_teaser|observation|data_range|construction
 
 ====================================AtCoder=====================================
 AGC007B（https://atcoder.jp/contests/agc007/tasks/agc007_b）brain_teaser|math|construction

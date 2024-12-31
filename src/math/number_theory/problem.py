@@ -133,7 +133,7 @@ ABC206E（https://atcoder.jp/contests/abc206/tasks/abc206_e）inclusion_exclusio
 ABC190D（https://atcoder.jp/contests/abc190/tasks/abc190_d）num_factor|brute_force
 ABC171C（https://atcoder.jp/contests/abc171/tasks/abc171_c）n_base|classical
 ABC168E（https://atcoder.jp/contests/abc168/tasks/abc168_e）math|linear_scope|counter|multiplication_method
-
+ABC161F（https://atcoder.jp/contests/abc161/tasks/abc161_f）math|brain_teaser|observation|guess_table
 
 =====================================AcWing=====================================
 99（https://www.acwing.com/problem/content/99/）a^b|math|factorization
@@ -2178,4 +2178,23 @@ class Solution:
         ans += zero - 1
         ans %= mod
         ac.st(ans)
+        return
+
+    @staticmethod
+    def abc_161f(ac=FastIO()):
+        """
+        url: https://atcoder.jp/contests/abc161/tasks/abc161_f
+        tag: math|brain_teaser|observation|guess_table
+        """
+        n = ac.read_int()
+        factor = set(NumFactor().get_all_factor(n) + NumFactor().get_all_factor(n - 1))
+        res = 0
+        for k in factor:
+            if k >= 2:
+                cur = n
+                while cur % k == 0 and cur:
+                    cur //= k
+
+                res += cur % k == 1
+        ac.st(res)
         return

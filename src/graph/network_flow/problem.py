@@ -8,6 +8,7 @@ Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_
 1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
 100401（https://leetcode.cn/problems/find-the-power-of-k-size-subarrays-ii/）max_flow_min_cost|classical
 3276（https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/）dinic_max_flow_min_cost|state_dp|classical
+1601（https://leetcode.cn/problems/maximum-number-of-achievable-transfer-requests/description/）fake_source|build_graph|brain_teaser
 
 =====================================LuoGu======================================
 P3376（https://www.luogu.com.cn/problem/P3376）dinic_max_flow
@@ -622,3 +623,25 @@ class Solution:
         ans -= graph.max_flow_min_cut(s, t)
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_1601(n: int, requests: List[List[int]]) -> int:
+        """
+        url: https://leetcode.cn/problems/maximum-number-of-achievable-transfer-requests/description/
+        tag: fake_source|build_graph|brain_teaser
+        """
+        s = n + 1
+        t = n + 2
+        graph = DinicMaxflowMinCost(t)
+        degree = [0] * n
+        for i, j in requests:
+            graph.add_edge(i + 1, j + 1, 1, 1)
+            degree[j] += 1
+            degree[i] -= 1
+        for i in range(n):
+            if degree[i] < 0:
+                graph.add_edge(s, i + 1, -degree[i], 0)
+            elif degree[i] > 0:
+                graph.add_edge(i + 1, t, degree[i], 0)
+        ans = len(requests) - graph.max_flow_min_cost(s, t)[1]
+        return ans

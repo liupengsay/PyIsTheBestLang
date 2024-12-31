@@ -15,6 +15,7 @@ P9199（https://www.luogu.com.cn/problem/P9199）mex|operation
 ===================================CodeForces===================================
 1905D（https://codeforces.com/contest/1905/problem/D）mex|contribution_method|diff_array|implemention|classical
 1364C（https://codeforces.com/problemset/problem/1364/C）mex|construction
+2021B（https://codeforces.com/contest/2021/problem/B）mex_like
 
 ===================================CodeChef===================================
 1（https://www.codechef.com/problems/LIMITMEX）monotonic_stack|contribution_method|brain_teaser|classical
