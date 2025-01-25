@@ -68,6 +68,7 @@ P7158（https://www.luogu.com.cn/problem/P7158）comb
 1207D（https://codeforces.com/problemset/problem/1207/D）inclusion_exclusion
 1288C（https://codeforces.com/problemset/problem/1288/C）comb|math
 1091D（https://codeforces.com/problemset/problem/1091/D）perm|math
+2060F（https://codeforces.com/contest/2060/problem/F）comb|math|factor|euler_series
 
 ====================================AtCoder=====================================
 ARC058B（https://atcoder.jp/contests/abc042/tasks/arc058_b）inclusion_exclusion|comb|counter

@@ -86,6 +86,7 @@ P7043（https://www.luogu.com.cn/problem/P7043）implemention|observation
 1990C（https://codeforces.com/problemset/problem/1990/C）implemention
 2036E（https://codeforces.com/contest/2036/problem/E）matrix_rotate|binary_search
 2036D（https://codeforces.com/contest/2036/problem/D）get_spiral_matrix_loc|implemention|classical
+2051F（https://codeforces.com/contest/2051/problem/F）implemention|low_high|range
 
 ====================================AtCoder=====================================
 ABC334B（https://atcoder.jp/contests/abc334/tasks/abc334_b）implemention|greedy|brute_force
