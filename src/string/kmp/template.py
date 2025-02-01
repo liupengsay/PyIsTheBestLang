@@ -12,10 +12,10 @@ class KMP:
             while j > 0 and s[i] != s[j]:
                 j = pi[j - 1]
             if s[i] == s[j]:  # all pi[i] pi[pi[i]] ... are border
-                j += 1   # all i+1-pi[i] pi[i]+1-pi[pi[i]] ... are circular_section
+                j += 1  # all i+1-pi[i] pi[i]+1-pi[pi[i]] ... are circular_section
             pi[i] = j  # pi[i] <= i also known as next
         # pi[0] = 0
-        return pi    # longest common true prefix_suffix / i+1-nex[i] is shortest circular_section
+        return pi  # longest common true prefix_suffix / i+1-nex[i] is shortest circular_section
 
     @staticmethod
     def z_function(s):
@@ -95,3 +95,8 @@ class KMP:
             return a
         x = f[-1]
         return a + b[x:]
+
+
+class InfiniteStream:
+    def next(self) -> int:
+        pass

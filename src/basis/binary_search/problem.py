@@ -25,6 +25,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
 100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
 3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointers|classical
+2936（https://leetcode.cn/problems/number-of-equal-numbers-blocks/）binary_search
 
 =====================================LuoGu======================================
 P1577（https://www.luogu.com.cn/problem/P1577）math|floor|binary_search

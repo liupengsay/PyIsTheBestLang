@@ -18,6 +18,7 @@ Description：string|prefix_suffix
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greedy|linear_dp
 100433（https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greedy|classical
+3037（https://leetcode.cn/problems/find-pattern-in-infinite-stream-ii/）kmp_automaton|classical
 
 =====================================LuoGu======================================
 P3375（https://www.luogu.com.cn/problem/P3375）longest_prefix_suffix|find
@@ -98,12 +99,12 @@ import math
 from collections import Counter
 from functools import lru_cache
 from itertools import permutations
-from typing import List
+from typing import List, Optional
 
 from src.graph.union_find.template import UnionFind
 from src.math.fast_power.template import MatrixFastPower
 from src.math.number_theory.template import NumFactor
-from src.string.kmp.template import KMP
+from src.string.kmp.template import KMP, InfiniteStream
 from src.struct.segment_tree.template import PointSetRangeMin
 from src.struct.sorted_list.template import SortedList
 from src.tree.tree_dp.template import WeightedTree
@@ -1359,3 +1360,20 @@ class Solution:
             else:
                 return i
         return -1
+
+    @staticmethod
+    def lc_3037(stream: Optional['InfiniteStream'], pattern: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/find-pattern-in-infinite-stream-ii/
+        tag: kmp_automaton|classical
+        """
+        nxt = KMP().kmp_automaton(pattern, 2)
+        ans = 0
+        pre = 0
+        n = len(pattern)
+        while True:
+            pre = nxt[pre*2+stream.next()]
+            if pre == n:
+                break
+            ans += 1
+        return ans - n + 1

@@ -16,6 +16,8 @@ Description：range_add|range_sum
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 2916（https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/）range_add|range_sum|contribution_method|linear_dp
 100317（https://leetcode.cn/problems/peaks-in-array/）tree_array|implemention
+2921（https://leetcode.cn/problems/maximum-profitable-triplets-with-increasing-prices-ii/）tree_array|linear_dp
+3073（https://leetcode.cn/problems/maximum-increasing-triplet-value/）tree_array|linear_dp
 
 =====================================LuoGu======================================
 P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum

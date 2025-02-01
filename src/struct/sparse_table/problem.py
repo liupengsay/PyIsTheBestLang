@@ -12,6 +12,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 3117（https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
 100315（https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical|sparse_table|binary_search|binary_right
 2398（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）sparse_table|binary_search|monotonic_queue
+2941（https://leetcode.cn/problems/maximum-gcd-sum-of-a-subarray/）gcd_like|log_trick|sub_consequence
 
 =====================================LuoGu======================================
 P3865（https://www.luogu.com.cn/problem/P3865）sparse_table|range_max

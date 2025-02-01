@@ -14,7 +14,8 @@ Description：prefix_suffix|counter|index|prefix_sum
 895（https://leetcode.cn/problems/maximum-frequency-stack/description/）hash|stack
 1658（https://leetcode.cn/problems/minimum-operations-to-reduce-x-to-zero/description/）prefix_sum|hash|brain_teaser|greedy
 2227（https://leetcode.cn/problems/encrypt-and-decrypt-strings/）brain_teaser|reverse_thinking
-3138（https://leetcode.cn/problems/minimum-length-of-anagram-concatenation）randon_hash|math|brute_force
+3138（https://leetcode.cn/problems/minimum-length-of-anagram-concatenation）random_hash|math|brute_force
+2950（https://leetcode.cn/problems/number-of-divisible-substrings/）brain_teaser|math|brute_force
 
 ===================================CodeForces===================================
 1692H（https://codeforces.com/contest/1692/problem/H）hash|prefix_min
