@@ -3,6 +3,10 @@ Algorithm：cantor_expands
 Description：the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
 =====================================LuoGu======================================
+3109（https://leetcode.cn/problems/find-the-index-of-permutation/）the_rank_of_perm|cantor_expands
+
+
+=====================================LuoGu======================================
 P3014（https://www.luogu.com.cn/problem/P3014）the_kth_rank_perm|the_rank_of_perm|cantor_expands
 P5367（https://www.luogu.com.cn/problem/P5367）the_kth_rank_perm|the_rank_of_perm|cantor_expands
 
@@ -15,6 +19,7 @@ P5367（https://www.luogu.com.cn/problem/P5367）the_kth_rank_perm|the_rank_of_p
 """
 
 import math
+from typing import List
 
 from src.math.cantor_expands.template import CantorExpands
 from src.math.lexico_graphical_order.template import LexicoGraphicalOrder
@@ -109,3 +114,14 @@ class Solution:
                     ans += 1
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3109(perm: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-index-of-permutation/
+        tag: the_rank_of_perm|cantor_expands
+        """
+        mod = 10 ** 9 + 7
+        ce = CantorExpands(len(perm), mod)
+        ans = ce.array_to_rank(perm)
+        return (ans - 1) % mod
