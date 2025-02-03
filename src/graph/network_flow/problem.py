@@ -6,9 +6,10 @@ Description：dinic_max_flow_min_cut|dinic_max_flow_min_cost|dinic_max_flow_max_
 ====================================LeetCode====================================
 1947（https://leetcode.cn/problems/maximum-compatibility-score-sum/）bipartite_graph|maximum_weight_match|state_compress
 1066（https://leetcode.cn/problems/campus-bikes-ii/）bipartite_graph|minimum_weight_match|km
-100401（https://leetcode.cn/problems/find-the-power-of-k-size-subarrays-ii/）max_flow_min_cost|classical
+3255（https://leetcode.cn/problems/find-the-power-of-k-size-subarrays-ii/）max_flow_min_cost|classical
 3276（https://leetcode.cn/problems/select-cells-in-grid-with-maximum-score/）dinic_max_flow_min_cost|state_dp|classical
 1601（https://leetcode.cn/problems/maximum-number-of-achievable-transfer-requests/description/）fake_source|build_graph|brain_teaser
+3385（https://leetcode.cn/problems/minimum-time-to-break-locks-ii/）network_flow|max_flow_min_cost|classical
 
 =====================================LuoGu======================================
 P3376（https://www.luogu.com.cn/problem/P3376）dinic_max_flow
@@ -483,7 +484,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100401(board: List[List[int]]) -> int:
+    def lc_3255(board: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/maximum-value-sum-by-placing-three-rooks-ii/description/
         tag: max_flow_min_cost|classical
@@ -644,4 +645,24 @@ class Solution:
             elif degree[i] > 0:
                 graph.add_edge(i + 1, t, degree[i], 0)
         ans = len(requests) - graph.max_flow_min_cost(s, t)[1]
+        return ans
+
+    @staticmethod
+    def lc_3385(strength: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-time-to-break-locks-ii/
+        tag：network_flow|max_flow_min_cost|classical
+        """
+        n = len(strength)
+        k = 1
+        start = 2 * n + 1
+        end = 2 * n + 2
+        flow = DinicMaxflowMinCost(end)
+        for i in range(1, n + 1):
+            flow.add_edge(start, i, 1, 0)
+            flow.add_edge(n + i, end, 1, 0)
+            for j in range(1, n + 1):
+                x = 1 + k * (j - 1)
+                flow.add_edge(i, n + j, 1, (strength[j] + x - 1) // x)
+        ans = flow.max_flow_min_cost(start, end)[1]
         return ans

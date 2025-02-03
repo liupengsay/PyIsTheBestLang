@@ -18,6 +18,7 @@ Description：multi_source_bfs|bilateral_bfs|0-1bfs|bilateral_bfs|a-star|heurist
 1298（https://leetcode.cn/problems/maximum-candies-you-can-get-from-boxes/）bfs
 928（https://leetcode.cn/problems/minimize-malware-spread-ii/description/）brute_force|bfs
 994（https://leetcode.cn/problems/rotting-oranges/description/）deque_bfs|implemention
+3383（https://leetcode.cn/problems/minimum-runes-to-add-to-cast-spell/）bfs|union_find
 
 =====================================LuoGu======================================
 P1144（https://www.luogu.com.cn/problem/P1144）number_of_shortest_path
@@ -2378,8 +2379,8 @@ class Solution:
                 d = visit[x][y] + 1
                 for dx, dy in ind:
                     px, py = x, y
-                    while 0 <= px + dx < n and 0 <= py + dy < n and grid[px + dx][py + dy] != "#" and visit[px + dx][
-                        py + dy] >= d:
+                    while (0 <= px + dx < n and 0 <= py + dy < n and grid[px + dx][py + dy] != "#"
+                           and visit[px + dx][py + dy] >= d):
                         px, py = px + dx, py + dy
                         if visit[px][py] == math.inf:
                             visit[px][py] = d
@@ -2995,11 +2996,11 @@ class Solution:
                 stack = [src]
                 while stack:
                     nex = []
-                    for u in stack:
-                        i = self.point_head[u]
+                    for uu in stack:
+                        i = self.point_head[uu]
                         while i:
                             j = self.edge_to[i]
-                            dj = dis[u] + 1
+                            dj = dis[uu] + 1
                             if dj < dis[j]:
                                 dis[j] = dj
                                 if j != target:
@@ -3143,3 +3144,42 @@ class Solution:
         ans = visit[x2 * n + y2]
         ac.st(ans if ans < inf else -1)
         return
+
+    @staticmethod
+    def lc_3383(n: int, crystals: List[int], flow_from: List[int], flow_to: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-runes-to-add-to-cast-spell/
+        tag: bfs|union_find
+        """
+        dct = [[] for _ in range(n)]
+        degree = [0] * n
+        for a, b in zip(flow_from, flow_to):
+            degree[b] += 1
+            dct[a].append(b)
+        visit = [0] * n
+        stack = crystals[:]
+        for i in stack:
+            visit[i] = 1
+        ans = 0
+        for i in range(n):
+            if not degree[i] and not visit[i]:
+                stack.append(i)
+                visit[i] = 1
+                ans += 1
+        while stack:
+            nex = []
+            for i in stack:
+                for j in dct[i]:
+                    if not visit[j]:
+                        visit[j] = 1
+                        nex.append(j)
+            stack = nex[:]
+        uf = UnionFind(n)
+        for a, b in zip(flow_from, flow_to):
+            if not visit[b] and not visit[a]:
+                uf.union(a, b)
+        group = uf.get_root_size()
+        for g in group:
+            if not visit[g]:
+                ans += 1
+        return ans

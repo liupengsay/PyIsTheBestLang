@@ -27,6 +27,7 @@ Description：prefix_suffix|maximum|minimum|second_maximum
 2454（https://leetcode.cn/problems/next-greater-element-iv/description/）monotonic_stack|post_second_larger
 2866（https://leetcode.cn/problems/beautiful-towers-ii/）monotonic_stack|greedy
 3113（https://leetcode.cn/problems/find-the-number-of-subarrays-where-boundary-elements-are-maximum/）brute_force|two_pointer|monotonic_stack|classical）
+3359（https://leetcode.cn/problems/find-sorted-submatrices-with-maximum-element-at-most-k/）monotonic_stack|classical
 
 =====================================LuoGu======================================
 P1950（https://www.luogu.com.cn/problem/P1950）brute_force|monotonic_stack|sub_matrix|counter
@@ -1263,3 +1264,28 @@ class Solution:
             ans -= sum(nums[i] * (i - pre[i] + 1) * (post[i] - i + 1) for i in range(n))
             ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3359(grid: List[List[int]], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-sorted-submatrices-with-maximum-element-at-most-k/
+        tag: monotonic_stack|classical
+        """
+        m, n = len(grid), len(grid[0])
+        ans = 0
+        for j in range(n):
+            pre = 0
+            for i in range(m):
+                if grid[i][j] <= k:
+                    pre += 1
+                else:
+                    pre = 0
+                ans += pre
+        post = [[0] * n for _ in range(m)]
+        for j in range(n - 2, -1, -1):
+            lst = []
+            for i in range(m):
+                post[i][j] = post[i][j + 1] + 1 if k >= grid[i][j] >= grid[i][j + 1] else 0
+                lst.append(post[i][j])
+            ans += Rectangle().compute_number(lst)
+        return ans

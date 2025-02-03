@@ -2,7 +2,6 @@ class LyndonDecomposition:
     def __init__(self):
         return
 
-
     @staticmethod
     def solve_by_duval(s):
         """template of duval algorithm"""
@@ -43,7 +42,7 @@ class LyndonDecomposition:
     @staticmethod
     def min_express(sec):
         """template of minimum lexicographic expression"""
-        n = len(sec)
+        n = len(sec)  # min_suffix
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
             if sec[(i + k) % n] == sec[(j + k) % n]:
@@ -62,7 +61,7 @@ class LyndonDecomposition:
     @staticmethod
     def max_express(sec):
         """template of maximum lexicographic expression"""
-        n = len(sec)
+        n = len(sec)  # max_suffix
         k, i, j = 0, 0, 1
         while k < n and i < n and j < n:
             if sec[(i + k) % n] == sec[(j + k) % n]:
@@ -77,3 +76,17 @@ class LyndonDecomposition:
                 k = 0
         i = i if i < j else j
         return i, sec[i:] + sec[:i]
+
+    @staticmethod
+    def max_suffix(s):
+        """template of maximum lexicographic suffix"""
+        i, j, n = 0, 1, len(s)
+        while j < n:
+            k = 0
+            while j + k < n and s[i + k] == s[j + k]:
+                k += 1
+            if j + k < n and s[i + k] < s[j + k]:
+                i, j = j, max(j + 1, i + k + 1)
+            else:
+                j = j + k + 1
+        return i

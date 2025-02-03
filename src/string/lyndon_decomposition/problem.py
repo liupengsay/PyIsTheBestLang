@@ -4,6 +4,7 @@ Description：rotate_string|lexicographical_order
 
 ====================================LeetCode====================================
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）brain_teaser|maximum_expression|minimum_expression|maximum_expression
+3406（https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-ii/）lyndon_decomposition|max_suffix
 
 =====================================LuoGu======================================
 P1368（https://www.luogu.com.cn/problem/P1368）lyndon_decomposition|min_express
@@ -29,13 +30,23 @@ class Solution:
         return
 
     @staticmethod
-    def lc_1163(s: str) -> str:
+    def lc_1163_1(s: str) -> str:
         """
         url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
         tag: brain_teaser|maximum_expression|minimum_expression|maximum_expression
         """
         ld = LyndonDecomposition()
         ans = ld.max_express(s + "0")[0]
+        return s[ans:]
+
+    @staticmethod
+    def lc_1163_2(s: str) -> str:
+        """
+        url: https://leetcode.cn/problems/last-substring-in-lexicographical-order/
+        tag: brain_teaser|maximum_expression|minimum_expression|maximum_expression
+        """
+        ld = LyndonDecomposition()
+        ans = ld.max_suffix(s)
         return s[ans:]
 
     @staticmethod
@@ -100,3 +111,29 @@ class Solution:
                 ans = cur
         ac.st("".join(str(x) for x in ans))
         return
+
+    @staticmethod
+    def lc_3406_1(s: str, num_friends: int) -> str:
+        """
+        url: https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-ii/
+        tag: lyndon_decomposition|max_suffix
+        """
+        if num_friends == 1:
+            return s
+        k = len(s) - num_friends + 1
+        ld = LyndonDecomposition()
+        i = ld.max_express(s + "a")[0]
+        return s[i:i + k]
+
+    @staticmethod
+    def lc_3406_2(s: str, num_friends: int) -> str:
+        """
+        url: https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-ii/
+        tag: lyndon_decomposition|max_suffix
+        """
+        if num_friends == 1:
+            return s
+        k = len(s) - num_friends + 1
+        ld = LyndonDecomposition()
+        i = ld.max_suffix(s)
+        return s[i:i + k]
