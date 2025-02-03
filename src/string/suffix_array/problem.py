@@ -12,7 +12,7 @@ Description：suffix_array
 1923（https://leetcode.cn/problems/longest-common-subpath/）suffix_array|lcs|lcp|monotonic_queue
 1977（https://leetcode-cn.com/problems/number-of-ways-to-separate-numbers/）
 1018（https://leetcode-cn.com/problems/string-matching-in-an-array/）
-100508（https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/）suffix_array|greedy|brute_force
+100508（https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-i/）suffix_array|greedy|brute_force
 
 =====================================LuoGu======================================
 P3809（https://www.luogu.com.cn/problem/P3809）suffix_array
@@ -1569,7 +1569,7 @@ class Solution:
     @staticmethod
     def lc_100508(word: str, m: int) -> str:
         """
-        url: https://leetcode.com/problems/find-the-lexicographically-largest-string-from-the-box-i/
+        url: https://leetcode.cn/problems/find-the-lexicographically-largest-string-from-the-box-i/
         tag: suffix_array|greedy|brute_force
         """
         if m == 1:

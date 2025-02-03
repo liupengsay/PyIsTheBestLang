@@ -19,7 +19,7 @@ Description：range_sum|range_min|range_add|range_change|range_max|dynamic_segme
 1622（https://leetcode.cn/problems/fancy-sequence/）segment_tree|range_affine|range_sum
 100314（https://leetcode.cn/problems/block-placement-queries/）point_set|range_max_non_emp_con_sub_sum
 3165（https://leetcode.cn/problems/maximum-sum-of-subsequence-with-non-adjacent-elements）point_set|range_max_sub_sum_alter
-100514（https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/）point_set|range_min_count
+100514（https://leetcode.cn/problems/maximum-area-rectangle-with-point-constraints-ii/）point_set|range_min_count
 
 =====================================LuoGu======================================
 P2846（https://www.luogu.com.cn/problem/P2846）segment_tree|range_reverse|range_sum
@@ -4206,7 +4206,7 @@ class Solution:
     @staticmethod
     def lc_100514(xs: List[int], ys: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/
+        url: https://leetcode.cn/problems/maximum-area-rectangle-with-point-constraints-ii/
         tag: point_set|range_min_count
         """
         points = [(x, y) for x, y in zip(xs, ys)]

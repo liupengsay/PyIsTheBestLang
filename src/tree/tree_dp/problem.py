@@ -21,7 +21,7 @@ Description：reroot_dp|up_to_down|down_to_up
 100047（https://leetcode.cn/problems/count-valid-paths-in-a-tree/description/）tree_dp|union_find|bfs
 3241（https://leetcode.cn/problems/time-taken-to-mark-all-nodes/）reroot_dp|classical
 100430（https://leetcode.cn/problems/find-subtree-sizes-after-changes/）tree_dp|build_graph
-3367（https://leetcode.com/problems/maximize-sum-of-weights-after-edge-removals/）tree_dp|greedy
+3367（https://leetcode.cn/problems/maximize-sum-of-weights-after-edge-removals/）tree_dp|greedy
 
 =====================================LuoGu======================================
 P1395（https://www.luogu.com.cn/problem/P1395）tree_dis|tree_centroid|reroot_dp|classical|up_to_down|down_to_up
@@ -2579,7 +2579,7 @@ class Solution:
     @staticmethod
     def lc_3367(edges: List[List[int]], k: int) -> int:
         """
-        url: https://leetcode.com/problems/maximize-sum-of-weights-after-edge-removals/
+        url: https://leetcode.cn/problems/maximize-sum-of-weights-after-edge-removals/
         tag: tree_dp|greedy
         """
         n = len(edges) + 1

@@ -23,6 +23,7 @@ minimum_group_decreasing_subsequence_partition=length_of_longest_non_decreasing_
 2945（https://leetcode.cn/problems/find-maximum-non-decreasing-array-length/description/）linear_dp|deque|greedy|prefix_sum
 1035（https://leetcode.cn/problems/uncrossed-lines/description/）lcs|classical
 3288（https://leetcode.cn/problems/length-of-the-longest-increasing-path/）lis|partial_order|classical
+3231（https://leetcode.cn/problems/minimum-number-of-increasing-subsequence-to-be-removed/）definitely_not_increase|lis|dilworth
 
 ===================================CodeForces===================================
 1682C（https://codeforces.com/contest/1682/problem/C）lis|lds|greedy|counter
@@ -65,12 +66,11 @@ import math
 import random
 from collections import deque, Counter
 from itertools import accumulate
-
 from typing import List
 
+from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.struct.segment_tree.template import RangeAscendRangeMax
 from src.struct.tree_array.template import PointAscendPreMax
-from src.greedy.longest_increasing_subsequence.template import LongestIncreasingSubsequence, LcsComputeByLis
 from src.tree.tree_dp.template import WeightedTree
 from src.util.fast_io import FastIO
 
@@ -534,7 +534,7 @@ class Solution:
                 ans[i] = "2"
         ac.st("".join(ans))
         return
-    
+
     @staticmethod
     def cf_486e_2(ac=FastIO()):
         """
@@ -809,3 +809,11 @@ class Solution:
         for x in ans:
             ac.st(x)
         return
+
+    @staticmethod
+    def lc_3231(nums: List[int]) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-number-of-increasing-subsequence-to-be-removed/
+        tag: definitely_not_increase|lis|dilworth
+        """
+        return LongestIncreasingSubsequence().definitely_not_increase(nums)

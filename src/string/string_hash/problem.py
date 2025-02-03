@@ -16,7 +16,7 @@ Description：counter|sliding_window|double_random_mod|hash_crush
 187（https://leetcode-cn.com/problems/repeated-dna-sequences/）
 2851（https://leetcode.cn/problems/string-transformation/）string_hash|kmp|matrix_dp|matrix_fast_power
 2977（https://leetcode.cn/problems/minimum-cost-to-convert-string-ii/）string_hash|dp|dijkstra|trie
-100208（https://leetcode.com/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/）string_hash|brute_force
+100208（https://leetcode.cn/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/）string_hash|brute_force
 3327（https://leetcode.cn/problems/check-if-dfs-strings-are-palindromes/）dfs_order|manacher|palindrome|string_hash_single|classical
 
 =====================================LuoGu======================================
@@ -1380,7 +1380,7 @@ class Solution:
     @staticmethod
     def lc_100208(words: List[str]) -> int:
         """
-        url: https://leetcode.com/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/
+        url: https://leetcode.cn/contest/weekly-contest-385/problems/count-prefix-and-suffix-pairs-ii/
         tag: string_hash|brute_force
         """
         ans = 0

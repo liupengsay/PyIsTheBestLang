@@ -9,7 +9,7 @@ Description：static_range|range_query|range_max|range_min|range_gcd|range_and|r
 2470（https://leetcode.cn/problems/number-of-subarrays-with-lcm-equal-to-k/）range_lcm|counter|sub_consequence
 2654（https://leetcode.cn/problems/minimum-number-of-operations-to-make-all-array-elements-equal-to-1/）range_gcd|sub_consequence
 2836（https://leetcode.cn/problems/maximize-value-of-function-in-a-ball-passing-game/description/）multiplication_method|classical
-3117（https://leetcode.com/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
+3117（https://leetcode.cn/problems/minimum-sum-of-values-by-dividing-array/）range_and|linear_dp|classical
 100315（https://leetcode.cn/problems/find-subarray-with-bitwise-and-closest-to-k/）range_and|bit_operation|classical|sparse_table|binary_search|binary_right
 2398（https://leetcode.cn/problems/maximum-number-of-robots-within-budget/）sparse_table|binary_search|monotonic_queue
 2941（https://leetcode.cn/problems/maximum-gcd-sum-of-a-subarray/）gcd_like|log_trick|sub_consequence
@@ -506,7 +506,7 @@ class Solution:
     @staticmethod
     def lc_3117(nums: List[int], and_values: List[int]) -> int:
         """
-        url: https://leetcode.com/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/
+        url: https://leetcode.cn/contest/weekly-contest-393/problems/minimum-sum-of-values-by-dividing-array/
         tag: range_and|linear_dp|classical
         """
         n = len(nums)

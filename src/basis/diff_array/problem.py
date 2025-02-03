@@ -32,9 +32,10 @@ Description：prefix_sum|prefix_sum_of_prefix_sum|suffix_sum
 1703（https://leetcode.cn/problems/minimum-adjacent-swaps-for-k-consecutive-ones/）prefix_sum|median|greedy|1520E
 2167（https://leetcode.cn/problems/minimum-time-to-remove-all-cars-containing-illegal-goods/）math|prefix_sum|brute_force
 2983（https://leetcode.cn/problems/palindrome-rearrangement-queries/）brain_teaser|prefix_sum|brute_force|range_intersection
-3017（https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
+3017（https://leetcode.cn/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/）diff_array|classical
 100311（https://leetcode.cn/contest/weekly-contest-400/problems/count-days-without-meetings/）discretization_diff_array
-3362（https://leetcode.com/problems/zero-array-transformation-iii/）diff_array|greedy|implemention
+3362（https://leetcode.cn/problems/zero-array-transformation-iii/）diff_array|greedy|implemention
+3279（https://leetcode.cn/problems/maximum-total-area-occupied-by-pistons/）diff_array|brain_teaser
 
 =====================================LuoGu======================================
 list?user=739032&status=12&page=15（https://www.luogu.com.cn/record/list?user=739032&status=12&page=15）suffix_sum
@@ -1690,7 +1691,7 @@ class Solution:
     @staticmethod
     def lc_3017(n: int, x: int, y: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/
+        url: https://leetcode.cn/problems/count-the-number-of-houses-at-a-certain-distance-ii/description/
         tag: diff_array|classical
         """
 
@@ -2244,7 +2245,7 @@ class Solution:
     @staticmethod
     def lc_3362(nums: List[int], queries: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/zero-array-transformation-iii/
+        url: https://leetcode.cn/problems/zero-array-transformation-iii/
         tag: diff_array|greedy|implemention
         """
         n = len(nums)

@@ -16,9 +16,9 @@ Description：range_query|binary_search
 2250（https://leetcode.cn/problems/count-number-of-rectangles-containing-each-point/）offline_query|pointer|sort|binary_search
 2426（https://leetcode.cn/problems/number-of-pairs-satisfying-inequality/）math|sorted_list|binary_search
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
-3013（https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
+3013（https://leetcode.cn/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query）
-100441（https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/）sorted_list|top_k_sum|bit_operation
+100441（https://leetcode.cn/problems/find-x-sum-of-all-k-long-subarrays-ii/）sorted_list|top_k_sum|bit_operation
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
@@ -432,7 +432,7 @@ class Solution:
     @staticmethod
     def lc_3013(nums: List[int], k: int, dist: int) -> int:
         """
-        url: https://leetcode.com/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/
+        url: https://leetcode.cn/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/
         tag: sorted_list|top_k_sum
         """
         n = len(nums)
@@ -752,7 +752,7 @@ class Solution:
     @staticmethod
     def lc_100442(nums: List[int], k: int, x: int) -> List[int]:
         """
-        url: https://leetcode.com/problems/find-x-sum-of-all-k-long-subarrays-ii/
+        url: https://leetcode.cn/problems/find-x-sum-of-all-k-long-subarrays-ii/
         tag: top_k_sum|bit_operation
         """
         ans = []

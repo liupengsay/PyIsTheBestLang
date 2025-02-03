@@ -9,8 +9,8 @@ Description：greedy|sort|construction|specific_plan
 1982（https://leetcode.cn/problems/find-array-given-subset-sums/）construction
 1253（https://leetcode.cn/problems/reconstruct-a-2-row-binary-matrix/）construction|greedy|brain_teaser
 2573（https://leetcode.cn/problems/find-the-string-with-lcp/）lcp|construction|union_find
-100452（https://leetcode.com/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greedy|implemention|specific_plan|lexicographical_order
-100431（https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/）construction|unweighted_graph
+100452（https://leetcode.cn/problems/find-the-lexicographically-smallest-valid-sequence/description/）dp|greedy|implemention|specific_plan|lexicographical_order
+100431（https://leetcode.cn/problems/construct-2d-grid-matching-graph-layout/）construction|unweighted_graph
 
 =====================================LuoGu======================================
 P8846（https://www.luogu.com.cn/problem/P8846）greedy|construction
@@ -1228,7 +1228,7 @@ class Solution:
     @staticmethod
     def lc_100431(n: int, edges: List[List[int]]) -> List[List[int]]:
         """
-        url: https://leetcode.com/problems/construct-2d-grid-matching-graph-layout/
+        url: https://leetcode.cn/problems/construct-2d-grid-matching-graph-layout/
         tag: construction|unweighted_graph
         """
         degree = [0] * n

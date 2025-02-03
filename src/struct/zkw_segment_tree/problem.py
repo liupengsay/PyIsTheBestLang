@@ -229,7 +229,7 @@ class Solution:
     @staticmethod
     def lc_3382(x_coord: List[int], y_coord: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/maximum-area-rectangle-with-point-constraints-ii/description/
+        url: https://leetcode.cn/problems/maximum-area-rectangle-with-point-constraints-ii/description/
         tag: PointUpdateRangeQuery
         """
         points = [(x, y) for x, y in zip(x_coord, y_coord)]

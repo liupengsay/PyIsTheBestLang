@@ -15,9 +15,10 @@ Lucas:（comb(n, m)%p = comb(n%p, m%p)*comb(n//p, m//p)）%p
 1866（https://leetcode.cn/problems/number-of-ways-to-rearrange-sticks-with-k-sticks-visible/）stirling_number|first_kind_stirling_number
 1916（https://leetcode.cn/problems/count-ways-to-build-rooms-in-an-ant-colony/）tree_dp|math|comb|counter
 1929（https://leetcode.cn/problems/distribute-candies-among-children-ii）comb|inclusion_exclusion|partition_method
-100305（https://leetcode.cn/problems/find-the-n-th-value-after-k-seconds/）yanghui_triangle
-3317（https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/）comb|inclusion_exclusion|brute_force
-100507（https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）math|comb
+3179（https://leetcode.cn/problems/find-the-n-th-value-after-k-seconds/）yanghui_triangle
+3317（https://leetcode.cn/problems/find-the-number-of-possible-ways-for-an-event/）comb|inclusion_exclusion|brute_force
+3405（https://leetcode.cn/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）math|comb
+3339（https://leetcode.cn/problems/find-the-number-of-k-even-arrays/）comb_perm|counter|partition_method|math|odd_even|classical
 
 =====================================LuoGu======================================
 P4071（https://www.luogu.com.cn/problem/P4071）mod_reverse|comb|perm|recursion|fault_perm
@@ -1358,7 +1359,7 @@ class Solution:
     @staticmethod
     def lc_3317(n: int, x: int, y: int) -> int:
         """
-        url: https://leetcode.com/problems/find-the-number-of-possible-ways-for-an-event/
+        url: https://leetcode.cn/problems/find-the-number-of-possible-ways-for-an-event/
         tag: comb|inclusion_exclusion|brute_force
         """
         mod = 10 ** 9 + 7
@@ -1464,12 +1465,39 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100507(n: int, m: int, k: int) -> int:
+    def lc_3405(n: int, m: int, k: int) -> int:
         """
-        url: https://leetcode.com/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
+        url: https://leetcode.cn/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
         tag: math|comb
         """
         mod = 10 ** 9 + 7
         cb = Combinatorics(10 ** 5 + 10, mod)
         ans = cb.comb(n - 1, k) * m * pow(m - 1, n - k - 1, mod) % mod
         return ans % mod
+
+    @staticmethod
+    def lc_3339(n: int, m: int, k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/find-the-number-of-k-even-arrays/
+        tag: comb_perm|counter|partition_method|math|odd_even|classical
+        """
+        mod = 10 ** 9 + 7
+        cb = Combinatorics(751, mod)
+        even = m // 2
+        odd = m - even
+        odd_pow = [1] * (n + 1)
+        even_pow = [1] * (n + 1)
+        for i in range(1, n + 1):
+            odd_pow[i] = odd_pow[i - 1] * odd % mod
+            even_pow[i] = even_pow[i - 1] * even % mod
+        ans = 0 if k else odd_pow[n]
+
+        for block_cnt in range(1, n + 1):
+            even_cnt = block_cnt + k
+            if even_cnt + block_cnt - 1 > n:
+                break
+            cur = cb.comb(even_cnt - 1, block_cnt - 1) * cb.comb(n - even_cnt + 1, block_cnt) % mod
+            cur *= even_pow[even_cnt] * odd_pow[n - even_cnt] % mod
+            ans += cur
+            ans %= mod
+        return ans

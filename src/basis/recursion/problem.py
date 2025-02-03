@@ -9,7 +9,7 @@ Description：recursion|iteration
 932（https://leetcode.cn/problems/beautiful-array/description/）recursion|divide_and_conquer|construction
 889（https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-postorder-traversal/）recursion|divide_and_conquer|construction
 1028（https://leetcode.cn/problems/recover-a-tree-from-preorder-traversal/description/）pre_order|recursion|construction|2-tree
-100447（https://leetcode.com/problems/find-the-k-th-character-in-string-game-ii/）recursion|implemention|data_range|reverse_order
+100447（https://leetcode.cn/problems/find-the-k-th-character-in-string-game-ii/）recursion|implemention|data_range|reverse_order
 
 =====================================LuoGu======================================
 P1911（https://www.luogu.com.cn/problem/P1911）4-tree|recursion|matrix

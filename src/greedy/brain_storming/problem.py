@@ -45,11 +45,13 @@ Description：brain_teaser
 1946（https://leetcode.cn/problems/largest-number-after-mutating-substring/description/）greedy|classical
 1540（https://leetcode.cn/problems/can-convert-string-in-k-moves/）greedy|brain_teaser|pointer
 1121（https://leetcode.cn/problems/divide-array-into-increasing-sequences/description/）brain_teaser|greedy|classical|maximum
-3012（https://leetcode.com/problems/minimize-length-of-array-using-operations/）brain_teaser|peishu_theorem|hard|greedy
+3012（https://leetcode.cn/problems/minimize-length-of-array-using-operations/）brain_teaser|peishu_theorem|hard|greedy
 100197（https://leetcode.cn/problems/earliest-second-to-mark-indices-ii/description/）regret_heapq|binary_search|brain_teaser|classical
 100227（https://leetcode.cn/problems/minimum-moves-to-pick-k-ones/description/）median_greedy|brute_force|implemention
 100367（https://leetcode.cn/problems/minimum-cost-for-cutting-cake-ii/description/）sort|greedy|big_to_small
 2576（https://leetcode.cn/problems/find-the-maximum-number-of-marked-indices）observation|greedy|classical
+3189（https://leetcode.cn/problems/minimum-moves-to-get-a-peaceful-board/）greedy
+3221（https://leetcode.cn/problems/maximum-array-hopping-score-ii/）greedy|monotonic_stack
 
 =====================================LuoGu======================================
 P1031（https://www.luogu.com.cn/problem/P1031）greedy|prefix_sum|counter
@@ -1461,7 +1463,7 @@ class Solution:
     @staticmethod
     def lc_3012(nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/minimize-length-of-array-using-operations/
+        url: https://leetcode.cn/problems/minimize-length-of-array-using-operations/
         tag: brain_teaser|peishu_theorem|hard|greedy
         """
         low = min(nums)

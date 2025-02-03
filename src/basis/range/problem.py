@@ -18,7 +18,8 @@ minimum_point_cover_range|minimum_group_range_disjoint|maximum_point_cover_range
 757（https://leetcode.cn/problems/set-intersection-size-at-least-two/）greedy|minimum_point_cover_range
 2589（https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/）greedy|minimum_point_cover_range
 32（https://leetcode.cn/problems/t3fKg1/）greedy|minimum_point_cover_range
-100311（https://leetcode.cn/problems/count-days-without-meetings）range_merge_to_disjoint
+3169（https://leetcode.cn/problems/count-days-without-meetings）range_merge_to_disjoint
+3323（https://leetcode.cn/problems/minimize-connected-groups-by-inserting-interval/）range_merge_to_disjoint|two_pointer|classical
 
 =====================================LuoGu======================================
 P2082（https://www.luogu.com.cn/problem/P2082）range_merge_to_disjoint
@@ -448,3 +449,20 @@ class Solution:
                 pre = high
         ac.st(ans)
         return
+
+    @staticmethod
+    def lc_3323(intervals: List[List[int]], k: int) -> int:
+        """"
+        url: https://leetcode.cn/problems/minimize-connected-groups-by-inserting-interval/
+        tag: range_merge_to_disjoint|two_pointer|classical
+        """
+        lst = Range().range_merge_to_disjoint(intervals)
+        ans = len(lst)
+        n = len(lst)
+        cur = j = 0
+        for i in range(n):
+            while j < n and lst[j][0] - lst[i][1] <= k:
+                j += 1
+            cur = max(cur, j - i)
+        ans -= cur
+        return ans

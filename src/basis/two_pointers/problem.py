@@ -27,7 +27,7 @@ Description：sliding_window|two_pointers|center_extension_method
 1712（https://leetcode.cn/problems/ways-to-split-array-into-three-subarrays/description/）three_pointers|fast_slow_pointers
 948（https://leetcode.cn/problems/bag-of-tokens/）two_pointers|greedy
 2953（https://leetcode.cn/problems/count-complete-substrings/）two_pointers|brute_force
-100424（https://leetcode.com/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/）two_pointers|brute_force
+100424（https://leetcode.cn/problems/count-of-substrings-containing-every-vowel-and-k-consonants-ii/）two_pointers|brute_force
 3261（https://leetcode.cn/problems/count-substrings-that-satisfy-k-constraint-ii）two_pointers|prefix_sum|classical
 
 =====================================LuoGu======================================

@@ -8,7 +8,7 @@ Description：mod|power|doubling|multiplication_method
 2851（https://leetcode.cn/problems/string-transformation/description/）kmp|matrix_fast_power|classical
 1622（https://leetcode.cn/problems/fancy-sequence/description/）reverse_thinking|mod_reverse|inclusion_exclusion
 552（https://leetcode.cn/problems/student-attendance-record-ii）matrix_fast_power|dp
-100472（https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/）matrix_fast_power|classical
+100472（https://leetcode.cn/problems/total-characters-in-string-after-transformations-ii/）matrix_fast_power|classical
 
 =====================================LuoGu======================================
 P1630（https://www.luogu.com.cn/problem/P1630）fast_power|counter|mod
@@ -465,7 +465,7 @@ class Solution:
     @staticmethod
     def lc_100472(s: str, t: int, nums: List[int]) -> int:
         """
-        url: https://leetcode.com/problems/total-characters-in-string-after-transformations-ii/
+        url: https://leetcode.cn/problems/total-characters-in-string-after-transformations-ii/
         tag: matrix_fast_power|classical
         """
         cnt = [0] * 26

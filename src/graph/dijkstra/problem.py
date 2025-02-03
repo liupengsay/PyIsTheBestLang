@@ -23,7 +23,7 @@ Description：limited_shortest_path|layered_dijkstra|directed_smallest_circle|un
 882（https://leetcode.cn/problems/reachable-nodes-in-subdivided-graph/description/）dijkstra
 2577（https://leetcode.cn/problems/minimum-time-to-visit-a-cell-in-a-grid/）dijkstra|matrix
 2065（https://leetcode.cn/problems/maximum-path-quality-of-a-graph/）back_trace|dijkstra|shortest_path|prune
-3112（https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/description/）dijkstra|template|classical
+3112（https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes/description/）dijkstra|template|classical
 
 =====================================LuoGu======================================
 P3371（https://www.luogu.com.cn/problem/P3371）shortest_path
@@ -2095,7 +2095,7 @@ class Solution:
     @staticmethod
     def lc_3112(n: int, edges: List[List[int]], disappear: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/minimum-time-to-visit-disappearing-nodes/description/
+        url: https://leetcode.cn/problems/minimum-time-to-visit-disappearing-nodes/description/
         tag: dijkstra|template|classical
         """
         dct = [[] for _ in range(n)]

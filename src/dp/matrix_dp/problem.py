@@ -43,12 +43,14 @@ Description：matrix_prefix_sum|sub_matrix_sum|maximum_square|edit_distance|lcs|
 100327（https://leetcode.cn/problems/find-the-maximum-length-of-a-good-subsequence-ii/）matrix_dp|bag_dp|brain_teaser
 100358（https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/）matrix_dp|implemention
 3098（https://leetcode.cn/problems/find-the-sum-of-subsequence-powers）matrix_dp
-3316（https://leetcode.com/problems/find-maximum-removals-from-source-string）matrix_dp
+3316（https://leetcode.cn/problems/find-maximum-removals-from-source-string）matrix_dp
 3193（https://leetcode.cn/problems/count-the-number-of-inversions）matrix_dp|prefix_opt
 100462（https://leetcode.cn/problems/find-the-original-typed-string-ii/）matrix_dp|prefix_opt|inclusion_exclusion|data_range
-3343（https://leetcode.com/problems/count-number-of-balanced-permutations/）matrix_dp|comb
-3363（https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/）matrix_dp|observation|classical
+3343（https://leetcode.cn/problems/count-number-of-balanced-permutations/）matrix_dp|comb
+3363（https://leetcode.cn/problems/find-the-maximum-number-of-fruits-collected/）matrix_dp|observation|classical
 3388（https://leetcode.cn/problems/count-beautiful-splits-in-an-array/）matrix_dp|lcs|classical
+3135（https://leetcode.cn/problems/equalize-strings-by-adding-or-removing-characters-at-ends/）lcs|longest_common_substring
+3269（https://leetcode.cn/problems/constructing-two-increasing-arrays/）matrix_dp|odd_even|classical
 
 =====================================LuoGu======================================
 P2701（https://www.luogu.com.cn/problem/P2701）maximum_square|matrix_dp|brute_force|classical|O(n^3)|hollow
@@ -3806,7 +3808,7 @@ class Solution:
     @staticmethod
     def lc_3363(fruits: List[List[int]]) -> int:
         """
-        url: https://leetcode.com/problems/find-the-maximum-number-of-fruits-collected/
+        url: https://leetcode.cn/problems/find-the-maximum-number-of-fruits-collected/
         tag: matrix_dp|observation|classical
         """
         n = len(fruits)
@@ -3866,6 +3868,27 @@ class Solution:
         ans = 0
         for j1 in range(1, n):
             for j2 in range(j1, n - 1):
-                if (dp[0][j1] >= j1 and j2-j1+1 >= j1) or dp[j1][j2+1] >= j2-j1+1:
+                if (dp[0][j1] >= j1 and j2 - j1 + 1 >= j1) or dp[j1][j2 + 1] >= j2 - j1 + 1:
                     ans += 1
         return ans
+
+    @staticmethod
+    def lc_3135(initial: str, target: str) -> int:
+        """
+        url: https://leetcode.cn/problems/equalize-strings-by-adding-or-removing-characters-at-ends/
+        tag: lcs|longest_common_substring
+        """
+        m = len(initial)
+        n = len(target)
+        dp = [0] * n
+        ans = 0
+        ndp = [0] * n
+        for w in initial:
+            for i in range(n):
+                if w == target[i]:
+                    ndp[i] = max(ndp[i], dp[i - 1] + 1 if i else 1)
+            for i in range(n):
+                dp[i] = ndp[i]
+                ans = max(ans, dp[i])
+                ndp[i] = 0
+        return m + n - 2 * ans

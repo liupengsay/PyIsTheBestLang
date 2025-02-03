@@ -19,7 +19,7 @@ Description：digital_dp|n_base|prime_factorization|factorization|linear_sieve|e
 1017（https://leetcode.cn/problems/convert-to-base-2/）negative_base|classical
 1073（https://leetcode.cn/problems/adding-two-negabinary-numbers/）negative_base|classical
 8041（https://leetcode.cn/problems/maximum-element-sum-of-a-complete-subset-of-indices/description/）prime_factorization|hash|classical|odd
-100436（https://leetcode.com/problems/sorted-gcd-pair-queries/）inclusion_exclusion|math|number_theory|classical
+100436（https://leetcode.cn/problems/sorted-gcd-pair-queries/）inclusion_exclusion|math|number_theory|classical
 168（https://leetcode.cn/problems/excel-sheet-column-title/）n_base|reverse_thinking|classical
 171（https://leetcode.cn/problems/excel-sheet-column-number/）n_base|classical
 
@@ -2004,7 +2004,7 @@ class Solution:
     @staticmethod
     def lc_100436(nums: List[int], queries: List[int]) -> List[int]:
         """
-        url: https://leetcode.com/problems/sorted-gcd-pair-queries/
+        url: https://leetcode.cn/problems/sorted-gcd-pair-queries/
         tag: inclusion_exclusion|math|number_theory|classical
         """
         pf = PrimeFactor(5 * 10 ** 4 + 10)

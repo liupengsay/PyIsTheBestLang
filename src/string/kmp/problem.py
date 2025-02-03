@@ -17,7 +17,7 @@ Description：string|prefix_suffix
 459（https://leetcode.cn/problems/repeated-substring-pattern/）kmp|circular_section
 1163（https://leetcode.cn/problems/last-substring-in-lexicographical-order/）kmp|matrix_dp|kmp_automaton
 3292（https://leetcode.cn/problems/minimum-number-of-valid-strings-to-form-target-ii/）kmp|greedy|linear_dp
-100433（https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greedy|classical
+100433（https://leetcode.cn/problems/find-the-occurrence-of-first-almost-equal-substring/）z_function|greedy|classical
 3037（https://leetcode.cn/problems/find-pattern-in-infinite-stream-ii/）kmp_automaton|classical
 
 =====================================LuoGu======================================
@@ -1346,7 +1346,7 @@ class Solution:
     @staticmethod
     def lc_100433(s: str, pattern: str) -> int:
         """
-        url: https://leetcode.com/problems/find-the-occurrence-of-first-almost-equal-substring/
+        url: https://leetcode.cn/problems/find-the-occurrence-of-first-almost-equal-substring/
         tag: z_function|greedy|classical
         """
         m, n = len(s), len(pattern)

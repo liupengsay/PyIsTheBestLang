@@ -16,7 +16,7 @@ Description：lexicographical_order|counter|high_to_low|low_to_high
 2801（https://leetcode.cn/problems/count-stepping-numbers-in-range/）digital_dp|inclusion_exclusion
 2827（https://leetcode.cn/problems/number-of-beautiful-integers-in-the-range/）digital_dp|inclusion_exclusion
 17（https://leetcode.cn/problems/number-of-2s-in-range-lcci/）counter|digital_dp
-3352（https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/）digital_dp|linear_dp|preprocess|observation|data_range
+3352（https://leetcode.cn/problems/count-k-reducible-numbers-less-than-n/description/）digital_dp|linear_dp|preprocess|observation|data_range
 
 100160（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
 104301C（https://codeforces.com/gym/104301/problem/C）digital_dp
@@ -587,7 +587,7 @@ class Solution:
     @staticmethod
     def lc_3352_1(s: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/
+        url: https://leetcode.cn/problems/count-k-reducible-numbers-less-than-n/description/
         tag: digital_dp|linear_dp|preprocess|observation|data_range
         """
 
@@ -620,7 +620,7 @@ class Solution:
     @staticmethod
     def lc_3352_2(s: str, k: int) -> int:
         """
-        url: https://leetcode.com/problems/count-k-reducible-numbers-less-than-n/description/
+        url: https://leetcode.cn/problems/count-k-reducible-numbers-less-than-n/description/
         tag: digital_dp|linear_dp|preprocess|observation|data_range
         """
         ceil = 800

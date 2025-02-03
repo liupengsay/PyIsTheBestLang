@@ -5,7 +5,7 @@ Description：single_equation
 ====================================LeetCode====================================
 365（https://leetcode.cn/problems/water-and-jug-problem/）peishu_theorem|greedy
 2543（https://leetcode.cn/contest/biweekly-contest-96/problems/check-if-point-is-reachable/）binary_gcd|ex_gcd
-3378（https://leetcode.com/problems/count-connected-components-in-lcm-graph/）math|lcm_pair|union_find|data_range
+3378（https://leetcode.cn/problems/count-connected-components-in-lcm-graph/）math|lcm_pair|union_find|data_range
 
 =====================================LuoGu======================================
 P1082（https://www.luogu.com.cn/problem/P1082）same_mod|equation
@@ -111,7 +111,7 @@ class Solution:
     @staticmethod
     def lc_3378(nums: List[int], threshold: int) -> int:
         """
-        url: https://leetcode.com/problems/count-connected-components-in-lcm-graph/
+        url: https://leetcode.cn/problems/count-connected-components-in-lcm-graph/
         tag: math|lcm_pair|union_find|data_range
         """
         n = len(nums)

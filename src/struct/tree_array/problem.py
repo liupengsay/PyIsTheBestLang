@@ -948,7 +948,7 @@ class Solution:
     @staticmethod
     def lc_307():
         """
-        url: https://leetcode.com/problems/range-sum-query-mutable
+        url: https://leetcode.cn/problems/range-sum-query-mutable
         tag: PointChangeRangeSum
         """
 
@@ -970,7 +970,7 @@ class Solution:
     @staticmethod
     def lc_308():
         """
-        url: https://leetcode.com/problems/range-sum-query-2d-mutable/
+        url: https://leetcode.cn/problems/range-sum-query-2d-mutable/
         tag: tree_matrix|RangeAddRangeSum
         """
 

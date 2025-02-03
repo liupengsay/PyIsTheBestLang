@@ -23,7 +23,7 @@ Description：monotonicity is necessary for solution like these, which always wo
 2560（https://leetcode.cn/problems/house-robber-iv/）binary_search|dp
 2234（https://leetcode.cn/problems/maximum-total-beauty-of-the-gardens/description/）prefix_sum|binary_search|brute_force
 100123（https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/）binary_search|greedy|median_greedy|brute_force
-100267（https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
+100267（https://leetcode.cn/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/）inclusion_exclusion|binary_search|math|classical
 3134（https://leetcode.cn/problems/find-the-median-of-the-uniqueness-array）binary_search|median|two_pointers|classical
 2936（https://leetcode.cn/problems/number-of-equal-numbers-blocks/）binary_search
 
@@ -1680,7 +1680,7 @@ class Solution:
     @staticmethod
     def lc_100267(coins: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/
+        url: https://leetcode.cn/contest/weekly-contest-393/problems/kth-smallest-amount-with-single-denomination-combination/
         tag: inclusion_exclusion|binary_search|math|classical
         """
         n = len(coins)

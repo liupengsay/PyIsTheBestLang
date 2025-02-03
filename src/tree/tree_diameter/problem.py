@@ -4,7 +4,8 @@ Description：multi_source_bfs|bilateral_bfs|spfa|a-star|heuristic_search
 
 ====================================LeetCode====================================
 1617（https://leetcode.cn/problems/count-subtrees-with-max-distance-between-cities/）brute_force|tree_diameter
-100318（https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees）graph_diameter|diameter_merge|classical
+3203（https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees）graph_diameter|diameter_merge|classical
+3313（https://leetcode.cn/problems/find-the-last-marked-nodes-in-tree/）reroot_dp|tree_diameter|classical
 
 =====================================LuoGu======================================
 P1099（https://www.luogu.com.cn/problem/P1099）tree_diameter|bfs|two_pointers|monotonic_queue|classical|greedy
@@ -353,7 +354,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100318(edges1: List[List[int]], edges2: List[List[int]]) -> int:
+    def lc_3203(edges1: List[List[int]], edges2: List[List[int]]) -> int:
         """
         url: https://leetcode.cn/problems/find-minimum-diameter-after-merging-two-trees
         tag: graph_diameter|diameter_merge|classical
@@ -399,3 +400,26 @@ class Solution:
         _, _, _, dis = TreeDiameter(dct).get_diameter_info()
         ac.st((dis + 1) // 2)
         return
+
+    @staticmethod
+    def lc_3313(edges: List[List[int]]) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/find-the-last-marked-nodes-in-tree/
+        tag: reroot_dp|tree_diameter|classical
+        """
+        n = len(edges) + 1
+        dct = [[] for _ in range(n)]
+        for i, j in edges:
+            dct[i].append((j, 1))
+            dct[j].append((i, 1))
+        tree = TreeDiameter(dct)
+        x, y, _, _ = tree.get_diameter_info()
+        dis1, _ = tree.get_bfs_dis(x)
+        dis2, _ = tree.get_bfs_dis(y)
+        ans = []
+        for i in range(n):
+            if dis1[i] > dis2[i]:
+                ans.append(x)
+            else:
+                ans.append(y)
+        return ans

@@ -26,10 +26,12 @@ Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c
 2680（https://leetcode.cn/problems/maximum-or/description/）greedy|brute_force|prefix_suffix
 100087（https://leetcode.cn/problems/apply-operations-on-array-to-maximize-sum-of-squares/）bit_wise|bit_operation|greedy
 3007（https://leetcode.cn/problems/maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k/）bit_operation|binary_search|bit_operation|binary_search|digital_dp
-100179（https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
+100179（https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/）bit_operation|greedy|brain_teaser
 3145（https://leetcode.cn/problems/find-products-of-elements-of-big-array/description/）bit_operation|data_range|classical|inclusion_exclusion|counter
 233（https://leetcode.cn/problems/number-of-digit-one/description/）bit_operation|digital_dp|circular_section
-3315（https://leetcode.com/problems/construct-the-minimum-bitwise-array-ii/）construction|guess_table|bit_operation
+3315（https://leetcode.cn/problems/construct-the-minimum-bitwise-array-ii/）construction|guess_table|bit_operation
+3141（https://leetcode.cn/problems/maximum-hamming-distances/）bfs|brain_teaser|build_graph|bit_operation
+3215（https://leetcode.cn/problems/count-triplets-with-even-xor-set-bits-ii/）bit_operation|odd_even|xor_property
 
 =====================================LuoGu======================================
 P5657（https://www.luogu.com.cn/problem/P5657）bit_operation
@@ -796,7 +798,7 @@ class Solution:
     @staticmethod
     def lc_100179(nums: List[int], k: int) -> int:
         """
-        url: https://leetcode.com/problems/minimize-or-of-remaining-elements-using-operations/
+        url: https://leetcode.cn/problems/minimize-or-of-remaining-elements-using-operations/
         tag: bit_operation|greedy|brain_teaser
         """
         ans = mask = 0
@@ -1470,3 +1472,26 @@ class Solution:
             else:
                 ac.st(-1)
         return
+
+    @staticmethod
+    def lc_3141(nums: List[int], m: int) -> List[int]:
+        """
+        url: https://leetcode.cn/problems/maximum-hamming-distances/
+        tag: bfs|brain_teaser|build_graph|bit_operation
+        """
+        mask = (1 << m) - 1
+        visit = [m] * (1 << m)
+        stack = nums[:]
+        for num in nums:
+            visit[num] = 0
+        while stack:
+            nex = []
+            for num in stack:
+                for i in range(m):
+                    x = num ^ (1 << i)
+                    if visit[x] > visit[num] + 1:
+                        visit[x] = visit[num] + 1
+                        nex.append(x)
+            stack = nex
+        ans = [m - visit[num ^ mask] for num in nums]
+        return ans
