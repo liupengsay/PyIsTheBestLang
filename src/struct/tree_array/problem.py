@@ -15,9 +15,10 @@ Description：range_add|range_sum
 2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）discretization|tree_array|liner_dp
 2736（https://leetcode.cn/problems/maximum-sum-queries/）PointAddPreMax
 2916（https://leetcode.cn/problems/subarrays-distinct-element-sum-of-squares-ii/）range_add|range_sum|contribution_method|linear_dp
-100317（https://leetcode.cn/problems/peaks-in-array/）tree_array|implemention
+3187（https://leetcode.cn/problems/peaks-in-array/）tree_array|implemention
 2921（https://leetcode.cn/problems/maximum-profitable-triplets-with-increasing-prices-ii/）tree_array|linear_dp
 3073（https://leetcode.cn/problems/maximum-increasing-triplet-value/）tree_array|linear_dp
+2926（https://leetcode.cn/problems/maximum-balanced-subsequence-sum/）tree_array|linear_dp|math
 
 =====================================LuoGu======================================
 P2068（https://www.luogu.com.cn/problem/P2068）PointAddRangeSum
@@ -1469,7 +1470,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100317(nums: List[int], queries: List[List[int]]) -> List[int]:
+    def lc_3187(nums: List[int], queries: List[List[int]]) -> List[int]:
         """
         url: https://leetcode.cn/problems/peaks-in-array/
         tag: tree_array|implemention

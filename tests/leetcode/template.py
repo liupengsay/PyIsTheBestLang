@@ -7,6 +7,7 @@ from typing import List, Callable
 from typing import List
 import heapq
 import math
+from math import inf
 from collections import defaultdict, Counter, deque
 from functools import lru_cache, cmp_to_key
 from itertools import combinations, accumulate, chain, count
