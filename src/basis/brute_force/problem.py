@@ -43,9 +43,10 @@ Description：brute force according to the data range
 2122（https://leetcode.cn/problems/recover-the-original-array/）brute_force|hash|implemention
 1782（https://leetcode.cn/problems/count-pairs-of-nodes/description/）brute_force
 3102（https://leetcode.cn/problems/minimize-manhattan-distances/）manhattan_distance|brain_teaser|implemention|prefix_suffix|classical
-100406（https://leetcode.cn/problems/find-the-count-of-good-integers/）brute_force|palindrome_num
-100507（https://leetcode.cn/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）counter|brute_force|hash|preprocess
+3272（https://leetcode.cn/problems/find-the-count-of-good-integers/）brute_force|palindrome_num
+3405（https://leetcode.cn/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/）counter|brute_force|hash|preprocess
 3104（https://leetcode.cn/problems/find-longest-self-contained-substring/）brute_force|prefix_sum
+2910（https://leetcode.cn/problems/minimum-number-of-groups-to-create-a-valid-assignment/）brute_force|greedy
 
 =====================================LuoGu======================================
 P1548（https://www.luogu.com.cn/problem/P1548）brute_force
@@ -1885,7 +1886,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100406(n: int, k: int) -> int:
+    def lc_3272(n: int, k: int) -> int:
 
         """
         url: https://leetcode.cn/problems/find-the-count-of-good-integers/
@@ -1993,7 +1994,7 @@ class Solution:
         return
 
     @staticmethod
-    def lc_100507(nums: List[int]) -> int:
+    def lc_3405(nums: List[int]) -> int:
         """
         url: https://leetcode.cn/problems/count-the-number-of-arrays-with-k-matching-adjacent-elements/
         tag: counter|brute_force|hash|preprocess

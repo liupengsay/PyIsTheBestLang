@@ -18,7 +18,8 @@ Description：range_query|binary_search
 2276（https://leetcode.cn/problems/count-integers-in-intervals/）sorted_list|implemention|classical
 3013（https://leetcode.cn/problems/divide-an-array-into-subarrays-with-minimum-cost-ii/）sorted_list|top_k_sum
 1851（https://leetcode.cn/problems/minimum-interval-to-include-each-query）
-100441（https://leetcode.cn/problems/find-x-sum-of-all-k-long-subarrays-ii/）sorted_list|top_k_sum|bit_operation
+3321（https://leetcode.cn/problems/find-x-sum-of-all-k-long-subarrays-ii/）sorted_list|top_k_sum|bit_operation
+3422（https://leetcode.cn/problems/minimum-operations-to-make-subarray-elements-equal/）sorted_list|top_k_sum|classical
 
 =====================================LuoGu======================================
 P7333（https://www.luogu.com.cn/problem/P7333）sort|sorted_list|circular_array|range_query
@@ -75,14 +76,14 @@ ABC245E（https://atcoder.jp/contests/abc245/tasks/abc245_e）partial_order|sort
 
 """
 import bisect
+import math
 from bisect import insort_left, bisect_left
 from collections import Counter
 from typing import List
-import math
+
 from src.basis.various_sort.template import VariousSort
 from src.struct.sorted_list.template import SortedList, TopKSum, TopKSumSpecial
 from src.util.fast_io import FastIO
-
 
 
 class Solution:
@@ -645,7 +646,6 @@ class Solution:
         ac.st(ans)
         return
 
-
     @staticmethod
     def cf_1969d(ac=FastIO()):
         """
@@ -691,13 +691,13 @@ class Solution:
                 a = int(a)
                 b = int(b)
                 ans = 0
-                i = lst.bisect_left(a*part+a)
+                i = lst.bisect_left(a * part + a)
                 for x in [i - 1, i, i + 1]:
-                    while 0 <= x < len(lst) and not (lst[x]//part > b or lst[x]%part < a):
+                    while 0 <= x < len(lst) and not (lst[x] // part > b or lst[x] % part < a):
                         lst.pop(x)
                         ans += 1
                 ac.st(ans)
-                lst.add(a*part+b)
+                lst.add(a * part + b)
         return
 
     @staticmethod
@@ -842,3 +842,24 @@ class Solution:
                         tot += state[i]
                 check()
         return
+
+    @staticmethod
+    def lc_3422(nums: List[int], k: int) -> int:
+        """
+        url: https://leetcode.cn/problems/minimum-operations-to-make-subarray-elements-equal/
+        tag: sorted_list|top_k_sum|classical
+        """
+        n = len(nums)
+        ans = math.inf
+        lst = TopKSum(k // 2)
+        tot = 0
+        for i in range(n):
+            lst.add(nums[i])
+            tot += nums[i]
+            if i >= k - 1:
+                cur = lst.lst[k // 2]
+                cost = cur * (k // 2) - lst.top_k_sum + (tot - lst.top_k_sum) - cur * (k - k // 2)
+                tot -= nums[i - k + 1]
+                lst.discard(nums[i - k + 1])
+                ans = min(ans, cost)
+        return ans
