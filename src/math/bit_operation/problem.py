@@ -5,6 +5,7 @@ Description：bit_wise|xor|or|and|brute_force
 Property：(4*i)^(4*i+1)^(4*i+2)^(4*i+3)=0  (2*n)^(2*n+1)=1 (a&b)^(a&c) = a&(b^c)
 
 ====================================LeetCode====================================
+201（https://leetcode.cn/problems/bitwise-and-of-numbers-range/）brain_teaser
 2354（https://leetcode.cn/problems/number-of-excellent-pairs/）brain_teaser|hash|counter|brute_force
 260（https://leetcode.cn/problems/single-number-iii/）bit_operation|cor_property|lowest_bit
 2571（https://leetcode.cn/problems/minimum-operations-to-reduce-an-integer-to-0/）operation|bit_property
